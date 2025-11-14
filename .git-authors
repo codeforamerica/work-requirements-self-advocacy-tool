@@ -1,0 +1,28 @@
+# .pairs - configuration for 'git duet'
+#
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  ar: Anisha Ramnani
+  dp: Drew Proebstel
+  em: Em Barnard-Shao
+  jf: jey flores
+  jh: Jenny Heath
+  kd: Kevin Diale
+  ti: Tahsina Islam
+  mr: Mike Rotondo
+  mm: Max Mazzocchi
+  mp: Martha Pidcock
+
+email_addresses:
+  ar: aramnani@codeforamerica.org
+  dp: dproebstel@codeforamerica.org
+  em: ebarnard@codeforamerica.org
+  jf: jflores@codeforamerica.org
+  jh: jheath@codeforamerica.org
+  kd: kdiale@codeforamerica.org
+  ti: tislam@codeforamerica.org
+  mm: mmazzocchi@codeforamerica.org
+  mr: mrotondo@codeforamerica.org
+  mp: mpidcock@codeforamerica.org
+
+global: false # Set to true for git-pair to change git configuration for all your projects
