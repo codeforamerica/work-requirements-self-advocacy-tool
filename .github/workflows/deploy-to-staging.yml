@@ -1,0 +1,47 @@
+name: Deploy to AWS Staging
+
+on:
+  workflow_run:
+    types: [ completed ]
+    branches: [ main ]
+  workflow_dispatch:
+    inputs: { }
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+  deploy:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    env:
+      ECR_REPOSITORY: work-requirements-self-advocacy-tool-staging-web
+      IMAGE_TAG: ${{ github.sha }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: us-east-1
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build and push Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        run: |
+          docker build -t 311549964878.dkr.ecr.us-east-1.amazonaws.com/work-requirements-self-advocacy-tool-staging-web:${{env.IMAGE_TAG}} --platform linux/amd64 .
+          docker push 311549964878.dkr.ecr.us-east-1.amazonaws.com/work-requirements-self-advocacy-tool-staging-web:${{env.IMAGE_TAG}}
+
+      - name: Update SSM Version Parameter
+        run: |
+          echo "tag:$IMAGE_TAG"
+          aws ssm put-parameter \
+            --name  /wrsat/staging/web/version \
+            --value "$IMAGE_TAG" \
+            --overwrite
