@@ -23,6 +23,7 @@ default: &default
 development:
   <<: *default
   database: work_requirements_self_advocacy_tool_development
+  username: postgres
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
