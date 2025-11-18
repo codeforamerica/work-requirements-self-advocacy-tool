@@ -23,18 +23,12 @@ jobs:
 
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      checks: write
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: .ruby-version
-          bundler-cache: true
-
-      - name: Lint code for consistent style
-        run: bin/rubocop -f github
+      - name: Standard Ruby
+        uses: standardrb/standard-ruby-action@v1
 
   test:
     runs-on: ubuntu-latest
@@ -72,8 +66,7 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare test test:system
+        run: RAILS_ENV=test bin/rails db:test:prepare spec
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
