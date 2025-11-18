@@ -44,6 +44,6 @@ From the root directory of the project:
 
 2. Start the Rails server:
 
-        $ bin/rails serve
+        $ bin/rails server
 
 Now, navigate to http://localhost:3000. You should see your Rails app!
