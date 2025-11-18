@@ -40,10 +40,10 @@ From the root directory of the project:
 
 1. Start Postgres:
 
-      $ pg_ctl start
+        $ pg_ctl start
 
 2. Start the Rails server:
 
-      $ bin/rails serve
+        $ bin/rails serve
 
-Now, navigate to http://localhost:3000. You should see you Rails app!
+Now, navigate to http://localhost:3000. You should see your Rails app!
