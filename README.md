@@ -1,24 +1,49 @@
-# README
+# Work Requirements Self Advocacy Tool
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development Setup
 
-Things you may want to cover:
+The recommended development setup uses [`mise`](https://mise.jdx.dev/).
 
-* Ruby version
+On MacOS, using `zsh`:
 
-* System dependencies
+1. Install `mise`
 
-* Configuration
+         $ brew install mise
 
-* Database creation
+2. Modify `.zshrc`:
 
-* Database initialization
+        $ echo 'eval "$(/opt/homebrew/bin/mise activate zsh)"' >> ~/.zshrc
 
-* How to run the test suite
+3. Install dependencies:
 
-* Services (job queues, cache servers, search engines, etc.)
+        $ brew install libyaml pkgconf icu4c
 
-* Deployment instructions
+4. Force link `icu4c` (`mise` won't find it otherwise):
 
-* ...
+        $ brew link icu4c --force
+
+5. In the root directory of the project, install development tools:
+
+        $ mise install
+
+6. Start Postgres:
+
+        $ pg_ctl start
+
+7. Create a new database:
+
+        $ bin/rails db:create
+
+## Running Locally
+
+From the root directory of the project:
+
+1. Start Postgres:
+
+      $ pg_ctl start
+
+2. Start the Rails server:
+
+      $ bin/rails serve
+
+Now, navigate to http://localhost:3000. You should see you Rails app!
