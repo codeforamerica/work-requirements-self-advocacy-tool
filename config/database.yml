@@ -21,9 +21,9 @@ test:
 
 deploy_default: &deploy_default
   <<: *default
-  host: <%= ENV["DATABASE_HOST"] %>
-  username: <%= ENV["DATABASE_USER"] %>
-  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: "<%= ENV["DATABASE_HOST"] %>"
+  username: "<%= ENV["DATABASE_USER"] %>"
+  password: "<%= ENV["DATABASE_PASSWORD"] %>"
 
 staging:
   primary:
