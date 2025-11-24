@@ -51,7 +51,7 @@ jobs:
           ref: 'main'
           repo: work-requirements-self-advocacy-tool-infra
           owner: codeforamerica
-          workflow: 'deploy'
+          workflow: '.github/workflows/deploy.yml'
           workflow_inputs: |
             {
               "environment": "staging",
