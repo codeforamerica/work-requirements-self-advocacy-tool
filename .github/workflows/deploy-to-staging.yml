@@ -43,3 +43,29 @@ jobs:
             --name  /work-requirements-self-advocacy-tool/staging/web/version \
             --value "$IMAGE_TAG" \
             --overwrite
+            - name: Trigger deployment from work requirements self advocacy infra
+        uses: codex-/return-dispatch@v2
+        id: dispatch
+        with:
+          token: ${{ secrets.DEPLOY_PAT }}
+          ref: 'main'
+          repo: work-requirements-self-advocacy-tool-infra
+          owner: codeforamerica
+          workflow: 'deploy'
+          workflow_inputs: |
+            {
+              "environment": "staging",
+              "config": "application"
+            }
+      - name: Wait on Workflow
+        uses: lucasssvaz/wait-on-workflow@v1
+        id: waiter
+        with:
+          repository: codeforamerica/work-requirements-self-advocacy-tool-infra
+          workflow: ${{ steps.dispatch.outputs.run_id }}
+      - name: Fail unless the workflow succeeded
+        if: ${{ steps.waiter.outputs.conclusion != 'success' }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            core.setFailed('Deployment workflow completed with stats: ${{ steps.waiter.outputs.conclusion }}')
