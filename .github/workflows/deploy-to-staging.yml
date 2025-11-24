@@ -43,7 +43,7 @@ jobs:
             --name  /work-requirements-self-advocacy-tool/staging/web/version \
             --value "$IMAGE_TAG" \
             --overwrite
-            - name: Trigger deployment from work requirements self advocacy infra
+      - name: Trigger deployment from work requirements self advocacy infra
         uses: codex-/return-dispatch@v2
         id: dispatch
         with:
