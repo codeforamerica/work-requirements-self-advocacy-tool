@@ -113,9 +113,9 @@ module ControllerNavigation
       def page_info_matches_return_to_review_param?(page_info, return_to_review_param)
         page_controller_name = page_info[:controller].name.demodulize.underscore
         possible_matches = [page_controller_name,
-                            "#{page_controller_name}_#{page_info[:item_index]}",
-                            page_info[:subflow],
-                            "#{page_info[:subflow]}_#{page_info[:item_index]}"]
+          "#{page_controller_name}_#{page_info[:item_index]}",
+          page_info[:subflow],
+          "#{page_info[:subflow]}_#{page_info[:item_index]}"]
         possible_matches.include? return_to_review_param
       end
     end
