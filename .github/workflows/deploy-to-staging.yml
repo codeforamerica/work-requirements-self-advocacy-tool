@@ -44,7 +44,7 @@ jobs:
             --value "$IMAGE_TAG" \
             --overwrite
       - name: Trigger deployment from work requirements self advocacy infra
-        uses: codex-/return-dispatch@v2
+        uses: codex-/return-dispatch@v3
         id: dispatch
         with:
           token: ${{ secrets.DEPLOY_PAT }}
