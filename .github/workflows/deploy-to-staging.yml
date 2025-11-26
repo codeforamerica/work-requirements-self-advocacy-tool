@@ -61,6 +61,7 @@ jobs:
         uses: lucasssvaz/wait-on-workflow@v1
         id: waiter
         with:
+          github-token: ${{ secrets.DEPLOY_PAT }}
           repository: codeforamerica/work-requirements-self-advocacy-tool-infra
           workflow: ${{ steps.dispatch.outputs.run_id }}
       - name: Fail unless the workflow succeeded
