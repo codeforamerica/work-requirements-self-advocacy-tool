@@ -1,0 +1,18 @@
+<div style="margin: 50px;">
+  <h1 style="font-size: 19px;">End of example</h1>
+  <br/>
+  <table>
+    <tr style="font-weight: bold; border-bottom: 1px solid #ddd;">
+      <th style="padding-right: 15px;">screener id</th>
+      <th style="padding-right: 15px;">written language</th>
+      <th style="padding-right: 15px;">spoken language</th>
+    </tr>
+    <% Screener.all.each do |screener| %>
+     <tr style="border-bottom: 1px solid #ddd;">
+       <td><%= screener.id %></td>
+       <td><%= screener.language_preference_written %></td>
+       <td><%= screener.language_preference_spoken %></td>
+     </tr>
+    <% end %>
+  </table>
+</div>
