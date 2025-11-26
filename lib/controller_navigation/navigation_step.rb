@@ -1,0 +1,20 @@
+module ControllerNavigation
+  class NavigationStep
+    attr_accessor :show_steps
+    # Indicates whether navigation widget should be displayed on this step
+    alias_method :show_steps?, :show_steps
+
+    def initialize(controller, show_steps = true)
+      @controller = controller
+      @show_steps = show_steps
+    end
+
+    def controllers
+      [@controller]
+    end
+
+    def pages(screener)
+      [{controller: @controller}]
+    end
+  end
+end
