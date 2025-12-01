@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def navigation_class
-    "Navigation::#{current_screener.class.name}Navigation".constantize
+    Navigation::ScreenerNavigation
   end
   helper_method :navigation_class
 end
