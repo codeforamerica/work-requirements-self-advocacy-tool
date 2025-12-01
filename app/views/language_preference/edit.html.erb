@@ -1,21 +1,9 @@
-<div style="margin: 50px;">
-  <%= form_with model: @model, url: { action: :update }, local: true, method: "put" do |f| %>
-    <label for="language_preference_written">What language do you prefer to read or write?</label>
-    <br/>
-    <%= f.select(:language_preference_written, [["English", "english"], ["Spanish", "spanish"], ["Gibberish", "unfilled"]], id: "language_preference_written") %>
-    <% if @model.errors[:language_preference_written].present? %>
-      <div style="color: red;"><%= @model.errors[:language_preference_written].first %></div>
-    <% end %>
-    <br/>
-    <br/>
-    <label for="language_preference_spoken">What language do you prefer to speak?</label>
-    <br/>
-    <%= f.select(:language_preference_spoken, [["English", "english"], ["Spanish", "spanish"], ["Gibberish", "unfilled"]], id: "language_preference_spoken") %>
-    <% if @model.errors[:language_preference_spoken].present? %>
-      <div style="color: red;"><%= @model.errors[:language_preference_spoken].first %></div>
-    <% end %>
-    <br/>
-    <br/>
-    <%= f.submit "Continue", style: "padding: 10px; background: #008060; font-size: 19px; color: #FFFFFF;" %>
-  <% end %>
-</div>
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put" do |f| %>
+  <label for="language_preference_written">What language do you prefer to read or write?</label>
+  <%= render(DropdownComponent.new(form: f, method: :language_preference_written, collection: dropdown_options, item_value_method: :value, item_label_method: :label)) %>
+
+  <label for="language_preference_spoken">What language do you prefer to speak?</label>
+  <%= render(DropdownComponent.new(form: f, method: :language_preference_spoken, collection: dropdown_options, item_value_method: :value, item_label_method: :label)) %>
+
+  <%= render SubmitButtonComponent.new(form: f) %>
+<% end %>

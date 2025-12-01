@@ -1,10 +1,8 @@
-<div style="margin: 60px;">
-  <h1 style="font-size: 60px;">Check if the SNAP work rules apply to you</h1>
+<h1>Check if the SNAP work rules apply to you</h1>
 
-  <p>Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.</p>
-  <p style="margin-bottom: 20px;">It takes most people 10 minutes or less to complete this form.</p>
+<p>Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.</p>
+<p>
+  <strong>It takes most people 10 minutes or less to complete this form.</strong>
+</p>
 
-  <%= link_to start_flow_path, { style: "padding: 10px; background: #008060; font-size: 19px; color: #FFFFFF;" } do %>
-    Fill out the form
-  <% end %>
-</div>
+<%= render ButtonLinkComponent.new(label: "Fill out the form", url: start_flow_path) %>
