@@ -12,8 +12,8 @@ module Forms
           controller_name.to_sym
         end
 
-        def load_model(screener, item_index: nil)
-          screener
+        def load_model(intake, item_index: nil)
+          intake
         end
 
         def model_valid?(model)

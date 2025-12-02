@@ -9,7 +9,7 @@ module ControllerNavigation
       before_action :set_item_index
 
       class << self
-        def show?(screener, item_index: nil)
+        def show?(intake, item_index: nil)
           true
         end
 

@@ -13,7 +13,7 @@ module ControllerNavigation
       [@controller]
     end
 
-    def pages(screener)
+    def pages(intake)
       [{controller: @controller}]
     end
   end

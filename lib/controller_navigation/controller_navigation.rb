@@ -11,8 +11,8 @@ module ControllerNavigation
         sections.flat_map(&:controllers)
       end
 
-      def pages(screener)
-        sections.flat_map { |section| section.pages(screener) }
+      def pages(intake)
+        sections.flat_map { |section| section.pages(intake) }
       end
 
       def sections

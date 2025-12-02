@@ -15,8 +15,8 @@ module ControllerNavigation
       @steps.flat_map(&:controllers)
     end
 
-    def pages(screener)
-      @steps.flat_map { |step| step.pages(screener) }
+    def pages(intake)
+      @steps.flat_map { |step| step.pages(intake) }
     end
   end
 end
