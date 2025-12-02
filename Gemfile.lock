@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/codeforamerica/cfa-ui-components
+  revision: 3b12580b5b38ead046042e0eadc4c0caa3186adc
+  specs:
+    cfa_ui_components (0.1.0)
+      cssbundling-rails (~> 1.0)
+      rails (~> 8.0)
+      view_component (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,6 +178,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
+    ostruct (0.6.3)
     parallel (1.27.0)
     parser (3.3.10.0)
       ast (~> 2.4.1)
@@ -347,6 +357,10 @@ GEM
     unicode-emoji (4.1.0)
     uri (1.1.1)
     useragent (0.16.11)
+    view_component (4.1.1)
+      actionview (>= 7.1.0, < 8.2)
+      activesupport (>= 7.1.0, < 8.2)
+      concurrent-ruby (~> 1)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -377,10 +391,12 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
+  cfa_ui_components!
   cssbundling-rails
   debug
   jbuilder
   jsbundling-rails
+  ostruct
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)

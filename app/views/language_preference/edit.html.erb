@@ -1,0 +1,9 @@
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put" do |f| %>
+  <label for="language_preference_written">What language do you prefer to read or write?</label>
+  <%= render(DropdownComponent.new(form: f, method: :language_preference_written, collection: dropdown_options, item_value_method: :value, item_label_method: :label)) %>
+
+  <label for="language_preference_spoken">What language do you prefer to speak?</label>
+  <%= render(DropdownComponent.new(form: f, method: :language_preference_spoken, collection: dropdown_options, item_value_method: :value, item_label_method: :label)) %>
+
+  <%= render SubmitButtonComponent.new(form: f) %>
+<% end %>

@@ -1,0 +1,2 @@
+class TempEndController < QuestionController
+end

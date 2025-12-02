@@ -9,7 +9,6 @@ development:
   primary:
     <<: *default
     database: work_requirements_self_advocacy_tool_development
-    username: postgres
   queue:
     <<: *default
     database: work_requirements_self_advocacy_tool_development_queue

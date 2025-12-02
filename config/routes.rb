@@ -10,5 +10,8 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "application#home"
+  root "landing_page#index"
+  get "start_flow" => "landing_page#create_screener"
+
+  Navigation::ScreenerNavigation.scoped_navigation_routes(self)
 end
