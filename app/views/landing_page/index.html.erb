@@ -1,23 +1,22 @@
-<h1>Check if the SNAP work rules apply to you</h1>
+<h1><%= t("views.landing_page.index.title") %></h1>
 
-<p>Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.</p>
+<p><%= t("views.landing_page.index.title_help_text_1") %></p>
 <p>
-  <strong>It takes most people 10 minutes or less to complete this form.</strong>
+  <strong><%= t("views.landing_page.index.title_help_text_2") %></strong>
 </p>
 
-<h2>What are the SNAP work rules?</h2>
+<%= render ButtonLinkComponent.new(label: "Fill out the form", url: start_flow_path) %>
 
-<p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.</p>
+<h2><%= t("views.landing_page.index.work_rules_title") %></h2>
 
-<p>Work activities include:</p>
+<p><%= t("views.landing_page.index.work_rules_help_text") %></p>
 
+<p><%= t("views.landing_page.index.work_rules_list_label") %></p>
 <ul>
-  <li>Working a job for money, including self-employment or gigs</li>
-  <li>Working in exchange for something like food, housing, or other services</li>
-  <li>Volunteering</li>
-  <li>Participating in job training or SNAP Employment & Training programs</li>
+  <% t("views.landing_page.index.work_rules_list").each do |list_item| %>
+    <li><%= list_item %></li>
+  <% end %>
 </ul>
 
-<p>If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).</p>
+<p><%= t("views.landing_page.index.work_rules_help_text_2") %></p>
 
-<%= render ButtonLinkComponent.new(label: "Fill out the form", url: start_flow_path) %>
