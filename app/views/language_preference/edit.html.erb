@@ -1,8 +1,9 @@
+<h1><%= t("views.landing_page.language_preference.edit.title") %></h1>
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put" do |f| %>
-  <label for="language_preference_written">What language do you prefer to read or write?</label>
+  <label for="language_preference_written"><%= t("views.landing_page.language_preference.edit.language_preference_written_label") %></label>
   <%= render(DropdownComponent.new(form: f, method: :language_preference_written, collection: dropdown_options, item_value_method: :value, item_label_method: :label)) %>
 
-  <label for="language_preference_spoken">What language do you prefer to speak?</label>
+  <label for="language_preference_spoken"><%= t("views.landing_page.language_preference.edit.language_preference_spoken_label") %></label>
   <%= render(DropdownComponent.new(form: f, method: :language_preference_spoken, collection: dropdown_options, item_value_method: :value, item_label_method: :label)) %>
 
   <%= render SubmitButtonComponent.new(form: f) %>
