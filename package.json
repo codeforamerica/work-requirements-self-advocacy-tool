@@ -4,6 +4,9 @@
   "devDependencies": {
     "esbuild": "^0.25.11"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "build:css": "bundle exec rake cfa_ui_components:copy_gem_styles && npx @tailwindcss/cli -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
