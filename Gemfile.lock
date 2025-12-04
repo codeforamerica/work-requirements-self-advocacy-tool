@@ -112,6 +112,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.6.2)
+    dotenv (3.2.0)
     drb (2.2.3)
     erb (6.0.0)
     erubi (1.13.1)
@@ -394,6 +395,7 @@ DEPENDENCIES
   cfa_ui_components!
   cssbundling-rails
   debug
+  dotenv
   jbuilder
   jsbundling-rails
   ostruct
