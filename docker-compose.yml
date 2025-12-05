@@ -1,0 +1,21 @@
+services:
+  wrsat-db:
+    container_name: wrsat-db
+    image: postgres:18-alpine
+    user: postgres
+    ports:
+      - 127.0.0.1:${RAILS_DB_PORT:-5432}:5432
+    volumes:
+      - database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${RAILS_DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${RAILS_DB_PASSWORD:-password}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "postgres"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+
+volumes:
+  database:

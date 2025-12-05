@@ -39,3 +39,4 @@
 /node_modules
 .idea
 cfa_ui_components.tailwind.css
+*.swp
