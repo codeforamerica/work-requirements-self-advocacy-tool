@@ -11,6 +11,6 @@
     "heroku-postgresql"
   ],
   "scripts": {
-    "postdeploy": "bundle exec rails db:migrate"
+    "postdeploy": "bundle exec rails db:schema:load"
   }
 }
