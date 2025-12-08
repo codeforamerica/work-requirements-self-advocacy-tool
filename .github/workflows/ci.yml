@@ -17,12 +17,6 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
-
-      - name: Set up Node
-        uses: actions/setup-node@v6
-        with:
-          node-version-file: .node-version
-
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
