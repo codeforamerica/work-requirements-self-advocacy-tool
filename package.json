@@ -6,7 +6,7 @@
   },
   "engines": {
     "node": "24.x",
-    "yarn": "1.22.x"
+    "yarn": "1.x"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
