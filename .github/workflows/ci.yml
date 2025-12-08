@@ -56,8 +56,8 @@ jobs:
       - name: Install node
         run: >-
           curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ &&
-          /tmp/node-build-master/bin/node-build 24.11.1 /usr/local/node &&
-          npm install -g yarn@$YARN_VERSION &&
+          sudo /tmp/node-build-master/bin/node-build 24.11.1 /usr/local/node &&
+          sudo npm install -g yarn@$YARN_VERSION &&
           rm -rf /tmp/node-build-master
 
       - name: Checkout code
