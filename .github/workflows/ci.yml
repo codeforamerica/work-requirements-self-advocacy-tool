@@ -18,6 +18,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .node-version
+
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
@@ -52,14 +57,6 @@ jobs:
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev node-gyp pkg-config python-is-python3 google-chrome-stable
-
-      - name: Install node
-        run: >-
-          curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ &&
-          sudo /tmp/node-build-master/bin/node-build 24.11.1 /usr/local/node &&
-          sudo npm install -g yarn@$YARN_VERSION &&
-          rm -rf /tmp/node-build-master
-
       - name: Checkout code
         uses: actions/checkout@v6
 
