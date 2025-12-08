@@ -16,7 +16,7 @@ If it's your first time setting up for local development, do the following steps
 
     $ foreman start
 
-4. Navigate to http://localhost:5000. You should see your app!
+4. Navigate to http://localhost:3000. You should see your app!
 
 ## Running the Linter
 
