@@ -5,7 +5,7 @@
     "esbuild": "^0.25.11"
   },
   "engines": {
-    "node": "20.x",
+    "node": "24.x",
     "yarn": "1.x"
   },
   "scripts": {
