@@ -17,5 +17,6 @@
     "@hotwired/turbo-rails": "^8.0.20",
     "@tailwindcss/cli": "^4.1.16",
     "tailwindcss": "^4.1.16"
-  }
+  },
+  "version": "0.0.0"
 }
