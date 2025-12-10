@@ -1,0 +1,10 @@
+<h1><%= t("views.overview.edit.title") %></h1>
+
+<p><%= t("views.overview.edit.help_text_html") %></p>
+<ol>
+  <% t("views.overview.edit.help_text_list_html").map do |list_item| %>
+    <li><%= list_item %></li>
+  <% end %>
+</ol>
+
+<%= render ButtonLinkComponent.new(label: t("general.continue"), url: next_path) %>
