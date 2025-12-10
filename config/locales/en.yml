@@ -2,6 +2,7 @@
 en:
   general:
     continue: Continue
+    back: "Go back"
   views:
     landing_page:
       index:
