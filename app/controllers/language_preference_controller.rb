@@ -6,7 +6,7 @@ class LanguagePreferenceController < QuestionController
   end
 
   def dropdown_options
-    [OpenStruct.new(value: "english", label: "English"),
-      OpenStruct.new(value: "spanish", label: "Spanish")]
+    [OpenStruct.new(value: "english", label: "english"),
+      OpenStruct.new(value: "spanish", label: "spanish")]
   end
 end
