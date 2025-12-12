@@ -1,0 +1,13 @@
+<%= extends :application do %>
+  <% content_for :page_title do %>
+    <%= yield :question_title %>
+  <% end %>
+
+  <%= yield :notices %>
+  <% if prev_path %>
+    <div class="back grid">
+      <%= link_to t("general.back"), prev_path %>
+    </div>
+  <% end %>
+  <%= yield %>
+<% end %>

@@ -1,5 +1,8 @@
 ---
 en:
+  general:
+    continue: Continue
+    back: "Go back"
   views:
     landing_page:
       index:
@@ -26,3 +29,11 @@ en:
           language_preference_written_label: What language do you prefer to read or
             write?
           title: Language Preference
+      fill_out_form: "Fill out the form"
+    overview:
+      edit:
+        title: "This is a 2-part process"
+        help_text_html: "We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you."
+        help_text_list_html:
+        - <strong>Fill out this form</strong> about you and the people you get SNAP with.
+        - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
