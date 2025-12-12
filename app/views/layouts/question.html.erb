@@ -3,11 +3,17 @@
     <%= yield :question_title %>
   <% end %>
 
-  <%= yield :notices %>
-  <% if prev_path %>
-    <div class="back grid">
-      <%= link_to t("general.back"), prev_path %>
+  <section class="slab">
+    <div class="grid">
+      <div class="grid__item width-three-fourths">
+        <%= yield :notices %>
+        <% if prev_path %>
+          <div class="back grid">
+            <%= link_to t("general.back"), prev_path %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
     </div>
-  <% end %>
-  <%= yield %>
+  </section>
 <% end %>
