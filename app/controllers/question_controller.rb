@@ -12,7 +12,7 @@ class QuestionController < ApplicationController
   end
 
   def locale
-    screener.locale || params[:locale] || I18n.default_locale
+    current_screener.locale || params[:locale] || I18n.default_locale
   end
 
   def self.default_url_options
