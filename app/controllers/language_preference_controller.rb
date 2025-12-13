@@ -6,8 +6,13 @@ class LanguagePreferenceController < QuestionController
   end
 
   def dropdown_options
-    [OpenStruct.new(value: "english", label: "English"),
-      OpenStruct.new(value: "spanish", label: "Spanish"),
-      OpenStruct.new(value: "unfilled", label: "Gibberish")]
+    [OpenStruct.new(value: "english", label: "english"),
+      OpenStruct.new(value: "spanish", label: "spanish")]
+  end
+
+  private
+
+  def after_update_success
+    I18n.locale = locale
   end
 end

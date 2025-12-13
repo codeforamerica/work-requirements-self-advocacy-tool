@@ -1,0 +1,28 @@
+---
+es:
+  views:
+    landing_page:
+      index:
+        title: Check if the SNAP work rules apply to you in Spanish
+        title_help_text_1: Because of new policy changes, many adults on SNAP now
+          have to meet work rules, while others may be exempt.
+        title_help_text_2: It takes most people 10 minutes or less to complete this
+          form.
+        work_rules_help_text: People who have to follow the SNAP work rules must do
+          at least 80 hours of work activities a month or earn at least $935.25 a
+          month.
+        work_rules_help_text_2: If you do not do work activities for 80 hours a month,
+          you can only get SNAP benefits for up to 3 months every 3 years (36 months).
+        work_rules_list:
+        - Working a job for money, including self-employment or gigs
+        - Working in exchange for something like food, housing, or other services
+        - Volunteering
+        - Participating in job training or SNAP Employment & Training programs
+        work_rules_list_label: 'Work activities include:'
+        work_rules_title: What are the SNAP work rules?
+      language_preference:
+        edit:
+          language_preference_spoken_label: What language do you prefer to speak?
+          language_preference_written_label: What language do you prefer to read or
+            write?
+          title: Language Preference

@@ -35,6 +35,7 @@ module Forms
       @model.assign_attributes(form_params(@model))
       if self.class.model_valid?(@model)
         self.class.save_model(@model)
+        after_update_success
         redirect_to(next_path)
       else
         render :edit
@@ -42,6 +43,8 @@ module Forms
     end
 
     private
+
+    def after_update_success; end
 
     def form_params(model)
       params.expect(model.class.params_key => self.class.attributes_edited)
