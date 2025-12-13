@@ -9,4 +9,10 @@ class LanguagePreferenceController < QuestionController
     [OpenStruct.new(value: "english", label: "english"),
       OpenStruct.new(value: "spanish", label: "spanish")]
   end
+
+  private
+
+  def after_update_success
+    I18n.locale = locale
+  end
 end
