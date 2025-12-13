@@ -7,6 +7,6 @@ class LanguagePreferenceController < QuestionController
 
   def dropdown_options
     [["English", "english"],
-     ["Spanish", "spanish"]]
+      ["Spanish", "spanish"]]
   end
 end
