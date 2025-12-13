@@ -17,8 +17,6 @@ gem "jsbundling-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -43,7 +41,8 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "ostruct"
-gem "cfa_ui_components", git: "https://github.com/codeforamerica/cfa-ui-components"
+gem "dartsass-rails", "~> 0.5.1"
+gem "cfa-styleguide", "0.17.1", git: "https://github.com/codeforamerica/honeycrisp-gem", branch: "main", ref: "40a4356dd217dacfba82a7b92010111999954c91"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

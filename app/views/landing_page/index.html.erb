@@ -1,22 +1,28 @@
-<h1><%= t("views.landing_page.index.title") %></h1>
+<section class="slab">
+  <div class="grid">
+    <div class="grid__item width-three-fourths">
+      <h1><%= t("views.landing_page.index.title") %></h1>
 
-<p><%= t("views.landing_page.index.title_help_text_1") %></p>
-<p>
-  <strong><%= t("views.landing_page.index.title_help_text_2") %></strong>
-</p>
+      <p><%= t("views.landing_page.index.title_help_text_1") %></p>
+      <p>
+        <strong><%= t("views.landing_page.index.title_help_text_2") %></strong>
+      </p>
 
-<%= render ButtonLinkComponent.new(label: t("views.landing_page.fill_out_form"), url: start_flow_path) %>
+      <%= link_to t("views.landing_page.fill_out_form"), start_flow_path, class: "button button--primary" %>
 
-<h2><%= t("views.landing_page.index.work_rules_title") %></h2>
+      <h2><%= t("views.landing_page.index.work_rules_title") %></h2>
 
-<p><%= t("views.landing_page.index.work_rules_help_text") %></p>
+      <p><%= t("views.landing_page.index.work_rules_help_text") %></p>
 
-<p><%= t("views.landing_page.index.work_rules_list_label") %></p>
-<ul>
-  <% t("views.landing_page.index.work_rules_list").each do |list_item| %>
-    <li><%= list_item %></li>
-  <% end %>
-</ul>
+      <p><%= t("views.landing_page.index.work_rules_list_label") %></p>
+      <ul>
+        <% t("views.landing_page.index.work_rules_list").each do |list_item| %>
+          <li><%= list_item %></li>
+        <% end %>
+      </ul>
 
-<p><%= t("views.landing_page.index.work_rules_help_text_2") %></p>
+      <p><%= t("views.landing_page.index.work_rules_help_text_2") %></p>
+    </div>
+  </div>
+</section>
 
