@@ -31,6 +31,8 @@ jobs:
     steps:
       - name: Standard Ruby
         uses: standardrb/standard-ruby-action@v1
+        env:
+          BUNDLE_GITHUB__COM: ${{ secrets.BUNDLE_GITHUB__COM }}
 
   test:
     runs-on: ubuntu-latest
