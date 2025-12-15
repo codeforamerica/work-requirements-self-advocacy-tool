@@ -18,7 +18,7 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
         env:
-          BUNDLE_GITHUB__COM: {{ secrets.DEPLOY_PAT }}
+          BUNDLE_GITHUB__COM: ${{ secrets.DEPLOY_PAT }}
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
