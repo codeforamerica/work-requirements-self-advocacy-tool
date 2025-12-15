@@ -63,6 +63,8 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+        env:
+          BUNDLE_GITHUB__COM: ${{ secrets.DEPLOY_PAT }}
 
       - name: Run tests
         env:
