@@ -9,4 +9,10 @@ class LanguagePreferenceController < QuestionController
     [["English", "english"],
       ["Spanish", "spanish"]]
   end
+
+  private
+
+  def after_update_success
+    I18n.locale = locale
+  end
 end
