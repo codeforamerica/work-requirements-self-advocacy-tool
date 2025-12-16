@@ -1,0 +1,19 @@
+<%= extends :application do %>
+  <% content_for :page_title do %>
+    <%= yield :question_title %>
+  <% end %>
+
+  <section class="slab">
+    <div class="grid">
+      <div class="grid__item width-three-fourths">
+        <%= yield :notices %>
+        <% if prev_path %>
+          <div class="back grid">
+            <%= link_to t("general.back"), prev_path %>
+          </div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+<% end %>
