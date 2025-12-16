@@ -16,13 +16,23 @@ en:
           month.
         work_rules_help_text_2: If you do not do work activities for 80 hours a month,
           you can only get SNAP benefits for up to 3 months every 3 years (36 months).
-        work_rules_list:
-        - Working a job for money, including self-employment or gigs
-        - Working in exchange for something like food, housing, or other services
-        - Volunteering
-        - Participating in job training or SNAP Employment & Training programs
+        work_rules_list_html:
+        - <strong>Working a job</strong> for money, including self-employment or gigs
+        - <strong>Working in exchange for something</strong> like food, housing, or other services
+        - <strong>Volunteering</strong>
+        - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+        faq_title: "Frequently asked questions."
+        faq_who: "Who has to follow the SNAP work rules?"
+        faq_who_content_html: |
+          This law requires most states and counties to enforce the Able-Bodied Adult Without Dependents work rules, and expands who has to follow those rules. Prior to the law being passed, many states and counties were able to waive this requirement for SNAP recipients.
+          <br/>
+          You are an ABAWD and now likely need to meet the SNAP Work Rules if:
+          <ul>
+            <li>You are between 18 and 64 years old, and</li>
+            <li>You do not live with a child under 14.</li>
+          </ul>
       language_preference:
         edit:
           language_preference_spoken_label: What language do you prefer to speak?

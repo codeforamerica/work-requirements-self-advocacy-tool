@@ -1,27 +1,40 @@
 <section class="slab">
-  <div class="grid">
-    <div class="grid__item width-three-fourths">
-      <h1><%= t("views.landing_page.index.title") %></h1>
+  <div class="card">
+    <h1><%= t("views.landing_page.index.title") %></h1>
 
-      <p><%= t("views.landing_page.index.title_help_text_1") %></p>
-      <p>
-        <strong><%= t("views.landing_page.index.title_help_text_2") %></strong>
-      </p>
+    <p><%= t("views.landing_page.index.title_help_text_1") %></p>
+    <p>
+      <strong><%= t("views.landing_page.index.title_help_text_2") %></strong>
+    </p>
 
-      <%= link_to t("views.landing_page.fill_out_form"), start_flow_path, class: "button button--primary" %>
+    <%= link_to t("views.landing_page.fill_out_form"), start_flow_path, class: "button button--primary" %>
+
+    <div class="notice white">
+      <%= image_tag "apple.svg", class: "illustration left-justified" %>
 
       <h2><%= t("views.landing_page.index.work_rules_title") %></h2>
 
       <p><%= t("views.landing_page.index.work_rules_help_text") %></p>
 
       <p><%= t("views.landing_page.index.work_rules_list_label") %></p>
-      <ul>
-        <% t("views.landing_page.index.work_rules_list").each do |list_item| %>
+      <ul class="list--bulleted">
+        <% t("views.landing_page.index.work_rules_list_html").each do |list_item| %>
           <li><%= list_item %></li>
         <% end %>
       </ul>
 
       <p><%= t("views.landing_page.index.work_rules_help_text_2") %></p>
+    </div>
+
+    <div>
+      <h2><%= t("views.landing_page.index.faq_title") %></h2>
+
+      <div class="reveal">
+        <button class="reveal__button" aria-expanded="true"><%= t("views.landing_page.index.faq_who") %></button>
+        <div class="reveal__content">
+          <%= t("views.landing_page.index.faq_who_content_html") %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
