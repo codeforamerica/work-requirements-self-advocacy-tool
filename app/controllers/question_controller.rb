@@ -1,6 +1,7 @@
 class QuestionController < ApplicationController
   include ControllerNavigation::NavigableController
   include Forms::FormController
+
   around_action :switch_locale
 
   def current_screener
@@ -16,6 +17,6 @@ class QuestionController < ApplicationController
   end
 
   def self.default_url_options
-    { locale: I18n.locale }
+    {locale: I18n.locale}
   end
 end

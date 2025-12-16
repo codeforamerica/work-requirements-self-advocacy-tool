@@ -27,6 +27,5 @@ module WorkRequirementsSelfAdvocacyTool
     config.i18n.default_locale = :en
     config.i18n.fallbacks = [I18n.default_locale]
     config.i18n.available_locales = [:en, :es]
-
   end
 end

@@ -44,7 +44,8 @@ module Forms
 
     private
 
-    def after_update_success; end
+    def after_update_success
+    end
 
     def form_params(model)
       params.expect(model.class.params_key => self.class.attributes_edited)
