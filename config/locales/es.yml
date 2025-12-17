@@ -1,8 +1,8 @@
 ---
 es:
   general:
-    back: Go back
-    continue: Continue
+    back: Regresa
+    continue: Continuar
   views:
     landing_page:
       fill_out_form: Fill out the form
@@ -66,3 +66,8 @@ es:
         - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
         - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
         title: This is a 2-part process
+    receiving_benefits:
+      edit:
+        is_no: No, pero presenté una solicitud o es posible que presente una más adelante
+        is_yes: Sí, actualmente recibo beneficios de SNAP
+        title: ¿Actualmente recibe beneficios de SNAP en [state]?
