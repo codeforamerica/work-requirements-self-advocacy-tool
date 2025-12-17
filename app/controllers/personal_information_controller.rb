@@ -1,0 +1,2 @@
+class PersonalInformationController < QuestionController
+end
