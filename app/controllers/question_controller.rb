@@ -1,6 +1,7 @@
 class QuestionController < ApplicationController
   include ControllerNavigation::NavigableController
   include Forms::FormController
+
   helper_method :show_progress_bar
 
   around_action :switch_locale

@@ -17,6 +17,5 @@ RSpec.feature "Screener flow" do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: "End of example")
-
   end
 end
