@@ -13,10 +13,10 @@ es:
         work_rules_help_text: People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.
         work_rules_help_text_2: If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).
         work_rules_list:
-          - Working a job for money, including self-employment or gigs
-          - Working in exchange for something like food, housing, or other services
-          - Volunteering
-          - Participating in job training or SNAP Employment & Training programs
+        - Working a job for money, including self-employment or gigs
+        - Working in exchange for something like food, housing, or other services
+        - Volunteering
+        - Participating in job training or SNAP Employment & Training programs
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
       language_preference:
@@ -28,6 +28,6 @@ es:
       edit:
         help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.
         help_text_list_html:
-          - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
-          - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
+        - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
+        - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
         title: This is a 2-part process
