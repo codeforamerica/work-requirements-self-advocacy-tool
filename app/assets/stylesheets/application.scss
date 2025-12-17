@@ -18,3 +18,16 @@
   border-color: $color-grey-light;
   background-color: #FFFFFF;
 }
+
+.progress-bar {
+  color: $color-teal;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 0;
+  margin-bottom: 6rem;
+  max-width: 400px;
+
+  @media screen and (max-width: $tablet-up) {
+    width: 100%;
+  }
+}
