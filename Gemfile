@@ -44,6 +44,7 @@ gem "ostruct"
 gem "dartsass-rails", "~> 0.5.1"
 gem "cfa-styleguide", "0.17.1", git: "https://github.com/codeforamerica/honeycrisp-gem", branch: "main", ref: "40a4356dd217dacfba82a7b92010111999954c91"
 
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
@@ -55,6 +56,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "dotenv"
+  gem 'i18n-tasks', '~> 1.1.2'
 end
 
 group :development do

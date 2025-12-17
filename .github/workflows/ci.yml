@@ -34,6 +34,22 @@ jobs:
         env:
           BUNDLE_GITHUB__COM: ${{ secrets.DEPLOY_PAT }}
 
+  i18n_tasks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+        env:
+          BUNDLE_GITHUB__COM: ${{ secrets.DEPLOY_PAT }}
+
+      - name: Check if translations are working correctly
+        run: bundle exec i18n-tasks normalize
   test:
     runs-on: ubuntu-latest
 
