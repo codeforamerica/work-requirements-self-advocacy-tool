@@ -55,6 +55,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "dotenv"
+  gem "i18n-tasks", "~> 1.1.2"
 end
 
 group :development do
