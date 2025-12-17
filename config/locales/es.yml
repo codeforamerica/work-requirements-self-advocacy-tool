@@ -1,9 +1,51 @@
 ---
 es:
+  general:
+    back: Go back
+    continue: Continue
   views:
     landing_page:
+      fill_out_form: Fill out the form
       index:
-        title: Check if the SNAP work rules apply to you in Spanish
+        faq:
+          keep_snap: Will I be able to keep getting SNAP benefits?
+          keep_snap_content_html: |
+            <p>If you do not need to follow the SNAP work rules, you can keep getting SNAP benefits as usual, as long as your state knows about your exemption.</p>
+            <p>Reporting your exemption to your state helps prevent your benefits from being cut off by accident.</p>
+            <p>If you do need to follow the SNAP work rules, you must do 80 hours a month of work activities each month. If you don’t, you can only get SNAP benefits for up to 3 months every 3 years (36 months).</p>
+            <strong>This form will help you figure out if you have to follow the SNAP rules or not.</strong>
+          title: Frequently asked questions.
+          unfit: What if I’m unfit for work?
+          unfit_content_html: 'If you can show that you can’t work for a medical or
+            health reason, the SNAP work rules do not apply to you and you can keep
+            getting SNAP. If you can’t work that month for a good reason (e.g.: your
+            car broke down, a family emergency), you can get excused for that month.'
+          who: Who has to follow the SNAP work rules?
+          who_content_html: |
+            This law requires most states and counties to enforce the Able-Bodied Adult Without Dependents work rules, and expands who has to follow those rules. Prior to the law being passed, many states and counties were able to waive this requirement for SNAP recipients.
+            <br/>
+            You are an ABAWD and now likely need to meet the SNAP Work Rules if:
+            <ul class="list--bulleted">
+              <li>You are between 18 and 64 years old, and</li>
+              <li>You do not live with a child under 14.</li>
+            </ul>
+          who_not: Who does not need to follow the SNAP work rules?
+          who_not_content_html: |
+            Some people do not have to follow the SNAP work rules. You do not have to follow the SNAP work rules if you are:
+            <br/>
+            <ul class="list--bulleted">
+              <li>Taking care of a child under 14 who gets food benefits with you</li>
+              <li>Pregnant</li>
+              <li>Caring for someone who cannot fully care for themselves (ie: they are elderly or have a disability), even if they don't live with you.</li>
+              <li>Getting unemployment benefits, or applied for unemployment and have not been denied.</li>
+              <li>Going to school full-time, or at least half-time.</li>
+              <li>Getting paid at least $935.25 a month for work you do.</li>
+              <li>Unable to work at least 20 hours a week for health reasons (physical, behavioral or mental health).</li>
+              <li>Getting disability benefits or payments.</li>
+              <li>In an alcohol or drug treatment program.</li>
+              <li>An American Indian.</li>
+            </ul>
+        title: Check if the SNAP work rules apply to you
         title_help_text_1: Because of new policy changes, many adults on SNAP now
           have to meet work rules, while others may be exempt.
         title_help_text_2: It takes most people 10 minutes or less to complete this
@@ -13,11 +55,13 @@ es:
           month.
         work_rules_help_text_2: If you do not do work activities for 80 hours a month,
           you can only get SNAP benefits for up to 3 months every 3 years (36 months).
-        work_rules_list:
-        - Working a job for money, including self-employment or gigs
-        - Working in exchange for something like food, housing, or other services
-        - Volunteering
-        - Participating in job training or SNAP Employment & Training programs
+        work_rules_list_html:
+        - "<strong>Working a job</strong> for money, including self-employment or
+          gigs"
+        - "<strong>Working in exchange for something</strong> like food, housing,
+          or other services"
+        - "<strong>Volunteering</strong>"
+        - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
       language_preference:
@@ -26,3 +70,14 @@ es:
           language_preference_written_label: What language do you prefer to read or
             write?
           title: Language Preference
+    overview:
+      edit:
+        help_text_html: We’ll help prepare a document that you can submit to your
+          SNAP agency. That way, your agency will know <strong>if the SNAP work rules
+          apply</strong> to you.
+        help_text_list_html:
+        - "<strong>Fill out this form</strong> about you and the people you get SNAP
+          with."
+        - "<strong>Download and submit the form</strong> to your state agency: online,
+          by mail, or drop it off in-person."
+        title: This is a 2-part process
