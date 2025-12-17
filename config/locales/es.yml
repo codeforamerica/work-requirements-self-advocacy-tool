@@ -70,4 +70,4 @@ es:
       edit:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
-        title: ¿Actualmente recibe beneficios de SNAP en [state]?
+        title: "¿Actualmente recibe beneficios de SNAP en [state]?"
