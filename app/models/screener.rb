@@ -8,6 +8,10 @@ class Screener < ApplicationRecord
     validates :language_preference_written, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
   end
 
+  with_context :is_receiving_snap_benefits do
+    validates :is_receiving_snap_benefits, inclusion: {in: %w[yes no], message: "must answer yes or no"}
+  end
+
   def locale
     language_preference_written_spanish? ? :es : :en
   end
