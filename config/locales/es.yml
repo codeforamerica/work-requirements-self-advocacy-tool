@@ -74,10 +74,10 @@ es:
         title: Este es un proceso de 2 pasos
     personal_information:
       edit:
-        title: "Compártanos información sobre usted"
-        first_name_label: "Primer nombre"
-        first_name_label_help_text: "Tal como aparece legalmente en su identificación."
-        middle_name_label: Segundo nombre
-        middle_name_label_help_text: Opcional. Tal como aparece legalmente en su identificación.
+        first_name_label: Primer nombre
+        first_name_label_help_text: Tal como aparece legalmente en su identificación.
         last_name_label: Apellido
         last_name_label_help_text: Tal como aparece legalmente en su identificación.
+        middle_name_label: Segundo nombre
+        middle_name_label_help_text: Opcional. Tal como aparece legalmente en su identificación.
+        title: Compártanos información sobre usted
