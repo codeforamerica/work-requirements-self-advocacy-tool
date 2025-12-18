@@ -4,11 +4,11 @@ es:
     back: Go back
     basic_information: Información básica
     continue: Continuar
-    progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
+    faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
-    faq: "Frequently Asked Questions"
-    privacy_policy: "Privacy Policy"
+    privacy_policy: Privacy Policy
+    progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
   views:
     basic_info_milestone:
       edit:
