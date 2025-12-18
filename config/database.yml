@@ -10,7 +10,6 @@ default: &default
   password: <%= ENV["RAILS_DB_PASSWORD"] %>
 
 development:
-  <<: *default
   primary:
     <<: *default
     database: work_requirements_self_advocacy_tool_development

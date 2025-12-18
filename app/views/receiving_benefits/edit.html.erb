@@ -4,8 +4,8 @@
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
     <%= f.cfa_radio_set(:is_receiving_snap_benefits, collection: [
-      { value: true, label: t("views.receiving_benefits.edit.is_yes")},
-      { value: false, label: t("views.receiving_benefits.edit.is_no") },
+      { value: :yes, label: t("views.receiving_benefits.edit.is_yes")},
+      { value: :no, label: t("views.receiving_benefits.edit.is_no") },
     ]) %>
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>

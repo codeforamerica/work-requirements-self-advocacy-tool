@@ -15,10 +15,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_17_203452) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "screeners", force: :cascade do |t|
-    t.bigint "language_preference_written", default: 0, null: false
-    t.bigint "language_preference_spoken", default: 0, null: false
+    t.integer "language_preference_written", default: 0, null: false
+    t.integer "language_preference_spoken", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_receiving_snap_benefits"
+    t.integer "is_receiving_snap_benefits", default: 0, null: false
   end
 end
