@@ -7,7 +7,11 @@ class LanguagePreferenceController < QuestionController
 
   def dropdown_options
     [["English", "english"],
-      ["Spanish", "spanish"]]
+      ["Español", "spanish"]]
+  end
+
+  def show_progress_bar
+    false
   end
 
   private

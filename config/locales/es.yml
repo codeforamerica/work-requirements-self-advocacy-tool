@@ -2,10 +2,16 @@
 es:
   general:
     back: Regresa
+    basic_information: Información básica
     continue: Continuar
+    progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
   views:
+    basic_info_milestone:
+      edit:
+        help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
+        title: Información básica
     landing_page:
-      fill_out_form: Fill out the form
+      fill_out_form: Complete el formulario
       index:
         faq:
           keep_snap: Will I be able to keep getting SNAP benefits?
@@ -56,16 +62,16 @@ es:
         work_rules_title: What are the SNAP work rules?
     language_preference:
       edit:
-        language_preference_spoken_label: What language do you prefer to speak?
-        language_preference_written_label: What language do you prefer to read or write?
-        title: Language Preference
+        language_preference_spoken_label: "¿En qué idioma prefiere hablar?"
+        language_preference_written_label: "¿En qué idioma prefiere leer o escribir?"
+        title: Preferencia de idioma
     overview:
       edit:
-        help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.
+        help_text_html: Le ayudaremos a preparar un documento que podrá enviar a su agencia de SNAP. Así, su agencia sabrá si usted y los demás adultos de su hogar <strong> deben cumplir con las reglas de trabajo de SNAP.</strong>
         help_text_list_html:
-        - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
-        - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
-        title: This is a 2-part process
+        - "<strong>Complete este formulario</strong> con su información y la de las personas con quienes recibe SNAP.."
+        - "<strong>Descargue y envíe el formulario</strong> a su agencia estatal: en línea, por correo postal o entregándolo en persona."
+        title: Este es un proceso de 2 pasos
     receiving_benefits:
       edit:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante

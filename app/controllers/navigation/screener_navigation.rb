@@ -5,6 +5,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(OverviewController),
         ControllerNavigation::NavigationStep.new(LanguagePreferenceController),
         ControllerNavigation::NavigationStep.new(ReceivingBenefitsController),
+        ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(TempEndController)
       ])
     ].freeze
