@@ -31,14 +31,6 @@
       <%= yield %>
     </main>
 
-    <footer class="footer">
-      <div class="slab slab--footer">
-        <div class="grid">
-          <div class="grid__item width-three-fourths">
-            <%= t("general.footer.content_html") %>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <%= render "shared/footer" %>
   </body>
 </html>
