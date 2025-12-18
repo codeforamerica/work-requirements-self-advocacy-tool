@@ -24,12 +24,21 @@
     <%= javascript_include_tag "jquery" %>
     <%= javascript_include_tag "honeycrisp" %>
     <%= javascript_include_tag "cfa_styleguide_main" %>
-
   </head>
 
   <body>
     <main>
       <%= yield %>
     </main>
+
+    <footer class="footer">
+      <div class="slab slab--footer">
+        <div class="grid">
+          <div class="grid__item width-three-fourths">
+            <%= t("general.footer.content_html") %>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

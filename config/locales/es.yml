@@ -5,6 +5,8 @@ es:
     basic_information: Información básica
     continue: Continuar
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
+    footer:
+      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
   views:
     basic_info_milestone:
       edit:
