@@ -13,6 +13,14 @@
               <%= link_to t("general.back"), prev_path %>
             </div>
           <% end %>
+          <% if show_progress_bar %>
+            <div class="progress-bar spacing-above-35">
+              <%= image_tag "progress-bar-#{controller.progress_bar_step}.svg" %>
+              <p class="spacing-above-15">
+                <%= t("general.progress_bar_text_html", step: controller.progress_bar_step, section_name: controller.section_name) %>
+              </p>
+            </div>
+          <% end %>
           <%= yield %>
         </div>
       </div>

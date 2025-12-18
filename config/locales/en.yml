@@ -2,8 +2,14 @@
 en:
   general:
     back: Go back
+    basic_information: Basic Information
     continue: Continue
+    progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
   views:
+    basic_info_milestone:
+      edit:
+        help_text_html: This information will help your agency find your SNAP case.
+        title: Basic information
     landing_page:
       fill_out_form: Fill out the form
       index:

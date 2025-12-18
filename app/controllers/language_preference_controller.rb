@@ -10,6 +10,10 @@ class LanguagePreferenceController < QuestionController
       ["Español", "spanish"]]
   end
 
+  def show_progress_bar
+    false
+  end
+
   private
 
   def after_update_success

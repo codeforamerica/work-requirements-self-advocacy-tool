@@ -4,6 +4,7 @@ module Navigation
       ControllerNavigation::NavigationSection.new("navigation.section_1", [
         ControllerNavigation::NavigationStep.new(OverviewController),
         ControllerNavigation::NavigationStep.new(LanguagePreferenceController),
+        ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),
         ControllerNavigation::NavigationStep.new(TempEndController)
       ])
