@@ -1,6 +1,7 @@
 class Screener < ApplicationRecord
   enum :language_preference_spoken, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   enum :language_preference_written, {unfilled: 0, english: 1, spanish: 2}, prefix: true
+  attr_accessor :birth_date_year, :birth_date_month, :birth_date_day
 
   with_context :language_preference do
     validates :language_preference_spoken, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
@@ -9,5 +10,17 @@ class Screener < ApplicationRecord
 
   def locale
     language_preference_written_spanish? ? :es : :en
+  end
+
+  def birth_date_year
+    birth_date&.year
+  end
+
+  def birth_date_month
+    birth_date&.month
+  end
+
+  def birth_date_day
+    birth_date&.day
   end
 end

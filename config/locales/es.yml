@@ -74,6 +74,7 @@ es:
         title: Este es un proceso de 2 pasos
     personal_information:
       edit:
+        birth_date_label: Fecha de nacimiento
         first_name_label: Primer nombre
         first_name_label_help_text: Tal como aparece legalmente en su identificación.
         last_name_label: Apellido
