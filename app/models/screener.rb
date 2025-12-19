@@ -9,7 +9,8 @@ class Screener < ApplicationRecord
   end
 
   with_context :personal_information do
-    validates :first_name, presence: true
+    validates :first_name, :last_name, :birth_date, :phone_number, presence: true
+    validates :phone_number, phone: true, allow_blank: true
   end
 
   def locale
