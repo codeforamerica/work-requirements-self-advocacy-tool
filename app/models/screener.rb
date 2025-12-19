@@ -8,6 +8,10 @@ class Screener < ApplicationRecord
     validates :language_preference_written, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
   end
 
+  with_context :personal_information do
+    validates :first_name, presence: true
+  end
+
   def locale
     language_preference_written_spanish? ? :es : :en
   end
