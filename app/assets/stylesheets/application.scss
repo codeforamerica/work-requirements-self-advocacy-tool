@@ -1,5 +1,13 @@
 @import "cfa_styleguide_main";
 
+html {
+  background-color: $color-grey;
+}
+
+main {
+  background-color: $color-grey-light;
+}
+
 .slab {
   margin-left: 6rem;
   margin-right: 6rem;
@@ -8,6 +16,10 @@
     margin-left: 1.5rem;
     margin-right: 1.5rem;
   }
+}
+
+.footer {
+  background-color: $color-grey;
 }
 
 .illustration.left-justified {
