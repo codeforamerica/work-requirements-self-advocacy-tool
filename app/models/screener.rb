@@ -2,6 +2,7 @@ class Screener < ApplicationRecord
   enum :language_preference_spoken, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   enum :language_preference_written, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
+  normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
 
   with_context :language_preference do
     validates :language_preference_spoken, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
