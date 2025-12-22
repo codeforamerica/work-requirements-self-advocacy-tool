@@ -1,7 +1,7 @@
 ---
 es:
   general:
-    back: Go back
+    back: Regresa
     basic_information: Información básica
     continue: Continuar
     faq: Frequently Asked Questions
@@ -52,9 +52,9 @@ es:
               <li>In an alcohol or drug treatment program.</li>
               <li>An American Indian.</li>
             </ul>
-        title: Verifique si usted debe cumplir con las eglas de trabajo de SNAP
-        title_help_text_1: Debido a cambios recientes en las políticas, muchas personas adultas que reciben SNAP ahora deben cumplir con requisitos de trabajo.
-        title_help_text_2: A la mayoría de las personas les toma 10 minutos o menos completar este formulario.
+        title: Check if the SNAP work rules apply to you
+        title_help_text_1: Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.
+        title_help_text_2: It takes most people 10 minutes or less to complete this form.
         work_rules_help_text: People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.
         work_rules_help_text_2: If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).
         work_rules_list_html:
@@ -76,3 +76,8 @@ es:
         - "<strong>Complete este formulario</strong> con su información y la de las personas con quienes recibe SNAP.."
         - "<strong>Descargue y envíe el formulario</strong> a su agencia estatal: en línea, por correo postal o entregándolo en persona."
         title: Este es un proceso de 2 pasos
+    receiving_benefits:
+      edit:
+        is_no: No, pero presenté una solicitud o es posible que presente una más adelante
+        is_yes: Sí, actualmente recibo beneficios de SNAP
+        title: "¿Actualmente recibe beneficios de SNAP en [state]?"

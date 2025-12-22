@@ -1,0 +1,12 @@
+<% content_for :question_title, t("views.receiving_benefits.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+    <%= f.hidden_field :is_receiving_snap_benefits, value: :unfilled %>
+    <%= f.cfa_radio_set(:is_receiving_snap_benefits, collection: [
+      { value: :yes, label: t("views.receiving_benefits.edit.is_yes")},
+      { value: :no, label: t("views.receiving_benefits.edit.is_no") },
+    ]) %>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

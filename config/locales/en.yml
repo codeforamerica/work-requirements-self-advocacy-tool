@@ -76,3 +76,8 @@ en:
         - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
         - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
         title: This is a 2-part process
+    receiving_benefits:
+      edit:
+        is_no: No, but I applied or might apply later
+        is_yes: Yes, I currently get SNAP benefits
+        title: Do you currently get SNAP benefits in [state]?
