@@ -24,12 +24,13 @@
     <%= javascript_include_tag "jquery" %>
     <%= javascript_include_tag "honeycrisp" %>
     <%= javascript_include_tag "cfa_styleguide_main" %>
-
   </head>
 
   <body>
     <main>
       <%= yield %>
     </main>
+
+    <%= render "shared/footer" %>
   </body>
 </html>
