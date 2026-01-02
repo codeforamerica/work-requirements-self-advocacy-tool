@@ -1,0 +1,8 @@
+<% content_for :question_title, t("views.america_indian.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= render "shared/yes_no_buttons", form: f, model_name: @model.class.name.downcase, column: "is_american_indian" %>
+<% end %>
+

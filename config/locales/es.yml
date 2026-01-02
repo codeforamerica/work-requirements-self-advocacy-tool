@@ -1,15 +1,23 @@
 ---
 es:
   general:
+    affirmative: Sí
     back: Regresa
     basic_information: Información básica
     continue: Continuar
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
+    negative: 'No'
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
+    work_rules: Reglas de trabajo
+  validations:
+    must_answer_yes_or_no: Debe responder sí o no
   views:
+    america_indian:
+      edit:
+        title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_milestone:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.

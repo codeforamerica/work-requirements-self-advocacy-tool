@@ -1,11 +1,11 @@
-module BasicInfoConcern
+module WrExemptionsConcern
   extend ActiveSupport::Concern
 
   def progress_bar_step
-    3
+    1
   end
 
   def section_name
-    I18n.t("general.basic_information")
+    I18n.t("general.work_rules")
   end
 end
