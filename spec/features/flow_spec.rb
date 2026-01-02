@@ -20,6 +20,15 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: "End of example")
+    expect(page).to have_selector("h1", text: I18n.t("views.personal_information.edit.title"))
+    fill_in I18n.t("views.personal_information.edit.first_name_label"), with: "Prue"
+    fill_in I18n.t("views.personal_information.edit.last_name_label"), with: "Leith"
+    select "September", from: "Month"
+    select "21", from: "Day"
+    select "1940", from: "Year"
+    fill_in I18n.t("views.personal_information.edit.phone_number_label"), with: "555-222-3333"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h2", text: "End of example")
   end
 end
