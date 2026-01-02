@@ -1,7 +1,7 @@
 <% name = "#{model_name}[#{column}]" %>
 <%= form.button :submit, name: name, value: "yes", class: "button" do %>
-  <i class="button__icon--left icon-check"></i><%= t("general.affirmative") %>
+  <i class="button__icon--left icon-check yes-button-checkmark"></i><%= t("general.affirmative") %>
 <% end %>
 <%= form.button :submit, name: name, value: "no", class: "button" do %>
-  <i class="button__icon--left icon-close"></i><%= t("general.negative") %>
+  <i class="button__icon--left icon-close no-button-cross"></i><%= t("general.negative") %>
 <% end %>

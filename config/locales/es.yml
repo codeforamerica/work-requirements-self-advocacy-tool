@@ -18,6 +18,7 @@ es:
     america_indian:
       edit:
         title: "¿Es usted miembro de una tribu o nación indígena?"
+        help_text: "If you are eligible for Indian Health Services, select “Yes.”"
     basic_info_milestone:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
