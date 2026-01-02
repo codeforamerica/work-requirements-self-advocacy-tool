@@ -20,6 +20,9 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.america_indian.edit.title"))
     click_on I18n.t("general.negative")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.has_child.edit.title"))
+    click_on I18n.t("general.negative")
+
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
     click_on I18n.t("general.continue")
 

@@ -22,6 +22,10 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
+    has_child:
+      edit:
+        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
+        title: Is there a child under the age of 14 that lives in your household?
     landing_page:
       fill_out_form: Fill out the form
       index:
