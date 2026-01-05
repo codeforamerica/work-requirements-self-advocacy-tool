@@ -17,8 +17,8 @@ en:
   views:
     america_indian:
       edit:
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
         title: Are you an American Indian, or the child or grandchild or an American Indian?
-        help_text: "If you are eligible for Indian Health Services, select “Yes.”"
     basic_info_milestone:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
