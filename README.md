@@ -1,24 +1,23 @@
-# README
+# Work Requirements Self Advocacy Tool
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Setup
 
-Things you may want to cover:
+If it's your first time setting up for local development, do the following steps:
 
-* Ruby version
+1. In the root directory, initialize `rbenv`:
 
-* System dependencies
+    $ rbenv init
 
-* Configuration
+2. Run the setup script:
 
-* Database creation
+    $ bin/setup
 
-* Database initialization
+3. Start the server:
 
-* How to run the test suite
+    $ foreman start
 
-* Services (job queues, cache servers, search engines, etc.)
+4. Navigate to http://localhost:3000. You should see your app!
 
-* Deployment instructions
+## Running the Linter
 
-* ...
+To run the linter locally, run the following command: `bundle exec standardrb --fix`. If you forget to do this, the linter will run when a pull request is opened. To ignore the linter, here is a [guide](https://github.com/standardrb/standard?tab=readme-ov-file#ignoring-errors).

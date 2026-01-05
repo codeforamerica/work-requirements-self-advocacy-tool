@@ -1,0 +1,46 @@
+@import "cfa_styleguide_main";
+
+html {
+  background-color: $color-grey;
+}
+
+main {
+  background-color: $color-grey-light;
+}
+
+.slab {
+  margin-left: 6rem;
+  margin-right: 6rem;
+
+  @media screen and (max-width: $tablet-up) {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+.footer {
+  background-color: $color-grey;
+}
+
+.illustration.left-justified {
+  margin-left: 1rem;
+}
+
+.notice.white {
+  border-color: $color-grey-light;
+  background-color: #FFFFFF;
+}
+
+.progress-bar {
+  color: $color-teal;
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 auto;
+  margin-top: 0;
+  margin-bottom: 6rem;
+  max-width: 400px;
+
+  @media screen and (max-width: $tablet-up) {
+    width: 100%;
+  }
+}

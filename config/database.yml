@@ -4,12 +4,15 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("RAILS_DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("RAILS_DB_PORT", "5432") %>
+  username: <%= ENV["RAILS_DB_USERNAME"] %>
+  password: <%= ENV["RAILS_DB_PASSWORD"] %>
 
 development:
   primary:
     <<: *default
     database: work_requirements_self_advocacy_tool_development
-    username: postgres
   queue:
     <<: *default
     database: work_requirements_self_advocacy_tool_development_queue

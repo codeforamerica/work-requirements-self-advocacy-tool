@@ -43,8 +43,9 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     rm -rf /tmp/node-build-master
 
 # Install application gems
-COPY Gemfile Gemfile.lock ./
-RUN bundle install && \
+COPY .ruby-version Gemfile Gemfile.lock ./
+RUN --mount=type=secret,id=github_pat \
+    BUNDLE_GITHUB__COM=$(cat /run/secrets/github_pat) bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
@@ -82,5 +83,6 @@ USER 1000:1000
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start server via Thruster by default, this can be overwritten at runtime
-EXPOSE 80
+ENV THRUSTER_HTTP_PORT=8080
+EXPOSE 8080
 CMD ["./bin/thrust", "./bin/rails", "server"]

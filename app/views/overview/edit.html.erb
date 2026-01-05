@@ -1,0 +1,12 @@
+<% content_for :question_title, t("views.overview.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p><%= t("views.overview.edit.help_text_html") %></p>
+<ol class="list--numbered spacing-below-60">
+  <% t("views.overview.edit.help_text_list_html").map do |list_item| %>
+    <li><%= list_item %></li>
+  <% end %>
+</ol>
+
+<%= render "shared/continue_button" %>

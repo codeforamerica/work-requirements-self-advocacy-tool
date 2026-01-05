@@ -1,5 +1,8 @@
 source "https://rubygems.org"
 
+ruby_version = File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
+ruby ruby_version
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.1.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
@@ -14,8 +17,6 @@ gem "jsbundling-rails"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -39,6 +40,12 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "ostruct"
+gem "dartsass-rails", "~> 0.5.1"
+gem "cfa-styleguide", "0.17.1", git: "https://github.com/codeforamerica/honeycrisp-gem", branch: "main", ref: "40a4356dd217dacfba82a7b92010111999954c91"
+
+gem "phonelib"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
@@ -48,12 +55,18 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "dotenv"
+  gem "i18n-tasks", "~> 1.1.2"
+
+  gem "factory_bot_rails"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "standard", ">= 1.35.1"
+  gem "pry", "~> 0.15.0"
 end
 
 group :test do
