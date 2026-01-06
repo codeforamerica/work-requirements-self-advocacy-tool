@@ -2,6 +2,20 @@ require "rails_helper"
 
 RSpec.describe Screener, type: :model do
   describe "validations" do
+    context "required yes/no" do
+      [
+        [:receiving_benefits, :is_receiving_snap_benefits],
+        [:american_indian, :is_american_indian]
+      ].each do |controller, column|
+        it "requires answer to be yes or no in context #{controller}" do
+          screener = Screener.new(column => "unfilled")
+          screener.valid?(controller)
+
+          expect(screener.errors).to match_array ["#{column.to_s.humanize} #{I18n.t("validations.must_answer_yes_or_no")}"]
+        end
+      end
+    end
+
     context "with_context :language_preference" do
       it "requires language preferences to be filled out" do
         screener = Screener.new(language_preference_spoken: "unfilled", language_preference_written: "unfilled")
