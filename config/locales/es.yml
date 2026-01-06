@@ -18,6 +18,7 @@ es:
   views:
     america_indian:
       edit:
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
         title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_milestone:
       edit:
