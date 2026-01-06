@@ -22,7 +22,7 @@ RSpec.describe CaringForSomeoneController, type: :controller do
         none: "1"
       }
 
-      post :update, params: { screener: params }
+      post :update, params: {screener: params}
       expect(screener.reload.caring_for_no_one_yes?).to eq true
     end
   end
