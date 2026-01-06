@@ -49,7 +49,6 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    # TODO
     context "with_context :caring_for_someone" do
       it "can have both types of dependents" do
         screener = Screener.new(caring_for_child_under_6: "yes", caring_for_disabled_or_ill_person: "yes")
@@ -64,7 +63,16 @@ RSpec.describe Screener, type: :model do
         )
         screener.valid?(:caring_for_someone)
 
-        expect(screener.errors).to match_array ["TBD"]
+        expect(screener.errors[:caring_for_no_one]).to be_present
+
+        screener = Screener.new(
+          caring_for_child_under_6: "yes",
+          caring_for_disabled_or_ill_person: "no",
+          caring_for_no_one: "yes"
+        )
+        screener.valid?(:caring_for_someone)
+
+        expect(screener.errors[:caring_for_no_one]).to be_present
       end
     end
   end
