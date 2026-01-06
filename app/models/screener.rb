@@ -4,6 +4,9 @@ class Screener < ApplicationRecord
   enum :is_receiving_snap_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_no_one, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
 
