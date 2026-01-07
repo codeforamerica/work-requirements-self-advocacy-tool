@@ -22,7 +22,6 @@ jobs:
 
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
-
   lint:
     runs-on: ubuntu-latest
     permissions:
@@ -58,6 +57,10 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v6
+
+      - name: Install chrome, check version
+        uses: browser-actions/setup-chrome@v1
+        run: chrome --version
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
