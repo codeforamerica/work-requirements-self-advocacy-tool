@@ -25,7 +25,7 @@ RSpec.describe IsPregnantController, type: :controller do
           is_pregnant: "no",
           pregnancy_due_date_month: "6",
           pregnancy_due_date_day: "1",
-          pregnancy_due_date_year: "2026",
+          pregnancy_due_date_year: "2026"
         }
 
         post :update, params: {screener: params}

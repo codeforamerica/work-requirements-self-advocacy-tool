@@ -7,7 +7,7 @@ RSpec.describe Screener, type: :model do
         [:receiving_benefits, :is_receiving_snap_benefits],
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
-        [:is_pregnant, :is_pregnant],
+        [:is_pregnant, :is_pregnant]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
           screener = Screener.new(column => "unfilled")
