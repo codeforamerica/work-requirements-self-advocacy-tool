@@ -3,6 +3,7 @@ name: Deploy to AWS Staging
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   ci:
@@ -11,6 +12,7 @@ jobs:
     name: Deploy to Staging
     environment: staging
     runs-on: ubuntu-latest
+    needs: ["ci"]
     env:
       ECR_REPOSITORY: work-requirements-self-advocacy-tool-staging-web
       IMAGE_TAG: ${{ github.sha }}
