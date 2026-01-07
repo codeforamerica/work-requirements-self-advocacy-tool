@@ -6,6 +6,9 @@ class Screener < ApplicationRecord
   enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
+  attr_accessor :email_address_confirmation
+  validates :email, presence: true, 'valid_email_2/email': true
+
 
   with_context :language_preference do
     validates :language_preference_spoken, inclusion: {in: %w[english spanish], message: "must be english or spanish"}

@@ -106,3 +106,8 @@ en:
         is_no: No, but I applied or might apply later
         is_yes: Yes, I currently get SNAP benefits
         title: Do you currently get SNAP benefits in [state]?
+    email:
+      edit:
+        email: Email
+        email_confirmation: Confirm your email
+        title: Where can we send your results?
