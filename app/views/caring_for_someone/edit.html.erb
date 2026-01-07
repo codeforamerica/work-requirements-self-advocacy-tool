@@ -16,15 +16,12 @@
 </div>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <%= f.cfa_checkbox_set_with_none(
-        :screener,
-        [
-          { method: :caring_for_child_under_6, label: t("views.caring_for_someone.edit.child_under_6") },
-          { method: :caring_for_disabled_or_ill_person, label: t("views.caring_for_someone.edit.disabled_or_ill_person") }
-        ],
-        enum: true,
-        none_text: t("general.none_of_the_above")
-      ) %>
+  <div class="checkbox-group">
+    <%= f.cfa_checkbox(:caring_for_child_under_6, t("views.caring_for_someone.edit.child_under_6"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:caring_for_disabled_or_ill_person, t("views.caring_for_someone.edit.disabled_or_ill_person"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:caring_for_no_one, t("general.none_of_the_above"), options: { checked_value: "yes", unchecked_value: "no", id: "none_of_the_above"}) %>
+  </div>
+
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 

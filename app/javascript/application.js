@@ -6,8 +6,8 @@ import "./controllers"
 var noneOfTheAbove = (function () {
   var noneOf = {
     init: function () {
-      var $noneCheckbox = $('#screener_none');
-      var $otherCheckboxes = $('input[type=checkbox]').not('#screener_none');
+      var $noneCheckbox = $('#none_of_the_above');
+      var $otherCheckboxes = $('input[type=checkbox]').not('#none_of_the_above');
 
       // Uncheck None if another checkbox is checked
       $otherCheckboxes.click(function (e) {

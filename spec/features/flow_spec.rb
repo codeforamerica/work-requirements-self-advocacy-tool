@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "Screener flow" do
-  scenario "new client fills out the screener" do
+  scenario "new client fills out the screener", js: true do
     visit root_path
 
     expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
@@ -25,6 +25,11 @@ RSpec.feature "Screener flow" do
 
     expect(page).to have_selector("h1", text: I18n.t("views.caring_for_someone.edit.title"))
     check I18n.t("general.none_of_the_above")
+
+    # test "none of the above" checkbox behavior
+    check I18n.t("views.caring_for_someone.edit.child_under_6")
+    expect(page).not_to have_checked_field(I18n.t("general.none_of_the_above"))
+
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
