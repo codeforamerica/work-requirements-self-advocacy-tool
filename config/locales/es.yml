@@ -27,6 +27,11 @@ es:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
         title: Is there a child under the age of 14 that lives in your household?
+    is_pregnant:
+      edit:
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
+        title: "¿Está en embarazo?"
     landing_page:
       fill_out_form: Complete el formulario
       index:

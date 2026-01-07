@@ -6,7 +6,8 @@ RSpec.describe Screener, type: :model do
       [
         [:receiving_benefits, :is_receiving_snap_benefits],
         [:american_indian, :is_american_indian],
-        [:has_child, :has_child]
+        [:has_child, :has_child],
+        [:is_pregnant, :is_pregnant],
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
           screener = Screener.new(column => "unfilled")
@@ -46,6 +47,25 @@ RSpec.describe Screener, type: :model do
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
+      end
+    end
+
+    context "with_context :is_pregnant" do
+      it "does not accept a due date if is_pregnant is no" do
+        screener = Screener.new(is_pregnant: "no", pregnancy_due_date: Date.new(2026, 4, 3))
+        screener.valid?(:is_pregnant)
+
+        expect(screener.errors[:pregnancy_due_date]).to be_present
+      end
+
+      it "requires a due date when is_pregnant is yes" do
+        screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: nil)
+
+        screener.valid?(:is_pregnant)
+        expect(screener.errors[:pregnancy_due_date]).to be_present
+
+        screener.assign_attributes(pregnancy_due_date: Date.new(2026, 4, 3))
+        expect(screener.valid?(:is_pregnant)).to eq true
       end
     end
   end
