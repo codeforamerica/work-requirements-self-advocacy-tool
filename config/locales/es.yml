@@ -23,6 +23,12 @@ es:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
         title: Información básica
+    email:
+      edit:
+        email: Email
+        email_confirmation: Correo electrónico
+        title: Confirme su correo electrónico
+        title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.

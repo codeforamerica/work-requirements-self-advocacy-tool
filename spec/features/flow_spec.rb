@@ -35,6 +35,9 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.personal_information.edit.phone_number_label"), with: "555-222-3333"
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.email.edit.title"))
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h2", text: "End of example")
   end
 end

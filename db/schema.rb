@@ -10,22 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_02_211839) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_06_232306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "screeners", force: :cascade do |t|
-    t.integer "language_preference_written", default: 0, null: false
-    t.integer "language_preference_spoken", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "is_receiving_snap_benefits", default: 0, null: false
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
     t.date "birth_date"
-    t.string "phone_number"
-    t.integer "is_american_indian", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.string "first_name"
     t.integer "has_child", default: 0, null: false
+    t.integer "is_american_indian", default: 0, null: false
+    t.integer "is_receiving_snap_benefits", default: 0, null: false
+    t.integer "language_preference_spoken", default: 0, null: false
+    t.integer "language_preference_written", default: 0, null: false
+    t.string "last_name"
+    t.string "middle_name"
+    t.string "phone_number"
+    t.datetime "updated_at", null: false
   end
 end
