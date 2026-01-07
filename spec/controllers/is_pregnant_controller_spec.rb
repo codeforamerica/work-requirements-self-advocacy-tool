@@ -23,13 +23,15 @@ RSpec.describe IsPregnantController, type: :controller do
 
         params = {
           is_pregnant: "no",
-          pregnancy_due_date_month: "",
-          pregnancy_due_date_day: "",
-          pregnancy_due_date_year: "",
+          pregnancy_due_date_month: "6",
+          pregnancy_due_date_day: "1",
+          pregnancy_due_date_year: "2026",
         }
 
         post :update, params: {screener: params}
+        expect(response).to redirect_to subject.next_path
         expect(screener.reload.is_pregnant_no?).to eq true
+        expect(screener.reload.pregnancy_due_date).to be_nil
       end
 
       it "combines the date picker params into the pregnancy_due_date attribute" do

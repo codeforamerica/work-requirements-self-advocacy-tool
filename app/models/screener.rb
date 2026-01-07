@@ -34,7 +34,12 @@ class Screener < ApplicationRecord
   with_context :is_pregnant do
     validates :is_pregnant, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
     validates :pregnancy_due_date, presence: true, if: ->{ is_pregnant_yes? }
-    validates_absence_of :pregnancy_due_date, if: ->{ is_pregnant_no? }
+  end
+
+  before_save do
+    if is_pregnant_no?
+      self.pregnancy_due_date = nil
+    end
   end
 
   def locale

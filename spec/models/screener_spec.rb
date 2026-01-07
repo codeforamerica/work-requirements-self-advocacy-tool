@@ -51,13 +51,6 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :is_pregnant" do
-      it "does not accept a due date if is_pregnant is no" do
-        screener = Screener.new(is_pregnant: "no", pregnancy_due_date: Date.new(2026, 4, 3))
-        screener.valid?(:is_pregnant)
-
-        expect(screener.errors[:pregnancy_due_date]).to be_present
-      end
-
       it "requires a due date when is_pregnant is yes" do
         screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: nil)
 
@@ -67,6 +60,16 @@ RSpec.describe Screener, type: :model do
         screener.assign_attributes(pregnancy_due_date: Date.new(2026, 4, 3))
         expect(screener.valid?(:is_pregnant)).to eq true
       end
+    end
+  end
+
+  describe "before_save" do
+    it "clears the due date if is_pregnant changes to no" do
+      screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
+
+      screener.update(is_pregnant: "no")
+
+      expect(screener.reload.pregnancy_due_date).to be_nil
     end
   end
 end

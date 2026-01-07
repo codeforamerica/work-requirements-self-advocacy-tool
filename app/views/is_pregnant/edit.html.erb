@@ -8,8 +8,8 @@
   <div class="question-with-follow-up">
     <div class="question-with-follow-up__question">
       <%= f.cfa_radio_set(:is_pregnant, collection: [
-        { value: :yes, label: t("general.affirmative")},
-        { value: :no, label: t("general.negative"), input_html: { "data-follow-up": "#due-date" } },
+        { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#due-date" }},
+        { value: :no, label: t("general.negative") },
       ]) %>
     </div>
 
