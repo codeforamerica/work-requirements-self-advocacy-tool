@@ -34,13 +34,13 @@ class Screener < ApplicationRecord
     validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
+  with_context :caring_for_someone do
+    validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
+  end
+
   with_context :is_pregnant do
     validates :is_pregnant, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
     validates :pregnancy_due_date, presence: true, if: -> { is_pregnant_yes? }
-  end
-
-  with_context :caring_for_someone do
-    validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
   end
 
   before_save do

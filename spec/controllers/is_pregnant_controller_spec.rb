@@ -47,6 +47,22 @@ RSpec.describe IsPregnantController, type: :controller do
         post :update, params: {screener: params}
         expect(screener.reload.pregnancy_due_date).to eq Date.new(2026, 6, 1)
       end
+
+      render_views
+
+      it "shows a validation error when the date params are missing and should be present" do
+        create(:screener)
+        params = {
+          is_pregnant: "yes",
+          pregnancy_due_date_month: "",
+          pregnancy_due_date_day: "",
+          pregnancy_due_date_year: ""
+        }
+
+        post :update, params: {screener: params}
+        expect(response).to render_template :edit
+        expect(response.body).to have_text "can't be blank"
+      end
     end
   end
 end
