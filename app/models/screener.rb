@@ -5,6 +5,9 @@ class Screener < ApplicationRecord
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_pregnant, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_no_one, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
@@ -34,6 +37,10 @@ class Screener < ApplicationRecord
   with_context :is_pregnant do
     validates :is_pregnant, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
     validates :pregnancy_due_date, presence: true, if: -> { is_pregnant_yes? }
+  end
+
+  with_context :caring_for_someone do
+    validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
   end
 
   before_save do

@@ -1,0 +1,27 @@
+<% content_for :question_title, t("views.caring_for_someone.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p><%= t("views.caring_for_someone.edit.help_text_html") %></p>
+
+<div class="notice">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-help"></i>
+    </div>
+    <div class="media-box__content">
+      <%= t("views.caring_for_someone.edit.notice_text") %>
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <div class="checkbox-group">
+    <%= f.cfa_checkbox(:caring_for_child_under_6, t("views.caring_for_someone.edit.child_under_6"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:caring_for_disabled_or_ill_person, t("views.caring_for_someone.edit.disabled_or_ill_person"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:caring_for_no_one, t("general.none_of_the_above"), options: { checked_value: "yes", unchecked_value: "no", id: "none_of_the_above"}) %>
+  </div>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+

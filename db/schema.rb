@@ -33,5 +33,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_07_220156) do
     t.string "phone_number"
     t.date "pregnancy_due_date"
     t.datetime "updated_at", null: false
+    t.integer "caring_for_child_under_6", default: 0, null: false
+    t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
+    t.integer "caring_for_no_one", default: 0, null: false
   end
 end

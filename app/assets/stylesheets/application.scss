@@ -63,3 +63,11 @@ i.no-button-cross {
 .question-with-follow-up__follow-up:before {
   content: none;
 }
+
+.checkbox-group {
+  margin-bottom: 6rem;
+
+  .input-group {
+    margin-bottom: 0;
+  }
+}
