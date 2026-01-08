@@ -31,7 +31,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :email do
-    validates :email, 'valid_email_2/email': true, confirmation: true
+    validates :email, "valid_email_2/email": true, confirmation: true
   end
 
   def locale
