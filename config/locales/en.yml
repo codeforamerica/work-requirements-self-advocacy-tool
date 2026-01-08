@@ -9,6 +9,7 @@ en:
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
+    none_of_the_above: None of the above
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
@@ -29,6 +30,13 @@ en:
         email_confirmation: Confirm your email
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
+    caring_for_someone:
+      edit:
+        child_under_6: Child under age 6
+        disabled_or_ill_person: Person who is ill or has a disability
+        help_text_html: The person <strong>does not</strong> need to live with you.
+        notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
+        title: Do you care for someone who cannot care for themselves?
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.

@@ -9,6 +9,7 @@ es:
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
+    none_of_the_above: Ninguna de las anteriores
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
@@ -29,6 +30,13 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
+    caring_for_someone:
+      edit:
+        child_under_6: Niño menor de 6 años
+        disabled_or_ill_person: Persona enferma o con una discapacidad
+        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
+        notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
+        title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.

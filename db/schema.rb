@@ -16,17 +16,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_06_232306) do
 
   create_table "screeners", force: :cascade do |t|
     t.date "birth_date"
+    t.integer "caring_for_child_under_6", default: 0, null: false
+    t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
+    t.integer "caring_for_no_one", default: 0, null: false
     t.datetime "created_at", null: false
     t.string "email"
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
     t.integer "is_american_indian", default: 0, null: false
-    t.integer "is_receiving_snap_benefits", default: 0, null: false
     t.integer "language_preference_spoken", default: 0, null: false
     t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
     t.string "middle_name"
     t.string "phone_number"
-    t.datetime "updated_at", null: false
   end
 end
