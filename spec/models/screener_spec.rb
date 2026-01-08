@@ -62,7 +62,6 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:email)
 
         expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
-
       end
     end
   end
