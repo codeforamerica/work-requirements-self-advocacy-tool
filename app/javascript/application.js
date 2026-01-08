@@ -35,4 +35,6 @@ var noneOfTheAbove = (function () {
   }
 })();
 
-noneOfTheAbove.init();
+document.addEventListener("turbo:load", function() {
+  noneOfTheAbove.init();
+});
