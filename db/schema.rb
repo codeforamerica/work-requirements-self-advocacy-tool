@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_02_211839) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_05_230932) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,5 +27,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_02_211839) do
     t.string "phone_number"
     t.integer "is_american_indian", default: 0, null: false
     t.integer "has_child", default: 0, null: false
+    t.integer "caring_for_child_under_6", default: 0, null: false
+    t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
+    t.integer "caring_for_no_one", default: 0, null: false
   end
 end
