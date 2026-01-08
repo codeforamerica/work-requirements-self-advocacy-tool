@@ -24,10 +24,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_06_232306) do
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
     t.integer "is_american_indian", default: 0, null: false
+    t.integer "is_receiving_snap_benefits", default: 0, null: false
     t.integer "language_preference_spoken", default: 0, null: false
     t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
     t.string "middle_name"
     t.string "phone_number"
+    t.datetime "updated_at", null: false
   end
 end

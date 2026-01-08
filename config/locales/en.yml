@@ -24,12 +24,6 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
-    email:
-      edit:
-        email: Email
-        email_confirmation: Confirm your email
-        title: Where can we send your results?
-        title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
@@ -37,6 +31,12 @@ en:
         help_text_html: The person <strong>does not</strong> need to live with you.
         notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
         title: Do you care for someone who cannot care for themselves?
+    email:
+      edit:
+        email: Email
+        email_confirmation: Confirm your email
+        title: Where can we send your results?
+        title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
