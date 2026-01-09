@@ -15,8 +15,6 @@ es:
     work_rules: Reglas de trabajo
   validations:
     must_answer_yes_or_no: Debe responder sí o no
-  validators:
-    invalid: no es válido
   views:
     america_indian:
       edit:
