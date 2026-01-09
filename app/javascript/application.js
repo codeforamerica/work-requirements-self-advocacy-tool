@@ -1,6 +1,5 @@
 // Entry point for the build script in your package.json
-import { Turbo } from "@hotwired/turbo-rails"
-Turbo.session.drive = false
+import "@hotwired/turbo-rails"
 import "./controllers"
 
 // code mostly copied (from vita-min honeycrisp.js)
@@ -38,4 +37,5 @@ var noneOfTheAbove = (function () {
 
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
+  honeycrispInit();
 });
