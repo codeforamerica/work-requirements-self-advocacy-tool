@@ -1,10 +1,8 @@
 GIT
   remote: https://github.com/codeforamerica/honeycrisp-gem
-  revision: 40a4356dd217dacfba82a7b92010111999954c91
-  ref: 40a4356dd217dacfba82a7b92010111999954c91
-  branch: main
+  revision: fb8f99920e524f87e7111cfcfef05672e7f62f52
   specs:
-    cfa-styleguide (0.17.1)
+    cfa-styleguide (0.18.0)
       autoprefixer-rails
       bourbon
       jquery-rails
@@ -489,7 +487,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   capybara
-  cfa-styleguide (= 0.17.1)!
+  cfa-styleguide (= 0.18.0)!
   dartsass-rails (~> 0.5.1)
   debug
   dotenv
@@ -541,7 +539,7 @@ CHECKSUMS
   brakeman (7.1.2) sha256=6b04927710a2e7d13a72248b5d404c633188e02417f28f3d853e4b6370d26dce
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
   capybara (3.40.0) sha256=42dba720578ea1ca65fd7a41d163dd368502c191804558f6e0f71b391054aeef
-  cfa-styleguide (0.17.1)
+  cfa-styleguide (0.18.0)
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
   concurrent-ruby (1.3.6) sha256=6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
