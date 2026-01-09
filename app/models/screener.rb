@@ -17,7 +17,7 @@ class Screener < ApplicationRecord
 
   with_context :personal_information do
     validates :first_name, :last_name, :birth_date, :phone_number, presence: true
-    validates :phone_number, phone: true, allow_blank: true
+    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
   end
 
   with_context :receiving_benefits do
