@@ -60,6 +60,7 @@ group :development, :test do
   gem "i18n-tasks", "~> 1.1.2"
 
   gem "factory_bot_rails"
+  gem "rails-controller-testing"
 end
 
 group :development do
