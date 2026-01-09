@@ -54,3 +54,11 @@ i.no-button-cross {
   color: $color-red;
   font-weight: bold;
 }
+
+.checkbox-group {
+  margin-bottom: 6rem;
+
+  .input-group {
+    margin-bottom: 0;
+  }
+}

@@ -46,6 +46,36 @@ RSpec.describe Screener, type: :model do
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
+
+        screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
+        expect(screener.valid?(:personal_information)).to eq true
+      end
+    end
+
+    context "with_context :caring_for_someone" do
+      it "can have both types of dependents" do
+        screener = Screener.new(caring_for_child_under_6: "yes", caring_for_disabled_or_ill_person: "yes")
+        expect(screener.valid?(:caring_for_someone)).to eq true
+      end
+
+      it "cannot have no one and someone" do
+        screener = Screener.new(
+          caring_for_child_under_6: "no",
+          caring_for_disabled_or_ill_person: "yes",
+          caring_for_no_one: "yes"
+        )
+        screener.valid?(:caring_for_someone)
+
+        expect(screener.errors[:caring_for_no_one]).to be_present
+
+        screener = Screener.new(
+          caring_for_child_under_6: "yes",
+          caring_for_disabled_or_ill_person: "no",
+          caring_for_no_one: "yes"
+        )
+        screener.valid?(:caring_for_someone)
+
+        expect(screener.errors[:caring_for_no_one]).to be_present
       end
     end
   end

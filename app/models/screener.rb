@@ -4,6 +4,9 @@ class Screener < ApplicationRecord
   enum :is_receiving_snap_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :caring_for_no_one, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
 
@@ -14,7 +17,7 @@ class Screener < ApplicationRecord
 
   with_context :personal_information do
     validates :first_name, :last_name, :birth_date, :phone_number, presence: true
-    validates :phone_number, phone: true, allow_blank: true
+    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
   end
 
   with_context :receiving_benefits do
@@ -27,6 +30,10 @@ class Screener < ApplicationRecord
 
   with_context :has_child do
     validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+  end
+
+  with_context :caring_for_someone do
+    validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
   end
 
   def locale
