@@ -34,6 +34,26 @@ RSpec.describe PersonalInformationController, type: :controller do
         post :update, params: {screener: params}
         expect(screener.reload.birth_date).to eq Date.new(1973, 10, 13)
       end
+
+      render_views
+
+      it "displays an error if birth_date is missing" do
+        create(:screener)
+
+        params = {
+          first_name: "Noel",
+          middle_name: "G",
+          last_name: "Fielding",
+          phone_number: "5551231234",
+          birth_date_month: "",
+          birth_date_day: "",
+          birth_date_year: ""
+        }
+
+        post :update, params: {screener: params}
+        expect(response).to render_template :edit
+        expect(response.body).to have_text "can't be blank"
+      end
     end
   end
 end

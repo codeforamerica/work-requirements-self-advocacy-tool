@@ -52,6 +52,7 @@ RSpec.describe IsPregnantController, type: :controller do
 
       it "shows a validation error when the date params are missing and should be present" do
         create(:screener)
+
         params = {
           is_pregnant: "yes",
           pregnancy_due_date_month: "",
