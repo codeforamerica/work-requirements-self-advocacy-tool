@@ -17,7 +17,7 @@ class Screener < ApplicationRecord
 
   with_context :personal_information do
     validates :first_name, :last_name, :birth_date, :phone_number, presence: true
-    validates :phone_number, phone: true, allow_blank: true
+    validate :is_us_phone_number
   end
 
   with_context :receiving_benefits do
@@ -38,6 +38,12 @@ class Screener < ApplicationRecord
 
   def locale
     language_preference_written_spanish? ? :es : :en
+  end
+
+  def is_us_phone_number
+    return if phone_number.blank?
+
+    errors.add(:phone_number, I18n.t("validators.invalid")) if !Phonelib.valid_for_country?(phone_number, "US")
   end
 
   def birth_date_year

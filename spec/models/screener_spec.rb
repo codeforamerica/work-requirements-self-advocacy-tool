@@ -46,6 +46,9 @@ RSpec.describe Screener, type: :model do
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
+
+        screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
+        expect(screener.valid?(:personal_information)).to eq true
       end
     end
 
