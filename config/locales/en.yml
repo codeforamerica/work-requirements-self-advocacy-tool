@@ -114,3 +114,14 @@ en:
         is_no: No, but I applied or might apply later
         is_yes: Yes, I currently get SNAP benefits
         title: Do you currently get SNAP benefits in [state]?
+    disability_benefits:
+      edit:
+        title: "Are you receiving any of these disability benefits?"
+        receiving_benefits_ssdi: "Social Security Disability Benefits (SSDI)"
+        receiving_benefits_ssi: "SSI (Supplemental Security Income)"
+        receiving_benefits_veterans_disability: "Veteran’s disability"
+        receiving_benefits_disability_pension: "Disability pension"
+        receiving_benefits_workers_compensation: "Worker’s compensation"
+        receiving_benefits_insurance_payments: "Disability insurance payments"
+    general:
+      other: "Other"

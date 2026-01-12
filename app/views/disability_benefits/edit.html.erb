@@ -1,0 +1,21 @@
+<% content_for :question_title, t("views.disability_benefits.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <div class="checkbox-group">
+    <%= f.cfa_checkbox(:receiving_benefits_ssdi, t("views.disability_benefits.edit.receiving_benefits_ssdi"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_ssi, t("views.disability_benefits.edit.receiving_benefits_ssi"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_veterans_disability, t("views.disability_benefits.edit.receiving_benefits_veterans_disability"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_disability_pension, t("views.disability_benefits.edit.receiving_benefits_disability_pension"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_workers_compensation, t("views.disability_benefits.edit.receiving_benefits_workers_compensation"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_insurance_payments, t("views.disability_benefits.edit.receiving_benefits_insurance_payments"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_other, t("views.general.other"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+    <%= f.cfa_checkbox(:receiving_benefits_none, t("general.none_of_the_above"), options: { checked_value: "yes", unchecked_value: "no", id: "none_of_the_above"}) %>
+  </div>
+
+  <%= f.cfa_input_field(:middle_name, t("views.personal_information.edit.middle_name_label"), help_text: t("views.personal_information.edit.middle_name_label_help_text")) %>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+

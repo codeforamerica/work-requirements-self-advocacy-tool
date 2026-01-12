@@ -32,11 +32,11 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:personal_information)
 
         expect(screener.errors).to match_array [
-          "First name can't be blank",
-          "Last name can't be blank",
-          "Birth date can't be blank",
-          "Phone number can't be blank"
-        ]
+                                                 "First name can't be blank",
+                                                 "Last name can't be blank",
+                                                 "Birth date can't be blank",
+                                                 "Phone number can't be blank"
+                                               ]
       end
 
       it "requires the phone number to be valid" do
@@ -76,6 +76,36 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:caring_for_someone)
 
         expect(screener.errors[:caring_for_no_one]).to be_present
+      end
+    end
+
+    context "with_context :disability_benefits" do
+      it "cannot choose a benefit and 'none of the above'" do
+        screener = Screener.new(
+          receiving_benefits_ssdi: "no",
+          receiving_benefits_ssi: "no",
+          receiving_benefits_veterans_disability: "yes",
+          receiving_benefits_disability_pension: "no",
+          receiving_benefits_workers_compensation: "no",
+          receiving_benefits_insurance_payments: "no",
+          receiving_benefits_other: "yes",
+          receiving_benefits_none: "yes",
+        )
+
+        screener.valid?(:disability_benefits)
+        expect(screener.errors[:receiving_benefits_none]).to be_present
+
+        # valid if receiving_benefits_none is "no"
+        screener.assign_attributes(receiving_benefits_none: "no")
+        expect(screener.valid?(:disability_benefits)).to eq true
+
+        # valid if everything but receiving_benefits_none is "no"
+        screener.assign_attributes(
+          receiving_benefits_veterans_disability: "no",
+          receiving_benefits_other: "no",
+          receiving_benefits_none: "yes"
+        )
+        expect(screener.valid?(:disability_benefits)).to eq true
       end
     end
   end

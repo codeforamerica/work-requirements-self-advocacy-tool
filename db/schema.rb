@@ -10,25 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_05_230932) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_09_221241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "screeners", force: :cascade do |t|
-    t.integer "language_preference_written", default: 0, null: false
-    t.integer "language_preference_spoken", default: 0, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "is_receiving_snap_benefits", default: 0, null: false
-    t.string "first_name"
-    t.string "middle_name"
-    t.string "last_name"
     t.date "birth_date"
-    t.string "phone_number"
-    t.integer "is_american_indian", default: 0, null: false
-    t.integer "has_child", default: 0, null: false
     t.integer "caring_for_child_under_6", default: 0, null: false
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.string "email"
+    t.string "first_name"
+    t.integer "has_child", default: 0, null: false
+    t.integer "has_unemployment_benefits", default: 0, null: false
+    t.integer "is_american_indian", default: 0, null: false
+    t.integer "is_pregnant", default: 0, null: false
+    t.integer "is_receiving_snap_benefits", default: 0, null: false
+    t.integer "language_preference_spoken", default: 0, null: false
+    t.integer "language_preference_written", default: 0, null: false
+    t.string "last_name"
+    t.string "middle_name"
+    t.string "phone_number"
+    t.date "pregnancy_due_date"
+    t.integer "receiving_benefits_disability_pension", default: 0, null: false
+    t.integer "receiving_benefits_insurance_payments", default: 0, null: false
+    t.integer "receiving_benefits_none", default: 0, null: false
+    t.integer "receiving_benefits_other", default: 0, null: false
+    t.integer "receiving_benefits_ssdi", default: 0, null: false
+    t.integer "receiving_benefits_ssi", default: 0, null: false
+    t.integer "receiving_benefits_veterans_disability", default: 0, null: false
+    t.integer "receiving_benefits_workers_compensation", default: 0, null: false
+    t.string "receiving_benefits_write_in"
+    t.datetime "updated_at", null: false
   end
 end

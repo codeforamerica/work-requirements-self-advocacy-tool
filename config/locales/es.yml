@@ -114,3 +114,14 @@ es:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
         title: "¿Actualmente recibe beneficios de SNAP en [state]?"
+    disability_benefits:
+      edit:
+        title: "¿Recibe alguno de estos beneficios por discapacidad?"
+        receiving_benefits_ssdi: "Seguro Social"
+        receiving_benefits_ssi: "SSI (Ingreso Suplementario del Seguro Social)"
+        receiving_benefits_veterans_disability: "Beneficios de discapacidad para veteranos"
+        receiving_benefits_disability_pension: "Pensión por discapacidad"
+        receiving_benefits_workers_compensation: "Compensación para trabajadores"
+        receiving_benefits_insurance_payments: "Pagos de seguro por discapacidad"
+    general:
+      other: "Otra"
