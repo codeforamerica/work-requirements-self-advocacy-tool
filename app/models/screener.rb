@@ -10,6 +10,7 @@ class Screener < ApplicationRecord
   enum :has_unemployment_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
+  before_validation :strip_email
   attr_accessor :email_confirmation
 
   with_context :language_preference do
@@ -60,5 +61,10 @@ class Screener < ApplicationRecord
 
   def birth_date_day
     birth_date&.day
+  end
+
+  def strip_email
+    self.email = email.strip if email.present?
+    self.email_confirmation = email_confirmation.strip if email_confirmation.present?
   end
 end
