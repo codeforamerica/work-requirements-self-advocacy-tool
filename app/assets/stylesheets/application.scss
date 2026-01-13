@@ -62,3 +62,16 @@ i.no-button-cross {
     margin-bottom: 0;
   }
 }
+
+.question-with-follow-up__follow-up {
+  border: none;
+  background: none;
+}
+
+.question-with-follow-up__follow-up:before {
+  content: none;
+}
+
+.question-with-follow-up__follow-up:after {
+  content: none;
+}

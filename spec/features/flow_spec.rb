@@ -22,6 +22,14 @@ RSpec.feature "Screener flow" do
 
     expect(page).to have_selector("h1", text: I18n.t("views.has_child.edit.title"))
     click_on I18n.t("general.negative")
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
+    choose I18n.t("general.affirmative")
+
+    fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
+    fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
+    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.caring_for_someone.edit.title"))
     check I18n.t("general.none_of_the_above")

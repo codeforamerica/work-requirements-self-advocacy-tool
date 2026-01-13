@@ -3,6 +3,7 @@ class Screener < ApplicationRecord
   enum :language_preference_written, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   enum :is_receiving_snap_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -34,6 +35,12 @@ class Screener < ApplicationRecord
 
   with_context :caring_for_someone do
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
+  end
+
+  with_context :community_service do
+    validates :is_volunteer, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :volunteering_hours, presence: true, if: -> { is_volunteer_yes? }
+    validates :volunteering_org_name, presence: true, if: -> { is_volunteer_yes? }
   end
 
   def locale
