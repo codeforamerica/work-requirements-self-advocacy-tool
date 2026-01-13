@@ -37,12 +37,6 @@ class Screener < ApplicationRecord
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
   end
 
-  with_context :community_service do
-    validates :is_volunteer, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
-    validates :volunteering_hours, presence: true, if: -> { is_volunteer_yes? }
-    validates :volunteering_org_name, presence: true, if: -> { is_volunteer_yes? }
-  end
-
   def locale
     language_preference_written_spanish? ? :es : :en
   end
