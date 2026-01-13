@@ -51,13 +51,13 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :is_pregnant" do
-      it "requires a due date when is_pregnant is yes" do
-        screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: nil)
+      it "requires a due date in the future" do
+        screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
 
         screener.valid?(:is_pregnant)
-        expect(screener.errors[:pregnancy_due_date]).to be_present
+        expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
 
-        screener.assign_attributes(pregnancy_due_date: Date.new(2026, 4, 3))
+        screener.assign_attributes(pregnancy_due_date: Time.now + 3.days)
         expect(screener.valid?(:is_pregnant)).to eq true
       end
     end
