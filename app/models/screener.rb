@@ -7,6 +7,7 @@ class Screener < ApplicationRecord
   enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_no_one, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :has_unemployment_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_ssdi, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -44,6 +45,10 @@ class Screener < ApplicationRecord
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
   end
 
+  with_context :has_unemployment_benefits do
+    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+  end
+
   with_context :disability_benefits do
     validates :receiving_benefits_none, inclusion: {in: %w[unfilled no]},
               if: -> {
@@ -55,7 +60,6 @@ class Screener < ApplicationRecord
                 receiving_benefits_insurance_payments_yes? ||
                 receiving_benefits_other_yes?
               }
-
   end
 
   def locale
