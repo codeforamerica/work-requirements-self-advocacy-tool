@@ -7,7 +7,8 @@ RSpec.describe Screener, type: :model do
         [:receiving_benefits, :is_receiving_snap_benefits],
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
-        [:is_pregnant, :is_pregnant]
+        [:is_pregnant, :is_pregnant],
+        [:has_unemployment_benefits, :has_unemployment_benefits]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
           screener = Screener.new(column => "unfilled")
@@ -47,6 +48,9 @@ RSpec.describe Screener, type: :model do
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
+
+        screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
+        expect(screener.valid?(:personal_information)).to eq true
       end
     end
 

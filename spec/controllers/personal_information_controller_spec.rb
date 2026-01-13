@@ -25,7 +25,7 @@ RSpec.describe PersonalInformationController, type: :controller do
           first_name: "Noel",
           middle_name: "G",
           last_name: "Fielding",
-          phone_number: "5551231234",
+          phone_number: "4158161286",
           birth_date_month: "10",
           birth_date_day: "13",
           birth_date_year: "1973"
