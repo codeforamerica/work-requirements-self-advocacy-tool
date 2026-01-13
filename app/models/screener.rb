@@ -60,6 +60,7 @@ class Screener < ApplicationRecord
           receiving_benefits_insurance_payments_yes? ||
           receiving_benefits_other_yes?
       }
+    validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
   def locale
