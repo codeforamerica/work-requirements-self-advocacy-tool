@@ -40,6 +40,7 @@ es:
         receiving_benefits_ssi: SSI (Ingreso Suplementario del Seguro Social)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
         receiving_benefits_workers_compensation: Compensación para trabajadores
+        receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     has_child:
       edit:

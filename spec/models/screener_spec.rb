@@ -33,11 +33,11 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:personal_information)
 
         expect(screener.errors).to match_array [
-                                                 "First name can't be blank",
-                                                 "Last name can't be blank",
-                                                 "Birth date can't be blank",
-                                                 "Phone number can't be blank"
-                                               ]
+          "First name can't be blank",
+          "Last name can't be blank",
+          "Birth date can't be blank",
+          "Phone number can't be blank"
+        ]
       end
 
       it "requires the phone number to be valid" do
@@ -90,7 +90,7 @@ RSpec.describe Screener, type: :model do
           receiving_benefits_workers_compensation: "no",
           receiving_benefits_insurance_payments: "no",
           receiving_benefits_other: "yes",
-          receiving_benefits_none: "yes",
+          receiving_benefits_none: "yes"
         )
 
         screener.valid?(:disability_benefits)

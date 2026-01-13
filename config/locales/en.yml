@@ -40,6 +40,7 @@ en:
         receiving_benefits_ssi: SSI (Supplemental Security Income)
         receiving_benefits_veterans_disability: Veteran’s disability
         receiving_benefits_workers_compensation: Worker’s compensation
+        receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
     has_child:
       edit:

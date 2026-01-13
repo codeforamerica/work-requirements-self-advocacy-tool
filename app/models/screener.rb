@@ -51,15 +51,15 @@ class Screener < ApplicationRecord
 
   with_context :disability_benefits do
     validates :receiving_benefits_none, inclusion: {in: %w[unfilled no]},
-              if: -> {
-                receiving_benefits_ssdi_yes? ||
-                receiving_benefits_ssi_yes? ||
-                receiving_benefits_veterans_disability_yes? ||
-                receiving_benefits_disability_pension_yes? ||
-                receiving_benefits_workers_compensation_yes? ||
-                receiving_benefits_insurance_payments_yes? ||
-                receiving_benefits_other_yes?
-              }
+      if: -> {
+        receiving_benefits_ssdi_yes? ||
+          receiving_benefits_ssi_yes? ||
+          receiving_benefits_veterans_disability_yes? ||
+          receiving_benefits_disability_pension_yes? ||
+          receiving_benefits_workers_compensation_yes? ||
+          receiving_benefits_insurance_payments_yes? ||
+          receiving_benefits_other_yes?
+      }
   end
 
   def locale
