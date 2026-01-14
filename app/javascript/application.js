@@ -37,4 +37,5 @@ var noneOfTheAbove = (function () {
 
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
+  honeycrispInit();
 });

@@ -8,6 +8,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(AmericanIndianController),
         ControllerNavigation::NavigationStep.new(HasChildController),
         ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
+        ControllerNavigation::NavigationStep.new(IsPregnantController),
         ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),
         ControllerNavigation::NavigationStep.new(CommunityServiceController),
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),

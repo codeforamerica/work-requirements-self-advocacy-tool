@@ -42,7 +42,7 @@ gem "thruster", require: false
 
 gem "ostruct"
 gem "dartsass-rails", "~> 0.5.1"
-gem "cfa-styleguide", "0.17.1", git: "https://github.com/codeforamerica/honeycrisp-gem", branch: "main", ref: "40a4356dd217dacfba82a7b92010111999954c91"
+gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 
 gem "phonelib"
 
@@ -60,6 +60,7 @@ group :development, :test do
   gem "i18n-tasks", "~> 1.1.2"
 
   gem "factory_bot_rails"
+  gem "rails-controller-testing"
 end
 
 group :development do
