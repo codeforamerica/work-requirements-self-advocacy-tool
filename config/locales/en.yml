@@ -10,10 +10,12 @@ en:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
     none_of_the_above: None of the above
+    other: Other
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
   validations:
+    date_must_be_in_future: Date must be in the future
     must_answer_yes_or_no: Must answer yes or no
   views:
     america_indian:
@@ -31,6 +33,16 @@ en:
         help_text_html: The person <strong>does not</strong> need to live with you.
         notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
         title: Do you care for someone who cannot care for themselves?
+    disability_benefits:
+      edit:
+        receiving_benefits_disability_pension: Disability pension
+        receiving_benefits_insurance_payments: Disability insurance payments
+        receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
+        receiving_benefits_ssi: SSI (Supplemental Security Income)
+        receiving_benefits_veterans_disability: Veteran’s disability
+        receiving_benefits_workers_compensation: Worker’s compensation
+        receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
+        title: Are you receiving any of these disability benefits?
     email:
       edit:
         email: Email
@@ -44,6 +56,11 @@ en:
     has_unemployment_benefits:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
+    is_pregnant:
+      edit:
+        pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
+        pregnancy_due_date_label: When is the baby due?
+        title: Are you pregnant?
     landing_page:
       fill_out_form: Fill out the form
       index:

@@ -10,10 +10,12 @@ es:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
+    other: Otra
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
   validations:
+    date_must_be_in_future: La fecha debe ser en el futuro
     must_answer_yes_or_no: Debe responder sí o no
   views:
     america_indian:
@@ -31,6 +33,16 @@ es:
         help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
         notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
+    disability_benefits:
+      edit:
+        receiving_benefits_disability_pension: Pensión por discapacidad
+        receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
+        receiving_benefits_ssdi: Seguro Social
+        receiving_benefits_ssi: SSI (Ingreso Suplementario del Seguro Social)
+        receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
+        receiving_benefits_workers_compensation: Compensación para trabajadores
+        receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
+        title: "¿Recibe alguno de estos beneficios por discapacidad?"
     email:
       edit:
         email: Email
@@ -44,6 +56,11 @@ es:
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    is_pregnant:
+      edit:
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
+        title: "¿Está en embarazo?"
     landing_page:
       fill_out_form: Complete el formulario
       index:

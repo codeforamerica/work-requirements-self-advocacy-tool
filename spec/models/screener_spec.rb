@@ -7,6 +7,7 @@ RSpec.describe Screener, type: :model do
         [:receiving_benefits, :is_receiving_snap_benefits],
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
+        [:is_pregnant, :is_pregnant],
         [:has_unemployment_benefits, :has_unemployment_benefits]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
@@ -53,6 +54,18 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :is_pregnant" do
+      it "requires a due date in the future" do
+        screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
+
+        screener.valid?(:is_pregnant)
+        expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
+
+        screener.assign_attributes(pregnancy_due_date: Time.now + 3.days)
+        expect(screener.valid?(:is_pregnant)).to eq true
+      end
+    end
+
     context "with_context :caring_for_someone" do
       it "can have both types of dependents" do
         screener = Screener.new(caring_for_child_under_6: "yes", caring_for_disabled_or_ill_person: "yes")
@@ -78,6 +91,62 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.errors[:caring_for_no_one]).to be_present
       end
+    end
+
+    context "with_context :disability_benefits" do
+      it "cannot choose a benefit and 'none of the above'" do
+        screener = Screener.new(
+          receiving_benefits_ssdi: "no",
+          receiving_benefits_ssi: "no",
+          receiving_benefits_veterans_disability: "yes",
+          receiving_benefits_disability_pension: "no",
+          receiving_benefits_workers_compensation: "no",
+          receiving_benefits_insurance_payments: "yes",
+          receiving_benefits_other: "no",
+          receiving_benefits_none: "yes"
+        )
+
+        screener.valid?(:disability_benefits)
+        expect(screener.errors[:receiving_benefits_none]).to be_present
+
+        # valid if receiving_benefits_none is "no"
+        screener.assign_attributes(receiving_benefits_none: "no")
+        expect(screener.valid?(:disability_benefits)).to eq true
+
+        # valid if everything but receiving_benefits_none is "no"
+        screener.assign_attributes(
+          receiving_benefits_veterans_disability: "no",
+          receiving_benefits_insurance_payments: "no",
+          receiving_benefits_none: "yes"
+        )
+        expect(screener.valid?(:disability_benefits)).to eq true
+      end
+
+      it "can only have a write-in answer if 'other' is checked" do
+        screener = Screener.new(
+          receiving_benefits_other: "no",
+          receiving_benefits_write_in: "a different benefit"
+        )
+
+        screener.valid?(:disability_benefits)
+        expect(screener.errors[:receiving_benefits_write_in]).to be_present
+
+        screener.assign_attributes(
+          receiving_benefits_other: "yes",
+          receiving_benefits_write_in: "a different benefit"
+        )
+        expect(screener.valid?(:disability_benefits)).to eq true
+      end
+    end
+  end
+
+  describe "before_save" do
+    it "clears the due date if is_pregnant changes to no" do
+      screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
+
+      screener.update(is_pregnant: "no")
+
+      expect(screener.reload.pregnancy_due_date).to be_nil
     end
 
     context "with_context :email" do

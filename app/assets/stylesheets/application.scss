@@ -55,9 +55,20 @@ i.no-button-cross {
   font-weight: bold;
 }
 
-.checkbox-group {
-  margin-bottom: 6rem;
+.question-with-follow-up__follow-up {
+  border: none;
+  background: none;
+}
 
+.question-with-follow-up__follow-up:before {
+  content: none;
+}
+
+.question-with-follow-up__follow-up:after {
+  content: none;
+}
+
+.checkbox-group {
   .input-group {
     margin-bottom: 0;
   }
