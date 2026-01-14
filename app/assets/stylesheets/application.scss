@@ -55,6 +55,19 @@ i.no-button-cross {
   font-weight: bold;
 }
 
+.question-with-follow-up__follow-up {
+  border: none;
+  background: none;
+}
+
+.question-with-follow-up__follow-up:before {
+  content: none;
+}
+
+.question-with-follow-up__follow-up:after {
+  content: none;
+}
+
 .checkbox-group {
   margin-bottom: 6rem;
 

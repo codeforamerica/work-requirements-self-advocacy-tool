@@ -14,6 +14,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
   validations:
+    date_must_be_in_future: La fecha debe ser en el futuro
     must_answer_yes_or_no: Debe responder sí o no
   views:
     america_indian:
@@ -38,6 +39,11 @@ es:
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    is_pregnant:
+      edit:
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
+        title: "¿Está en embarazo?"
     landing_page:
       fill_out_form: Complete el formulario
       index:
