@@ -7,9 +7,9 @@ module Navigation
         ControllerNavigation::NavigationStep.new(ReceivingBenefitsController),
         ControllerNavigation::NavigationStep.new(AmericanIndianController),
         ControllerNavigation::NavigationStep.new(HasChildController),
-        ControllerNavigation::NavigationStep.new(CommunityServiceController),
         ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
         ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),
+        ControllerNavigation::NavigationStep.new(CommunityServiceController),
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),
         ControllerNavigation::NavigationStep.new(TempEndController)

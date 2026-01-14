@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "Screener flow" do
-  scenario "new client fills out the screener" do
+  scenario "new client fills out the screener", js: true do
     visit root_path
 
     expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
@@ -22,14 +22,6 @@ RSpec.feature "Screener flow" do
 
     expect(page).to have_selector("h1", text: I18n.t("views.has_child.edit.title"))
     click_on I18n.t("general.negative")
-    click_on I18n.t("general.continue")
-
-    expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
-    choose I18n.t("general.affirmative")
-
-    fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
-    fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
-    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.caring_for_someone.edit.title"))
     check I18n.t("general.none_of_the_above")
@@ -37,6 +29,13 @@ RSpec.feature "Screener flow" do
 
     expect(page).to have_selector("h1", text: I18n.t("views.has_unemployment_benefits.edit.title"))
     click_on I18n.t("general.negative")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
+    choose I18n.t("general.affirmative")
+
+    fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
+    fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
+    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
     click_on I18n.t("general.continue")
