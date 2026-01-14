@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.feature "Screener flow" do
-  scenario "new client fills out the screener", js: true do
+  scenario "new client fills out the screener" do
     visit root_path
 
     expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
