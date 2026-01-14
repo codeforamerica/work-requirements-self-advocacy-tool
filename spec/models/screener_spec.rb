@@ -96,7 +96,7 @@ RSpec.describe Screener, type: :model do
       end
 
       it "removed white spaces from the email and confirmation" do
-        screener = Screener.new(email: "anisha@example.com ", email_confirmation: "anisha@example.com")
+        screener = Screener.new(email: "anisha@example.com ", email_confirmation: " anisha@example.com")
         screener.valid?(:email)
 
         expect(screener.errors).to match_array []
