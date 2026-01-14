@@ -7,6 +7,7 @@ RSpec.describe Screener, type: :model do
         [:receiving_benefits, :is_receiving_snap_benefits],
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
+        [:is_pregnant, :is_pregnant],
         [:has_unemployment_benefits, :has_unemployment_benefits]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
@@ -50,6 +51,18 @@ RSpec.describe Screener, type: :model do
 
         screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
         expect(screener.valid?(:personal_information)).to eq true
+      end
+    end
+
+    context "with_context :is_pregnant" do
+      it "requires a due date in the future" do
+        screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
+
+        screener.valid?(:is_pregnant)
+        expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
+
+        screener.assign_attributes(pregnancy_due_date: Time.now + 3.days)
+        expect(screener.valid?(:is_pregnant)).to eq true
       end
     end
 
@@ -124,6 +137,16 @@ RSpec.describe Screener, type: :model do
         )
         expect(screener.valid?(:disability_benefits)).to eq true
       end
+    end
+  end
+
+  describe "before_save" do
+    it "clears the due date if is_pregnant changes to no" do
+      screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
+
+      screener.update(is_pregnant: "no")
+
+      expect(screener.reload.pregnancy_due_date).to be_nil
     end
   end
 end

@@ -15,6 +15,7 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
   validations:
+    date_must_be_in_future: Date must be in the future
     must_answer_yes_or_no: Must answer yes or no
   views:
     america_indian:
@@ -49,6 +50,11 @@ en:
     has_unemployment_benefits:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
+    is_pregnant:
+      edit:
+        pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
+        pregnancy_due_date_label: When is the baby due?
+        title: Are you pregnant?
     landing_page:
       fill_out_form: Fill out the form
       index:

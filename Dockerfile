@@ -44,8 +44,7 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
 
 # Install application gems
 COPY .ruby-version Gemfile Gemfile.lock ./
-RUN --mount=type=secret,id=github_pat \
-    BUNDLE_GITHUB__COM=$(cat /run/secrets/github_pat) bundle install && \
+RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
 
