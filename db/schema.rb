@@ -20,7 +20,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_225400) do
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
     t.datetime "created_at", null: false
-    t.string "email"
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
     t.integer "has_unemployment_benefits", default: 0, null: false
@@ -34,6 +33,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_225400) do
     t.string "middle_name"
     t.string "phone_number"
     t.date "pregnancy_due_date"
+    t.integer "receiving_benefits_disability_pension", default: 0, null: false
+    t.integer "receiving_benefits_insurance_payments", default: 0, null: false
+    t.integer "receiving_benefits_none", default: 0, null: false
+    t.integer "receiving_benefits_other", default: 0, null: false
+    t.integer "receiving_benefits_ssdi", default: 0, null: false
+    t.integer "receiving_benefits_ssi", default: 0, null: false
+    t.integer "receiving_benefits_veterans_disability", default: 0, null: false
+    t.integer "receiving_benefits_workers_compensation", default: 0, null: false
+    t.string "receiving_benefits_write_in"
     t.datetime "updated_at", null: false
     t.integer "volunteering_hours"
     t.string "volunteering_org_name"

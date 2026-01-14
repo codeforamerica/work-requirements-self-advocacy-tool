@@ -10,6 +10,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
         ControllerNavigation::NavigationStep.new(IsPregnantController),
         ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),
+        ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
         ControllerNavigation::NavigationStep.new(CommunityServiceController),
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),

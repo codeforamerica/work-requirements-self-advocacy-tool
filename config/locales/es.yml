@@ -10,6 +10,7 @@ es:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
+    other: Otra
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
@@ -38,6 +39,16 @@ es:
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
+    disability_benefits:
+      edit:
+        receiving_benefits_disability_pension: Pensión por discapacidad
+        receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
+        receiving_benefits_ssdi: Seguro Social
+        receiving_benefits_ssi: SSI (Ingreso Suplementario del Seguro Social)
+        receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
+        receiving_benefits_workers_compensation: Compensación para trabajadores
+        receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
+        title: "¿Recibe alguno de estos beneficios por discapacidad?"
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.

@@ -10,6 +10,7 @@ en:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
     none_of_the_above: None of the above
+    other: Other
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
@@ -38,6 +39,16 @@ en:
         volunteering_hours_label: How many hours a week do you attend?
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
+    disability_benefits:
+      edit:
+        receiving_benefits_disability_pension: Disability pension
+        receiving_benefits_insurance_payments: Disability insurance payments
+        receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
+        receiving_benefits_ssi: SSI (Supplemental Security Income)
+        receiving_benefits_veterans_disability: Veteran’s disability
+        receiving_benefits_workers_compensation: Worker’s compensation
+        receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
+        title: Are you receiving any of these disability benefits?
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
