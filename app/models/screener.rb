@@ -102,6 +102,7 @@ class Screener < ApplicationRecord
   end
 
   private
+
   def remove_pregnancy_attributes_if_no
     if is_pregnant_no?
       self.pregnancy_due_date = nil

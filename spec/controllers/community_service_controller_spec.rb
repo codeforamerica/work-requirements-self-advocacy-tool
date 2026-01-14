@@ -7,7 +7,7 @@ RSpec.describe CommunityServiceController, type: :controller do
         screener = create(:screener)
 
         params = {
-          is_volunteer: "no",
+          is_volunteer: "no"
         }
 
         post :update, params: {screener: params}
