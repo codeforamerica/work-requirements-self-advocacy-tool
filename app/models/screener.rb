@@ -21,6 +21,8 @@ class Screener < ApplicationRecord
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
+  before_save :remove_volunteer_attributes_if_no
+  before_save :remove_pregnancy_attributes_if_no
 
   with_context :language_preference do
     validates :language_preference_spoken, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
@@ -71,12 +73,6 @@ class Screener < ApplicationRecord
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
-  before_save do
-    if is_pregnant_no?
-      self.pregnancy_due_date = nil
-    end
-  end
-
   def locale
     language_preference_written_spanish? ? :es : :en
   end
@@ -103,5 +99,19 @@ class Screener < ApplicationRecord
 
   def pregnancy_due_date_day
     pregnancy_due_date&.day
+  end
+
+  private
+  def remove_pregnancy_attributes_if_no
+    if is_pregnant_no?
+      self.pregnancy_due_date = nil
+    end
+  end
+
+  def remove_volunteer_attributes_if_no
+    if is_volunteer_no?
+      self.volunteering_hours = nil
+      self.volunteering_org_name = nil
+    end
   end
 end
