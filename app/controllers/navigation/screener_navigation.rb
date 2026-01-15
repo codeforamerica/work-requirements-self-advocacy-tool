@@ -13,6 +13,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),
+        ControllerNavigation::NavigationStep.new(EmailController),
         ControllerNavigation::NavigationStep.new(TempEndController)
       ])
     ].freeze
