@@ -7,7 +7,7 @@ RSpec.describe IsStudentController, type: :controller do
         screener = create(:screener)
 
         params = {
-          is_student: "yes",
+          is_student: "yes"
         }
 
         post :update, params: {screener: params}
@@ -21,7 +21,7 @@ RSpec.describe IsStudentController, type: :controller do
         screener = create(:screener)
 
         params = {
-          is_student: "no",
+          is_student: "no"
         }
 
         post :update, params: {screener: params}
@@ -29,6 +29,5 @@ RSpec.describe IsStudentController, type: :controller do
         expect(screener.is_student).to eq "no"
       end
     end
-
   end
 end
