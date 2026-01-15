@@ -134,3 +134,8 @@ es:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
         title: "¿Actualmente recibe beneficios de SNAP en [state]?"
+    work_training:
+      edit:
+        title: "¿Está en un programa de empleo o capacitación laboral?"
+        work_training_hours: "¿Cuántas horas a la semana asiste a este programa?"
+        work_training_name: "¿Cuál es el nombre de la organización o del programa de capacitación?"

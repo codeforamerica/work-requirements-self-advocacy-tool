@@ -70,6 +70,10 @@ class Screener < ApplicationRecord
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
+  with_context :work_training do
+
+  end
+
   before_save do
     if is_pregnant_no?
       self.pregnancy_due_date = nil
