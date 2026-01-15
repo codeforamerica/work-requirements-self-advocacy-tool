@@ -142,6 +142,6 @@ en:
         title: Do you currently get SNAP benefits in [state]?
     work_training:
       edit:
-        title: "Are you in a job or work training program?"
-        work_training_hours: "How many hours a week do you attend this program?"
-        work_training_name: "What is the name of the organization or training program?"
+        title: Are you in a job or work training program?
+        work_training_hours: How many hours a week do you attend this program?
+        work_training_name: What is the name of the organization or training program?

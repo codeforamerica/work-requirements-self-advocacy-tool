@@ -138,16 +138,6 @@ RSpec.describe Screener, type: :model do
         expect(screener.valid?(:disability_benefits)).to eq true
       end
     end
-  end
-
-  describe "before_save" do
-    it "clears the due date if is_pregnant changes to no" do
-      screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
-
-      screener.update(is_pregnant: "no")
-
-      expect(screener.reload.pregnancy_due_date).to be_nil
-    end
 
     context "with_context :email" do
       it "requires a valid email" do
@@ -169,6 +159,29 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:email)
 
         expect(screener.errors).to match_array []
+      end
+    end
+  end
+
+  describe "before_save" do
+    context "preganancy attributes" do
+      it "clears the due date if is_pregnant changes to no" do
+        screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
+
+        screener.update(is_pregnant: "no")
+
+        expect(screener.reload.pregnancy_due_date).to be_nil
+      end
+    end
+
+    context "work training attributes" do
+      it "clears the program hours and name if is_in_work_training changes to no" do
+        screener = Screener.create(is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
+
+        screener.update(is_in_work_training: "no")
+        screener.reload
+        expect(screener.work_training_hours).to be_nil
+        expect(screener.work_training_name).to be_nil
       end
     end
   end

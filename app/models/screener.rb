@@ -18,6 +18,7 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_in_work_training, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
@@ -72,18 +73,14 @@ class Screener < ApplicationRecord
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
-  with_context :work_training do
-
+  with_context :email do
+    validates :email, "valid_email_2/email": true, confirmation: true
   end
 
   before_save do
     if is_pregnant_no?
       self.pregnancy_due_date = nil
     end
-  end
-
-  with_context :email do
-    validates :email, "valid_email_2/email": true, confirmation: true
   end
 
   def locale
