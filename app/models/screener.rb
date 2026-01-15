@@ -17,6 +17,7 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_student, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
@@ -68,6 +69,10 @@ class Screener < ApplicationRecord
           receiving_benefits_other_yes?
       }
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
+  end
+
+  with_context :is_student do
+    validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
   before_save do
