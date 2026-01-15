@@ -36,7 +36,7 @@ en:
     community_service:
       edit:
         title: Do you volunteer or do any community service?
-        volunteering_hours_label: How many hours a week do you attend?
+        volunteering_hours_label: How many hours a week do you volunteer?
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
     disability_benefits:
