@@ -49,6 +49,12 @@ en:
         receiving_benefits_workers_compensation: Worker’s compensation
         receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
+    email:
+      edit:
+        email: Email
+        email_confirmation: Confirm your email
+        title: Where can we send your results?
+        title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.

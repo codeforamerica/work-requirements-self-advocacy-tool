@@ -161,5 +161,28 @@ RSpec.describe Screener, type: :model do
         expect(screener.reload.volunteering_org_name).to be_nil
       end
     end
+
+    context "with_context :email" do
+      it "requires a valid email" do
+        screener = Screener.new(email: "hi.gmail", email_confirmation: "hi.gmail")
+        screener.valid?(:email)
+
+        expect(screener.errors).to match_array ["Email is invalid"]
+      end
+
+      it "requires a confirmed email" do
+        screener = Screener.new(email: "anisha@example.com", email_confirmation: "jenny@example.com")
+        screener.valid?(:email)
+
+        expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
+      end
+
+      it "removed white spaces from the email and confirmation" do
+        screener = Screener.new(email: "anisha@example.com ", email_confirmation: " anisha@example.com")
+        screener.valid?(:email)
+
+        expect(screener.errors).to match_array []
+      end
+    end
   end
 end

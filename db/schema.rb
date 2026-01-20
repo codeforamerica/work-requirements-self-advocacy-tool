@@ -20,6 +20,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_12_225400) do
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
     t.datetime "created_at", null: false
+    t.string "email"
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
     t.integer "has_unemployment_benefits", default: 0, null: false
