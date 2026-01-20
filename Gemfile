@@ -45,6 +45,7 @@ gem "dartsass-rails", "~> 0.5.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 
 gem "phonelib"
+gem "valid_email2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
