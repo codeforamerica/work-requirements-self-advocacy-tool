@@ -4,6 +4,7 @@ class Screener < ApplicationRecord
   enum :language_preference_written, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   enum :is_receiving_snap_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_pregnant, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -22,6 +23,8 @@ class Screener < ApplicationRecord
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
+  before_save :remove_volunteer_attributes_if_no
+  before_save :remove_pregnancy_attributes_if_no
 
   with_context :language_preference do
     validates :language_preference_spoken, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
@@ -72,12 +75,6 @@ class Screener < ApplicationRecord
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
-  before_save do
-    if is_pregnant_no?
-      self.pregnancy_due_date = nil
-    end
-  end
-
   with_context :email do
     validates :email, "valid_email_2/email": true, confirmation: true
   end
@@ -113,5 +110,20 @@ class Screener < ApplicationRecord
   def strip_email_and_confirmation
     self.email = email.strip.downcase if email.present?
     self.email_confirmation = email_confirmation.strip.downcase if email_confirmation.present?
+  end
+
+  private
+
+  def remove_pregnancy_attributes_if_no
+    if is_pregnant_no?
+      self.pregnancy_due_date = nil
+    end
+  end
+
+  def remove_volunteer_attributes_if_no
+    if is_volunteer_no?
+      self.volunteering_hours = nil
+      self.volunteering_org_name = nil
+    end
   end
 end

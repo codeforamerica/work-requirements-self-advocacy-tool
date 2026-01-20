@@ -33,6 +33,12 @@ es:
         help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
         notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
+    community_service:
+      edit:
+        title: "¿Hace servicio comunitario o trabajo voluntario?"
+        volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
+        volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        volunteering_org_label: "¿Cuál es el nombre de la organización?"
     disability_benefits:
       edit:
         receiving_benefits_disability_pension: Pensión por discapacidad
