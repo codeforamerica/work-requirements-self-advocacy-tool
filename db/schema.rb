@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_09_221241) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_12_225400) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -20,12 +20,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_09_221241) do
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
     t.datetime "created_at", null: false
+    t.string "email"
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
     t.integer "has_unemployment_benefits", default: 0, null: false
     t.integer "is_american_indian", default: 0, null: false
     t.integer "is_pregnant", default: 0, null: false
     t.integer "is_receiving_snap_benefits", default: 0, null: false
+    t.integer "is_volunteer", default: 0, null: false
     t.integer "language_preference_spoken", default: 0, null: false
     t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
@@ -42,5 +44,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_09_221241) do
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
     t.datetime "updated_at", null: false
+    t.integer "volunteering_hours"
+    t.string "volunteering_org_name"
   end
 end

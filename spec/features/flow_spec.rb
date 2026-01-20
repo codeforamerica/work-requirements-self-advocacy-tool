@@ -38,6 +38,13 @@ RSpec.feature "Screener flow" do
     check I18n.t("general.none_of_the_above")
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
+    choose I18n.t("general.affirmative")
+
+    fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
+    fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.personal_situations_milestone.edit.title"))
     click_on I18n.t("general.continue")
 
@@ -51,6 +58,11 @@ RSpec.feature "Screener flow" do
     select "21", from: "Day"
     select "1940", from: "Year"
     fill_in I18n.t("views.personal_information.edit.phone_number_label"), with: "415-816-1286"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.email.edit.title"))
+    fill_in I18n.t("views.email.edit.email"), with: "hi@example.com"
+    fill_in I18n.t("views.email.edit.email_confirmation"), with: "hi@example.com"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h2", text: "End of example")

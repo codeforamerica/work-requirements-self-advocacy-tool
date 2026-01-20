@@ -141,12 +141,48 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "before_save" do
-    it "clears the due date if is_pregnant changes to no" do
-      screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
+    context "preganancy attributes" do
+      it "clears the due date if is_pregnant changes to no" do
+        screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
 
-      screener.update(is_pregnant: "no")
+        screener.update(is_pregnant: "no")
 
-      expect(screener.reload.pregnancy_due_date).to be_nil
+        expect(screener.reload.pregnancy_due_date).to be_nil
+      end
+    end
+
+    context "volunteer attributes" do
+      it "clears the volunteering_hours and volunteering_org_name if is_volunteer changes to no" do
+        screener = Screener.create(is_volunteer: "yes", volunteering_hours: 7, volunteering_org_name: "cfa")
+
+        screener.update(is_volunteer: "no")
+
+        expect(screener.reload.volunteering_hours).to be_nil
+        expect(screener.reload.volunteering_org_name).to be_nil
+      end
+    end
+
+    context "with_context :email" do
+      it "requires a valid email" do
+        screener = Screener.new(email: "hi.gmail", email_confirmation: "hi.gmail")
+        screener.valid?(:email)
+
+        expect(screener.errors).to match_array ["Email is invalid"]
+      end
+
+      it "requires a confirmed email" do
+        screener = Screener.new(email: "anisha@example.com", email_confirmation: "jenny@example.com")
+        screener.valid?(:email)
+
+        expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
+      end
+
+      it "removed white spaces from the email and confirmation" do
+        screener = Screener.new(email: "anisha@example.com ", email_confirmation: " anisha@example.com")
+        screener.valid?(:email)
+
+        expect(screener.errors).to match_array []
+      end
     end
   end
 end

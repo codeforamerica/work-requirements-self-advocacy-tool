@@ -34,6 +34,12 @@ en:
         help_text_html: The person <strong>does not</strong> need to live with you.
         notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
         title: Do you care for someone who cannot care for themselves?
+    community_service:
+      edit:
+        title: Do you volunteer or do any community service?
+        volunteering_hours_label: How many hours a week do you volunteer?
+        volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
+        volunteering_org_label: What is the name of the organization?
     disability_benefits:
       edit:
         receiving_benefits_disability_pension: Disability pension
@@ -44,6 +50,12 @@ en:
         receiving_benefits_workers_compensation: Worker’s compensation
         receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
+    email:
+      edit:
+        email: Email
+        email_confirmation: Confirm your email
+        title: Where can we send your results?
+        title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
