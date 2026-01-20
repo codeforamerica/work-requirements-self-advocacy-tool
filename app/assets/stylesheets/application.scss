@@ -31,6 +31,13 @@ main {
   background-color: #FFFFFF;
 }
 
+.notice.teal {
+  color: #034E46;
+  border: 2px solid #034E46;
+  background-color: #EBFFFA;
+  border-radius: 10px;
+}
+
 .progress-bar {
   color: $color-teal;
   text-align: center;
@@ -72,11 +79,4 @@ i.no-button-cross {
   .input-group {
     margin-bottom: 0;
   }
-}
-
-.notice {
-  color: #034E46;
-  border: 2px solid #034E46;
-  background-color: #EBFFFA;
-  border-radius: 10px;
 }

@@ -28,6 +28,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_15_205409) do
     t.integer "is_pregnant", default: 0, null: false
     t.integer "is_receiving_snap_benefits", default: 0, null: false
     t.integer "is_student", default: 0, null: false
+    t.integer "is_volunteer", default: 0, null: false
     t.integer "language_preference_spoken", default: 0, null: false
     t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
@@ -44,5 +45,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_15_205409) do
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
     t.datetime "updated_at", null: false
+    t.integer "volunteering_hours"
+    t.string "volunteering_org_name"
   end
 end
