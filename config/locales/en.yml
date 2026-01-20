@@ -11,6 +11,7 @@ en:
     negative: 'No'
     none_of_the_above: None of the above
     other: Other
+    personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
@@ -141,6 +142,10 @@ en:
         phone_number_label: Phone number
         phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Tell us about yourself
+    personal_situations_milestone:
+      edit:
+        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
+        title: Situations that make it hard to work
     receiving_benefits:
       edit:
         is_no: No, but I applied or might apply later

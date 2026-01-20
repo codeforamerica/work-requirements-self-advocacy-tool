@@ -1,0 +1,3 @@
+class PersonalSituationsMilestoneController < QuestionController
+  include PersonalSituationsConcern
+end
