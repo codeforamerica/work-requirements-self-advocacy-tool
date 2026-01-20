@@ -34,11 +34,11 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:personal_information)
 
         expect(screener.errors).to match_array [
-          "First name can't be blank",
-          "Last name can't be blank",
-          "Birth date can't be blank",
-          "Phone number can't be blank"
-        ]
+                                                 "First name can't be blank",
+                                                 "Last name can't be blank",
+                                                 "Birth date can't be blank",
+                                                 "Phone number can't be blank"
+                                               ]
       end
 
       it "requires the phone number to be valid" do
@@ -182,6 +182,17 @@ RSpec.describe Screener, type: :model do
         screener.reload
         expect(screener.work_training_hours).to be_nil
         expect(screener.work_training_name).to be_nil
+      end
+    end
+
+    context "volunteer attributes" do
+      it "clears the volunteering_hours and volunteering_org_name if is_volunteer changes to no" do
+        screener = Screener.create(is_volunteer: "yes", volunteering_hours: 7, volunteering_org_name: "cfa")
+
+        screener.update(is_volunteer: "no")
+
+        expect(screener.reload.volunteering_hours).to be_nil
+        expect(screener.reload.volunteering_org_name).to be_nil
       end
     end
   end

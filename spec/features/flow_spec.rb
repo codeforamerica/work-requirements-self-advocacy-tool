@@ -38,10 +38,19 @@ RSpec.feature "Screener flow" do
     check I18n.t("general.none_of_the_above")
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
+    choose I18n.t("general.affirmative")
+    fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
+    fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.work_training.edit.title"))
     choose I18n.t("general.affirmative")
     fill_in I18n.t("views.work_training.edit.work_training_hours"), with: "20"
     fill_in I18n.t("views.work_training.edit.work_training_name"), with: "The Great British Work Off"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.personal_situations_milestone.edit.title"))
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
