@@ -46,8 +46,8 @@ RSpec.feature "Screener flow" do
 
     expect(page).to have_selector("h1", text: I18n.t("views.work_training.edit.title"))
     choose I18n.t("general.affirmative")
-    fill_in I18n.t("views.work_training.edit.work_training_hours"), with: "20"
-    fill_in I18n.t("views.work_training.edit.work_training_name"), with: "The Great British Work Off"
+    fill_in I18n.t("views.work_training.edit.work_training_hours_label"), with: "20"
+    fill_in I18n.t("views.work_training.edit.work_training_name_label"), with: "The Great British Work Off"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.personal_situations_milestone.edit.title"))

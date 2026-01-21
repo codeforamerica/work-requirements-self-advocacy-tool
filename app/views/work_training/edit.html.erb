@@ -2,6 +2,20 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
+<div class="reveal">
+  <button class="reveal__button" aria-expanded="true">
+    <i class="icon-help" style="padding-right: 1rem;"></i><strong><%= t("views.work_training.edit.notice_title") %></strong>
+  </button>
+  <div class="reveal__content">
+    <ul class="list--bulleted spacing-above-0">
+      <% t("views.work_training.edit.notice_content").each do |list_item| %>
+        <li><%= list_item %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
   <%= f.hidden_field :is_in_work_training, value: :unfilled %>
 
@@ -23,8 +37,7 @@
 
       <%= f.cfa_input_field(
             :work_training_name,
-            t("views.work_training.edit.work_training_name_label"),
-            help_text: t("views.work_training.edit.work_training_name_help_text")
+            t("views.work_training.edit.work_training_name_label")
           ) %>
     </div>
   </div>

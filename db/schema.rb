@@ -45,9 +45,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_14_215246) do
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
     t.datetime "updated_at", null: false
-    t.string "work_training_hours"
-    t.string "work_training_name"
     t.integer "volunteering_hours"
     t.string "volunteering_org_name"
+    t.string "work_training_hours"
+    t.string "work_training_name"
   end
 end
