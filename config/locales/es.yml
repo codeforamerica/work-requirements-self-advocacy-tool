@@ -68,6 +68,10 @@ es:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
         title: "¿Está en embarazo?"
+    is_student:
+      edit:
+        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     landing_page:
       fill_out_form: Complete el formulario
       index:
