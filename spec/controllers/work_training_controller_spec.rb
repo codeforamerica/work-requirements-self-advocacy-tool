@@ -11,7 +11,7 @@ RSpec.describe WorkTrainingController, type: :controller do
         work_training_name: "How to do job"
       }
 
-      post :update, params: { screener: params }
+      post :update, params: {screener: params}
       screener.reload
       expect(screener.is_in_work_training).to eq "yes"
       expect(screener.work_training_hours).to eq "5"
