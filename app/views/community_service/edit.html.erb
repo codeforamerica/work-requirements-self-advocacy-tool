@@ -1,0 +1,24 @@
+<% content_for :question_title, t("views.community_service.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :is_volunteer, value: :unfilled %>
+
+  <div class="question-with-follow-up">
+    <div class="question-with-follow-up__question">
+      <%= f.cfa_radio_set(:is_volunteer, collection: [
+        { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#hours-and-org" }},
+        { value: :no, label: t("general.negative") },
+      ]) %>
+    </div>
+
+    <div class="question-with-follow-up__follow-up" id="hours-and-org">
+      <hr class="spacing-above-0" />
+      <%= f.cfa_input_field(:volunteering_hours, t("views.community_service.edit.volunteering_hours_label"), help_text: t("views.community_service.edit.volunteering_hours_label_help_text")) %>
+      <%= f.cfa_input_field(:volunteering_org_name, t("views.community_service.edit.volunteering_org_label")) %>
+    </div>
+  </div>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

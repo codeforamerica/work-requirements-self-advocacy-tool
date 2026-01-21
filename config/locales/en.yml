@@ -11,6 +11,7 @@ en:
     negative: 'No'
     none_of_the_above: None of the above
     other: Other
+    personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
@@ -33,6 +34,12 @@ en:
         help_text_html: The person <strong>does not</strong> need to live with you.
         notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
         title: Do you care for someone who cannot care for themselves?
+    community_service:
+      edit:
+        title: Do you volunteer or do any community service?
+        volunteering_hours_label: How many hours a week do you volunteer?
+        volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
+        volunteering_org_label: What is the name of the organization?
     disability_benefits:
       edit:
         receiving_benefits_disability_pension: Disability pension
@@ -139,6 +146,10 @@ en:
         phone_number_label: Phone number
         phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Tell us about yourself
+    personal_situations_milestone:
+      edit:
+        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
+        title: Situations that make it hard to work
     receiving_benefits:
       edit:
         is_no: No, but I applied or might apply later

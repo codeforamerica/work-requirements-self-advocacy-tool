@@ -11,6 +11,7 @@ es:
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
+    personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
@@ -33,6 +34,12 @@ es:
         help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
         notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
+    community_service:
+      edit:
+        title: "¿Hace servicio comunitario o trabajo voluntario?"
+        volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
+        volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        volunteering_org_label: "¿Cuál es el nombre de la organización?"
     disability_benefits:
       edit:
         receiving_benefits_disability_pension: Pensión por discapacidad
@@ -139,6 +146,10 @@ es:
         phone_number_label: Phone number
         phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Compártanos información sobre usted
+    personal_situations_milestone:
+      edit:
+        help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
+        title: Situaciones que hacen difícil que trabaje
     receiving_benefits:
       edit:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
