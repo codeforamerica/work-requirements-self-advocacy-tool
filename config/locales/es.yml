@@ -151,3 +151,9 @@ es:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
         title: "¿Actualmente recibe beneficios de SNAP en [state]?"
+    email_nudge:
+      index:
+        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
+        title_help_text: "Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP"
+        add_an_email: "Agregar un correo electrónico"
+        continue_without_it: "Continuar sin el correo electrónico"

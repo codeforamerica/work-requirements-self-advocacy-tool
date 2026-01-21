@@ -151,3 +151,9 @@ en:
         is_no: No, but I applied or might apply later
         is_yes: Yes, I currently get SNAP benefits
         title: Do you currently get SNAP benefits in [state]?
+    email_nudge:
+      index:
+        title: "Are you sure you don't want to add an email address?"
+        title_help_text: "Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you.."
+        add_an_email: "Add an email address"
+        continue_without_it: "Continue without it"
