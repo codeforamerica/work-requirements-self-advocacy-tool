@@ -139,6 +139,49 @@ RSpec.describe Screener, type: :model do
         expect(screener.valid?(:disability_benefits)).to eq true
       end
     end
+
+    context "with_context :preventing_work" do
+      it "cannot choose a situation and 'none of the above'" do
+        screener = Screener.new(
+          preventing_work_place_to_sleep: "no",
+          preventing_work_drugs_alcohol: "yes",
+          preventing_work_domestic_violence: "no",
+          preventing_work_medical_condition: "no",
+          preventing_work_other: "no",
+          preventing_work_none: "yes"
+        )
+
+        screener.valid?(:preventing_work)
+        expect(screener.errors[:preventing_work_none]).to be_present
+
+        # valid if preventing_work_none is "no"
+        screener.assign_attributes(preventing_work_none: "no")
+        expect(screener.valid?(:preventing_work)).to eq true
+
+        # valid if everything but preventing_work_none is "no"
+        screener.assign_attributes(
+          preventing_work_drugs_alcohol: "no",
+          preventing_work_none: "yes"
+        )
+        expect(screener.valid?(:preventing_work)).to eq true
+      end
+
+      it "can only have a write-in answer if 'other' is checked" do
+        screener = Screener.new(
+          preventing_work_other: "no",
+          preventing_work_write_in: "some other reason"
+        )
+
+        screener.valid?(:preventing_work)
+        expect(screener.errors[:preventing_work_write_in]).to be_present
+
+        screener.assign_attributes(
+          preventing_work_other: "yes",
+          preventing_work_write_in: "some other reason"
+        )
+        expect(screener.valid?(:preventing_work)).to eq true
+      end
+    end
   end
 
   describe "before_save" do
