@@ -3,7 +3,7 @@
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <%= f.hidden_field :receiving_benefits_write_in, value: "" %>
+  <%= f.hidden_field :receiving_benefits_write_in, value: nil %>
   <div class="checkbox-group">
     <div class="question-with-follow-up">
       <div class="question-with-follow-up__question">
