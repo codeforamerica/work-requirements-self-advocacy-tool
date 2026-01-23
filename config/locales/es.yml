@@ -56,6 +56,12 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
+    email_nudge:
+      index:
+        add_an_email: Agregar un correo electrónico
+        continue_without_it: Continuar sin el correo electrónico
+        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
+        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
@@ -151,9 +157,3 @@ es:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
         title: "¿Actualmente recibe beneficios de SNAP en [state]?"
-    email_nudge:
-      index:
-        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
-        title_help_text: "Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP"
-        add_an_email: "Agregar un correo electrónico"
-        continue_without_it: "Continuar sin el correo electrónico"

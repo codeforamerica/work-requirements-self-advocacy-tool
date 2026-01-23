@@ -1,8 +1,7 @@
 class EmailNudgeController < QuestionController
   include BasicInfoConcern
-  def show?(screener, item_index: nil)
-    # screener.reload
-    # !screener.email.present?
-    false
+
+  def self.show?(screener, item_index: nil)
+    !screener.email.present?
   end
 end
