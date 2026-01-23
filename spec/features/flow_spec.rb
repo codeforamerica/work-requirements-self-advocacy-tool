@@ -45,6 +45,9 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.is_student.edit.title"))
+    click_on I18n.t("general.affirmative")
+
     expect(page).to have_selector("h1", text: I18n.t("views.personal_situations_milestone.edit.title"))
     click_on I18n.t("general.continue")
 

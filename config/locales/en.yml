@@ -74,6 +74,10 @@ en:
         pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
         pregnancy_due_date_label: When is the baby due?
         title: Are you pregnant?
+    is_student:
+      edit:
+        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        title: Do you go to school full-time, or at least half-time?
     landing_page:
       fill_out_form: Fill out the form
       index:
