@@ -88,13 +88,13 @@ class Screener < ApplicationRecord
 
   with_context :preventing_work do
     validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
-              if: -> {
-                preventing_work_place_to_sleep_yes? ||
-                  preventing_work_drugs_alcohol_yes? ||
-                  preventing_work_domestic_violence_yes? ||
-                  preventing_work_medical_condition_yes? ||
-                  preventing_work_other_yes?
-              }
+      if: -> {
+        preventing_work_place_to_sleep_yes? ||
+          preventing_work_drugs_alcohol_yes? ||
+          preventing_work_domestic_violence_yes? ||
+          preventing_work_medical_condition_yes? ||
+          preventing_work_other_yes?
+      }
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
