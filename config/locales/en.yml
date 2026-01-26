@@ -27,6 +27,9 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
+    birth_date:
+      edit:
+        title: What is your date of birth? (required)
     caring_for_someone:
       edit:
         child_under_6: Child under age 6

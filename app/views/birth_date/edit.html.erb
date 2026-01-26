@@ -1,0 +1,16 @@
+<% content_for :question_title, t("views.birth_date.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.cfa_date_select(
+        :birth_date,
+        "",
+        options: {
+          start_year: Time.now.year,
+          end_year: Time.now.year - 150,
+        }
+      ) %>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

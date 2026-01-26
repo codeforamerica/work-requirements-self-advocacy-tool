@@ -27,6 +27,9 @@ es:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
         title: Información básica
+    birth_date:
+      edit:
+        title: "¿Cuál es su fecha de nacimiento?"
     caring_for_someone:
       edit:
         child_under_6: Niño menor de 6 años
