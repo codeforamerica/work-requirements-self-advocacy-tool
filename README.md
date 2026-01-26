@@ -2,21 +2,21 @@
 
 ## Setup
 
-If it's your first time setting up for local development, do the following steps:
+If it's your first time setting up for local development, you will need to have the following installed:
 
-1. In the root directory, initialize `rbenv`:
+* brew (https://brew.sh/)
+* git (https://git-scm.com/downloads)
+* Docker (https://docs.docker.com/get-docker/)
 
-    $ rbenv init
+1. In the root directory of this project, run the setup script:
 
-2. Run the setup script:
+    $ ./bin/setup
 
-    $ bin/setup
+2. Navigate to http://localhost:3000. You should see your app!
 
-3. Start the server:
+## Running the application subsequently
 
-    $ foreman start
-
-4. Navigate to http://localhost:3000. You should see your app!
+Coming Soon.
 
 ## Running the Linter
 
