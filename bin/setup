@@ -1,50 +1,159 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require "fileutils"
 
-# path to your application root.
 APP_ROOT = File.expand_path("..", __dir__)
 
-def system!(*args)
-  system(*args) || abort("\n== Command #{args} failed ==")
+def system!(cmd)
+  puts "==> Running: #{cmd}"
+  system(cmd) || abort("\n== Command failed: #{cmd} ==")
 end
 
-FileUtils.chdir APP_ROOT do
-  # This script is a way to set up or update your development environment automatically.
-  # This script is idempotent, so that you can run it at any time and get an expectable outcome.
-  # Add necessary setup steps to this file.
+def command_exists?(cmd)
+  system("command -v #{cmd} >/dev/null 2>&1")
+end
 
-  puts "== Copying dotenv to .env =="
-  unless File.exist?("#{APP_ROOT}/.env")
-    FileUtils.cp('dotenv', '.env')
+def abort_missing(cmd, instructions)
+  abort("\n== Missing required dependency: #{cmd} ==\n#{instructions}\n")
+end
+
+FileUtils.chdir(APP_ROOT) do
+  puts "\n== 0. Checking prerequisites =="
+
+  # Homebrew
+  unless command_exists?("brew")
+    abort_missing("Homebrew", "Install Homebrew first: https://brew.sh/")
   end
-  puts "== Install Mise =="
-  system! "brew install mise"
 
-  puts "== Installing Interpreters =="
-  system! "mise install"
+  # Docker
+  unless command_exists?("docker")
+    abort_missing("Docker", "Install Docker: https://docs.docker.com/get-docker/")
+  end
 
-  puts "== Install Bundler =="
-  system! "gem update --system"
-  system! "gem install bundler:$(cat Gemfile.lock | tail -1 | tr -d \" \")"
+  # rbenv (installed but not activated)
+  unless command_exists?("rbenv")
+    puts "\n== rbenv not found. Installing via Homebrew =="
+    system!("brew install rbenv")
+  else
+    puts "rbenv already installed"
+  end
 
-  puts "== Installing dependencies =="
+  # Warn if rbenv is active (PATH conflict)
+  rbenv_active =
+    ENV.key?("RBENV_ROOT") ||
+      ENV["PATH"].split(":").any? { |p| p.include?(".rbenv/shims") }
+
+  if rbenv_active
+    puts <<~WARN
+
+      ⚠️  rbenv appears to be active in your shell.
+
+      This project uses mise to manage Ruby and Node versions.
+      If you encounter Ruby or Bundler issues, ensure rbenv
+      is not taking precedence over mise in your PATH.
+
+      Recommended:
+        - Comment out `eval "$(rbenv init -)"` in your shell config
+        - Restart your shell
+        - Re-run ./bin/setup
+
+    WARN
+  end
+
+  # Ruby gem bin PATH warning (Homebrew Ruby)
+  ruby_gem_bin = "/opt/homebrew/lib/ruby/gems/3.4.0/bin"
+  unless ENV["PATH"].split(":").include?(ruby_gem_bin)
+    puts <<~WARN
+
+      ⚠️  Ruby gem binaries directory is not on PATH.
+
+      Add this to your shell config if you see Bundler or gem command issues:
+        export PATH="#{ruby_gem_bin}:$PATH"
+
+    WARN
+  end
+
+  puts "\n== 1. Copying dotenv to .env =="
+  if !File.exist?(".env") && File.exist?("dotenv")
+    FileUtils.cp("dotenv", ".env")
+    puts "Copied dotenv -> .env"
+  end
+
+  puts "\n== 2. Installing and activating mise =="
+
+  unless command_exists?("mise")
+    system!("brew install mise")
+  else
+    puts "mise already installed"
+  end
+
+  # Auto-activate mise for this process
+  unless ENV["MISE_SHELL"]
+    puts "Activating mise..."
+    activate = `mise activate zsh`.strip
+    abort "\n== Failed to activate mise automatically ==" if activate.empty?
+
+    if activate =~ /export PATH="([^"]+)"/
+      ENV["PATH"] = "#{$1}:#{ENV['PATH']}"
+      ENV["MISE_SHELL"] = "zsh"
+      puts "mise activated"
+    else
+      abort "\n== Could not parse mise activation output =="
+    end
+  end
+
+  puts "\n== 3. Installing runtimes via mise =="
+  system!("mise install")
+
+  puts "\n== 4. Verifying Node version =="
+  expected_node_major = "20"
+  actual_node = `node -v`.strip rescue nil
+
+  if actual_node.nil? || !actual_node.start_with?("v#{expected_node_major}.")
+    abort <<~MSG
+
+      == Node version mismatch ==
+      Expected Node #{expected_node_major}.x
+      Found: #{actual_node || "not installed"}
+
+      Fix with:
+        mise install
+        mise use
+
+    MSG
+  end
+
+  puts "\n== 5. Installing Bundler =="
+  bundler_version = File.read("Gemfile.lock").lines.last.strip
+
+  if `gem list -i bundler -v #{bundler_version}`.strip == "true"
+    puts "Bundler #{bundler_version} already installed"
+  else
+    system!("gem install bundler:#{bundler_version}")
+  end
+
+  puts "\n== 6. Installing Ruby dependencies =="
   system("bundle check") || system!("bundle install")
-  system("yarn install --check-files")
 
-  puts "\n== Starting database =="
-  system! "docker compose pull wrsat-db"
-  system! "docker compose up --wait -d wrsat-db"
+  puts "\n== 7. Installing Yarn dependencies =="
+  system!("yarn install --check-files")
 
-  puts "\n== Preparing database =="
+  puts "\n== 8. Starting database via Docker =="
+  system!("docker compose pull wrsat-db")
+  system!("docker compose up --wait -d wrsat-db")
 
-  system! "bin/rails db:prepare"
+  puts "\n== 9. Preparing database =="
+  system!("bin/rails db:prepare")
 
-  puts "\n== Removing old logs and tempfiles =="
-  system! "bin/rails log:clear tmp:clear"
+  puts "\n== 10. Clearing logs and temp files =="
+  system!("bin/rails log:clear tmp:clear")
 
-  unless ARGV.include?("--skip-server")
-    puts "\n== Starting development server =="
-    STDOUT.flush # flush the output before exec(2) so that it displays
+  if ARGV.include?("--skip-server")
+    puts "\n== Setup complete (server skipped) =="
+  else
+    puts "\n== 11. Starting development server =="
+    STDOUT.flush
     exec "bin/dev"
   end
 end
