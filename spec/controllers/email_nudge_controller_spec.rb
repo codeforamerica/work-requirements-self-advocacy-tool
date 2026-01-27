@@ -1,0 +1,19 @@
+require "rails_helper"
+
+RSpec.describe EmailNudgeController, type: :controller do
+  describe ".show?" do
+    context "screener without email" do
+      it "returns true" do
+        screener = create(:screener)
+        expect(subject.class.show?(screener)).to eq true
+      end
+    end
+
+    context "screener with email" do
+      it "returns false " do
+        screener = create(:screener, email: "email@example.com")
+        expect(subject.class.show?(screener)).to eq false
+      end
+    end
+  end
+end
