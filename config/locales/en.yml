@@ -150,6 +150,19 @@ en:
       edit:
         help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
         title: Situations that make it hard to work
+    preventing_work:
+      edit:
+        choose_all_that_apply: Choose all that apply.
+        other: Other
+        preventing_work_domestic_violence: Experiencing domestic violence
+        preventing_work_drugs_alcohol: Struggling with drugs or alcohol
+        preventing_work_medical_condition_html: |
+          A medical condition
+          <br/>
+          <span class="text--help">This includes physical and mental health issues.</span>
+        preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
+        preventing_work_write_in: If you have another reason, please write it here.
+        title: Are any of these things preventing you from working at least 20 hours a week?
     receiving_benefits:
       edit:
         is_no: No, but I applied or might apply later

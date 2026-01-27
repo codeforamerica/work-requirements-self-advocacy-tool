@@ -21,6 +21,12 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_in_work_training, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_student, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_place_to_sleep, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_drugs_alcohol, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_domestic_violence, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_medical_condition, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
@@ -78,6 +84,18 @@ class Screener < ApplicationRecord
 
   with_context :is_student do
     validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+  end
+
+  with_context :preventing_work do
+    validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
+      if: -> {
+        preventing_work_place_to_sleep_yes? ||
+          preventing_work_drugs_alcohol_yes? ||
+          preventing_work_domestic_violence_yes? ||
+          preventing_work_medical_condition_yes? ||
+          preventing_work_other_yes?
+      }
+    validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
   with_context :email do

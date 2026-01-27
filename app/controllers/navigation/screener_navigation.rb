@@ -15,6 +15,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(WorkTrainingController),
         ControllerNavigation::NavigationStep.new(IsStudentController),
         ControllerNavigation::NavigationStep.new(PersonalSituationsMilestoneController),
+        ControllerNavigation::NavigationStep.new(PreventingWorkController),
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),
         ControllerNavigation::NavigationStep.new(EmailController),
