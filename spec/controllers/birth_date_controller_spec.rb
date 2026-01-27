@@ -25,7 +25,7 @@ RSpec.describe BirthDateController, type: :controller do
           birth_date_year: "1973"
         }
 
-        post :update, params: { screener: params }
+        post :update, params: {screener: params}
         expect(screener.reload.birth_date).to eq Date.new(1973, 10, 13)
       end
 
@@ -40,7 +40,7 @@ RSpec.describe BirthDateController, type: :controller do
           birth_date_year: ""
         }
 
-        post :update, params: { screener: params }
+        post :update, params: {screener: params}
         expect(response).to render_template :edit
         expect(response.body).to have_text "can't be blank"
       end

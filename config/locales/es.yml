@@ -29,7 +29,8 @@ es:
         title: Información básica
     birth_date:
       edit:
-        title: "¿Cuál es su fecha de nacimiento?"
+        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
+        title: "¿Cuál es su fecha de nacimiento? (requerido)"
     caring_for_someone:
       edit:
         child_under_6: Niño menor de 6 años

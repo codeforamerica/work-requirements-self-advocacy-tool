@@ -2,6 +2,17 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
+<div class="notice teal">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-help"></i>
+    </div>
+    <div class="media-box__content">
+      <%= t("views.birth_date.edit.help_text") %>
+    </div>
+  </div>
+</div>
+
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
   <%= f.cfa_date_select(
         :birth_date,

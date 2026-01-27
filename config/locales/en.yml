@@ -29,6 +29,7 @@ en:
         title: Basic information
     birth_date:
       edit:
+        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
         title: What is your date of birth? (required)
     caring_for_someone:
       edit:
