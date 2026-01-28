@@ -1,48 +1,74 @@
-name: Deploy to AWS Staging
+name: Deploy to AWS
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      environment:
+        description: The environment to deploy to
+        required: true
+        type: environment
+        default: staging
+      infra_banch:
+        description: The branch of the infrastructure repository to deploy
+        required: true
+        type: string
+        default: main
+
+permissions:
+  contents: read
 
 jobs:
   ci:
+    permissions:
+      checks: write
+      contents: write
     uses: ./.github/workflows/ci.yml
+
+  # TODO: Depend on the ci job to succeed.
   deploy:
-    name: Deploy to Staging
-    environment: staging
+    name: Deploy to ${{ inputs.environment || 'staging' }}
+    environment: ${{ inputs.environment || 'staging' }}
     runs-on: ubuntu-latest
     env:
-      ECR_REPOSITORY: work-requirements-self-advocacy-tool-staging-web
+      ENVIRONMENT: ${{ inputs.environment || 'staging' }}
+      ECR_REPOSITORY: work-requirements-self-advocacy-tool-${{ inputs.environment || 'staging' }}-web
       IMAGE_TAG: ${{ github.sha }}
       INFRA_REPO: work-requirements-self-advocacy-tool-infra
 
     steps:
       - name: Check out code
         uses: actions/checkout@v6
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
+          aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
+      - name: Check if the image exists
+        id: image_exists
+        uses: k4kratik/container-image-check-custom-action@v4
+        with:
+          type: ecr
+          container_repo_name: ${{ env.ECR_REPOSITORY }}
+          image_tag: ${{env.IMAGE_TAG}}
       - name: Build and push Docker image
+        if: ${{ steps.image_exists.outputs.image_exists == 'false' }}
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         run: |
-          docker build -t 311549964878.dkr.ecr.us-east-1.amazonaws.com/work-requirements-self-advocacy-tool-staging-web:${{env.IMAGE_TAG}} --platform linux/amd64 .
-          docker push 311549964878.dkr.ecr.us-east-1.amazonaws.com/work-requirements-self-advocacy-tool-staging-web:${{env.IMAGE_TAG}}
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{env.IMAGE_TAG}} --platform linux/amd64 .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{env.IMAGE_TAG}}
 
       - name: Update SSM Version Parameter
         run: |
           echo "tag:$IMAGE_TAG"
           aws ssm put-parameter \
-            --name  /work-requirements-self-advocacy-tool/staging/web/version \
+            --name  /work-requirements-self-advocacy-tool/$ENVIRONMENT/web/version \
             --value "$IMAGE_TAG" \
             --overwrite
       - name: Get a deployment token
@@ -58,13 +84,13 @@ jobs:
         id: dispatch
         with:
           token: ${{ steps.token.outputs.token }}
-          ref: 'main'
+          ref: ${{ inputs.infra_banch || 'main' }}
           repo: ${{ env.INFRA_REPO }}
           owner: codeforamerica
           workflow: 'deploy.yml'
           workflow_inputs: |
             {
-              "environment": "staging",
+              "environment": "${{ env.ENVIRONMENT }}",
               "config": "application"
             }
       - name: Wait on Workflow
