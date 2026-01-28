@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Screener flow", js:true do
+RSpec.feature "Screener flow" do
   scenario "new client fills out the screener" do
     visit root_path
 
