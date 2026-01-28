@@ -38,5 +38,6 @@
 
 /node_modules
 .idea
+.DS_Store
 cfa_ui_components.tailwind.css
 *.swp

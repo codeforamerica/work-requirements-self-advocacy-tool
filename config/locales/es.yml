@@ -127,6 +127,12 @@ es:
         language_preference_spoken_label: "¿En qué idioma prefiere hablar?"
         language_preference_written_label: "¿En qué idioma prefiere leer o escribir?"
         title: Preferencia de idioma
+    new_response:
+      edit:
+        check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
+        close: Cerrar
+        title: Ha finalizado.
+        title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
     overview:
       edit:
         help_text_html: Le ayudaremos a preparar un documento que podrá enviar a su agencia de SNAP. Así, su agencia sabrá si usted y los demás adultos de su hogar <strong> deben cumplir con las reglas de trabajo de SNAP.</strong>

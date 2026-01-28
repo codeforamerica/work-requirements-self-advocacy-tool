@@ -18,7 +18,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),
         ControllerNavigation::NavigationStep.new(EmailController),
-        ControllerNavigation::NavigationStep.new(TempEndController)
+        ControllerNavigation::NavigationStep.new(NewResponseController)
       ])
     ].freeze
   end
