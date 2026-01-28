@@ -74,6 +74,6 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.email.edit.email_confirmation"), with: "hi@example.com"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h2", text: "End of example")
+    expect(page).to have_selector("h1", text: I18n.t("views.new_response.index.title"))
   end
 end
