@@ -168,3 +168,18 @@ en:
         is_no: No, but I applied or might apply later
         is_yes: Yes, I currently get SNAP benefits
         title: Do you currently get SNAP benefits in [state]?
+    work_training:
+      edit:
+        notice_content:
+        - English as a Second Language classes
+        - GED classes
+        - Professional certificate programs
+        - On-the-job training
+        - Apprenticeships
+        - Job or work training program that doesn’t require a high school degree
+        - Programs you can get connected to through SNAP or TANF.
+        notice_title: What Job Training Includes
+        title: Are you in a job or work training program?
+        work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
+        work_training_hours_label: How many hours a week do you attend this program?
+        work_training_name_label: What is the name of the organization or training program?

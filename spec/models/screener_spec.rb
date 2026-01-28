@@ -218,6 +218,17 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "work training attributes" do
+      it "clears the program hours and name if is_in_work_training changes to no" do
+        screener = Screener.create(is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
+
+        screener.update(is_in_work_training: "no")
+        screener.reload
+        expect(screener.work_training_hours).to be_nil
+        expect(screener.work_training_name).to be_nil
+      end
+    end
+
     context "volunteer attributes" do
       it "clears the volunteering_hours and volunteering_org_name if is_volunteer changes to no" do
         screener = Screener.create(is_volunteer: "yes", volunteering_hours: 7, volunteering_org_name: "cfa")
