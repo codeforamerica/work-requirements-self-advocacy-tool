@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "Screener flow" do
+RSpec.feature "Screener flow", js:true do
   scenario "new client fills out the screener" do
     visit root_path
 
@@ -74,6 +74,6 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.email.edit.email_confirmation"), with: "hi@example.com"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.new_response.index.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
   end
 end
