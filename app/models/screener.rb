@@ -28,7 +28,7 @@ class Screener < ApplicationRecord
   before_save :remove_pregnancy_attributes_if_no
 
   with_context :birth_date do
-    validates :birth_date, presence: true
+    validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
 
   with_context :language_preference do

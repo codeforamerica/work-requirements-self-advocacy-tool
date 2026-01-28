@@ -31,18 +31,18 @@ RSpec.describe BirthDateController, type: :controller do
 
       render_views
 
-      it "displays an error if parameters are is missing" do
+      it "displays an error if any parameters are is missing" do
         create(:screener)
 
         params = {
-          birth_date_month: "",
-          birth_date_day: "",
+          birth_date_month: "5",
+          birth_date_day: "3",
           birth_date_year: ""
         }
 
         post :update, params: {screener: params}
         expect(response).to render_template :edit
-        expect(response.body).to have_text "can't be blank"
+        expect(response.body).to have_text I18n.t("validations.date_missing_or_invalid")
       end
     end
   end

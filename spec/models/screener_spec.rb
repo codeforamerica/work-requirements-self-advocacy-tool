@@ -25,7 +25,7 @@ RSpec.describe Screener, type: :model do
         screener = Screener.new(birth_date: nil)
         screener.valid?(:birth_date)
 
-        expect(screener.errors).to match_array ["Birth date can't be blank"]
+        expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
       end
     end
 
