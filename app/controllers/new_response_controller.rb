@@ -1,3 +1,5 @@
 class NewResponseController < QuestionController
-  include PersonalSituationsConcern
+  def show_progress_bar
+    false
+  end
 end
