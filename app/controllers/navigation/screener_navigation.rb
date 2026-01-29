@@ -20,6 +20,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
         ControllerNavigation::NavigationStep.new(PersonalInformationController),
         ControllerNavigation::NavigationStep.new(EmailController),
+        ControllerNavigation::NavigationStep.new(EmailNudgeController),
         ControllerNavigation::NavigationStep.new(TempEndController)
       ])
     ].freeze
