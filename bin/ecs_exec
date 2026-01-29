@@ -5,7 +5,7 @@
 # --- Default Configuration ---
 ENVIRONMENT="staging"
 DESIRED_STATUS="RUNNING"
-COMMAND="/bin/sh" # Default shell
+COMMAND="/bin/bash" # Default shell
 
 # --- Function to display usage ---
 usage() {
