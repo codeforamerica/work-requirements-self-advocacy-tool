@@ -9,14 +9,16 @@ If it's your first time setting up for local development, you will need to have 
 * Docker (https://docs.docker.com/get-docker/)
 
 1. In the root directory of this project, run the setup script:
+    >$ ./bin/setup
 
-    $ ./bin/setup
 
 2. Navigate to http://localhost:3000. You should see your app!
 
 ## Running the application subsequently
 
-Coming Soon.
+1. In the root directory of this project, run the dev script:
+
+   >$ ./bin/dev
 
 ## Running the Linter
 
