@@ -168,3 +168,10 @@ en:
         is_no: No, but I applied or might apply later
         is_yes: Yes, I currently get SNAP benefits
         title: Do you currently get SNAP benefits in [state]?
+    working:
+      edit:
+        title: Are you working?
+        working_hours_help_text: If this changes, give your weekly average from the past month.
+        working_hours_label: How many hours a week do you usually work?
+        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
+        working_weekly_earnings_label: How much do you earn each week before taxes?

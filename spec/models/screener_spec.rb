@@ -218,6 +218,17 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "working attributes" do
+      it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
+        screener = Screener.create(is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
+
+        screener.update(is_working: "no")
+
+        expect(screener.reload.working_hours).to be_nil
+        expect(screener.reload.working_weekly_earnings).to be_nil
+      end
+    end
+
     context "volunteer attributes" do
       it "clears the volunteering_hours and volunteering_org_name if is_volunteer changes to no" do
         screener = Screener.create(is_volunteer: "yes", volunteering_hours: 7, volunteering_org_name: "cfa")

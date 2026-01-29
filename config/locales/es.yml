@@ -168,3 +168,10 @@ es:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
         title: "¿Actualmente recibe beneficios de SNAP en [state]?"
+    working:
+      edit:
+        title: "¿Está trabajando?"
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
