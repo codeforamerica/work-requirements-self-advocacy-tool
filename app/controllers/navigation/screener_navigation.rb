@@ -4,6 +4,7 @@ module Navigation
       ControllerNavigation::NavigationSection.new("navigation.section_1", [
         ControllerNavigation::NavigationStep.new(OverviewController),
         ControllerNavigation::NavigationStep.new(LanguagePreferenceController),
+        ControllerNavigation::NavigationStep.new(BirthDateController),
         ControllerNavigation::NavigationStep.new(ReceivingBenefitsController),
         ControllerNavigation::NavigationStep.new(AmericanIndianController),
         ControllerNavigation::NavigationStep.new(HasChildController),

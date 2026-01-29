@@ -20,6 +20,15 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :birth_date" do
+      it "requires birth date" do
+        screener = Screener.new(birth_date: nil)
+        screener.valid?(:birth_date)
+
+        expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
+      end
+    end
+
     context "with_context :language_preference" do
       it "requires language preferences to be filled out" do
         screener = Screener.new(language_preference_spoken: "unfilled", language_preference_written: "unfilled")
@@ -30,14 +39,13 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :personal_information" do
-      it "requires first name, last name, birth date, and phone number" do
-        screener = Screener.new(first_name: nil, last_name: nil, birth_date: nil, phone_number: nil)
+      it "requires first name, last name, and phone number" do
+        screener = Screener.new(first_name: nil, last_name: nil, phone_number: nil)
         screener.valid?(:personal_information)
 
         expect(screener.errors).to match_array [
           "First name can't be blank",
           "Last name can't be blank",
-          "Birth date can't be blank",
           "Phone number can't be blank"
         ]
       end
