@@ -13,6 +13,12 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.language_preference.edit.title"))
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.birth_date.edit.title"))
+    select "September", from: "Month"
+    select "21", from: "Day"
+    select "1940", from: "Year"
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.receiving_benefits.edit.title"))
     choose I18n.t("views.receiving_benefits.edit.is_yes")
     click_on I18n.t("general.continue")
@@ -46,9 +52,14 @@ RSpec.feature "Screener flow" do
 
     expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
     choose I18n.t("general.affirmative")
-
     fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
     fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.work_training.edit.title"))
+    choose I18n.t("general.affirmative")
+    fill_in I18n.t("views.work_training.edit.work_training_hours_label"), with: "20"
+    fill_in I18n.t("views.work_training.edit.work_training_name_label"), with: "The Great British Work Off"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.is_student.edit.title"))
@@ -69,9 +80,6 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.personal_information.edit.title"))
     fill_in I18n.t("views.personal_information.edit.first_name_label"), with: "Prue"
     fill_in I18n.t("views.personal_information.edit.last_name_label"), with: "Leith"
-    select "September", from: "Month"
-    select "21", from: "Day"
-    select "1940", from: "Year"
     fill_in I18n.t("views.personal_information.edit.phone_number_label"), with: "415-816-1286"
     click_on I18n.t("general.continue")
 

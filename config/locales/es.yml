@@ -16,6 +16,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
   validations:
+    date_missing_or_invalid: La fecha falta o no es válida
     date_must_be_in_future: La fecha debe ser en el futuro
     must_answer_yes_or_no: Debe responder sí o no
   views:
@@ -27,6 +28,10 @@ es:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
         title: Información básica
+    birth_date:
+      edit:
+        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
+        title: "¿Cuál es su fecha de nacimiento? (requerido)"
     caring_for_someone:
       edit:
         child_under_6: Niño menor de 6 años
@@ -56,6 +61,12 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
+    email_nudge:
+      edit:
+        add_an_email: Agregar un correo electrónico
+        continue_without_it: Continuar sin el correo electrónico
+        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
+        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
@@ -175,3 +186,17 @@ es:
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
         working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
         working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
+    work_training:
+      edit:
+        notice_content:
+        - Clases de inglés (ESL, por sus siglas en inglés)
+        - Clases para obtener un certificado equivalente a la secundaria (GED)
+        - Programas de certificación profesional
+        - Capacitación en el trabajo
+        - Capacitación para aprender un oficio o empleo que no requiere un diploma de secundaria.
+        - Aprendizajes o programas de capacitación a los que puede acceder a través de SNAP o TANF.
+        notice_title: La capacitación laboral incluye
+        title: "¿Está en un programa de empleo o capacitación laboral?"
+        work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
+        work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
+        work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
