@@ -10,39 +10,45 @@ def system!(cmd)
   system(cmd) || abort("\n== Command failed: #{cmd} ==")
 end
 
-def command_exists?(cmd)
-  system("command -v #{cmd} >/dev/null 2>&1")
+def command_does_not_exist?(cmd)
+  !system("command -v #{cmd} >/dev/null 2>&1")
 end
 
 def abort_missing(cmd, instructions)
   abort("\n== Missing required dependency: #{cmd} ==\n#{instructions}\n")
 end
 
+def login_shell
+  File.basename(ENV["SHELL"].to_s)
+end
+
+def shell_rc_file
+  case login_shell
+  when "zsh"
+    File.join(Dir.home, ".zshrc")
+  when "bash"
+    bashrc = File.join(Dir.home, ".bashrc")
+    File.exist?(bashrc) ? bashrc : File.join(Dir.home, ".bash_profile")
+  else
+    nil
+  end
+end
+
 FileUtils.chdir(APP_ROOT) do
   puts "\n== 0. Checking prerequisites =="
 
   # Homebrew
-  unless command_exists?("brew")
+  if command_does_not_exist?("brew")
     abort_missing("Homebrew", "Install Homebrew first: https://brew.sh/")
   end
 
   # Docker
-  unless command_exists?("docker")
+  if command_does_not_exist?("docker")
     abort_missing("Docker", "Install Docker: https://docs.docker.com/get-docker/")
   end
 
-  # rbenv (installed but not activated)
-  unless command_exists?("rbenv")
-    puts "\n== rbenv not found. Installing via Homebrew =="
-    system!("brew install rbenv")
-  else
-    puts "rbenv already installed"
-  end
-
   # Warn if rbenv is active (PATH conflict)
-  rbenv_active =
-    ENV.key?("RBENV_ROOT") ||
-      ENV["PATH"].split(":").any? { |p| p.include?(".rbenv/shims") }
+  rbenv_active = ENV.key?("RBENV_ROOT") || ENV["PATH"].split(":").any? { |p| p.include?(".rbenv/shims") }
 
   if rbenv_active
     puts <<~WARN
@@ -80,26 +86,37 @@ FileUtils.chdir(APP_ROOT) do
     puts "Copied dotenv -> .env"
   end
 
-  puts "\n== 2. Installing and activating mise =="
+  puts "\n== 2. Installing and configuring mise =="
 
-  unless command_exists?("mise")
+  if command_does_not_exist?("mise")
     system!("brew install mise")
   else
     puts "mise already installed"
   end
 
-  # Auto-activate mise for this process
-  unless ENV["MISE_SHELL"]
-    puts "Activating mise..."
-    activate = `mise activate zsh`.strip
-    abort "\n== Failed to activate mise automatically ==" if activate.empty?
+  rc_file = shell_rc_file
+  activation_line = 'eval "$(mise activate)"'
 
-    if activate =~ /export PATH="([^"]+)"/
-      ENV["PATH"] = "#{$1}:#{ENV['PATH']}"
-      ENV["MISE_SHELL"] = "zsh"
-      puts "mise activated"
+  if rc_file.nil?
+    puts <<~WARN
+
+      ⚠️  Could not determine shell config file for shell: #{login_shell}
+
+      To activate mise manually, add this to your shell config:
+        #{activation_line}
+
+    WARN
+  else
+    if File.exist?(rc_file) && File.read(rc_file).include?("mise activate")
+      puts "mise already activated in #{rc_file}"
     else
-      abort "\n== Could not parse mise activation output =="
+      File.open(rc_file, "a") do |f|
+        f.puts
+        f.puts "# mise version manager"
+        f.puts activation_line
+      end
+      puts "Added mise activation to #{rc_file}"
+      puts "Restart your shell after setup completes."
     end
   end
 
@@ -118,8 +135,8 @@ FileUtils.chdir(APP_ROOT) do
       Found: #{actual_node || "not installed"}
 
       Fix with:
+        restart your shell
         mise install
-        mise use
 
     MSG
   end
