@@ -35,18 +35,19 @@ def shell_rc_file
 end
 
 def expected_node_version
-  node_file = File.join(APP_ROOT, ".node-version")
-  return File.read(node_file).strip if File.exist?(node_file)
-
-  # fallback to major version from .tool-versions
+  # Try .tool-versions first
   tool_versions_file = File.join(APP_ROOT, ".tool-versions")
   if File.exist?(tool_versions_file)
     line = File.readlines(tool_versions_file).find { |l| l.start_with?("nodejs") }
-    match_data = line&.match(/^nodejs (\d+)/)
-    match_data ? match_data[1] : "20"
-  else
-    "20"
+    return line.strip.split(" ")[1] if line
   end
+
+  # fallback to .node-version
+  node_file = File.join(APP_ROOT, ".node-version")
+  return File.read(node_file).strip if File.exist?(node_file)
+
+  # final fallback
+  "20.0.0"
 end
 
 def expected_ruby_version
