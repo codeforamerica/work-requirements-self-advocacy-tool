@@ -168,3 +168,17 @@ es:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
         is_yes: Sí, actualmente recibo beneficios de SNAP
         title: "¿Actualmente recibe beneficios de SNAP en [state]?"
+    work_training:
+      edit:
+        notice_content:
+        - Clases de inglés (ESL, por sus siglas en inglés)
+        - Clases para obtener un certificado equivalente a la secundaria (GED)
+        - Programas de certificación profesional
+        - Capacitación en el trabajo
+        - Capacitación para aprender un oficio o empleo que no requiere un diploma de secundaria.
+        - Aprendizajes o programas de capacitación a los que puede acceder a través de SNAP o TANF.
+        notice_title: La capacitación laboral incluye
+        title: "¿Está en un programa de empleo o capacitación laboral?"
+        work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
+        work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
+        work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
