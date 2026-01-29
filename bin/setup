@@ -34,6 +34,30 @@ def shell_rc_file
   end
 end
 
+def expected_node_version
+  node_file = File.join(APP_ROOT, ".node-version")
+  return File.read(node_file).strip if File.exist?(node_file)
+
+  # fallback to major version from .tool-versions
+  tool_versions_file = File.join(APP_ROOT, ".tool-versions")
+  if File.exist?(tool_versions_file)
+    line = File.readlines(tool_versions_file).find { |l| l.start_with?("nodejs") }
+    match_data = line&.match(/^nodejs (\d+)/)
+    match_data ? match_data[1] : "20"
+  else
+    "20"
+  end
+end
+
+def expected_ruby_version
+  ruby_file = File.join(APP_ROOT, ".ruby-version")
+  if File.exist?(ruby_file)
+    File.read(ruby_file).strip
+  else
+    nil
+  end
+end
+
 FileUtils.chdir(APP_ROOT) do
   puts "\n== 0. Checking prerequisites =="
 
@@ -69,7 +93,7 @@ FileUtils.chdir(APP_ROOT) do
 
   # Ruby gem bin PATH warning (Homebrew Ruby)
   ruby_gem_bin = "/opt/homebrew/lib/ruby/gems/3.4.0/bin"
-  unless ENV["PATH"].split(":").include?(ruby_gem_bin)
+  if ENV["PATH"].split(":").none? { |p| p == ruby_gem_bin }
     puts <<~WARN
 
       ⚠️  Ruby gem binaries directory is not on PATH.
@@ -123,58 +147,86 @@ FileUtils.chdir(APP_ROOT) do
   puts "\n== 3. Installing runtimes via mise =="
   system!("mise install")
 
-  # --- Node 20 is selected ---
-  puts "\n== Selecting Node 20 via mise =="
-  system!("mise use nodejs@20 --quiet")
+  # --- Explicitly select Node and Ruby versions ---
+  node_version = expected_node_version
+  puts "\n== Selecting Node #{node_version} via mise =="
+  system!("mise use nodejs@#{node_version} --quiet")
 
-  puts "\n== 4. Verifying Node version =="
-  expected_node_major = "20"
+  ruby_version = expected_ruby_version
+  if ruby_version
+    puts "\n== Selecting Ruby #{ruby_version} via mise =="
+    system!("mise use ruby@#{ruby_version} --quiet")
+  end
+
+  # --- Verify Node version ---
   actual_node = `node -v`.strip rescue nil
-
-  if actual_node.nil? || !actual_node.start_with?("v#{expected_node_major}.")
+  node_major = node_version.split(".").first
+  if actual_node.nil? || !actual_node.start_with?("v#{node_major}.")
     abort <<~MSG
 
       == Node version mismatch ==
-      Expected Node #{expected_node_major}.x
+      Expected Node #{node_version}
       Found: #{actual_node || "not installed"}
 
       Fix with:
         restart your shell
         mise install
-        mise use nodejs@20
+        mise use
 
     MSG
+  else
+    puts "Node version #{actual_node} OK"
   end
 
-  puts "\n== 5. Installing Bundler =="
-  bundler_version = File.read("Gemfile.lock").lines.last.strip
+  # --- Verify Ruby version ---
+  if ruby_version
+    actual_ruby = `ruby -v`.strip rescue nil
+    if actual_ruby.nil? || !actual_ruby.start_with?("ruby #{ruby_version}")
+      abort <<~MSG
 
+        == Ruby version mismatch ==
+        Expected Ruby #{ruby_version}
+        Found: #{actual_ruby || "not installed"}
+
+        Fix with:
+          restart your shell
+          mise install
+          mise use
+
+      MSG
+    else
+      puts "Ruby version #{actual_ruby} OK"
+    end
+  end
+
+  puts "\n== 4. Installing Bundler =="
+  bundler_version = File.read("Gemfile.lock").lines.last.strip
   if `gem list -i bundler -v #{bundler_version}`.strip == "true"
     puts "Bundler #{bundler_version} already installed"
   else
     system!("gem install bundler:#{bundler_version}")
   end
 
-  puts "\n== 6. Installing Ruby dependencies =="
+  puts "\n== 5. Installing Ruby dependencies =="
   system("bundle check") || system!("bundle install")
 
-  puts "\n== 7. Installing Yarn dependencies =="
+  puts "\n== 6. Installing Yarn dependencies =="
   system!("yarn install --check-files")
 
-  puts "\n== 8. Starting database via Docker =="
+  puts "\n== 7. Starting database via Docker =="
   system!("docker compose pull wrsat-db")
   system!("docker compose up --wait -d wrsat-db")
 
-  puts "\n== 9. Preparing database =="
+  puts "\n== 8. Preparing database =="
   system!("bin/rails db:prepare")
 
-  puts "\n== 10. Clearing logs and temp files =="
+  puts "\n== 9. Clearing logs and temp files =="
   system!("bin/rails log:clear tmp:clear")
 
   if ARGV.include?("--skip-server")
     puts "\n== Setup complete (server skipped) =="
   else
-    puts "\n== 11. Starting development server =="
+    puts "\n== 10. Starting development server =="
     STDOUT.flush
     exec "bin/dev"
   end
