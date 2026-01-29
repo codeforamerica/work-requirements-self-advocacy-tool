@@ -492,7 +492,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  brakeman
+  brakeman (~> 8.0)
   capybara
   cfa-styleguide (= 0.18.0)!
   dartsass-rails (~> 0.5.1)
