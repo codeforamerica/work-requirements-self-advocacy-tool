@@ -16,6 +16,7 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
   validations:
+    date_missing_or_invalid: Date is missing or invalid
     date_must_be_in_future: Date must be in the future
     must_answer_yes_or_no: Must answer yes or no
   views:
@@ -27,6 +28,10 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
+    birth_date:
+      edit:
+        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
+        title: What is your date of birth? (required)
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
@@ -56,6 +61,12 @@ en:
         email_confirmation: Confirm your email
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
+    email_nudge:
+      edit:
+        add_an_email: Add an email
+        continue_without_it: Continue without it
+        title: Are you sure you don't want to add an email address?
+        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     has_child:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
@@ -168,3 +179,18 @@ en:
         is_no: No, but I applied or might apply later
         is_yes: Yes, I currently get SNAP benefits
         title: Do you currently get SNAP benefits in [state]?
+    work_training:
+      edit:
+        notice_content:
+        - English as a Second Language classes
+        - GED classes
+        - Professional certificate programs
+        - On-the-job training
+        - Apprenticeships
+        - Job or work training program that doesn’t require a high school degree
+        - Programs you can get connected to through SNAP or TANF.
+        notice_title: What Job Training Includes
+        title: Are you in a job or work training program?
+        work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
+        work_training_hours_label: How many hours a week do you attend this program?
+        work_training_name_label: What is the name of the organization or training program?
