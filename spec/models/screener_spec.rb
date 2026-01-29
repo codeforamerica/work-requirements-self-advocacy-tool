@@ -20,6 +20,15 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :birth_date" do
+      it "requires birth date" do
+        screener = Screener.new(birth_date: nil)
+        screener.valid?(:birth_date)
+
+        expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
+      end
+    end
+
     context "with_context :language_preference" do
       it "requires language preferences to be filled out" do
         screener = Screener.new(language_preference_spoken: "unfilled", language_preference_written: "unfilled")
@@ -30,14 +39,13 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :personal_information" do
-      it "requires first name, last name, birth date, and phone number" do
-        screener = Screener.new(first_name: nil, last_name: nil, birth_date: nil, phone_number: nil)
+      it "requires first name, last name, and phone number" do
+        screener = Screener.new(first_name: nil, last_name: nil, phone_number: nil)
         screener.valid?(:personal_information)
 
         expect(screener.errors).to match_array [
           "First name can't be blank",
           "Last name can't be blank",
-          "Birth date can't be blank",
           "Phone number can't be blank"
         ]
       end
@@ -215,6 +223,17 @@ RSpec.describe Screener, type: :model do
         screener.update(is_pregnant: "no")
 
         expect(screener.reload.pregnancy_due_date).to be_nil
+      end
+    end
+
+    context "work training attributes" do
+      it "clears the program hours and name if is_in_work_training changes to no" do
+        screener = Screener.create(is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
+
+        screener.update(is_in_work_training: "no")
+        screener.reload
+        expect(screener.work_training_hours).to be_nil
+        expect(screener.work_training_name).to be_nil
       end
     end
 
