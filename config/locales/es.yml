@@ -57,7 +57,7 @@ es:
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
     email_nudge:
-      index:
+      edit:
         add_an_email: Agregar un correo electrónico
         continue_without_it: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
