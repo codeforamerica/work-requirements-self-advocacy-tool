@@ -37,18 +37,18 @@ end
 FileUtils.chdir(APP_ROOT) do
   puts "\n== 0. Checking prerequisites =="
 
-  # Homebrew
   if command_does_not_exist?("brew")
     abort_missing("Homebrew", "Install Homebrew first: https://brew.sh/")
   end
 
-  # Docker
   if command_does_not_exist?("docker")
     abort_missing("Docker", "Install Docker: https://docs.docker.com/get-docker/")
   end
 
   # Warn if rbenv is active (PATH conflict)
-  rbenv_active = ENV.key?("RBENV_ROOT") || ENV["PATH"].split(":").any? { |p| p.include?(".rbenv/shims") }
+  rbenv_active =
+    ENV.key?("RBENV_ROOT") ||
+    ENV["PATH"].split(":").any? { |p| p.include?(".rbenv/shims") }
 
   if rbenv_active
     puts <<~WARN
@@ -123,6 +123,10 @@ FileUtils.chdir(APP_ROOT) do
   puts "\n== 3. Installing runtimes via mise =="
   system!("mise install")
 
+  # --- Node 20 is selected ---
+  puts "\n== Selecting Node 20 via mise =="
+  system!("mise use nodejs@20 --quiet")
+
   puts "\n== 4. Verifying Node version =="
   expected_node_major = "20"
   actual_node = `node -v`.strip rescue nil
@@ -137,6 +141,7 @@ FileUtils.chdir(APP_ROOT) do
       Fix with:
         restart your shell
         mise install
+        mise use nodejs@20
 
     MSG
   end
