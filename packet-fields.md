@@ -42,7 +42,7 @@ If filled out, this field should start with the following text:
 
 Based on the conditions above, a list of bullets should be added to the box.
 
-If `caring_for_child_under_6 = `true`, add the following:
+If `caring_for_child_under_6` = `true`, add the following:
 
 > - Caring for a child under 6 years old - 7 CFR 273.7(b)(1)(iv)
 
