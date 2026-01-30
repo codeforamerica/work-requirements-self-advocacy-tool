@@ -6,8 +6,7 @@ The following fields have not yet been added to the schema. There are placeholde
 
 - `in_drug_or_alcohol_program` - Participating regularly in an alcohol or drug treatment program
 - `enrolled_in_education` - Enrolled in a school, training program, or institution of higher education at least half time
-- `working_30_or_more_hours` - Working at least 30 hours a week
-- `earnings_per_week` - Earning at least $21750 a week, averaged monthly, from work.
+- `earnings_per_week` - Earning at least $217.50 a week, averaged monthly, from work.
 - `seasonal_worker` - Seasonal or migrant farmworker under an agreement or contract to start work within the next 30 days
 - `work_hours` - Work hours reported per week
 - `weekly_earn` - Wages earned per week
@@ -15,12 +14,33 @@ The following fields have not yet been added to the schema. There are placeholde
 - `submission_date` - Submission date
 - `case_number` - Case number
 - `ssn_last_4` - The last 4 digits of the SSN
+- `receiving_benefits_disability_medicaid` - Disability-related Medicaid
+- `details_of_care` - Details of care for disabled or ill person
 
 ## Fields that have the same name as the schema
 
 - `birth_date`
 - `phone_number`
 - `email`
+- `is_american_indian`
+- `has_child`
+- `caring_for_child_under_6`
+- `caring_for_disabled_or_ill_person`
+- `is_in_work_training`
+- `work_training_name`
+- `work_training_hours`
+- `has_unemployment_benefits`
+- `receiving_benefits_disability_pension`
+- `receiving_benefits_insurance_payments`
+- `receiving_benefits_other`
+- `receiving_benefits_ssdi`
+- `receiving_benefits_ssi`
+- `receiving_benefits_veterans_disability`
+- `receiving_benefits_workers_compensation`
+- `receiving_benefits_write_in`
+- `pregnancy_due_date`
+- `volunteering_hours`
+- `volunteering_org_name`
 
 ## Fields that are copies of other fields
 
@@ -61,6 +81,31 @@ Example:
   - `submission_date` = January 9, 2026
   - `birth_date` = July 13th, 1990
   - `age` = 35
+
+### `receiving_disability_benefits`
+
+`receiving_disability_benefits` should be `true` if **ANY** of the following are `true`:
+  - `receiving_benefits_disability_pension`
+  - `receiving_benefits_insurance_payments`
+  - `receiving_benefits_other`
+  - `receiving_benefits_ssdi`
+  - `receiving_benefits_ssi`
+  - `receiving_benefits_veterans_disability`
+  - `receiving_benefits_workers_compensation`
+
+### `working_30_or_more_hours`
+
+`working_30_or_more_hours` should be `true` if `work_hours` >= 30.
+
+### `working_or_earning`
+
+`working_or_earning` should be `true` if **ANY** of the following conditions are `true`:
+  - `working_30_or_more_hours` = `true`
+  - `earnings_per_week` >= 217.50
+
+### `is_volunteering`
+
+`is_volunteering` should be `true` if `volunteering_hours` > 0.
 
 ### `general_work_requirements_exemptions`
 
@@ -116,7 +161,6 @@ This field should be a summary of ABAWD work requirements exemptions. If any of 
 - `is_pregnant` = `true`
 - `receiving_benefits_disability_pension` = `true`
 - `receiving_benefits_insurance_payments` = `true`
-- `receiving_benefits_none` = `true`
 - `receiving_benefits_other` = `true`
 - `receiving_benefits_ssdi` = `true`
 - `receiving_benefits_ssi` = `true`
