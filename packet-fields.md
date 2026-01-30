@@ -16,6 +16,8 @@ The following fields have not yet been added to the schema. There are placeholde
 - `ssn_last_4` - The last 4 digits of the SSN
 - `receiving_benefits_disability_medicaid` - Disability-related Medicaid
 - `details_of_care` - Details of care for disabled or ill person
+- `drug_alcohol_program_name` - Name of a drug or alcohol treatment program
+- `signature` - The submitter's full legal name
 
 ## Fields that have the same name as the schema
 
@@ -41,12 +43,22 @@ The following fields have not yet been added to the schema. There are placeholde
 - `pregnancy_due_date`
 - `volunteering_hours`
 - `volunteering_org_name`
-
-## Fields that are copies of other fields
-
-- `birth_date_2` = `birth_date`
+- `preventing_work_domestic_violence`
+- `preventing_work_drugs_alcohol`
+- `preventing_work_medical_condition`
+- `preventing_work_other`
+- `preventing_work_place_to_sleep`
+- `preventing_work_write_in`
 
 ## Fields that are derived from database fields
+
+### `birth_date_2`
+
+`birth_date_2` should have the same value as `birth_date`.
+
+### `submission_date_2`
+
+`submission_date_2` should have the same value as `submission_date`.
 
 ### `full_name`
 
