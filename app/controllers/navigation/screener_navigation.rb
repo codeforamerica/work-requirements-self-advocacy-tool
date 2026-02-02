@@ -12,6 +12,7 @@ module Navigation
         ControllerNavigation::NavigationStep.new(IsPregnantController),
         ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),
         ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
+        ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),
         ControllerNavigation::NavigationStep.new(CommunityServiceController),
         ControllerNavigation::NavigationStep.new(WorkTrainingController),
         ControllerNavigation::NavigationStep.new(IsStudentController),
