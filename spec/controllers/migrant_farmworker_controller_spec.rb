@@ -6,12 +6,12 @@ RSpec.describe MigrantFarmworkerController, type: :controller do
       screener = create(:screener)
 
       params = {
-        is_migrant_farmworker: "yes"
+        is_migrant_farmworker: "no"
       }
 
       post :update, params: {screener: params}
       screener.reload
-      expect(screener.is_migrant_farmworker).to eq "yes"
+      expect(screener.is_migrant_farmworker).to eq "no"
     end
   end
 end
