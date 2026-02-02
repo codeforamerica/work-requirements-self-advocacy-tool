@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_21_235212) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_02_170120) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -36,6 +36,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_235212) do
     t.string "middle_name"
     t.string "phone_number"
     t.date "pregnancy_due_date"
+    t.string "preventing_work_additional_info"
     t.integer "preventing_work_domestic_violence", default: 0, null: false
     t.integer "preventing_work_drugs_alcohol", default: 0, null: false
     t.integer "preventing_work_medical_condition", default: 0, null: false

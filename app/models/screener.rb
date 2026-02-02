@@ -102,6 +102,10 @@ class Screener < ApplicationRecord
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
+  with_context :preventing_work_reason do
+    validates :preventing_work_additional_info, presence: {message: I18n.t("validations.date_missing_or_invalid")}
+  end
+
   with_context :email do
     validates :email, "valid_email_2/email": true, confirmation: true
   end
