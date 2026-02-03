@@ -80,7 +80,7 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_reason.edit.title"))
     fill_in "preventing_work_additional_info", with: "Some things are best left unwritten."
     click_on I18n.t("general.continue")
-    
+
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
     click_on I18n.t("general.continue")
 
