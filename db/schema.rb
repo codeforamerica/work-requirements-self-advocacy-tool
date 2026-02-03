@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_31_010845) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_03_215154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -28,7 +28,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_010845) do
     t.integer "is_in_work_training", default: 0, null: false
     t.integer "is_migrant_farmworker", default: 0, null: false
     t.integer "is_pregnant", default: 0, null: false
-    t.integer "is_receiving_snap_benefits", default: 0, null: false
     t.integer "is_student", default: 0, null: false
     t.integer "is_volunteer", default: 0, null: false
     t.integer "is_working", default: 0, null: false

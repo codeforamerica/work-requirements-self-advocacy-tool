@@ -171,11 +171,6 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
-    receiving_benefits:
-      edit:
-        is_no: No, pero presenté una solicitud o es posible que presente una más adelante
-        is_yes: Sí, actualmente recibo beneficios de SNAP
-        title: "¿Actualmente recibe beneficios de SNAP en [state]?"
     work_training:
       edit:
         notice_content:

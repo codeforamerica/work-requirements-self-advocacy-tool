@@ -171,11 +171,6 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
-    receiving_benefits:
-      edit:
-        is_no: No, but I applied or might apply later
-        is_yes: Yes, I currently get SNAP benefits
-        title: Do you currently get SNAP benefits in [state]?
     work_training:
       edit:
         notice_content:
