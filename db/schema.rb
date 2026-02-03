@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_31_010845) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_03_235422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "screeners", force: :cascade do |t|
+    t.string "alcohol_treatment_program_name"
     t.date "birth_date"
     t.integer "caring_for_child_under_6", default: 0, null: false
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
@@ -25,6 +26,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_31_010845) do
     t.integer "has_child", default: 0, null: false
     t.integer "has_unemployment_benefits", default: 0, null: false
     t.integer "is_american_indian", default: 0, null: false
+    t.integer "is_in_alcohol_treatment_program", default: 0, null: false
     t.integer "is_in_work_training", default: 0, null: false
     t.integer "is_migrant_farmworker", default: 0, null: false
     t.integer "is_pregnant", default: 0, null: false
