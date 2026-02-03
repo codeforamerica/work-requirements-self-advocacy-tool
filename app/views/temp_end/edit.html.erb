@@ -6,8 +6,6 @@
       <table style="display: block;overflow-x: auto;white-space: nowrap;">
         <tr style="font-weight: bold; border-bottom: 1px solid #ddd;">
           <th style="padding-right: 15px;">screener id</th>
-          <th style="padding-right: 15px;">written language</th>
-          <th style="padding-right: 15px;">spoken language</th>
           <th style="padding-right: 15px;">first_name</th>
           <th style="padding-right: 15px;">middle_name</th>
           <th style="padding-right: 15px;">last_name</th>
@@ -19,8 +17,6 @@
         <% Screener.all.each do |screener| %>
           <tr style="border-bottom: 1px solid #ddd;">
             <td><%= screener.id %></td>
-            <td><%= screener.language_preference_written %></td>
-            <td><%= screener.language_preference_spoken %></td>
             <td><%= screener.first_name %></td>
             <td><%= screener.middle_name %></td>
             <td><%= screener.last_name %></td>

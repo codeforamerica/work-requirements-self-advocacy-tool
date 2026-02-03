@@ -133,11 +133,6 @@ en:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
-    language_preference:
-      edit:
-        language_preference_spoken_label: What language do you prefer to speak?
-        language_preference_written_label: What language do you prefer to read or write?
-        title: Language Preference
     overview:
       edit:
         help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.

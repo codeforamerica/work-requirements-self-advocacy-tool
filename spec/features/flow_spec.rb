@@ -10,9 +10,6 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.overview.edit.title"))
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.language_preference.edit.title"))
-    click_on I18n.t("general.continue")
-
     expect(page).to have_selector("h1", text: I18n.t("views.birth_date.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"

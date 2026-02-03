@@ -29,15 +29,6 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :language_preference" do
-      it "requires language preferences to be filled out" do
-        screener = Screener.new(language_preference_spoken: "unfilled", language_preference_written: "unfilled")
-        screener.valid?(:language_preference)
-
-        expect(screener.errors).to match_array ["Language preference spoken must be english or spanish", "Language preference written must be english or spanish"]
-      end
-    end
-
     context "with_context :personal_information" do
       it "requires first name, last name, and phone number" do
         screener = Screener.new(first_name: nil, last_name: nil, phone_number: nil)
