@@ -1,82 +1,25 @@
-name: Deploy to AWS Staging
+name: Deploy to staging from main
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  ci:
-    uses: ./.github/workflows/ci.yml
   deploy:
-    name: Deploy to Staging
-    environment: staging
-    runs-on: ubuntu-latest
-    env:
-      ECR_REPOSITORY: work-requirements-self-advocacy-tool-staging-web
-      IMAGE_TAG: ${{ github.sha }}
-      INFRA_REPO: work-requirements-self-advocacy-tool-infra
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v6
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v5
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - name: Log in to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-      - name: Build and push Docker image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        run: |
-          docker build -t 311549964878.dkr.ecr.us-east-1.amazonaws.com/work-requirements-self-advocacy-tool-staging-web:${{env.IMAGE_TAG}} --platform linux/amd64 .
-          docker push 311549964878.dkr.ecr.us-east-1.amazonaws.com/work-requirements-self-advocacy-tool-staging-web:${{env.IMAGE_TAG}}
-
-      - name: Update SSM Version Parameter
-        run: |
-          echo "tag:$IMAGE_TAG"
-          aws ssm put-parameter \
-            --name  /work-requirements-self-advocacy-tool/staging/web/version \
-            --value "$IMAGE_TAG" \
-            --overwrite
-      - name: Get a deployment token
-        uses: actions/create-github-app-token@v2
-        id: token
-        with:
-          app-id: ${{ secrets.DEPLOYMENT_APP_ID }}
-          private-key: ${{ secrets.DEPLOYMENT_APP_KEY }}
-          owner: codeforamerica
-          repositories: ${{ env.INFRA_REPO }}
-      - name: Trigger deployment from work requirements self advocacy infra
-        uses: codex-/return-dispatch@v3
-        id: dispatch
-        with:
-          token: ${{ steps.token.outputs.token }}
-          ref: 'main'
-          repo: ${{ env.INFRA_REPO }}
-          owner: codeforamerica
-          workflow: 'deploy.yml'
-          workflow_inputs: |
-            {
-              "environment": "staging",
-              "config": "application"
-            }
-      - name: Wait on Workflow
-        uses: lucasssvaz/wait-on-workflow@v1
-        id: waiter
-        with:
-          github-token: ${{ steps.token.outputs.token }}
-          repository: codeforamerica/${{ env.INFRA_REPO }}
-          workflow: ${{ steps.dispatch.outputs.run_id }}
-      - name: Fail unless the workflow succeeded
-        if: ${{ steps.waiter.outputs.conclusion != 'success' }}
-        uses: actions/github-script@v8
-        with:
-          script: |
-            core.setFailed('Deployment workflow completed with stats: ${{ steps.waiter.outputs.conclusion }}')
+    name: Deploy to staging
+    permissions:
+      checks: write
+      contents: write
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: staging
+      infra_branch: main
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      DEPLOYMENT_APP_ID: ${{ secrets.DEPLOYMENT_APP_ID }}
+      DEPLOYMENT_APP_KEY: ${{ secrets.DEPLOYMENT_APP_KEY }}

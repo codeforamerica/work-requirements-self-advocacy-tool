@@ -4,10 +4,10 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: <%= ENV.fetch("RAILS_DB_HOST", "localhost") %>
-  port: <%= ENV.fetch("RAILS_DB_PORT", "5432") %>
-  username: <%= ENV["RAILS_DB_USERNAME"] %>
-  password: <%= ENV["RAILS_DB_PASSWORD"] %>
+  host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
+  port: <%= ENV.fetch("DATABASE_PORT", "5432") %>
+  username: "<%= ENV["DATABASE_USER"] if ENV["DATABASE_USER"] %>"
+  password: "<%= ENV["DATABASE_PASSWORD"] if ENV["DATABASE_PASSWORD"] %>"
   url: <%= ENV["DATABASE_URL"] %>
 
 development:
@@ -23,42 +23,36 @@ test:
   <<: *default
   database: work_requirements_self_advocacy_tool_test
 
-deploy_default: &deploy_default
-  <<: *default
-  host: "<%= ENV["DATABASE_HOST"] if ENV["DATABASE_HOST"] %>"
-  username: "<%= ENV["DATABASE_USER"] if ENV["DATABASE_USER"] %>"
-  password: "<%= ENV["DATABASE_PASSWORD"] if ENV["DATABASE_PASSWORD"] %>"
-
 staging:
   primary:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_staging
   cache:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_staging_cache
     migrations_paths: db/cache_migrate
   queue:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_staging_queue
     migrations_paths: db/queue_migrate
   cable:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_staging_cable
     migrations_paths: db/cable_migrate
 
 production:
   primary:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_production
   cache:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_production_cache
     migrations_paths: db/cache_migrate
   queue:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_production_queue
     migrations_paths: db/queue_migrate
   cable:
-    <<: *deploy_default
+    <<: *default
     database: work_requirements_self_advocacy_tool_production_cable
     migrations_paths: db/cable_migrate
