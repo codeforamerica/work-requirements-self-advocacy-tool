@@ -16,7 +16,9 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
     char_counter:
-      remaining: "Quedan %{count} caracteres"
+      remaining:
+        one: "Queda %{count} caracter"
+        other: "Quedan %{count} caracteres"
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
     date_must_be_in_future: La fecha debe ser en el futuro

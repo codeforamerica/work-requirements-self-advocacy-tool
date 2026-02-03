@@ -16,7 +16,9 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     work_rules: Work rules
     char_counter:
-      remaining: "%{count} characters remaining"
+      remaining:
+        one: "%{count} character remaining"
+        other: "%{count} characters remaining"
   validations:
     date_missing_or_invalid: Date is missing or invalid
     date_must_be_in_future: Date must be in the future

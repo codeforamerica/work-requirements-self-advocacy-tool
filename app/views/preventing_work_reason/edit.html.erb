@@ -14,7 +14,14 @@
         :preventing_work_additional_info,
         t("views.preventing_work_reason.edit.question", count: @conditions_count).to_s,
         help_text: t("views.preventing_work_reason.edit.instructions"),
-        options: { maxlength: char_limit, id: "preventing_work_additional_info" }
+        options: {
+          maxlength: char_limit,
+          id: "preventing_work_additional_info",
+          data: {
+            i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
+            i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
+          }
+        }
       ) %>
 
   <p class="char-counter spacing-below-0">&nbsp;</p>
@@ -23,7 +30,3 @@
 <% end %>
 
 <%= javascript_include_tag "textarea_counter", type: "module" %>
-
-<script type="module">
-  initTextareaCounter();
-</script>

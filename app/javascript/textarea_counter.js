@@ -3,12 +3,11 @@ export function initTextareaCounter() {
     const formGroup = textarea.closest(".form-group");
     if (!formGroup) return;
 
+    // Prevent double-initialization
     if (formGroup.querySelector("[data-char-counter-for]")) return;
 
     const maxLength = parseInt(textarea.getAttribute("maxlength"), 10);
     if (!maxLength || maxLength <= 0) return;
-
-    const template = textarea.dataset.i18nRemaining || "%{count} characters remaining";
 
     const counter = document.createElement("p");
     counter.className = "text--help char-counter";
@@ -16,9 +15,7 @@ export function initTextareaCounter() {
     counter.setAttribute("data-maxlength", maxLength);
     counter.textContent = "";
 
-    // textarea's are automagically created inside a div, so the counter will wind up inside a div
-    // to remove flicker & element movement, a placeholder <p> can be added per textarea in the view
-    // and this will remove the placeholder as the counter is created and inserted into the DOM
+    // Remove placeholder to avoid layout shift
     const placeholderElement = formGroup.parentElement.querySelector(".form-group + p.char-counter.spacing-below-0");
     if (placeholderElement) {
       placeholderElement.remove();
@@ -28,11 +25,17 @@ export function initTextareaCounter() {
 
     function updateCounter() {
       const remaining = maxLength - textarea.value.length;
-      counter.textContent = template.replace("%{count}", remaining);
+
+      const oneTemplate = textarea.dataset.i18nOne;
+      const otherTemplate = textarea.dataset.i18nOther;
+
+      if (oneTemplate && otherTemplate) {
+        const template = remaining === 1 ? oneTemplate : otherTemplate;
+        counter.textContent = template.replace("%{count}", remaining);
+      }
     }
 
     updateCounter();
-
     textarea.addEventListener("input", updateCounter);
   });
 }
