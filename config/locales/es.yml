@@ -197,3 +197,10 @@ es:
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
+    working:
+      edit:
+        title: "¿Está trabajando?"
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
