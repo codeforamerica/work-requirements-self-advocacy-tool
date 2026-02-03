@@ -141,7 +141,7 @@ en:
     new_response:
       edit:
         check_work_rules_for_someone_else: Check work rules for someone else
-        close: Close
+        close: Done
         title: You’re all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
     overview:
