@@ -194,3 +194,10 @@ en:
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?
         work_training_name_label: What is the name of the organization or training program?
+    working:
+      edit:
+        title: Are you working?
+        working_hours_help_text: If this changes, give your weekly average from the past month.
+        working_hours_label: How many hours a week do you usually work?
+        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
+        working_weekly_earnings_label: How much do you earn each week before taxes?

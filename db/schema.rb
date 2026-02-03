@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_01_21_235212) do
+ActiveRecord::Schema[8.1].define(version: 2026_01_29_013920) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_235212) do
     t.integer "is_receiving_snap_benefits", default: 0, null: false
     t.integer "is_student", default: 0, null: false
     t.integer "is_volunteer", default: 0, null: false
+    t.integer "is_working", default: 0, null: false
     t.integer "language_preference_spoken", default: 0, null: false
     t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
@@ -57,5 +58,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_01_21_235212) do
     t.string "volunteering_org_name"
     t.string "work_training_hours"
     t.string "work_training_name"
+    t.integer "working_hours"
+    t.decimal "working_weekly_earnings"
   end
 end
