@@ -50,6 +50,9 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.working.edit.working_weekly_earnings_label"), with: 250.35
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.migrant_farmworker.edit.title"))
+    click_on I18n.t("general.negative")
+
     expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
     choose I18n.t("general.affirmative")
     fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"

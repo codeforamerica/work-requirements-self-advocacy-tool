@@ -22,6 +22,7 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_in_work_training, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_student, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_migrant_farmworker, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_place_to_sleep, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_drugs_alcohol, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_domestic_violence, {unfilled: 0, yes: 1, no: 2}, prefix: true
