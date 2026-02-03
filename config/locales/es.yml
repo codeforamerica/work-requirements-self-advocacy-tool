@@ -138,6 +138,10 @@ es:
         language_preference_spoken_label: "¿En qué idioma prefiere hablar?"
         language_preference_written_label: "¿En qué idioma prefiere leer o escribir?"
         title: Preferencia de idioma
+    migrant_farmworker:
+      edit:
+        help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
+        title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
     new_response:
       edit:
         check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
@@ -199,3 +203,10 @@ es:
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
+    working:
+      edit:
+        title: "¿Está trabajando?"
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
