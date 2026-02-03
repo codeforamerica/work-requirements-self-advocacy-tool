@@ -20,7 +20,6 @@ RSpec.describe PreventingWorkReasonController, type: :controller do
       post :update, params: {screener: params}
       screener.reload
       expect(screener.preventing_work_additional_info).to eq nil
-
     end
   end
 end

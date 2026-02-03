@@ -105,7 +105,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :preventing_work_reason do
-    validates :preventing_work_additional_info, length: { maximum:  PreventingWorkReasonController::CHARACTER_LIMIT }
+    validates :preventing_work_additional_info, length: {maximum: PreventingWorkReasonController::CHARACTER_LIMIT}
   end
 
   with_context :email do
