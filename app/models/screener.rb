@@ -103,7 +103,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :preventing_work_reason do
-    validates :preventing_work_additional_info, presence: {message: I18n.t("validations.date_missing_or_invalid")}
+    validates :preventing_work_additional_info, length: { maximum:  PreventingWorkReasonController::CHARACTER_LIMIT }
   end
 
   with_context :email do

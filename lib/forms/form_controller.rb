@@ -38,6 +38,7 @@ module Forms
         after_update_success
         redirect_to(next_path)
       else
+        setup_edit if respond_to?(:setup_edit, true)
         render :edit
       end
     end

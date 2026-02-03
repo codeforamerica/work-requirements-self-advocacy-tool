@@ -7,8 +7,23 @@
 </p>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <%= f.cfa_textarea(:preventing_work_additional_info, t("views.preventing_work_reason.edit.question", count: @conditions_count).to_s, help_text: t("views.preventing_work_reason.edit.instructions")) %>
 
+  <% char_limit = PreventingWorkReasonController::CHARACTER_LIMIT %>
+
+  <%= f.cfa_textarea(
+        :preventing_work_additional_info,
+        t("views.preventing_work_reason.edit.question", count: @conditions_count).to_s,
+        help_text: t("views.preventing_work_reason.edit.instructions"),
+        options: { maxlength: char_limit, id: "preventing_work_additional_info" }
+      ) %>
+
+  <p class="char-counter spacing-below-0">&nbsp;</p>
 
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
+
+<%= javascript_include_tag "textarea_counter", type: "module" %>
+
+<script type="module">
+  initTextareaCounter();
+</script>
