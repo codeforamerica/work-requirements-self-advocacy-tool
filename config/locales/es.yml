@@ -4,10 +4,16 @@ es:
     affirmative: Sí
     back: Regresa
     basic_information: Información básica
+    char_counter:
+      remaining:
+        one: Queda %{count} caracter
+        other: Quedan %{count} caracteres
     continue: Continuar
     faq: Frequently Asked Questions
     footer:
-      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
+      content_html: This benefits application is a service built by <a target="_blank"
+        rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a>
+        in partnership on behalf of the people of the United States.
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
@@ -15,10 +21,6 @@ es:
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
-    char_counter:
-      remaining:
-        one: "Queda %{count} caracter"
-        other: "Quedan %{count} caracteres"
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
     date_must_be_in_future: La fecha debe ser en el futuro
@@ -30,24 +32,30 @@ es:
         title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_milestone:
       edit:
-        help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
+        help_text_html: Esta información ayudará a que su agencia encuentre su caso
+          de SNAP.
         title: Información básica
     birth_date:
       edit:
-        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
+        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor
+          de 18 años o tiene 65 años o más.
         title: "¿Cuál es su fecha de nacimiento? (requerido)"
     caring_for_someone:
       edit:
         child_under_6: Niño menor de 6 años
         disabled_or_ill_person: Persona enferma o con una discapacidad
-        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
-        notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
+        help_text_html: "<strong>No es necesario</strong> que la persona viva con
+          usted."
+        notice_text: Cuidar a alguien significa que usted regularmente hace cosas
+          como preparar comida, ayudar con tareas diarias como bañarse o asearse,
+          hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
       edit:
         title: "¿Hace servicio comunitario o trabajo voluntario?"
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
-        volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal
+          del último mes.
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
     disability_benefits:
       edit:
@@ -57,35 +65,45 @@ es:
         receiving_benefits_ssi: SSI (Ingreso Suplementario del Seguro Social)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
         receiving_benefits_workers_compensation: Compensación para trabajadores
-        receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
+        receiving_benefits_write_in: Si el beneficio que recibe no está en la lista,
+          escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     email:
       edit:
         email: Email
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
-        title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
+        title_help_text: Le enviaremos los próximos pasos junto con los resultados
+          de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
     email_nudge:
       edit:
         add_an_email: Agregar un correo electrónico
         continue_without_it: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
-        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
+        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados
+          y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar
+          su correo electrónico hace más fácil que reciba sus resultados y si usted
+          debe cumplir con las nuevas reglas de trabajo de SNAP
     has_child:
       edit:
-        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
-        title: ¿En su hogar vive un niño menor de 14 años?
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable
+          del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso
+          si el niño no está incluido en su caso de SNAP.
+        title: "¿En su hogar vive un niño menor de 14 años?"
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
     is_pregnant:
       edit:
-        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si
+          no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
         title: "¿Está en embarazo?"
     is_student:
       edit:
-        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo”
+          basado en cuántas clases está tomando. Pregunte en su universidad, colegio
+          o escuela cuál es su estatus.
         title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     landing_page:
       fill_out_form: Complete el formulario
@@ -99,7 +117,10 @@ es:
             <strong>This form will help you figure out if you have to follow the SNAP rules or not.</strong>
           title: Frequently asked questions.
           unfit: What if I’m unfit for work?
-          unfit_content_html: 'If you can show that you can’t work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP. If you can’t work that month for a good reason (e.g.: your car broke down, a family emergency), you can get excused for that month.'
+          unfit_content_html: 'If you can show that you can’t work for a medical or
+            health reason, the SNAP work rules do not apply to you and you can keep
+            getting SNAP. If you can’t work that month for a good reason (e.g.: your
+            car broke down, a family emergency), you can get excused for that month.'
           who: Who has to follow the SNAP work rules?
           who_content_html: |
             This law requires most states and counties to enforce the Able-Bodied Adult Without Dependents work rules, and expands who has to follow those rules. Prior to the law being passed, many states and counties were able to waive this requirement for SNAP recipients.
@@ -126,13 +147,20 @@ es:
               <li>An American Indian.</li>
             </ul>
         title: Check if the SNAP work rules apply to you
-        title_help_text_1: Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.
-        title_help_text_2: It takes most people 10 minutes or less to complete this form.
-        work_rules_help_text: People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.
-        work_rules_help_text_2: If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).
+        title_help_text_1: Because of new policy changes, many adults on SNAP now
+          have to meet work rules, while others may be exempt.
+        title_help_text_2: It takes most people 10 minutes or less to complete this
+          form.
+        work_rules_help_text: People who have to follow the SNAP work rules must do
+          at least 80 hours of work activities a month or earn at least $935.25 a
+          month.
+        work_rules_help_text_2: If you do not do work activities for 80 hours a month,
+          you can only get SNAP benefits for up to 3 months every 3 years (36 months).
         work_rules_list_html:
-        - "<strong>Working a job</strong> for money, including self-employment or gigs"
-        - "<strong>Working in exchange for something</strong> like food, housing, or other services"
+        - "<strong>Working a job</strong> for money, including self-employment or
+          gigs"
+        - "<strong>Working in exchange for something</strong> like food, housing,
+          or other services"
         - "<strong>Volunteering</strong>"
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
@@ -144,14 +172,21 @@ es:
         title: Preferencia de idioma
     migrant_farmworker:
       edit:
-        help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
-        title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
+        help_text: Esto significa que usted trabaja en agricultura durante parte del
+          año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar
+          a otro según la temporada.
+        title: "¿Es usted un trabajador agrícola temporal o migrante que empezará
+          a trabajar en los próximos 30 días?"
     overview:
       edit:
-        help_text_html: Le ayudaremos a preparar un documento que podrá enviar a su agencia de SNAP. Así, su agencia sabrá si usted y los demás adultos de su hogar <strong> deben cumplir con las reglas de trabajo de SNAP.</strong>
+        help_text_html: Le ayudaremos a preparar un documento que podrá enviar a su
+          agencia de SNAP. Así, su agencia sabrá si usted y los demás adultos de su
+          hogar <strong> deben cumplir con las reglas de trabajo de SNAP.</strong>
         help_text_list_html:
-        - "<strong>Complete este formulario</strong> con su información y la de las personas con quienes recibe SNAP.."
-        - "<strong>Descargue y envíe el formulario</strong> a su agencia estatal: en línea, por correo postal o entregándolo en persona."
+        - "<strong>Complete este formulario</strong> con su información y la de las
+          personas con quienes recibe SNAP.."
+        - "<strong>Descargue y envíe el formulario</strong> a su agencia estatal:
+          en línea, por correo postal o entregándolo en persona."
         title: Este es un proceso de 2 pasos
     personal_information:
       edit:
@@ -163,11 +198,14 @@ es:
         middle_name_label: Segundo nombre
         middle_name_label_help_text: Opcional. Tal como aparece legalmente en su identificación.
         phone_number_label: Phone number
-        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
+        phone_number_label_help_text: A caseworker may use this number if they need
+          to contact you directly about your case.
         title: Compártanos información sobre usted
     personal_situations_milestone:
       edit:
-        help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
+        help_text_html: Sabemos que estos son temas delicados. Compartir esta información
+          puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas
+          reglas de trabajo para recibir beneficios de SNAP.
         title: Situaciones que hacen difícil que trabaje
     preventing_work:
       edit:
@@ -179,17 +217,23 @@ es:
           Tiene una condición médica
           <br/>
           <span class="text--help">Esto incluye un problema físico, mental u otra situación personal.</span>
-        preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
+        preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma
+          continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
-        title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+        title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas
+          a la semana?"
     preventing_work_reason:
       edit:
-        title: Gracias por compartir esta información
-        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
+        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional,
+          llame al 211.
+        instructions: Compartir más detalles puede ayudar a la persona que lleva su
+          caso a tomar una decisión más rápido.
         question:
-          one: ¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?
-          other: ¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?
-        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+          one: "¿Puede compartir más información sobre cómo esta condición le limitan
+            para trabajar al menos 20 horas a la semana?"
+          other: "¿Puede compartir más información sobre cómo estas condiciones le
+            limitan para trabajar al menos 20 horas a la semana?"
+        title: Gracias por compartir esta información
     receiving_benefits:
       edit:
         is_no: No, pero presenté una solicitud o es posible que presente una más adelante
@@ -202,17 +246,23 @@ es:
         - Clases para obtener un certificado equivalente a la secundaria (GED)
         - Programas de certificación profesional
         - Capacitación en el trabajo
-        - Capacitación para aprender un oficio o empleo que no requiere un diploma de secundaria.
-        - Aprendizajes o programas de capacitación a los que puede acceder a través de SNAP o TANF.
+        - Capacitación para aprender un oficio o empleo que no requiere un diploma
+          de secundaria.
+        - Aprendizajes o programas de capacitación a los que puede acceder a través
+          de SNAP o TANF.
         notice_title: La capacitación laboral incluye
         title: "¿Está en un programa de empleo o capacitación laboral?"
-        work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
+        work_training_hours_help_text: Si el número de horas cambia a veces, indique
+          el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
-        work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
+        work_training_name_label: "¿Cuál es el nombre de la organización o del programa
+          de capacitación?"
     working:
       edit:
         title: "¿Está trabajando?"
-        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último
+          mes.
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
-        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo.
+          Si no sabe la cantidad exacta, puede estimarla.
         working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
