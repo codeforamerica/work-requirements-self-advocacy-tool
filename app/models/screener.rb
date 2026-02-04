@@ -32,7 +32,7 @@ class Screener < ApplicationRecord
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
-  before_save :remove_pregnancy_attributes_if_no, :remove_volunteer_attributes_if_no, :remove_work_training_attributes_if_no, :remove_working_attributes_if_no
+  before_save :remove_pregnancy_attributes_if_no, :remove_volunteer_attributes_if_no, :remove_work_training_attributes_if_no, :remove_working_attributes_if_no, :remove_preventing_working_info_if_no_reasons
 
   with_context :birth_date do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
@@ -167,5 +167,9 @@ class Screener < ApplicationRecord
       self.work_training_hours = nil
       self.work_training_name = nil
     end
+  end
+
+  def remove_preventing_working_info_if_no_reasons
+    self.preventing_work_additional_info = nil if !preventing_work_place_to_sleep_yes? && !preventing_work_drugs_alcohol_yes? && !preventing_work_domestic_violence_yes? && !preventing_work_medical_condition_yes? && !preventing_work_other_yes?
   end
 end
