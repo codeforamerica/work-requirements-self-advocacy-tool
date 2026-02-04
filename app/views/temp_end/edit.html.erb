@@ -13,7 +13,6 @@
           <th style="padding-right: 15px;">last_name</th>
           <th style="padding-right: 15px;">birth_date</th>
           <th style="padding-right: 15px;">phone_number</th>
-          <th style="padding-right: 15px;">is_receiving_snap_benefits</th>
           <th style="padding-right: 15px;">email</th>
         </tr>
         <% Screener.all.each do |screener| %>
@@ -26,7 +25,6 @@
             <td><%= screener.last_name %></td>
             <td><%= screener.birth_date %></td>
             <td><%= screener.phone_number %></td>
-            <td><%= screener.is_receiving_snap_benefits_yes? %></td>
             <td><%= screener.email %></td>
           </tr>
         <% end %>
