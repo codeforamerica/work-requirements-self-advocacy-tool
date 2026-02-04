@@ -267,7 +267,7 @@ RSpec.describe Screener, type: :model do
         expect(screener.reload.alcohol_treatment_program_name).to be_nil
       end
     end
-    
+
     context "with_context :preventing_work_reasons" do
       it "cannot have a value longer than PreventingWorkReasonController::CHARACTER_LIMIT" do
         screener = Screener.new(

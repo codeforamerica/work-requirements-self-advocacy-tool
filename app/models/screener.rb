@@ -174,15 +174,14 @@ class Screener < ApplicationRecord
       self.work_training_name = nil
     end
   end
-  
+
   def remove_alcohol_treatment_program_attributes_if_no
     if is_in_alcohol_treatment_program_no?
       self.alcohol_treatment_program_name = nil
     end
   end
-  
+
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?
   end
-
 end
