@@ -146,13 +146,6 @@ en:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
         title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
-    overview:
-      edit:
-        help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.
-        help_text_list_html:
-        - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
-        - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
-        title: This is a 2-part process
     personal_information:
       edit:
         birth_date_label: Birthdate
@@ -190,11 +183,6 @@ en:
           one: Can you share more information about how this condition limits you from working at least 20 hours a week?
           other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
         title: Thank you for sharing.
-    receiving_benefits:
-      edit:
-        is_no: No, but I applied or might apply later
-        is_yes: Yes, I currently get SNAP benefits
-        title: Do you currently get SNAP benefits in [state]?
     work_training:
       edit:
         notice_content:
