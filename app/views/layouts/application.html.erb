@@ -30,11 +30,11 @@
     <main>
       <section class="slab slab-toolbar">
         <div class="toolbar">
-          <% if I18n.locale != :en %>
-            <%= link_to_english(class: "button button--small") %>
-          <% end %>
-          <% if I18n.locale != :es %>
+          <% if I18n.locale == :en %>
             <%= link_to_spanish(class: "button button--small") %>
+          <% end %>
+          <% if I18n.locale == :es %>
+            <%= link_to_english(class: "button button--small") %>
           <% end %>
         </div>
       </section>
