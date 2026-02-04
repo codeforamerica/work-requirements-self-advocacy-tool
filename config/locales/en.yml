@@ -11,9 +11,7 @@ en:
     continue: Continue
     faq: Frequently Asked Questions
     footer:
-      content_html: This benefits application is a service built by <a target="_blank"
-        rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a>
-        in partnership on behalf of the people of the United States.
+      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
     none_of_the_above: None of the above
     other: Other
@@ -29,32 +27,27 @@ en:
     america_indian:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: Are you an American Indian, or the child or grandchild or an American
-          Indian?
+        title: Are you an American Indian, or the child or grandchild or an American Indian?
     basic_info_milestone:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
     birth_date:
       edit:
-        help_text: You do not have to follow the work rules if you are younger than
-          18, or older than 65+ years.
+        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
         title: What is your date of birth? (required)
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
         disabled_or_ill_person: Person who is ill or has a disability
         help_text_html: The person <strong>does not</strong> need to live with you.
-        notice_text: Caring for someone means you regularly do things like make food,
-          help with daily tasks like bathing and personal care, run errands for them,
-          and monitor their health and wellbeing.
+        notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
         title: Do you care for someone who cannot care for themselves?
     community_service:
       edit:
         title: Do you volunteer or do any community service?
         volunteering_hours_label: How many hours a week do you volunteer?
-        volunteering_hours_label_help_text: If this changes, give your weekly average
-          from this past month.
+        volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
     disability_benefits:
       edit:
@@ -64,30 +57,23 @@ en:
         receiving_benefits_ssi: SSI (Supplemental Security Income)
         receiving_benefits_veterans_disability: Veteran’s disability
         receiving_benefits_workers_compensation: Worker’s compensation
-        receiving_benefits_write_in: If you don’t see your benefit above, please write
-          it here.
+        receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
     email:
       edit:
         email: Email
         email_confirmation: Confirm your email
         title: Where can we send your results?
-        title_help_text: We'll email you next steps with form results that you should
-          submit to your SNAP agency.
+        title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     email_nudge:
       edit:
         add_an_email: Add an email
         continue_without_it: Continue without it
         title: Are you sure you don't want to add an email address?
-        title_help_text: Adding an email helps us send you your results and next steps
-          right away. You can skip this, but including your email makes it easier
-          to receive your results and find out if the new SNAP work rules apply to
-          you..
+        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     has_child:
       edit:
-        help_text: You do not have to be the child’s parent, be responsible for the
-          child, or be their legal guardian. If you live with the child, select “Yes,”
-          even if they aren’t included in your SNAP case.
+        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
         title: Is there a child under the age of 14 that lives in your household?
     has_unemployment_benefits:
       edit:
@@ -99,9 +85,7 @@ en:
         title: Are you pregnant?
     is_student:
       edit:
-        help_text: Your school defines what it means to be at least "half-time" based
-          on how many classes you are taking. Ask your college, university, or school
-          for your status.
+        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
         title: Do you go to school full-time, or at least half-time?
     landing_page:
       fill_out_form: Fill out the form
@@ -115,10 +99,7 @@ en:
             <strong>This form will help you figure out if you have to follow the SNAP rules or not.</strong>
           title: Frequently asked questions.
           unfit: What if I’m unfit for work?
-          unfit_content_html: 'If you can show that you can’t work for a medical or
-            health reason, the SNAP work rules do not apply to you and you can keep
-            getting SNAP. If you can’t work that month for a good reason (e.g.: your
-            car broke down, a family emergency), you can get excused for that month.'
+          unfit_content_html: 'If you can show that you can’t work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP. If you can’t work that month for a good reason (e.g.: your car broke down, a family emergency), you can get excused for that month.'
           who: Who has to follow the SNAP work rules?
           who_content_html: |
             This law requires most states and counties to enforce the Able-Bodied Adult Without Dependents work rules, and expands who has to follow those rules. Prior to the law being passed, many states and counties were able to waive this requirement for SNAP recipients.
@@ -145,20 +126,13 @@ en:
               <li>An American Indian.</li>
             </ul>
         title: Check if the SNAP work rules apply to you
-        title_help_text_1: Because of new policy changes, many adults on SNAP now
-          have to meet work rules, while others may be exempt.
-        title_help_text_2: It takes most people 10 minutes or less to complete this
-          form.
-        work_rules_help_text: People who have to follow the SNAP work rules must do
-          at least 80 hours of work activities a month or earn at least $935.25 a
-          month.
-        work_rules_help_text_2: If you do not do work activities for 80 hours a month,
-          you can only get SNAP benefits for up to 3 months every 3 years (36 months).
+        title_help_text_1: Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.
+        title_help_text_2: It takes most people 10 minutes or less to complete this form.
+        work_rules_help_text: People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.
+        work_rules_help_text_2: If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).
         work_rules_list_html:
-        - "<strong>Working a job</strong> for money, including self-employment or
-          gigs"
-        - "<strong>Working in exchange for something</strong> like food, housing,
-          or other services"
+        - "<strong>Working a job</strong> for money, including self-employment or gigs"
+        - "<strong>Working in exchange for something</strong> like food, housing, or other services"
         - "<strong>Volunteering</strong>"
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
@@ -166,25 +140,18 @@ en:
     language_preference:
       edit:
         language_preference_spoken_label: What language do you prefer to speak?
-        language_preference_written_label: What language do you prefer to read or
-          write?
+        language_preference_written_label: What language do you prefer to read or write?
         title: Language Preference
     migrant_farmworker:
       edit:
-        help_text: This means you work on a farm with a work agreement (like a contract)
-          for part of the year, or you move from place to place for your farm work.
-        title: Are you a seasonal or migrant farmworker who will start a job in the
-          next 30 days?
+        help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
+        title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
     overview:
       edit:
-        help_text_html: We’ll help prepare a document that you can submit to your
-          SNAP agency. That way, your agency will know <strong>if the SNAP work rules
-          apply</strong> to you.
+        help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.
         help_text_list_html:
-        - "<strong>Fill out this form</strong> about you and the people you get SNAP
-          with."
-        - "<strong>Download and submit the form</strong> to your state agency: online,
-          by mail, or drop it off in-person."
+        - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
+        - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
         title: This is a 2-part process
     personal_information:
       edit:
@@ -194,17 +161,13 @@ en:
         last_name_label: Last or family name
         last_name_label_help_text: Legally as it appears on your ID.
         middle_name_label: Middle name
-        middle_name_label_help_text: This is optional. Legally as it appears on your
-          ID.
+        middle_name_label_help_text: This is optional. Legally as it appears on your ID.
         phone_number_label: Phone number
-        phone_number_label_help_text: A caseworker may use this number if they need
-          to contact you directly about your case.
+        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Tell us about yourself
     personal_situations_milestone:
       edit:
-        help_text_html: We know these are sensitive topics. Sharing this information
-          could help your agency decide that you do not have to meet work rules to
-          get SNAP benefits.
+        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
         title: Situations that make it hard to work
     preventing_work:
       edit:
@@ -218,19 +181,14 @@ en:
           <span class="text--help">This includes physical and mental health issues.</span>
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
-        title: Are any of these things preventing you from working at least 20 hours
-          a week?
+        title: Are any of these things preventing you from working at least 20 hours a week?
     preventing_work_reason:
       edit:
-        header: We're sorry to hear things have been challenging. If you need additional
-          help, call 211.
-        instructions: Providing more details can help your caseworker make a decision
-          more quickly.
+        header: We're sorry to hear things have been challenging. If you need additional help, call 211.
+        instructions: Providing more details can help your caseworker make a decision more quickly.
         question:
-          one: Can you share more information about how this condition limits you
-            from working at least 20 hours a week?
-          other: Can you share more information about how these conditions limit you
-            from working at least 20 hours a week?
+          one: Can you share more information about how this condition limits you from working at least 20 hours a week?
+          other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
         title: Thank you for sharing.
     receiving_benefits:
       edit:
@@ -249,17 +207,13 @@ en:
         - Programs you can get connected to through SNAP or TANF.
         notice_title: What Job Training Includes
         title: Are you in a job or work training program?
-        work_training_hours_help_text: If this sometimes changes, give your weekly
-          average from the past month.
+        work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?
-        work_training_name_label: What is the name of the organization or training
-          program?
+        work_training_name_label: What is the name of the organization or training program?
     working:
       edit:
         title: Are you working?
-        working_hours_help_text: If this changes, give your weekly average from the
-          past month.
+        working_hours_help_text: If this changes, give your weekly average from the past month.
         working_hours_label: How many hours a week do you usually work?
-        working_weekly_earnings_help_text: We know this can be hard to calculate.
-          If you don't know the exact amount, just estimate.
+        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
         working_weekly_earnings_label: How much do you earn each week before taxes?
