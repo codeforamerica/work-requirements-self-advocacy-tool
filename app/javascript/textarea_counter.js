@@ -39,5 +39,3 @@ export function initTextareaCounter() {
     textarea.addEventListener("input", updateCounter);
   });
 }
-
-document.addEventListener("turbo:load", initTextareaCounter);
