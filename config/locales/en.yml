@@ -138,6 +138,10 @@ en:
         language_preference_spoken_label: What language do you prefer to speak?
         language_preference_written_label: What language do you prefer to read or write?
         title: Language Preference
+    migrant_farmworker:
+      edit:
+        help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
+        title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
     overview:
       edit:
         help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.
@@ -194,3 +198,10 @@ en:
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?
         work_training_name_label: What is the name of the organization or training program?
+    working:
+      edit:
+        title: Are you working?
+        working_hours_help_text: If this changes, give your weekly average from the past month.
+        working_hours_label: How many hours a week do you usually work?
+        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
+        working_weekly_earnings_label: How much do you earn each week before taxes?
