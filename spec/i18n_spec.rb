@@ -18,7 +18,7 @@ RSpec.describe I18n do
     # pluralized, and i18n unused will not ignore them. The documentation is unclear on
     # how this should work or not, but rather than fight with ignoring them for now, we
     # know they will cause this to fail when checking if empty, so we can just declare
-    # these 2 known keys and if the number increases, that's the issue! 
+    # these 2 known keys and if the number increases, that's the issue!
     expect(unused_keys.count).to eq(2),
       "#{unused_keys.leaves.count} unused i18n keys, run `i18n-tasks unused' to show them"
   end
