@@ -276,8 +276,6 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:preventing_work_reason)
         expect(screener.errors[:preventing_work_additional_info]).to be_present
       end
-
-
     end
   end
 end

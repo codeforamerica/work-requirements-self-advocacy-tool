@@ -25,10 +25,10 @@ class PreventingWorkReasonController < QuestionController
   def self.show?(screener, item_index: nil)
     conditions_count = conditions_count(screener)
     if conditions_count.zero? && screener.preventing_work_additional_info.present?
-        screener.update!(preventing_work_additional_info: nil)
+      screener.update!(preventing_work_additional_info: nil)
     end
 
-    return !conditions_count.zero?
+    !conditions_count.zero?
   end
 
   def self.conditions_count(screener)
