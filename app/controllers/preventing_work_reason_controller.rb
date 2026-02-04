@@ -11,11 +11,9 @@ class PreventingWorkReasonController < QuestionController
     preventing_work_other
   ].freeze
 
-  helper_method :conditions_count
-
   def edit
     super
-    setup_edit
+    @conditions_count = self.class.conditions_count(@model)
   end
 
   def self.attributes_edited
@@ -24,30 +22,19 @@ class PreventingWorkReasonController < QuestionController
     ]
   end
 
-  def setup_edit
-    if conditions_count.zero?
-      clear_preventing_work_additional_info
-      redirect_to(next_path)
+  def self.show?(screener, item_index: nil)
+    conditions_count = conditions_count(screener)
+    if conditions_count.zero? && screener.preventing_work_additional_info.present?
+        screener.update!(preventing_work_additional_info: nil)
     end
+
+    return !conditions_count.zero?
   end
 
-  def clear_preventing_work_additional_info
-    screener = current_screener
-    return unless screener
+  def self.conditions_count(screener)
+    return 0 unless screener
 
-    # Only save if there’s a value to clear
-    if screener.preventing_work_additional_info.present?
-      screener.update!(preventing_work_additional_info: nil)
-    end
-  end
-
-  def conditions_count
-    return @conditions_count if defined?(@conditions_count)
-
-    screener = current_screener
-    return @conditions_count = 0 unless screener
-
-    @conditions_count = PREVENTING_WORK_FIELDS.count do |field|
+    PREVENTING_WORK_FIELDS.count do |field|
       screener.public_send(field) == "yes"
     end
   end
