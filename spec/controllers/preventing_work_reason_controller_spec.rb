@@ -14,4 +14,20 @@ RSpec.describe PreventingWorkReasonController, type: :controller do
       expect(screener.preventing_work_additional_info).to eq "This is my very good reason"
     end
   end
+
+  describe ".show?" do
+    context "screener without conditions" do
+      it "returns false" do
+        screener = create(:screener)
+        expect(subject.class.show?(screener)).to eq false
+      end
+    end
+
+    context "screener with conditions" do
+      it "returns true " do
+        screener = create(:screener, preventing_work_place_to_sleep: "yes")
+        expect(subject.class.show?(screener)).to eq true
+      end
+    end
+  end
 end
