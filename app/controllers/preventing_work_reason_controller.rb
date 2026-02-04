@@ -11,9 +11,10 @@ class PreventingWorkReasonController < QuestionController
     preventing_work_other
   ].freeze
 
+  before_action :set_conditions_count
+
   def edit
     super
-    @conditions_count = self.class.conditions_count(@model)
   end
 
   def self.attributes_edited
@@ -24,6 +25,10 @@ class PreventingWorkReasonController < QuestionController
 
   def self.show?(screener, item_index: nil)
     !conditions_count(screener).zero?
+  end
+
+  def set_conditions_count
+    @conditions_count = self.class.conditions_count(current_screener)
   end
 
   def self.conditions_count(screener)
