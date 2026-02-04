@@ -2,7 +2,6 @@ class Screener < ApplicationRecord
   attr_accessor :email_confirmation
   enum :language_preference_spoken, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   enum :language_preference_written, {unfilled: 0, english: 1, spanish: 2}, prefix: true
-  enum :is_receiving_snap_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -52,10 +51,6 @@ class Screener < ApplicationRecord
   with_context :personal_information do
     validates :first_name, :last_name, :phone_number, presence: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
-  end
-
-  with_context :receiving_benefits do
-    validates :is_receiving_snap_benefits, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
   with_context :american_indian do

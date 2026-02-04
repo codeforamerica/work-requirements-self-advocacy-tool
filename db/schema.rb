@@ -30,7 +30,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_03_235422) do
     t.integer "is_in_work_training", default: 0, null: false
     t.integer "is_migrant_farmworker", default: 0, null: false
     t.integer "is_pregnant", default: 0, null: false
-    t.integer "is_receiving_snap_benefits", default: 0, null: false
     t.integer "is_student", default: 0, null: false
     t.integer "is_volunteer", default: 0, null: false
     t.integer "is_working", default: 0, null: false
