@@ -8,18 +8,18 @@
   <div class="question-with-follow-up">
     <div class="question-with-follow-up__question">
       <%= f.cfa_radio_set(:is_in_alcohol_treatment_program, collection: [
-        { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#org-name" }},
+        { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#org-name" } },
         { value: :no, label: t("general.negative") },
       ]) %>
     </div>
 
     <div class="question-with-follow-up__follow-up" id="org-name">
-`      <hr class="spacing-above-0" />
-`      <%= f.cfa_input_field(
-             :alcohol_treatment_program_name,
-             t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"),
-             help_text: t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_help_text_label")
-           ) %>
+      <hr class="spacing-above-0"/>
+      <%= f.cfa_input_field(
+            :alcohol_treatment_program_name,
+            t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"),
+            help_text: t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_help_text_label")
+          ) %>
     </div>
   </div>
 
