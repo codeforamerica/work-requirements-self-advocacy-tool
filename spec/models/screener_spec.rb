@@ -258,6 +258,16 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "alcohol treatment program attributes" do
+      it "clears alcohol_treatment_program_name if is_in_alcohol_treatment_program changes to no" do
+        screener = Screener.create(is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "nvm")
+
+        screener.update(is_in_alcohol_treatment_program: "no")
+
+        expect(screener.reload.alcohol_treatment_program_name).to be_nil
+      end
+    end
+    
     context "with_context :preventing_work_reasons" do
       it "cannot have a value longer than PreventingWorkReasonController::CHARACTER_LIMIT" do
         screener = Screener.new(

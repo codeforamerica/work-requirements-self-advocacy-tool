@@ -24,6 +24,11 @@ en:
     date_must_be_in_future: Date must be in the future
     must_answer_yes_or_no: Must answer yes or no
   views:
+    alcohol_treatment_program:
+      edit:
+        alcohol_treatment_program_name_help_text_label: This is optional.
+        alcohol_treatment_program_name_label: What is the name of the program?
+        title: Are you in a drug or alcohol treatment program?
     america_indian:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
