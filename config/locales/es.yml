@@ -14,13 +14,18 @@ es:
     personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
-    work_rules: Reglas de trabajo
     switched_locale: English
+    work_rules: Reglas de trabajo
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
     date_must_be_in_future: La fecha debe ser en el futuro
     must_answer_yes_or_no: Debe responder sí o no
   views:
+    alcohol_treatment_program:
+      edit:
+        alcohol_treatment_program_name_help_text_label: Opcional.
+        alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
+        title: "¿Está en un programa de tratamiento para drogas o alcohol?"
     america_indian:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
@@ -138,13 +143,6 @@ es:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
         title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
-    overview:
-      edit:
-        help_text_html: Le ayudaremos a preparar un documento que podrá enviar a su agencia de SNAP. Así, su agencia sabrá si usted y los demás adultos de su hogar <strong> deben cumplir con las reglas de trabajo de SNAP.</strong>
-        help_text_list_html:
-        - "<strong>Complete este formulario</strong> con su información y la de las personas con quienes recibe SNAP.."
-        - "<strong>Descargue y envíe el formulario</strong> a su agencia estatal: en línea, por correo postal o entregándolo en persona."
-        title: Este es un proceso de 2 pasos
     personal_information:
       edit:
         birth_date_label: Fecha de nacimiento
@@ -174,11 +172,6 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
-    receiving_benefits:
-      edit:
-        is_no: No, pero presenté una solicitud o es posible que presente una más adelante
-        is_yes: Sí, actualmente recibo beneficios de SNAP
-        title: "¿Actualmente recibe beneficios de SNAP en [state]?"
     work_training:
       edit:
         notice_content:

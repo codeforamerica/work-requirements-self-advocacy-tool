@@ -4,7 +4,6 @@ RSpec.describe Screener, type: :model do
   describe "validations" do
     context "required yes/no" do
       [
-        [:receiving_benefits, :is_receiving_snap_benefits],
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
         [:is_pregnant, :is_pregnant],
@@ -247,6 +246,16 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.reload.volunteering_hours).to be_nil
         expect(screener.reload.volunteering_org_name).to be_nil
+      end
+    end
+
+    context "alcohol treatment program attributes" do
+      it "clears alcohol_treatment_program_name if is_in_alcohol_treatment_program changes to no" do
+        screener = Screener.create(is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "nvm")
+
+        screener.update(is_in_alcohol_treatment_program: "no")
+
+        expect(screener.reload.alcohol_treatment_program_name).to be_nil
       end
     end
   end
