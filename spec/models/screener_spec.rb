@@ -212,6 +212,26 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors).to match_array []
       end
     end
+
+    context "with_context :preventing_work_details" do
+      it "Must have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          preventing_work_additional_info: "This is just a test value."
+        )
+
+        # Valid value that is not too long
+        screener.valid?(:preventing_work_details)
+        expect(screener.valid?(:preventing_work_additional_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = PreventingWorkDetailsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(preventing_work_additional_info: text)
+
+        screener.valid?(:preventing_work_details)
+        expect(screener.errors[:preventing_work_additional_info]).to be_present
+      end
+    end
   end
 
   describe "before_save" do
@@ -269,23 +289,7 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :preventing_work_details" do
-      it "cannot have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT" do
-        screener = Screener.new(
-          preventing_work_additional_info: "This is just a test value."
-        )
-
-        # Valid value that is not too long
-        screener.valid?(:preventing_work_details)
-        expect(screener.valid?(:preventing_work_additional_info)).to eq true
-
-        # Invalid value that is 1 character longer than the limit
-        limit = PreventingWorkDetailsController::CHARACTER_LIMIT
-        text = SecureRandom.alphanumeric(limit + 1)
-        screener.assign_attributes(preventing_work_additional_info: text)
-
-        screener.valid?(:preventing_work_details)
-        expect(screener.errors[:preventing_work_additional_info]).to be_present
-
+      it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
         screener = Screener.create(
           preventing_work_additional_info: "This is just a test value.",
           preventing_work_drugs_alcohol: "yes"
