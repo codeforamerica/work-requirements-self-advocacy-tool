@@ -15,6 +15,7 @@ es:
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     work_rules: Reglas de trabajo
+    switched_locale: English
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
     date_must_be_in_future: La fecha debe ser en el futuro
