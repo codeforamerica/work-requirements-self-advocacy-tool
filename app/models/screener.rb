@@ -182,6 +182,6 @@ class Screener < ApplicationRecord
   end
 
   def remove_preventing_working_info_if_no_reasons
-    self.preventing_work_additional_info = nil if preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?
+    self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
   end
 end

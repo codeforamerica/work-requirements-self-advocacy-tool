@@ -285,6 +285,18 @@ RSpec.describe Screener, type: :model do
 
         screener.valid?(:preventing_work_reason)
         expect(screener.errors[:preventing_work_additional_info]).to be_present
+
+        screener = Screener.create(
+          preventing_work_additional_info: "This is just a test value.",
+          preventing_work_drugs_alcohol: "yes"
+        )
+
+        screener.update(preventing_work_none: "yes")
+        screener.update(preventing_work_drugs_alcohol: "no")
+
+        screener.reload
+
+        expect(screener.preventing_work_additional_info).to be_nil
       end
     end
   end
