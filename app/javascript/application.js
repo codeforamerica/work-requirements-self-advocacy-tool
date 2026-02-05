@@ -40,3 +40,7 @@ document.addEventListener("turbo:load", function() {
   revealer.init();
   honeycrispInit();
 });
+
+document.addEventListener("turbo:render", function () {
+  revealer.init();
+});
