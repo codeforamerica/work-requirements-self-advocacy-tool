@@ -180,7 +180,7 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
-    preventing_work_reason:
+    preventing_work_details:
       edit:
         header: We're sorry to hear things have been challenging. If you need additional help, call 211.
         instructions: Providing more details can help your caseworker make a decision more quickly.

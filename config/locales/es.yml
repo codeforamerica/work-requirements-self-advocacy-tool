@@ -180,7 +180,7 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
-    preventing_work_reason:
+    preventing_work_details:
       edit:
         header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
         instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.

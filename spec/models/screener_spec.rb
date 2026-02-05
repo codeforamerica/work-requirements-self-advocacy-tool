@@ -268,22 +268,22 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :preventing_work_reasons" do
-      it "cannot have a value longer than PreventingWorkReasonController::CHARACTER_LIMIT" do
+    context "with_context :preventing_work_details" do
+      it "cannot have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT" do
         screener = Screener.new(
           preventing_work_additional_info: "This is just a test value."
         )
 
         # Valid value that is not too long
-        screener.valid?(:preventing_work_reason)
+        screener.valid?(:preventing_work_details)
         expect(screener.valid?(:preventing_work_additional_info)).to eq true
 
         # Invalid value that is 1 character longer than the limit
-        limit = PreventingWorkReasonController::CHARACTER_LIMIT
+        limit = PreventingWorkDetailsController::CHARACTER_LIMIT
         text = SecureRandom.alphanumeric(limit + 1)
         screener.assign_attributes(preventing_work_additional_info: text)
 
-        screener.valid?(:preventing_work_reason)
+        screener.valid?(:preventing_work_details)
         expect(screener.errors[:preventing_work_additional_info]).to be_present
 
         screener = Screener.create(

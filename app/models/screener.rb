@@ -105,8 +105,8 @@ class Screener < ApplicationRecord
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
-  with_context :preventing_work_reason do
-    validates :preventing_work_additional_info, length: {maximum: PreventingWorkReasonController::CHARACTER_LIMIT}
+  with_context :preventing_work_details do
+    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end
 
   with_context :email do

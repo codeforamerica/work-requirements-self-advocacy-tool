@@ -75,7 +75,7 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.preventing_work.edit.preventing_work_write_in"), with: "my spoon carving side hustle"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_reason.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_details.edit.title"))
     fill_in "preventing_work_additional_info", with: "Some things are best left unwritten."
     click_on I18n.t("general.continue")
 

@@ -1,4 +1,4 @@
-class PreventingWorkReasonController < QuestionController
+class PreventingWorkDetailsController < QuestionController
   include PersonalSituationsConcern
 
   CHARACTER_LIMIT = 1000
