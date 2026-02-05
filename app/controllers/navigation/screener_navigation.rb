@@ -1,7 +1,6 @@
 module Navigation
   class ScreenerNavigation < ControllerNavigation::ControllerNavigation
     SECTIONS = [
-      ControllerNavigation::NavigationStep.new(LanguagePreferenceController),
       ControllerNavigation::NavigationStep.new(BirthDateController),
       ControllerNavigation::NavigationStep.new(AmericanIndianController),
       ControllerNavigation::NavigationStep.new(HasChildController),

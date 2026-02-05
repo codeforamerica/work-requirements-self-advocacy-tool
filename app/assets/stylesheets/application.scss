@@ -8,6 +8,21 @@ main {
   background-color: $color-grey-light;
 }
 
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+
+  .button {
+    margin: 0;
+  }
+}
+
+.slab.slab-toolbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .slab {
   margin-left: 6rem;
   margin-right: 6rem;
