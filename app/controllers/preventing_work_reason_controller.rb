@@ -13,10 +13,6 @@ class PreventingWorkReasonController < QuestionController
 
   before_action :set_conditions_count
 
-  def edit
-    super
-  end
-
   def self.attributes_edited
     [
       :preventing_work_additional_info
