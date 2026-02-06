@@ -14,12 +14,18 @@ en:
     personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
+    switched_locale: Español
     work_rules: Work rules
   validations:
     date_missing_or_invalid: Date is missing or invalid
     date_must_be_in_future: Date must be in the future
     must_answer_yes_or_no: Must answer yes or no
   views:
+    alcohol_treatment_program:
+      edit:
+        alcohol_treatment_program_name_help_text_label: This is optional.
+        alcohol_treatment_program_name_label: What is the name of the program?
+        title: Are you in a drug or alcohol treatment program?
     america_indian:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
@@ -133,11 +139,6 @@ en:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
-    language_preference:
-      edit:
-        language_preference_spoken_label: What language do you prefer to speak?
-        language_preference_written_label: What language do you prefer to read or write?
-        title: Language Preference
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
@@ -148,13 +149,6 @@ en:
         close: Done
         title: You’re all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
-    overview:
-      edit:
-        help_text_html: We’ll help prepare a document that you can submit to your SNAP agency. That way, your agency will know <strong>if the SNAP work rules apply</strong> to you.
-        help_text_list_html:
-        - "<strong>Fill out this form</strong> about you and the people you get SNAP with."
-        - "<strong>Download and submit the form</strong> to your state agency: online, by mail, or drop it off in-person."
-        title: This is a 2-part process
     personal_information:
       edit:
         birth_date_label: Birthdate
@@ -184,11 +178,6 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
-    receiving_benefits:
-      edit:
-        is_no: No, but I applied or might apply later
-        is_yes: Yes, I currently get SNAP benefits
-        title: Do you currently get SNAP benefits in [state]?
     work_training:
       edit:
         notice_content:
