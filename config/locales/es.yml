@@ -18,6 +18,7 @@ es:
     personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
+    switched_locale: English
     work_rules: Reglas de trabajo
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
@@ -142,11 +143,6 @@ es:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
-    language_preference:
-      edit:
-        language_preference_spoken_label: "¿En qué idioma prefiere hablar?"
-        language_preference_written_label: "¿En qué idioma prefiere leer o escribir?"
-        title: Preferencia de idioma
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
