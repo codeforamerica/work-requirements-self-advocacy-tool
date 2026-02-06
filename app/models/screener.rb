@@ -35,7 +35,8 @@ class Screener < ApplicationRecord
     :remove_volunteer_attributes_if_no,
     :remove_work_training_attributes_if_no,
     :remove_working_attributes_if_no,
-    :remove_alcohol_treatment_program_attributes_if_no
+    :remove_alcohol_treatment_program_attributes_if_no,
+    :remove_preventing_working_info_if_no_reasons
 
   with_context :birth_date do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
@@ -94,6 +95,10 @@ class Screener < ApplicationRecord
           preventing_work_other_yes?
       }
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
+  end
+
+  with_context :preventing_work_details do
+    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end
 
   with_context :email do
@@ -162,5 +167,9 @@ class Screener < ApplicationRecord
     if is_in_alcohol_treatment_program_no?
       self.alcohol_treatment_program_name = nil
     end
+  end
+
+  def remove_preventing_working_info_if_no_reasons
+    self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
   end
 end

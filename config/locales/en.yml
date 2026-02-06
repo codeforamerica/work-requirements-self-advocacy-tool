@@ -4,6 +4,10 @@ en:
     affirmative: 'Yes'
     back: Go back
     basic_information: Basic Information
+    char_counter:
+      remaining:
+        one: "%{count} character remaining"
+        other: "%{count} characters remaining"
     continue: Continue
     faq: Frequently Asked Questions
     footer:
@@ -172,6 +176,14 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
+    preventing_work_details:
+      edit:
+        header: We're sorry to hear things have been challenging. If you need additional help, call 211.
+        instructions: Providing more details can help your caseworker make a decision more quickly.
+        question:
+          one: Can you share more information about how this condition limits you from working at least 20 hours a week?
+          other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
+        title: Thank you for sharing.
     work_training:
       edit:
         notice_content:

@@ -4,6 +4,10 @@ es:
     affirmative: Sí
     back: Regresa
     basic_information: Información básica
+    char_counter:
+      remaining:
+        one: Queda %{count} caracter
+        other: Quedan %{count} caracteres
     continue: Continuar
     faq: Frequently Asked Questions
     footer:
@@ -75,8 +79,8 @@ es:
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     has_child:
       edit:
-        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
-        title: Is there a child under the age of 14 that lives in your household?
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
+        title: "¿En su hogar vive un niño menor de 14 años?"
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
@@ -172,6 +176,14 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    preventing_work_details:
+      edit:
+        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
+        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        question:
+          one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
+          other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
+        title: Gracias por compartir esta información
     work_training:
       edit:
         notice_content:
