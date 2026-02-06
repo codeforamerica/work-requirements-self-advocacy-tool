@@ -26,10 +26,6 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
-    america_indian:
-      edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_milestone:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
@@ -172,6 +168,10 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    tribe_or_nation:
+      edit:
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
+        title: "¿Es usted miembro de una tribu o nación indígena?"
     work_training:
       edit:
         notice_content:
