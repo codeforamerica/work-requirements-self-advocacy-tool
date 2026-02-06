@@ -89,6 +89,6 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
     click_on I18n.t("views.new_response.edit.check_work_rules_for_someone_else")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.overview.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.birth_date.edit.title"))
   end
 end
