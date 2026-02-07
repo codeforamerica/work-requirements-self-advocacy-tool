@@ -1,4 +1,4 @@
-class AmericanIndianController < QuestionController
+class TribeOrNationController < QuestionController
   include WrExemptionsConcern
 
   def self.attributes_edited

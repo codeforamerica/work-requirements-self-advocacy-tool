@@ -2,7 +2,7 @@ module Navigation
   class ScreenerNavigation < ControllerNavigation::ControllerNavigation
     SECTIONS = [
       ControllerNavigation::NavigationStep.new(BirthDateController),
-      ControllerNavigation::NavigationStep.new(AmericanIndianController),
+      ControllerNavigation::NavigationStep.new(TribeOrNationController),
       ControllerNavigation::NavigationStep.new(HasChildController),
       ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
       ControllerNavigation::NavigationStep.new(IsPregnantController),
