@@ -77,6 +77,12 @@ i.no-button-cross {
   font-weight: bold;
 }
 
+.button.yes-or-no {
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: middle;
+}
+
 .question-with-follow-up__follow-up {
   border: none;
   background: none;
