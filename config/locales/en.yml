@@ -8,6 +8,7 @@ en:
       remaining:
         one: "%{count} character remaining"
         other: "%{count} characters remaining"
+    choose_all_that_apply: Choose all that apply.
     continue: Continue
     faq: Frequently Asked Questions
     footer:
@@ -59,10 +60,11 @@ en:
       edit:
         receiving_benefits_disability_pension: Disability pension
         receiving_benefits_insurance_payments: Disability insurance payments
+        receiving_benefits_disability_medicaid: Disability-related Medicaid
         receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
-        receiving_benefits_ssi: SSI (Supplemental Security Income)
+        receiving_benefits_ssi: Supplemental Security Income (SSI)
         receiving_benefits_veterans_disability: Veteran’s disability
-        receiving_benefits_workers_compensation: Worker’s compensation
+        receiving_benefits_workers_compensation: Workers' compensation
         receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
     email:
@@ -165,7 +167,6 @@ en:
         title: Situations that make it hard to work
     preventing_work:
       edit:
-        choose_all_that_apply: Choose all that apply.
         other: Other
         preventing_work_domestic_violence: Experiencing domestic violence
         preventing_work_drugs_alcohol: Struggling with drugs or alcohol
