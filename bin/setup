@@ -208,20 +208,25 @@ FileUtils.chdir(APP_ROOT) do
     system!("gem install bundler:#{bundler_version}")
   end
 
-  puts "\n== 5. Installing Ruby dependencies =="
+  puts "== 5. Install pdftk =="
+  unless File.exist?("#{APP_ROOT}/vendor/pdftk/downloads/v3.3.3/pdftk-all.jar")
+    system! "vendor/pdftk/install"
+  end
+
+  puts "\n== 6. Installing Ruby dependencies =="
   system("bundle check") || system!("bundle install")
 
-  puts "\n== 6. Installing Yarn dependencies =="
+  puts "\n== 7. Installing Yarn dependencies =="
   system!("yarn install --check-files")
 
-  puts "\n== 7. Starting database via Docker =="
+  puts "\n== 8. Starting database via Docker =="
   system!("docker compose pull wrsat-db")
   system!("docker compose up --wait -d wrsat-db")
 
-  puts "\n== 8. Preparing database =="
+  puts "\n== 9. Preparing database =="
   system!("bin/rails db:prepare")
 
-  puts "\n== 9. Clearing logs and temp files =="
+  puts "\n== 10. Clearing logs and temp files =="
   system!("bin/rails log:clear tmp:clear")
 
   if ARGV.include?("--skip-server")

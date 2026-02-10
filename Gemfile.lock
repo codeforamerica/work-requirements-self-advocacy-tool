@@ -109,7 +109,11 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    cliver (0.3.2)
     coderay (1.1.3)
+    combine_pdf (1.0.31)
+      matrix
+      ruby-rc4 (>= 0.1.5)
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
@@ -167,6 +171,8 @@ GEM
     google-protobuf (4.33.2-x86_64-linux-musl)
       bigdecimal
       rake (>= 13)
+    grover (1.2.6)
+      nokogiri (~> 1)
     highline (3.1.2)
       reline
     i18n (1.14.8)
@@ -248,6 +254,10 @@ GEM
     parser (3.3.10.0)
       ast (~> 2.4.1)
       racc
+    pdf-forms (1.5.2)
+      cliver (~> 0.3.2)
+      rexml (~> 3.2, >= 3.2.6)
+      safe_shell (>= 1.0.3, < 2.0)
     pg (1.6.3)
     pg (1.6.3-aarch64-linux)
     pg (1.6.3-aarch64-linux-musl)
@@ -379,7 +389,9 @@ GEM
       rubocop-performance (>= 1.24)
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
+    ruby-rc4 (0.1.5)
     rubyzip (3.2.2)
+    safe_shell (1.1.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-embedded (1.97.1-aarch64-linux-gnu)
@@ -495,14 +507,17 @@ DEPENDENCIES
   brakeman
   capybara
   cfa-styleguide (= 0.18.0)!
+  combine_pdf
   dartsass-rails (~> 0.5.1)
   debug
   dotenv
   factory_bot_rails
+  grover
   i18n-tasks (~> 1.1.2)
   jbuilder
   jsbundling-rails
   ostruct
+  pdf-forms (~> 1.5.2)
   pg (~> 1.1)
   phonelib
   propshaft
@@ -549,7 +564,9 @@ CHECKSUMS
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
   capybara (3.40.0) sha256=42dba720578ea1ca65fd7a41d163dd368502c191804558f6e0f71b391054aeef
   cfa-styleguide (0.18.0)
+  cliver (0.3.2) sha256=8775445218c612bb57f50c392c4906a1ab5cca067eab093bde3cc77d6426ce24
   coderay (1.1.3) sha256=dc530018a4684512f8f38143cd2a096c9f02a1fc2459edcfe534787a7fc77d4b
+  combine_pdf (1.0.31) sha256=f0aaa687dba78d1f9b1d57622db6bdaff018480313b9dae05145ed8ca830f0bd
   concurrent-ruby (1.3.6) sha256=6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab
   connection_pool (3.0.2) sha256=33fff5ba71a12d2aa26cb72b1db8bba2a1a01823559fb01d29eb74c286e62e0a
   crass (1.0.6) sha256=dc516022a56e7b3b156099abc81b6d2b08ea1ed12676ac7a5657617f012bd45d
@@ -582,6 +599,7 @@ CHECKSUMS
   google-protobuf (4.33.2-x86_64-darwin) sha256=87cde586234674562cf099e2b708a65e376e2d39b0f0f48281f4b4ea182b47f8
   google-protobuf (4.33.2-x86_64-linux-gnu) sha256=73cba041477afcac92ff383fcbdec195ea28d96b994876d1deaa944d18f91786
   google-protobuf (4.33.2-x86_64-linux-musl) sha256=97cdf4f772c5540f9274603b00f1474ed5e6e2238b1d8b1585e77f941a36bd2c
+  grover (1.2.6) sha256=0ef3a5c6fe208c23a2ae6f1c77e1cee08f4cd668934888de83bc2efa1a3fc8d8
   highline (3.1.2) sha256=67cbd34d19f6ef11a7ee1d82ffab5d36dfd5b3be861f450fc1716c7125f4bb4a
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
   i18n-tasks (1.1.2) sha256=4dcfba49e52a623f30661cb316cb80d84fbba5cb8c6d88ef5e02545fffa3637a
@@ -618,6 +636,7 @@ CHECKSUMS
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (1.27.0) sha256=4ac151e1806b755fb4e2dc2332cbf0e54f2e24ba821ff2d3dcf86bf6dc4ae130
   parser (3.3.10.0) sha256=ce3587fa5cc55a88c4ba5b2b37621b3329aadf5728f9eafa36bbd121462aabd6
+  pdf-forms (1.5.2) sha256=45822e2b2cb439d8cf55c87bf1412744591c20fd1653bd20c040519cf2704936
   pg (1.6.3) sha256=1388d0563e13d2758c1089e35e973a3249e955c659592d10e5b77c468f628a99
   pg (1.6.3-aarch64-linux) sha256=0698ad563e02383c27510b76bf7d4cd2de19cd1d16a5013f375dd473e4be72ea
   pg (1.6.3-aarch64-linux-musl) sha256=06a75f4ea04b05140146f2a10550b8e0d9f006a79cdaf8b5b130cde40e3ecc2c
@@ -665,7 +684,9 @@ CHECKSUMS
   rubocop-rails (2.34.3) sha256=10d37989024865ecda8199f311f3faca990143fbac967de943f88aca11eb9ad2
   rubocop-rails-omakase (1.1.0) sha256=2af73ac8ee5852de2919abbd2618af9c15c19b512c4cfc1f9a5d3b6ef009109d
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
+  ruby-rc4 (0.1.5) sha256=00cc40a39d20b53f5459e7ea006a92cf584e9bc275e2a6f7aa1515510e896c03
   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
+  safe_shell (1.1.0) sha256=e41d3e65c7d924f850bda409fbaedce61aec5f30badbf5ede50c564566ac1b0a
   sass (3.7.4) sha256=808b0d39053aa69068df939e24671fe84fd5a9d3314486e1a1457d0934a4255d
   sass-embedded (1.97.1-aarch64-linux-gnu) sha256=427e7d90e69ac578a2f2f4460d4ad663ce27abd379ce79d17d8426e05079c8c5
   sass-embedded (1.97.1-aarch64-linux-musl) sha256=11728a50789f6872b548d888fefb7ab0141e277f28038520bf698057acc41ea6
