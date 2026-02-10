@@ -6,7 +6,7 @@ RSpec.describe Screener, type: :model do
       [
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
-        [:is_pregnant, :is_pregnant],
+        [:pregnancy, :is_pregnant],
         [:has_unemployment_benefits, :has_unemployment_benefits],
         [:is_student, :is_student]
       ].each do |controller, column|
@@ -53,11 +53,11 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :is_pregnant" do
+    context "with_context :pregnancy" do
       it "requires a due date in the future" do
         screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
 
-        screener.valid?(:is_pregnant)
+        screener.valid?(:pregnancy)
         expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
 
         screener.assign_attributes(pregnancy_due_date: Time.now + 3.days)
