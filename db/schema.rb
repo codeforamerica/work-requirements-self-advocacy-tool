@@ -33,12 +33,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_03_235422) do
     t.integer "is_student", default: 0, null: false
     t.integer "is_volunteer", default: 0, null: false
     t.integer "is_working", default: 0, null: false
-    t.integer "language_preference_spoken", default: 0, null: false
-    t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
     t.string "middle_name"
     t.string "phone_number"
     t.date "pregnancy_due_date"
+    t.text "preventing_work_additional_info"
     t.integer "preventing_work_domestic_violence", default: 0, null: false
     t.integer "preventing_work_drugs_alcohol", default: 0, null: false
     t.integer "preventing_work_medical_condition", default: 0, null: false

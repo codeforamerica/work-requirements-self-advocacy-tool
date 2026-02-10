@@ -28,15 +28,6 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :language_preference" do
-      it "requires language preferences to be filled out" do
-        screener = Screener.new(language_preference_spoken: "unfilled", language_preference_written: "unfilled")
-        screener.valid?(:language_preference)
-
-        expect(screener.errors).to match_array ["Language preference spoken must be english or spanish", "Language preference written must be english or spanish"]
-      end
-    end
-
     context "with_context :personal_information" do
       it "requires first name, last name, and phone number" do
         screener = Screener.new(first_name: nil, last_name: nil, phone_number: nil)
@@ -212,6 +203,26 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors).to match_array []
       end
     end
+
+    context "with_context :preventing_work_details" do
+      it "Must have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          preventing_work_additional_info: "This is just a test value."
+        )
+
+        # Valid value that is not too long
+        screener.valid?(:preventing_work_details)
+        expect(screener.valid?(:preventing_work_additional_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = PreventingWorkDetailsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(preventing_work_additional_info: text)
+
+        screener.valid?(:preventing_work_details)
+        expect(screener.errors[:preventing_work_additional_info]).to be_present
+      end
+    end
   end
 
   describe "before_save" do
@@ -265,6 +276,22 @@ RSpec.describe Screener, type: :model do
         screener.update(is_in_alcohol_treatment_program: "no")
 
         expect(screener.reload.alcohol_treatment_program_name).to be_nil
+      end
+    end
+
+    context "with_context :preventing_work_details" do
+      it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
+        screener = Screener.create(
+          preventing_work_additional_info: "This is just a test value.",
+          preventing_work_drugs_alcohol: "yes"
+        )
+
+        screener.update(preventing_work_none: "yes")
+        screener.update(preventing_work_drugs_alcohol: "no")
+
+        screener.reload
+
+        expect(screener.preventing_work_additional_info).to be_nil
       end
     end
   end

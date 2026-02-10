@@ -1,6 +1,7 @@
 // Entry point for the build script in your package.json
 import "@hotwired/turbo-rails"
 import "./controllers"
+import { initTextareaCounter } from "./textarea_counter"
 
 // code mostly copied (from vita-min honeycrisp.js)
 var noneOfTheAbove = (function () {
@@ -39,6 +40,7 @@ document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
   honeycrispInit();
+  initTextareaCounter();
 });
 
 document.addEventListener("turbo:render", function () {

@@ -7,9 +7,6 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
     click_on I18n.t("views.landing_page.fill_out_form")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.language_preference.edit.title"))
-    click_on I18n.t("general.continue")
-
     expect(page).to have_selector("h1", text: I18n.t("views.birth_date.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"
@@ -73,6 +70,10 @@ RSpec.feature "Screener flow" do
     check I18n.t("views.preventing_work.edit.preventing_work_place_to_sleep")
     check I18n.t("views.preventing_work.edit.other")
     fill_in I18n.t("views.preventing_work.edit.preventing_work_write_in"), with: "my spoon carving side hustle"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_details.edit.title"))
+    fill_in "preventing_work_additional_info", with: "Some things are best left unwritten."
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))

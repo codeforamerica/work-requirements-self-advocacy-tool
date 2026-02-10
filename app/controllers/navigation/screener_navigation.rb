@@ -1,7 +1,6 @@
 module Navigation
   class ScreenerNavigation < ControllerNavigation::ControllerNavigation
     SECTIONS = [
-      ControllerNavigation::NavigationStep.new(LanguagePreferenceController),
       ControllerNavigation::NavigationStep.new(BirthDateController),
       ControllerNavigation::NavigationStep.new(AmericanIndianController),
       ControllerNavigation::NavigationStep.new(HasChildController),
@@ -17,6 +16,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(AlcoholTreatmentProgramController),
       ControllerNavigation::NavigationStep.new(PersonalSituationsMilestoneController),
       ControllerNavigation::NavigationStep.new(PreventingWorkController),
+      ControllerNavigation::NavigationStep.new(PreventingWorkDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
       ControllerNavigation::NavigationStep.new(PersonalInformationController),
       ControllerNavigation::NavigationStep.new(EmailController),
