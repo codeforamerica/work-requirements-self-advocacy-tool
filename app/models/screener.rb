@@ -58,7 +58,7 @@ class Screener < ApplicationRecord
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
   end
 
-  with_context :is_pregnant do
+  with_context :pregnancy do
     validates :is_pregnant, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
     validates :pregnancy_due_date, comparison: {greater_than: Date.current, message: I18n.t("validations.date_must_be_in_future")}, allow_blank: true
   end

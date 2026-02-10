@@ -84,7 +84,7 @@ en:
     has_unemployment_benefits:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
-    is_pregnant:
+    pregnancy:
       edit:
         pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
         pregnancy_due_date_label: When is the baby due?
