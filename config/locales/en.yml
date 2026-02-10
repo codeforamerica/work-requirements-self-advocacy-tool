@@ -58,9 +58,9 @@ en:
         volunteering_org_label: What is the name of the organization?
     disability_benefits:
       edit:
+        receiving_benefits_disability_medicaid: Disability-related Medicaid
         receiving_benefits_disability_pension: Disability pension
         receiving_benefits_insurance_payments: Disability insurance payments
-        receiving_benefits_disability_medicaid: Disability-related Medicaid
         receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
         receiving_benefits_ssi: Supplemental Security Income (SSI)
         receiving_benefits_veterans_disability: Veteran’s disability

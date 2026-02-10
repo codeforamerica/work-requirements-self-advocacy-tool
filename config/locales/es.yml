@@ -58,9 +58,9 @@ es:
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
     disability_benefits:
       edit:
+        receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
-        receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
         receiving_benefits_ssdi: Seguro Social
         receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
