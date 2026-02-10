@@ -150,12 +150,12 @@ en:
     personal_information:
       edit:
         birth_date_label: Birthdate
-        first_name_label: First or given name
-        first_name_label_help_text: Legally as it appears on your ID.
-        last_name_label: Last or family name
-        last_name_label_help_text: Legally as it appears on your ID.
+        first_name_label: First or given name (required)
+        first_name_label_help_text: Legally, as it appears on your ID.
+        last_name_label: Last or family name (required)
+        last_name_label_help_text: Legally, as it appears on your ID.
         middle_name_label: Middle name
-        middle_name_label_help_text: This is optional. Legally as it appears on your ID.
+        middle_name_label_help_text: This is optional. Legally, as it appears on your ID.
         phone_number_label: Phone number
         phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Tell us about yourself
