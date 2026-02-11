@@ -3,7 +3,7 @@
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
 <p class="text--help">
-  <%= t("views.preventing_work.edit.choose_all_that_apply") %>
+  <%= t("general.choose_all_that_apply") %>
 </p>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
