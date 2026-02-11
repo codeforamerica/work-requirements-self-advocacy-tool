@@ -46,6 +46,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_10_234658) do
     t.integer "preventing_work_other", default: 0, null: false
     t.integer "preventing_work_place_to_sleep", default: 0, null: false
     t.string "preventing_work_write_in"
+    t.integer "receiving_benefits_disability_medicaid", default: 0, null: false
     t.integer "receiving_benefits_disability_pension", default: 0, null: false
     t.integer "receiving_benefits_insurance_payments", default: 0, null: false
     t.integer "receiving_benefits_none", default: 0, null: false
