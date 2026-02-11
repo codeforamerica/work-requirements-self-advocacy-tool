@@ -1,4 +1,4 @@
-class PersonalInformationController < QuestionController
+class BasicInfoDetailsController < QuestionController
   include BasicInfoConcern
 
   def self.attributes_edited

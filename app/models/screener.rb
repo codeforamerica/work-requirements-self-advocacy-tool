@@ -42,7 +42,7 @@ class Screener < ApplicationRecord
   with_context :birth_date do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
-  with_context :personal_information do
+  with_context :basic_info_details do
     validates :first_name, :last_name, :phone_number, presence: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
   end

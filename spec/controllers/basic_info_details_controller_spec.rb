@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe PersonalInformationController, type: :controller do
+RSpec.describe BasicInfoDetailsController, type: :controller do
   describe "#update" do
     it "persists attributes to the screener" do
       screener = create(:screener)

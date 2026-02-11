@@ -34,6 +34,25 @@ en:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
         title: Are you an American Indian, or the child or grandchild or an American Indian?
+    basic_info_details:
+      edit:
+        birth_date_label: Birthdate
+        consent_to_texts:
+          additional_info: 'Message frequency will vary. Message and data rates may apply. Text HELP to #### for help. Text STOP to ##### to cancel. Carriers (e.g. [carrier]) are not responsible or liable for undelivered or delayed messages. See our Terms and Conditions and Privacy Policy.'
+        consented_to_texts:
+          affirmative: Yes, you can text me
+          help_text: This is optional. We may invite you to share feedback to help improve the form.
+          label: Is it okay to send you texts at the phone number you added?
+          negative: No, don’t text me
+        first_name_label: First or given name (required)
+        first_name_label_help_text: Legally, as it appears on your ID.
+        last_name_label: Last or family name (required)
+        last_name_label_help_text: Legally, as it appears on your ID.
+        middle_name_label: Middle name
+        middle_name_label_help_text: This is optional. Legally, as it appears on your ID.
+        phone_number_label: Phone number
+        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
+        title: Tell us about yourself
     basic_info_milestone:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
@@ -147,25 +166,6 @@ en:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
         title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
-    personal_information:
-      edit:
-        birth_date_label: Birthdate
-        consent_to_texts:
-          additional_info: 'Message frequency will vary. Message and data rates may apply. Text HELP to #### for help. Text STOP to ##### to cancel. Carriers (e.g. [carrier]) are not responsible or liable for undelivered or delayed messages. See our Terms and Conditions and Privacy Policy.'
-        consented_to_texts:
-          affirmative: Yes, you can text me
-          help_text: This is optional. We may invite you to share feedback to help improve the form.
-          label: Is it okay to send you texts at the phone number you added?
-          negative: No, don’t text me
-        first_name_label: First or given name (required)
-        first_name_label_help_text: Legally, as it appears on your ID.
-        last_name_label: Last or family name (required)
-        last_name_label_help_text: Legally, as it appears on your ID.
-        middle_name_label: Middle name
-        middle_name_label_help_text: This is optional. Legally, as it appears on your ID.
-        phone_number_label: Phone number
-        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
-        title: Tell us about yourself
     personal_situations_milestone:
       edit:
         help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
