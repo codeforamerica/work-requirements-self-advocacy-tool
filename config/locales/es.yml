@@ -37,8 +37,9 @@ es:
         title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_milestone:
       edit:
-        help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
-        title: Información básica
+        help_text_html: <strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>
+        title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
+        instructions: This information helps your caseworker find your case when you submit your form.
     birth_date:
       edit:
         help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
