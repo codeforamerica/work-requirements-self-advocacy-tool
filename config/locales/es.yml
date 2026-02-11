@@ -8,6 +8,7 @@ es:
       remaining:
         one: Queda %{count} caracter
         other: Quedan %{count} caracteres
+    choose_all_that_apply: Seleccione todas las que correspondan.
     continue: Continuar
     faq: Frequently Asked Questions
     footer:
@@ -58,12 +59,13 @@ es:
         volunteering_org_label_help_text: Si realiza trabajo voluntario en más de una organización, puede escribirlas aquí.
     disability_benefits:
       edit:
+        receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
         receiving_benefits_ssdi: Seguro Social
-        receiving_benefits_ssi: SSI (Ingreso Suplementario del Seguro Social)
+        receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
-        receiving_benefits_workers_compensation: Compensación para trabajadores
+        receiving_benefits_workers_compensation: Pensión por discapacidad
         receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     email:
@@ -166,7 +168,6 @@ es:
         title: Situaciones que hacen difícil que trabaje
     preventing_work:
       edit:
-        choose_all_that_apply: Seleccione todas las que correspondan.
         other: Otra razón
         preventing_work_domestic_violence: Violencia doméstica
         preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
