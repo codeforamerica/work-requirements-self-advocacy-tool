@@ -83,6 +83,7 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.personal_information.edit.first_name_label"), with: "Prue"
     fill_in I18n.t("views.personal_information.edit.last_name_label"), with: "Leith"
     fill_in I18n.t("views.personal_information.edit.phone_number_label"), with: "415-816-1286"
+    choose I18n.t("views.personal_information.edit.consented_to_texts.affirmative")
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.email.edit.title"))

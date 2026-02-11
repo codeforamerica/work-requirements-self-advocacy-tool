@@ -150,6 +150,13 @@ es:
     personal_information:
       edit:
         birth_date_label: Fecha de nacimiento
+        consent_to_texts:
+          additional_info: 'La frecuencia de los mensajes puede variar. Pueden aplicar costos de mensajes y datos. Envíe HELP al #### para obtener ayuda. Envíe STOP al ##### para cancelar. Los operadores (por ejemplo, [operador]) no son responsables de mensajes no entregados o demorados. Consulte nuestros Términos y Condiciones y nuestra Política de Privacidad.'
+        consented_to_texts:
+          affirmative: Sí, puede enviarme mensajes de texto
+          help_text: Es posible que le invitemos a compartir comentarios para ayudarnos a mejorar este formulario.
+          label: "¿Está de acuerdo con recibir mensajes de texto en el número que agregó?"
+          negative: No, prefiero no recibir mensajes
         first_name_label: Primer nombre (requerido)
         first_name_label_help_text: Tal como aparece legalmente en su identificación.
         last_name_label: Apellido (requerido)

@@ -27,6 +27,7 @@ class Screener < ApplicationRecord
   enum :preventing_work_medical_condition, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :consented_to_texts, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }

@@ -25,5 +25,19 @@
       )
   %>
 
+  <%= f.cfa_radio_set(
+        :consented_to_texts,
+        label_text: t("views.personal_information.edit.consented_to_texts.label"),
+        help_text: t("views.personal_information.edit.consented_to_texts.help_text"),
+        collection: [
+          { value: :yes, label: t("views.personal_information.edit.consented_to_texts.affirmative") },
+          { value: :no, label: t("views.personal_information.edit.consented_to_texts.negative") },
+        ]
+      ) %>
+
+  <p class="spacing-below-60">
+    <%= t("views.personal_information.edit.consent_to_texts.additional_info") %>
+  </p>
+
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
