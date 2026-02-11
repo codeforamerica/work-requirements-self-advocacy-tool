@@ -37,9 +37,9 @@ en:
         title: Are you an American Indian, or the child or grandchild or an American Indian?
     basic_info_milestone:
       edit:
-        help_text_html: <strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>
-        title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
+        help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
         instructions: This information helps your caseworker find your case when you submit your form.
+        title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
     birth_date:
       edit:
         help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
