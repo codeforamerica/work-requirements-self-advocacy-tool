@@ -1,0 +1,28 @@
+<% content_for :question_title, t("views.preventing_work_details.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p class="text--help">
+  <%= t("views.preventing_work_details.edit.header") %>
+</p>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+
+  <%= f.cfa_textarea(
+        :preventing_work_additional_info,
+        t("views.preventing_work_details.edit.question", count: @conditions_count).to_s,
+        help_text: t("views.preventing_work_details.edit.instructions"),
+        options: {
+          maxlength: PreventingWorkDetailsController::CHARACTER_LIMIT,
+          id: "preventing_work_additional_info",
+          data: {
+            i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
+            i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
+          }
+        }
+      ) %>
+
+  <p class="char-counter spacing-below-0">&nbsp;</p>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

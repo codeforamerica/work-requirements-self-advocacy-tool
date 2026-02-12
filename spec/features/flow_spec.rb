@@ -13,7 +13,7 @@ RSpec.feature "Screener flow" do
     select "1940", from: "Year"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.america_indian.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
     click_on I18n.t("general.negative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.has_child.edit.title"))
@@ -23,7 +23,7 @@ RSpec.feature "Screener flow" do
     check I18n.t("general.none_of_the_above")
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.is_pregnant.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.pregnancy.edit.title"))
     choose I18n.t("general.negative")
     click_on I18n.t("general.continue")
 
@@ -70,6 +70,10 @@ RSpec.feature "Screener flow" do
     check I18n.t("views.preventing_work.edit.preventing_work_place_to_sleep")
     check I18n.t("views.preventing_work.edit.other")
     fill_in I18n.t("views.preventing_work.edit.preventing_work_write_in"), with: "my spoon carving side hustle"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_details.edit.title"))
+    fill_in "preventing_work_additional_info", with: "Some things are best left unwritten."
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))

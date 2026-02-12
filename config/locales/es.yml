@@ -4,6 +4,11 @@ es:
     affirmative: Sí
     back: Regresa
     basic_information: Información básica
+    char_counter:
+      remaining:
+        one: Queda %{count} caracter
+        other: Quedan %{count} caracteres
+    choose_all_that_apply: Seleccione todas las que correspondan.
     continue: Continuar
     faq: Frequently Asked Questions
     footer:
@@ -26,10 +31,6 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
-    america_indian:
-      edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_milestone:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
@@ -51,14 +52,16 @@ es:
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
+        volunteering_org_label_help_text: Si realiza trabajo voluntario en más de una organización, puede escribirlas aquí.
     disability_benefits:
       edit:
+        receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
         receiving_benefits_ssdi: Seguro Social
-        receiving_benefits_ssi: SSI (Ingreso Suplementario del Seguro Social)
+        receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
-        receiving_benefits_workers_compensation: Compensación para trabajadores
+        receiving_benefits_workers_compensation: Pensión por discapacidad
         receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     email:
@@ -75,16 +78,11 @@ es:
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     has_child:
       edit:
-        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
-        title: Is there a child under the age of 14 that lives in your household?
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
+        title: "¿En su hogar vive un niño menor de 14 años?"
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
-    is_pregnant:
-      edit:
-        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
-        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
-        title: "¿Está en embarazo?"
     is_student:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
@@ -165,9 +163,13 @@ es:
       edit:
         help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
         title: Situaciones que hacen difícil que trabaje
+    pregnancy:
+      edit:
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
+        title: "¿Está en embarazo?"
     preventing_work:
       edit:
-        choose_all_that_apply: Seleccione todas las que correspondan.
         other: Otra razón
         preventing_work_domestic_violence: Violencia doméstica
         preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
@@ -178,6 +180,18 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    preventing_work_details:
+      edit:
+        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
+        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        question:
+          one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
+          other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
+        title: Gracias por compartir esta información
+    tribe_or_nation:
+      edit:
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
+        title: "¿Es usted miembro de una tribu o nación indígena?"
     work_training:
       edit:
         notice_content:

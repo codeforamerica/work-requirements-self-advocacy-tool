@@ -6,7 +6,6 @@ RSpec.describe Screener, type: :model do
       [
         [:american_indian, :is_american_indian],
         [:has_child, :has_child],
-        [:is_pregnant, :is_pregnant],
         [:has_unemployment_benefits, :has_unemployment_benefits],
         [:is_student, :is_student]
       ].each do |controller, column|
@@ -53,11 +52,11 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :is_pregnant" do
+    context "with_context :pregnancy" do
       it "requires a due date in the future" do
         screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
 
-        screener.valid?(:is_pregnant)
+        screener.valid?(:pregnancy)
         expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
 
         screener.assign_attributes(pregnancy_due_date: Time.now + 3.days)
@@ -203,6 +202,26 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors).to match_array []
       end
     end
+
+    context "with_context :preventing_work_details" do
+      it "Must have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          preventing_work_additional_info: "This is just a test value."
+        )
+
+        # Valid value that is not too long
+        screener.valid?(:preventing_work_details)
+        expect(screener.valid?(:preventing_work_additional_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = PreventingWorkDetailsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(preventing_work_additional_info: text)
+
+        screener.valid?(:preventing_work_details)
+        expect(screener.errors[:preventing_work_additional_info]).to be_present
+      end
+    end
   end
 
   describe "before_save" do
@@ -256,6 +275,22 @@ RSpec.describe Screener, type: :model do
         screener.update(is_in_alcohol_treatment_program: "no")
 
         expect(screener.reload.alcohol_treatment_program_name).to be_nil
+      end
+    end
+
+    context "with_context :preventing_work_details" do
+      it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
+        screener = Screener.create(
+          preventing_work_additional_info: "This is just a test value.",
+          preventing_work_drugs_alcohol: "yes"
+        )
+
+        screener.update(preventing_work_none: "yes")
+        screener.update(preventing_work_drugs_alcohol: "no")
+
+        screener.reload
+
+        expect(screener.preventing_work_additional_info).to be_nil
       end
     end
   end
