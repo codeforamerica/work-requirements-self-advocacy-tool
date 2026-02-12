@@ -79,7 +79,9 @@ module PdfFiller
 
     def html_to_pdf
       html = TempEndController.new.render_to_string({template: "packet_page_one/page", layout: "pdf"})
-      Grover.new(html).to_pdf
+      css_path = Rails.root.join('app', 'assets', 'stylesheets', 'wr_exemption_pdf.css')
+      style_tag_options = [{ path: css_path }]
+      Grover.new(html, style_tag_options: style_tag_options).to_pdf
     end
 
     def combined_pdf
