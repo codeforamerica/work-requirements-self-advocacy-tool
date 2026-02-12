@@ -71,7 +71,6 @@ en:
       edit:
         email: Email
         email_confirmation: Confirm your email
-        notice_text: By adding your email address, you agree that we can send you a confirmation email after you submit your form
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     email_nudge:

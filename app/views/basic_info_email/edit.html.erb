@@ -4,17 +4,6 @@
 
 <p><%= t("views.email.edit.title_help_text") %></p>
 
-<div class="notice teal">
-  <div class="media-box">
-    <div class="media-box__media media--icon">
-      <i class="icon-markunread"></i>
-    </div>
-    <div class="media-box__content">
-      <%= t("views.email.edit.notice_text") %>
-    </div>
-  </div>
-</div>
-
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
   <%= f.cfa_input_field(:email, t("views.email.edit.email")) %>
   <%= f.cfa_input_field(:email_confirmation, t("views.email.edit.email_confirmation")) %>
