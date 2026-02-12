@@ -1,4 +1,4 @@
-class IsPregnantController < QuestionController
+class PregnancyController < QuestionController
   include WrExemptionsConcern
   include DateHelper
 

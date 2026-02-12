@@ -12,6 +12,7 @@ RSpec.describe DisabilityBenefitsController, type: :controller do
         receiving_benefits_disability_pension: "no",
         receiving_benefits_workers_compensation: "no",
         receiving_benefits_insurance_payments: "no",
+        receiving_benefits_disability_medicaid: "yes",
         receiving_benefits_other: "yes",
         receiving_benefits_none: "no",
         receiving_benefits_write_in: "boop"
@@ -25,6 +26,7 @@ RSpec.describe DisabilityBenefitsController, type: :controller do
       expect(screener.receiving_benefits_disability_pension).to eq "no"
       expect(screener.receiving_benefits_workers_compensation).to eq "no"
       expect(screener.receiving_benefits_insurance_payments).to eq "no"
+      expect(screener.receiving_benefits_disability_medicaid).to eq "yes"
       expect(screener.receiving_benefits_other).to eq "yes"
       expect(screener.receiving_benefits_none).to eq "no"
       expect(screener.receiving_benefits_write_in).to eq "boop"

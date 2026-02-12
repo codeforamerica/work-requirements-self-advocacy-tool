@@ -8,6 +8,7 @@ en:
       remaining:
         one: "%{count} character remaining"
         other: "%{count} characters remaining"
+    choose_all_that_apply: Choose all that apply.
     continue: Continue
     faq: Frequently Asked Questions
     footer:
@@ -51,14 +52,16 @@ en:
         volunteering_hours_label: How many hours a week do you volunteer?
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
+        volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
     disability_benefits:
       edit:
+        receiving_benefits_disability_medicaid: Disability-related Medicaid
         receiving_benefits_disability_pension: Disability pension
         receiving_benefits_insurance_payments: Disability insurance payments
         receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
-        receiving_benefits_ssi: SSI (Supplemental Security Income)
+        receiving_benefits_ssi: Supplemental Security Income (SSI)
         receiving_benefits_veterans_disability: Veteran’s disability
-        receiving_benefits_workers_compensation: Worker’s compensation
+        receiving_benefits_workers_compensation: Workers' compensation
         receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
     email:
@@ -80,11 +83,6 @@ en:
     has_unemployment_benefits:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
-    is_pregnant:
-      edit:
-        pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
-        pregnancy_due_date_label: When is the baby due?
-        title: Are you pregnant?
     is_student:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
@@ -159,9 +157,13 @@ en:
       edit:
         help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
         title: Situations that make it hard to work
+    pregnancy:
+      edit:
+        pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
+        pregnancy_due_date_label: When is the baby due?
+        title: Are you pregnant?
     preventing_work:
       edit:
-        choose_all_that_apply: Choose all that apply.
         other: Other
         preventing_work_domestic_violence: Experiencing domestic violence
         preventing_work_drugs_alcohol: Struggling with drugs or alcohol
