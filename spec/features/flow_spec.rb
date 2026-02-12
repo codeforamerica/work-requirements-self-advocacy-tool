@@ -13,7 +13,7 @@ RSpec.feature "Screener flow" do
     select "1940", from: "Year"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.america_indian.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
     click_on I18n.t("general.negative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.has_child.edit.title"))
