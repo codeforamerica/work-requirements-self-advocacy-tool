@@ -87,11 +87,6 @@ es:
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
-    is_pregnant:
-      edit:
-        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
-        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
-        title: "¿Está en embarazo?"
     is_student:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
@@ -166,6 +161,11 @@ es:
       edit:
         help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
         title: Situaciones que hacen difícil que trabaje
+    pregnancy:
+      edit:
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
+        title: "¿Está en embarazo?"
     preventing_work:
       edit:
         other: Otra razón
