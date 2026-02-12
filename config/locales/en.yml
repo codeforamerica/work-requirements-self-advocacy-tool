@@ -141,6 +141,12 @@ en:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
         title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
+    new_response:
+      edit:
+        check_work_rules_for_someone_else: Check work rules for someone else
+        close: Done
+        title: You’re all done.
+        title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
     personal_information:
       edit:
         birth_date_label: Birthdate
