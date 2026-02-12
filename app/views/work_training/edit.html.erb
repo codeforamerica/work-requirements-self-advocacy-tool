@@ -28,7 +28,7 @@
     </div>
 
     <div class="question-with-follow-up__follow-up" id="program-hours-and-name">
-      <hr class="spacing-above-0" />
+      <hr/>
       <%= f.cfa_input_field(
             :work_training_hours,
             t("views.work_training.edit.work_training_hours_label"),
@@ -44,4 +44,3 @@
 
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
-

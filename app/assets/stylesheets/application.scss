@@ -103,6 +103,12 @@ i.no-button-cross {
 .question-with-follow-up__follow-up {
   border: none;
   background: none;
+  padding: 0;
+  margin: 3.5rem 0;
+  hr {
+    margin-top: 0;
+    margin-bottom: 3.5rem;
+  }
 }
 
 .question-with-follow-up__follow-up:before {
