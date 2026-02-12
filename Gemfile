@@ -46,6 +46,9 @@ gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycri
 
 gem "phonelib"
 gem "valid_email2"
+gem "pdf-forms", "~> 1.5.2"
+gem "grover"
+gem "combine_pdf"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -106,6 +106,14 @@ class Screener < ApplicationRecord
     validates :email, "valid_email_2/email": true, confirmation: true
   end
 
+  def full_name
+    [first_name, last_name].compact.join(" ")
+  end
+
+  def full_name_with_middle
+    [first_name, middle_name, last_name].compact.join(" ")
+  end
+
   def birth_date_year
     birth_date&.year
   end
