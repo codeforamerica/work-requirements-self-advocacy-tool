@@ -70,11 +70,17 @@ main {
 i.yes-button-checkmark {
   color: $color-green;
   font-weight: bold;
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: middle;
 }
 
 i.no-button-cross {
   color: $color-red;
   font-weight: bold;
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: middle;
 }
 
 .question-with-follow-up__follow-up {
