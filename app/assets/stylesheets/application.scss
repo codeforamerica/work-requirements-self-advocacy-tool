@@ -1,5 +1,9 @@
 @import "cfa_styleguide_main";
 
+.form-group, .text--help {
+  font-size: 1.9rem;
+}
+
 html {
   background-color: $color-grey;
 }
@@ -49,6 +53,9 @@ main {
 
 .notice {
   padding: 0.8rem;
+  .media--icon {
+    margin-right: 0.8rem;
+  }
 }
 
 .notice.white {
