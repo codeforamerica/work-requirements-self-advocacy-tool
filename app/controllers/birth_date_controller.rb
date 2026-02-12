@@ -5,6 +5,10 @@ class BirthDateController < QuestionController
     false
   end
 
+  def prev_path
+    root_path
+  end
+
   private
 
   def form_params(model)
