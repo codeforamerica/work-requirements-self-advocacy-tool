@@ -35,7 +35,7 @@ en:
       edit:
         birth_date_label: Birthdate
         consent_to_texts:
-          additional_info: 'Message frequency will vary. Message and data rates may apply. Text HELP to #### for help. Text STOP to ##### to cancel. Carriers (e.g. [carrier]) are not responsible or liable for undelivered or delayed messages. See our Terms and Conditions and Privacy Policy.'
+          additional_info: Message frequency will vary. Message and data rates may apply. Reply HELP for help. Reply STOP to cancel. See our Terms and Conditions and Privacy Policy for details.
         consented_to_texts:
           affirmative: Yes, you can text me
           help_text: This is optional. We may invite you to share feedback to help improve the form.
