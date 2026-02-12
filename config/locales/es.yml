@@ -141,12 +141,6 @@ es:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
         title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
-    new_response:
-      edit:
-        check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
-        close: Cerrar
-        title: Ha finalizado.
-        title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
     personal_information:
       edit:
         birth_date_label: Fecha de nacimiento
