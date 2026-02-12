@@ -87,11 +87,7 @@ es:
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
-    is_student:
-      edit:
-        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
-        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
-    landing_page:
+    homepage:
       fill_out_form: Complete el formulario
       index:
         faq:
@@ -141,6 +137,10 @@ es:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+    is_student:
+      edit:
+        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.

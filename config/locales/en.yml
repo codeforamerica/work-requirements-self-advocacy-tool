@@ -87,11 +87,7 @@ en:
     has_unemployment_benefits:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
-    is_student:
-      edit:
-        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
-        title: Do you go to school full-time, or at least half-time?
-    landing_page:
+    homepage:
       fill_out_form: Fill out the form
       index:
         faq:
@@ -141,6 +137,10 @@ en:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+    is_student:
+      edit:
+        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        title: Do you go to school full-time, or at least half-time?
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
