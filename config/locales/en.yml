@@ -31,10 +31,6 @@ en:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
         title: Are you in a drug or alcohol treatment program?
-    america_indian:
-      edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: Are you an American Indian, or the child or grandchild or an American Indian?
     basic_info_milestone:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
@@ -186,6 +182,10 @@ en:
           one: Can you share more information about how this condition limits you from working at least 20 hours a week?
           other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
         title: Thank you for sharing.
+    tribe_or_nation:
+      edit:
+        help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
+        title: Are you an American Indian, or the child or grandchild of an American Indian?
     work_training:
       edit:
         notice_content:
