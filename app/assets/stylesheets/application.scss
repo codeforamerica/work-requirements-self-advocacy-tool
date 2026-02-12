@@ -8,6 +8,12 @@ main {
   background-color: $color-grey-light;
 }
 
+@media screen and (min-width: 800px) {
+  .card {
+    padding: 6rem;
+  }
+}
+
 .toolbar {
   display: flex;
   justify-content: flex-end;
