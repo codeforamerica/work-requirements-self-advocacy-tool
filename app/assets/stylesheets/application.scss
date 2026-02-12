@@ -70,14 +70,14 @@ main {
 i.yes-button-checkmark {
   color: $color-green;
   font-weight: bold;
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: middle;
 }
 
 i.no-button-cross {
   color: $color-red;
   font-weight: bold;
-}
-
-.button.yes-or-no {
   font-size: 3rem;
   line-height: 0;
   vertical-align: middle;
