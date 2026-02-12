@@ -124,3 +124,7 @@ i.no-button-cross {
     margin-bottom: 0;
   }
 }
+
+.input-group--block .radio-button {
+  max-width: unset;
+}
