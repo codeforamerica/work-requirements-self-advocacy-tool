@@ -31,10 +31,6 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
-    america_indian:
-      edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: "¿Es usted miembro de una tribu o nación indígena?"
     basic_info_details:
       edit:
         birth_date_label: Fecha de nacimiento
@@ -75,6 +71,7 @@ es:
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
+        volunteering_org_label_help_text: Si realiza trabajo voluntario en más de una organización, puede escribirlas aquí.
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
@@ -105,11 +102,6 @@ es:
     has_unemployment_benefits:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
-    is_pregnant:
-      edit:
-        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
-        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
-        title: "¿Está en embarazo?"
     is_student:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
@@ -168,10 +160,21 @@ es:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
         title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
+    new_response:
+      edit:
+        check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
+        close: Cerrar
+        title: Ha finalizado.
+        title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
     personal_situations_milestone:
       edit:
         help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
         title: Situaciones que hacen difícil que trabaje
+    pregnancy:
+      edit:
+        pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
+        pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
+        title: "¿Está en embarazo?"
     preventing_work:
       edit:
         other: Otra razón
@@ -192,6 +195,10 @@ es:
           one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
           other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
         title: Gracias por compartir esta información
+    tribe_or_nation:
+      edit:
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
+        title: "¿Es usted miembro de una tribu o nación indígena?"
     work_training:
       edit:
         notice_content:

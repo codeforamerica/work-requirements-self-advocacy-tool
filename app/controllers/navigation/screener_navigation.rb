@@ -2,10 +2,10 @@ module Navigation
   class ScreenerNavigation < ControllerNavigation::ControllerNavigation
     SECTIONS = [
       ControllerNavigation::NavigationStep.new(BirthDateController),
-      ControllerNavigation::NavigationStep.new(AmericanIndianController),
+      ControllerNavigation::NavigationStep.new(TribeOrNationController),
       ControllerNavigation::NavigationStep.new(HasChildController),
       ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
-      ControllerNavigation::NavigationStep.new(IsPregnantController),
+      ControllerNavigation::NavigationStep.new(PregnancyController),
       ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),
       ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
       ControllerNavigation::NavigationStep.new(WorkingController),
@@ -21,7 +21,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(BasicInfoDetailsController),
       ControllerNavigation::NavigationStep.new(EmailController),
       ControllerNavigation::NavigationStep.new(EmailNudgeController),
-      ControllerNavigation::NavigationStep.new(TempEndController)
+      ControllerNavigation::NavigationStep.new(NewResponseController)
     ].freeze
   end
 end
