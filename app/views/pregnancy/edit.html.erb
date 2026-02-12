@@ -1,4 +1,4 @@
-<% content_for :question_title, t("views.is_pregnant.edit.title") %>
+<% content_for :question_title, t("views.pregnancy.edit.title") %>
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
@@ -17,8 +17,8 @@
       <hr class="spacing-above-0" />
       <%= f.cfa_date_select(
             :pregnancy_due_date,
-            t("views.is_pregnant.edit.pregnancy_due_date_label"),
-            help_text: t("views.is_pregnant.edit.pregnancy_due_date_help_text"),
+            t("views.pregnancy.edit.pregnancy_due_date_label"),
+            help_text: t("views.pregnancy.edit.pregnancy_due_date_help_text"),
             options: {
               start_year: Time.now.year,
               end_year: Time.now.year + 1,

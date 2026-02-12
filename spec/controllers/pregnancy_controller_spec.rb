@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe IsPregnantController, type: :controller do
+RSpec.describe PregnancyController, type: :controller do
   describe "#edit" do
     context "due date" do
       render_views
