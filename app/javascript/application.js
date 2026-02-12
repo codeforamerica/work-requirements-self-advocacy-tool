@@ -39,6 +39,7 @@ var noneOfTheAbove = (function () {
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
+  accordion.init();
   honeycrispInit();
   initTextareaCounter();
 });
