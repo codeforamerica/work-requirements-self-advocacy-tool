@@ -56,6 +56,7 @@ en:
         volunteering_hours_label: How many hours a week do you volunteer?
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
+        volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Disability-related Medicaid
