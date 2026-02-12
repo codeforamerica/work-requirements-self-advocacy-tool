@@ -5,11 +5,11 @@
         <h1><%= t("views.landing_page.index.title") %></h1>
 
         <p><%= t("views.landing_page.index.title_help_text_1") %></p>
-        <p>
+        <p class="spacing-below-0">
           <strong><%= t("views.landing_page.index.title_help_text_2") %></strong>
         </p>
 
-        <%= link_to t("views.landing_page.fill_out_form"), start_flow_path, class: "button button--primary" %>
+        <%= link_to t("views.landing_page.fill_out_form"), start_flow_path, class: "spacing-below-60 spacing-above-60 button button--primary" %>
 
         <div class="notice white">
           <%= image_tag "apple.svg", class: "illustration left-justified" %>
