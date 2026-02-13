@@ -1,3 +1,3 @@
-class PersonalSituationsMilestoneController < QuestionController
+class PreventingWorkMilestoneController < QuestionController
   include PersonalSituationsConcern
 end

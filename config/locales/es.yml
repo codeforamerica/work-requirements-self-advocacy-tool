@@ -155,10 +155,6 @@ es:
         phone_number_label: Phone number
         phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Compártanos información sobre usted
-    personal_situations_milestone:
-      edit:
-        help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
-        title: Situaciones que hacen difícil que trabaje
     pregnancy:
       edit:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
@@ -184,6 +180,10 @@ es:
           one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
           other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
         title: Gracias por compartir esta información
+    preventing_work_milestone:
+      edit:
+        help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
+        title: Situaciones que hacen difícil que trabaje
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.

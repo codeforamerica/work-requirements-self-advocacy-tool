@@ -63,7 +63,7 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"), with: "Pro Gram"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.personal_situations_milestone.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_milestone.edit.title"))
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.preventing_work.edit.title"))

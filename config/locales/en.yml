@@ -155,10 +155,6 @@ en:
         phone_number_label: Phone number
         phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
         title: Tell us about yourself
-    personal_situations_milestone:
-      edit:
-        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
-        title: Situations that make it hard to work
     pregnancy:
       edit:
         pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
@@ -184,6 +180,10 @@ en:
           one: Can you share more information about how this condition limits you from working at least 20 hours a week?
           other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
         title: Thank you for sharing.
+    preventing_work_milestone:
+      edit:
+        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
+        title: Situations that make it hard to work
     school_enrollment:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
