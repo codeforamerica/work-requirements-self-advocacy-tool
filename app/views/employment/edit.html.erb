@@ -1,4 +1,4 @@
-<% content_for :question_title, t("views.working.edit.title") %>
+<% content_for :question_title, t("views.employment.edit.title") %>
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
@@ -15,11 +15,11 @@
 
     <div class="question-with-follow-up__follow-up" id="hours-and-earnings">
       <hr class="spacing-above-0"/>
-      <%= f.cfa_input_field(:working_hours, t("views.working.edit.working_hours_label"), help_text: t("views.working.edit.working_hours_help_text")) %>
+      <%= f.cfa_input_field(:working_hours, t("views.employment.edit.working_hours_label"), help_text: t("views.employment.edit.working_hours_help_text")) %>
       <%= f.cfa_input_field(
             :working_weekly_earnings,
-            t("views.working.edit.working_weekly_earnings_label"),
-            help_text: t("views.working.edit.working_weekly_earnings_help_text"),
+            t("views.employment.edit.working_weekly_earnings_label"),
+            help_text: t("views.employment.edit.working_weekly_earnings_help_text"),
             prefix: '$'
           ) %>
     </div>

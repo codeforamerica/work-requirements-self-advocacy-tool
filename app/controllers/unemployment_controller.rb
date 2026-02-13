@@ -1,4 +1,4 @@
-class HasUnemploymentBenefitsController < QuestionController
+class UnemploymentController < QuestionController
   include WrExemptionsConcern
 
   def self.attributes_edited
