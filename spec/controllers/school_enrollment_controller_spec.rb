@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe IsStudentController, type: :controller do
+RSpec.describe SchoolEnrollmentController, type: :controller do
   describe "#update" do
     context "when the answer is no" do
       it "persists the values to the current screener" do

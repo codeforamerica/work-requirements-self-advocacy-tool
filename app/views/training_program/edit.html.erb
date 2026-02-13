@@ -1,14 +1,14 @@
-<% content_for :question_title, t("views.work_training.edit.title") %>
+<% content_for :question_title, t("views.training_program.edit.title") %>
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
 <div class="reveal">
   <button class="reveal__button" aria-expanded="true">
-    <i class="icon-help" style="padding-right: 1rem;"></i><strong><%= t("views.work_training.edit.notice_title") %></strong>
+    <i class="icon-help" style="padding-right: 1rem;"></i><strong><%= t("views.training_program.edit.notice_title") %></strong>
   </button>
   <div class="reveal__content">
     <ul class="list--bulleted spacing-above-0">
-      <% t("views.work_training.edit.notice_content").each do |list_item| %>
+      <% t("views.training_program.edit.notice_content").each do |list_item| %>
         <li><%= list_item %></li>
       <% end %>
     </ul>
@@ -31,13 +31,13 @@
       <hr class="spacing-above-0" />
       <%= f.cfa_input_field(
             :work_training_hours,
-            t("views.work_training.edit.work_training_hours_label"),
-            help_text: t("views.work_training.edit.work_training_hours_help_text")
+            t("views.training_program.edit.work_training_hours_label"),
+            help_text: t("views.training_program.edit.work_training_hours_help_text")
           ) %>
 
       <%= f.cfa_input_field(
             :work_training_name,
-            t("views.work_training.edit.work_training_name_label")
+            t("views.training_program.edit.work_training_name_label")
           ) %>
     </div>
   </div>

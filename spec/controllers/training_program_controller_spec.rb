@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe WorkTrainingController, type: :controller do
+RSpec.describe TrainingProgramController, type: :controller do
   describe "#update" do
     it "persists the values to the current screener" do
       screener = create(:screener)

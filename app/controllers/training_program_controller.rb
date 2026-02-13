@@ -1,4 +1,4 @@
-class WorkTrainingController < QuestionController
+class TrainingProgramController < QuestionController
   include WrExemptionsConcern
 
   def self.attributes_edited

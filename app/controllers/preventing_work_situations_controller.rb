@@ -1,4 +1,4 @@
-class PreventingWorkController < QuestionController
+class PreventingWorkSituationsController < QuestionController
   include PersonalSituationsConcern
 
   def self.attributes_edited

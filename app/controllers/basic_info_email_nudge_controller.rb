@@ -1,4 +1,4 @@
-class EmailNudgeController < QuestionController
+class BasicInfoEmailNudgeController < QuestionController
   include BasicInfoConcern
 
   def self.show?(screener, item_index: nil)
