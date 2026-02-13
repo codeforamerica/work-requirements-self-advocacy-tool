@@ -8,7 +8,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(PregnancyController),
       ControllerNavigation::NavigationStep.new(UnemploymentController),
       ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
-      ControllerNavigation::NavigationStep.new(WorkingController),
+      ControllerNavigation::NavigationStep.new(EmploymentController),
       ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(WorkTrainingController),

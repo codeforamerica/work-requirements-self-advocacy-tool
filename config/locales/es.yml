@@ -76,6 +76,13 @@ es:
         continue_without_it: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
+    employment:
+      edit:
+        title: "¿Está trabajando?"
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
     is_student:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
@@ -206,10 +213,3 @@ es:
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
-    working:
-      edit:
-        title: "¿Está trabajando?"
-        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
-        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
-        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
-        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
