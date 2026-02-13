@@ -160,18 +160,6 @@ es:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
         title: "¿Está en embarazo?"
-    preventing_work_situations:
-      edit:
-        other: Otra razón
-        preventing_work_domestic_violence: Violencia doméstica
-        preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
-        preventing_work_medical_condition_html: |
-          Tiene una condición médica
-          <br/>
-          <span class="text--help">Esto incluye un problema físico, mental u otra situación personal.</span>
-        preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
-        preventing_work_write_in: Si tiene otra razón, escríbala aquí.
-        title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
     preventing_work_details:
       edit:
         header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
@@ -184,6 +172,18 @@ es:
       edit:
         help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
         title: Situaciones que hacen difícil que trabaje
+    preventing_work_situations:
+      edit:
+        other: Otra razón
+        preventing_work_domestic_violence: Violencia doméstica
+        preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
+        preventing_work_medical_condition_html: |
+          Tiene una condición médica
+          <br/>
+          <span class="text--help">Esto incluye un problema físico, mental u otra situación personal.</span>
+        preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
+        preventing_work_write_in: Si tiene otra razón, escríbala aquí.
+        title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
