@@ -1,4 +1,4 @@
-class BirthDateController < QuestionController
+class DateOfBirthController < QuestionController
   include DateHelper
 
   def show_progress_bar

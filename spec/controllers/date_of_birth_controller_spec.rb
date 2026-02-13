@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe BirthDateController, type: :controller do
+RSpec.describe DateOfBirthController, type: :controller do
   describe "#edit" do
     render_views
 
