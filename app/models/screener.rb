@@ -34,7 +34,7 @@ class Screener < ApplicationRecord
   before_validation :strip_email_and_confirmation
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
-    :remove_work_training_attributes_if_no,
+    :remove_training_program_attributes_if_no,
     :remove_working_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
@@ -157,7 +157,7 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_work_training_attributes_if_no
+  def remove_training_program_attributes_if_no
     if is_in_work_training_no?
       self.work_training_hours = nil
       self.work_training_name = nil
