@@ -14,7 +14,7 @@
         <%= f.cfa_checkbox(:preventing_work_place_to_sleep, t("views.preventing_work.edit.preventing_work_place_to_sleep"), options: { checked_value: "yes", unchecked_value: "no" }) %>
         <%= f.cfa_checkbox(:preventing_work_drugs_alcohol, t("views.preventing_work.edit.preventing_work_drugs_alcohol"), options: { checked_value: "yes", unchecked_value: "no" }) %>
         <%= f.cfa_checkbox(:preventing_work_domestic_violence, t("views.preventing_work.edit.preventing_work_domestic_violence"), options: { checked_value: "yes", unchecked_value: "no" }) %>
-        <%= f.cfa_checkbox(:preventing_work_medical_condition, t("views.preventing_work.edit.preventing_work_medical_condition_html"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+        <%= f.cfa_checkbox(:preventing_work_medical_condition, t("views.preventing_work.edit.preventing_work_medical_condition_html"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#write-in" }) %>
         <%= f.cfa_checkbox(:preventing_work_other, t("views.preventing_work.edit.other"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#write-in" }) %>
         <%= f.cfa_checkbox(:preventing_work_none, t("general.none_of_the_above"), options: { checked_value: "yes", unchecked_value: "no", id: "none_of_the_above" }) %>
       </div>

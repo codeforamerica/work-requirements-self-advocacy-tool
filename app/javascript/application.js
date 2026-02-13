@@ -36,10 +36,52 @@ var noneOfTheAbove = (function () {
   }
 })();
 
+var followUpQuestion = (function() {
+  var fUQ = {
+    init: function() {
+      $('.question-with-follow-up').each(function(index, question) {
+        var self = this;
+
+        // set initial state of follow-ups based on the page
+        $(this).find('input').each(function(index, input) {
+          if($(this).attr('data-follow-up') != null) {
+            $($(this).attr('data-follow-up')).toggle($(this).is(':checked'));
+          }
+        });
+        fUQ.update($(self))
+
+        // add click listeners to initial question inputs
+        $(self).find('.question-with-follow-up__question input').click(function(e) {fUQ.update($(self))})
+      });
+    },
+    update: function ($container){
+      // reset follow ups
+      $container.find('.question-with-follow-up__follow-up input').attr('disabled', true);
+      $container.find('.question-with-follow-up__follow-up').hide();
+
+      $container.find('.question-with-follow-up__question input').each(function(index, input) {
+        // if any of the inputs with a data-follow-up is checked then show the follow-up
+        if($(input).is(':checked') && $(input).attr('data-follow-up') != null) {
+          $container.find('.question-with-follow-up__follow-up input').attr('disabled', false);
+          var followUpSelector = $(this).attr('data-follow-up');
+          if (/^[a-zA-Z0-9_\-#\.]+$/.test(followUpSelector)) {
+            $(followUpSelector).show();
+          }
+        }
+      });
+    }
+  }
+  return {
+    init: fUQ.init,
+    update: fUQ.update
+  }
+})();
+
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
   honeycrispInit();
+  followUpQuestion.init();
   initTextareaCounter();
 });
 
