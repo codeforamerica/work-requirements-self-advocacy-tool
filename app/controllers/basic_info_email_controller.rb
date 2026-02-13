@@ -1,4 +1,4 @@
-class EmailController < QuestionController
+class BasicInfoEmailController < QuestionController
   include BasicInfoConcern
 
   def self.attributes_edited
