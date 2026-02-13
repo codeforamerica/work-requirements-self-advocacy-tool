@@ -12,7 +12,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(TrainingProgramController),
-      ControllerNavigation::NavigationStep.new(IsStudentController),
+      ControllerNavigation::NavigationStep.new(SchoolEnrollmentController),
       ControllerNavigation::NavigationStep.new(AlcoholTreatmentProgramController),
       ControllerNavigation::NavigationStep.new(PersonalSituationsMilestoneController),
       ControllerNavigation::NavigationStep.new(PreventingWorkController),

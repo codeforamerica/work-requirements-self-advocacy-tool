@@ -82,7 +82,7 @@ class Screener < ApplicationRecord
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
-  with_context :is_student do
+  with_context :school_enrollment do
     validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
