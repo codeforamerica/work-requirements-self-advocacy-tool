@@ -6,7 +6,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(LivingWithSomeoneController),
       ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
       ControllerNavigation::NavigationStep.new(PregnancyController),
-      ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),
+      ControllerNavigation::NavigationStep.new(UnemploymentController),
       ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
       ControllerNavigation::NavigationStep.new(WorkingController),
       ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),

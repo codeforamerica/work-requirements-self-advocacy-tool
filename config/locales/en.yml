@@ -76,9 +76,6 @@ en:
         continue_without_it: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
-    has_unemployment_benefits:
-      edit:
-        title: Do you get, or are you applying for unemployment benefits?
     is_student:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
@@ -192,6 +189,9 @@ en:
       edit:
         help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
         title: Are you an American Indian, or the child or grandchild of an American Indian?
+    unemployment:
+      edit:
+        title: Do you get, or are you applying for unemployment benefits?
     work_training:
       edit:
         notice_content:

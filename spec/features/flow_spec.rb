@@ -27,7 +27,7 @@ RSpec.feature "Screener flow" do
     choose I18n.t("general.negative")
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.has_unemployment_benefits.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.unemployment.edit.title"))
     click_on I18n.t("general.negative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.disability_benefits.edit.title"))

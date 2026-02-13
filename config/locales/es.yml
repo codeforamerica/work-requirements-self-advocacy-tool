@@ -76,9 +76,6 @@ es:
         continue_without_it: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
-    has_unemployment_benefits:
-      edit:
-        title: "¿Recibe o está solicitando beneficios de desempleo?"
     is_student:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
@@ -192,6 +189,9 @@ es:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
         title: "¿Es usted miembro de una tribu o nación indígena?"
+    unemployment:
+      edit:
+        title: "¿Recibe o está solicitando beneficios de desempleo?"
     work_training:
       edit:
         notice_content:
