@@ -188,11 +188,7 @@ en:
           one: Can you share more information about how this condition limits you from working at least 20 hours a week?
           other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
         title: Thank you for sharing.
-    tribe_or_nation:
-      edit:
-        help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
-        title: Are you an American Indian, or the child or grandchild of an American Indian?
-    work_training:
+    training_program:
       edit:
         notice_content:
         - English as a Second Language classes
@@ -207,6 +203,10 @@ en:
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?
         work_training_name_label: What is the name of the organization or training program?
+    tribe_or_nation:
+      edit:
+        help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
+        title: Are you an American Indian, or the child or grandchild of an American Indian?
     working:
       edit:
         title: Are you working?

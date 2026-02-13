@@ -188,11 +188,7 @@ es:
           one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
           other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
         title: Gracias por compartir esta información
-    tribe_or_nation:
-      edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: "¿Es usted miembro de una tribu o nación indígena?"
-    work_training:
+    training_program:
       edit:
         notice_content:
         - Clases de inglés (ESL, por sus siglas en inglés)
@@ -206,6 +202,10 @@ es:
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
+    tribe_or_nation:
+      edit:
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
+        title: "¿Es usted miembro de una tribu o nación indígena?"
     working:
       edit:
         title: "¿Está trabajando?"
