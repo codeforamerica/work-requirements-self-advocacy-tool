@@ -19,7 +19,6 @@ module Navigation
       ControllerNavigation::NavigationStep.new(PreventingWorkDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
       ControllerNavigation::NavigationStep.new(BasicInfoDetailsController),
-      ControllerNavigation::NavigationStep.new(PersonalInformationController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
       ControllerNavigation::NavigationStep.new(EmailNudgeController),
       ControllerNavigation::NavigationStep.new(NewResponseController)
