@@ -76,7 +76,7 @@ RSpec.feature "Screener flow" do
     fill_in "preventing_work_additional_info", with: "Some things are best left unwritten."
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
+    expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.personal_information.edit.title"))
