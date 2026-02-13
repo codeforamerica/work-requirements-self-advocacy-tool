@@ -95,7 +95,7 @@ class Screener < ApplicationRecord
           preventing_work_medical_condition_yes? ||
           preventing_work_other_yes?
       }
-    validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
+    # validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
   with_context :preventing_work_details do
