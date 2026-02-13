@@ -86,7 +86,7 @@ class Screener < ApplicationRecord
     validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
-  with_context :preventing_work do
+  with_context :preventing_work_situations do
     validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
       if: -> {
         preventing_work_place_to_sleep_yes? ||

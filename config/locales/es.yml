@@ -160,7 +160,7 @@ es:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
         title: "¿Está en embarazo?"
-    preventing_work:
+    preventing_work_situations:
       edit:
         other: Otra razón
         preventing_work_domestic_violence: Violencia doméstica

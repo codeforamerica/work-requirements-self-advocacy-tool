@@ -160,7 +160,7 @@ en:
         pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
         pregnancy_due_date_label: When is the baby due?
         title: Are you pregnant?
-    preventing_work:
+    preventing_work_situations:
       edit:
         other: Other
         preventing_work_domestic_violence: Experiencing domestic violence
