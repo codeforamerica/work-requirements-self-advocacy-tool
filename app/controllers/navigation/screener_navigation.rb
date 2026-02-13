@@ -3,7 +3,7 @@ module Navigation
     SECTIONS = [
       ControllerNavigation::NavigationStep.new(DateOfBirthController),
       ControllerNavigation::NavigationStep.new(TribeOrNationController),
-      ControllerNavigation::NavigationStep.new(HasChildController),
+      ControllerNavigation::NavigationStep.new(LivingWithSomeoneController),
       ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
       ControllerNavigation::NavigationStep.new(PregnancyController),
       ControllerNavigation::NavigationStep.new(HasUnemploymentBenefitsController),

@@ -52,7 +52,7 @@ class Screener < ApplicationRecord
     validates :is_american_indian, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
-  with_context :has_child do
+  with_context :living_with_someone do
     validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
