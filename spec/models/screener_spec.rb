@@ -18,10 +18,10 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :birth_date" do
+    context "with_context :date_of_birth" do
       it "requires birth date" do
         screener = Screener.new(birth_date: nil)
-        screener.valid?(:birth_date)
+        screener.valid?(:date_of_birth)
 
         expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
       end

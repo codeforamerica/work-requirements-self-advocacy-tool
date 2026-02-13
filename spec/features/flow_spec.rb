@@ -7,7 +7,7 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
     click_on I18n.t("views.landing_page.fill_out_form")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.birth_date.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"
     select "1940", from: "Year"
@@ -93,6 +93,6 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
     click_on I18n.t("views.new_response.edit.check_work_rules_for_someone_else")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.birth_date.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
   end
 end

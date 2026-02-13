@@ -35,10 +35,6 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
-    date_of_birth:
-      edit:
-        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
-        title: What is your date of birth? (required)
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
@@ -53,6 +49,10 @@ en:
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
         volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
+    date_of_birth:
+      edit:
+        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
+        title: What is your date of birth? (required)
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Disability-related Medicaid
