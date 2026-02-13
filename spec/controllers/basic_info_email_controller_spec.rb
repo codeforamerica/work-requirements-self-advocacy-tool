@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe EmailController, type: :controller do
+RSpec.describe BasicInfoEmailController, type: :controller do
   describe "#update" do
     it "saves the email regardless of white spaces or capitalization" do
       screener = create(:screener)
