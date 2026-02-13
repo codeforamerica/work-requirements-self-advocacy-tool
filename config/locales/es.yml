@@ -31,6 +31,12 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
+    basic_info_email_nudge:
+      edit:
+        add_an_email: Agregar un correo electrónico
+        continue_without_it: Continuar sin el correo electrónico
+        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
+        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     basic_info_milestone:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
@@ -70,12 +76,6 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
-    basic_info_email_nudge:
-      edit:
-        add_an_email: Agregar un correo electrónico
-        continue_without_it: Continuar sin el correo electrónico
-        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
-        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     has_child:
       edit:
         help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
