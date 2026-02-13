@@ -76,10 +76,6 @@ en:
         continue_without_it: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
-    has_child:
-      edit:
-        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
-        title: Is there a child under the age of 14 that lives in your household?
     has_unemployment_benefits:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
@@ -137,6 +133,10 @@ en:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+    living_with_someone:
+      edit:
+        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
+        title: Is there a child under the age of 14 that lives in your household?
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
