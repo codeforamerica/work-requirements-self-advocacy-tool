@@ -35,7 +35,7 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
-    birth_date:
+    date_of_birth:
       edit:
         help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
         title: What is your date of birth? (required)

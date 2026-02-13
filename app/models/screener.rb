@@ -39,9 +39,10 @@ class Screener < ApplicationRecord
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
 
-  with_context :birth_date do
+  with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
+
   with_context :personal_information do
     validates :first_name, :last_name, :phone_number, presence: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
