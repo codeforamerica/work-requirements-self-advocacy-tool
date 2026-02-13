@@ -70,7 +70,7 @@ en:
         email_confirmation: Confirm your email
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
-    email_nudge:
+    basic_info_email_nudge:
       edit:
         add_an_email: Add an email
         continue_without_it: Continue without it
