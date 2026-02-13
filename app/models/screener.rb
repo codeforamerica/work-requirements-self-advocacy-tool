@@ -35,7 +35,7 @@ class Screener < ApplicationRecord
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_work_training_attributes_if_no,
-    :remove_working_attributes_if_no,
+    :remove_employment_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
 
@@ -144,7 +144,7 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_working_attributes_if_no
+  def remove_employment_attributes_if_no
     if is_working_no?
       self.working_hours = nil
       self.working_weekly_earnings = nil
