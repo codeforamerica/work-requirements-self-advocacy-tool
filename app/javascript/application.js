@@ -36,25 +36,14 @@ var noneOfTheAbove = (function () {
   }
 })();
 
-var followUpQuestionModifier = (function() {
-  var fUQ = {
-    initUpdate: function() {
-      $('.question-with-follow-up').each(function() {
-        var self = this;
-        followUpQuestion.update($(self));
-      });
-    }
-  }
-  return {
-    initUpdate: fUQ.initUpdate,
-  }
-})();
-
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
   honeycrispInit();
-  followUpQuestionModifier.initUpdate();
+  $('.question-with-follow-up').each(function() {
+    var self = this;
+    followUpQuestion.update($(self));
+  });
   initTextareaCounter();
 });
 
