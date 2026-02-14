@@ -42,3 +42,7 @@ document.addEventListener("turbo:load", function() {
   honeycrispInit();
   initTextareaCounter();
 });
+
+document.addEventListener("turbo:render", function () {
+  revealer.init();
+});
