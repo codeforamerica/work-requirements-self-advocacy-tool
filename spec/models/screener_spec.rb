@@ -5,8 +5,8 @@ RSpec.describe Screener, type: :model do
     context "required yes/no" do
       [
         [:american_indian, :is_american_indian],
-        [:has_child, :has_child],
-        [:has_unemployment_benefits, :has_unemployment_benefits],
+        [:living_with_someone, :has_child],
+        [:unemployment, :has_unemployment_benefits],
         [:school_enrollment, :is_student]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
@@ -18,10 +18,10 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :birth_date" do
+    context "with_context :date_of_birth" do
       it "requires birth date" do
         screener = Screener.new(birth_date: nil)
-        screener.valid?(:birth_date)
+        screener.valid?(:date_of_birth)
 
         expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
       end

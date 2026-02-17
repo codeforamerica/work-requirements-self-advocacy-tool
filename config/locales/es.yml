@@ -41,10 +41,6 @@ es:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
         title: Información básica
-    birth_date:
-      edit:
-        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
-        title: "¿Cuál es su fecha de nacimiento? (requerido)"
     caring_for_someone:
       edit:
         child_under_6: Niño menor de 6 años
@@ -59,6 +55,10 @@ es:
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
         volunteering_org_label_help_text: Si realiza trabajo voluntario en más de una organización, puede escribirlas aquí.
+    date_of_birth:
+      edit:
+        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
+        title: "¿Cuál es su fecha de nacimiento? (requerido)"
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
@@ -76,13 +76,23 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
-    has_child:
+    email_nudge:
       edit:
-        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
-        title: "¿En su hogar vive un niño menor de 14 años?"
-    has_unemployment_benefits:
+        add_an_email: Agregar un correo electrónico
+        continue_without_it: Continuar sin el correo electrónico
+        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
+        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
+    employment:
       edit:
-        title: "¿Recibe o está solicitando beneficios de desempleo?"
+        title: "¿Está trabajando?"
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
+    is_student:
+      edit:
+        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     landing_page:
       fill_out_form: Complete el formulario
       index:
@@ -133,6 +143,10 @@ es:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+    living_with_someone:
+      edit:
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
+        title: "¿En su hogar vive un niño menor de 14 años?"
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.

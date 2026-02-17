@@ -35,13 +35,14 @@ class Screener < ApplicationRecord
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_training_program_attributes_if_no,
-    :remove_working_attributes_if_no,
+    :remove_employment_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
 
-  with_context :birth_date do
+  with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
+
   with_context :personal_information do
     validates :first_name, :last_name, :phone_number, presence: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
@@ -51,7 +52,7 @@ class Screener < ApplicationRecord
     validates :is_american_indian, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
-  with_context :has_child do
+  with_context :living_with_someone do
     validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
@@ -63,7 +64,7 @@ class Screener < ApplicationRecord
     validates :pregnancy_due_date, comparison: {greater_than: Date.current, message: I18n.t("validations.date_must_be_in_future")}, allow_blank: true
   end
 
-  with_context :has_unemployment_benefits do
+  with_context :unemployment do
     validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
@@ -143,7 +144,7 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_working_attributes_if_no
+  def remove_employment_attributes_if_no
     if is_working_no?
       self.working_hours = nil
       self.working_weekly_earnings = nil

@@ -1,4 +1,4 @@
-class HasChildController < QuestionController
+class LivingWithSomeoneController < QuestionController
   include WrExemptionsConcern
 
   def self.attributes_edited

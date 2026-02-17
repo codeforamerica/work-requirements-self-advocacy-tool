@@ -41,10 +41,6 @@ en:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
-    birth_date:
-      edit:
-        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
-        title: What is your date of birth? (required)
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
@@ -59,6 +55,10 @@ en:
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
         volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
+    date_of_birth:
+      edit:
+        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
+        title: What is your date of birth? (required)
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Disability-related Medicaid
@@ -76,13 +76,23 @@ en:
         email_confirmation: Confirm your email
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
-    has_child:
+    email_nudge:
       edit:
-        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
-        title: Is there a child under the age of 14 that lives in your household?
-    has_unemployment_benefits:
+        add_an_email: Add an email
+        continue_without_it: Continue without it
+        title: Are you sure you don't want to add an email address?
+        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
+    employment:
       edit:
-        title: Do you get, or are you applying for unemployment benefits?
+        title: Are you working?
+        working_hours_help_text: If this changes, give your weekly average from the past month.
+        working_hours_label: How many hours a week do you usually work?
+        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
+        working_weekly_earnings_label: How much do you earn each week before taxes?
+    is_student:
+      edit:
+        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        title: Do you go to school full-time, or at least half-time?
     landing_page:
       fill_out_form: Fill out the form
       index:
@@ -133,6 +143,10 @@ en:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+    living_with_someone:
+      edit:
+        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
+        title: Is there a child under the age of 14 that lives in your household?
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
