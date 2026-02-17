@@ -235,7 +235,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "working attributes" do
+    context "employment attributes" do
       it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
         screener = Screener.create(is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
 
