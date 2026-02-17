@@ -39,6 +39,36 @@ class Screener < ApplicationRecord
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
 
+  ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
+    is_american_indian
+    has_child
+    caring_for_child_under_6
+    is_pregnant
+    has_unemployment_benefits
+    receiving_benefits_disability_medicaid
+    receiving_benefits_ssdi
+    receiving_benefits_insurance_payments
+    receiving_benefits_veterans_disability
+    receiving_benefits_disability_pension
+    receiving_benefits_workers_compensation
+    is_working
+    is_volunteer
+    is_in_work_training
+    is_student
+    is_in_alcohol_treatment_program
+    preventing_work_place_to_sleep
+    preventing_work_domestic_violence
+    preventing_work_drugs_alcohol
+    preventing_work_medical_condition
+    preventing_work_other
+  ].freeze
+
+  def exempt_from_work_rules?
+    ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
+      public_send("#{attribute}_yes?")
+    end
+  end
+
   with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
