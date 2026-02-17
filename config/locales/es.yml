@@ -76,12 +76,6 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
-    email_nudge:
-      edit:
-        add_an_email: Agregar un correo electrónico
-        continue_without_it: Continuar sin el correo electrónico
-        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
-        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     employment:
       edit:
         title: "¿Está trabajando?"
@@ -89,10 +83,6 @@ es:
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
         working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
         working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
-    is_student:
-      edit:
-        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
-        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     landing_page:
       fill_out_form: Complete el formulario
       index:
@@ -220,10 +210,6 @@ es:
       edit:
         help_text: If you are eligible for Indian Health Services, select “Yes.”
         title: "¿Es usted miembro de una tribu o nación indígena?"
-    working:
+    unemployment:
       edit:
-        title: "¿Está trabajando?"
-        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
-        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
-        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
-        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
+        title: "¿Recibe o está solicitando beneficios de desempleo?"

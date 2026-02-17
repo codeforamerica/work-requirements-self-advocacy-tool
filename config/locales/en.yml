@@ -76,12 +76,6 @@ en:
         email_confirmation: Confirm your email
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
-    email_nudge:
-      edit:
-        add_an_email: Add an email
-        continue_without_it: Continue without it
-        title: Are you sure you don't want to add an email address?
-        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     employment:
       edit:
         title: Are you working?
@@ -89,10 +83,6 @@ en:
         working_hours_label: How many hours a week do you usually work?
         working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
         working_weekly_earnings_label: How much do you earn each week before taxes?
-    is_student:
-      edit:
-        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
-        title: Do you go to school full-time, or at least half-time?
     landing_page:
       fill_out_form: Fill out the form
       index:
@@ -221,10 +211,6 @@ en:
       edit:
         help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
         title: Are you an American Indian, or the child or grandchild of an American Indian?
-    working:
+    unemployment:
       edit:
-        title: Are you working?
-        working_hours_help_text: If this changes, give your weekly average from the past month.
-        working_hours_label: How many hours a week do you usually work?
-        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
-        working_weekly_earnings_label: How much do you earn each week before taxes?
+        title: Do you get, or are you applying for unemployment benefits?
