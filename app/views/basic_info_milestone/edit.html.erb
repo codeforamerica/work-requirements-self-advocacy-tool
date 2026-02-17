@@ -1,9 +1,10 @@
-<% content_for :question_title, t("views.basic_info_milestone.edit.title") %>
+<% content_for :question_title, t("views.basic_info_milestone.edit.title_html") %>
 
-<div class="text--centered">
-  <h1 class="h2"><%= content_for(:question_title) %></h1>
+<%= image_tag "apple.svg", class: "illustration left-justified" %>
 
-  <p class="spacing-below-60"><%= t("views.basic_info_milestone.edit.help_text_html") %></p>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
 
-  <%= render "shared/continue_button" %>
-</div>
+<p class="spacing-below-25"><%= t("views.basic_info_milestone.edit.help_text_html") %></p>
+<p class="spacing-below-60"><%= t("views.basic_info_milestone.edit.instructions") %></p>
+
+<%= render "shared/continue_button" %>
