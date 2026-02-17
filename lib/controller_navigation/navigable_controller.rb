@@ -80,7 +80,7 @@ module ControllerNavigation
     end
 
     def prev_path(&page_filter_block)
-      if self.class == navigation_instance.controllers.first
+      if instance_of?(navigation_instance.controllers.first)
         root_path
       elsif prev_action
         self.class.to_path_helper({action: prev_action})
