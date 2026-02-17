@@ -5,9 +5,9 @@ RSpec.describe Screener, type: :model do
     context "required yes/no" do
       [
         [:american_indian, :is_american_indian],
-        [:has_child, :has_child],
-        [:has_unemployment_benefits, :has_unemployment_benefits],
-        [:is_student, :is_student]
+        [:living_with_someone, :has_child],
+        [:unemployment, :has_unemployment_benefits],
+        [:school_enrollment, :is_student]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
           screener = Screener.new(column => "unfilled")
@@ -18,10 +18,10 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :birth_date" do
+    context "with_context :date_of_birth" do
       it "requires birth date" do
         screener = Screener.new(birth_date: nil)
-        screener.valid?(:birth_date)
+        screener.valid?(:date_of_birth)
 
         expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
       end
@@ -137,7 +137,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :preventing_work" do
+    context "with_context :preventing_work_situations" do
       it "cannot choose a situation and 'none of the above'" do
         screener = Screener.new(
           preventing_work_place_to_sleep: "no",
@@ -148,19 +148,19 @@ RSpec.describe Screener, type: :model do
           preventing_work_none: "yes"
         )
 
-        screener.valid?(:preventing_work)
+        screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_none]).to be_present
 
         # valid if preventing_work_none is "no"
         screener.assign_attributes(preventing_work_none: "no")
-        expect(screener.valid?(:preventing_work)).to eq true
+        expect(screener.valid?(:preventing_work_situations)).to eq true
 
         # valid if everything but preventing_work_none is "no"
         screener.assign_attributes(
           preventing_work_drugs_alcohol: "no",
           preventing_work_none: "yes"
         )
-        expect(screener.valid?(:preventing_work)).to eq true
+        expect(screener.valid?(:preventing_work_situations)).to eq true
       end
 
       it "can only have a write-in answer if 'other' is checked" do
@@ -169,14 +169,14 @@ RSpec.describe Screener, type: :model do
           preventing_work_write_in: "some other reason"
         )
 
-        screener.valid?(:preventing_work)
+        screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_write_in]).to be_present
 
         screener.assign_attributes(
           preventing_work_other: "yes",
           preventing_work_write_in: "some other reason"
         )
-        expect(screener.valid?(:preventing_work)).to eq true
+        expect(screener.valid?(:preventing_work_situations)).to eq true
       end
     end
 
@@ -235,7 +235,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "working attributes" do
+    context "employment attributes" do
       it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
         screener = Screener.create(is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
 

@@ -1,0 +1,47 @@
+<% content_for :question_title, t("views.training_program.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<div class="reveal">
+  <button class="reveal__button" aria-expanded="true">
+    <i class="icon-help" style="padding-right: 1rem;"></i><strong><%= t("views.training_program.edit.notice_title") %></strong>
+  </button>
+  <div class="reveal__content">
+    <ul class="list--bulleted spacing-above-0">
+      <% t("views.training_program.edit.notice_content").each do |list_item| %>
+        <li><%= list_item %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :is_in_work_training, value: :unfilled %>
+
+  <div class="question-with-follow-up">
+    <div class="question-with-follow-up__question">
+      <%= f.cfa_radio_set(:is_in_work_training, collection: [
+        { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#program-hours-and-name" }},
+        { value: :no, label: t("general.negative") },
+      ]) %>
+    </div>
+
+    <div class="question-with-follow-up__follow-up" id="program-hours-and-name">
+      <hr class="spacing-above-0" />
+      <%= f.cfa_input_field(
+            :work_training_hours,
+            t("views.training_program.edit.work_training_hours_label"),
+            help_text: t("views.training_program.edit.work_training_hours_help_text")
+          ) %>
+
+      <%= f.cfa_input_field(
+            :work_training_name,
+            t("views.training_program.edit.work_training_name_label")
+          ) %>
+    </div>
+  </div>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+
