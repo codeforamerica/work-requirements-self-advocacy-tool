@@ -2,57 +2,42 @@
   <div class="card">
     <h1><%= t("views.homepage.index.title") %></h1>
 
-    <p><%= t("views.homepage.index.title_help_text_1") %></p>
-    <p>
-      <strong><%= t("views.homepage.index.title_help_text_2") %></strong>
-    </p>
+    <%= t("views.homepage.index.title_help_text_html") %>
 
     <%= link_to t("views.homepage.fill_out_form"), start_flow_path, class: "button button--primary" %>
 
     <div class="notice white">
       <%= image_tag "apple.svg", class: "illustration left-justified" %>
-
       <h2><%= t("views.homepage.index.work_rules_title") %></h2>
-
-      <p><%= t("views.homepage.index.work_rules_help_text") %></p>
-
-      <p><%= t("views.homepage.index.work_rules_list_label") %></p>
-      <ul class="list--bulleted">
-        <% t("views.homepage.index.work_rules_list_html").each do |list_item| %>
-          <li><%= list_item %></li>
-        <% end %>
-      </ul>
-
-      <p><%= t("views.homepage.index.work_rules_help_text_2") %></p>
+      <%= t("views.homepage.index.work_rules_description_html") %>
     </div>
+  </div>
+</section>
+<section class="homepage-section--teal">
+  <h2><%= t("views.homepage.index.faq.title") %></h2>
 
-    <div>
-      <h2><%= t("views.homepage.index.faq.title") %></h2>
-
-      <div class="reveal">
-        <button class="reveal__button" aria-expanded="true"><%= t("views.homepage.index.faq.who") %></button>
-        <div class="reveal__content">
-          <%= t("views.homepage.index.faq.who_content_html") %>
-        </div>
-      </div>
-      <div class="reveal">
-        <button class="reveal__button" aria-expanded="true"><%= t("views.homepage.index.faq.who_not") %></button>
-        <div class="reveal__content">
-          <%= t("views.homepage.index.faq.who_not_content_html") %>
-        </div>
-      </div>
-      <div class="reveal">
-        <button class="reveal__button" aria-expanded="true"><%= t("views.homepage.index.faq.keep_snap") %></button>
-        <div class="reveal__content">
-          <%= t("views.homepage.index.faq.keep_snap_content_html") %>
-        </div>
-      </div>
-      <div class="reveal">
-        <button class="reveal__button" aria-expanded="true"><%= t("views.homepage.index.faq.unfit") %></button>
-        <div class="reveal__content">
-          <%= t("views.homepage.index.faq.unfit_content_html") %>
-        </div>
-      </div>
+  <div class="accordion">
+    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who") %></button>
+    <div class="accordion__content">
+      <%= t("views.homepage.index.faq.who_content_html") %>
+    </div>
+  </div>
+  <div class="accordion">
+    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who_not") %></button>
+    <div class="accordion__content">
+      <%= t("views.homepage.index.faq.who_not_content_html") %>
+    </div>
+  </div>
+  <div class="accordion">
+    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.keep_snap") %></button>
+    <div class="accordion__content">
+      <%= t("views.homepage.index.faq.keep_snap_content_html") %>
+    </div>
+  </div>
+  <div class="accordion">
+    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.cant_work") %></button>
+    <div class="accordion__content">
+      <%= t("views.homepage.index.faq.cant_work_content_html") %>
     </div>
   </div>
 </section>

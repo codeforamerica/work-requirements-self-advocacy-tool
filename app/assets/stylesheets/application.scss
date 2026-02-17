@@ -37,6 +37,15 @@ main {
   background-color: $color-grey;
 }
 
+.homepage-section--teal {
+  padding: 3.5rem;
+  background-color: $color-teal-light;
+
+  .accordion {
+    background-color: $color-white;
+  }
+}
+
 .illustration.left-justified {
   margin-left: 1rem;
 }

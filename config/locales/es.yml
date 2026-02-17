@@ -87,52 +87,57 @@ es:
       fill_out_form: Complete el formulario
       index:
         faq:
-          keep_snap: Will I be able to keep getting SNAP benefits?
+          cant_work: "¿Qué pasa si tengo un problema médico o de salud mental que limita mi capacidad para trabajar?"
+          cant_work_content_html: |
+            <p>Si puede demostrar que no puede trabajar por un motivo médico o de salud, las reglas de trabajo de SNAP no aplican en su caso y puede seguir recibiendo los beneficios de SNAP.</p>
+            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>“motivo justificado”</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
+          keep_snap: "¿Podré seguir recibiendo beneficios de SNAP?"
           keep_snap_content_html: |
-            <p>If you do not need to follow the SNAP work rules, you can keep getting SNAP benefits as usual, as long as your state knows about your exemption.</p>
-            <p>Reporting your exemption to your state helps prevent your benefits from being cut off by accident.</p>
-            <p>If you do need to follow the SNAP work rules, you must do 80 hours a month of work activities each month. If you don’t, you can only get SNAP benefits for up to 3 months every 3 years (36 months).</p>
-            <strong>This form will help you figure out if you have to follow the SNAP rules or not.</strong>
+            <p>Si <u>no tiene</u> que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una excepción.</strong></p>
+            <p>Informar a su oficina de SNAP que califica para una excepción ayuda a evitar que sus beneficios se suspendan por error.</p>
+            <p>Si usted <u>tiene</u> que cumplir con las reglas de trabajo de SNAP, debe completar 80 horas al mes. Si no las completa, su SNAP puede limitarse a 3 meses cada 36 meses.</p>
+            <strong>Este formulario le ayudará a saber si necesita cumplir con las reglas de trabajo de SNAP o no.</strong>
           title: Frequently asked questions.
-          unfit: What if I’m unfit for work?
-          unfit_content_html: 'If you can show that you can’t work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP. If you can’t work that month for a good reason (e.g.: your car broke down, a family emergency), you can get excused for that month.'
-          who: Who has to follow the SNAP work rules?
+          who: "¿Quién tiene que cumplir con las reglas de trabajo de SNAP?"
           who_content_html: |
-            This law requires most states and counties to enforce the Able-Bodied Adult Without Dependents work rules, and expands who has to follow those rules. Prior to the law being passed, many states and counties were able to waive this requirement for SNAP recipients.
-            <br/>
-            You are an ABAWD and now likely need to meet the SNAP Work Rules if:
+            <p>La nueva ley H.R.1, aprobada en julio de 2025, exige que la mayoría de los estados y condados hagan cumplir las reglas de trabajo para Adultos aptos para trabajar sin dependientes (ABAWD, por sus siglas en inglés). También cambió las reglas, por lo que más personas deben cumplirlas. Antes de que se aprobara esta ley, muchos estados y condados podían eliminar este requisito para las personas que recibían beneficios de SNAP.</p>
+            <p>Se considera que usted es una persona ABAWD y probablemente ahora debe cumplir con las reglas de trabajo de SNAP si:</p>
             <ul class="list--bulleted">
-              <li>You are between 18 and 64 years old, and</li>
-              <li>You do not live with a child under 14.</li>
+              <li>Tiene entre 18 y 64 años, y</li>
+              <li>No vive con un menor de 14 años.</li>
             </ul>
-          who_not: Who does not need to follow the SNAP work rules?
+          who_not: "¿Quién NO necesita cumplir con las reglas de trabajo de SNAP?"
           who_not_content_html: |
-            Some people do not have to follow the SNAP work rules. You do not have to follow the SNAP work rules if you are:
-            <br/>
+            <p>Usted no tiene que seguir las reglas de trabajo de SNAP si cumple con alguna de estas condiciones:</p>
             <ul class="list--bulleted">
-              <li>Taking care of a child under 14 who gets food benefits with you</li>
-              <li>Pregnant</li>
-              <li>Caring for someone who cannot fully care for themselves (ie: they are elderly or have a disability), even if they don't live with you.</li>
-              <li>Getting unemployment benefits, or applied for unemployment and have not been denied.</li>
-              <li>Going to school full-time, or at least half-time.</li>
-              <li>Getting paid at least $935.25 a month for work you do.</li>
-              <li>Unable to work at least 20 hours a week for health reasons (physical, behavioral or mental health).</li>
-              <li>Getting disability benefits or payments.</li>
-              <li>In an alcohol or drug treatment program.</li>
-              <li>An American Indian.</li>
+              <li>Es menor de 18 años o mayor de 65 años.</li>
+              <li>Vive con una persona menor de 14 años.</li>
+              <li>Está en embarazo.</li>
+              <li>Cuida a alguien que no puede cuidarse por sí mismo (por ejemplo, una persona mayor o una persona con discapacidades), incluso si esa persona no vive con usted.</li>
+              <li>Recibe beneficios de desempleo, o solicitó beneficios por desempleo y no se lo han negado.</li>
+              <li>Asiste a la escuela tiempo completo, o al menos medio tiempo.</li>
+              <li>Recibe al menos $935.25 al mes por el trabajo que realiza.</li>
+              <li>No puede trabajar al menos 20 horas a la semana debido a una condición médica (incluyendo problemas de salud física o mental).</li>
+              <li>Recibe beneficios o pagos por discapacidad.</li>
+              <li>Está en un programa de tratamiento por alcohol o drogas.</li>
+              <li>Es una persona indígena o Indio de los Estados Unidos.</li>
             </ul>
-        title: Check if the SNAP work rules apply to you
-        title_help_text_1: Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.
-        title_help_text_2: It takes most people 10 minutes or less to complete this form.
-        work_rules_help_text: People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.
-        work_rules_help_text_2: If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).
-        work_rules_list_html:
-        - "<strong>Working a job</strong> for money, including self-employment or gigs"
-        - "<strong>Working in exchange for something</strong> like food, housing, or other services"
-        - "<strong>Volunteering</strong>"
-        - Participating in <strong>job training or SNAP Employment & Training programs</strong>
-        work_rules_list_label: 'Work activities include:'
-        work_rules_title: What are the SNAP work rules?
+        title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
+        title_help_text_html: |
+          <p>Le ayudaremos a preparar un documento con su información para enviarlo a su agencia de SNAP y determinar si debe cumplir con <strong>las reglas de trabajo de SNAP.</strong></p>
+          <p><strong>Debería tomar alrededor de 20 minutos completar esta solicitud.</strong></p>
+        work_rules_description_html: |
+          <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
+          <p>Para SNAP, "actividades laborales" incluye:</p>
+          <ul class="list--bulleted">
+            <li><strong>Dinero proveniente</strong> del trabajo, incluyendo trabajo por cuenta propia o temporal.</li>
+            <li><strong>Trabajar a cambio de algo</strong>, como comida, vivienda u otros servicios.</li>
+            <li>Hacer trabajo voluntario.</li>
+            <li>Participar en <strong>programas de capacitación laboral o en programas de Empleo y Capacitación de SNAP.</strong></li>
+          </ul>
+          <p>Si usted no trabaja durante 80 horas al mes, solo puede recibir beneficios de SNAP por 3 meses cada 3 años (36 meses).</p>
+          <p>Si perdió sus beneficios de SNAP debido a los requisitos de trabajo, puede volver a recibirlos si demuestra que ahora cumple con las reglas de trabajo o califica para una excepción.</p>
+        work_rules_title: "¿Cuáles son las reglas de trabajo de SNAP?"
     is_student:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.

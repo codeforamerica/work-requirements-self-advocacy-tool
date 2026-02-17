@@ -87,51 +87,56 @@ en:
       fill_out_form: Fill out the form
       index:
         faq:
+          cant_work: What if I have a medical or mental issue that limits my ability to work?
+          cant_work_content_html: |
+            <p>If you can show that you can’t work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP.</p>
+            <p>If you usually have to follow the work rules but can't work for a good reason right now (for example, your car broke down, you had a family emergency, etc.) you can get excused for that month. Please contact your SNAP agency to explain that you have <strong>"good cause"</strong> for why you can't meet the SNAP work rules right now.</p>
           keep_snap: Will I be able to keep getting SNAP benefits?
           keep_snap_content_html: |
-            <p>If you do not need to follow the SNAP work rules, you can keep getting SNAP benefits as usual, as long as your state knows about your exemption.</p>
+            <p>If you <u>do not</u> need to follow the SNAP work rules, you can keep getting SNAP benefits as usual, <strong>as long as your state knows about your exemption.</strong></p>
             <p>Reporting your exemption to your state helps prevent your benefits from being cut off by accident.</p>
-            <p>If you do need to follow the SNAP work rules, you must do 80 hours a month of work activities each month. If you don’t, you can only get SNAP benefits for up to 3 months every 3 years (36 months).</p>
+            <p>If you <u>do</u> need to follow the SNAP work rules, you must complete 80 hours of work activities each month. Otherwise, you can only get SNAP benefits for up to 3 months every 3 years (36 months).</p>
             <strong>This form will help you figure out if you have to follow the SNAP rules or not.</strong>
           title: Frequently asked questions.
-          unfit: What if I’m unfit for work?
-          unfit_content_html: 'If you can show that you can’t work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP. If you can’t work that month for a good reason (e.g.: your car broke down, a family emergency), you can get excused for that month.'
           who: Who has to follow the SNAP work rules?
           who_content_html: |
-            This law requires most states and counties to enforce the Able-Bodied Adult Without Dependents work rules, and expands who has to follow those rules. Prior to the law being passed, many states and counties were able to waive this requirement for SNAP recipients.
-            <br/>
-            You are an ABAWD and now likely need to meet the SNAP Work Rules if:
+            <p>The new law H.R.1, passed in July 2025, requires most states and counties to use the Able-Bodied Adult Without Dependents (ABAWD) work rules. It also changed the rules, so more people have to follow them. Before the new law passed, many states and counties did not have to apply these work rules.</p>
+            <p>You are considered an ABAWD and now likely need to meet the SNAP work rules if:</p>
             <ul class="list--bulleted">
               <li>You are between 18 and 64 years old, and</li>
               <li>You do not live with a child under 14.</li>
             </ul>
           who_not: Who does not need to follow the SNAP work rules?
           who_not_content_html: |
-            Some people do not have to follow the SNAP work rules. You do not have to follow the SNAP work rules if you are:
-            <br/>
+            <p>Some people do not have to follow the SNAP work rules. You do not have to follow the SNAP work rules if you are:</p>
             <ul class="list--bulleted">
-              <li>Taking care of a child under 14 who gets food benefits with you</li>
+              <li>Younger than 18, or 65+ years old</li>
+              <li>Living with a child under 14</li>
               <li>Pregnant</li>
-              <li>Caring for someone who cannot fully care for themselves (ie: they are elderly or have a disability), even if they don't live with you.</li>
+              <li>Caring for someone who cannot fully care for themselves (for example, if they are elderly or have a disability), even if they don't live with you.</li>
               <li>Getting unemployment benefits, or applied for unemployment and have not been denied.</li>
               <li>Going to school full-time, or at least half-time.</li>
               <li>Getting paid at least $935.25 a month for work you do.</li>
-              <li>Unable to work at least 20 hours a week for health reasons (physical, behavioral or mental health).</li>
+              <li>Unable to work at least 20 hours a week because of a medical condition (including physical or mental health issues).</li>
               <li>Getting disability benefits or payments.</li>
               <li>In an alcohol or drug treatment program.</li>
               <li>An American Indian.</li>
             </ul>
         title: Check if the SNAP work rules apply to you
-        title_help_text_1: Because of new policy changes, many adults on SNAP now have to meet work rules, while others may be exempt.
-        title_help_text_2: It takes most people 10 minutes or less to complete this form.
-        work_rules_help_text: People who have to follow the SNAP work rules must do at least 80 hours of work activities a month or earn at least $935.25 a month.
-        work_rules_help_text_2: If you do not do work activities for 80 hours a month, you can only get SNAP benefits for up to 3 months every 3 years (36 months).
-        work_rules_list_html:
-        - "<strong>Working a job</strong> for money, including self-employment or gigs"
-        - "<strong>Working in exchange for something</strong> like food, housing, or other services"
-        - "<strong>Volunteering</strong>"
-        - Participating in <strong>job training or SNAP Employment & Training programs</strong>
-        work_rules_list_label: 'Work activities include:'
+        title_help_text_html: |
+          <p> We’ll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
+          <p><strong>It takes most people 10 minutes or less to complete this form.</strong></p>
+        work_rules_description_html: |
+          <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
+          <p>Work activities include:</p>
+          <ul class="list--bulleted">
+            <li><strong>Working a job</strong> for money, including self-employment or gigs</li>
+            <li><strong>Working in exchange for something</strong> like food, housing, or other services</li>
+            <li><strong>Volunteering</strong></li>
+            <li>Participating in <strong>job training or SNAP Employment & Training programs</strong></li>
+          </ul>
+          <p>If you do not do work activities for 80 hours a month, you can only get SNAP benefits for 3 months every 3 years (36 months).</p>
+          <p>If you've lost SNAP benefits because of the work rules, you can get them again by showing that you are now meeting the work rules, or that you are exempt.</p>
         work_rules_title: What are the SNAP work rules?
     is_student:
       edit:
