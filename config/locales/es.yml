@@ -39,9 +39,9 @@ es:
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     basic_info_milestone:
       edit:
-        help_text_html: <strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>
+        help_text_html: "<strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>"
+        instructions: Esta información ayuda a la persona que lleva su caso a encontrar su solicitud cuando envíe su formulario.
         title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
-        instructions: This information helps your caseworker find your case when you submit your form.
     caring_for_someone:
       edit:
         child_under_6: Niño menor de 6 años
