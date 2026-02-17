@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe EmailNudgeController, type: :controller do
+RSpec.describe BasicInfoEmailNudgeController, type: :controller do
   describe ".show?" do
     context "screener without email" do
       it "returns true" do

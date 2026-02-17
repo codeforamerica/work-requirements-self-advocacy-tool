@@ -11,16 +11,16 @@ module Navigation
       ControllerNavigation::NavigationStep.new(EmploymentController),
       ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
-      ControllerNavigation::NavigationStep.new(WorkTrainingController),
-      ControllerNavigation::NavigationStep.new(IsStudentController),
+      ControllerNavigation::NavigationStep.new(TrainingProgramController),
+      ControllerNavigation::NavigationStep.new(SchoolEnrollmentController),
       ControllerNavigation::NavigationStep.new(AlcoholTreatmentProgramController),
-      ControllerNavigation::NavigationStep.new(PersonalSituationsMilestoneController),
-      ControllerNavigation::NavigationStep.new(PreventingWorkController),
+      ControllerNavigation::NavigationStep.new(PreventingWorkMilestoneController),
+      ControllerNavigation::NavigationStep.new(PreventingWorkSituationsController),
       ControllerNavigation::NavigationStep.new(PreventingWorkDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
       ControllerNavigation::NavigationStep.new(PersonalInformationController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
-      ControllerNavigation::NavigationStep.new(EmailNudgeController),
+      ControllerNavigation::NavigationStep.new(BasicInfoEmailNudgeController),
       ControllerNavigation::NavigationStep.new(NewResponseController)
     ].freeze
   end

@@ -49,13 +49,13 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.work_training.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.training_program.edit.title"))
     choose I18n.t("general.affirmative")
-    fill_in I18n.t("views.work_training.edit.work_training_hours_label"), with: "20"
-    fill_in I18n.t("views.work_training.edit.work_training_name_label"), with: "The Great British Work Off"
+    fill_in I18n.t("views.training_program.edit.work_training_hours_label"), with: "20"
+    fill_in I18n.t("views.training_program.edit.work_training_name_label"), with: "The Great British Work Off"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.is_student.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
@@ -63,13 +63,13 @@ RSpec.feature "Screener flow" do
     fill_in I18n.t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"), with: "Pro Gram"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.personal_situations_milestone.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_milestone.edit.title"))
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work.edit.title"))
-    check I18n.t("views.preventing_work.edit.preventing_work_place_to_sleep")
-    check I18n.t("views.preventing_work.edit.other")
-    fill_in I18n.t("views.preventing_work.edit.preventing_work_write_in"), with: "my spoon carving side hustle"
+    expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_situations.edit.title"))
+    check I18n.t("views.preventing_work_situations.edit.preventing_work_place_to_sleep")
+    check I18n.t("views.preventing_work_situations.edit.other")
+    fill_in I18n.t("views.preventing_work_situations.edit.preventing_work_write_in"), with: "my spoon carving side hustle"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_details.edit.title"))

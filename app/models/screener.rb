@@ -34,7 +34,7 @@ class Screener < ApplicationRecord
   before_validation :strip_email_and_confirmation
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
-    :remove_work_training_attributes_if_no,
+    :remove_training_program_attributes_if_no,
     :remove_employment_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
@@ -83,11 +83,11 @@ class Screener < ApplicationRecord
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
-  with_context :is_student do
+  with_context :school_enrollment do
     validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
-  with_context :preventing_work do
+  with_context :preventing_work_situations do
     validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
       if: -> {
         preventing_work_place_to_sleep_yes? ||
@@ -158,7 +158,7 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_work_training_attributes_if_no
+  def remove_training_program_attributes_if_no
     if is_in_work_training_no?
       self.work_training_hours = nil
       self.work_training_name = nil
