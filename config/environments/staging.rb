@@ -41,11 +41,10 @@ Rails.application.configure do
     {
       level: severity,
       time: timestamp.utc.iso8601,
-      request_id: RequestStore.store[:request_id],
       message: msg.is_a?(String) ? msg : msg.inspect
     }.to_json + "\n"
   end
-
+  
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
