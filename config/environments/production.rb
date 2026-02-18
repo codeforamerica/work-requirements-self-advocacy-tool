@@ -59,10 +59,6 @@ Rails.application.configure do
     }
   end
 
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  # NOTE: Log level is already set above
-  # config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
-
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
 
