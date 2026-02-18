@@ -144,7 +144,7 @@ en:
         title: Check if the SNAP work rules apply to you
         title_help_text_html: |
           <p> We’ll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
-          <p><strong>It takes most people 10 minutes or less to complete this form.</strong></p>
+          <p class="spacing-below-0"><strong>It takes most people 10 minutes or less to complete this form.</strong></p>
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
           <p>Work activities include:</p>

@@ -1,43 +1,51 @@
 <section class="slab">
-  <div class="card">
-    <h1><%= t("views.homepage.index.title") %></h1>
+  <div class="grid">
+    <div class="grid__item width-three-fourths">
+      <div class="card">
+        <h1><%= t("views.homepage.index.title") %></h1>
 
-    <%= t("views.homepage.index.title_help_text_html") %>
+        <%= t("views.homepage.index.title_help_text_html") %>
 
-    <%= link_to t("views.homepage.fill_out_form"), start_flow_path, class: "button button--primary" %>
+        <%= link_to t("views.homepage.fill_out_form"), start_flow_path, class: "spacing-below-60 spacing-above-60 button button--primary" %>
 
-    <div class="notice white">
-      <%= image_tag "apple.svg", class: "illustration left-justified" %>
-      <h2><%= t("views.homepage.index.work_rules_title") %></h2>
-      <%= t("views.homepage.index.work_rules_description_html") %>
+        <div class="notice white">
+          <%= image_tag "apple.svg", class: "illustration left-justified" %>
+          <h2><%= t("views.homepage.index.work_rules_title") %></h2>
+          <%= t("views.homepage.index.work_rules_description_html") %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 <section class="homepage-section--teal">
-  <h2><%= t("views.homepage.index.faq.title") %></h2>
+  <div class="grid">
+    <div class="grid__item width-three-fourths">
+      <h2><%= t("views.homepage.index.faq.title") %></h2>
 
-  <div class="accordion">
-    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who") %></button>
-    <div class="accordion__content">
-      <%= t("views.homepage.index.faq.who_content_html") %>
-    </div>
-  </div>
-  <div class="accordion">
-    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who_not") %></button>
-    <div class="accordion__content">
-      <%= t("views.homepage.index.faq.who_not_content_html") %>
-    </div>
-  </div>
-  <div class="accordion">
-    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.keep_snap") %></button>
-    <div class="accordion__content">
-      <%= t("views.homepage.index.faq.keep_snap_content_html") %>
-    </div>
-  </div>
-  <div class="accordion">
-    <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.cant_work") %></button>
-    <div class="accordion__content">
-      <%= t("views.homepage.index.faq.cant_work_content_html") %>
+      <div class="accordion">
+        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who") %></button>
+        <div class="accordion__content">
+          <%= t("views.homepage.index.faq.who_content_html") %>
+        </div>
+      </div>
+      <div class="accordion">
+        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who_not") %></button>
+        <div class="accordion__content">
+          <%= t("views.homepage.index.faq.who_not_content_html") %>
+        </div>
+      </div>
+      <div class="accordion">
+        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.keep_snap") %></button>
+        <div class="accordion__content">
+          <%= t("views.homepage.index.faq.keep_snap_content_html") %>
+        </div>
+      </div>
+      <div class="accordion">
+        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.cant_work") %></button>
+        <div class="accordion__content">
+          <%= t("views.homepage.index.faq.cant_work_content_html") %>
+        </div>
+      </div>
     </div>
   </div>
 </section>
