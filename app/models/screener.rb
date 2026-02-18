@@ -69,7 +69,7 @@ class Screener < ApplicationRecord
     return true if under_18?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
-      attribute == :is_working ? working_exempt? : public_send("#{attribute}_yes?")
+      (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
     end
   end
 
