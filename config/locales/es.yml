@@ -45,7 +45,7 @@ es:
         additional_care_info_help_text: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
         child_under_6: Niño menor de 6 años
         disabled_or_ill_person: Persona enferma o con una discapacidad
-        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
+        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted. Seleccione todas las que correspondan."
         notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
