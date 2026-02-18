@@ -25,7 +25,7 @@
         <%= f.cfa_checkbox(:caring_for_no_one, t("general.none_of_the_above"), options: { checked_value: "yes", unchecked_value: "no", id: "none_of_the_above"}) %>
       </div>
       <div class="question-with-follow-up__follow-up" id="disabled-ill-or-under-6">
-        <hr class="spacing-above-0" />
+        <hr/>
         <%= f.cfa_textarea(
               :additional_care_info,
               t("views.caring_for_someone.edit.additional_care_info"),
@@ -38,7 +38,6 @@
                 }
               }
             ) %>
-
         <p class="char-counter spacing-below-0">&nbsp;</p>
       </div>
     </div>
