@@ -54,6 +54,7 @@ Rails.application.configure do
              end,
       request_id: event.payload[:request_id] || event.payload[:headers]["action_dispatch.request_id"],
       session_id: RequestStore.store[:session_id],
+      screener_id: RequestStore.store[:screener_id],
       params: event.payload[:params]&.except("controller", "action")
     }
   end

@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action do
     RequestStore.store[:session_id] = session.id
+    RequestStore.store[:screener_id] = session[:screener_id]
   end
 
   def navigation_class
