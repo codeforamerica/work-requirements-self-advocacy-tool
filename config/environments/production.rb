@@ -35,7 +35,18 @@ Rails.application.configure do
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [:request_id]
-  config.logger = ActiveSupport::TaggedLogging.logger($stdout)
+  # Structured JSON logging for Datadog
+  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = proc do |severity, timestamp, progname, msg|
+    {
+      level: severity,
+      time: timestamp.utc.iso8601,
+      request_id: RequestStore.store[:request_id],
+      message: msg.is_a?(String) ? msg : msg.inspect
+    }.to_json + "\n"
+  end
+
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
@@ -88,3 +99,4 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
+
