@@ -44,6 +44,7 @@ class Screener < ApplicationRecord
     is_american_indian
     has_child
     caring_for_child_under_6
+    caring_for_disabled_or_ill_person
     is_pregnant
     has_unemployment_benefits
     receiving_benefits_disability_medicaid
@@ -53,10 +54,8 @@ class Screener < ApplicationRecord
     receiving_benefits_disability_pension
     receiving_benefits_workers_compensation
     is_working
-    is_volunteer
-    is_in_work_training
-    is_student
     is_migrant_farmworker
+    is_student
     is_in_alcohol_treatment_program
     preventing_work_place_to_sleep
     preventing_work_domestic_violence
@@ -66,15 +65,21 @@ class Screener < ApplicationRecord
   ].freeze
 
   def exempt_from_work_rules?
-    return true if under_18?
+    return false if age_qualified?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
       (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
     end
   end
 
-  def under_18?
-    birth_date.present? && birth_date > 18.years.ago.to_date
+  def age_qualified?
+    return false unless birth_date
+
+    today = Date.current
+    age = today.year - birth_date.year
+    age -= 1 if today < birth_date + age.years
+
+    age <= 17 || age >= 65
   end
 
   def working_exempt?
