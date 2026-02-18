@@ -20,7 +20,8 @@ RSpec.feature "Screener flow" do
     click_on I18n.t("general.negative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.caring_for_someone.edit.title"))
-    check I18n.t("general.none_of_the_above")
+    check I18n.t("views.caring_for_someone.edit.disabled_or_ill_person")
+    fill_in(I18n.t("views.caring_for_someone.edit.additional_care_info"), with: "lots of care")
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.pregnancy.edit.title"))

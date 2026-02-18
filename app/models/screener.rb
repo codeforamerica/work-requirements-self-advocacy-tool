@@ -37,7 +37,8 @@ class Screener < ApplicationRecord
     :remove_work_training_attributes_if_no,
     :remove_working_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
-    :remove_preventing_working_info_if_no_reasons
+    :remove_preventing_working_info_if_no_reasons,
+    :remove_additional_care_info_if_caring_for_someone_is_no
 
   with_context :birth_date do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
@@ -57,6 +58,7 @@ class Screener < ApplicationRecord
 
   with_context :caring_for_someone do
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
+    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}
   end
 
   with_context :pregnancy do
@@ -136,6 +138,17 @@ class Screener < ApplicationRecord
   end
 
   private
+  def remove_additional_care_info_if_caring_for_someone_is_no
+    if caring_for_child_under_6_no? && caring_for_disabled_or_ill_person_no?
+      self.additional_care_info = nil
+    end
+  end
+
+  def remove_alcohol_treatment_program_attributes_if_no
+    if is_in_alcohol_treatment_program_no?
+      self.alcohol_treatment_program_name = nil
+    end
+  end
 
   def remove_pregnancy_attributes_if_no
     if is_pregnant_no?
@@ -143,11 +156,8 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_working_attributes_if_no
-    if is_working_no?
-      self.working_hours = nil
-      self.working_weekly_earnings = nil
-    end
+  def remove_preventing_working_info_if_no_reasons
+    self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
   end
 
   def remove_volunteer_attributes_if_no
@@ -164,13 +174,10 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_alcohol_treatment_program_attributes_if_no
-    if is_in_alcohol_treatment_program_no?
-      self.alcohol_treatment_program_name = nil
+  def remove_working_attributes_if_no
+    if is_working_no?
+      self.working_hours = nil
+      self.working_weekly_earnings = nil
     end
-  end
-
-  def remove_preventing_working_info_if_no_reasons
-    self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
   end
 end

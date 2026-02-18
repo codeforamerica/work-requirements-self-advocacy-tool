@@ -89,6 +89,22 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.errors[:caring_for_no_one]).to be_present
       end
+
+      it "must not have value longer than CaringForSomeoneController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          additional_care_info: "This is just a test value."
+        )
+        # Valid value that is not too long
+        expect(screener.valid?(:additional_care_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = CaringForSomeoneController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(additional_care_info: text)
+
+        screener.valid?(:caring_for_someone)
+        expect(screener.errors[:additional_care_info]).to be_present
+      end
     end
 
     context "with_context :disability_benefits" do
@@ -204,7 +220,7 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :preventing_work_details" do
-      it "Must have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
+      it "Must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = Screener.new(
           preventing_work_additional_info: "This is just a test value."
         )
@@ -225,6 +241,30 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "before_save" do
+    context "caring for someone attributes" do
+      it "clears additional_care_info if caring_for_child_under_6 is no and caring_for_disabled_or_ill_person is no" do
+        screener = Screener.create(
+          caring_for_child_under_6: "yes",
+          caring_for_disabled_or_ill_person: "yes",
+          additional_care_info: "i care"
+        )
+
+        screener.update(caring_for_child_under_6: "no", caring_for_disabled_or_ill_person: "no")
+
+        expect(screener.reload.additional_care_info).to be_nil
+      end
+    end
+
+    context "alcohol treatment program attributes" do
+      it "clears alcohol_treatment_program_name if is_in_alcohol_treatment_program changes to no" do
+        screener = Screener.create(is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "nvm")
+
+        screener.update(is_in_alcohol_treatment_program: "no")
+
+        expect(screener.reload.alcohol_treatment_program_name).to be_nil
+      end
+    end
+
     context "pregnancy attributes" do
       it "clears the due date if is_pregnant changes to no" do
         screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
@@ -235,25 +275,19 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "working attributes" do
-      it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
-        screener = Screener.create(is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
+    context "preventing work attributes" do
+      it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
+        screener = Screener.create(
+          preventing_work_additional_info: "This is just a test value.",
+          preventing_work_drugs_alcohol: "yes"
+        )
 
-        screener.update(is_working: "no")
+        screener.update(preventing_work_none: "yes")
+        screener.update(preventing_work_drugs_alcohol: "no")
 
-        expect(screener.reload.working_hours).to be_nil
-        expect(screener.reload.working_weekly_earnings).to be_nil
-      end
-    end
-
-    context "work training attributes" do
-      it "clears the program hours and name if is_in_work_training changes to no" do
-        screener = Screener.create(is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
-
-        screener.update(is_in_work_training: "no")
         screener.reload
-        expect(screener.work_training_hours).to be_nil
-        expect(screener.work_training_name).to be_nil
+
+        expect(screener.preventing_work_additional_info).to be_nil
       end
     end
 
@@ -268,29 +302,25 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "alcohol treatment program attributes" do
-      it "clears alcohol_treatment_program_name if is_in_alcohol_treatment_program changes to no" do
-        screener = Screener.create(is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "nvm")
+    context "work training attributes" do
+      it "clears the program hours and name if is_in_work_training changes to no" do
+        screener = Screener.create(is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
 
-        screener.update(is_in_alcohol_treatment_program: "no")
-
-        expect(screener.reload.alcohol_treatment_program_name).to be_nil
+        screener.update(is_in_work_training: "no")
+        screener.reload
+        expect(screener.work_training_hours).to be_nil
+        expect(screener.work_training_name).to be_nil
       end
     end
 
-    context "with_context :preventing_work_details" do
-      it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
-        screener = Screener.create(
-          preventing_work_additional_info: "This is just a test value.",
-          preventing_work_drugs_alcohol: "yes"
-        )
+    context "working attributes" do
+      it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
+        screener = Screener.create(is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
 
-        screener.update(preventing_work_none: "yes")
-        screener.update(preventing_work_drugs_alcohol: "no")
+        screener.update(is_working: "no")
 
-        screener.reload
-
-        expect(screener.preventing_work_additional_info).to be_nil
+        expect(screener.reload.working_hours).to be_nil
+        expect(screener.reload.working_weekly_earnings).to be_nil
       end
     end
   end

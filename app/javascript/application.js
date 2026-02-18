@@ -40,5 +40,13 @@ document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
   honeycrispInit();
+  $('.question-with-follow-up').each(function() {
+    var self = this;
+    followUpQuestion.update($(self));
+  });
   initTextareaCounter();
+});
+
+document.addEventListener("turbo:render", function () {
+  revealer.init();
 });

@@ -41,9 +41,11 @@ en:
         title: What is your date of birth? (required)
     caring_for_someone:
       edit:
+        additional_care_info: Can you tell us about the kind of care you provide?
+        additional_care_info_help_text: Providing more details can help your caseworker make a decision more quickly.
         child_under_6: Child under age 6
         disabled_or_ill_person: Person who is ill or has a disability
-        help_text_html: The person <strong>does not</strong> need to live with you.
+        help_text_html: The person <strong>does not</strong> need to live with you. Choose all that apply.
         notice_text: Caring for someone means you regularly do things like make food, help with daily tasks like bathing and personal care, run errands for them, and monitor their health and wellbeing.
         title: Do you care for someone who cannot care for themselves?
     community_service:

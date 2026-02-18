@@ -41,6 +41,8 @@ es:
         title: "¿Cuál es su fecha de nacimiento? (requerido)"
     caring_for_someone:
       edit:
+        additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
+        additional_care_info_help_text: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
         child_under_6: Niño menor de 6 años
         disabled_or_ill_person: Persona enferma o con una discapacidad
         help_text_html: "<strong>No es necesario</strong> que la persona viva con usted."
