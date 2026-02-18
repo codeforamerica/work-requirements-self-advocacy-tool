@@ -45,8 +45,9 @@ Rails.application.configure do
   config.lograge.keep_original_rails_log = false
   config.lograge.custom_options = lambda do |event|
     {
-      level: event.payload[:level] || "INFO",
+      level: event.payload[:level] || "INFOA",
       request_id: event.payload[:request_id] || event.payload[:headers]["action_dispatch.request_id"],
+      session_id: RequestStore.store[:session_id],
       params: event.payload[:params]&.except("controller", "action")
     }
   end
