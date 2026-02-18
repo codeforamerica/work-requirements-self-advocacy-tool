@@ -8,10 +8,21 @@ module PdfFiller
       (value == "yes") ? "Yes" : "Off"
     end
 
+    GEN_WOR_REQ = <<~BLOCK
+    General Work Requirement Exemptions\r
+    \u2022 Caring for a child under 6 years old - 7 CFR 273.7(b)(1)(iv)
+    • Caring for an incapacitated person - 7 CFR 273.7(b)(1)(iv)
+    Currently getting unemployment benefits or has applied for unemployment benefits - 7 CFR 273.7(b)(1)(v)
+    Participating regularly in an alcohol or drug treatment program - 7 CFR 273.24(c)(2)
+    Enrolled in a school, training program, or institution of higher education at least half-time - 7 CFR 273.7(b)(1)(viii)
+    Working at least 30 hours a week - 7 CFR 273.7(b)(1)(vii)
+    Earning at least $217.50 a week, averaged monthly, from work - 7 CFR 273.7(b)(1)(vii)
+    BLOCK
+
     def hash_for_pdf
       {
         full_name: @screener.full_name,
-        general_work_requirements_exemptions: "",
+        general_work_requirements_exemptions: GEN_WOR_REQ,
         abawd_work_requirements_exemptions: "",
         abawd_work_requirement_compliance: "",
         confirmation_code: "",

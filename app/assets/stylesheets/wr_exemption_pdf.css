@@ -6,22 +6,33 @@
 .header {
   color: #285f53;
   font-weight: bold;
+  background-color: #F7F5F4;
 }
 
-.header:before {
-  content: '';
-  display: block;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  width: 15px;
-  height: 15px;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-image: url("images/apple.svg");
-}
+/*.header:before {*/
+/*  content: '';*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  right: 15px;*/
+/*  top: 50%;*/
+/*  width: 15px;*/
+/*  height: 15px;*/
+/*  background-repeat: no-repeat;*/
+/*  background-position: center center;*/
+/*  background-image: url("images/apple.svg");*/
+/*}*/
 
 .grey-box {
   padding: 25px;
   background-color: #F7F5F4;
+}
+
+.section-header {
+  text-decoration: underline;
+}
+
+.list-item--note {
+  font-size: 10px;
+  font-style: italic;
+  color: #5F5854;
 }
