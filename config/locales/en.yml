@@ -31,14 +31,35 @@ en:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
         title: Are you in a drug or alcohol treatment program?
+    basic_info_details:
+      edit:
+        birth_date_label: Birthdate
+        consent_to_texts:
+          additional_info: Message frequency will vary. Message and data rates may apply. Reply HELP for help. Reply STOP to cancel. See our Terms and Conditions and Privacy Policy for details.
+        consented_to_texts:
+          affirmative: Yes, you can text me
+          help_text: This is optional. We may invite you to share feedback to help improve the form.
+          label: Is it okay to send you texts at the phone number you added?
+          negative: No, don’t text me
+        first_name_label: First or given name (required)
+        first_name_label_help_text: Legally, as it appears on your ID.
+        last_name_label: Last or family name (required)
+        last_name_label_help_text: Legally, as it appears on your ID.
+        middle_name_label: Middle name
+        middle_name_label_help_text: This is optional. Legally, as it appears on your ID.
+        phone_number_label: Phone number
+        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
+        title: Tell us about yourself
+    basic_info_email_nudge:
+      edit:
+        add_an_email: Add an email
+        continue_without_it: Continue without it
+        title: Are you sure you don't want to add an email address?
+        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
       edit:
         help_text_html: This information will help your agency find your SNAP case.
         title: Basic information
-    birth_date:
-      edit:
-        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
-        title: What is your date of birth? (required)
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
@@ -53,6 +74,10 @@ en:
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
         volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
+    date_of_birth:
+      edit:
+        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
+        title: What is your date of birth? (required)
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Disability-related Medicaid
@@ -70,19 +95,13 @@ en:
         email_confirmation: Confirm your email
         title: Where can we send your results?
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
-    email_nudge:
+    employment:
       edit:
-        add_an_email: Add an email
-        continue_without_it: Continue without it
-        title: Are you sure you don't want to add an email address?
-        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
-    has_child:
-      edit:
-        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
-        title: Is there a child under the age of 14 that lives in your household?
-    has_unemployment_benefits:
-      edit:
-        title: Do you get, or are you applying for unemployment benefits?
+        title: Are you working?
+        working_hours_help_text: If this changes, give your weekly average from the past month.
+        working_hours_label: How many hours a week do you usually work?
+        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
+        working_weekly_earnings_label: How much do you earn each week before taxes?
     homepage:
       fill_out_form: Fill out the form
       index:
@@ -138,10 +157,10 @@ en:
           <p>If you do not do work activities for 80 hours a month, you can only get SNAP benefits for 3 months every 3 years (36 months).</p>
           <p>If you've lost SNAP benefits because of the work rules, you can get them again by showing that you are now meeting the work rules, or that you are exempt.</p>
         work_rules_title: What are the SNAP work rules?
-    is_student:
+    living_with_someone:
       edit:
-        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
-        title: Do you go to school full-time, or at least half-time?
+        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
+        title: Is there a child under the age of 14 that lives in your household?
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
@@ -152,28 +171,24 @@ en:
         close: Done
         title: You’re all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
-    personal_information:
-      edit:
-        birth_date_label: Birthdate
-        first_name_label: First or given name
-        first_name_label_help_text: Legally as it appears on your ID.
-        last_name_label: Last or family name
-        last_name_label_help_text: Legally as it appears on your ID.
-        middle_name_label: Middle name
-        middle_name_label_help_text: This is optional. Legally as it appears on your ID.
-        phone_number_label: Phone number
-        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
-        title: Tell us about yourself
-    personal_situations_milestone:
-      edit:
-        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
-        title: Situations that make it hard to work
     pregnancy:
       edit:
         pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
         pregnancy_due_date_label: When is the baby due?
         title: Are you pregnant?
-    preventing_work:
+    preventing_work_details:
+      edit:
+        header: We're sorry to hear things have been challenging. If you need additional help, call 211.
+        instructions: Providing more details can help your caseworker make a decision more quickly.
+        question:
+          one: Can you share more information about how this condition limits you from working at least 20 hours a week?
+          other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
+        title: Thank you for sharing.
+    preventing_work_milestone:
+      edit:
+        help_text_html: We know these are sensitive topics. Sharing this information could help your agency decide that you do not have to meet work rules to get SNAP benefits.
+        title: Situations that make it hard to work
+    preventing_work_situations:
       edit:
         other: Other
         preventing_work_domestic_violence: Experiencing domestic violence
@@ -185,19 +200,11 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
-    preventing_work_details:
+    school_enrollment:
       edit:
-        header: We're sorry to hear things have been challenging. If you need additional help, call 211.
-        instructions: Providing more details can help your caseworker make a decision more quickly.
-        question:
-          one: Can you share more information about how this condition limits you from working at least 20 hours a week?
-          other: Can you share more information about how these conditions limit you from working at least 20 hours a week?
-        title: Thank you for sharing.
-    tribe_or_nation:
-      edit:
-        help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
-        title: Are you an American Indian, or the child or grandchild of an American Indian?
-    work_training:
+        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        title: Do you go to school full-time, or at least half-time?
+    training_program:
       edit:
         notice_content:
         - English as a Second Language classes
@@ -212,10 +219,10 @@ en:
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?
         work_training_name_label: What is the name of the organization or training program?
-    working:
+    tribe_or_nation:
       edit:
-        title: Are you working?
-        working_hours_help_text: If this changes, give your weekly average from the past month.
-        working_hours_label: How many hours a week do you usually work?
-        working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
-        working_weekly_earnings_label: How much do you earn each week before taxes?
+        help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
+        title: Are you an American Indian, or the child or grandchild of an American Indian?
+    unemployment:
+      edit:
+        title: Do you get, or are you applying for unemployment benefits?

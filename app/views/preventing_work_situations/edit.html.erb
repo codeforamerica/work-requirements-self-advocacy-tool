@@ -1,0 +1,30 @@
+<% content_for :question_title, t("views.preventing_work_situations.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p class="text--help">
+  <%= t("general.choose_all_that_apply") %>
+</p>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :preventing_work_write_in, value: nil %>
+  <div class="checkbox-group">
+    <div class="question-with-follow-up">
+      <div class="question-with-follow-up__question">
+        <%= f.cfa_checkbox(:preventing_work_place_to_sleep, t("views.preventing_work_situations.edit.preventing_work_place_to_sleep"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+        <%= f.cfa_checkbox(:preventing_work_drugs_alcohol, t("views.preventing_work_situations.edit.preventing_work_drugs_alcohol"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+        <%= f.cfa_checkbox(:preventing_work_domestic_violence, t("views.preventing_work_situations.edit.preventing_work_domestic_violence"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+        <%= f.cfa_checkbox(:preventing_work_medical_condition, t("views.preventing_work_situations.edit.preventing_work_medical_condition_html"), options: { checked_value: "yes", unchecked_value: "no" }) %>
+        <%= f.cfa_checkbox(:preventing_work_other, t("views.preventing_work_situations.edit.other"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#write-in" }) %>
+        <%= f.cfa_checkbox(:preventing_work_none, t("general.none_of_the_above"), options: { checked_value: "yes", unchecked_value: "no", id: "none_of_the_above" }) %>
+      </div>
+
+      <div class="question-with-follow-up__follow-up" id="write-in">
+        <hr/>
+        <%= f.cfa_input_field(:preventing_work_write_in, t("views.preventing_work_situations.edit.preventing_work_write_in")) %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

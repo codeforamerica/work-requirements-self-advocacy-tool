@@ -1,11 +1,21 @@
 @import "cfa_styleguide_main";
 
+.form-group, .text--help {
+  font-size: 1.9rem;
+}
+
 html {
   background-color: $color-grey;
 }
 
 main {
   background-color: $color-grey-light;
+}
+
+@media screen and (min-width: 800px) {
+  .card {
+    padding: 6rem;
+  }
 }
 
 .toolbar {
@@ -48,6 +58,13 @@ main {
 
 .illustration.left-justified {
   margin-left: 1rem;
+}
+
+.notice {
+  padding: 0.8rem;
+  .media--icon {
+    margin-right: 0.8rem;
+  }
 }
 
 .notice.white {
@@ -95,6 +112,12 @@ i.no-button-cross {
 .question-with-follow-up__follow-up {
   border: none;
   background: none;
+  padding: 0;
+  margin: 3.5rem 0;
+  hr {
+    margin-top: 0;
+    margin-bottom: 3.5rem;
+  }
 }
 
 .question-with-follow-up__follow-up:before {
@@ -109,4 +132,8 @@ i.no-button-cross {
   .input-group {
     margin-bottom: 0;
   }
+}
+
+.input-group--block .radio-button {
+  max-width: unset;
 }
