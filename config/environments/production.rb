@@ -38,6 +38,7 @@ Rails.application.configure do
 
   # Structured JSON logging for Datadog using Lograge
   config.logger = ActiveSupport::Logger.new($stdout)
+  # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
   config.lograge.enabled = true
