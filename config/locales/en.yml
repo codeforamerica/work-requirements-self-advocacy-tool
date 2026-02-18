@@ -31,6 +31,25 @@ en:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
         title: Are you in a drug or alcohol treatment program?
+    basic_info_details:
+      edit:
+        birth_date_label: Birthdate
+        consent_to_texts:
+          additional_info: Message frequency will vary. Message and data rates may apply. Reply HELP for help. Reply STOP to cancel. See our Terms and Conditions and Privacy Policy for details.
+        consented_to_texts:
+          affirmative: Yes, you can text me
+          help_text: This is optional. We may invite you to share feedback to help improve the form.
+          label: Is it okay to send you texts at the phone number you added?
+          negative: No, don’t text me
+        first_name_label: First or given name (required)
+        first_name_label_help_text: Legally, as it appears on your ID.
+        last_name_label: Last or family name (required)
+        last_name_label_help_text: Legally, as it appears on your ID.
+        middle_name_label: Middle name
+        middle_name_label_help_text: This is optional. Legally, as it appears on your ID.
+        phone_number_label: Phone number
+        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
+        title: Tell us about yourself
     basic_info_email_nudge:
       edit:
         add_an_email: Add an email
@@ -148,18 +167,6 @@ en:
         close: Done
         title: You’re all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
-    personal_information:
-      edit:
-        birth_date_label: Birthdate
-        first_name_label: First or given name
-        first_name_label_help_text: Legally as it appears on your ID.
-        last_name_label: Last or family name
-        last_name_label_help_text: Legally as it appears on your ID.
-        middle_name_label: Middle name
-        middle_name_label_help_text: This is optional. Legally as it appears on your ID.
-        phone_number_label: Phone number
-        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
-        title: Tell us about yourself
     pregnancy:
       edit:
         pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.

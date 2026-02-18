@@ -79,10 +79,11 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.personal_information.edit.title"))
-    fill_in I18n.t("views.personal_information.edit.first_name_label"), with: "Prue"
-    fill_in I18n.t("views.personal_information.edit.last_name_label"), with: "Leith"
-    fill_in I18n.t("views.personal_information.edit.phone_number_label"), with: "415-816-1286"
+    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))
+    fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: "Prue"
+    fill_in I18n.t("views.basic_info_details.edit.last_name_label"), with: "Leith"
+    fill_in I18n.t("views.basic_info_details.edit.phone_number_label"), with: "415-816-1286"
+    choose I18n.t("views.basic_info_details.edit.consented_to_texts.affirmative")
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.email.edit.title"))
