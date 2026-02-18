@@ -1,4 +1,27 @@
-body {
-  font-family: sans-serif;
+.pdf-packet {
+  margin: 60px 35px;
+  font-family: "Source Sans Pro","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+}
+
+.header {
   color: #285f53;
+  font-weight: bold;
+}
+
+.header:before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  width: 15px;
+  height: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("images/apple.svg");
+}
+
+.grey-box {
+  padding: 25px;
+  background-color: #F7F5F4;
 }
