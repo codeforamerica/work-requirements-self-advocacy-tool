@@ -56,6 +56,7 @@ class Screener < ApplicationRecord
     is_volunteer
     is_in_work_training
     is_student
+    is_migrant_farmworker
     is_in_alcohol_treatment_program
     preventing_work_place_to_sleep
     preventing_work_domestic_violence
@@ -65,9 +66,22 @@ class Screener < ApplicationRecord
   ].freeze
 
   def exempt_from_work_rules?
+    return true if under_18?
+
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
-      public_send("#{attribute}_yes?")
+      attribute == :is_working ? working_exempt? : public_send("#{attribute}_yes?")
     end
+  end
+
+  def under_18?
+    birth_date.present? && birth_date > 18.years.ago.to_date
+  end
+
+  def working_exempt?
+    is_working_yes? && (
+      working_hours.to_i >= 30 ||
+        working_weekly_earnings.to_f >= 217.50
+    )
   end
 
   with_context :date_of_birth do
