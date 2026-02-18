@@ -47,6 +47,8 @@ gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycri
 gem "phonelib"
 gem "valid_email2"
 
+gem "lograge"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"

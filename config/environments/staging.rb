@@ -35,10 +35,30 @@ Rails.application.configure do
 
   # Log to STDOUT with the current request id as a default log tag.
   config.log_tags = [:request_id]
-  config.logger = ActiveSupport::TaggedLogging.logger($stdout)
 
+  # Structured JSON logging for Datadog using Lograge
+  config.logger = ActiveSupport::Logger.new($stdout)
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
+
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Json.new
+  config.lograge.keep_original_rails_log = false
+  config.lograge.custom_options = lambda do |event|
+    {
+      level: if event.payload[:status] >= 500
+               "ERROR"
+             elsif event.payload[:status] >= 400
+               "WARN"
+             else
+               "INFO"
+             end,
+      request_id: event.payload[:request_id] || event.payload[:headers]["action_dispatch.request_id"],
+      session_id: RequestStore.store[:session_id],
+      screener_id: RequestStore.store[:screener_id],
+      params: event.payload[:params]&.except("controller", "action")
+    }
+  end
 
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
