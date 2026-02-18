@@ -27,28 +27,27 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :personal_information" do
-      it "requires first name, last name, and phone number" do
-        screener = Screener.new(first_name: nil, last_name: nil, phone_number: nil)
-        screener.valid?(:personal_information)
+    context "with_context :basic_info_details" do
+      it "requires first name and last name" do
+        screener = Screener.new(first_name: nil, last_name: nil)
+        screener.valid?(:basic_info_details)
 
         expect(screener.errors).to match_array [
           "First name can't be blank",
-          "Last name can't be blank",
-          "Phone number can't be blank"
+          "Last name can't be blank"
         ]
       end
 
       it "requires the phone number to be valid" do
         ["123", "55-111-2222"].each do |phone_number|
           screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: phone_number)
-          screener.valid?(:personal_information)
+          screener.valid?(:basic_info_details)
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
 
         screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
-        expect(screener.valid?(:personal_information)).to eq true
+        expect(screener.valid?(:basic_info_details)).to eq true
       end
     end
 
