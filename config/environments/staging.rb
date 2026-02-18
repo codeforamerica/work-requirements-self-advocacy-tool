@@ -44,7 +44,7 @@ Rails.application.configure do
       message: msg.is_a?(String) ? msg : msg.inspect
     }.to_json + "\n"
   end
-  
+
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
