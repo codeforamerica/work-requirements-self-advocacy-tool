@@ -21,6 +21,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_17_204033) do
     t.integer "caring_for_child_under_6", default: 0, null: false
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
+    t.integer "consented_to_texts", default: 0, null: false
     t.datetime "created_at", null: false
     t.string "email"
     t.string "first_name"

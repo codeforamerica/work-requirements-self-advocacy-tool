@@ -2,7 +2,7 @@
 es:
   general:
     affirmative: Sí
-    back: Regresa
+    back: Volver
     basic_information: Información básica
     char_counter:
       remaining:
@@ -31,14 +31,35 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
+    basic_info_details:
+      edit:
+        birth_date_label: Fecha de nacimiento
+        consent_to_texts:
+          additional_info: La frecuencia de los mensajes puede variar. Pueden aplicar costos de mensajes y datos. Responda HELP para obtener ayuda. Responda STOP para cancelar. Consulte nuestros Términos y Condiciones y nuestra Política de Privacidad para más detalles.
+        consented_to_texts:
+          affirmative: Sí, puede enviarme mensajes de texto
+          help_text: Es posible que le invitemos a compartir comentarios para ayudarnos a mejorar este formulario.
+          label: "¿Está de acuerdo con recibir mensajes de texto en el número que agregó?"
+          negative: No, prefiero no recibir mensajes
+        first_name_label: Primer nombre (requerido)
+        first_name_label_help_text: Tal como aparece legalmente en su identificación.
+        last_name_label: Apellido (requerido)
+        last_name_label_help_text: Tal como aparece legalmente en su identificación.
+        middle_name_label: Segundo nombre
+        middle_name_label_help_text: Opcional. Tal como aparece legalmente en su identificación.
+        phone_number_label: Número de teléfono
+        phone_number_label_help_text: La persona asignada para llevar su caso puede usar este número si necesita comunicarse directamente con usted.
+        title: Compártanos información sobre usted
+    basic_info_email_nudge:
+      edit:
+        add_an_email: Agregar un correo electrónico
+        continue_without_it: Continuar sin el correo electrónico
+        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
+        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     basic_info_milestone:
       edit:
         help_text_html: Esta información ayudará a que su agencia encuentre su caso de SNAP.
         title: Información básica
-    birth_date:
-      edit:
-        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
-        title: "¿Cuál es su fecha de nacimiento? (requerido)"
     caring_for_someone:
       edit:
         additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
@@ -55,6 +76,10 @@ es:
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
         volunteering_org_label: "¿Cuál es el nombre de la organización?"
         volunteering_org_label_help_text: Si realiza trabajo voluntario en más de una organización, puede escribirlas aquí.
+    date_of_birth:
+      edit:
+        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
+        title: "¿Cuál es su fecha de nacimiento? (requerido)"
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
@@ -72,23 +97,13 @@ es:
         email_confirmation: Correo electrónico
         title: Confirme su correo electrónico
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
-    email_nudge:
+    employment:
       edit:
-        add_an_email: Agregar un correo electrónico
-        continue_without_it: Continuar sin el correo electrónico
-        title: "¿Está seguro de que no quiere agregar un correo electrónico?"
-        title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
-    has_child:
-      edit:
-        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
-        title: "¿En su hogar vive un niño menor de 14 años?"
-    has_unemployment_benefits:
-      edit:
-        title: "¿Recibe o está solicitando beneficios de desempleo?"
-    is_student:
-      edit:
-        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
-        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
+        title: "¿Está trabajando?"
+        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
+        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
+        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
     landing_page:
       fill_out_form: Complete el formulario
       index:
@@ -139,6 +154,10 @@ es:
         - Participating in <strong>job training or SNAP Employment & Training programs</strong>
         work_rules_list_label: 'Work activities include:'
         work_rules_title: What are the SNAP work rules?
+    living_with_someone:
+      edit:
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
+        title: "¿En su hogar vive un niño menor de 14 años?"
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
@@ -149,28 +168,24 @@ es:
         close: Cerrar
         title: Ha finalizado.
         title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
-    personal_information:
-      edit:
-        birth_date_label: Fecha de nacimiento
-        first_name_label: Primer nombre
-        first_name_label_help_text: Tal como aparece legalmente en su identificación.
-        last_name_label: Apellido
-        last_name_label_help_text: Tal como aparece legalmente en su identificación.
-        middle_name_label: Segundo nombre
-        middle_name_label_help_text: Opcional. Tal como aparece legalmente en su identificación.
-        phone_number_label: Phone number
-        phone_number_label_help_text: A caseworker may use this number if they need to contact you directly about your case.
-        title: Compártanos información sobre usted
-    personal_situations_milestone:
-      edit:
-        help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
-        title: Situaciones que hacen difícil que trabaje
     pregnancy:
       edit:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
         title: "¿Está en embarazo?"
-    preventing_work:
+    preventing_work_details:
+      edit:
+        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
+        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        question:
+          one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
+          other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
+        title: Gracias por compartir esta información
+    preventing_work_milestone:
+      edit:
+        help_text_html: Sabemos que estos son temas delicados. Compartir esta información puede ayudar a su agencia a decidir que usted no debe cumplir con las nuevas reglas de trabajo para recibir beneficios de SNAP.
+        title: Situaciones que hacen difícil que trabaje
+    preventing_work_situations:
       edit:
         other: Otra razón
         preventing_work_domestic_violence: Violencia doméstica
@@ -182,19 +197,11 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
-    preventing_work_details:
+    school_enrollment:
       edit:
-        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
-        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
-        question:
-          one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
-          other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
-        title: Gracias por compartir esta información
-    tribe_or_nation:
-      edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
-        title: "¿Es usted miembro de una tribu o nación indígena?"
-    work_training:
+        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
+    training_program:
       edit:
         notice_content:
         - Clases de inglés (ESL, por sus siglas en inglés)
@@ -208,10 +215,10 @@ es:
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
-    working:
+    tribe_or_nation:
       edit:
-        title: "¿Está trabajando?"
-        working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
-        working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
-        working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
-        working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
+        help_text: If you are eligible for Indian Health Services, select “Yes.”
+        title: "¿Es usted miembro de una tribu o nación indígena?"
+    unemployment:
+      edit:
+        title: "¿Recibe o está solicitando beneficios de desempleo?"
