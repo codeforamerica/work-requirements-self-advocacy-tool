@@ -34,12 +34,12 @@ class Screener < ApplicationRecord
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
   before_save :remove_pregnancy_attributes_if_no,
-              :remove_volunteer_attributes_if_no,
-              :remove_training_program_attributes_if_no,
-              :remove_employment_attributes_if_no,
-              :remove_alcohol_treatment_program_attributes_if_no,
-              :remove_preventing_working_info_if_no_reasons,
-              :remove_additional_care_info_if_caring_for_someone_is_no
+    :remove_volunteer_attributes_if_no,
+    :remove_training_program_attributes_if_no,
+    :remove_employment_attributes_if_no,
+    :remove_alcohol_treatment_program_attributes_if_no,
+    :remove_preventing_working_info_if_no_reasons,
+    :remove_additional_care_info_if_caring_for_someone_is_no
 
   with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
