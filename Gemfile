@@ -77,3 +77,7 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
+
+group :production do
+  gem "pg-aws_rds_iam"
+end
