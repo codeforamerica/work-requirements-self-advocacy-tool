@@ -88,6 +88,22 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.errors[:caring_for_no_one]).to be_present
       end
+
+      it "must not have value longer than CaringForSomeoneController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          additional_care_info: "This is just a test value."
+        )
+        # Valid value that is not too long
+        expect(screener.valid?(:additional_care_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = CaringForSomeoneController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(additional_care_info: text)
+
+        screener.valid?(:caring_for_someone)
+        expect(screener.errors[:additional_care_info]).to be_present
+      end
     end
 
     context "with_context :disability_benefits" do
@@ -203,7 +219,7 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :preventing_work_details" do
-      it "Must have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
+      it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = Screener.new(
           preventing_work_additional_info: "This is just a test value."
         )
@@ -224,6 +240,20 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "before_save" do
+    context "caring for someone attributes" do
+      it "clears additional_care_info if caring_for_child_under_6 is no and caring_for_disabled_or_ill_person is no" do
+        screener = Screener.create(
+          caring_for_child_under_6: "yes",
+          caring_for_disabled_or_ill_person: "yes",
+          additional_care_info: "i care"
+        )
+
+        screener.update(caring_for_child_under_6: "no", caring_for_disabled_or_ill_person: "no")
+
+        expect(screener.reload.additional_care_info).to be_nil
+      end
+    end
+
     context "pregnancy attributes" do
       it "clears the due date if is_pregnant changes to no" do
         screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))

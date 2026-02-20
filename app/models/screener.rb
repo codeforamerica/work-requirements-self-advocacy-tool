@@ -38,7 +38,8 @@ class Screener < ApplicationRecord
     :remove_training_program_attributes_if_no,
     :remove_employment_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
-    :remove_preventing_working_info_if_no_reasons
+    :remove_preventing_working_info_if_no_reasons,
+    :remove_additional_care_info_if_caring_for_someone_is_no
 
   with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
@@ -59,6 +60,7 @@ class Screener < ApplicationRecord
 
   with_context :caring_for_someone do
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
+    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}
   end
 
   with_context :pregnancy do
@@ -138,6 +140,12 @@ class Screener < ApplicationRecord
   end
 
   private
+
+  def remove_additional_care_info_if_caring_for_someone_is_no
+    if caring_for_child_under_6_no? && caring_for_disabled_or_ill_person_no?
+      self.additional_care_info = nil
+    end
+  end
 
   def remove_pregnancy_attributes_if_no
     if is_pregnant_no?
