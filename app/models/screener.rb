@@ -40,6 +40,55 @@ class Screener < ApplicationRecord
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons
 
+  ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
+    is_american_indian
+    has_child
+    caring_for_child_under_6
+    caring_for_disabled_or_ill_person
+    is_pregnant
+    has_unemployment_benefits
+    receiving_benefits_disability_medicaid
+    receiving_benefits_ssdi
+    receiving_benefits_insurance_payments
+    receiving_benefits_veterans_disability
+    receiving_benefits_disability_pension
+    receiving_benefits_workers_compensation
+    is_working
+    is_migrant_farmworker
+    is_student
+    is_in_alcohol_treatment_program
+    preventing_work_place_to_sleep
+    preventing_work_domestic_violence
+    preventing_work_drugs_alcohol
+    preventing_work_medical_condition
+    preventing_work_other
+  ].freeze
+
+  def exempt_from_work_rules?
+    return false if age_qualified?
+
+    ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
+      (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
+    end
+  end
+
+  def age_qualified?
+    return false unless birth_date
+
+    today = Date.current
+    age = today.year - birth_date.year
+    age -= 1 if today < birth_date + age.years
+
+    age <= 17 || age >= 65
+  end
+
+  def working_exempt?
+    is_working_yes? && (
+      working_hours.to_i >= 30 ||
+        working_weekly_earnings.to_f >= 217.50
+    )
+  end
+
   with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end

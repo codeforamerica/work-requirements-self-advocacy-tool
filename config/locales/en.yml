@@ -58,8 +58,9 @@ en:
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
       edit:
-        help_text_html: This information will help your agency find your SNAP case.
-        title: Basic information
+        help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
+        instructions: This information helps your caseworker find your case when you submit your form.
+        title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
     caring_for_someone:
       edit:
         child_under_6: Child under age 6
