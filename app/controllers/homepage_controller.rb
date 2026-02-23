@@ -1,4 +1,4 @@
-class LandingPageController < ApplicationController
+class HomepageController < ApplicationController
   layout "application"
 
   def index
