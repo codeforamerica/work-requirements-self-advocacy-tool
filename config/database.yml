@@ -7,11 +7,14 @@ default: &default
   host: <%= ENV.fetch("DATABASE_HOST", "localhost") %>
   port: <%= ENV.fetch("DATABASE_PORT", "5432") %>
   username: "<%= ENV["DATABASE_USER"] if ENV["DATABASE_USER"] %>"
-  <% if ENV["DATABASE_PASSWORD"].present? %>
-  password: "<%= ENV["DATABASE_PASSWORD"] %>"
-  <% end %>
-  url: <%= ENV["DATABASE_URL"] %>
+  # If we're authenticating via IAM, we don't want to set the password or URL,
+  # otherwise those will take precedence over the IAM authentication.
+  <% if ENV.fetch("DATABASE_AUTH", "password") == "iam" %>
   aws_rds_iam_auth_token_generator: 'default'
+  <% else %>
+  password: "<%= ENV["DATABASE_PASSWORD"] if ENV["DATABASE_PASSWORD"].present? %>"
+  url: <%= ENV["DATABASE_URL"] %>
+  <% end %>
 
 development:
   primary:
