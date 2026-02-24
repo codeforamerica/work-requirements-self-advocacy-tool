@@ -36,12 +36,14 @@ Rails.application.configure do
   logger = ActiveSupport::Logger.new($stdout)
 
   logger.formatter = proc do |severity, timestamp, progname, message|
-    payload = message.is_a?(Hash) ? message : { message: message }
+    log_hash = message.is_a?(Hash) ? message : { message: message.to_s }
 
-    "#{payload.merge(
+    log_hash.merge!(
       level: severity,
       time: timestamp.utc.iso8601(3)
-    ).to_json}\n"
+    )
+
+    "#{log_hash.to_json}\n"
   end
 
   config.logger = ActiveSupport::TaggedLogging.new(logger)
