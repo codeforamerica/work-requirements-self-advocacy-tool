@@ -4,8 +4,8 @@ RSpec.feature "Screener flow" do
   scenario "new client fills out the screener" do
     visit root_path
 
-    expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
-    click_on I18n.t("views.landing_page.fill_out_form")
+    expect(page).to have_selector("h1", text: I18n.t("views.homepage.index.title"))
+    click_on I18n.t("views.homepage.fill_out_form")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
@@ -20,7 +20,8 @@ RSpec.feature "Screener flow" do
     click_on I18n.t("general.negative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.caring_for_someone.edit.title"))
-    check I18n.t("general.none_of_the_above")
+    check I18n.t("views.caring_for_someone.edit.disabled_or_ill_person")
+    fill_in(I18n.t("views.caring_for_someone.edit.additional_care_info"), with: "lots of care")
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.pregnancy.edit.title"))
