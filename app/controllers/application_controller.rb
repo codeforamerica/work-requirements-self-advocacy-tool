@@ -16,4 +16,22 @@ class ApplicationController < ActionController::Base
   def self.default_url_options
     {locale: I18n.locale}
   end
+
+  def visitor_id
+  #   ???
+  end
+
+  def send_mixpanel_event(event_name:)
+    MixpanelService.send_event(
+      distinct_id: visitor_id,
+      event_name: event_name,
+      record: current_screener,
+      request: request,
+      controller: self
+    )
+  end
+
+  def track_page_view
+    send_mixpanel_event(event_name: "page_view") if request.get?
+  end
 end
