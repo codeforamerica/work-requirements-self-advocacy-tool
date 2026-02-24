@@ -33,9 +33,9 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
-  logger           = ActiveSupport::Logger.new($stdout)
+  logger = ActiveSupport::Logger.new($stdout)
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  logger.level     = Logger.const_get(ENV.fetch("RAILS_LOG_LEVEL", "INFO").upcase)
+  logger.level = Logger.const_get(ENV.fetch("RAILS_LOG_LEVEL", "INFO").upcase)
 
   logger.formatter = proc do |severity, timestamp, progname, message|
     payload =
