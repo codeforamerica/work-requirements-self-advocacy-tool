@@ -531,7 +531,7 @@ DEPENDENCIES
   lograge
   ostruct
   pg (~> 1.1)
-  pg-aws_rds_iam
+  pg-aws_rds_iam (~> 0.7)
   phonelib
   propshaft
   pry (~> 0.15.0)

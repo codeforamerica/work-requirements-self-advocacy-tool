@@ -44,6 +44,7 @@ gem "ostruct"
 gem "dartsass-rails", "~> 0.5.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 
+gem "pg-aws_rds_iam", "~> 0.7"
 gem "phonelib"
 gem "valid_email2"
 
@@ -78,8 +79,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "rspec-rails"
-end
-
-group :production do
-  gem "pg-aws_rds_iam"
 end
