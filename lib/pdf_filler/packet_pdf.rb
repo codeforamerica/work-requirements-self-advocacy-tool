@@ -8,17 +8,19 @@ module PdfFiller
       (value == "yes") ? "Yes" : "Off"
     end
 
+    # TODO: remove page one of the fillable PDF
     GEN_WOR_REQ = <<~BLOCK
-    General Work Requirement Exemptions\r
-    \u2022 Caring for a child under 6 years old - 7 CFR 273.7(b)(1)(iv)
-    • Caring for an incapacitated person - 7 CFR 273.7(b)(1)(iv)
-    Currently getting unemployment benefits or has applied for unemployment benefits - 7 CFR 273.7(b)(1)(v)
-    Participating regularly in an alcohol or drug treatment program - 7 CFR 273.24(c)(2)
-    Enrolled in a school, training program, or institution of higher education at least half-time - 7 CFR 273.7(b)(1)(viii)
-    Working at least 30 hours a week - 7 CFR 273.7(b)(1)(vii)
-    Earning at least $217.50 a week, averaged monthly, from work - 7 CFR 273.7(b)(1)(vii)
+      General Work Requirement Exemptions\r
+      \u2022 Caring for a child under 6 years old - 7 CFR 273.7(b)(1)(iv)
+      • Caring for an incapacitated person - 7 CFR 273.7(b)(1)(iv)
+      Currently getting unemployment benefits or has applied for unemployment benefits - 7 CFR 273.7(b)(1)(v)
+      Participating regularly in an alcohol or drug treatment program - 7 CFR 273.24(c)(2)
+      Enrolled in a school, training program, or institution of higher education at least half-time - 7 CFR 273.7(b)(1)(viii)
+      Working at least 30 hours a week - 7 CFR 273.7(b)(1)(vii)
+      Earning at least $217.50 a week, averaged monthly, from work - 7 CFR 273.7(b)(1)(vii)
     BLOCK
 
+    # TODO: finish the hash
     def hash_for_pdf
       {
         full_name: @screener.full_name,
@@ -88,7 +90,7 @@ module PdfFiller
       pdf_tempfile
     end
 
-    def html_to_pdf
+    def generated_pdf
       html = PacketPageOneController.new.render_to_string(
         {
           template: "packet_page_one/page",
@@ -96,13 +98,13 @@ module PdfFiller
           locals: hash_for_pdf
         }
       )
-      css_path = Rails.root.join('app', 'assets', 'stylesheets', 'wr_exemption_pdf.css')
-      style_tag_options = [{ path: css_path }]
-      Grover.new(html, style_tag_options: style_tag_options).to_pdf
+      css_path = Rails.root.join("app", "assets", "stylesheets", "wr_exemption_pdf.css")
+      style_tag_options = [{path: css_path}]
+      Grover.new(html, style_tag_options: style_tag_options, print_background: true).to_pdf
     end
 
     def combined_pdf
-      page_1 = CombinePDF.parse(html_to_pdf)
+      page_1 = CombinePDF.parse(generated_pdf)
       packet = CombinePDF.load(filled_pdf.path)
       page_1 << packet
       page_1.to_pdf
