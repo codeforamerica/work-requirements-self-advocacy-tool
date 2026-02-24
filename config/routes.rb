@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    root "landing_page#index"
-    get "start_flow" => "landing_page#create_screener"
+    root "homepage#index"
+    get "start_flow" => "homepage#create_screener"
     get "generate_pdf" => "temp_end#generate_pdf"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end

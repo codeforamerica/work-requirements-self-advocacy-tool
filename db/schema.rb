@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_03_235422) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_17_204033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "screeners", force: :cascade do |t|
+    t.text "additional_care_info"
     t.string "alcohol_treatment_program_name"
     t.date "birth_date"
     t.integer "caring_for_child_under_6", default: 0, null: false
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
+    t.integer "consented_to_texts", default: 0, null: false
     t.datetime "created_at", null: false
     t.string "email"
     t.string "first_name"
@@ -33,12 +35,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_03_235422) do
     t.integer "is_student", default: 0, null: false
     t.integer "is_volunteer", default: 0, null: false
     t.integer "is_working", default: 0, null: false
-    t.integer "language_preference_spoken", default: 0, null: false
-    t.integer "language_preference_written", default: 0, null: false
     t.string "last_name"
     t.string "middle_name"
     t.string "phone_number"
     t.date "pregnancy_due_date"
+    t.text "preventing_work_additional_info"
     t.integer "preventing_work_domestic_violence", default: 0, null: false
     t.integer "preventing_work_drugs_alcohol", default: 0, null: false
     t.integer "preventing_work_medical_condition", default: 0, null: false
@@ -46,6 +47,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_03_235422) do
     t.integer "preventing_work_other", default: 0, null: false
     t.integer "preventing_work_place_to_sleep", default: 0, null: false
     t.string "preventing_work_write_in"
+    t.integer "receiving_benefits_disability_medicaid", default: 0, null: false
     t.integer "receiving_benefits_disability_pension", default: 0, null: false
     t.integer "receiving_benefits_insurance_payments", default: 0, null: false
     t.integer "receiving_benefits_none", default: 0, null: false

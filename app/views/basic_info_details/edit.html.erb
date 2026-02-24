@@ -1,0 +1,43 @@
+<% content_for :question_title, t("views.basic_info_details.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.cfa_input_field(:first_name, t("views.basic_info_details.edit.first_name_label"), help_text: t("views.basic_info_details.edit.first_name_label_help_text")) %>
+  <%= f.cfa_input_field(:middle_name, t("views.basic_info_details.edit.middle_name_label"), help_text: t("views.basic_info_details.edit.middle_name_label_help_text")) %>
+  <%= f.cfa_input_field(:last_name, t("views.basic_info_details.edit.last_name_label"), help_text: t("views.basic_info_details.edit.last_name_label_help_text")) %>
+  <%= f.cfa_date_select(
+        :birth_date,
+        t("views.basic_info_details.edit.birth_date_label"),
+        help_text: "mm/dd/yyyy",
+        options: {
+          start_year: Time.now.year,
+          end_year: Time.now.year - 150,
+        }
+      ) %>
+
+  <%= f.cfa_input_field(
+        :phone_number,
+        t("views.basic_info_details.edit.phone_number_label"),
+        help_text: t("views.basic_info_details.edit.phone_number_label_help_text"),
+        prefix: '+1',
+        classes: ['form-width--phone']
+      )
+  %>
+
+  <%= f.cfa_radio_set(
+        :consented_to_texts,
+        label_text: t("views.basic_info_details.edit.consented_to_texts.label"),
+        help_text: t("views.basic_info_details.edit.consented_to_texts.help_text"),
+        collection: [
+          { value: :yes, label: t("views.basic_info_details.edit.consented_to_texts.affirmative") },
+          { value: :no, label: t("views.basic_info_details.edit.consented_to_texts.negative") },
+        ]
+      ) %>
+
+  <p class="spacing-below-60">
+    <%= t("views.basic_info_details.edit.consent_to_texts.additional_info") %>
+  </p>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

@@ -1,0 +1,6 @@
+<%= image_tag "checkmark.svg", class: "illustration left-justified" %>
+<% content_for :question_title, t("views.new_response.edit.title") %>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<p><%= t("views.new_response.edit.title_help_text") %></p>
+<div><%= link_to t("views.new_response.edit.check_work_rules_for_someone_else"), Navigation::ScreenerNavigation.first.to_path_helper, class: "button button--primary" %></div>
+<div><%= link_to t("views.new_response.edit.close"), root_path, class: "button" %></div>

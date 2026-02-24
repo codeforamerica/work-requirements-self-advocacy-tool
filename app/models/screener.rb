@@ -1,7 +1,5 @@
 class Screener < ApplicationRecord
   attr_accessor :email_confirmation
-  enum :language_preference_spoken, {unfilled: 0, english: 1, spanish: 2}, prefix: true
-  enum :language_preference_written, {unfilled: 0, english: 1, spanish: 2}, prefix: true
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -17,6 +15,7 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_disability_pension, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_disability_medicaid, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_in_work_training, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -29,27 +28,25 @@ class Screener < ApplicationRecord
   enum :preventing_work_medical_condition, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :consented_to_texts, {unfilled: 0, yes: 1, no: 2}, prefix: true
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
-    :remove_work_training_attributes_if_no,
-    :remove_working_attributes_if_no,
-    :remove_alcohol_treatment_program_attributes_if_no
+    :remove_training_program_attributes_if_no,
+    :remove_employment_attributes_if_no,
+    :remove_alcohol_treatment_program_attributes_if_no,
+    :remove_preventing_working_info_if_no_reasons,
+    :remove_additional_care_info_if_caring_for_someone_is_no
 
-  with_context :birth_date do
+  with_context :date_of_birth do
     validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
 
-  with_context :language_preference do
-    validates :language_preference_spoken, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
-    validates :language_preference_written, inclusion: {in: %w[english spanish], message: "must be english or spanish"}
-  end
-
-  with_context :personal_information do
-    validates :first_name, :last_name, :phone_number, presence: true
+  with_context :basic_info_details do
+    validates :first_name, :last_name, presence: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
   end
 
@@ -57,20 +54,20 @@ class Screener < ApplicationRecord
     validates :is_american_indian, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
-  with_context :has_child do
+  with_context :living_with_someone do
     validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
   with_context :caring_for_someone do
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
+    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}
   end
 
-  with_context :is_pregnant do
-    validates :is_pregnant, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+  with_context :pregnancy do
     validates :pregnancy_due_date, comparison: {greater_than: Date.current, message: I18n.t("validations.date_must_be_in_future")}, allow_blank: true
   end
 
-  with_context :has_unemployment_benefits do
+  with_context :unemployment do
     validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
@@ -83,16 +80,17 @@ class Screener < ApplicationRecord
           receiving_benefits_disability_pension_yes? ||
           receiving_benefits_workers_compensation_yes? ||
           receiving_benefits_insurance_payments_yes? ||
+          receiving_benefits_disability_medicaid_yes? ||
           receiving_benefits_other_yes?
       }
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
-  with_context :is_student do
+  with_context :school_enrollment do
     validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
   end
 
-  with_context :preventing_work do
+  with_context :preventing_work_situations do
     validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
       if: -> {
         preventing_work_place_to_sleep_yes? ||
@@ -104,12 +102,12 @@ class Screener < ApplicationRecord
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
-  with_context :email do
-    validates :email, "valid_email_2/email": true, confirmation: true
+  with_context :preventing_work_details do
+    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end
 
-  def locale
-    language_preference_written_spanish? ? :es : :en
+  with_context :email do
+    validates :email, "valid_email_2/email": true, confirmation: true
   end
 
   def full_name
@@ -151,13 +149,19 @@ class Screener < ApplicationRecord
 
   private
 
+  def remove_additional_care_info_if_caring_for_someone_is_no
+    if caring_for_child_under_6_no? && caring_for_disabled_or_ill_person_no?
+      self.additional_care_info = nil
+    end
+  end
+
   def remove_pregnancy_attributes_if_no
     if is_pregnant_no?
       self.pregnancy_due_date = nil
     end
   end
 
-  def remove_working_attributes_if_no
+  def remove_employment_attributes_if_no
     if is_working_no?
       self.working_hours = nil
       self.working_weekly_earnings = nil
@@ -171,7 +175,7 @@ class Screener < ApplicationRecord
     end
   end
 
-  def remove_work_training_attributes_if_no
+  def remove_training_program_attributes_if_no
     if is_in_work_training_no?
       self.work_training_hours = nil
       self.work_training_name = nil
@@ -182,5 +186,9 @@ class Screener < ApplicationRecord
     if is_in_alcohol_treatment_program_no?
       self.alcohol_treatment_program_name = nil
     end
+  end
+
+  def remove_preventing_working_info_if_no_reasons
+    self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
   end
 end
