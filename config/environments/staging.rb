@@ -34,26 +34,19 @@ Rails.application.configure do
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   logger = ActiveSupport::Logger.new($stdout)
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  logger.level = Logger.const_get(ENV.fetch("RAILS_LOG_LEVEL", "INFO").upcase)
 
   logger.formatter = proc do |severity, timestamp, progname, message|
-    payload =
-      if message.is_a? Hash
-        # When messages go through lograge, they arrive here as a Hash
-        message
-      else
-        { message: message, level: severity, time: timestamp }
-      end
+    payload = message.is_a?(Hash) ? message : { message: message }
 
-    log_line = payload.merge(
+    "#{payload.merge(
       level: severity,
       time: timestamp.utc.iso8601(3)
-    )
-    "#{log_line.to_json}\n"
+    ).to_json}\n"
   end
 
   config.logger = ActiveSupport::TaggedLogging.new(logger)
+  # Change to "debug" to log everything (including potentially personally-identifiable information!)
+  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
   config.log_tags = [:request_id]
 
   # Prevent health checks from clogging up the logs.

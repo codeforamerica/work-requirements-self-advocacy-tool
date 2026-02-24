@@ -1,5 +1,6 @@
 Rails.application.configure do
   config.lograge.enabled = true
+  config.colorize_logging = false
 
   # Use Raw so it passes a Hash to the logger
   config.lograge.formatter = Lograge::Formatters::Raw.new
