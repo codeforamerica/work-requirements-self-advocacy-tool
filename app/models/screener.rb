@@ -47,25 +47,28 @@ class Screener < ApplicationRecord
     caring_for_disabled_or_ill_person
     is_pregnant
     has_unemployment_benefits
-    receiving_benefits_disability_medicaid
     receiving_benefits_ssdi
-    receiving_benefits_insurance_payments
+    receiving_benefits_ssi
     receiving_benefits_veterans_disability
-    receiving_benefits_disability_pension
     receiving_benefits_workers_compensation
+    receiving_benefits_disability_pension
+    receiving_benefits_insurance_payments
+    receiving_benefits_disability_medicaid
+    receiving_benefits_other
     is_working
     is_migrant_farmworker
     is_student
     is_in_alcohol_treatment_program
     preventing_work_place_to_sleep
-    preventing_work_domestic_violence
     preventing_work_drugs_alcohol
+    preventing_work_domestic_violence
     preventing_work_medical_condition
     preventing_work_other
   ].freeze
 
+  # TODO: Homeschooling and 5 year work eligibity for NC
   def exempt_from_work_rules?
-    return false if age_qualified?
+    return true if age_qualified?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
       (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
@@ -83,10 +86,7 @@ class Screener < ApplicationRecord
   end
 
   def working_exempt?
-    is_working_yes? && (
-      working_hours.to_i >= 30 ||
-        working_weekly_earnings.to_f >= 217.50
-    )
+    is_working_yes? && (working_hours.to_i >= 30 || working_weekly_earnings.to_f >= 217.50)
   end
 
   with_context :date_of_birth do
