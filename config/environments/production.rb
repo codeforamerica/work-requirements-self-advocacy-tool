@@ -33,12 +33,6 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
-  config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new($stdout))
-
-  # Change to "debug" to log everything (including potentially personally-identifiable information!)
-  config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
-  config.log_tags = []
-
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
 
