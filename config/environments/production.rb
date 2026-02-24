@@ -37,7 +37,7 @@ Rails.application.configure do
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
-  config.log_tags = [:request_id]
+  config.log_tags = []
 
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
