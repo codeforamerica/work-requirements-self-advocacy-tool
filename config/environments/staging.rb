@@ -41,23 +41,16 @@ Rails.application.configure do
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
-  config.lograge.enabled = true
-  config.lograge.formatter = Lograge::Formatters::Json.new
-  config.lograge.keep_original_rails_log = false
-  config.lograge.custom_options = lambda do |event|
-    {
-      level: if event.payload[:status] >= 500
-               "ERROR"
-             elsif event.payload[:status] >= 400
-               "WARN"
-             else
-               "INFO"
-             end,
-      request_id: event.payload[:request_id] || event.payload[:headers]["action_dispatch.request_id"],
-      session_id: RequestStore.store[:session_id],
-      screener_id: RequestStore.store[:screener_id],
-      params: event.payload[:params]&.except("controller", "action")
-    }
+  Rails.logger = ActiveSupport::Logger.new($stdout)
+  Rails.logger.formatter = proc do |severity, timestamp, _progname, message|
+    log_line =
+      if message.is_a? Hash
+        # When messages go through lograge, they arrive here as a Hash
+        message
+      else
+        { message: message, level: severity, time: timestamp }
+      end
+    "#{log_line.to_json}\n"
   end
 
   # Prevent health checks from clogging up the logs.
