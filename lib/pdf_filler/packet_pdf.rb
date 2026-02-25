@@ -4,27 +4,12 @@ module PdfFiller
       @screener = screener
     end
 
-    def yes_no_unfilled_to_checkbox(value)
-      value == "yes"
-    end
-
     # TODO: remove page one of the fillable PDF
-    GEN_WOR_REQ = <<~BLOCK
-      General Work Requirement Exemptions\r
-      \u2022 Caring for a child under 6 years old - 7 CFR 273.7(b)(1)(iv)
-      • Caring for an incapacitated person - 7 CFR 273.7(b)(1)(iv)
-      Currently getting unemployment benefits or has applied for unemployment benefits - 7 CFR 273.7(b)(1)(v)
-      Participating regularly in an alcohol or drug treatment program - 7 CFR 273.24(c)(2)
-      Enrolled in a school, training program, or institution of higher education at least half-time - 7 CFR 273.7(b)(1)(viii)
-      Working at least 30 hours a week - 7 CFR 273.7(b)(1)(vii)
-      Earning at least $217.50 a week, averaged monthly, from work - 7 CFR 273.7(b)(1)(vii)
-    BLOCK
-
-    # TODO: finish the hash
+    # the below commented lines are the field names from the PDF
     def hash_for_pdf
       {
         full_name: @screener.full_name,
-        general_work_requirements_exemptions: GEN_WOR_REQ,
+        # general_work_requirements_exemptions: "",
         # abawd_work_requirements_exemptions: "",
         # abawd_work_requirement_compliance: "",
         # confirmation_code: "",
@@ -36,9 +21,9 @@ module PdfFiller
         # case_number: "",
         # ssn_last_4: "",
         # age: "",
-        is_american_indian: yes_no_unfilled_to_checkbox(@screener.is_american_indian),
+        is_american_indian: @screener.is_american_indian_yes?,
         # has_child: "",
-        caring_for_child_under_6: yes_no_unfilled_to_checkbox(@screener.caring_for_child_under_6)
+        caring_for_child_under_6: @screener.caring_for_child_under_6_yes?
         # caring_for_disabled_or_ill_person: "",
         # is_pregnant: "",
         # is_in_work_training: "",
@@ -79,18 +64,15 @@ module PdfFiller
       }
     end
 
-    def filled_pdf
+    def filled_pdf_path
       source_pdf_path = "app/assets/pdfs/packet.pdf"
       template_doc = HexaPDF::Document.open(source_pdf_path)
       hash_for_pdf.each do |field_name, field_value|
         template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
       end
-      pdf_tempfile = Tempfile.new(
-        ["packet", ".pdf"],
-        "tmp/"
-      )
+      pdf_tempfile = Tempfile.new(["packet", ".pdf"], "tmp/")
       template_doc.write(pdf_tempfile)
-      pdf_tempfile
+      pdf_tempfile.path
     end
 
     def generated_pdf_path
@@ -110,11 +92,10 @@ module PdfFiller
 
     def combined_pdf
       target = HexaPDF::Document.new
-      [generated_pdf_path, filled_pdf.path].each do |file|
+      [generated_pdf_path, filled_pdf_path].each do |file|
         pdf = HexaPDF::Document.open(file)
         pdf.pages.each { |page| target.pages << target.import(page) }
       end
-
       target.write_to_string
     ensure
       File.delete(generated_pdf_path) # not a Tempfile so we have to manually delete it
