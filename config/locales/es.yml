@@ -101,11 +101,11 @@ es:
     employment:
       edit:
         notice_content:
-          - Un trabajo de tiempo completo o de medio tiempo.
-          - Trabajo por encargo o temporal (como conducir para una app de transporte o de entrega de comida).
-          - Trabajo como contratista independiente.
-          - Tener y administrar su propio negocio.
-          - Trabajo sin pago a cambio de bienes o servicios (por ejemplo, un lugar para vivir).
+        - Un trabajo de tiempo completo o de medio tiempo.
+        - Trabajo por encargo o temporal (como conducir para una app de transporte o de entrega de comida).
+        - Trabajo como contratista independiente.
+        - Tener y administrar su propio negocio.
+        - Trabajo sin pago a cambio de bienes o servicios (por ejemplo, un lugar para vivir).
         notice_title: Qué actividades se consideran trabajo
         title: "¿Está trabajando?"
         working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.

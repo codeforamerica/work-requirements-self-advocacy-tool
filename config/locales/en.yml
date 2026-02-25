@@ -101,11 +101,11 @@ en:
     employment:
       edit:
         notice_content:
-          - A full-time or part-time job
-          - Gig work (such as driving for a rideshare or food delivery service)
-          - Independent contracting
-          - Running your own business
-          - Work without pay in exchange for goods or services (such as a place to live)
+        - A full-time or part-time job
+        - Gig work (such as driving for a rideshare or food delivery service)
+        - Independent contracting
+        - Running your own business
+        - Work without pay in exchange for goods or services (such as a place to live)
         notice_title: What Work Includes
         title: Are you working?
         working_hours_help_text: If this changes, give your weekly average from the past month.
