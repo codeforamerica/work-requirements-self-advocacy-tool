@@ -39,7 +39,12 @@ var noneOfTheAbove = (function () {
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
+  accordion.init();
   honeycrispInit();
+  $('.question-with-follow-up').each(function() {
+    var self = this;
+    followUpQuestion.update($(self));
+  });
   initTextareaCounter();
 });
 
