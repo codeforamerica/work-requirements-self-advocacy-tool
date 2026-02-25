@@ -323,4 +323,92 @@ RSpec.describe Screener, type: :model do
       end
     end
   end
+
+  describe "Eligibility Validation" do
+    describe "age_qualified?" do
+      it "returns true if age is 17 or younger" do
+        screener = Screener.new(birth_date: 17.years.ago.to_date + 1.day)
+        expect(screener.age_qualified?).to eq true
+      end
+
+      it "returns false if age is 18" do
+        screener = Screener.new(birth_date: 18.years.ago.to_date)
+        expect(screener.age_qualified?).to eq false
+      end
+
+      it "returns false if age is 37" do
+        screener = Screener.new(birth_date: 37.years.ago.to_date)
+        expect(screener.age_qualified?).to eq false
+      end
+
+      it "returns false if age is 64" do
+        screener = Screener.new(birth_date: 64.years.ago.to_date + 1.day)
+        expect(screener.age_qualified?).to eq false
+      end
+
+      it "returns true if age is 65" do
+        screener = Screener.new(birth_date: 65.years.ago.to_date)
+        expect(screener.age_qualified?).to eq true
+      end
+
+      it "returns false if birth_date is nil" do
+        screener = Screener.new(birth_date: nil)
+        expect(screener.age_qualified?).to eq false
+      end
+    end
+
+    describe "working_exempt?" do
+      it "returns true if working 30 or more hours" do
+        screener = Screener.new(is_working: "yes", working_hours: 30)
+        expect(screener.working_exempt?).to eq true
+      end
+
+      it "returns true if earning at least 217.50 weekly" do
+        screener = Screener.new(is_working: "yes", working_weekly_earnings: 217.50)
+        expect(screener.working_exempt?).to eq true
+      end
+
+      it "returns false if working but under both thresholds" do
+        screener = Screener.new(is_working: "yes", working_hours: 10, working_weekly_earnings: 100)
+        expect(screener.working_exempt?).to eq false
+      end
+
+      it "returns false if not working" do
+        screener = Screener.new(is_working: "no")
+        expect(screener.working_exempt?).to eq false
+      end
+    end
+
+    describe "exempt_from_work_rules?" do
+      it "returns true if age qualified (under 18)" do
+        screener = Screener.new(birth_date: 16.years.ago.to_date)
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns true if age qualified (65 or older)" do
+        screener = Screener.new(birth_date: 70.years.ago.to_date)
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns true if a non-working exemption attribute is yes" do
+        screener = Screener.new(is_student: "yes")
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns true if working exemption meets thresholds" do
+        screener = Screener.new(is_working: "yes", working_hours: 35)
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns false if no exemptions apply" do
+        screener = Screener.new(
+          birth_date: 30.years.ago.to_date,
+          is_working: "no",
+          is_student: "no"
+        )
+
+        expect(screener.exempt_from_work_rules?).to eq false
+      end
+    end
+  end
 end
