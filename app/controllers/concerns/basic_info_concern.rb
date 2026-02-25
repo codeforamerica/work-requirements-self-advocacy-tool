@@ -15,7 +15,7 @@ module BasicInfoConcern
 
   module ClassMethodsOverride
     def show?(screener, item_index: nil)
-      screener&.exempt_from_work_rules? && super
+      !!(screener&.exempt_from_work_rules? && super)
     end
   end
 end
