@@ -4,13 +4,13 @@ RSpec.feature "Screener flow" do
   scenario "new client fills out the screener" do
     visit root_path
 
-    expect(page).to have_selector("h1", text: I18n.t("views.landing_page.index.title"))
-    click_on I18n.t("views.landing_page.fill_out_form")
+    expect(page).to have_selector("h1", text: I18n.t("views.homepage.index.title"))
+    click_on I18n.t("views.homepage.fill_out_form")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"
-    select "1940", from: "Year"
+    select "2000", from: "Year"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
@@ -77,7 +77,7 @@ RSpec.feature "Screener flow" do
     fill_in "preventing_work_additional_info", with: "Some things are best left unwritten."
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_milestone.edit.title"))
+    expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))

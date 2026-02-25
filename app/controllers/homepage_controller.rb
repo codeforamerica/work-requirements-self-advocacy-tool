@@ -1,11 +1,12 @@
-class LandingPageController < ApplicationController
+class HomepageController < ApplicationController
   layout "application"
 
   def index
   end
 
   def create_screener
-    Screener.create
+    screener = Screener.create
+    session[:screener_id] = screener.id
     redirect_to navigation_class.first.to_path_helper
   end
 end
