@@ -33,13 +33,13 @@ Rails.application.configure do
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
+  config.log_level = :info
+
   # Prevent health checks from clogging up the logs.
   config.silence_healthcheck_path = "/up"
 
   # Don't log any deprecations.
   config.active_support.report_deprecations = false
-
-  config.log_level = :info
 
   # Replace the default in-process memory cache store with a durable alternative.
   config.cache_store = :solid_cache_store
