@@ -5,6 +5,9 @@
     },
     {
       "url": "heroku/ruby"
+    },
+    {
+      "url": "https://github.com/codeforamerica/heroku-pdftk-java-buildpack.git"
     }
   ],
   "addons": [
