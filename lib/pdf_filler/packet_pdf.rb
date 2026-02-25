@@ -38,7 +38,7 @@ module PdfFiller
         # age: "",
         is_american_indian: yes_no_unfilled_to_checkbox(@screener.is_american_indian),
         # has_child: "",
-        caring_for_child_under_6: yes_no_unfilled_to_checkbox(@screener.caring_for_child_under_6),
+        caring_for_child_under_6: yes_no_unfilled_to_checkbox(@screener.caring_for_child_under_6)
         # caring_for_disabled_or_ill_person: "",
         # is_pregnant: "",
         # is_in_work_training: "",
@@ -112,7 +112,7 @@ module PdfFiller
       target = HexaPDF::Document.new
       [generated_pdf_path, filled_pdf.path].each do |file|
         pdf = HexaPDF::Document.open(file)
-        pdf.pages.each {|page| target.pages << target.import(page)}
+        pdf.pages.each { |page| target.pages << target.import(page) }
       end
 
       target.write_to_string
