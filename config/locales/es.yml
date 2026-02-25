@@ -91,6 +91,10 @@ es:
         receiving_benefits_workers_compensation: Pensión por discapacidad
         receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
+    download_form:
+      edit:
+        title: Descargue y envíe su formulario a su oficina de SNAP
+        title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
     email:
       edit:
         email: Email
