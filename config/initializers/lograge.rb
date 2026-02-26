@@ -7,7 +7,6 @@ Rails.application.configure do
 
   config.lograge.custom_options = lambda do |event|
     {
-      params: event.payload[:params]&.except("controller", "action"),
       request_id: event.payload[:headers]&.[]("action_dispatch.request_id"),
       session_id: RequestStore.store[:session_id],
       screener_id: RequestStore.store[:screener_id],
