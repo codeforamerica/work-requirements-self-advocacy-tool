@@ -57,6 +57,11 @@ done
 
 # --- Set environment-specific variables  ---
 case "$ENVIRONMENT" in
+    development)
+        PROFILE="wrsat-nonprod"
+        CLUSTER_NAME="work-requirements-self-advocacy-tool-development-web"
+        CONTAINER_NAME="work-requirements-self-advocacy-tool-development-web"
+        ;;
     staging)
         PROFILE="wrsat-nonprod"
         CLUSTER_NAME="work-requirements-self-advocacy-tool-staging-web"
