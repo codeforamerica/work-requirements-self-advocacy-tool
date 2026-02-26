@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:screener_id] = session[:screener_id]
   end
   before_action :set_visitor_id
+  after_action :track_page_view
 
   def navigation_class
     Navigation::ScreenerNavigation
@@ -47,11 +48,10 @@ class ApplicationController < ActionController::Base
   end
 
   def send_mixpanel_event(event_name:)
-    MixpanelService.send_event(
+    MixpanelService.new.send_event(
       distinct_id: visitor_id,
       event_name: event_name,
       record: current_screener,
-      request: request,
       controller: self
     )
   end
