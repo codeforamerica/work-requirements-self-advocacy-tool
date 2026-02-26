@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:session_id] = session.id
     RequestStore.store[:screener_id] = session[:screener_id]
   end
+  before_action :set_visitor_id
 
   def navigation_class
     Navigation::ScreenerNavigation
@@ -22,8 +23,27 @@ class ApplicationController < ActionController::Base
     {locale: I18n.locale}
   end
 
+  def current_screener; end
+
+  def set_visitor_id
+    visitor_id =
+      if current_screener&.visitor_id.present?
+        current_screener.visitor_id
+      elsif cookies.encrypted[:visitor_id].present?
+        cookies.encrypted[:visitor_id]
+      else
+        SecureRandom.hex(26)
+      end
+    cookies.encrypted.permanent[:visitor_id] = { value: visitor_id, httponly: true }
+
+    # if current_screener is present but for some reason lacking a visitor_id, let's update it
+    if current_screener.present? && current_screener.persisted? && current_screener.visitor_id.blank?
+      current_screener.update(visitor_id: visitor_id)
+    end
+  end
+
   def visitor_id
-  #   ???
+    current_screener&.visitor_id || cookies.encrypted[:visitor_id]
   end
 
   def send_mixpanel_event(event_name:)
