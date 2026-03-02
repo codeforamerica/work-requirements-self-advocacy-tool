@@ -92,6 +92,10 @@ en:
         receiving_benefits_workers_compensation: Workers' compensation
         receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
+    download_form:
+      edit:
+        title: Download and submit to your SNAP agency
+        title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
     email:
       edit:
         email: Email
