@@ -24,7 +24,7 @@ OpenTelemetry::SDK.configure do |c|
       OpenTelemetry::SDK::Trace::Export::BatchSpanProcessor.new(
         OpenTelemetry::Exporter::OTLP::Exporter.new(
           endpoint: otlp_endpoint,
-          headers: { "DD-API-KEY" => datadog_api_key }
+          headers: {"DD-API-KEY" => datadog_api_key}
         )
       )
     )
