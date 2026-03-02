@@ -36,7 +36,10 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
+# Ignore dependencies
 /node_modules
+/vendor/bundle
+
 .idea
 .DS_Store
 cfa_ui_components.tailwind.css

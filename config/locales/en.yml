@@ -58,8 +58,9 @@ en:
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
       edit:
-        help_text_html: This information will help your agency find your SNAP case.
-        title: Basic information
+        help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
+        instructions: This information helps your caseworker find your case when you submit your form.
+        title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
     caring_for_someone:
       edit:
         additional_care_info: Can you tell us about the kind of care you provide?
@@ -91,6 +92,10 @@ en:
         receiving_benefits_workers_compensation: Workers' compensation
         receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
+    download_form:
+      edit:
+        title: Download and submit to your SNAP agency
+        title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
     email:
       edit:
         email: Email
@@ -99,6 +104,13 @@ en:
         title_help_text: We'll email you next steps with form results that you should submit to your SNAP agency.
     employment:
       edit:
+        notice_content:
+        - A full-time or part-time job
+        - Gig work (such as driving for a rideshare or food delivery service)
+        - Independent contracting
+        - Running your own business
+        - Work without pay in exchange for goods or services (such as a place to live)
+        notice_title: What Work Includes
         title: Are you working?
         working_hours_help_text: If this changes, give your weekly average from the past month.
         working_hours_label: How many hours a week do you usually work?
