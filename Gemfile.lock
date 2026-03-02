@@ -176,6 +176,12 @@ GEM
     google-protobuf (4.33.2-x86_64-darwin)
       bigdecimal
       rake (>= 13)
+    google-protobuf (4.33.2-x86_64-linux-gnu)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.33.2-x86_64-linux-musl)
+      bigdecimal
+      rake (>= 13)
     googleapis-common-protos-types (1.22.0)
       google-protobuf (~> 4.26)
     highline (3.1.2)
