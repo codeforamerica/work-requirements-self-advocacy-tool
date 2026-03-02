@@ -11,7 +11,8 @@ Rails.application.configure do
       session_id: RequestStore.store[:session_id],
       screener_id: RequestStore.store[:screener_id],
       level: event.payload[:level] || "INFO",
-      time: Time.now.utc.iso8601(3)
+      time: Time.now.utc.iso8601(3),
+      trace_id: OpenTelemetry::Trace.current_span.context.hex
     }.compact
   end
 end
