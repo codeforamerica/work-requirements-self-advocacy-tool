@@ -148,7 +148,14 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
-    ffi (1.17.3-arm64-darwin)
+    ffi (1.17.3-aarch64-linux-gnu)
+        ffi (1.17.3-aarch64-linux-musl)
+        ffi (1.17.3-arm-linux-gnu)
+        ffi (1.17.3-arm-linux-musl)
+        ffi (1.17.3-arm64-darwin)
+        ffi (1.17.3-x86_64-darwin)
+        ffi (1.17.3-x86_64-linux-gnu)
+        ffi (1.17.3-x86_64-linux-musl)
     fugit (1.12.1)
       et-orbi (~> 1.4)
       raabro (~> 1.4)
@@ -158,6 +165,12 @@ GEM
       bigdecimal
       rake (>= 13)
     google-protobuf (4.33.2-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.33.2-aarch64-linux-gnu)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.33.2-aarch64-linux-musl)
       bigdecimal
       rake (>= 13)
     googleapis-common-protos-types (1.22.0)
