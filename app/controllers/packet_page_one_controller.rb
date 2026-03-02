@@ -2,6 +2,7 @@ class PacketPageOneController < QuestionController
   layout "pdf"
   before_action :build_temp_screener
 
+  # TODO: eventually this will use a real screener but for ease of development as we fill out the whole PDF, use this
   def build_temp_screener
     @temp_screener ||= Screener.new(
       first_name: "Testy",
