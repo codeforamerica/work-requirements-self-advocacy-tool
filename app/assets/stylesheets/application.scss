@@ -1,11 +1,36 @@
 @import "cfa_styleguide_main";
 
+.form-group, .text--help {
+  font-size: 1.9rem;
+}
+
 html {
   background-color: $color-grey;
 }
 
 main {
   background-color: $color-grey-light;
+}
+
+@media screen and (min-width: 800px) {
+  .card {
+    padding: 6rem;
+  }
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1.5rem;
+
+  .button {
+    margin: 0;
+  }
+}
+
+.slab.slab-toolbar {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .slab {
@@ -22,8 +47,24 @@ main {
   background-color: $color-grey;
 }
 
+.homepage-section--teal {
+  padding: 3.5rem;
+  background-color: $color-teal-light;
+
+  .accordion {
+    background-color: $color-white;
+  }
+}
+
 .illustration.left-justified {
   margin-left: 1rem;
+}
+
+.notice {
+  padding: 0.8rem;
+  .media--icon {
+    margin-right: 0.8rem;
+  }
 }
 
 .notice.white {
@@ -55,16 +96,28 @@ main {
 i.yes-button-checkmark {
   color: $color-green;
   font-weight: bold;
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: middle;
 }
 
 i.no-button-cross {
   color: $color-red;
   font-weight: bold;
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: middle;
 }
 
 .question-with-follow-up__follow-up {
   border: none;
   background: none;
+  padding: 0;
+  margin: 3.5rem 0;
+  hr {
+    margin-top: 0;
+    margin-bottom: 3.5rem;
+  }
 }
 
 .question-with-follow-up__follow-up:before {
@@ -79,4 +132,8 @@ i.no-button-cross {
   .input-group {
     margin-bottom: 0;
   }
+}
+
+.input-group--block .radio-button {
+  max-width: unset;
 }

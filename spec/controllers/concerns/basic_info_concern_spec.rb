@@ -1,0 +1,64 @@
+require "rails_helper"
+
+RSpec.describe BasicInfoConcern, type: :controller do
+  controller(ApplicationController) do
+    include BasicInfoConcern
+
+    class << self
+      attr_accessor :super_result
+    end
+
+    self.super_result = true
+
+    # the test implementation that `super` will call
+    def self.show?(screener, item_index: nil)
+      super_result
+    end
+
+    def index
+      head :ok
+    end
+  end
+
+  let(:screener) { instance_double("Screener") }
+
+  describe ".show?" do
+    context "when screener is nil" do
+      it "returns false" do
+        expect(controller.class.show?(nil)).to eq false
+      end
+    end
+
+    context "when screener is not exempt from work rules" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
+      end
+
+      it "returns false even if super would return true" do
+        controller.class.super_result = true
+        expect(controller.class.show?(screener)).to eq false
+      end
+
+      it "returns false if super would return false" do
+        controller.class.super_result = false
+        expect(controller.class.show?(screener)).to eq false
+      end
+    end
+
+    context "when screener is exempt from work rules" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+      end
+
+      it "returns true if super returns true" do
+        controller.class.super_result = true
+        expect(controller.class.show?(screener)).to eq true
+      end
+
+      it "returns false if super returns false" do
+        controller.class.super_result = false
+        expect(controller.class.show?(screener)).to eq false
+      end
+    end
+  end
+end

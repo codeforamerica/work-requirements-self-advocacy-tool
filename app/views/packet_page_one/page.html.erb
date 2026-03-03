@@ -1,0 +1,41 @@
+<div class="pdf-packet">
+  <div class="header">
+    <p>SUMMARY OF</p>
+    <h1>SNAP Work Requirement Exemptions Attestation</h1>
+  </div>
+  <div class="grey-box">
+    <div class="attestation-header">
+      <%= image_tag "https://staging.wrsat.codeforamerica.app/assets/apple-b1e632b6.svg" %>
+      <div class="content"><%= full_name %>, (DOB: <%= birth_date %>) attests to the following exemptions from the SNAP work requirements:</div>
+    </div>
+
+    <p class="section-header">General work requirement exemptions</p>
+    <ul>
+      <% if caring_for_child_under_6 %>
+        <li>Caring for a child under 6 years old <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
+      <% end %>
+      <li>Caring for an incapacitated person <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
+      <li>Currently getting unemployment benefits or has applied for unemployment benefits <span class="list-item--note">- 7 CFR 273.7(b)(1)(v)</span></li>
+      <li>Participating regularly in an alcohol or drug treatment program <span class="list-item--note">- 7 CFR 273.24(c)(2)</span></li>
+      <li>Enrolled in a school, training program, or institution of higher education at least half-time <span class="list-item--note">- 7 CFR 273.7(b)(1)(viii)</span></li>
+      <li>Working at least 30 hours a week <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+      <li>Earning at least $217.50 a week, averaged monthly, from work <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+    </ul>
+
+
+    <p class="section-header">Able-Bodied Adult Without Dependents (ABAWD) Work Requirement Exemptions</p>
+    <ul>
+      <li>Living with a child under 14 years old - 7 USC 2015(o)(3)(C)</li>
+      <li>Pregnant (Due: [PREGNANT_DATE]) - 7 CFR 273.24(c)(6)</li>
+      <li>Receiving a disability benefit 7 CFR 273.24(c)(2)(i)</li>
+      <li>A member of an Indian tribe or nation 7 USC 2015(o)(3)(F),(G)</li>
+      <li>Seasonal or migrant farmworker under an agreement or contract to start work within the next 30 days. 7 CFR 273.7(b)(1)(vii)</li>
+      “Unfit for work” - unable to consistently work 20 hours a week 7 CFR 273.24(c)(2) because: [PREVENTING_WORK]
+      <li>Does not have a regular place to sleep or shower</li>
+      <li>Experiencing domestic violence</li>
+      <li>Substance use disorder</li>
+      <li>Has a physical or mental medical condition preventing them from working at least 20 hours every week (see details on following pages).</li>
+      <li>Other</li>
+    </ul>
+  </div>
+</div>

@@ -4,7 +4,7 @@ ruby_version = File.read(File.join(File.dirname(__FILE__), ".ruby-version")).str
 ruby ruby_version
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.1"
+gem "rails", "~> 8.1.2"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -44,8 +44,13 @@ gem "ostruct"
 gem "dartsass-rails", "~> 0.5.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 
+gem "pg-aws_rds_iam", "~> 0.7"
 gem "phonelib"
 gem "valid_email2"
+gem "grover"
+gem "hexapdf", "~> 1.6"
+
+gem "lograge"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -68,7 +73,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "standard", ">= 1.35.1"
-  gem "pry", "~> 0.15.0"
+  gem "pry", "~> 0.16.0"
 end
 
 group :test do

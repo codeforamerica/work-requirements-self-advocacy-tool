@@ -5,10 +5,9 @@ RSpec.describe Screener, type: :model do
     context "required yes/no" do
       [
         [:american_indian, :is_american_indian],
-        [:has_child, :has_child],
-        [:is_pregnant, :is_pregnant],
-        [:has_unemployment_benefits, :has_unemployment_benefits],
-        [:is_student, :is_student]
+        [:living_with_someone, :has_child],
+        [:unemployment, :has_unemployment_benefits],
+        [:school_enrollment, :is_student]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
           screener = Screener.new(column => "unfilled")
@@ -19,54 +18,44 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :birth_date" do
+    context "with_context :date_of_birth" do
       it "requires birth date" do
         screener = Screener.new(birth_date: nil)
-        screener.valid?(:birth_date)
+        screener.valid?(:date_of_birth)
 
         expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
       end
     end
 
-    context "with_context :language_preference" do
-      it "requires language preferences to be filled out" do
-        screener = Screener.new(language_preference_spoken: "unfilled", language_preference_written: "unfilled")
-        screener.valid?(:language_preference)
-
-        expect(screener.errors).to match_array ["Language preference spoken must be english or spanish", "Language preference written must be english or spanish"]
-      end
-    end
-
-    context "with_context :personal_information" do
-      it "requires first name, last name, and phone number" do
-        screener = Screener.new(first_name: nil, last_name: nil, phone_number: nil)
-        screener.valid?(:personal_information)
+    context "with_context :basic_info_details" do
+      it "requires first name and last name" do
+        screener = Screener.new(first_name: nil, last_name: nil)
+        screener.valid?(:basic_info_details)
 
         expect(screener.errors).to match_array [
           "First name can't be blank",
-          "Last name can't be blank",
-          "Phone number can't be blank"
+          "Last name can't be blank"
         ]
       end
 
       it "requires the phone number to be valid" do
         ["123", "55-111-2222"].each do |phone_number|
           screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: phone_number)
-          screener.valid?(:personal_information)
+          screener.valid?(:basic_info_details)
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
 
         screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
-        expect(screener.valid?(:personal_information)).to eq true
+        expect(screener.valid?(:basic_info_details)).to eq true
       end
     end
 
-    context "with_context :is_pregnant" do
+    context "with_context :pregnancy" do
       it "requires a due date in the future" do
         screener = Screener.new(is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
 
-        screener.valid?(:is_pregnant)
+        screener.valid?(:pregnancy)
         expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
 
         screener.assign_attributes(pregnancy_due_date: Time.now + 3.days)
@@ -98,6 +87,22 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:caring_for_someone)
 
         expect(screener.errors[:caring_for_no_one]).to be_present
+      end
+
+      it "must not have value longer than CaringForSomeoneController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          additional_care_info: "This is just a test value."
+        )
+        # Valid value that is not too long
+        expect(screener.valid?(:additional_care_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = CaringForSomeoneController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(additional_care_info: text)
+
+        screener.valid?(:caring_for_someone)
+        expect(screener.errors[:additional_care_info]).to be_present
       end
     end
 
@@ -147,7 +152,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :preventing_work" do
+    context "with_context :preventing_work_situations" do
       it "cannot choose a situation and 'none of the above'" do
         screener = Screener.new(
           preventing_work_place_to_sleep: "no",
@@ -158,19 +163,19 @@ RSpec.describe Screener, type: :model do
           preventing_work_none: "yes"
         )
 
-        screener.valid?(:preventing_work)
+        screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_none]).to be_present
 
         # valid if preventing_work_none is "no"
         screener.assign_attributes(preventing_work_none: "no")
-        expect(screener.valid?(:preventing_work)).to eq true
+        expect(screener.valid?(:preventing_work_situations)).to eq true
 
         # valid if everything but preventing_work_none is "no"
         screener.assign_attributes(
           preventing_work_drugs_alcohol: "no",
           preventing_work_none: "yes"
         )
-        expect(screener.valid?(:preventing_work)).to eq true
+        expect(screener.valid?(:preventing_work_situations)).to eq true
       end
 
       it "can only have a write-in answer if 'other' is checked" do
@@ -179,14 +184,14 @@ RSpec.describe Screener, type: :model do
           preventing_work_write_in: "some other reason"
         )
 
-        screener.valid?(:preventing_work)
+        screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_write_in]).to be_present
 
         screener.assign_attributes(
           preventing_work_other: "yes",
           preventing_work_write_in: "some other reason"
         )
-        expect(screener.valid?(:preventing_work)).to eq true
+        expect(screener.valid?(:preventing_work_situations)).to eq true
       end
     end
 
@@ -212,9 +217,43 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors).to match_array []
       end
     end
+
+    context "with_context :preventing_work_details" do
+      it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
+        screener = Screener.new(
+          preventing_work_additional_info: "This is just a test value."
+        )
+
+        # Valid value that is not too long
+        screener.valid?(:preventing_work_details)
+        expect(screener.valid?(:preventing_work_additional_info)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = PreventingWorkDetailsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(preventing_work_additional_info: text)
+
+        screener.valid?(:preventing_work_details)
+        expect(screener.errors[:preventing_work_additional_info]).to be_present
+      end
+    end
   end
 
   describe "before_save" do
+    context "caring for someone attributes" do
+      it "clears additional_care_info if caring_for_child_under_6 is no and caring_for_disabled_or_ill_person is no" do
+        screener = Screener.create(
+          caring_for_child_under_6: "yes",
+          caring_for_disabled_or_ill_person: "yes",
+          additional_care_info: "i care"
+        )
+
+        screener.update(caring_for_child_under_6: "no", caring_for_disabled_or_ill_person: "no")
+
+        expect(screener.reload.additional_care_info).to be_nil
+      end
+    end
+
     context "pregnancy attributes" do
       it "clears the due date if is_pregnant changes to no" do
         screener = Screener.create(is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
@@ -225,7 +264,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "working attributes" do
+    context "employment attributes" do
       it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
         screener = Screener.create(is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
 
@@ -265,6 +304,110 @@ RSpec.describe Screener, type: :model do
         screener.update(is_in_alcohol_treatment_program: "no")
 
         expect(screener.reload.alcohol_treatment_program_name).to be_nil
+      end
+    end
+
+    context "with_context :preventing_work_details" do
+      it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
+        screener = Screener.create(
+          preventing_work_additional_info: "This is just a test value.",
+          preventing_work_drugs_alcohol: "yes"
+        )
+
+        screener.update(preventing_work_none: "yes")
+        screener.update(preventing_work_drugs_alcohol: "no")
+
+        screener.reload
+
+        expect(screener.preventing_work_additional_info).to be_nil
+      end
+    end
+  end
+
+  describe "Eligibility Validation" do
+    describe "age_qualified?" do
+      it "returns true if age is 17 or younger" do
+        screener = Screener.new(birth_date: 17.years.ago.to_date + 1.day)
+        expect(screener.age_qualified?).to eq true
+      end
+
+      it "returns false if age is 18" do
+        screener = Screener.new(birth_date: 18.years.ago.to_date)
+        expect(screener.age_qualified?).to eq false
+      end
+
+      it "returns false if age is 37" do
+        screener = Screener.new(birth_date: 37.years.ago.to_date)
+        expect(screener.age_qualified?).to eq false
+      end
+
+      it "returns false if age is 64" do
+        screener = Screener.new(birth_date: 64.years.ago.to_date + 1.day)
+        expect(screener.age_qualified?).to eq false
+      end
+
+      it "returns true if age is 65" do
+        screener = Screener.new(birth_date: 65.years.ago.to_date)
+        expect(screener.age_qualified?).to eq true
+      end
+
+      it "returns false if birth_date is nil" do
+        screener = Screener.new(birth_date: nil)
+        expect(screener.age_qualified?).to eq false
+      end
+    end
+
+    describe "working_exempt?" do
+      it "returns true if working 30 or more hours" do
+        screener = Screener.new(is_working: "yes", working_hours: 30)
+        expect(screener.working_exempt?).to eq true
+      end
+
+      it "returns true if earning at least 217.50 weekly" do
+        screener = Screener.new(is_working: "yes", working_weekly_earnings: 217.50)
+        expect(screener.working_exempt?).to eq true
+      end
+
+      it "returns false if working but under both thresholds" do
+        screener = Screener.new(is_working: "yes", working_hours: 10, working_weekly_earnings: 100)
+        expect(screener.working_exempt?).to eq false
+      end
+
+      it "returns false if not working" do
+        screener = Screener.new(is_working: "no")
+        expect(screener.working_exempt?).to eq false
+      end
+    end
+
+    describe "exempt_from_work_rules?" do
+      it "returns true if age qualified (under 18)" do
+        screener = Screener.new(birth_date: 16.years.ago.to_date)
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns true if age qualified (65 or older)" do
+        screener = Screener.new(birth_date: 70.years.ago.to_date)
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns true if a non-working exemption attribute is yes" do
+        screener = Screener.new(is_student: "yes")
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns true if working exemption meets thresholds" do
+        screener = Screener.new(is_working: "yes", working_hours: 35)
+        expect(screener.exempt_from_work_rules?).to eq true
+      end
+
+      it "returns false if no exemptions apply" do
+        screener = Screener.new(
+          birth_date: 30.years.ago.to_date,
+          is_working: "no",
+          is_student: "no"
+        )
+
+        expect(screener.exempt_from_work_rules?).to eq false
       end
     end
   end
