@@ -32,7 +32,8 @@ class Screener < ApplicationRecord
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
-  before_validation :strip_email_and_confirmation, :normalize_not_listed
+  before_validation :strip_email_and_confirmation,
+    :normalize_not_listed
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_training_program_attributes_if_no,
@@ -40,6 +41,10 @@ class Screener < ApplicationRecord
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
     :remove_additional_care_info_if_caring_for_someone_is_no
+
+  before_validation do
+    Rails.logger.info "STATE AT VALIDATION: #{self.state.inspect}"
+  end
 
   ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
     is_american_indian
@@ -91,7 +96,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :location do
-    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
+    validates :state, inclusion: { in: LocationData::States::VALID_VALUES }, allow_nil: true
   end
 
   with_context :date_of_birth do
@@ -200,11 +205,13 @@ class Screener < ApplicationRecord
     self.email_confirmation = email_confirmation.strip.downcase if email_confirmation.present?
   end
 
-  def normalize_not_listed
-    self.state = nil if state == States::NOT_LISTED
-  end
-
   private
+
+  def normalize_not_listed
+    Rails.logger.info "State before normalize: #{state.inspect}"
+
+    self.state = nil if state == LocationData::States::NOT_LISTED
+  end
 
   def remove_additional_care_info_if_caring_for_someone_is_no
     if caring_for_child_under_6_no? && caring_for_disabled_or_ill_person_no?

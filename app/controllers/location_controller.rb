@@ -5,11 +5,20 @@ class LocationController < QuestionController
     false
   end
 
-  private
+  def edit
+    @states = LocationData::States::OPTIONS
 
-  def form_params(model)
-    model_from_params = params["screener"]
-    birth_date = parse_date_params(model_from_params[:birth_date_year], model_from_params[:birth_date_month], model_from_params[:birth_date_day])
-    {birth_date: birth_date}
+    # Only prepopulate counties if state is North Carolina
+    @counties = if current_screener.state == LocationData::States::NORTH_CAROLINA
+                  LocationData::Counties::NORTH_CAROLINA
+                else
+                  {}
+                end
+
+    super
+  end
+
+  def self.attributes_edited
+    [:state, :county]
   end
 end

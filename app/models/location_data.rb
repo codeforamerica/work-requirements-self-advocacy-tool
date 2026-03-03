@@ -15,8 +15,9 @@ module LocationData
 
   module Counties
     NORTH_CAROLINA = {
-      "wake" => {name: "Wake County", phone: "919-555-1111"},
-      "mecklenburg" => {name: "Mecklenburg County", phone: "704-555-2222"}
+      "Alamance" => {name: "Alamance", phone: "336-570-6532"},
+      "Alexander" => {name: "Alexander", phone: "828-632-1080"},
+      "Alleghany" => {name: "Alleghany", phone: "336-372-2415"}
     }.freeze
 
     def self.for_state(state)
