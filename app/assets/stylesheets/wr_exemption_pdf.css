@@ -1,0 +1,43 @@
+.pdf-packet {
+  margin: 60px 35px;
+  font-family: "Source Sans 3", -apple-system, sans-serif;
+}
+
+.header {
+  color: #285f53;
+  font-weight: bold;
+
+  p {
+    margin-bottom: 0;
+  }
+  h1 {
+    margin-top: 0;
+  }
+}
+
+.attestation-header {
+  display: flex;
+
+  img {
+    height: 50px;
+  }
+
+  .content {
+    margin-left: 15px;
+  }
+}
+
+.grey-box {
+  padding: 25px;
+  background-color: #F7F5F4;
+}
+
+.section-header {
+  text-decoration: underline;
+}
+
+.list-item--note {
+  font-size: 10px;
+  font-style: italic;
+  color: #5F5854;
+}
