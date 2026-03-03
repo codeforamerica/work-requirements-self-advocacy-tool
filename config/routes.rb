@@ -17,4 +17,6 @@ Rails.application.routes.draw do
     get "page_one_preview" => "packet_page_one#page"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
+
+  get "/counties", to: "counties#index"
 end

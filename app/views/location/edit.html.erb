@@ -1,0 +1,61 @@
+<% content_for :question_title, t("views.location.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.cfa_select(
+        :state,
+        t("views.location.edit.state_help_text"),
+        LocationData::States::OPTIONS,
+        required: true,
+        include_blank: t("general.select")
+      ) %>
+
+  <%= f.cfa_select(
+        :county,
+        t("views.location.edit.county_help_text"),
+        [],
+        required: true,
+        include_blank: t("general.select")
+      ) %>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const stateSelect = document.getElementById("screener_state")
+    const countySelect = document.getElementById("screener_county")
+
+    if (!stateSelect || !countySelect) return; // extra safety
+
+    function clearCountyDropdown() {
+      countySelect.innerHTML = ""
+      const placeholder = document.createElement("option")
+      placeholder.value = ""
+      placeholder.textContent = "<%= j t('general.select') %>"
+      countySelect.appendChild(placeholder)
+    }
+
+    // initially empty
+    clearCountyDropdown()
+
+    stateSelect.addEventListener("change", function() {
+      const state = stateSelect.value
+      clearCountyDropdown()
+
+      if (state === "NC") {
+        fetch(`/counties?state=${state}`)
+        .then(response => response.json())
+        .then(data => {
+          data.forEach(county => {
+            const option = document.createElement("option")
+            option.value = county.key
+            option.textContent = county.name
+            countySelect.appendChild(option)
+          })
+        })
+      }
+    })
+  })
+</script>

@@ -19,6 +19,7 @@ en:
     personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
+    select: Select
     switched_locale: Español
     work_rules: Work rules
   validations:
@@ -175,6 +176,11 @@ en:
       edit:
         help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
         title: Is there a child under the age of 14 that lives in your household?
+    location:
+      edit:
+        county_help_text: Select your county (required)
+        state_help_text: Tell us where you get SNAP benefits (required)
+        title: Let's start with some basic information
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
