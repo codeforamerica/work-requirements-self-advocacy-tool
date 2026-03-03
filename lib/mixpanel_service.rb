@@ -3,12 +3,6 @@ class MixpanelService
     @tracker = Mixpanel::Tracker.new("YOUR_PROJECT_TOKEN")
   end
 
-  def track(record_id:, event_name:, data: {})
-    @tracker.track(record_id, event_name, data)
-  rescue => err
-    Rails.logger.error "Error tracking Mixpanel event #{err}"
-  end
-
   def send_event(distinct_id:, event_name:, record:, controller:)
     data = {
       record_type: record&.class.to_s,
@@ -17,6 +11,10 @@ class MixpanelService
       locale: I18n.locale
     }
 
-    track(record_id: distinct_id, event_name: event_name, data: data)
+    begin
+      @tracker.track(distinct_id, event_name, data)
+    rescue => err
+      Rails.logger.error "Error tracking Mixpanel event #{err}"
+    end
   end
 end
