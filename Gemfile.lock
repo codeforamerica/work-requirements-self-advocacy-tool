@@ -184,7 +184,7 @@ GEM
     google-protobuf (4.33.2-x86_64-linux-musl)
       bigdecimal
       rake (>= 13)
-    grover (1.2.6)
+    grover (1.2.8)
       nokogiri (~> 1)
     hexapdf (1.6.0)
       cmdparse (~> 3.0, >= 3.0.3)
@@ -631,7 +631,7 @@ CHECKSUMS
   google-protobuf (4.33.2-x86_64-darwin) sha256=87cde586234674562cf099e2b708a65e376e2d39b0f0f48281f4b4ea182b47f8
   google-protobuf (4.33.2-x86_64-linux-gnu) sha256=73cba041477afcac92ff383fcbdec195ea28d96b994876d1deaa944d18f91786
   google-protobuf (4.33.2-x86_64-linux-musl) sha256=97cdf4f772c5540f9274603b00f1474ed5e6e2238b1d8b1585e77f941a36bd2c
-  grover (1.2.6) sha256=0ef3a5c6fe208c23a2ae6f1c77e1cee08f4cd668934888de83bc2efa1a3fc8d8
+  grover (1.2.8) sha256=93f604f9150276ea8a3ec3e8205ef22abbe9966de1bc7f8bab489e2168030a96
   hexapdf (1.6.0) sha256=78e32fc5a088a347bcb2cad4ab327cbdd0a0c5e1e77963b52460eef78d402582
   highline (3.1.2) sha256=67cbd34d19f6ef11a7ee1d82ffab5d36dfd5b3be861f450fc1716c7125f4bb4a
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
