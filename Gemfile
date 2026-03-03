@@ -47,6 +47,8 @@ gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycri
 gem "pg-aws_rds_iam", "~> 0.7"
 gem "phonelib"
 gem "valid_email2"
+gem "grover"
+gem "hexapdf", "~> 1.6"
 
 gem "lograge"
 
