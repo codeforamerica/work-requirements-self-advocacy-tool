@@ -24,7 +24,8 @@ class ApplicationController < ActionController::Base
     {locale: I18n.locale}
   end
 
-  def current_screener; end
+  def current_screener
+  end
 
   def set_visitor_id
     visitor_id =
@@ -35,7 +36,7 @@ class ApplicationController < ActionController::Base
       else
         SecureRandom.hex(26)
       end
-    cookies.encrypted.permanent[:visitor_id] = { value: visitor_id, httponly: true }
+    cookies.encrypted.permanent[:visitor_id] = {value: visitor_id, httponly: true}
 
     # if current_screener is present but for some reason lacking a visitor_id, let's update it
     if current_screener.present? && current_screener.persisted? && current_screener.visitor_id.blank?

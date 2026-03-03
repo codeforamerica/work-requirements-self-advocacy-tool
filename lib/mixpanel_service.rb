@@ -5,7 +5,7 @@ class MixpanelService
 
   def track(record_id:, event_name:, data: {})
     @tracker.track(record_id, event_name, data)
-  rescue StandardError => err
+  rescue => err
     Rails.logger.error "Error tracking Mixpanel event #{err}"
   end
 
