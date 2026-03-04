@@ -1,0 +1,5 @@
+<%= image_tag "download.svg", class: "illustration left-justified" %>
+<% content_for :question_title, t("views.download_form.edit.title") %>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<p><%= t("views.download_form.edit.title_help_text") %></p>
+<%= render "shared/continue_button" %>
