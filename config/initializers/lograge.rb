@@ -16,8 +16,8 @@ Rails.application.configure do
       session_id: event.payload[:session_id],
 
       # Use context.hex_trace_id / hex_span_id if trace_id is valid
-      trace_id: context.trace_id != 0 ? context.hex_trace_id : nil,
-      span_id: context.span_id != 0 ? context.hex_span_id : nil
+      trace_id: (context.trace_id != 0) ? context.hex_trace_id : nil,
+      span_id: (context.span_id != 0) ? context.hex_span_id : nil
     }
   end
 end
