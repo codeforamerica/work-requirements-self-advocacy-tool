@@ -4,7 +4,7 @@
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: :put, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
 
-  <%= f.cfa_select(
+<%= f.cfa_select(
         :state,
         t("views.location.edit.state_help_text"),
         LocationData::States::OPTIONS,
@@ -14,25 +14,32 @@
         value: @model.state
       ) %>
 
+<div id="county_wrapper">
   <%= f.cfa_select(
-        :county,
-        t("views.location.edit.county_help_text"),
-        [],
-        required: false,
-        include_blank: t("general.select"),
-        id: "county_select",
-        value: @model.county
-      ) %>
+          :county,
+          t("views.location.edit.county_help_text"),
+          [],
+          required: false,
+          include_blank: t("general.select"),
+          id: "county_select",
+          value: @model.county
+        ) %>
+</div>
 
-  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 
 <script>
-  document.addEventListener("turbo:load", function() {
+  document.addEventListener("turbo:load", function () {
     const stateSelect = document.getElementById("screener_state");
+    const countyWrapper = document.getElementById("county_wrapper");
     const countySelect = document.getElementById("screener_county");
 
-    // Preload all counties keyed by state
+    if (!stateSelect || !countyWrapper || !countySelect) {
+      return;
+    }
+
+    // Map of state => counties (just names)
     const allCounties = <%= raw LocationData::Counties::ALL_COUNTIES.transform_values { |c| c.transform_values { |v| v[:name] } }.to_json %>;
 
     function clearCountyDropdown() {
@@ -43,26 +50,37 @@
       countySelect.appendChild(placeholder);
     }
 
-    function populateCounties(selectedState, selectedCounty = "") {
+    function populateCounties(state, selectedCounty = "") {
+      const counties = allCounties[state];
+
+      if (!counties) {
+        countyWrapper.style.display = "none";
+        countySelect.required = false;
+        clearCountyDropdown();
+        return;
+      }
+
+      countyWrapper.style.display = "block";
+      countySelect.required = true;
       clearCountyDropdown();
 
-      if (!allCounties[selectedState]) return;
-
-      Object.entries(allCounties[selectedState]).forEach(([key, name]) => {
+      Object.entries(counties).forEach(([key, name]) => {
         const option = document.createElement("option");
         option.value = key;
         option.textContent = name;
-        if (key === selectedCounty) option.selected = true;
+        if (key === selectedCounty) {
+          option.selected = true;
+        }
         countySelect.appendChild(option);
       });
     }
 
-    // Initial population (when page loads, e.g., back button or edit)
+    // Initial population
     populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
 
-    // Repopulate whenever the state changes
-    stateSelect.addEventListener("change", function() {
-      populateCounties(stateSelect.value); // selectedCounty is empty => dropdown cleared
+    // Update counties whenever the state changes
+    stateSelect.addEventListener("change", function () {
+      populateCounties(stateSelect.value);
     });
   });
 </script>

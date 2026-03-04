@@ -6,7 +6,6 @@ class LocationController < QuestionController
 
   def edit
     @model ||= current_screener
-    @states = LocationData::States::OPTIONS
     @all_counties = LocationData::Counties::ALL_COUNTIES
     super
   end
