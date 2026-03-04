@@ -35,4 +35,3 @@ describe MixpanelService do
     end
   end
 end
-

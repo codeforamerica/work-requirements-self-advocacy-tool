@@ -26,7 +26,7 @@ RSpec.describe ApplicationController, type: :controller do
 
     context "locale is in params" do
       it "uses the locale from params" do
-        get :index, params: { locale: "es" }
+        get :index, params: {locale: "es"}
 
         expect(I18n).to have_received(:with_locale).with("es", any_args)
       end
@@ -158,7 +158,6 @@ RSpec.describe ApplicationController, type: :controller do
       )
     end
   end
-
 
   describe "#track_page_view" do
     before do
