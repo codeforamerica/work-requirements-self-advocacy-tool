@@ -18,15 +18,11 @@ OpenTelemetry::SDK.configure do |c|
   c.use_all
 
   # Only export traces if an endpoint has been configured
-  otlp_endpoint = ENV["OTEL_EXPORTER_OTLP_ENDPOINT"]
-
-  if otlp_endpoint.present?
+  if ENV["OTEL_EXPORTER_OTLP_ENDPOINT"].present?
     require "opentelemetry/exporter/otlp"
     c.add_span_processor(
       OpenTelemetry::SDK::Trace::Export::BatchSpanProcessor.new(
-        OpenTelemetry::Exporter::OTLP::Exporter.new(
-          endpoint: otlp_endpoint
-        )
+        OpenTelemetry::Exporter::OTLP::Exporter.new
       )
     )
   end
