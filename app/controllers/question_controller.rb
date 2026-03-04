@@ -5,7 +5,7 @@ class QuestionController < ApplicationController
   helper_method :show_progress_bar
 
   def current_screener
-    Screener.find(session[:screener_id]) || Screener.last
+    Screener.last
   end
 
   def show_progress_bar
