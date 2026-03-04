@@ -15,14 +15,12 @@
         value: @model.state
       ) %>
 
-  <%= @all_counties["NC"] %>
   <%# --- County Dropdown --- %>
-
   <%= f.cfa_select(
         :county,
         t("views.location.edit.county_help_text"),
-        LocationData::Counties::NORTH_CAROLINA,
-        required: true,
+        [],
+        required: false,
         include_blank: t("general.select"),
         id: "county_select",
         value: @model.county
@@ -31,47 +29,42 @@
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const stateSelect = document.getElementById("screener_state");
+    const countySelect = document.getElementById("screener_county");
 
-<!--<script>-->
-<!--  document.addEventListener("DOMContentLoaded", function() {-->
-<!--    const stateSelect = document.getElementById("screener_state");-->
-<!--    const countySelect = document.getElementById("screener_county");-->
+    // Preload all counties keyed by state
+    const allCounties = <%= raw LocationData::Counties::ALL_COUNTIES.transform_values { |c| c.transform_values { |v| v[:name] } }.to_json %>;
 
-<!--    // Counties keyed by state-->
-<!--    const countiesByState = {-->
-<!--      "<%= LocationData::States::NORTH_CAROLINA %>": <%#= raw LocationData::Counties::NORTH_CAROLINA.transform_values { |v| v[:name] }.to_json %>-->
-<!--    };-->
+    function clearCountyDropdown() {
+      countySelect.innerHTML = "";
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "<%= j t('general.select') %>";
+      countySelect.appendChild(placeholder);
+    }
 
-<!--    function clearCountyDropdown() {-->
-<!--      countySelect.innerHTML = "";-->
-<!--      const placeholder = document.createElement("option");-->
-<!--      placeholder.value = "";-->
-<!--      placeholder.textContent = "<%= j t('general.select') %>";-->
-<!--      countySelect.appendChild(placeholder);-->
-<!--    }-->
+    function populateCounties(selectedState, selectedCounty = "") {
+      clearCountyDropdown();
 
-<!--    function populateCountiesForState(state, selectedCounty = "") {-->
-<!--      clearCountyDropdown();-->
-<!--      const counties = countiesByState[state];-->
-<!--      if (!counties) return; // no counties for this state-->
+      if (!allCounties[selectedState]) return;
 
-<!--      Object.entries(counties).forEach(([key, name]) => {-->
-<!--        const option = document.createElement("option");-->
-<!--        option.value = key;-->
-<!--        option.textContent = name;-->
-<!--        if (key === selectedCounty) option.selected = true;-->
-<!--        countySelect.appendChild(option);-->
-<!--      });-->
-<!--    }-->
+      Object.entries(allCounties[selectedState]).forEach(([key, name]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = name;
+        if (key === selectedCounty) option.selected = true;
+        countySelect.appendChild(option);
+      });
+    }
 
-<!--    // --- Initial population on page load ----->
-<!--    // Only use @model.county from Rails-->
-<!--    populateCountiesForState(stateSelect.value, "<%= j @model.county.to_s %>");-->
+    // Initial population (when page loads, e.g., back button or edit)
+    populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
 
-<!--    // --- On state change ----->
-<!--    stateSelect.addEventListener("change", function() {-->
-<!--      // Always clear county selection when user changes state-->
-<!--      populateCountiesForState(stateSelect.value); // selectedCounty empty => just blank placeholder-->
-<!--    });-->
-<!--  });-->
-<!--</script>-->
+    // Repopulate whenever the state changes
+    stateSelect.addEventListener("change", function() {
+      populateCounties(stateSelect.value); // selectedCounty is empty => dropdown cleared
+    });
+  });
+</script>
