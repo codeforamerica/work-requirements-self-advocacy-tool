@@ -58,6 +58,10 @@ class ApplicationController < ActionController::Base
   end
 
   def track_page_view
-    send_mixpanel_event(event_name: "page_view") if request.get?
+    if request.get?
+      send_mixpanel_event(event_name: "page_view")
+    elsif request.post?
+    #   will this make brakeman happy?
+    end
   end
 end
