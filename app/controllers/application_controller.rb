@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
   end
 
   def send_mixpanel_event(event_name:)
-    MixpanelService.new.send_event(
+    MixpanelService.send_event(
       distinct_id: visitor_id,
       event_name: event_name,
       record: current_screener,

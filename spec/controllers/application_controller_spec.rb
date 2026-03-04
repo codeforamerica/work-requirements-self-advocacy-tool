@@ -135,20 +135,18 @@ RSpec.describe ApplicationController, type: :controller do
   end
 
   describe "#send_mixpanel_event" do
-    let(:mixpanel_service_double) { instance_double(MixpanelService) }
     let(:current_screener) { create :screener }
 
     before do
-      allow(MixpanelService).to receive(:new).and_return mixpanel_service_double
-      allow(mixpanel_service_double).to receive(:send_event)
+      allow(MixpanelService).to receive(:send_event)
       allow(subject).to receive(:visitor_id).and_return "123"
       allow(subject).to receive(:current_screener).and_return current_screener
     end
 
-    it "calls MixpanelService with the right arguments" do
+    it "calls MixpanelService with the current screener and the controller" do
       subject.send_mixpanel_event(event_name: "event")
 
-      expect(mixpanel_service_double).to have_received(:send_event).with(
+      expect(MixpanelService).to have_received(:send_event).with(
         {
           distinct_id: "123",
           event_name: "event",
