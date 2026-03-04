@@ -5,10 +5,15 @@ OpenTelemetry::SDK.configure do |c|
   c.service_name = "getbenefitshelp"
 
   # These are useful for Datadog filtering
-  c.resource = OpenTelemetry::SDK::Resources::Resource.create(
-    "deployment.environment" => Rails.env,
-    "service.version" => ENV["APP_VERSION"]
-  )
+  resource_attributes = {
+    "deployment.environment" => Rails.env
+  }
+
+  if ENV["APP_VERSION"].present?
+    resource_attributes["service.version"] = ENV["APP_VERSION"]
+  end
+
+  c.resource = OpenTelemetry::SDK::Resources::Resource.create(resource_attributes)
 
   # Instrument all supported libraries
   c.use_all
