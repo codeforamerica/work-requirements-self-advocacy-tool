@@ -14,6 +14,6 @@ Rails.application.configure do
       level: event.payload[:level] || "INFO",
       time: Time.now.utc.iso8601(3),
       trace_id: current_span.context.valid? ? current_span.context.hex : nil
-    }.compact 
+    }.compact
   end
 end
