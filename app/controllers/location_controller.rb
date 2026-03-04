@@ -1,19 +1,15 @@
 class LocationController < QuestionController
-  include DateHelper
 
   def show_progress_bar
     false
   end
 
   def edit
+    @model ||= current_screener
     @states = LocationData::States::OPTIONS
 
-    # Only prepopulate counties if state is North Carolina
-    @counties = if current_screener.state == LocationData::States::NORTH_CAROLINA
-                  LocationData::Counties::NORTH_CAROLINA
-                else
-                  {}
-                end
+    # Prepopulate counties for the current state
+    @counties = LocationData::Counties.options_for(@model.state)
 
     super
   end
