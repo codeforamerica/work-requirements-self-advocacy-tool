@@ -1,6 +1,6 @@
 class MixpanelService
   def initialize
-    @tracker = Mixpanel::Tracker.new("YOUR_PROJECT_TOKEN")
+    @tracker = Mixpanel::Tracker.new(ENV["MIXPANEL_TOKEN"])
   end
 
   def send_event(distinct_id:, event_name:, record:, controller:)
