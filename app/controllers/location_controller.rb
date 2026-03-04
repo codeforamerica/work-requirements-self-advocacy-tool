@@ -7,9 +7,7 @@ class LocationController < QuestionController
   def edit
     @model ||= current_screener
     @states = LocationData::States::OPTIONS
-
-    # Prepopulate counties for the current state
-    @counties = LocationData::Counties.options_for(@model.state)
+    @all_counties = LocationData::Counties::ALL_COUNTIES
 
     super
   end

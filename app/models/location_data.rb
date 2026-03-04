@@ -21,13 +21,14 @@ module LocationData
       "Alleghany" => { name: "Alleghany", phone: "336-372-2415" }
     }.freeze
 
+    # Map of state abbreviation => county hash
+    ALL_COUNTIES = {
+      LocationData::States::NORTH_CAROLINA => NORTH_CAROLINA
+      # Add other states here when needed
+    }.freeze
+
     def self.for_state(state)
-      case state
-      when LocationData::States::NORTH_CAROLINA
-        NORTH_CAROLINA
-      else
-        {}
-      end
+      ALL_COUNTIES[state] || {}
     end
 
     # Return array of [label, value] for select helpers
