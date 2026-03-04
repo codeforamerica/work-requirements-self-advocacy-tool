@@ -4,7 +4,6 @@
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: :put, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
 
-  <%# --- State Dropdown --- %>
   <%= f.cfa_select(
         :state,
         t("views.location.edit.state_help_text"),
@@ -15,7 +14,6 @@
         value: @model.state
       ) %>
 
-  <%# --- County Dropdown --- %>
   <%= f.cfa_select(
         :county,
         t("views.location.edit.county_help_text"),
@@ -30,7 +28,7 @@
 <% end %>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("turbo:load", function() {
     const stateSelect = document.getElementById("screener_state");
     const countySelect = document.getElementById("screener_county");
 

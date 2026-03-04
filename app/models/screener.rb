@@ -42,10 +42,6 @@ class Screener < ApplicationRecord
     :remove_preventing_working_info_if_no_reasons,
     :remove_additional_care_info_if_caring_for_someone_is_no
 
-  before_validation do
-    Rails.logger.info "STATE AT VALIDATION: #{self.state.inspect}"
-  end
-
   ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
     is_american_indian
     has_child
@@ -208,8 +204,6 @@ class Screener < ApplicationRecord
   private
 
   def normalize_not_listed
-    Rails.logger.info "State before normalize: #{state.inspect}"
-
     self.state = nil if state == LocationData::States::NOT_LISTED
   end
 
