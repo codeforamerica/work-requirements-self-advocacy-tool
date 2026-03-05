@@ -33,7 +33,8 @@ class Screener < ApplicationRecord
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation,
-    :normalize_not_listed
+    :remove_state_if_not_listed,
+    :remove_county_if_state_does_not_require
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_training_program_attributes_if_no,
@@ -203,8 +204,12 @@ class Screener < ApplicationRecord
 
   private
 
-  def normalize_not_listed
+  def remove_state_if_not_listed
     self.state = nil if state == LocationData::States::NOT_LISTED
+  end
+
+  def remove_county_if_state_does_not_require
+    self.county = nil unless LocationData::Counties.for_state(state).present?
   end
 
   def remove_additional_care_info_if_caring_for_someone_is_no
