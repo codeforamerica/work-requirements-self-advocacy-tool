@@ -93,7 +93,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :location do
-    validates :state, inclusion: { in: LocationData::States::VALID_VALUES }, allow_nil: true
+    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}, allow_nil: true
   end
 
   with_context :date_of_birth do
