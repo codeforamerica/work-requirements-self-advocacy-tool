@@ -32,7 +32,9 @@ class Screener < ApplicationRecord
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
-  before_validation :strip_email_and_confirmation
+  before_validation :strip_email_and_confirmation,
+    :remove_state_if_not_listed,
+    :remove_county_if_state_does_not_require
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_training_program_attributes_if_no,
@@ -88,6 +90,10 @@ class Screener < ApplicationRecord
 
   def working_exempt?
     is_working_yes? && (working_hours.to_i >= 30 || working_weekly_earnings.to_f >= 217.50)
+  end
+
+  with_context :location do
+    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}, allow_nil: true
   end
 
   with_context :date_of_birth do
@@ -197,6 +203,14 @@ class Screener < ApplicationRecord
   end
 
   private
+
+  def remove_state_if_not_listed
+    self.state = nil if state == LocationData::States::NOT_LISTED
+  end
+
+  def remove_county_if_state_does_not_require
+    self.county = nil unless state.present? && LocationData::Counties.for_state(state).present?
+  end
 
   def remove_additional_care_info_if_caring_for_someone_is_no
     if caring_for_child_under_6_no? && caring_for_disabled_or_ill_person_no?
