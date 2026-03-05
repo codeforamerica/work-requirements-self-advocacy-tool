@@ -5,7 +5,7 @@ RSpec.describe DownloadFormController, type: :controller do
     let!(:screener) { create(:screener) }
 
     it "creates an outgoing email sends the email" do
-      expect{ get :email_pdf }.to have_enqueued_job(SendOutgoingEmailJob)
+      expect { get :email_pdf }.to have_enqueued_job(SendOutgoingEmailJob)
     end
   end
 end

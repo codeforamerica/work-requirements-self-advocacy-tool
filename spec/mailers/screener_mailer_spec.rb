@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ScreenerMailer, type: :mailer do
   describe "download_pdf" do
-    let(:outgoing_email) { create(:outgoing_email, screener: create(:screener))}
+    let(:outgoing_email) { create(:outgoing_email, screener: create(:screener)) }
     let(:mail) { ScreenerMailer.download_pdf(outgoing_email: outgoing_email) }
 
     it "renders the headers" do
