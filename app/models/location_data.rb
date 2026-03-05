@@ -1,4 +1,5 @@
-# app/models/location_data.rb
+require "csv"
+
 module LocationData
   module States
     DELAWARE = "DE"
@@ -15,29 +16,55 @@ module LocationData
   end
 
   module Counties
-    NORTH_CAROLINA = {
-      "Alamance" => { name: "Alamance", phone: "336-570-6532" },
-      "Alexander" => { name: "Alexander", phone: "828-632-1080" },
-      "Alleghany" => { name: "Alleghany", phone: "336-372-2415" }
-    }.freeze
+    DATA_DIR = Rails.root.join("config/data/counties")
 
-    # Map of state abbreviation => county hash
-    ALL_COUNTIES = {
-      LocationData::States::NORTH_CAROLINA => NORTH_CAROLINA
-      # Add other states here when needed
-    }.freeze
+    COUNTY_NAME = "County [COUNTY_AGENCY]"
+    MAIL_ADDRESS = "Office mailing address [COUNTY_MAIL_ADDRESS]"
+    PHYSICAL_ADDRESS = "Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS]"
+    PHONE = "Office phone number [COUNTY_PHONE]"
+    FAX = "Office fax number [COUNTY_FAX]"
+    EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
+    WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
+    UPLOAD = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
+
+    def self.load_all
+      Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
+        state_code = File.basename(file, ".csv")
+
+        counties = {}
+
+        CSV.foreach(file, headers: true) do |row|
+          county = row[COUNTY_NAME]&.strip
+          next if county.blank?
+
+          counties[county] = {
+            name: county,
+            mailing_address: row[MAIL_ADDRESS],
+            physical_address: row[PHYSICAL_ADDRESS],
+            phone: row[PHONE],
+            fax: row[FAX],
+            email: row[EMAIL],
+            website: row[WEBSITE],
+            upload: row[UPLOAD]
+          }
+        end
+
+        states[state_code] = counties.freeze
+      end.freeze
+    end
+
+    ALL_COUNTIES = load_all
 
     def self.for_state(state)
       ALL_COUNTIES[state] || {}
     end
 
-    # Return array of [label, value] for select helpers
     def self.options_for(state)
       for_state(state).map { |key, data| [data[:name], key] }
     end
 
-    def self.phone_for(state, county_key)
-      for_state(state).dig(county_key, :phone)
+    def self.get(state, county_key)
+      for_state(state)[county_key]
     end
   end
 end
