@@ -96,6 +96,8 @@ en:
       edit:
         title: Download and submit to your SNAP agency
         title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
+        email_pdf: "E-mail it to yourself"
+        notice: "Your form has been sent to your email."
     email:
       edit:
         email: Email

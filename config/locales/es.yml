@@ -96,6 +96,8 @@ es:
       edit:
         title: Descargue y envíe su formulario a su oficina de SNAP
         title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
+        email_pdf: "Enviar a su correo electrónico"
+        notice: “Su formulario ha sido enviado a su correo electrónico.”
     email:
       edit:
         email: Email
