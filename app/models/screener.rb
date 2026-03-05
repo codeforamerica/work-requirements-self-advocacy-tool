@@ -209,7 +209,7 @@ class Screener < ApplicationRecord
   end
 
   def remove_county_if_state_does_not_require
-    self.county = nil unless LocationData::Counties.for_state(state).present?
+    self.county = nil unless state.present? && LocationData::Counties.for_state(state).present?
   end
 
   def remove_additional_care_info_if_caring_for_someone_is_no
