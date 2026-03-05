@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :screeners
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
     get "start_flow" => "homepage#create_screener"
     get "generate_pdf" => "packet_page_one#generate_pdf"
     get "page_one_preview" => "packet_page_one#page"
+    get "clear_flashes" => "application#clear_flashes"
+    get "sign_out_and_redirect" => "new_response#sign_out_and_redirect"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
 end

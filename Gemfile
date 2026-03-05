@@ -49,7 +49,7 @@ gem "phonelib"
 gem "valid_email2"
 gem "grover"
 gem "hexapdf", "~> 1.6"
-
+gem "devise", "~> 5.0"
 gem "lograge"
 
 group :development, :test do

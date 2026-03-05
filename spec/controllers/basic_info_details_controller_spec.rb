@@ -4,6 +4,7 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
   describe "#update" do
     it "persists attributes to the screener" do
       screener = create(:screener)
+      sign_in screener
 
       params = {
         first_name: "Noel",

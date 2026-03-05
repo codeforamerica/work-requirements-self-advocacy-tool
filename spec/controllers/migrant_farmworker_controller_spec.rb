@@ -4,6 +4,7 @@ RSpec.describe MigrantFarmworkerController, type: :controller do
   describe "#update" do
     it "persists the values to the current screener" do
       screener = create(:screener)
+      sign_in screener
 
       params = {
         is_migrant_farmworker: "no"
