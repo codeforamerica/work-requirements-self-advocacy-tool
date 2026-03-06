@@ -1,11 +1,12 @@
 class QuestionController < ApplicationController
   include ControllerNavigation::NavigableController
   include Forms::FormController
+  attr_accessor :current_screener
 
   helper_method :show_progress_bar
 
   def current_screener
-    Screener.last
+    @current_screener = Screener.last
   end
 
   def show_progress_bar
