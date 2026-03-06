@@ -7,7 +7,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
 
     it "renders the headers" do
       expect(mail.subject).to eq("[GetBenefitsHelp] Your SNAP Work Rules form")
-      expect(mail.from).to eq(["noreply@getbenefitshelp.org"])
+      expect(mail.from).to eq(["noreply@" + ENV.fetch("DOMAIN", "codeforamerica.app")])
     end
 
     it "renders the body" do

@@ -1,5 +1,5 @@
 class ScreenerMailer < ApplicationMailer
-  default from: "noreply@getbenefitshelp.org"
+  default from: "noreply@" + ENV.fetch("DOMAIN", "codeforamerica.app")
 
   def download_pdf(outgoing_email:)
     screener = outgoing_email.screener
