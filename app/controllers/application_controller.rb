@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action do
     RequestStore.store[:session_id] = session.id
-    RequestStore.store[:screener_id] = session[:screener_id]
+    RequestStore.store[:screener_id] = current_screener&.id
   end
 
   def navigation_class
@@ -20,5 +20,10 @@ class ApplicationController < ActionController::Base
 
   def self.default_url_options
     {locale: I18n.locale}
+  end
+
+  def clear_flashes
+    flash.clear
+    redirect_back(fallback_location: root_path)
   end
 end
