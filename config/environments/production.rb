@@ -55,7 +55,6 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = {host: "www.getbenefitshelp.org/"}
   config.action_mailer.delivery_method = :ses_v2
-  config.action_mailer.ses_v2_settings = {region: "us-west-2"}
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
