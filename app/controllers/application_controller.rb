@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
       elsif cookies.encrypted[:visitor_id].present?
         cookies.encrypted[:visitor_id]
       else
-        SecureRandom.hex(26)
+        SecureRandom.uuid
       end
     cookies.encrypted.permanent[:visitor_id] = {value: visitor_id, httponly: true}
 
