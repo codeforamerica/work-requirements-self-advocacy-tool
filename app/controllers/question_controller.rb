@@ -1,7 +1,6 @@
 class QuestionController < ApplicationController
   include ControllerNavigation::NavigableController
   include Forms::FormController
-  attr_accessor :current_screener
 
   helper_method :show_progress_bar
 
