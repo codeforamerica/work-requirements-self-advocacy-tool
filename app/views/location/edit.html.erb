@@ -7,7 +7,7 @@
 <%= f.cfa_select(
         :state,
         t("views.location.edit.state_help_text"),
-        LocationData::States::OPTIONS,
+        LocationData::States::options,
         required: true,
         include_blank: t("general.select"),
         id: "state_select",

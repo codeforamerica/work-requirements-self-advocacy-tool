@@ -179,6 +179,7 @@ es:
     location:
       edit:
         county_help_text: Seleccione su condado (requerido)
+        not_listed: No está en la lista
         state_help_text: Cuéntenos en qué estado recibe beneficios de SNAP (requerido)
         title: Comencemos con su información básica
     migrant_farmworker:

@@ -179,6 +179,7 @@ en:
     location:
       edit:
         county_help_text: Select your county (required)
+        not_listed: It's not listed here
         state_help_text: Tell us where you get SNAP benefits (required)
         title: Let's start with some basic information
     migrant_farmworker:
