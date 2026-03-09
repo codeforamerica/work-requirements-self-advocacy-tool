@@ -66,9 +66,9 @@ RSpec.describe LocationData do
         options = described_class.options_for("NC")
 
         expect(options).to include(
-                             ["Anson County", "Anson County"],
-                             ["Wake County", "Wake County"]
-                           )
+          ["Anson County", "Anson County"],
+          ["Wake County", "Wake County"]
+        )
       end
 
       it "returns empty array for state with no counties" do
