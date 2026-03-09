@@ -14,7 +14,6 @@ module LocationData
       ]
     end
 
-
     VALID_VALUES = [DELAWARE, NORTH_CAROLINA, NOT_LISTED].freeze
   end
 
