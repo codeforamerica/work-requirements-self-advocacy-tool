@@ -4,7 +4,6 @@ class LocationController < QuestionController
   end
 
   def edit
-    @model ||= current_screener
     @all_counties = LocationData::Counties::ALL_COUNTIES
     super
   end
