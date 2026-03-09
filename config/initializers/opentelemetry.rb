@@ -4,7 +4,7 @@ require "opentelemetry/instrumentation/all"
 OpenTelemetry::SDK.configure do |c|
   # These are useful for Datadog filtering
   resource_attributes = {
-    "service.name" => "getbenefitshelp",
+    "service.name" => ENV.fetch("OTEL_SERVICE_NAME", "getbenefitshelp-web"),
     "deployment.environment" => Rails.env.to_s
   }
 

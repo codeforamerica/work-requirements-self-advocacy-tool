@@ -32,5 +32,8 @@ module WorkRequirementsSelfAdvocacyTool
     # Change to "debug" to log everything (including potentially personally-identifiable information!)
     config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
     config.log_tags = []
+
+    # Silence the queue polling logs by default, since they're very noisy.
+    config.solid_queue.silence_polling = ENV.fetch("SOLID_QUEUE_SILENCE_POLLING", "true") == "true"
   end
 end
