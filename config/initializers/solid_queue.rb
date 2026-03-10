@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-# Add attributes to the current span for the queue polling event so that we can
-# identity and potentially filter these events.
-ActiveSupport::Notifications.subscribe("polling.solid_queue") do
-  OpenTelemetry::Trace.current_span.add_attributes({
-    "polling.solid_queue" => "true"
-  })
+ActiveSupport::Notifications.subscribe("polling.solid_queue") do |_name, start, finish, _id, _payload|
+  tracer = OpenTelemetry.tracer_provider.tracer("solid_queue")
+  span = tracer.start_span(
+    "polling solid_queue",
+    attributes: { "polling.solid_queue" => "true" },
+    start_timestamp: start
+  )
+  span.finish(end_timestamp: finish)
 end
