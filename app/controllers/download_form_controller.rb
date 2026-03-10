@@ -3,6 +3,9 @@ class DownloadFormController < QuestionController
     false
   end
 
+
+  # TODO: This is a temporary method.
+  # There are additional tickets for when the email is being sent
   def email_pdf
     outgoing_email = OutgoingEmail.create(screener: current_screener)
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
