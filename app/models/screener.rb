@@ -92,13 +92,13 @@ class Screener < ApplicationRecord
   end
 
   with_context :location do
-    validates :state, inclusion: { in: LocationData::States::VALID_VALUES }
+    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
 
     validates :county,
-              inclusion: {
-                in: ->(record) { LocationData::Counties.for_state(record.state).keys }
-              },
-              if: ->(record) { LocationData::Counties.for_state(record.state).present? }
+      inclusion: {
+        in: ->(record) { LocationData::Counties.for_state(record.state).keys }
+      },
+      if: ->(record) { LocationData::Counties.for_state(record.state).present? }
   end
 
   with_context :date_of_birth do
