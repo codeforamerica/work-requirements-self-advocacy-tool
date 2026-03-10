@@ -5,6 +5,7 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
     context "when the answer is no" do
       it "persists the values to the current screener" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           is_student: "no"

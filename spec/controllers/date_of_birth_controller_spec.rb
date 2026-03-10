@@ -5,7 +5,9 @@ RSpec.describe DateOfBirthController, type: :controller do
     render_views
 
     it "reads and displays the individual date attributes if birth_date is saved on screener" do
-      create(:screener, birth_date: Date.new(1973, 10, 13))
+      screener = create(:screener, birth_date: Date.new(1973, 10, 13))
+      sign_in screener
+
       get :edit
 
       expect(response.body).to have_select("Year", selected: "1973")
@@ -18,6 +20,7 @@ RSpec.describe DateOfBirthController, type: :controller do
     context "birth date" do
       it "combines the date picker params into the birth_date attribute" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           birth_date_month: "10",
@@ -32,7 +35,8 @@ RSpec.describe DateOfBirthController, type: :controller do
       render_views
 
       it "displays an error if any parameters are is missing" do
-        create(:screener)
+        screener = create(:screener)
+        sign_in screener
 
         params = {
           birth_date_month: "5",
