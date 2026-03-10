@@ -9,3 +9,16 @@
   <%= f.cfa_input_field(:email_confirmation, t("views.email.edit.email_confirmation")) %>
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
+
+<script>
+  function disableCopyPaste() {
+    document.querySelectorAll("input").forEach(input => {
+      ["paste", "copy", "cut"].forEach(event =>
+        input.addEventListener(event, e => e.preventDefault())
+      );
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", disableCopyPaste);
+  document.addEventListener("turbo:load", disableCopyPaste);
+</script>
