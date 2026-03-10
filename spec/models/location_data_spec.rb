@@ -1,4 +1,5 @@
 require "rails_helper"
+require "csv"
 
 RSpec.describe LocationData do
   describe LocationData::States do
@@ -22,70 +23,71 @@ RSpec.describe LocationData do
   end
 
   describe LocationData::Counties do
-    let(:mock_data) do
-      {
-        "NC" => {
-          "Anson County" => {
-            name: "Anson County",
-            mailing_address: "123 Main",
-            physical_address: "123 Main",
-            phone: "111-111-1111",
-            fax: nil,
-            email: "office@example.com",
-            website: "example.com",
-            upload: "upload@example.com"
-          },
-          "Wake County" => {
-            name: "Wake County"
-          }
-        }
-      }
-    end
+    let(:data_dir) { Rails.root.join("config/data/counties") }
+    let(:all_counties) { described_class::ALL_COUNTIES }
 
     before do
-      stub_const(
-        "LocationData::Counties::ALL_COUNTIES",
-        mock_data
-      )
+      skip "County CSV files not found" unless Dir.exist?(data_dir)
+    end
+
+    it "loads all CSV files for states" do
+      csv_files = Dir.glob(data_dir.join("*.csv")).map { |f| File.basename(f, ".csv") }
+      expect(all_counties.keys).to match_array(csv_files)
     end
 
     describe ".for_state" do
-      it "returns counties for a state" do
-        result = described_class.for_state("NC")
-
-        expect(result.keys).to include("Anson County", "Wake County")
+      it "returns all counties from CSV for each state" do
+        all_counties.each do |state, counties|
+          # Check that each county has a name
+          expect(counties.keys).to all(satisfy { |k| k.is_a?(String) && !k.empty? })
+        end
       end
 
-      it "returns empty hash for unknown state" do
-        expect(described_class.for_state("TX")).to eq({})
+      it "returns empty hash for a state not in CSV" do
+        expect(described_class.for_state("FAKE")).to eq({})
       end
     end
 
     describe ".options_for" do
-      it "returns county select options" do
-        options = described_class.options_for("NC")
+      it "returns county options matching CSV data" do
+        all_counties.each do |state, counties|
+          options = described_class.options_for(state)
+          expect(options.size).to eq(counties.size)
 
-        expect(options).to include(
-          ["Anson County", "Anson County"],
-          ["Wake County", "Wake County"]
-        )
+          counties.keys.each do |county_name|
+            expect(options).to include([county_name, county_name])
+          end
+        end
       end
 
-      it "returns empty array for state with no counties" do
-        expect(described_class.options_for("TX")).to eq([])
+      it "returns empty array for unknown state" do
+        expect(described_class.options_for("FAKE")).to eq([])
       end
     end
 
     describe ".get" do
-      it "returns a specific county's data" do
-        county = described_class.get("NC", "Anson County")
-
-        expect(county[:name]).to eq("Anson County")
-        expect(county[:email]).to eq("office@example.com")
+      it "returns the correct data for each county" do
+        all_counties.each do |state, counties|
+          counties.each do |county_name, data|
+            result = described_class.get(state, county_name)
+            expect(result).to eq(data)
+          end
+        end
       end
 
-      it "returns nil for unknown county" do
+      it "returns nil for unknown county or state" do
         expect(described_class.get("NC", "Fake County")).to be_nil
+        expect(described_class.get("FAKE", "Some County")).to be_nil
+      end
+    end
+
+    describe "county counts" do
+      it "reports correct number of counties per state" do
+        all_counties.each do |state, counties|
+          csv_file = data_dir.join("#{state}.csv")
+          expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::Counties::COUNTY_NAME]&.strip.present? } : 0
+          expect(counties.size).to eq(expected_count)
+        end
       end
     end
   end
