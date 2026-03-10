@@ -3,7 +3,7 @@ class SendOutgoingEmailJob < ApplicationJob
 
   def perform(email_id)
     outgoing_email = OutgoingEmail.find(email_id)
-    ScreenerMailer.download_pdf(outgoing_email: outgoing_email).deliver_now
+    ScreenerMailer.send_screener_results(outgoing_email: outgoing_email).deliver_now
     outgoing_email.update(sent_at: DateTime.now)
   end
 end
