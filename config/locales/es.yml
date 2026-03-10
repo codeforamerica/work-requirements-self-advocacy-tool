@@ -95,6 +95,7 @@ es:
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     download_form:
       edit:
+        email_pdf: Enviar a su correo electrónico
         title: Descargue y envíe su formulario a su oficina de SNAP
         title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
     email:
