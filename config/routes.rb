@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get "start_flow" => "homepage#create_screener"
     get "generate_pdf" => "packet_page_one#generate_pdf"
     get "page_one_preview" => "packet_page_one#page"
+    get "email_pdf" => "download_form#email_pdf"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
 end

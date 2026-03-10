@@ -2,4 +2,9 @@
 <% content_for :question_title, t("views.download_form.edit.title") %>
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 <p><%= t("views.download_form.edit.title_help_text") %></p>
+<% if @current_screener.email.present? %>
+  <div>
+    <%= link_to t("views.download_form.edit.email_pdf"), email_pdf_path, class: "button button--primary"%>
+  </div>
+<% end %>
 <%= render "shared/continue_button" %>
