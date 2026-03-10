@@ -24,9 +24,6 @@ class ApplicationController < ActionController::Base
     {locale: I18n.locale}
   end
 
-  def current_screener
-  end
-
   def clear_flashes
     flash.clear
     redirect_back(fallback_location: root_path)
@@ -64,6 +61,5 @@ class ApplicationController < ActionController::Base
 
   def track_page_view
     send_mixpanel_event(event_name: "page_view") if request.method == "GET"
->>>>>>> main
   end
 end
