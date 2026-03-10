@@ -32,15 +32,15 @@ class Screener < ApplicationRecord
   attr_writer :birth_date_year, :birth_date_month, :birth_date_day
   attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
-  before_validation :strip_email_and_confirmation,
-    :remove_county_if_state_does_not_require
+  before_validation :strip_email_and_confirmation
   before_save :remove_pregnancy_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_training_program_attributes_if_no,
     :remove_employment_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
-    :remove_additional_care_info_if_caring_for_someone_is_no
+    :remove_additional_care_info_if_caring_for_someone_is_no,
+    :remove_county_if_state_does_not_require
 
   ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
     is_american_indian
@@ -92,7 +92,13 @@ class Screener < ApplicationRecord
   end
 
   with_context :location do
-    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}, allow_nil: true
+    validates :state, inclusion: { in: LocationData::States::VALID_VALUES }
+
+    validates :county,
+              inclusion: {
+                in: ->(record) { LocationData::Counties.for_state(record.state).keys }
+              },
+              if: ->(record) { LocationData::Counties.for_state(record.state).present? }
   end
 
   with_context :date_of_birth do
