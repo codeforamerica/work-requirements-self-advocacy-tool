@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_26_005431) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_27_205758) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "outgoing_emails", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.bigint "screener_id", null: false
+    t.datetime "sent_at"
+    t.datetime "updated_at", null: false
+    t.index ["screener_id"], name: "index_outgoing_emails_on_screener_id"
+  end
 
   create_table "screeners", force: :cascade do |t|
     t.text "additional_care_info"
