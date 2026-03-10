@@ -199,7 +199,7 @@ GEM
       rake (~> 13.3)
     googleapis-common-protos-types (1.22.0)
       google-protobuf (~> 4.26)
-    grover (1.2.8)
+    grover (1.2.9)
       nokogiri (~> 1)
     hexapdf (1.6.0)
       cmdparse (~> 3.0, >= 3.0.3)
@@ -838,7 +838,7 @@ CHECKSUMS
   google-protobuf (4.34.0-x86_64-linux-gnu) sha256=bbb333fbe79c16f35a2e2154cf29f3ce26f60390dba286b339861206d5435ef9
   google-protobuf (4.34.0-x86_64-linux-musl) sha256=0b75858a388b17e73aa4176df2e722762dbc92551b7075fdc562d33c1c6de0b0
   googleapis-common-protos-types (1.22.0) sha256=f97492b77bd6da0018c860d5004f512fe7cd165554d7019a8f4df6a56fbfc4c7
-  grover (1.2.8) sha256=93f604f9150276ea8a3ec3e8205ef22abbe9966de1bc7f8bab489e2168030a96
+  grover (1.2.9) sha256=d4cd3e9f697cc073166a6d2c6163101a4ffa5c4b829d72613ed9148da1ec339b
   hexapdf (1.6.0) sha256=78e32fc5a088a347bcb2cad4ab327cbdd0a0c5e1e77963b52460eef78d402582
   highline (3.1.2) sha256=67cbd34d19f6ef11a7ee1d82ffab5d36dfd5b3be861f450fc1716c7125f4bb4a
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
