@@ -60,6 +60,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_03_170454) do
     t.string "receiving_benefits_write_in"
     t.string "state"
     t.datetime "updated_at", null: false
+    t.string "visitor_id"
     t.integer "volunteering_hours"
     t.string "volunteering_org_name"
     t.string "work_training_hours"
