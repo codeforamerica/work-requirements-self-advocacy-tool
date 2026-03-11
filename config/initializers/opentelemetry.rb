@@ -1,20 +1,19 @@
+# frozen_string_literal: true
+
 require "opentelemetry/sdk"
 require "opentelemetry/instrumentation/all"
 
 OpenTelemetry::SDK.configure do |c|
-  # These are useful for Datadog filtering
-  resource_attributes = {
-    "service.name" => ENV.fetch("OTEL_SERVICE_NAME", "getbenefitshelp-web"),
-    "deployment.environment" => Rails.env.to_s
-  }
+  # These are useful for filtering.
+  c.service_name = ENV.fetch("OTEL_SERVICE_NAME", "getbenefitshelp-web")
+  c.service_version = ENV["APP_VERSION"] if ENV["APP_VERSION"].present?
 
-  if ENV["APP_VERSION"].present?
-    resource_attributes["service.version"] = ENV["APP_VERSION"]
-  end
+  c.resource = OpenTelemetry::SDK::Resources::Resource.create(
+    "deployment.environment" => Rails.env.to_s,
+    "service.namespace" => "getbenefitshelp"
+  )
 
-  c.resource = OpenTelemetry::SDK::Resources::Resource.create(resource_attributes)
-
-  # Instrument all supported libraries
+  # Instrument all supported libraries.
   c.use_all
 
   # Only export traces if an endpoint has been configured
