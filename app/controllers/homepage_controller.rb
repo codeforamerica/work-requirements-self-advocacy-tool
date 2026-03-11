@@ -6,7 +6,7 @@ class HomepageController < ApplicationController
 
   def create_screener
     screener = Screener.create(visitor_id: cookies.encrypted[:visitor_id])
-    session[:screener_id] = screener.id
+    sign_in screener
     redirect_to navigation_class.first.to_path_helper
   end
 end

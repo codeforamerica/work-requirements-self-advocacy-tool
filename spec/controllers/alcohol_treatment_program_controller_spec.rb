@@ -4,6 +4,7 @@ RSpec.describe AlcoholTreatmentProgramController, type: :controller do
   describe "#update" do
     it "persists the values to the current screener" do
       screener = create(:screener)
+      sign_in screener
 
       params = {
         is_in_alcohol_treatment_program: "yes",

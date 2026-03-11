@@ -4,10 +4,6 @@ class QuestionController < ApplicationController
 
   helper_method :show_progress_bar
 
-  def current_screener
-    @current_screener = Screener.last
-  end
-
   def show_progress_bar
     true
   end

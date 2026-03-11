@@ -1,4 +1,5 @@
 class Screener < ApplicationRecord
+  devise :timeoutable
   has_many :outgoing_emails, dependent: :destroy
   attr_accessor :email_confirmation
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true

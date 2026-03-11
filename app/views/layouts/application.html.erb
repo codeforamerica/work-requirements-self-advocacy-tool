@@ -28,6 +28,9 @@
 
   <body>
     <main>
+      <div class="flash-alerts">
+        <%= render "shared/flash_alerts", flash: flash %>
+      </div>
       <section class="slab slab-toolbar">
         <div class="toolbar">
           <% switched_locale = I18n.locale == :en ? :es : :en %>
