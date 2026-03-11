@@ -6,7 +6,9 @@ RSpec.describe PregnancyController, type: :controller do
       render_views
 
       it "reads and displays the individual date attributes if pregnancy_due_date is saved on screener" do
-        create(:screener, pregnancy_due_date: Date.new(2026, 6, 1))
+        screener = create(:screener, pregnancy_due_date: Date.new(2026, 6, 1))
+        sign_in screener
+
         get :edit
 
         expect(response.body).to have_select("Year", selected: "2026")
@@ -20,6 +22,7 @@ RSpec.describe PregnancyController, type: :controller do
     context "due date" do
       it "ignores the due date parameters when the answer is no" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           is_pregnant: "no",
@@ -36,6 +39,7 @@ RSpec.describe PregnancyController, type: :controller do
 
       it "combines the date picker params into the pregnancy_due_date attribute" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           is_pregnant: "yes",
@@ -50,6 +54,8 @@ RSpec.describe PregnancyController, type: :controller do
 
       it "does not save the date when any date params are missing" do
         screener = create(:screener)
+        sign_in screener
+
         params = {
           is_pregnant: "yes",
           pregnancy_due_date_month: "10",
@@ -64,6 +70,8 @@ RSpec.describe PregnancyController, type: :controller do
 
       it "accepts empty date params" do
         screener = create(:screener)
+        sign_in screener
+
         params = {
           is_pregnant: "yes",
           pregnancy_due_date_month: "",

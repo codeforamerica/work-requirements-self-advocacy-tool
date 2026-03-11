@@ -5,6 +5,7 @@ RSpec.describe CommunityServiceController, type: :controller do
     context "volunteering hours and organization" do
       it "ignores the volunteering hours and org when the answer is no" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           is_volunteer: "no"
@@ -17,6 +18,7 @@ RSpec.describe CommunityServiceController, type: :controller do
 
       it "saves the volunteering hours and org when the answer is yes" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           is_volunteer: "yes",

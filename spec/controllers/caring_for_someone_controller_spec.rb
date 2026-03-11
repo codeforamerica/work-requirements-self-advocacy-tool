@@ -4,6 +4,7 @@ RSpec.describe CaringForSomeoneController, type: :controller do
   describe "#update" do
     it "persists the values to the current screener" do
       screener = create(:screener)
+      sign_in screener
 
       params = {
         caring_for_child_under_6: "yes",
