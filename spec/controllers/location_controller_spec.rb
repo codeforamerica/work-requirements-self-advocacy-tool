@@ -5,7 +5,8 @@ RSpec.describe LocationController, type: :controller do
     render_views
 
     it "reads and displays the state and county attributes if they are saved on screener" do
-      create(:screener, state: "NC", county: "Anson County")
+      screener = create(:screener, state: "NC", county: "Anson County")
+      sign_in screener
       get :edit
 
       expect(response.body).to have_select("screener_state", selected: "North Carolina")
@@ -13,7 +14,8 @@ RSpec.describe LocationController, type: :controller do
     end
 
     it "reads and displays the state attribute if it is saved on screener" do
-      create(:screener, state: "NOT_LISTED")
+      screener = create(:screener, state: "NOT_LISTED")
+      sign_in screener
       get :edit
 
       expect(response.body).to have_select("screener_state", selected: "It's not listed here")
@@ -24,6 +26,7 @@ RSpec.describe LocationController, type: :controller do
     context "location" do
       it "updates the state and county values" do
         screener = create(:screener)
+        sign_in screener
 
         params = {
           state: "NC",
