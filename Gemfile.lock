@@ -472,6 +472,8 @@ GEM
       opentelemetry-semantic_conventions (>= 1.8.0)
     opentelemetry-registry (0.4.0)
       opentelemetry-api (~> 1.1)
+    opentelemetry-resource-detector-aws (0.5.0)
+      opentelemetry-sdk (~> 1.10)
     opentelemetry-sdk (1.10.0)
       opentelemetry-api (~> 1.1)
       opentelemetry-common (~> 0.20)
@@ -758,8 +760,9 @@ DEPENDENCIES
   jsbundling-rails
   lograge
   mixpanel-ruby
-  opentelemetry-exporter-otlp (~> 0.32.0)
-  opentelemetry-instrumentation-all (~> 0.90.1)
+  opentelemetry-exporter-otlp (~> 0.32)
+  opentelemetry-instrumentation-all (~> 0.90)
+  opentelemetry-resource-detector-aws (~> 0.5)
   opentelemetry-sdk (~> 1.10)
   ostruct
   pg (~> 1.1)
@@ -951,6 +954,7 @@ CHECKSUMS
   opentelemetry-instrumentation-sinatra (0.28.0) sha256=9f11d68c580a421cadd633aca1f8f92707d6b6995d48fffa045a48c187347f26
   opentelemetry-instrumentation-trilogy (0.66.0) sha256=f09dead2fc09b84e5f84a9e39bdd351486549724f47471766230774831ecbe70
   opentelemetry-registry (0.4.0) sha256=903fa6bfaa29eac1c1d73a4fdd29b850977b5353b84b8cdff11222c00ad2968f
+  opentelemetry-resource-detector-aws (0.5.0) sha256=aef25cbf9a331676d19299d4b9b14cf318f3dbe07c8cbcfb45df04189f3fccfd
   opentelemetry-sdk (1.10.0) sha256=43719949be8df24dcaeb86ebbf75636cda87d51a01af2729499b92a48b80521a
   opentelemetry-semantic_conventions (1.36.0) sha256=c1b1607dbc7853aac7f9e23f6e8b76969c45b07f2b812a4aa4383c19a3b0f617
   orm_adapter (0.5.0) sha256=aa5d0be5d540cbb46d3a93e88061f4ece6a25f6e97d6a47122beb84fe595e9b9

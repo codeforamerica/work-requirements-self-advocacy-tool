@@ -3,11 +3,17 @@ Rails.application.configure do
   config.lograge.enabled = true
   config.lograge.formatter = Lograge::Formatters::Json.new
 
+  # If we're running on AWS, we wand to add the AWS resource attributes to the
+  # log for correlation.
+  resource_attrs = {}
+  resource = OpenTelemetry::Resource::Detector::AWS.detect([:ecs, :eks])
+  resource.attribute_enumerator.each { |k, v| resource_attrs[k] = v }
+
   config.lograge.custom_options = lambda do |event|
     span = OpenTelemetry::Trace.current_span
     context = span.context
 
-    {
+    resource_attrs.merge({
       time: event.time,
       method: event.payload[:method],
       path: event.payload[:path],
@@ -18,6 +24,6 @@ Rails.application.configure do
       # Use context.hex_trace_id / hex_span_id if trace_id is valid
       trace_id: (context.trace_id != 0) ? context.hex_trace_id : nil,
       span_id: (context.span_id != 0) ? context.hex_span_id : nil
-    }
+    })
   end
 end

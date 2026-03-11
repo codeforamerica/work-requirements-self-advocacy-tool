@@ -85,8 +85,9 @@ group :test do
   gem "rspec-rails"
 end
 
+gem "opentelemetry-exporter-otlp", "~> 0.32"
+gem "opentelemetry-instrumentation-all", "~> 0.90"
+gem "opentelemetry-resource-detector-aws", "~> 0.5"
 gem "opentelemetry-sdk", "~> 1.10"
-gem "opentelemetry-instrumentation-all", "~> 0.90.1"
-gem "opentelemetry-exporter-otlp", "~> 0.32.0"
 
 gem "csv"
