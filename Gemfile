@@ -88,3 +88,5 @@ end
 gem "opentelemetry-sdk", "~> 1.10"
 gem "opentelemetry-instrumentation-all", "~> 0.90.1"
 gem "opentelemetry-exporter-otlp", "~> 0.32.0"
+
+gem "csv"

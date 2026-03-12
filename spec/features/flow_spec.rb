@@ -1,11 +1,16 @@
 require "rails_helper"
 
-RSpec.feature "Screener flow" do
+RSpec.feature "Screener flow", js: true do
   scenario "new client fills out the screener" do
     visit root_path
 
     expect(page).to have_selector("h1", text: I18n.t("views.homepage.index.title"))
     click_on I18n.t("views.homepage.fill_out_form")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
+    select "North Carolina", from: "screener_state"
+    select "Ashe County", from: "screener_county"
+    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
@@ -98,6 +103,6 @@ RSpec.feature "Screener flow" do
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
     click_on I18n.t("views.new_response.edit.check_work_rules_for_someone_else")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
   end
 end

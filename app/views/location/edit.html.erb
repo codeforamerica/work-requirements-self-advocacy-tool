@@ -1,0 +1,86 @@
+<% content_for :question_title, t("views.location.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: :put, builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+
+<%= f.cfa_select(
+        :state,
+        t("views.location.edit.state_help_text"),
+        LocationData::States::options,
+        required: true,
+        include_blank: t("general.select"),
+        id: "state_select",
+        value: @model.state
+      ) %>
+
+<div id="county_wrapper">
+  <%= f.cfa_select(
+          :county,
+          t("views.location.edit.county_help_text"),
+          [],
+          required: false,
+          include_blank: t("general.select"),
+          id: "county_select",
+          value: @model.county
+        ) %>
+</div>
+
+<%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+
+<script>
+  document.addEventListener("turbo:load", function () {
+    const stateSelect = document.getElementById("screener_state");
+    const countyWrapper = document.getElementById("county_wrapper");
+    const countySelect = document.getElementById("screener_county");
+
+    if (!stateSelect || !countyWrapper || !countySelect) {
+      return;
+    }
+
+    // Map of state => counties (just names)
+    const allCounties = <%= raw LocationData::Counties::ALL_COUNTIES.transform_values { |c| c.transform_values { |v| v[:name] } }.to_json %>;
+
+    function clearCountyDropdown() {
+      countySelect.innerHTML = "";
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "<%= j t('general.select') %>";
+      countySelect.appendChild(placeholder);
+    }
+
+    function populateCounties(state, selectedCounty = "") {
+      const counties = allCounties[state];
+
+      if (!counties) {
+        countyWrapper.style.display = "none";
+        countySelect.required = false;
+        clearCountyDropdown();
+        return;
+      }
+
+      countyWrapper.style.display = "block";
+      countySelect.required = true;
+      clearCountyDropdown();
+
+      Object.entries(counties).forEach(([key, name]) => {
+        const option = document.createElement("option");
+        option.value = key;
+        option.textContent = name;
+        if (key === selectedCounty) {
+          option.selected = true;
+        }
+        countySelect.appendChild(option);
+      });
+    }
+
+    // Initial population
+    populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
+
+    // Update counties whenever the state changes
+    stateSelect.addEventListener("change", function () {
+      populateCounties(stateSelect.value);
+    });
+  });
+</script>
