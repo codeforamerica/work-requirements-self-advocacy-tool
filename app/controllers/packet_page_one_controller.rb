@@ -5,6 +5,7 @@ class PacketPageOneController < QuestionController
   # TODO: eventually this will use a real screener but for ease of development as we fill out the whole PDF, use this
   def build_temp_screener
     @temp_screener ||= Screener.new(
+      state: LocationData::States::NORTH_CAROLINA,
       first_name: "Testy",
       middle_name: "Mary",
       last_name: "Testerson",
