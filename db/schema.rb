@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_02_27_205758) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_03_170454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -30,6 +30,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_205758) do
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
     t.integer "consented_to_texts", default: 0, null: false
+    t.string "county"
     t.datetime "created_at", null: false
     t.string "email"
     t.string "first_name"
@@ -65,6 +66,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_205758) do
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
+    t.string "state"
     t.datetime "updated_at", null: false
     t.string "visitor_id"
     t.integer "volunteering_hours"

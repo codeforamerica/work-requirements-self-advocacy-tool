@@ -19,6 +19,7 @@ es:
     personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
+    select: Seleccione
     switched_locale: English
     work_rules: Reglas de trabajo
   validations:
@@ -176,6 +177,12 @@ es:
       edit:
         help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
         title: "¿En su hogar vive un niño menor de 14 años?"
+    location:
+      edit:
+        county_help_text: Seleccione su condado (requerido)
+        not_listed: No está en la lista
+        state_help_text: Cuéntenos en qué estado recibe beneficios de SNAP (requerido)
+        title: Comencemos con su información básica
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.

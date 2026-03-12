@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+ENV["OTEL_SERVICE_NAME"] ||= "getbenefitshelp-worker"
+
 require_relative "../config/environment"
 require "solid_queue/cli"
 

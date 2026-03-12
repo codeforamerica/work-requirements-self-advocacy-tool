@@ -41,7 +41,8 @@ class Screener < ApplicationRecord
     :remove_employment_attributes_if_no,
     :remove_alcohol_treatment_program_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
-    :remove_additional_care_info_if_caring_for_someone_is_no
+    :remove_additional_care_info_if_caring_for_someone_is_no,
+    :remove_county_if_state_does_not_require
 
   ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
     is_american_indian
@@ -90,6 +91,16 @@ class Screener < ApplicationRecord
 
   def working_exempt?
     is_working_yes? && (working_hours.to_i >= 30 || working_weekly_earnings.to_f >= 217.50)
+  end
+
+  with_context :location do
+    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
+
+    validates :county,
+      inclusion: {
+        in: ->(record) { LocationData::Counties.for_state(record.state).keys }
+      },
+      if: ->(record) { LocationData::Counties.for_state(record.state).present? }
   end
 
   with_context :date_of_birth do
@@ -199,6 +210,10 @@ class Screener < ApplicationRecord
   end
 
   private
+
+  def remove_county_if_state_does_not_require
+    self.county = nil unless state.present? && LocationData::Counties.for_state(state).present?
+  end
 
   def remove_additional_care_info_if_caring_for_someone_is_no
     if caring_for_child_under_6_no? && caring_for_disabled_or_ill_person_no?
