@@ -1,1 +1,25 @@
-Submit this form and any proof you need to your SNAP agency to tell them that the work rules don’t apply to you.
+<%= image_tag attachments["gbh_email_header.png"].url, alt: "GetBenefitsHelp", style: "width: 100%; max-width: 300px; display: block;" %>
+<hr style="border: none; border-top: 2px solid #034E46; margin: 0;">
+
+<p>
+  Hi <%= @screener.first_name %> <%= @screener.last_name %>,
+</p>
+
+<p>
+  Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
+</p>
+
+<hr style="border: none; border-top: 1px solid #000000; margin: 0;">
+
+<h2 style="font-weight: bold;">
+  Next step: Send this form to your SNAP agency.
+</h2>
+<p>
+  Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn’t
+  apply to you.
+</p>
+<p>
+  Your document reference code: [CONFIRMATION_CODE]
+</p>
+
+<hr style="border: none; border-top: 1px solid #000000; margin: 0;">
