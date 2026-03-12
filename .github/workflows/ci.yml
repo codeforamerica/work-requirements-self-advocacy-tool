@@ -28,6 +28,43 @@ jobs:
     steps:
       - name: Standard Ruby
         uses: standardrb/standard-ruby-action@v1
+  check_migrations:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Install packages
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config
+
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Run migrations and check schema
+        env:
+          RAILS_ENV: test
+          DATABASE_USER: postgres
+          DATABASE_PASSWORD: postgres
+          DATABASE_PORT: 5432
+          DATABASE_HOST: localhost
+        run: |
+          bin/rails db:create db:migrate db:schema:dump
+          git diff --exit-code db/schema.rb || (echo "::error::db/schema.rb is out of sync with migrations. Run bin/rails db:migrate db:schema:dump and commit the result." && exit 1)
+
   test:
     runs-on: ubuntu-latest
 
