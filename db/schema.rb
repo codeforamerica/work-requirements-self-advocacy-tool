@@ -33,7 +33,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_02_27_205758) do
     t.datetime "created_at", null: false
     t.string "email"
     t.string "first_name"
-    t.string "boop"
     t.integer "has_child", default: 0, null: false
     t.integer "has_unemployment_benefits", default: 0, null: false
     t.integer "is_american_indian", default: 0, null: false
