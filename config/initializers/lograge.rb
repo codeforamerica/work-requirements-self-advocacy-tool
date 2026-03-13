@@ -9,6 +9,8 @@ Rails.application.configure do
   resource = OpenTelemetry::Resource::Detector::AWS.detect([:ecs, :eks])
   resource.attribute_enumerator.each { |k, v| resource_attrs[k] = v }
 
+  Rails.logger.info("AWS resource attributes: #{resource_attrs}") if resource_attrs.any?
+
   config.lograge.custom_options = lambda do |event|
     span = OpenTelemetry::Trace.current_span
     context = span.context
