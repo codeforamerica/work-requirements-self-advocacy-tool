@@ -28,10 +28,8 @@ module WorkRequirementsSelfAdvocacyTool
     config.i18n.fallbacks = [I18n.default_locale]
     config.i18n.available_locales = [:en, :es]
 
-    config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new($stdout))
     # Change to "debug" to log everything (including potentially personally-identifiable information!)
     config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
-    config.log_tags = []
 
     # If gem "image_processing", "~> 1.2" is added/uncommented out in Gemfile, this should be removed
     # Otherwise, this prevents the application from unnecessarily logging:
