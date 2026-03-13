@@ -4,7 +4,9 @@ class ScreenerMailerPreview < ActionMailer::Preview
       :screener,
       email: "preview@example.com",
       first_name: "Dog",
-      last_name: "Ham"
+      last_name: "Ham",
+      state: "NC",
+      county: "Burke County"
     )
     outgoing_email = FactoryBot.build(:outgoing_email, screener: screener)
     ScreenerMailer.send_screener_results(outgoing_email: outgoing_email)

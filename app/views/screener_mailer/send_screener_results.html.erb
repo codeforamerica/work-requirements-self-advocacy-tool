@@ -23,3 +23,37 @@
 </p>
 
 <hr style="border: none; border-top: 1px solid #000000; margin: 0;">
+
+<h2 style="font-weight: bold;">
+  How to submit your form
+</h2>
+
+<ol style="line-height: 1.5;">
+  <li>
+    <strong>Online:</strong> If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
+    <br/>
+    Instead of using ePASS, you can submit this form and any proof to your county’s SNAP office <%= @county_data[:website] %> / [by emailing <%= @county_data[:email] %>].</li>
+  </li>
+  <li>
+    <strong>Mail:</strong>Send your form and any proof you may need.
+    <br/>
+    <%= @county_data[:mailing_address] %>
+  </li>
+  <li>
+    <strong>In person:</strong>Print your form and bring it and any proof you may need to a local office.
+    <br/>
+    <%= @county_data[:physical_address] %>
+  </li>
+</ol>
+
+<p>
+  If you have questions, or to find out if there are other ways to submit your form, you can contact your county’s social services office.
+</p>
+
+<ul style="line-height: 1.5;">
+  <li>Check for information on their website <%= @county_data[:website] %>,</li>
+  <li>
+    Email the office at <%= @county_data[:email] %>,
+  </li>
+  <li>Call the office at <%= @county_data[:phone] %>.</li>
+</ul>
