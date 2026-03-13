@@ -6,7 +6,7 @@
 # additional attributes to the log for correlation.
 class LogFormatter < SemanticLogger::Formatters::Raw
   def call(log, logger)
-    super(log, logger)
+    super
 
     hash.merge!(resource_attrs)
     current_trace
