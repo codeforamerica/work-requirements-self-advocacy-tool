@@ -28,18 +28,14 @@ module WorkRequirementsSelfAdvocacyTool
     config.i18n.fallbacks = [I18n.default_locale]
     config.i18n.available_locales = [:en, :es]
 
-<<<<<<< HEAD
-    # Change to "debug" to log everything (including potentially personally-identifiable information!)
-    config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
-
     # If gem "image_processing", "~> 1.2" is added/uncommented out in Gemfile, this should be removed
     # Otherwise, this prevents the application from unnecessarily logging:
     # Generating image variants require the image_processing gem. Please add `gem "image_processing", "~> 1.2"`
     # to your Gemfile or set `config.active_storage.variant_processor = :disabled`.
     config.active_storage.variant_processor = :disabled
 
-=======
->>>>>>> 1c49138 (fix: Replace lograge with rails_semantic_logger.)
+    config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
+
     # Silence the queue polling logs by default, since they're very noisy.
     config.solid_queue.silence_polling = ENV.fetch("SOLID_QUEUE_SILENCE_POLLING", "true") == "true"
   end
