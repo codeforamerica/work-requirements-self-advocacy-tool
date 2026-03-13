@@ -52,7 +52,8 @@ gem "mixpanel-ruby"
 gem "grover"
 gem "hexapdf", "~> 1.6"
 gem "devise", "~> 5.0"
-gem "lograge"
+gem "rails_semantic_logger", "~> 4.19"
+gem "request_store", "~> 1.7"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
