@@ -19,10 +19,8 @@ class MixpanelService
           buffer_event_for_send(type, message)
         end
       else
-        # demo, staging, heroku
         Struct.new("DummyTracker") do
           def track(_distinct_id, _event_name, _data)
-            # do nothing
           end
         end.new
       end
