@@ -18,6 +18,38 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :location" do
+      it "must have a valid state and county combination" do
+        screener = Screener.new(
+          state: "NC"
+        )
+
+        screener.valid?(:location)
+        expect(screener.errors[:state]).to be_empty
+        expect(screener.errors[:county]).to be_present
+
+        screener.assign_attributes(county: "Test County")
+        screener.valid?(:location)
+        expect(screener.errors[:state]).to be_empty
+        expect(screener.errors[:county]).to be_present
+
+        screener.assign_attributes(county: "Alleghany County")
+        screener.valid?(:location)
+        expect(screener.errors[:state]).to be_empty
+        expect(screener.errors[:county]).to be_empty
+
+        screener.assign_attributes(state: "NOT_LISTED")
+        screener.valid?(:location)
+        expect(screener.errors[:state]).to be_empty
+        expect(screener.errors[:county]).to be_empty
+
+        screener.assign_attributes(state: "CA")
+        screener.valid?(:location)
+        expect(screener.errors[:state]).to be_present
+        expect(screener.errors[:county]).to be_empty
+      end
+    end
+
     context "with_context :date_of_birth" do
       it "requires birth date" do
         screener = Screener.new(birth_date: nil)
@@ -320,6 +352,21 @@ RSpec.describe Screener, type: :model do
         screener.reload
 
         expect(screener.preventing_work_additional_info).to be_nil
+      end
+    end
+
+    context "with_context :location" do
+      it "clears county if state selected has no county information" do
+        screener = Screener.create(
+          state: "NC",
+          county: "Alleghany County"
+        )
+
+        screener.update(state: "NOT_LISTED")
+
+        screener.reload
+
+        expect(screener.county).to be_nil
       end
     end
   end
