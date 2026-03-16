@@ -2,6 +2,7 @@
 
 require "opentelemetry/sdk"
 require "opentelemetry/instrumentation/all"
+require "opentelemetry/resource/detector"
 
 OpenTelemetry::SDK.configure do |c|
   # These are useful for filtering.
@@ -11,7 +12,7 @@ OpenTelemetry::SDK.configure do |c|
   c.resource = OpenTelemetry::SDK::Resources::Resource.create(
     "deployment.environment" => Rails.env.to_s,
     "service.namespace" => "getbenefitshelp"
-  )
+  ).merge(OpenTelemetry::Resource::Detector::AWS.detect([:ecs, :eks]))
 
   # Instrument all supported libraries.
   c.use_all
