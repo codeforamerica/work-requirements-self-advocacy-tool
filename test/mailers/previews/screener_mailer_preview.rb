@@ -6,7 +6,8 @@ class ScreenerMailerPreview < ActionMailer::Preview
       first_name: "Dog",
       last_name: "Ham",
       state: "NC",
-      county: "Burke County"
+      county: "Burke County",
+      confirmation_code: "123ABC"
     )
     outgoing_email = FactoryBot.build(:outgoing_email, screener: screener)
     ScreenerMailer.send_screener_results(outgoing_email: outgoing_email)
