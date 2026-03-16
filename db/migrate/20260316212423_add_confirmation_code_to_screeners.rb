@@ -3,4 +3,3 @@ class AddConfirmationCodeToScreeners < ActiveRecord::Migration[8.1]
     add_column :screeners, :confirmation_code, :string
   end
 end
-
