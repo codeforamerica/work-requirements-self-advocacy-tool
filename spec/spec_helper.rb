@@ -96,12 +96,15 @@ RSpec.configure do |config|
     options = Selenium::WebDriver::Chrome::Options.new
     options.add_argument("--headless=new")   # modern Chrome headless
     options.add_argument("--disable-gpu")
-    options.add_argument("--no-sandbox")     # sometimes needed on macOS / CI
+    options.add_argument("--no-sandbox")     # required in CI
     options.add_argument("--window-size=1400,1400")
+    options.add_argument("--disable-dev-shm-usage")     # prevents Chrome crashes in Docker CI (small /dev/shm)
+    options.add_argument("--disable-features=BackForwardCache")  # prevents stale node refs with Turbo Drive
 
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
   # Make this the default driver for JS-enabled specs
   Capybara.javascript_driver = :selenium_chrome_headless
+  Capybara.default_max_wait_time = 10
 end
