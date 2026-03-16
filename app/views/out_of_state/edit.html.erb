@@ -1,0 +1,14 @@
+<% content_for :question_title, t("views.out_of_state.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p>
+  <%= t("views.out_of_state.edit.title_help_text") %>
+</p>
+
+<div>
+  <%= link_to t("general.close"), "/", class: "button button--primary"%>
+</div>
+
+<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button" %></div>
+
