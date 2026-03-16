@@ -42,18 +42,23 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "ostruct"
-gem "dartsass-rails", "~> 0.5.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
-gem "pg-aws_rds_iam", "~> 0.7"
-gem "phonelib"
-gem "valid_email2"
-gem "mixpanel-ruby"
+gem "csv"
+gem "dartsass-rails", "~> 0.5.1"
+gem "devise", "~> 5.0"
 gem "grover"
 gem "hexapdf", "~> 1.6"
-gem "devise", "~> 5.0"
+gem "mixpanel-ruby"
+gem "opentelemetry-exporter-otlp", "~> 0.32"
+gem "opentelemetry-instrumentation-all", "~> 0.90"
+gem "opentelemetry-resource-detector-aws", "~> 0.5"
+gem "opentelemetry-sdk", "~> 1.10"
+gem "ostruct"
+gem "pg-aws_rds_iam", "~> 0.7"
+gem "phonelib"
 gem "rails_semantic_logger", "~> 4.19"
 gem "request_store", "~> 1.7"
+gem "valid_email2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -85,10 +90,3 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
-
-gem "opentelemetry-exporter-otlp", "~> 0.32"
-gem "opentelemetry-instrumentation-all", "~> 0.90"
-gem "opentelemetry-resource-detector-aws", "~> 0.5"
-gem "opentelemetry-sdk", "~> 1.10"
-
-gem "csv"
