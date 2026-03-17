@@ -4,12 +4,6 @@ class OutOfStateController < QuestionController
   end
 
   def self.show?(screener, item_index: nil)
-    true
-  end
-
-  def sign_out_and_redirect
-    sign_out current_screener
-    redirect_path = params[:redirect_path] || root_path
-    redirect_to redirect_path
+    LocationData::States::NOT_LISTED == screener.state || (!!screener.county && !LocationData::Counties.get(screener.state, screener.county)[:is_supported])
   end
 end

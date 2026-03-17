@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get "generate_pdf" => "packet_page_one#generate_pdf"
     get "page_one_preview" => "packet_page_one#page"
     get "clear_flashes" => "application#clear_flashes"
-    get "sign_out_and_redirect" => "new_response#sign_out_and_redirect"
+    get "sign_out_and_redirect" => "application#sign_out_and_redirect"
     get "email_pdf" => "download_form#email_pdf"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
