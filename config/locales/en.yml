@@ -10,6 +10,7 @@ en:
         other: "%{count} characters remaining"
     choose_all_that_apply: Choose all that apply.
     continue: Continue
+    continue_without_this_number: Continue without it
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -21,6 +22,7 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     select: Select
     switched_locale: Español
+    this_is_optional: This is optional.
     work_rules: Work rules
   validations:
     date_missing_or_invalid: Date is missing or invalid
@@ -32,6 +34,20 @@ en:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
         title: Are you in a drug or alcohol treatment program?
+    basic_info_case_number:
+      edit:
+        case_number_label: Case number
+        help_text_county_letter:
+          help_bullets:
+          - Look for a section labeled “Case Number,” “Case ID,” or “Client Number.”
+          - It’s usually printed near your name, at the top of the first page.
+          title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
+        help_text_epass:
+          help_bullets_html:
+          - Log in to the official <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">NC ePass website</a> to view case details, including your case number.
+          - Use the ebtEDGE mobile app to view your account details.
+          title: Log in to your ePASS NC portal to find your case number.
+        title: Do you have a case number?
     basic_info_details:
       edit:
         birth_date_label: Birthdate
@@ -57,12 +73,6 @@ en:
         continue_without_it: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
-    basic_info_case_number:
-      edit:
-        case_number_label: Case number
-        case_number_label_help_text: This is optional.
-        title: Do you have a case number?
-        title_help_text: Your case number helps your caseworker find your case when you submit your form.
     basic_info_milestone:
       edit:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"

@@ -10,6 +10,7 @@ es:
         other: Quedan %{count} caracteres
     choose_all_that_apply: Seleccione todas las que correspondan.
     continue: Continuar
+    continue_without_this_number: Continuar sin este número
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -21,6 +22,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
+    this_is_optional: Opcional.
     work_rules: Reglas de trabajo
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
@@ -32,6 +34,20 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
+    basic_info_case_number:
+      edit:
+        case_number_label: Número de caso
+        help_text_county_letter:
+          help_bullets:
+          - Busque una sección con el título “Case Number”, “Case ID” o “Client Number”.
+          - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
+          title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
+        help_text_epass:
+          help_bullets_html:
+          - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
+          - Use la aplicación ebtEDGE para consultar la información de su caso desde su teléfono.
+          title: Use su cuenta de ePASS NC para encontrar su número de caso.
+        title: "¿Tiene un número de caso?"
     basic_info_details:
       edit:
         birth_date_label: Fecha de nacimiento
@@ -57,12 +73,6 @@ es:
         continue_without_it: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
-    basic_info_case_number:
-      edit:
-        case_number_label: Número de caso
-        case_number_label_help_text: Esto es opcional.
-        title: "¿Tiene un número de caso?"
-        title_help_text: Su número de caso ayuda a la persona asignada para llevar su caso a encontrarlo cuando usted envíe su formulario.
     basic_info_milestone:
       edit:
         help_text_html: "<strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>"
