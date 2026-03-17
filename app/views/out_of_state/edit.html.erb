@@ -2,28 +2,36 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
-<p>
-  <%= t("views.out_of_state.edit.title_help_text_html") %>
-</p>
+<% if LocationData::States::NOT_LISTED == @current_screener.state %>
+  <p><%= t("views.out_of_state.edit.title_help_text_html") %></p>
+  <div><%= link_to t("views.out_of_state.edit.find_button"), "https://www.fns.usda.gov/snap/state-directory", class: "button button--cta" %></div>
+<% else %>
+  <% county = LocationData::Counties.get(@current_screener.state, @current_screener.county) %>
+  <% redirect_url = county&.dig(:website) %>
 
-<div class="notice white">
-  <%= image_tag "message.svg", class: "illustration left-justified" %>
-  <div>
+  <p> <%= t("views.out_of_state.edit.title_help_text_county_specific") %></p>
+  <div class="notice white">
+    <%= image_tag "message.svg", class: "illustration left-justified" %>
+    <div>
 
-    <p><strong><%= t("views.out_of_state.edit.contact_title") %></strong></p>
-    <div class="notice-content">
-      <p>
-        <%= t("views.out_of_state.edit.contact_details") %>
-      </p>
-      <p class="text-green-innovation-lab">
-        <%= t("views.out_of_state.edit.contact_redirect") %>
-      </p>
-      <div><%= link_to t("views.out_of_state.edit.contact_button"), "/", class: "button" %></div>
-
+      <p><strong><%= t("views.out_of_state.edit.contact_title") %></strong></p>
+      <div class="notice-content">
+        <p>
+          <%= t("views.out_of_state.edit.contact_details") %>
+        </p>
+        <p class="text-green-innovation-lab">
+          <%= t("views.out_of_state.edit.contact_redirect") %>
+        </p>
+        <div><%= link_to t("views.out_of_state.edit.contact_button"), redirect_url, class: "button button--cta" %></div>
+      </div>
     </div>
   </div>
-
-</div>
+  <script>
+    setTimeout(function() {
+      window.location.href = "<%= redirect_url %>";
+    }, 10000);
+  </script>
+<% end %>
 
 <div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button button--primary" %></div>
 
