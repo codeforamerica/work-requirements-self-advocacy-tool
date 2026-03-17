@@ -168,7 +168,7 @@ class Screener < ApplicationRecord
     validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end
 
-  with_context :email do
+  with_context :basic_info_email do
     validates :email, "valid_email_2/email": true, confirmation: true
   end
 
