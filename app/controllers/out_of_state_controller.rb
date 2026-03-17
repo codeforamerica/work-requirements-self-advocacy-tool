@@ -4,6 +4,6 @@ class OutOfStateController < QuestionController
   end
 
   def self.show?(screener, item_index: nil)
-    LocationData::States::NOT_LISTED == screener.state || (!!screener.county && !LocationData::Counties.get(screener.state, screener.county)[:is_supported])
+    screener.state == LocationData::States::NOT_LISTED || (!!screener.county && !LocationData::Counties.get(screener.state, screener.county)[:is_supported])
   end
 end
