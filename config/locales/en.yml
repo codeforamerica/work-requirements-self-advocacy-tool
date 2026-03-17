@@ -196,11 +196,12 @@ en:
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
     out_of_state:
       edit:
-        check_work_rules_for_someone_else: Check work rules for someone else
-        close: Close
         title: This tool can't be filled out in your location at the moment.
         title_help_text: For help, please reach out to your SNAP  agency.
-
+        contact_title: Contact your SNAP agency
+        contact_details: Here's the link to your SNAP  agency website if you have questions or need help with your case.
+        contact_redirect: You are being redirected... You will be redirected within 10 seconds.
+        contact_button: Go to my SNAP office
     pregnancy:
       edit:
         pregnancy_due_date_help_text: You can estimate or skip this if you don't know.

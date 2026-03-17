@@ -6,9 +6,24 @@
   <%= t("views.out_of_state.edit.title_help_text") %>
 </p>
 
-<div>
-  <%= link_to t("general.close"), "/", class: "button button--primary"%>
+<div class="notice white">
+  <%= image_tag "message.svg", class: "illustration left-justified" %>
+  <div>
+
+    <p><strong><%= t("views.out_of_state.edit.contact_title") %></strong></p>
+    <div class="notice-content">
+      <p>
+        <%= t("views.out_of_state.edit.contact_details") %>
+      </p>
+      <p class="text-green-innovation-lab">
+        <%= t("views.out_of_state.edit.contact_redirect") %>
+      </p>
+      <div><%= link_to t("views.out_of_state.edit.contact_button"), "/", class: "button" %></div>
+
+    </div>
+  </div>
+
 </div>
 
-<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button" %></div>
+<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button button--primary" %></div>
 
