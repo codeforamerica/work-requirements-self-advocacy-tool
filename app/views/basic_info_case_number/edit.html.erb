@@ -1,0 +1,10 @@
+<% content_for :question_title, t("views.basic_info_case_number.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p><%= t("views.basic_info_case_number.edit.title_help_text") %></p>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.cfa_input_field(:case_number, t("views.basic_info_case_number.edit.case_number_label"), help_text: t("views.basic_info_case_number.edit.case_number_label_help_text")) %>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

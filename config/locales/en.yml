@@ -57,6 +57,12 @@ en:
         continue_without_it: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
+    basic_info_case_number:
+      edit:
+        case_number_label: Case number
+        case_number_label_help_text: This is optional.
+        title: Do you have a case number?
+        title_help_text: Your case number helps your caseworker find your case when you submit your form.
     basic_info_milestone:
       edit:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
