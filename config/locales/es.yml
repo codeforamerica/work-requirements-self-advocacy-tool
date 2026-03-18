@@ -196,14 +196,14 @@ es:
         title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
     out_of_state:
       edit:
-        title: Esta herramienta no está disponible en su ubicación en este momento.
-        title_help_text_html: <p>Para recibir ayuda, comuníquese con la agencia de SNAP de su estado. Ellos pueden guiarle en el proceso, responder sus preguntas y explicarle cuáles son los próximos pasos.</p><p>Puede encontrar su información de contacto a continuación.</p>
-        title_help_text_county_specific: Para recibir ayuda, comuníquese con su oficina de SNAP.
-        contact_title: Contacte a su oficina de SNAP
+        contact_button: Ir a mi oficina de SNAP
         contact_details: Aquí está el link al sitio web de su oficina de SNAP si tiene preguntas o necesita apoyo con su caso.
         contact_redirect: Será redirigido en 10 segundos.
-        contact_button: Ir a mi oficina de SNAP
+        contact_title: Contacte a su oficina de SNAP
         find_button: Encuentre su agencia de SNAP
+        title: Esta herramienta no está disponible en su ubicación en este momento.
+        title_help_text_county_specific: Para recibir ayuda, comuníquese con su oficina de SNAP.
+        title_help_text_html: "<p>Para recibir ayuda, comuníquese con la agencia de SNAP de su estado. Ellos pueden guiarle en el proceso, responder sus preguntas y explicarle cuáles son los próximos pasos.</p><p>Puede encontrar su información de contacto a continuación.</p>"
     pregnancy:
       edit:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
