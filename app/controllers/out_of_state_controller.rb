@@ -27,6 +27,6 @@ class OutOfStateController < QuestionController
   end
 
   def self.show?(screener, item_index: nil)
-    self.not_listed?(screener) || self.county_not_supported?(screener)
+    not_listed?(screener) || county_not_supported?(screener)
   end
 end
