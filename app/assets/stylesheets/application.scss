@@ -65,16 +65,12 @@ main {
   .media--icon {
     margin-right: 0.8rem;
   }
-
-  .notice-content > p {
-    font-size: 0.8em;
-  }
 }
 
 .notice.white {
   border-color: $color-grey-light;
   background-color: #FFFFFF;
-  padding: 2rem;
+  padding: 2.5rem;
 
   .illustration.left-justified {
     margin-left: 0;
