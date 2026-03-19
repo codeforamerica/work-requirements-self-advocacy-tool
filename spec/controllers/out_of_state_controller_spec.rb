@@ -70,25 +70,27 @@ RSpec.describe OutOfStateController, type: :controller do
     end
   end
 
-  describe "helper methods" do
-    it "exposes not_listed? to the view" do
-      screener = create(:screener, state: LocationData::States::NOT_LISTED)
-      controller.instance_variable_set(:@current_screener, screener)
+  describe "#edit" do
+    render_views
 
-      screener.reload
-      expect(controller.view_context.not_listed?).to eq(true)
+    it "not_listed? view" do
+      screener = create(:screener, state: LocationData::States::NOT_LISTED)
+      sign_in screener
+
+      get :edit
+
+      expect(response.body).to include(I18n.t("views.out_of_state.edit.title_help_text_html"))
     end
 
-    it "exposes county to the view" do
+    it "county specific view" do
       county = supported_counties.first
       screener = create(:screener, state: state_with_counties, county: county_name(county))
-      controller.instance_variable_set(:@current_screener, screener)
+      sign_in screener
 
-      screener.reload
-      result = controller.view_context.county
+      get :edit
 
-      expect(result).to be_present
-      expect(county_name(result)).to eq(county_name(county))
+      expect(response.body).not_to include(I18n.t("views.out_of_state.edit.title_help_text_html"))
+      expect(response.body).to include(I18n.t("views.out_of_state.edit.contact_redirect", seconds: controller.redirect_delay_seconds))
     end
   end
 end
