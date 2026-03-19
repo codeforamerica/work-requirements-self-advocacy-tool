@@ -12,9 +12,7 @@
   <div class="notice white">
     <%= image_tag "message.svg", class: "illustration left-justified" %>
     <div>
-
       <p><strong><%= t("views.out_of_state.edit.contact_title") %></strong></p>
-      <div class="notice-content">
         <p class="text--small">
           <%= t("views.out_of_state.edit.contact_details") %>
         </p>
@@ -22,7 +20,6 @@
           <%= t("views.out_of_state.edit.contact_redirect", seconds: redirect_delay_seconds) %>
         </p>
         <div><%= link_to t("views.out_of_state.edit.contact_button"), redirect_url, class: "button button--cta" %></div>
-      </div>
     </div>
   </div>
   <script>
