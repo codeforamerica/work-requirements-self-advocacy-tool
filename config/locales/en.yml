@@ -198,7 +198,7 @@ en:
       edit:
         contact_button: Go to my SNAP office
         contact_details: Here's the link to your SNAP  agency website if you have questions or need help with your case.
-        contact_redirect: You are being redirected... You will be redirected within 10 seconds.
+        contact_redirect: You are being redirected... You will be redirected within %{seconds} seconds.
         contact_title: Contact your SNAP agency
         find_button: Find Your SNAP Agency
         title: This tool can't be filled out in your location at the moment.

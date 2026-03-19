@@ -3,7 +3,7 @@ class OutOfStateController < QuestionController
     false
   end
 
-  helper_method :not_listed?, :county
+  helper_method :not_listed?, :county, :redirect_delay_seconds
 
   def not_listed?
     self.class.not_listed?(@current_screener)
@@ -11,6 +11,10 @@ class OutOfStateController < QuestionController
 
   def county
     LocationData::Counties.get(@current_screener.state, @current_screener.county)
+  end
+
+  def redirect_delay_seconds
+    10
   end
 
   def self.not_listed?(screener)
