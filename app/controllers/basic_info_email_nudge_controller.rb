@@ -1,7 +1,7 @@
 class BasicInfoEmailNudgeController < QuestionController
   include BasicInfoConcern
 
-  def self.show?(screener, item_index: nil)
+  def self.show?(screener)
     screener.email.blank?
   end
 end
