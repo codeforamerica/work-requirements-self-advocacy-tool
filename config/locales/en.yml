@@ -233,6 +233,10 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
+    proof_guidance:
+      edit:
+        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        title: Do you go to school full-time, or at least half-time?
     school_enrollment:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.

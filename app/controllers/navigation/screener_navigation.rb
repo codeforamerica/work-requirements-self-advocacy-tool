@@ -24,6 +24,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailNudgeController),
       ControllerNavigation::NavigationStep.new(DownloadFormController),
+      ControllerNavigation::NavigationStep.new(ProofGuidanceController),
       ControllerNavigation::NavigationStep.new(NewResponseController)
     ].freeze
   end
