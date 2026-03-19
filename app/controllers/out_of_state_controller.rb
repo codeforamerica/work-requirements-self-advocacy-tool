@@ -8,7 +8,7 @@ class OutOfStateController < QuestionController
   def not_listed?
     self.class.not_listed?(@current_screener)
   end
-  
+
   def county
     LocationData::Counties.get(@current_screener.state, @current_screener.county)
   end
