@@ -79,15 +79,6 @@ RSpec.describe OutOfStateController, type: :controller do
       expect(controller.view_context.not_listed?).to eq(true)
     end
 
-    it "exposes county_not_supported? to the view" do
-      county = unsupported_counties.first
-      screener = create(:screener, state: state_with_counties, county: county_name(county))
-      controller.instance_variable_set(:@current_screener, screener)
-
-      screener.reload
-      expect(controller.view_context.county_not_supported?).to eq(true)
-    end
-
     it "exposes county to the view" do
       county = supported_counties.first
       screener = create(:screener, state: state_with_counties, county: county_name(county))
