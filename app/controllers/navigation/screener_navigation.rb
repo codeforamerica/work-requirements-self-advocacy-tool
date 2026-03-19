@@ -15,6 +15,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(TrainingProgramController),
       ControllerNavigation::NavigationStep.new(SchoolEnrollmentController),
+      ControllerNavigation::NavigationStep.new(Nc::EduWorkHistoryController),
       ControllerNavigation::NavigationStep.new(AlcoholTreatmentProgramController),
       ControllerNavigation::NavigationStep.new(PreventingWorkMilestoneController),
       ControllerNavigation::NavigationStep.new(PreventingWorkSituationsController),

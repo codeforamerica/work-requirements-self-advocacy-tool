@@ -204,6 +204,12 @@ en:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
         title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
+    nc:
+      edu_work_history:
+        edit:
+          notice_text: Select "No" if your only work has been occasional odd jobs.
+          title: Do you have a high school diploma or equivalent degree (for example, a GED)?
+          worked_last_five_years_label: Have you worked for pay in the last five years?
     new_response:
       edit:
         check_work_rules_for_someone_else: Check work rules for someone else

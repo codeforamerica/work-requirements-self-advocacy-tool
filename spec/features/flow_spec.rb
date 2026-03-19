@@ -64,6 +64,15 @@ RSpec.feature "Screener flow", js: true do
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
+    within(".question-with-follow-up__question") do
+      choose I18n.t("general.negative")
+    end
+    within("#worked-last-five-years") do
+      choose I18n.t("general.affirmative")
+    end
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
     choose I18n.t("general.affirmative")
     fill_in I18n.t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"), with: "Pro Gram"
