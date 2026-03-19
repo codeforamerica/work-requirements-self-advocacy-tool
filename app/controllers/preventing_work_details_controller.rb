@@ -19,7 +19,7 @@ class PreventingWorkDetailsController < QuestionController
     ]
   end
 
-  def self.show?(screener, item_index: nil)
+  def self.show?(screener)
     !conditions_count(screener).zero?
   end
 

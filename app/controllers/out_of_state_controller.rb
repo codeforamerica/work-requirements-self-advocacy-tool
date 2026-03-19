@@ -26,7 +26,7 @@ class OutOfStateController < QuestionController
     county.present? && !county[:is_supported]
   end
 
-  def self.show?(screener, item_index: nil)
+  def self.show?(screener)
     not_listed?(screener) || county_not_supported?(screener)
   end
 end
