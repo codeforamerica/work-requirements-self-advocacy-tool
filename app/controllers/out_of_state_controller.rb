@@ -3,7 +3,7 @@ class OutOfStateController < QuestionController
     false
   end
 
-  helper_method :not_listed?, :county_not_supported?, :county
+  helper_method :not_listed?, :county
 
   def not_listed?
     self.class.not_listed?(@current_screener)
