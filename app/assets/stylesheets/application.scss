@@ -70,6 +70,11 @@ main {
 .notice.white {
   border-color: $color-grey-light;
   background-color: #FFFFFF;
+  padding: 2.5rem;
+
+  .illustration.left-justified {
+    margin-left: 0;
+  }
 }
 
 .notice.teal {
@@ -141,3 +146,17 @@ i.no-button-cross {
 .button {
   margin-left: 0;
 }
+
+.text-green-innovation-lab {
+  color: #00A88F;
+}
+
+.button.button--cta {
+  font-size: 0.8em;
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: 2px solid var(--Black, #000);
+  background: var(--White, #FFF);
+  box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.50);
+}
+

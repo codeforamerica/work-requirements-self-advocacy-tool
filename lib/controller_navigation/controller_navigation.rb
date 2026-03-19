@@ -202,7 +202,14 @@ module ControllerNavigation
 
     def seek(pages)
       pages.index do |page_info|
-        page_info[:controller].show?(current_controller.current_screener, item_index: page_info[:item_index])
+        controller = page_info[:controller]
+        args = [current_controller.current_screener]
+
+        if page_info[:item_index]
+          controller.show?(*args, item_index: page_info[:item_index])
+        else
+          controller.show?(*args)
+        end
       end
     end
   end

@@ -73,4 +73,10 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:trace_id] = span.context.hex_trace_id if span.context.trace_id != 0
     RequestStore.store[:span_id] = span.context.hex_span_id if span.context.span_id != 0
   end
+
+  def sign_out_and_redirect
+    sign_out current_screener
+    redirect_path = params[:redirect_path] || root_path
+    redirect_to redirect_path
+  end
 end
