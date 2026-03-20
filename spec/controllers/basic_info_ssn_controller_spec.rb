@@ -6,7 +6,7 @@ RSpec.describe BasicInfoSsnController, type: :controller do
       screener = create(:screener)
       sign_in screener
 
-      post :update, params: {screener: {ssn: "4567"}}
+      post :update, params: {screener: {ssn_last_four: "4567"}}
 
       expect(response).to redirect_to subject.next_path
       expect(screener.reload.ssn).to eq "4567"
