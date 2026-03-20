@@ -1,0 +1,41 @@
+<% content_for :question_title, t("views.nc.edu_work_history.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :has_hs_diploma, value: :unfilled %>
+  <%= f.hidden_field :worked_last_five_years, value: :unfilled %>
+
+  <div class="question-with-follow-up">
+    <div class="question-with-follow-up__question">
+      <%= f.cfa_radio_set(:has_hs_diploma, collection: [
+        { value: :yes, label: t("general.affirmative") },
+        { value: :no, label: t("general.negative"), input_html: { "data-follow-up": "#worked-last-five-years" }},
+      ]) %>
+    </div>
+
+    <div class="question-with-follow-up__follow-up" id="worked-last-five-years">
+      <hr/>
+
+      <h2 class="h3"><%= t("views.nc.edu_work_history.edit.worked_last_five_years_label") %></h2>
+
+      <div class="notice teal">
+        <div class="media-box">
+          <div class="media-box__media media--icon">
+            <i class="icon-help"></i>
+          </div>
+          <div class="media-box__content">
+            <%= t("views.nc.edu_work_history.edit.notice_text") %>
+          </div>
+        </div>
+      </div>
+
+      <%= f.cfa_radio_set(:worked_last_five_years, collection: [
+        { value: :yes, label: t("general.affirmative") },
+        { value: :no, label: t("general.negative") },
+      ]) %>
+    </div>
+  </div>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

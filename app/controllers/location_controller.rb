@@ -11,4 +11,12 @@ class LocationController < QuestionController
   def self.attributes_edited
     [:state, :county]
   end
+
+  private
+
+  def after_update_success
+    if current_screener.state == "NC" && current_screener.nc_screener.nil?
+      current_screener.create_nc_screener
+    end
+  end
 end

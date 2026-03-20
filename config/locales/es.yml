@@ -204,6 +204,12 @@ es:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
         title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
+    nc:
+      edu_work_history:
+        edit:
+          notice_text: Seleccione "No" si su único trabajo ha sido hacer trabajos ocasionales.
+          title: "¿Obtuvo un diploma de secundaria o un equivalente, como un GED?"
+          worked_last_five_years_label: "¿Ha trabajado por pago en los últimos cinco años?"
     new_response:
       edit:
         check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
