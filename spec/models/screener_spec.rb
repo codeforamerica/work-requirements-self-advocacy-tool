@@ -249,7 +249,7 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors).to match_array []
       end
     end
-    
+
     context "with_context :basic_info_ssn" do
       it "allows valid last 4 digits of ssn" do
         screener = Screener.new(ssn: "1234")
