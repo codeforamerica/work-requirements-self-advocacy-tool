@@ -114,7 +114,7 @@ RSpec.feature "Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_case_number.edit.title"))
-    click_on I18n.t("general.continue_without_this_number")
+    click_on I18n.t("general.continue_without_it")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_ssn.edit.title"))
     fill_in I18n.t("views.basic_info_ssn.edit.ssn_label"), with: "1234"

@@ -11,7 +11,7 @@ en:
     choose_all_that_apply: Choose all that apply.
     close: Close
     continue: Continue
-    continue_without_this_number: Continue without it
+    continue_without_it: Continue without it
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -71,7 +71,6 @@ en:
     basic_info_email_nudge:
       edit:
         add_an_email: Add an email
-        continue_without_it: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
