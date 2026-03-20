@@ -249,6 +249,53 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors).to match_array []
       end
     end
+    
+    context "with_context :basic_info_ssn" do
+      it "allows valid last 4 digits of ssn" do
+        screener = Screener.new(ssn: "1234")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn]).to_not be_present
+      end
+
+      it "allows empty last 4 digits of ssn" do
+        screener = Screener.new(ssn: "")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn]).to_not be_present
+      end
+
+      it "requires valid last 4 digits of ssn" do
+        screener = Screener.new(ssn: "abc")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn]).to be_present
+
+        screener = Screener.new(ssn: "12de")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn]).to be_present
+
+        screener = Screener.new(ssn: "123-12-1234")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn]).to be_present
+      end
+
+      it "requires a confirmed email" do
+        screener = Screener.new(email: "anisha@example.com", email_confirmation: "jenny@example.com")
+        screener.valid?(:basic_info_email)
+
+        expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
+      end
+
+      it "removed white spaces from the email and confirmation" do
+        screener = Screener.new(email: "anisha@example.com ", email_confirmation: " anisha@example.com")
+        screener.valid?(:basic_info_email)
+
+        expect(screener.errors).to match_array []
+      end
+    end
 
     context "with_context :preventing_work_details" do
       it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do

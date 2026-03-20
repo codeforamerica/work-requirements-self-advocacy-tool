@@ -174,7 +174,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :basic_info_ssn do
-    validates :ssn, format: {with: /\A\d{4}\z/}
+    validates :ssn, format: {with: /\A\d{4}\z/}, allow_blank: true
   end
 
   def full_name
