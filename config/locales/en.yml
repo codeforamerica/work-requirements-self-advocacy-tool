@@ -34,6 +34,7 @@ en:
       edit:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
+        nc_notice_text: Select “No” if your only treatment program is Alcoholics Anonymous.
         title: Are you in a drug or alcohol treatment program?
     basic_info_case_number:
       edit:
