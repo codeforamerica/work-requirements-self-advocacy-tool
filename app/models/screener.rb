@@ -173,6 +173,10 @@ class Screener < ApplicationRecord
     validates :email, "valid_email_2/email": true, confirmation: true
   end
 
+  with_context :basic_info_ssn do
+    validates :ssn, format: { with: /\A\d{4}\z/ }
+  end
+
   def full_name
     [first_name, last_name].compact.join(" ")
   end

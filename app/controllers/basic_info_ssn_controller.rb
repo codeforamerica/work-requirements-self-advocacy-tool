@@ -2,6 +2,6 @@ class BasicInfoSsnController < QuestionController
   include BasicInfoConcern
 
   def self.attributes_edited
-    [:case_number]
+    [:ssn]
   end
 end
