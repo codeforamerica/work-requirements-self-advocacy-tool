@@ -1,6 +1,10 @@
 class BasicInfoSsnController < QuestionController
   include BasicInfoConcern
 
+  def self.show?(screener)
+    !screener.case_number.present?
+  end
+
   def self.attributes_edited
     [:ssn]
   end

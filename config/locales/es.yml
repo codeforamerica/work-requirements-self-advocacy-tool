@@ -81,10 +81,10 @@ es:
         title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
     basic_info_ssn:
       edit:
-        ssn_label: Número de Seguro Social
         help_text: Ingrese los últimos 4 dígitos para confirmar su identidad y encontrar su caso.
-        title: Como no tiene un número de caso, ¿le gustaría agregar los últimos cuatro dígitos de su número de Seguro Social (SSN)?
         notice: Mantendremos su información privada, protegida y segura.
+        ssn_label: Número de Seguro Social
+        title: Como no tiene un número de caso, ¿le gustaría agregar los últimos cuatro dígitos de su número de Seguro Social (SSN)?
     caring_for_someone:
       edit:
         additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
