@@ -210,6 +210,14 @@ en:
           notice_text: Select "No" if your only work has been occasional odd jobs.
           title: Do you have a high school diploma or equivalent degree (for example, a GED)?
           worked_last_five_years_label: Have you worked for pay in the last five years?
+      homeschool:
+        edit:
+          homeschool_hours_help_text: If this changes, give your weekly average from the past month.
+          homeschool_hours_label: How many hours a week do you operate home school?
+          homeschool_name_help_text_html: Use the school name registered with the <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx?utm_source=chatgpt.com" target="_blank">NC Division of Non-Public Education</a>, if it is registered.
+          homeschool_name_label: What is the name of the home school?
+          notice_text: This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.
+          title: Do you teach home school?
     new_response:
       edit:
         check_work_rules_for_someone_else: Check work rules for someone else
