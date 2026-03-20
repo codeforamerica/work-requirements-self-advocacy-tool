@@ -79,6 +79,12 @@ en:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
         instructions: This information helps your caseworker find your case when you submit your form.
         title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
+    basic_info_ssn:
+      edit:
+        ssn_label: Social Security number
+        help_text: This is optional. Enter the last 4 digits to confirm your identity and find your case.
+        title: Since you don’t have a case number, would you like to provide the last four digits of your Social Security number (SSN)?
+        notice: We’ll keep your information private, safe, and secure.
     caring_for_someone:
       edit:
         additional_care_info: Can you tell us about the kind of care you provide?
