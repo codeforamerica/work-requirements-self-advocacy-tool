@@ -40,8 +40,8 @@ en:
         case_number_label: Case number
         help_text_county_letter:
           help_bullets:
-          - Look for a section labeled “Case Number,” “Case ID,” or “Client Number.”
-          - It’s usually printed near your name, at the top of the first page.
+          - Look for a section labeled "Case Number", "Case ID", or "Client Number".
+          - It's usually printed near your name, at the top of the first page.
           title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
         help_text_epass:
           help_bullets_html:
@@ -83,8 +83,8 @@ en:
       edit:
         ssn_label: Social Security number
         help_text: This is optional. Enter the last 4 digits to confirm your identity and find your case.
-        title: Since you don’t have a case number, would you like to provide the last four digits of your Social Security number (SSN)?
-        notice: We’ll keep your information private, safe, and secure.
+        title: Since you don't have a case number, would you like to provide the last four digits of your Social Security number (SSN)?
+        notice: We'll keep your information private, safe, and secure.
     caring_for_someone:
       edit:
         additional_care_info: Can you tell us about the kind of care you provide?
