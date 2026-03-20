@@ -11,7 +11,7 @@ es:
     choose_all_that_apply: Seleccione todas las que correspondan.
     close: Cerrar
     continue: Continuar
-    continue_without_it: Continuar sin este número
+    continue_without_this_number: Continuar sin este número
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -71,7 +71,7 @@ es:
     basic_info_email_nudge:
       edit:
         add_an_email: Agregar un correo electrónico
-        continue_without_it: Continuar sin el correo electrónico
+        continue_without_email: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     basic_info_milestone:
