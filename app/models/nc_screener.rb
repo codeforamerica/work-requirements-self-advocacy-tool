@@ -4,6 +4,10 @@ class NcScreener < ApplicationRecord
   enum :worked_last_five_years, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :teaches_homeschool, {unfilled: 0, yes: 1, no: 2}, prefix: true
 
+  with_context :homeschool do
+    validates :homeschool_hours, numericality: {only_integer: true}, allow_blank: true
+  end
+
   before_save :remove_worked_last_five_years_if_has_diploma,
     :remove_homeschool_attributes_if_no
 

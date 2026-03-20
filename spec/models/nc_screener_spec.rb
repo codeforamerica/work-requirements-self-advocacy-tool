@@ -1,6 +1,30 @@
 require "rails_helper"
 
 RSpec.describe NcScreener, type: :model do
+  describe "validations" do
+    context "with_context :homeschool" do
+      it "requires homeschool_hours to be an integer" do
+        screener = Screener.create(state: "NC")
+        nc_screener = NcScreener.new(screener: screener, homeschool_hours: "abc")
+
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_hours]).to be_present
+
+        nc_screener.assign_attributes(homeschool_hours: 25)
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_hours]).to be_empty
+      end
+
+      it "allows homeschool_hours to be blank" do
+        screener = Screener.create(state: "NC")
+        nc_screener = NcScreener.new(screener: screener, homeschool_hours: nil)
+
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_hours]).to be_empty
+      end
+    end
+  end
+
   describe "before_save" do
     it "clears worked_last_five_years if has_hs_diploma is yes" do
       screener = Screener.create(state: "NC")
