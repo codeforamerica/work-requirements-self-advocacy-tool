@@ -252,34 +252,34 @@ RSpec.describe Screener, type: :model do
 
     context "with_context :basic_info_ssn" do
       it "allows valid last 4 digits of ssn" do
-        screener = Screener.new(ssn: "1234")
+        screener = Screener.new(ssn_last_four: "1234")
         screener.valid?(:basic_info_ssn)
 
-        expect(screener.errors[:ssn]).to_not be_present
+        expect(screener.errors[:ssn_last_four]).to_not be_present
       end
 
       it "allows empty last 4 digits of ssn" do
-        screener = Screener.new(ssn: "")
+        screener = Screener.new(ssn_last_four: "")
         screener.valid?(:basic_info_ssn)
 
-        expect(screener.errors[:ssn]).to_not be_present
+        expect(screener.errors[:ssn_last_four]).to_not be_present
       end
 
       it "requires valid last 4 digits of ssn" do
-        screener = Screener.new(ssn: "abc")
+        screener = Screener.new(ssn_last_four: "abc")
         screener.valid?(:basic_info_ssn)
 
-        expect(screener.errors[:ssn]).to be_present
+        expect(screener.errors[:ssn_last_four]).to be_present
 
-        screener = Screener.new(ssn: "12de")
+        screener = Screener.new(ssn_last_four: "12de")
         screener.valid?(:basic_info_ssn)
 
-        expect(screener.errors[:ssn]).to be_present
+        expect(screener.errors[:ssn_last_four]).to be_present
 
-        screener = Screener.new(ssn: "123-12-1234")
+        screener = Screener.new(ssn_last_four: "123-12-1234")
         screener.valid?(:basic_info_ssn)
 
-        expect(screener.errors[:ssn]).to be_present
+        expect(screener.errors[:ssn_last_four]).to be_present
       end
     end
 

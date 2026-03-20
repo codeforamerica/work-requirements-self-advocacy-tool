@@ -6,6 +6,6 @@ class BasicInfoSsnController < QuestionController
   end
 
   def self.attributes_edited
-    [:ssn]
+    [:ssn_last_four]
   end
 end

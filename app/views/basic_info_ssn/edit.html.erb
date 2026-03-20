@@ -14,7 +14,7 @@
 </div>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <span><%= f.cfa_input_field(:ssn, t("views.basic_info_ssn.edit.ssn_label"),
+  <span><%= f.cfa_input_field(:ssn_last_four, t("views.basic_info_ssn.edit.ssn_label"),
           help_text: t("views.basic_info_ssn.edit.help_text"),
           options: {
             maxlength: 4,

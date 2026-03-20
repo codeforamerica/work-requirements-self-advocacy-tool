@@ -76,7 +76,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_184649) do
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
-    t.string "ssn"
+    t.string "ssn_last_four"
     t.string "state"
     t.datetime "updated_at", null: false
     t.string "visitor_id"
