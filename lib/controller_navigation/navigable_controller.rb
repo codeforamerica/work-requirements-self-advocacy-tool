@@ -9,7 +9,7 @@ module ControllerNavigation
       before_action :set_item_index
 
       class << self
-        def show?(intake, item_index: nil)
+        def show?(intake, **kwargs)
           true
         end
 

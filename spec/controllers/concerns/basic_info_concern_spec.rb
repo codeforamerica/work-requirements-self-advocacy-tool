@@ -11,7 +11,7 @@ RSpec.describe BasicInfoConcern, type: :controller do
     self.super_result = true
 
     # the test implementation that `super` will call
-    def self.show?(screener, item_index: nil)
+    def self.show?(screener)
       super_result
     end
 

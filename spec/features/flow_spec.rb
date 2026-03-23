@@ -9,7 +9,7 @@ RSpec.feature "Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
     select "North Carolina", from: "screener_state"
-    select "Ashe County", from: "screener_county"
+    select "Bertie County", from: "screener_county"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
@@ -64,6 +64,15 @@ RSpec.feature "Screener flow", js: true do
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
+    within(".question-with-follow-up__question") do
+      choose I18n.t("general.negative")
+    end
+    within("#worked-last-five-years") do
+      choose I18n.t("general.affirmative")
+    end
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
     choose I18n.t("general.affirmative")
     fill_in I18n.t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"), with: "Pro Gram"
@@ -102,6 +111,10 @@ RSpec.feature "Screener flow", js: true do
 
     fill_in I18n.t("views.email.edit.email"), with: "hi@example.com"
     fill_in I18n.t("views.email.edit.email_confirmation"), with: "hi@example.com"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_case_number.edit.title"))
+    fill_in I18n.t("views.basic_info_case_number.edit.case_number_label"), with: "ABC-123"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))

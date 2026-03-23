@@ -9,7 +9,9 @@ es:
         one: Queda %{count} caracter
         other: Quedan %{count} caracteres
     choose_all_that_apply: Seleccione todas las que correspondan.
+    close: Cerrar
     continue: Continuar
+    continue_without_this_number: Continuar sin este número
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -21,6 +23,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
+    this_is_optional: Opcional.
     work_rules: Reglas de trabajo
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
@@ -32,6 +35,20 @@ es:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
+    basic_info_case_number:
+      edit:
+        case_number_label: Número de caso
+        help_text_county_letter:
+          help_bullets:
+          - Busque una sección con el título “Case Number”, “Case ID” o “Client Number”.
+          - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
+          title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
+        help_text_epass:
+          help_bullets_html:
+          - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
+          - Use la aplicación ebtEDGE para consultar la información de su caso desde su teléfono.
+          title: Use su cuenta de ePASS NC para encontrar su número de caso.
+        title: "¿Tiene un número de caso?"
     basic_info_details:
       edit:
         birth_date_label: Fecha de nacimiento
@@ -125,7 +142,7 @@ es:
           cant_work: "¿Qué pasa si tengo un problema médico o de salud mental que limita mi capacidad para trabajar?"
           cant_work_content_html: |
             <p>Si puede demostrar que no puede trabajar por un motivo médico o de salud, las reglas de trabajo de SNAP no aplican en su caso y puede seguir recibiendo los beneficios de SNAP.</p>
-            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>“motivo justificado”</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
+            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"motivo justificado"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
           keep_snap: "¿Podré seguir recibiendo beneficios de SNAP?"
           keep_snap_content_html: |
             <p>Si <u>no tiene</u> que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una excepción.</strong></p>
@@ -175,7 +192,7 @@ es:
         work_rules_title: "¿Cuáles son las reglas de trabajo de SNAP?"
     living_with_someone:
       edit:
-        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione “Sí”, incluso si el niño no está incluido en su caso de SNAP.
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione "Sí", incluso si el niño no está incluido en su caso de SNAP.
         title: "¿En su hogar vive un niño menor de 14 años?"
     location:
       edit:
@@ -187,12 +204,28 @@ es:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
         title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
+    nc:
+      edu_work_history:
+        edit:
+          notice_text: Seleccione "No" si su único trabajo ha sido hacer trabajos ocasionales.
+          title: "¿Obtuvo un diploma de secundaria o un equivalente, como un GED?"
+          worked_last_five_years_label: "¿Ha trabajado por pago en los últimos cinco años?"
     new_response:
       edit:
         check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
         close: Cerrar
         title: Ha finalizado.
         title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
+    out_of_state:
+      edit:
+        contact_button: Ir a mi oficina de SNAP
+        contact_details: Aquí está el link al sitio web de su oficina de SNAP si tiene preguntas o necesita apoyo con su caso.
+        contact_redirect: Será redirigido en %{seconds} segundos.
+        contact_title: Contacte a su oficina de SNAP
+        find_button: Encuentre su agencia de SNAP
+        title: Esta herramienta no está disponible en su ubicación en este momento.
+        title_help_text_county_specific: Para recibir ayuda, comuníquese con su oficina de SNAP.
+        title_help_text_html: "<p>Para recibir ayuda, comuníquese con la agencia de SNAP de su estado. Ellos pueden guiarle en el proceso, responder sus preguntas y explicarle cuáles son los próximos pasos.</p><p>Puede encontrar su información de contacto a continuación.</p>"
     pregnancy:
       edit:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
@@ -224,7 +257,7 @@ es:
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
     school_enrollment:
       edit:
-        help_text: Cada escuela define qué significa ser estudiante de “medio tiempo” basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
         title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     training_program:
       edit:
@@ -242,7 +275,7 @@ es:
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
     tribe_or_nation:
       edit:
-        help_text: If you are eligible for Indian Health Services, select “Yes.”
+        help_text: If you are eligible for Indian Health Services, select "Yes."
         title: "¿Es usted miembro de una tribu o nación indígena?"
     unemployment:
       edit:

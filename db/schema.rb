@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_16_212423) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_19_211856) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "nc_screeners", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "has_hs_diploma", default: 0, null: false
+    t.bigint "screener_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "worked_last_five_years", default: 0, null: false
+    t.index ["screener_id"], name: "index_nc_screeners_on_screener_id"
+  end
 
   create_table "outgoing_emails", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -30,6 +39,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_212423) do
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
     t.string "confirmation_code"
+    t.string "case_number"
     t.integer "consented_to_texts", default: 0, null: false
     t.string "county"
     t.datetime "created_at", null: false
@@ -77,4 +87,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_16_212423) do
     t.integer "working_hours"
     t.decimal "working_weekly_earnings"
   end
+
+  add_foreign_key "nc_screeners", "screeners"
 end
