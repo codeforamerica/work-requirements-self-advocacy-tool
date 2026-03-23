@@ -250,6 +250,39 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :basic_info_ssn" do
+      it "allows valid last 4 digits of ssn" do
+        screener = Screener.new(ssn_last_four: "1234")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to_not be_present
+      end
+
+      it "allows empty last 4 digits of ssn" do
+        screener = Screener.new(ssn_last_four: "")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to_not be_present
+      end
+
+      it "requires valid last 4 digits of ssn" do
+        screener = Screener.new(ssn_last_four: "abc")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to be_present
+
+        screener = Screener.new(ssn_last_four: "12de")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to be_present
+
+        screener = Screener.new(ssn_last_four: "123-12-1234")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to be_present
+      end
+    end
+
     context "with_context :preventing_work_details" do
       it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = Screener.new(
