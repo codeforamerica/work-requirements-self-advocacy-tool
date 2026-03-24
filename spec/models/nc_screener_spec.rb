@@ -20,4 +20,34 @@ RSpec.describe NcScreener, type: :model do
       expect(nc_screener.reload.worked_last_five_years).to eq "yes"
     end
   end
+
+  describe "#at_least_55_no_diploma_not_working?" do
+    it "returns true when age >= 55, no diploma, and not worked in last 5 years" do
+      screener = Screener.create(state: "NC", birth_date: 56.years.ago.to_date)
+      nc_screener = NcScreener.new(screener: screener, has_hs_diploma: "no", worked_last_five_years: "no")
+
+      expect(nc_screener.at_least_55_no_diploma_not_working?).to be true
+    end
+
+    it "returns false when age < 55" do
+      screener = Screener.create(state: "NC", birth_date: 54.years.ago.to_date)
+      nc_screener = NcScreener.new(screener: screener, has_hs_diploma: "no", worked_last_five_years: "no")
+
+      expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
+    end
+
+    it "returns false when has a diploma" do
+      screener = Screener.create(state: "NC", birth_date: 56.years.ago.to_date)
+      nc_screener = NcScreener.new(screener: screener, has_hs_diploma: "yes", worked_last_five_years: "no")
+
+      expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
+    end
+
+    it "returns false when worked in last 5 years" do
+      screener = Screener.create(state: "NC", birth_date: 56.years.ago.to_date)
+      nc_screener = NcScreener.new(screener: screener, has_hs_diploma: "no", worked_last_five_years: "yes")
+
+      expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
+    end
+  end
 end

@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe "packet_page_one/page", type: :view do
   let(:default_locals) do
     {
+      at_least_55_no_diploma_not_working: false,
       full_name: "Nelly Ghaffar",
       birth_date: "1990-07-13",
       caring_for_child_under_6: false,
@@ -84,6 +85,12 @@ RSpec.describe "packet_page_one/page", type: :view do
       expect(rendered).to include("Working at least 30 hours a week")
     end
 
+    it "shows seasonal worker" do
+      render_page(seasonal_worker: true)
+      expect(rendered).to include("General Work Requirement Exemptions")
+      expect(rendered).to include("Seasonal or migrant farmworker")
+    end
+
     it "shows earnings above minimum" do
       render_page(earnings_above_minimum: true)
       expect(rendered).to include("Earning at least $217.50 a week")
@@ -125,15 +132,15 @@ RSpec.describe "packet_page_one/page", type: :view do
       expect(rendered).to include("A member of an Indian tribe or nation")
     end
 
-    it "shows seasonal worker" do
-      render_page(seasonal_worker: true)
-      expect(rendered).to include("Seasonal or migrant farmworker")
-    end
-
     describe "preventing work sub-bullets" do
       it "shows the unfit for work header when any preventing work condition is true" do
         render_page(any_preventing_work: true, preventing_work_place_to_sleep: true)
         expect(rendered).to include("Unfit for work")
+      end
+
+      it "shows at least 55 no diploma not working sub-bullet" do
+        render_page(any_preventing_work: true, at_least_55_no_diploma_not_working: true)
+        expect(rendered).to include("At least 55 years old without a high school diploma")
       end
 
       it "shows place to sleep sub-bullet" do
@@ -183,7 +190,8 @@ RSpec.describe "packet_page_one/page", type: :view do
 
     it "shows the section header with name and DOB" do
       render_page(work_hours: 25)
-      expect(rendered).to include("Nelly Ghaffar (DOB: 1990-07-13) is also reporting the following for SNAP ABAWD Work Requirements compliance:")
+      expect(rendered).to include("Nelly Ghaffar (DOB: 1990-07-13) is also reporting the following for")
+      expect(rendered).to include("SNAP ABAWD Work Requirements compliance:")
     end
 
     it "shows work hours when >= 20" do

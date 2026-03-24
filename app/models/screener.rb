@@ -189,12 +189,6 @@ class Screener < ApplicationRecord
     PREVENTING_WORK_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") }
   end
 
-  # TODO: add NC columns when added
-  def at_least_55_no_diploma_not_working?
-    false
-    # age >= 55 &&
-  end
-
   def birth_date_day
     birth_date&.day
   end

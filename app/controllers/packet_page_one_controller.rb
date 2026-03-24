@@ -8,7 +8,7 @@ class PacketPageOneController < QuestionController
       first_name: "Testy",
       middle_name: "Mary",
       last_name: "Testerson",
-      birth_date: Date.new(1976, 3, 6),
+      birth_date: Date.new(1960, 3, 6),
       email: "testy@example.com",
       phone_number: "9195550123",
       is_american_indian: "yes",
@@ -41,6 +41,7 @@ class PacketPageOneController < QuestionController
       preventing_work_other: "yes",
       preventing_work_write_in: "Chronic back pain"
     )
+    @temp_screener.build_nc_screener(has_hs_diploma: "no", worked_last_five_years: "no")
   end
 
   def generate_pdf

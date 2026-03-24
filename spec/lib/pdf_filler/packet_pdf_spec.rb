@@ -11,7 +11,8 @@ RSpec.describe PdfFiller::PacketPdf do
       birth_date: Date.new(1990, 7, 13),
       email: "nigella@example.com",
       phone_number: "9195551234",
-      state: LocationData::States::NORTH_CAROLINA
+      state: LocationData::States::NORTH_CAROLINA,
+      nc_screener: NcScreener.new
     )
   end
 

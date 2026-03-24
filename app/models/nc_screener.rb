@@ -5,6 +5,12 @@ class NcScreener < ApplicationRecord
 
   before_save :remove_worked_last_five_years_if_has_diploma
 
+  def at_least_55_no_diploma_not_working?
+    return false unless screener.age
+
+    screener.age >= 55 && has_hs_diploma_no? && worked_last_five_years_no?
+  end
+
   private
 
   def remove_worked_last_five_years_if_has_diploma
