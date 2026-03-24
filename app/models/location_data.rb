@@ -35,7 +35,7 @@ module LocationData
     def self.load_all
       Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
         state_code = File.basename(file, ".csv")
-        
+
         counties = {}
 
         CSV.foreach(file, headers: true) do |row|
