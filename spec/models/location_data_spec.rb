@@ -37,7 +37,6 @@ RSpec.describe LocationData do
     describe ".for_state" do
       it "returns all counties from CSV for each state" do
         all_counties.each do |state, counties|
-          # Check that each county has a name
           expect(counties.keys).to all(satisfy { |k| k.is_a?(String) && !k.empty? })
         end
       end
@@ -138,19 +137,19 @@ RSpec.describe LocationData do
       let(:state) { all_counties.keys.first }
 
       it "returns upload value when present" do
-        county_name, data = all_counties[state].find { |_, d| d[:upload_portal_or_email].present? }
+        county_name, county_data = all_counties[state].find { |name, data| data[:upload_portal_or_email].present? }
         skip "No county with upload present" unless county_name
 
         result = described_class.upload_portal_or_email_for(state, county_name)
-        expect(result).to eq(data[:upload_portal_or_email])
+        expect(result).to eq(county_data[:upload_portal_or_email])
       end
 
       it "falls back to email when upload is blank" do
-        county_name, data = all_counties[state].find { |_, d| d[:upload_portal_or_email].blank? && d[:email].present? }
+        county_name, county_data = all_counties[state].find { |name, data| data[:upload_portal_or_email].blank? && data[:email].present? }
         skip "No suitable county for fallback test" unless county_name
 
         result = described_class.upload_portal_or_email_for(state, county_name)
-        expect(result).to eq(data[:email])
+        expect(result).to eq(county_data[:email])
       end
     end
 
@@ -168,19 +167,19 @@ RSpec.describe LocationData do
       let(:state) { all_counties.keys.first }
 
       it "returns physical address when present" do
-        county_name, data = all_counties[state].find { |_, d| d[:physical_address].present? }
+        county_name, county_data = all_counties[state].find { |name, data| data[:physical_address].present? }
         skip "No county with physical address" unless county_name
 
         result = described_class.physical_address_for(state, county_name)
-        expect(result).to eq(data[:physical_address])
+        expect(result).to eq(county_data[:physical_address])
       end
 
       it "falls back to mailing address when physical is blank" do
-        county_name, data = all_counties[state].find { |_, d| d[:physical_address].blank? && d[:mailing_address].present? }
+        county_name, county_data = all_counties[state].find { |name, data| data[:physical_address].blank? && data[:mailing_address].present? }
         skip "No suitable county for fallback test" unless county_name
 
         result = described_class.physical_address_for(state, county_name)
-        expect(result).to eq(data[:mailing_address])
+        expect(result).to eq(county_data[:mailing_address])
       end
     end
 
