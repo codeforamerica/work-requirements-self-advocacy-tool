@@ -24,17 +24,15 @@ module LocationData
   module Counties
     DATA_DIR = Rails.root.join("config/data/counties")
 
-    FIELDS = {
-      county_name: "County [COUNTY_AGENCY]",
-      mailing_address: "Office mailing address [COUNTY_MAIL_ADDRESS]",
-      physical_address: "Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS]",
-      phone: "Office phone number [COUNTY_PHONE]",
-      fax: "Office fax number [COUNTY_FAX]",
-      email: "Office email address [COUNTY_EMAIL_ADDRESS]",
-      website: "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]",
-      upload_portal_or_email: "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]",
-      is_supported: "Is Supported?"
-    }.freeze
+    COUNTY_NAME = "County [COUNTY_AGENCY]"
+    MAIL_ADDRESS = "Office mailing address [COUNTY_MAIL_ADDRESS]"
+    PHYSICAL_ADDRESS = "Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS]"
+    PHONE = "Office phone number [COUNTY_PHONE]"
+    FAX = "Office fax number [COUNTY_FAX]"
+    EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
+    WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
+    UPLOAD = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
+    IS_SUPPORTED = "Is Supported?"
 
     def self.load_all
       Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
@@ -42,19 +40,19 @@ module LocationData
         counties = {}
 
         CSV.foreach(file, headers: true) do |row|
-          county_name = row[FIELDS[:county_name]]&.strip
-          next if county_name.blank?
+          county = row[COUNTY_NAME]&.strip
+          next if county.blank?
 
-          counties[county_name] = {
-            name: county_name,
-            mailing_address: row[FIELDS[:mailing_address]],
-            physical_address: row[FIELDS[:physical_address]],
-            phone: row[FIELDS[:phone]],
-            fax: row[FIELDS[:fax]],
-            email: row[FIELDS[:email]],
-            website: row[FIELDS[:website]],
-            upload_portal_or_email: row[FIELDS[:upload_portal_or_email]],
-            is_supported: row[FIELDS[:is_supported]] == "Y"
+          counties[county] = {
+            name: county,
+            mailing_address: row[MAIL_ADDRESS],
+            physical_address: row[PHYSICAL_ADDRESS],
+            phone: row[PHONE],
+            fax: row[FAX],
+            email: row[EMAIL],
+            website: row[WEBSITE],
+            upload: row[UPLOAD],
+            is_supported: row[IS_SUPPORTED] == "Y"
           }
         end
 
@@ -75,13 +73,12 @@ module LocationData
       county
     end
 
-    # Public API
     def self.for_state(state)
       ALL_COUNTIES[state] || {}
     end
 
     def self.options_for(state)
-      for_state(state).map { |_, data| [data[:name], _] }
+      for_state(state).map { |key, data| [data[:name], key] }
     end
 
     def self.get(state, county_key)
