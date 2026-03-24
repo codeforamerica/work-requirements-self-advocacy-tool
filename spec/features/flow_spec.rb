@@ -11,7 +11,7 @@ RSpec.feature "Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
     select "North Carolina", from: "screener_state"
-    select "Bertie County", from: "screener_county"
+    select "Avery County", from: "screener_county"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
