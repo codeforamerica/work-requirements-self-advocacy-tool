@@ -62,7 +62,6 @@ module LocationData
 
     ALL_COUNTIES = load_all
 
-    # Core helper to fetch a county and raise if missing
     def self.fetch_county!(state_code, county_key)
       raise ArgumentError, "state_code is required" if state_code.blank?
       raise ArgumentError, "county_key is required" if county_key.blank?
