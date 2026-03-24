@@ -11,7 +11,7 @@ module Nc
     end
 
     def self.show?(screener)
-      screener.state == "NC"
+      screener.state == LocationData::States::NORTH_CAROLINA
     end
 
     def self.load_model(intake, item_index: nil)

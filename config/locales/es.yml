@@ -221,7 +221,7 @@ es:
         edit:
           homeschool_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
           homeschool_hours_label: "¿Cuántas horas a la semana imparte educación en el hogar?"
-          homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx?utm_source=chatgpt.com" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
+          homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
           homeschool_name_label: "¿Cuál es el nombre de la escuela en el hogar?"
           notice_text: Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.
           title: "¿Tiene un programa de educación en casa para un niño o niños?"
