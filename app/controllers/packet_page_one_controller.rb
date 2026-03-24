@@ -48,6 +48,6 @@ class PacketPageOneController < QuestionController
   end
 
   def page
-    render :page, locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_pdf
+    render :page, locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_generated_pdf
   end
 end

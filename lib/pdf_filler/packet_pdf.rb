@@ -4,10 +4,9 @@ module PdfFiller
       @screener = screener
     end
 
-    def hash_for_pdf
+    def hash_for_fillable_pdf
       shared_fields.merge(
         age: @screener.age.to_s,
-        # at_least_55_no_diploma_not_working: "",
         # case_number: "",
         # confirmation_code: "",
         details_of_care: @screener.additional_care_info,
@@ -66,7 +65,7 @@ module PdfFiller
         "app/assets/pdfs/packet.pdf"
       end
       template_doc = HexaPDF::Document.open(source_pdf_path)
-      hash_for_pdf.each do |field_name, field_value|
+      hash_for_fillable_pdf.each do |field_name, field_value|
         template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
       end
       pdf_tempfile = Tempfile.new(["packet", ".pdf"], "tmp/")
@@ -104,6 +103,7 @@ module PdfFiller
 
     def shared_fields
       {
+        at_least_55_no_diploma_not_working: @screener.at_least_55_no_diploma_not_working?,
         birth_date: @screener.birth_date.to_s,
         caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
         caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,

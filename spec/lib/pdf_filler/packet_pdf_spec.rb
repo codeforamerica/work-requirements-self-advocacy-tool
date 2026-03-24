@@ -17,8 +17,8 @@ RSpec.describe PdfFiller::PacketPdf do
 
   subject(:packet_pdf) { described_class.new(screener) }
 
-  describe "#hash_for_pdf" do
-    subject(:result) { packet_pdf.hash_for_pdf }
+  describe "#hash_for_fillable_pdf" do
+    subject(:result) { packet_pdf.hash_for_fillable_pdf }
 
     describe "direct screener mappings" do
       it "maps full_name_with_middle from screener" do
@@ -129,21 +129,21 @@ RSpec.describe PdfFiller::PacketPdf do
       it "delegates receiving_disabilty_benefits to screener" do
         expect(result[:receiving_disabilty_benefits]).to be false
         screener.receiving_benefits_ssdi = "yes"
-        expect(packet_pdf.hash_for_pdf[:receiving_disabilty_benefits]).to be true
+        expect(packet_pdf.hash_for_fillable_pdf[:receiving_disabilty_benefits]).to be true
       end
 
       it "delegates working_or_earning to screener" do
         expect(result[:working_or_earning]).to be false
         screener.is_working = "yes"
         screener.working_hours = 30
-        expect(packet_pdf.hash_for_pdf[:working_or_earning]).to be true
+        expect(packet_pdf.hash_for_fillable_pdf[:working_or_earning]).to be true
       end
 
       it "delegates is_volunteering to screener" do
         expect(result[:is_volunteering]).to be false
         screener.is_volunteer = "yes"
         screener.volunteering_hours = 1
-        expect(packet_pdf.hash_for_pdf[:is_volunteering]).to be true
+        expect(packet_pdf.hash_for_fillable_pdf[:is_volunteering]).to be true
       end
     end
   end
