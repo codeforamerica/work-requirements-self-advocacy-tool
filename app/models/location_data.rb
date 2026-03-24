@@ -29,7 +29,7 @@ module LocationData
     FAX = "Office fax number [COUNTY_FAX]"
     EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
     WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
-    UPLOAD = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
+    UPLOAD_PORTAL_OR_EMAIL = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
     IS_SUPPORTED = "Is Supported?"
 
     def self.load_all
@@ -50,7 +50,7 @@ module LocationData
             fax: row[FAX],
             email: row[EMAIL],
             website: row[WEBSITE],
-            upload: row[UPLOAD],
+            upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
             is_supported: row[IS_SUPPORTED] == "Y"
           }
         end
