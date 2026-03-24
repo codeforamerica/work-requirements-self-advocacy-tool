@@ -52,8 +52,10 @@
 
 <ul style="line-height: 1.5;">
   <li>Check for information on their website <%= @county_data[:website] %>,</li>
-  <li>
-    Email the office at <%= @county_data[:email] %>,
-  </li>
+  <% if @county_data[:email].present? %>
+    <li>
+      Email the office at <%= @county_data[:email] %>,
+    </li>
+  <% end %>
   <li>Call the office at <%= @county_data[:phone] %>.</li>
 </ul>
