@@ -124,8 +124,9 @@ en:
         title_sent: We sent your form to %{email}
         how_to: How to submit your form to your SNAP agency
         how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
-        next_steps_online_web_html: "<p><strong>Online: </strong>Go to:</p><p><i>%{website}</i></p>"
-        next_steps_online_email_html: "<p><strong>Online: </strong>Email to:</p><p><i>%{email}</i></p>"
+        next_steps_online_html: "<span><strong>Online: </strong>Send your form using one of these options:</span>"
+        next_steps_online_web_html: "<span>Go to: <i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        next_steps_online_email_html: "<span>Send an email to: <i>%{email}</i></span>"
         next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
         title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.

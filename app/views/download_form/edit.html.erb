@@ -33,12 +33,27 @@
 <p><%= t("views.download_form.edit.how_to_help_text") %></p>
 <div class="notice grey-light">
   <ol class="list--numbered">
-    <% if (website = LocationData::Counties.website_for(@current_screener.state, @current_screener.county)).present? %>
-      <li><%= t("views.download_form.edit.next_steps_online_web_html", website: website) %></li>
+    <% website = LocationData::Counties.website_for(@current_screener.state, @current_screener.county) %>
+    <% upload_portal_or_email = LocationData::Counties.upload_portal_or_email_for(@current_screener.state, @current_screener.county) %>
+
+    <% if website.present? || upload_portal_or_email.present? %>
+      <li><%= t("views.download_form.edit.next_steps_online_html") %>
+        <ul class="list--bulleted">
+          <% if upload_portal_or_email.present? %>
+            <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
+            <% if is_email %>
+              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email)) %></li>
+            <% else %>
+              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
+            <% end %>
+          <% end %>
+          <% if website.present? && website != upload_portal_or_email %>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: website) %></li>
+          <% end %>
+        </ul>
+      </li>
     <% end %>
-    <% if (email = LocationData::Counties.email_for(@current_screener.state, @current_screener.county)).present? %>
-      <li><%= t("views.download_form.edit.next_steps_online_email_html", email: email) %></li>
-    <% end %>
+
     <% if (mailing_address = LocationData::Counties.mailing_address_for(@current_screener.state, @current_screener.county)).present? %>
       <li><%= t("views.download_form.edit.next_steps_mail_html", mailing_address: simple_format(mailing_address)) %></li>
     <% end %>
