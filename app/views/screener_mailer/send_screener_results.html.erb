@@ -9,7 +9,7 @@
   Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
 </p>
 
-<hr style="border: none; border-top: 1px solid #000000; margin: 0;">
+<hr style="border: none; border-top: 1px solid #C6C6C6; margin: 0;">
 
 <h2 style="font-weight: bold;">
   Next step: Send this form to your SNAP agency.
@@ -22,35 +22,51 @@
   Your document reference code: <%= @screener.confirmation_code %>
 </p>
 
-<hr style="border: none; border-top: 1px solid #000000; margin: 0;">
+<hr style="border: none; border-top: 1px solid #C6C6C6; margin: 0;">
 
 <h3 style="font-weight: bold;">
   How to submit your form
 </h3>
 
-<ol style="line-height: 1.5;">
+<ol style="line-height: 2;">
   <li>
-    <strong>Online:</strong> If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
-    <br/>
-    Instead of using ePASS, you can submit this form and any proof to your county’s SNAP office <%= @county_data[:website] %><%= "by emailing #{@county_data[:email]}" if @county_data[:email].present? %>.</li>
+    <strong>Online:</strong> If you already receive SNAP benefits, you can use
+    <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any
+    proof you may need. You will need to have an
+    <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
+    <br/><br/>
+    Instead of using ePASS, you can submit this form and any proof to your county’s SNAP
+    office <%= @county_data[:website] %><%= "or by emailing #{@county_data[:email]}" if @county_data[:email].present? %>.
+  </li>
   </li>
   <li>
     <strong>Mail:</strong> Send your form and any proof you may need.
-    <br/>
-    <%= @county_data[:mailing_address] %>
+    <br/><br/>
+    <div style="font-style: italic;">
+      <% @county_data[:mailing_address].split("\n").map do |line| %>
+        <%= line %>
+        <br/>
+      <% end %>
+    </div>
   </li>
   <li>
     <strong>In person:</strong> Print your form and bring it and any proof you may need to a local office.
-    <br/>
-    <%= @county_data[:physical_address] %>
+    <br/><br/>
+    <div style="font-style: italic;">
+      <% @county_data[:physical_address].split("\n").map do |line| %>
+        <%= line %>
+        <br/>
+      <% end %>
+    </div>
   </li>
 </ol>
 
 <p>
-  If you have questions, or to find out if there are other ways to submit your form, you can contact your county’s social services office.
+  If you have questions, or to find out if there are other ways to submit your form, you can contact your county’s
+  social services office.
 </p>
 
-<ul style="line-height: 1.5;">
+<ul style="line-height: 2;">
   <li>Check for information on their website <%= @county_data[:website] %>,</li>
   <% if @county_data[:email].present? %>
     <li>

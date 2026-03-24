@@ -1,1 +1,35 @@
-Submit this form and any proof you need to your SNAP agency to tell them that the work rules don’t apply to you.
+Hi <%= @screener.first_name %> <%= @screener.last_name %>,
+
+Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
+
+---
+
+Next step: Send this form to your SNAP agency.
+
+Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn't apply to you.
+
+Your document reference code: <%= @screener.confirmation_code %>
+
+---
+
+How to submit your form
+
+1. Online: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
+
+   Instead of using ePASS, you can submit this form and any proof to your county's SNAP office <%= @county_data[:website] %><%= " or by emailing #{@county_data[:email]}" if @county_data[:email].present? %>.
+
+2. Mail: Send your form and any proof you may need.
+
+   <%= @county_data[:mailing_address].split("\n").join("\n   ") %>
+
+3. In person: Print your form and bring it and any proof you may need to a local office.
+
+   <%= @county_data[:physical_address].split("\n").join("\n   ") %>
+
+If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
+
+- Check for information on their website <%= @county_data[:website] %>
+<% if @county_data[:email].present? %>
+- Email the office at <%= @county_data[:email] %>
+<% end %>
+- Call the office at <%= @county_data[:phone] %>
