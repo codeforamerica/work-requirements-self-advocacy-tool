@@ -119,8 +119,21 @@ en:
     download_form:
       edit:
         email_pdf: E-mail it to yourself
-        title: Download and submit to your SNAP agency
+        download_form: Download form
+        title: Download your form
+        title_sent: We sent your form to %{email}
+        how_to: How to submit your form to your SNAP agency
+        how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
+        next_steps_online_web_html: "<p><strong>Online: </strong>Go to:</p><p><i>%{website}</i></p>"
+        next_steps_online_email_html: "<p><strong>Online: </strong>Email to:</p><p><i>%{email}</i></p>"
+        next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
         title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
+        have_questions: Have questions about how to submit your form? Call your agency.
+        what_to_expect: What to expect
+        expectation_1: Your SNAP agency may call you or mail you a notice if they need more information.
+        expectation_2: In some cases, you might need to send your agency more or different documents that show your situation, like paystubs or proof of a medical condition, for example.
+        expectation_3: The agency may not confirm receipt. We recommend calling your SNAP agency if you don’t hear anything in the next 4 weeks.
     email:
       edit:
         email: Email

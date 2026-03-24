@@ -2,20 +2,20 @@ FIPS Code,County [COUNTY_AGENCY],Office mailing address [COUNTY_MAIL_ADDRESS],Of
 37001 ,Alamance County,"Alamance County Department of Social Services
 Food and Nutrition Services
 319 North Graham Hopedale Road, Suite C
-Burlington, NC 27217",,336-570-6532,336-570-6538,-,https://dss.alamancecountync.gov/,https://form.jotform.com/230868100371147,TRUE,Y
+Burlington, NC 27217",,336-570-6532,336-570-6538,,https://dss.alamancecountync.gov/,https://form.jotform.com/230868100371147,TRUE,Y
 37003 ,Alexander County,"Alexander County Department of Social Services
 Food and Nutrition Services
 604 7th Street SW
-Taylorsville, NC 28681",,828-632-1080,828-632-1092,-,https://dss.alexandercountync.gov/,-,TRUE,Y
+Taylorsville, NC 28681",,828-632-1080,828-632-1092,,https://dss.alexandercountync.gov/,,TRUE,Y
 37005 ,Alleghany County,"Alleghany County Department of Social Services
 Food and Nutrition Services
 P.O. Box 247
 Sparta NC 28675","182 Doctors St.
-Sparta, NC 28675",336-372-2415,336-372-1412,-,https://alleghanycounty-nc.gov/index.php/social-services/,-,TRUE,Y
+Sparta, NC 28675",336-372-2415,336-372-1412,,https://alleghanycounty-nc.gov/index.php/social-services/,,TRUE,Y
 37007 ,Anson County,"Anson County Department of Social Services
 Food and Nutrition Services
 118 North Washington Street
-Wadesboro, NC 28170",,704-694-9351,704-695-1608,-,https://www.co.anson.nc.us/182/Social-Services,-,TRUE,Y
+Wadesboro, NC 28170",,704-694-9351,704-695-1608,,https://www.co.anson.nc.us/182/Social-Services,,TRUE,Y
 37009 ,Ashe County,"Ashe County Department of Social Services
 Food and Nutrition Services
 150 Government Circle, Suite 1400
@@ -28,26 +28,26 @@ Newland, NC 28657",,828-733-8230,828-733-8245,avery.dss@averycountync.gov,https:
 Food and Nutrition Services
 P.O. Box 1358
 Washington, NC 27889","632 W 5th Street
-Washington, NC 27889",252-975-5500,252-975-5555,beaufort.county.dss@beaufortdss.com,https://co.beaufort.nc.us/256/Department-of-Social-Services-DSS,-,TRUE,Y
+Washington, NC 27889",252-975-5500,252-975-5555,beaufort.county.dss@beaufortdss.com,https://co.beaufort.nc.us/256/Department-of-Social-Services-DSS,,TRUE,Y
 37015 ,Bertie County,"Bertie County Department of Social Services
 Food and Nutrition Services
 PO Box 627
 Windsor, NC 27983","110 Jasper Bazemore Ave
-Windsor, NC 27983",252-794-5320,252-794-5344,-,http://www.co.bertie.nc.us/departments/dss/dss.html,-,TRUE,Y
+Windsor, NC 27983",252-794-5320,252-794-5344,,http://www.co.bertie.nc.us/departments/dss/dss.html,,TRUE,Y
 37017 ,Bladen County,"Bladen County Department of Social Services
 Food and Nutrition Services
 P.O. Box 369
 Elizabethtown, NC 28337","208 McKay St.
-Elizabethtown, NC 28337",910-862-6800,910-862-6801,-,https://bladennc.govoffice3.com/?SEC=B5244DDC-3A3A-482F-B577-8234E7098E1F,-,TRUE,Y
+Elizabethtown, NC 28337",910-862-6800,910-862-6801,,https://bladennc.govoffice3.com/?SEC=B5244DDC-3A3A-482F-B577-8234E7098E1F,,TRUE,Y
 37019 ,Brunswick County,"Brunswick County Department of Social Services
 Food and Nutrition Services
 60 Government Drive, NE
-Bolivia, NC 28422",,910-253-2077,910-253-2071,-,https://www.brunswickcountync.gov/335/Food-Nutrition-Assistance,,TRUE,Y
+Bolivia, NC 28422",,910-253-2077,910-253-2071,,https://www.brunswickcountync.gov/335/Food-Nutrition-Assistance,,TRUE,Y
 37021 ,Buncombe County,"Buncombe County Department of Social Services
 Food and Nutrition Services
 P.O. Box 7408
 Asheville, NC 28802","40 Coxe Avenue
-Asheville, NC 28802",828-250-5500,828-250-6235,-,https://www.buncombenc.gov/399/Food-Assistance,,TRUE,Y
+Asheville, NC 28802",828-250-5500,828-250-6235,,https://www.buncombenc.gov/399/Food-Assistance,,TRUE,Y
 37023 ,Burke County,"Burke County Department of Social Services
 Food and Nutrition Services
 P.O. Box 549
@@ -56,7 +56,7 @@ Morganton, NC 28680",828-764-9600,828-764-9793,BurkeCountyDSSVerification@burken
 37025 ,Cabarrus County,"Cabarrus County Department of Social Services
 Food and Nutrition Services
 1303 S. Cannon Blvd.
-Kannapolis, NC",,"704-920-1400, opt. 3",704-920-1401,-,https://www.cabarruscounty.us/Government/Departments/Consolidated-Human-Services-Agency/Social-Services/Economic-Services/Food-and-Nutrition-Services/Food-and-Nutrition-Assistance,,TRUE,Y
+Kannapolis, NC",,"704-920-1400, opt. 3",704-920-1401,,https://www.cabarruscounty.us/Government/Departments/Consolidated-Human-Services-Agency/Social-Services/Economic-Services/Food-and-Nutrition-Services/Food-and-Nutrition-Assistance,,TRUE,Y
 37027 ,Caldwell County,"Caldwell County Department of Social Services
 Food and Nutrition Services
 P.O. Box 200
@@ -75,21 +75,21 @@ Beaufort, NC 28516",,252-728-3181,252-648-7462,DSSInfo@carteretcountync.gov,http
 Food and Nutrition Services
 P.O. Box 1538
 Yanceyville, NC 27379","175 County Park Road
-Yanceyville, NC 27379",336-694-4141,336-694-1816,-,https://www.caswellcountync.gov/department-directory,,TRUE,Y
+Yanceyville, NC 27379",336-694-4141,336-694-1816,,https://www.caswellcountync.gov/department-directory,,TRUE,Y
 37035 ,Catawba County,"Catawba County Department of Social Services
 Food and Nutrition Services
 P.O. Box 669
 Newton, NC 28658","3030 11th Ave. Drive, SE.
-Hickory, NC 28602",828-695-5600,828-695-5700,-,https://catawbacountync.gov/county-services/social-services/family-support-services/food-nutrition-services/,,TRUE,Y
+Hickory, NC 28602",828-695-5600,828-695-5700,,https://catawbacountync.gov/county-services/social-services/family-support-services/food-nutrition-services/,,TRUE,Y
 37037 ,Chatham County,"Chatham County Department of Social Services
 Food and Nutrition Services
 P.O. Box 489
 Pittsboro, NC 27312","102 Camp Drive
-Pittsboro, NC 27312",919-542-2759,919-542-6355,-,https://www.chathamcountync.gov/government/departments-programs-i-z/social-services/economic-assistance-programs/food-assistance,https://gisservices.chathamcountync.gov/dssdocuments,TRUE,Y
+Pittsboro, NC 27312",919-542-2759,919-542-6355,,https://www.chathamcountync.gov/government/departments-programs-i-z/social-services/economic-assistance-programs/food-assistance,https://gisservices.chathamcountync.gov/dssdocuments,TRUE,Y
 37039 ,Cherokee County,"Cherokee County Department of Social Services
 Food and Nutrition Services
 4800 W US Highway 64
-Murphy, NC 28906",,828-837-7455,828-835-4985,-,https://www.cherokeecounty-nc.gov/266/Economic-Services,,TRUE,Y
+Murphy, NC 28906",,828-837-7455,828-835-4985,,https://www.cherokeecounty-nc.gov/266/Economic-Services,,TRUE,Y
 37041 ,Chowan County,"Chowan County Department of Social Services
 Food and Nutrition Services
 100 W. Freemason Circle
@@ -98,17 +98,17 @@ Edenton, NC 27932",,252-482-7441,252-482-7041,chowan.dss@chowan.nc.gov,https://w
 Food and Nutrition Services
 P.O. Box 147
 Hayesville, NC 28904","119 Courthouse Drive
-Hayesville, NC 28904",828-389-6301,828-389-6427,-,https://dss.claync.us/food-and-nutrition,,TRUE,Y
+Hayesville, NC 28904",828-389-6301,828-389-6427,,https://dss.claync.us/food-and-nutrition,,TRUE,Y
 37045 ,Cleveland County,"Cleveland County Department of Social Services
 Food and Nutrition Services
 P.O. Box 9006
 Shelby, NC 28151-9006","200 South Post Road
-Shelby, NC 28150",980-484-6000,704-368-5751,-,https://www.clevelandcounty.com/main/departments/social_services/index.php,,TRUE,Y
+Shelby, NC 28150",980-484-6000,704-368-5751,,https://www.clevelandcounty.com/main/departments/social_services/index.php,,TRUE,Y
 37047 ,Columbus County,"Columbus County Department of Social Services
 Food and Nutrition Services
 P.O. Box 397
 Whiteville, NC 28472","40 Government Complex Road
-Whiteville, NC 28472",910-642-2800,910-641-3970,-,https://www.columbusco.org/department-social-services,,TRUE,Y
+Whiteville, NC 28472",910-642-2800,910-641-3970,,https://www.columbusco.org/department-social-services,,TRUE,Y
 37049 ,Craven County,"Craven County Department of Social Services
 Food and Nutrition Services
 P.O. Box 12039
@@ -123,12 +123,12 @@ Fayetteville, NC 28301",910-323-1540,910-677-2885,food_stamps@ccdssnc.com,https:
 Food and Nutrition Services
 153 Courthouse Rd., Suite 400
 Currituck, NC 27929","2793 Caratoke Hwy.
-Currituck, NC 27929",252-232-3083,252-232-2167,-,https://currituckcountync.gov/social-services/economic-independence/,,TRUE,Y
+Currituck, NC 27929",252-232-3083,252-232-2167,,https://currituckcountync.gov/social-services/economic-independence/,,TRUE,Y
 37055 ,Dare County,"Dare County Department of Social Services
 Food and Nutrition Services
 P.O. Box 669
 Manteo, NC 27954","109 Exeter St.
-Manteo, NC 27954",252-475-5500,252-473-9824,-,https://www.darenc.gov/departments/health-human-services/our-services/financial-assistance-services,,TRUE,Y
+Manteo, NC 27954",252-475-5500,252-473-9824,,https://www.darenc.gov/departments/health-human-services/our-services/financial-assistance-services,,TRUE,Y
 37057 ,Davidson County,"Davidson County Department of Social Services
 Food and Nutrition Services
 P.O. Box 788
@@ -142,7 +142,7 @@ Thomasville, NC 27360",336-242-2500,"Lexington Location:
 336-249-7588
 
 Thomasville Location:
-336-472-6635",-,https://www.co.davidson.nc.us/417/Food-Nutrition,,TRUE,Y
+336-472-6635",,https://www.co.davidson.nc.us/417/Food-Nutrition,,TRUE,Y
 37059 ,Davie County,"Davie County Department of Social Services
 Food and Nutrition Services
 154 Government Center Drive
@@ -150,11 +150,11 @@ Mocksville, NC 27028",,336-753-6180,336-751-1639,fmcswain@daviecountync.gov,http
 37061 ,Duplin County,"Duplin County Department of Social Services
 Food and Nutrition Services
 P.O. Box 969, Kenansville, NC 28349","423 N. Main St.
-Kenansville, NC 28349",910-296-2200,910-296-2323,-,https://www.duplinnc.gov/212/Social-Services,,TRUE,Y
+Kenansville, NC 28349",910-296-2200,910-296-2323,,https://www.duplinnc.gov/212/Social-Services,,TRUE,Y
 37063 ,Durham County,"Durham County Department of Social Services
 Food and Nutrition Services
 P.O. Box 810, Durham, NC 27702-0810","414 E. Main St.
-Durham, NC 27702-0810",919-560-8000,919-560-8101,-,https://dconc.gov/Social-Services/Food-and-Nutrition-Services,https://dssmobile.dconc.gov/,TRUE,Y
+Durham, NC 27702-0810",919-560-8000,919-560-8101,,https://dconc.gov/Social-Services/Food-and-Nutrition-Services,https://dssmobile.dconc.gov/,TRUE,Y
 37065 ,Edgecombe County,"Edgecombe County Department of Social Services
 Food and Nutrition Services
 P.O. Box 370
@@ -172,7 +172,7 @@ Rocky Mount Location:
 252-641-5816
 
 Rocky Mount Location:
-252-985-1615",-,https://www.edgecombecountync.gov/departments/dss/index.php,,TRUE,Y
+252-985-1615",,https://www.edgecombecountync.gov/departments/dss/index.php,,TRUE,Y
 37067 ,Forsyth County,"Forsyth County Department of Social Services
 Food and Nutrition Services
 741 North Highland Ave.
@@ -185,25 +185,25 @@ Louisburg, NC 27549",919-496-5721,919-496-8137,franklincodss@franklincountync.go
 37071 ,Gaston County,"Gaston County Department of Social Services
 Food and Nutrition Services
 330 Dr. Martin Luther King Jr. Way
-Gastonia, NC 28052",,704-862-7500,704-862-7885,-,https://www.gastongov.com/441/Social-Services-Division,,TRUE,Y
+Gastonia, NC 28052",,704-862-7500,704-862-7885,,https://www.gastongov.com/441/Social-Services-Division,,TRUE,Y
 37073 ,Gates County,"Gates County Department of Social Services
 Food and Nutrition Services
 P.O. Box 185, Gatesville, NC 27938","122 Main St.
-Gatesville, NC 27938",252-357-0075,252-357-2132,-,https://gatescountync.gov/social-services,,TRUE,Y
+Gatesville, NC 27938",252-357-0075,252-357-2132,,https://gatescountync.gov/social-services,,TRUE,Y
 37075 ,Graham County,"Graham County Department of Social Services
 Food and Nutrition Services
 P.O. Box 1878
 Robbinsville, NC 28771","191 P & J Road
-Robbinsville, NC 28771",828-479-7911,828-479-7928,-,https://grahamcounty.org/social_serv.html,,TRUE,Y
+Robbinsville, NC 28771",828-479-7911,828-479-7928,,https://grahamcounty.org/social_serv.html,,TRUE,Y
 37077 ,Granville County,"Granville County Department of Social Services
 Food and Nutrition Services
 410 West Spring St.
 Oxford, NC 27565",,919-693-1511,"919-603-5090
-919-504-4894",-,https://www.granvillecounty.org/521/Food-Nutrition-Services-Food-Stamps,,TRUE,Y
+919-504-4894",,https://www.granvillecounty.org/521/Food-Nutrition-Services-Food-Stamps,,TRUE,Y
 37079 ,Greene County,"Greene County Department of Social Services
 Food and Nutrition Services
 227 Kingold Blvd. Suite A
-Snow Hill, NC 28580",,252-747-5932,252-747-8654,-,https://greenecountync.gov/departments/social-services/,,TRUE,Y
+Snow Hill, NC 28580",,252-747-5932,252-747-8654,,https://greenecountync.gov/departments/social-services/,,TRUE,Y
 37081 ,Guilford County,"Guilford County Department of Social Services
 Food and Nutrition Services
 P.O. Box 3388
@@ -213,20 +213,20 @@ Greensboro, NC 27405
 
 High Point Location:
 325 E Russell Ave.
-High Point, NC 27260",336-641-3000,336-641-5647,-,https://www.guilfordcountync.gov/government/departments-and-agencies/department-health-and-human-services/social-services/economic-services#FoodAssistanceFoodStamps-2034,https://guilfordcountync.seamlessdocs.com/f/DSSDocuments,TRUE,Y
+High Point, NC 27260",336-641-3000,336-641-5647,,https://www.guilfordcountync.gov/government/departments-and-agencies/department-health-and-human-services/social-services/economic-services#FoodAssistanceFoodStamps-2034,https://guilfordcountync.seamlessdocs.com/f/DSSDocuments,TRUE,Y
 37083 ,Halifax County,"Halifax County Department of Social Services
 Food and Nutrition Services
 P.O. Box 767, Halifax, NC 27839","4421 US Hwy 301
-Halifax, NC 27839",252-536-2511,252-536-2432,-,https://www.halifaxnc.com/170/Department-of-Social-Services,,TRUE,Y
+Halifax, NC 27839",252-536-2511,252-536-2432,,https://www.halifaxnc.com/170/Department-of-Social-Services,,TRUE,Y
 37085 ,Harnett County,"Harnett County Department of Social Services
 Food and Nutrition Services
 P.O. Box 2169
 Lillington, NC 27546","311 Cornelius Harnett Blvd.
-Lillington, NC 27546",910-814-6611,910-912-1853,-,https://www.harnett.org/dss/?btid=2&bid=410,,TRUE,Y
+Lillington, NC 27546",910-814-6611,910-912-1853,,https://www.harnett.org/dss/?btid=2&bid=410,,TRUE,Y
 37087 ,Haywood County,"Haywood County Department of Social Services
 Food and Nutrition Services
 157 Paragon Parkway, Suite 300
-Clyde, NC 28721",,828-452-6620,828-452-6690,-,https://www.haywoodcountync.gov/434/Food-Nutrition-Services,,TRUE,Y
+Clyde, NC 28721",,828-452-6620,828-452-6690,,https://www.haywoodcountync.gov/434/Food-Nutrition-Services,,TRUE,Y
 37089 ,Henderson County,"Henderson County Department of Social Services
 Food and Nutrition Services
 1200 Spartanburg Hwy., Suite 300
@@ -235,17 +235,17 @@ Hendersonville, N.C. 28792",,828-697-5500,828-697-4976,ESinfo@HendersonCountyNC.
 Food and Nutrition Services
 P.O. Box 218
 Winton, NC 27986","704 N King St.
-Winton, NC 27986",252-358-7830,252-358-0597,-,https://www.hertfordcountync.gov/departments/social_services/index.php,,TRUE,Y
+Winton, NC 27986",252-358-7830,252-358-0597,,https://www.hertfordcountync.gov/departments/social_services/index.php,,TRUE,Y
 37093 ,Hoke County,"Hoke County Department of Social Services
 Food and Nutrition Services
 P.O. Box 340
 Raeford, NC 28376","314 South Magnolia St.
-Raeford, NC 28376",910-875-8725,910-848-3828,-,https://www.hokecounty.net/326/Food-Nutrition-Services,,TRUE,Y
+Raeford, NC 28376",910-875-8725,910-848-3828,,https://www.hokecounty.net/326/Food-Nutrition-Services,,TRUE,Y
 37095 ,Hyde County,"Hyde County Department of Social Services
 Food and Nutrition Services
 P.O. Box 100
 Engelhard, NC 27824","35015 US Hwy 264
-Engelhard, NC 27824",252-926-4476,252-926-3711,-,https://www.hydecountync.gov/departments/social_services.php,,TRUE,Y
+Engelhard, NC 27824",252-926-4476,252-926-3711,,https://www.hydecountync.gov/departments/social_services.php,,TRUE,Y
 37097 ,Iredell County,"Iredell County Department of Social Services
 Food and Nutrition Services
 P.O. Box 788
@@ -260,7 +260,7 @@ Mooresville, NC 28115",704-873-5631,704-878-5419,,https://www.iredellcountync.go
 37099 ,Jackson County,"Jackson County Department of Social Services
 Food and Nutrition Services
 15 Griffin St.
-Sylva, NC 28779",,828-586-5546,828-586-6270,-,https://jcdss.org/,,TRUE,Y
+Sylva, NC 28779",,828-586-5546,828-586-6270,,https://jcdss.org/,,TRUE,Y
 37101 ,Johnston County,"Johnston County Department of Social Services
 Food and Nutrition Services
 P.O. Box 911
@@ -279,30 +279,30 @@ Sanford, NC 27330",919-718-4690,919-718-4634,dssswitchboard@leecountync.gov,http
 Food and Nutrition Services
 P.O. Box 6
 Kinston, NC 28502","130 W. King St.
-Kinston, NC 28502",252-559-6400,252-559-6328,-,https://lenoircountync.gov/social-services/food-and-nutrition/,,TRUE,Y
+Kinston, NC 28502",252-559-6400,252-559-6328,,https://lenoircountync.gov/social-services/food-and-nutrition/,,TRUE,Y
 37109 ,Lincoln County,"Lincoln County Department of Social Services
 Food and Nutrition Services
 P.O. Box 130
 Lincolnton, NC 28093","1136 E. Main St.
-Lincolnton, NC 28093",704-732-0738,980-405-1181,-,https://www.lincolncountync.gov/135/Social-Services,,TRUE,Y
+Lincolnton, NC 28093",704-732-0738,980-405-1181,,https://www.lincolncountync.gov/135/Social-Services,,TRUE,Y
 37113 ,Macon County,"Macon County Department of Social Services
 Food and Nutrition Services
 1832 Lakeside Drive
-Franklin, NC 28734",,828-349-2124,828-349-2401,-,https://maconnc.org/dss-economic.html,,TRUE,Y
+Franklin, NC 28734",,828-349-2124,828-349-2401,,https://maconnc.org/dss-economic.html,,TRUE,Y
 37115 ,Madison County,"Madison County Department of Social Services
 Food and Nutrition Services
 5707 U.S. Hwy 25/70, Suite 1
-Marshall, NC 28753",,828-649-2711,828-649-3687,-,https://www.madisoncountync.gov/department-of-social-services.html,,TRUE,Y
+Marshall, NC 28753",,828-649-2711,828-649-3687,,https://www.madisoncountync.gov/department-of-social-services.html,,TRUE,Y
 37117 ,Martin County,"Martin County Department of Social Services
 Food and Nutrition Services
 P.O. Box 809
 Williamston, NC 27892","305 E. Main St.
-Williamston, NC 27892",252-789-4430,252-789-4409,-,https://www.martincountync.gov/departments/social_services/index.php,,TRUE,Y
+Williamston, NC 27892",252-789-4430,252-789-4409,,https://www.martincountync.gov/departments/social_services/index.php,,TRUE,Y
 37111 ,McDowell County,"McDowell County Department of Social Services
 Food and Nutrition Services
 P.O. Box 338
 Marion, NC 28752","145 E. Court St.
-Marion, NC 28752",828-652-3355,828-652-9167,-,http://www.mcdowellcountyncdss.org/economic-services/food-nutrition,,TRUE,Y
+Marion, NC 28752",828-652-3355,828-652-9167,,http://www.mcdowellcountyncdss.org/economic-services/food-nutrition,,TRUE,Y
 37119 ,Mecklenburg County,"Mecklenburg County Department of Social Services
 Food and Nutrition Services
 301 Billingsley Rd.
@@ -312,26 +312,26 @@ Charlotte, NC 28213
 
 Valerie C. Woodard Community Center:
 3205 Freedom Dr., Suite 1000
-Charlotte, NC 28208",704-336-3000,704-353-1325,-,https://dcr.mecknc.gov/services/food-and-nutrition-services,https://allaccess.mecknc.gov/,TRUE,Y
+Charlotte, NC 28208",704-336-3000,704-353-1325,,https://dcr.mecknc.gov/services/food-and-nutrition-services,https://allaccess.mecknc.gov/,TRUE,Y
 37121 ,Mitchell County,"Mitchell County Department of Social Services
 Food and Nutrition Services
 347 Long View Drive
-Bakersville, NC 28705",,828-537-1683,828-688-4940,-,https://www.mitchellcountync.gov/departments/social-services/,jennifer.garland@mitchellcountync.gov,TRUE,Y
+Bakersville, NC 28705",,828-537-1683,828-688-4940,,https://www.mitchellcountync.gov/departments/social-services/,jennifer.garland@mitchellcountync.gov,TRUE,Y
 37123 ,Montgomery County,"Montgomery County Department of Social Services
 Food and Nutrition Services
 102 E. Spring St., Drawer N
 Troy, NC 27371","102 E. Spring St.
-Troy, NC 27371",910-576-6531,910-576-5016,-,https://www.montgomerycountync.gov/departments/social-services/food-and-nutrition-services,,TRUE,Y
+Troy, NC 27371",910-576-6531,910-576-5016,,https://www.montgomerycountync.gov/departments/social-services/food-and-nutrition-services,,TRUE,Y
 37125 ,Moore County,"Moore County Department of Social Services
 Food and Nutrition Services
 P.O. Box 938
 Carthage, NC 28327","1036 Carriage Oaks Drive
-Carthage, NC 28327",910-947-2436,910-947-1618,-,https://www.moorecountync.gov/263/Food-Nutrition,,TRUE,Y
+Carthage, NC 28327",910-947-2436,910-947-1618,,https://www.moorecountync.gov/263/Food-Nutrition,,TRUE,Y
 37127 ,Nash County,"Nash County Department of Social Services
 Food and Nutrition Services
 P.O. Drawer 819
 Nashville, NC 27856","120 Washington St.
-Nashville, NC 27856",252-459-9822,252-459-1373,-,https://nashcountync.gov/357/Economic-Services,,TRUE,Y
+Nashville, NC 27856",252-459-9822,252-459-1373,,https://nashcountync.gov/357/Economic-Services,,TRUE,Y
 37129 ,New Hanover County,"New Hanover County Department of Social Services
 Food and Nutrition Services
 1650 Greenfield St.
@@ -340,12 +340,12 @@ Wilmington, NC 28401",,910-798-3500,910-798-7824,DSSinfo@nhcgov.com,https://www.
 Food and Nutrition Services
 P.O. Box 157
 Jackson, NC 27845","9588 NC Hwy 305
-Jackson, NC 27845",252-534-0521,252-534-0061,-,https://www.northamptonnc.com/178/Social-Services,,TRUE,Y
+Jackson, NC 27845",252-534-0521,252-534-0061,,https://www.northamptonnc.com/178/Social-Services,,TRUE,Y
 37133 ,Onslow County,"Onslow County Department of Social Services
 Food and Nutrition Services
 P.O. Box 1379
 Jacksonville, NC 28541","612 College St.
-Jacksonville, NC 28540",910-455-4145,910-219-4983,-,https://www.onslowcountync.gov/1726/Food-Nutrition-Services,dssdropbox@onslowcountync.gov,TRUE,Y
+Jacksonville, NC 28540",910-455-4145,910-219-4983,,https://www.onslowcountync.gov/1726/Food-Nutrition-Services,dssdropbox@onslowcountync.gov,TRUE,Y
 37135 ,Orange County,"Orange County Department of Social Services
 Food and Nutrition Services
 P.O. Box 8181
@@ -354,7 +354,7 @@ Hillsborough, NC 27278",919-245-2800,919-644-3005,dssinfo@orangecountync.gov,htt
 37137 ,Pamlico County,"Pamlico County Department of Social Services
 Food and Nutrition Services
 828 Alliance Main St.
-Bayboro, NC 28515",,252-745-4086,252-745-7384,-,https://pamlicocounty.org/departments/social_services/index.php,,TRUE,Y
+Bayboro, NC 28515",,252-745-4086,252-745-7384,,https://pamlicocounty.org/departments/social_services/index.php,,TRUE,Y
 37139 ,Pasquotank County,"Pasquotank County Department of Social Services
 Food and Nutrition Services
 709 Roanoke Ave.
@@ -371,48 +371,48 @@ Hertford, NC 27944",252-426-7373,252-426-1240,caseservice@perqdss.net,https://ww
 Food and Nutrition Services
 P.O. Box 770
 Roxboro, NC 27573","355-B South Madison Blvd.
-Roxboro, NC 27573",336-599-8361,336-597-9339,-,https://www.personcountync.gov/government/departments-i-z/social-services/programs,,TRUE,Y
+Roxboro, NC 27573",336-599-8361,336-597-9339,,https://www.personcountync.gov/government/departments-i-z/social-services/programs,,TRUE,Y
 37147 ,Pitt County,"Pitt County Department of Social Services
 Food and Nutrition Services
 1717 W. Fifth St.
-Greenville, NC 27834",,252-902-1110,252-413-1299,-,https://www.pittcountync.gov/1334/Food-Housings-Utility-Assistance,,TRUE,Y
+Greenville, NC 27834",,252-902-1110,252-413-1299,,https://www.pittcountync.gov/1334/Food-Housings-Utility-Assistance,,TRUE,Y
 37149 ,Polk County,"Polk County Department of Social Services
 Food and Nutrition Services
 231 Wolverine Trail
-Mill Spring, NC 28756",,828-894-2100,828-894-6326,-,https://www.polknc.gov/food_and_nutrition.php,,TRUE,Y
+Mill Spring, NC 28756",,828-894-2100,828-894-6326,,https://www.polknc.gov/food_and_nutrition.php,,TRUE,Y
 37151 ,Randolph County,"Randolph County Department of Social Services
 Food and Nutrition Services
 P.O. Box 3239
 Asheboro, NC 27204-3239","1512 N. Fayetteville St.
-Asheboro, NC 27204-3239",336-683-8000,336-683-8131,-,https://www.randolphcountync.gov/293/Social-Services,,TRUE,Y
+Asheboro, NC 27204-3239",336-683-8000,336-683-8131,,https://www.randolphcountync.gov/293/Social-Services,,TRUE,Y
 37153 ,Richmond County,"Richmond County Department of Social Services
 Food and Nutrition Services
 P.O. Box 518, Rockingham, NC 28380","125 Caroline St.
-Rockingham, NC 28379",910-997-8422,910-997-8447,-,https://www.richmondnc.com/153/Food-Nutrition,,TRUE,Y
+Rockingham, NC 28379",910-997-8422,910-997-8447,,https://www.richmondnc.com/153/Food-Nutrition,,TRUE,Y
 37155 ,Robeson County,"Robeson County Department of Social Services
 Food and Nutrition Services
 120 Glen Cowan Road
-Lumberton, NC 28360",,910-671-3500,910-671-3092,-,https://www.robesoncountync.gov/dss,,TRUE,Y
+Lumberton, NC 28360",,910-671-3500,910-671-3092,,https://www.robesoncountync.gov/dss,,TRUE,Y
 37157 ,Rockingham County,"Rockingham County Department of Social Services
 Food and Nutrition Services
 P.O. Box 61
 Wentworth, NC 27375","411 NC Hwy 65
-Wentworth, NC 27375",336-342-1394,336-634-1847,-,https://www.rockinghamcountync.gov/21319/Apply-For-Assistance,,TRUE,Y
+Wentworth, NC 27375",336-342-1394,336-634-1847,,https://www.rockinghamcountync.gov/21319/Apply-For-Assistance,,TRUE,Y
 37159 ,Rowan County,"Rowan County Department of Social Services
 Food and Nutrition Services
 1813 E. Innes St.
 Salisbury, NC 28146",,704-216-8330,"704-216-8433
-704-216-7937",-,https://www.rowancountync.gov/823/Food-Nutrition-Services,,TRUE,Y
+704-216-7937",,https://www.rowancountync.gov/823/Food-Nutrition-Services,,TRUE,Y
 37161 ,Rutherford County,"Rutherford County Department of Social Services
 Food and Nutrition Services
 P.O. Box 242
 Spindale, NC 28160","389 Fairground Road
-Spindale, NC 28160",828-287-6165,828-288-4045,-,https://www.rutherfordcountync.gov/departments/social_services/index.php,,TRUE,Y
+Spindale, NC 28160",828-287-6165,828-288-4045,,https://www.rutherfordcountync.gov/departments/social_services/index.php,,TRUE,Y
 37163 ,Sampson County,"Sampson County Department of Social Services
 Food and Nutrition Services
 P.O. Box 1105
 Clinton, NC 28329","360 County Complex Road, Bldg. E., Suite 100
-Clinton, NC 28328",910-592-7131,910-592-4297,-,https://www.sampsoncountync.gov/Government/Departments-A-Z/Social-Services/Food-and-Nutrition-Services-Food-Stamps,,TRUE,Y
+Clinton, NC 28328",910-592-7131,910-592-4297,,https://www.sampsoncountync.gov/Government/Departments-A-Z/Social-Services/Food-and-Nutrition-Services-Food-Stamps,,TRUE,Y
 37165 ,Scotland County,"Scotland County Department of Social Services
 Food and Nutrition Services
 P.O. Box 1647
@@ -421,17 +421,17 @@ Laurinburg, NC 28353",910-277-2500,910-277-2402,fns@scotlandcounty.org,https://w
 37167 ,Stanly County,"Stanly County Department of Social Services
 Food and Nutrition Services
 1000 N. First St., Suite 2
-Albemarle, NC 28001",,704-982-6100,704-983-5818,-,https://www.stanlycountync.gov/377/Food-Nutrition-Services-FNS,,TRUE,Y
+Albemarle, NC 28001",,704-982-6100,704-983-5818,,https://www.stanlycountync.gov/377/Food-Nutrition-Services-FNS,,TRUE,Y
 37169 ,Stokes County,"Stokes County Department of Social Services
 Food and Nutrition Services
 P.O. Box 30
 Danbury, NC 27016","1010 N. Main St.
-Danbury, NC 27016",336-593-2861,336-593-9362,-,https://www.co.stokes.nc.us/departments/food___nutrition_services.php,,TRUE,Y
+Danbury, NC 27016",336-593-2861,336-593-9362,,https://www.co.stokes.nc.us/departments/food___nutrition_services.php,,TRUE,Y
 37171 ,Surry County,"Surry County Department of Social Services
 Food and Nutrition Services
 P.O. Box 1466
 Dobson, NC 27017","118 Hamby Road
-Dobson, NC 27017",336-401-8700,336-401-8750,-,https://www.co.surry.nc.us/departments/social_services/index.php,,TRUE,Y
+Dobson, NC 27017",336-401-8700,336-401-8750,,https://www.co.surry.nc.us/departments/social_services/index.php,,TRUE,Y
 37173 ,Swain County,"Swain County Department of Social Services
 Food and Nutrition Services
 P.O. Box 610
@@ -440,12 +440,12 @@ Bryson City, NC 28713",828-488-6921,828-488-8271,SocialServices@swaincountync.go
 37175 ,Transylvania County,"Transylvania County Department of Social Services
 Food and Nutrition Services
 106 E. Morgan St.
-Brevard, NC 28712",,828-884-3174,828-884-3263,-,https://www.transylvaniacounty.org/departments/social-services#financial,,TRUE,Y
+Brevard, NC 28712",,828-884-3174,828-884-3263,,https://www.transylvaniacounty.org/departments/social-services#financial,,TRUE,Y
 37177 ,Tyrrell County,"Tyrrell County Department of Social Services
 Food and Nutrition Services
 P.O. Box 599
 Columbia, NC 27925","102 N. Road St.
-Columbia, NC 27925",252-796-3421,252-796-1732,-,http://tyrrellcounty.org/en/social-services,,TRUE,Y
+Columbia, NC 27925",252-796-3421,252-796-1732,,http://tyrrellcounty.org/en/social-services,,TRUE,Y
 37179 ,Union County,"Union County Department of Social Services
 Food and Nutrition Services
 2330 Concord Avenue
@@ -453,7 +453,7 @@ Monroe, NC 28110",,704-296-4300,704-296-6101,MyFNS@unioncountync.gov,https://www
 37181 ,Vance County,"Vance County Department of Social Services
 Food and Nutrition Services
 500 North Beckford Drive, Suite C
-Henderson, NC 27536",,252-492-5001,252-438-5997,-,-,,TRUE,Y
+Henderson, NC 27536",,252-492-5001,252-438-5997,,-,,TRUE,Y
 37183 ,Wake County,"Wake County Department of Social Services
 Food and Nutrition Services
 P.O. Box 46833
@@ -467,35 +467,35 @@ Warrenton, NC 27589",,252-257-5000,252-257-5610,DSS@warrencountync.gov,https://w
 Food and Nutrition Services
 P.O. Box 10
 Plymouth, NC 27962","209 E. Main St.
-Plymouth, NC 27962",252-793-4041,252-793-3195,-,https://washconc.org/department-of-social-services/,,TRUE,Y
+Plymouth, NC 27962",252-793-4041,252-793-3195,,https://washconc.org/department-of-social-services/,,TRUE,Y
 37189 ,Watauga County,"Watauga County Department of Social Services
 Food and Nutrition Services
 132 Poplar Grove Connector, Suite C
-Boone, NC 28607",,828-265-8100,828-265-7638,-,https://www.wataugacounty.org/App_pages/Dept/SocialServices/contact.aspx,,TRUE,Y
+Boone, NC 28607",,828-265-8100,828-265-7638,,https://www.wataugacounty.org/App_pages/Dept/SocialServices/contact.aspx,,TRUE,Y
 37191 ,Wayne County,"Wayne County Department of Social Services
 Food and Nutrition Services
 P.O. Box HH
 Goldsboro, NC 27530","301 N. Herman St.
-Goldsboro, NC 27530",919-580-4034,919-705-1742,-,https://www.waynegov.com/462/Food-Nutrition-Services,,TRUE,Y
+Goldsboro, NC 27530",919-580-4034,919-705-1742,,https://www.waynegov.com/462/Food-Nutrition-Services,,TRUE,Y
 37193 ,Wilkes County,"Wilkes County Department of Social Services
 Food and Nutrition Services
 304 College St.
-Wilkesboro, NC 28697",,336-651-7400,336-651-7568,-,https://www.wilkescounty.net/295/Family-Services,,TRUE,Y
+Wilkesboro, NC 28697",,336-651-7400,336-651-7568,,https://www.wilkescounty.net/295/Family-Services,,TRUE,Y
 37195 ,Wilson County,"Wilson County Department of Social Services
 Food and Nutrition Services
 P.O. Box 459
 Wilson, NC 27894","100 NE Gold St.
-Wilson, NC 27894",252-206-4000,252-206-4198,-,https://www.wilsoncountync.gov/departments/social-services/services/food-nutrition-services,,TRUE,Y
+Wilson, NC 27894",252-206-4000,252-206-4198,,https://www.wilsoncountync.gov/departments/social-services/services/food-nutrition-services,,TRUE,Y
 37197 ,Yadkin County,"Yadkin County Department of Social Services
 Food and Nutrition Services
 P.O. Box 548
 Yadkinville, NC 27055","217 Willow St.
-Yadkinville, NC 27055",336-679-4210,336-679-2664,-,https://www.yadkincountync.gov/268/Food-and-Nutrition,,TRUE,Y
+Yadkinville, NC 27055",336-679-4210,336-679-2664,,https://www.yadkincountync.gov/268/Food-and-Nutrition,,TRUE,Y
 37199 ,Yancey County,"Yancey County Department of Social Services
 Food and Nutrition Services
 P.O. Box 67
 Burnsville, NC 28714","320 Pensacola Road
-Burnsville, NC 28714",828-682-6148,828-682-6712,-,https://www.yanceycountydss.us/food-and-nutrition,Ida.Wilson@yanceycountync.gov,TRUE,Y
+Burnsville, NC 28714",828-682-6148,828-682-6712,,https://www.yanceycountydss.us/food-and-nutrition,Ida.Wilson@yanceycountync.gov,TRUE,Y
 ,,,,,,,,,,
 ,,,,,,,,Not done:,0,
 ,,,,,,,,Done:,100,

@@ -1,10 +1,64 @@
-<%= image_tag "download.svg", class: "illustration left-justified" %>
-<% content_for :question_title, t("views.download_form.edit.title") %>
-<h1 class="h2"><%= content_for(:question_title) %></h1>
-<p><%= t("views.download_form.edit.title_help_text") %></p>
+<%= image_tag "download.svg", class: "illustration left-justified spacing-above-60" %>
 <% if @current_screener.email.present? %>
+  <% content_for :question_title, t("views.download_form.edit.title_sent", email: @current_screener.email) %>
+  <h1 class="h2"><%= content_for(:question_title) %></h1>
+  <p><%= t("views.download_form.edit.title_help_text") %></p>
+
+  <h2><%= t("views.download_form.edit.how_to") %></h2>
+  <p class="spacing-below-0"><%= LocationData::States.name_for(@current_screener.state) %></p>
+  <% if @current_screener.county.present? %>
+    <p><strong><%= @current_screener.county %></strong></p>
+  <% end %>
+  <p><%= t("views.download_form.edit.how_to_help_text") %></p>
+  <div class="notice grey-light">
+    <ol class="list--numbered">
+      <% if (website = LocationData::Counties.website_for(@current_screener.state, @current_screener.county)).present? %>
+        <li><%= t("views.download_form.edit.next_steps_online_web_html", website: website) %></li>
+      <% end %>
+      <% if (email = LocationData::Counties.email_for(@current_screener.state, @current_screener.county)).present? %>
+        <li><%= t("views.download_form.edit.next_steps_online_email_html", email: email) %></li>
+      <% end %>
+      <% if (mailing_address = LocationData::Counties.mailing_address_for(@current_screener.state, @current_screener.county)).present? %>
+        <li><%= t("views.download_form.edit.next_steps_mail_html", mailing_address: simple_format(mailing_address)) %></li>
+      <% end %>
+      <% if (address = LocationData::Counties.physical_address_for(@current_screener.state, @current_screener.county)).present? %>
+        <li><%= t("views.download_form.edit.next_steps_in_person_html", address: simple_format(address)) %></li>
+      <% end %>
+    </ol>
+  </div>
+
+  <% if (phone = LocationData::Counties.phone_for(@current_screener.state, @current_screener.county)).present? %>
+    <p><strong><%= t("views.download_form.edit.have_questions") %></strong></p>
+    <p><%= phone %></p>
+  <% end %>
+
+  <%= link_to(
+             "/download-form",
+             class: "button button--primary") do %>
+      <i class="button__icon--left icon-get_app"></i>
+      <%= t("views.download_form.edit.download_form") %>
+    <% end %>
+
   <div>
-    <%= link_to t("views.download_form.edit.email_pdf"), email_pdf_path, class: "button button--primary"%>
+    <h2><%= t("views.download_form.edit.what_to_expect") %></h2>
+    <ul class="list--bulleted">
+      <li><%= t("views.download_form.edit.expectation_1") %></li>
+      <li><%= t("views.download_form.edit.expectation_2") %></li>
+      <li><%= t("views.download_form.edit.expectation_3") %></li>
+    </ul>
+  </div>
+
+<% else %>
+  <% content_for :question_title, t("views.download_form.edit.title") %>
+  <h1 class="h2"><%= content_for(:question_title) %></h1>
+  <p><%= t("views.download_form.edit.title_help_text") %></p>
+
+  <div>
+    <%= link_to t("views.download_form.edit.email_pdf"), email_pdf_path, class: "button button--primary" %>
   </div>
 <% end %>
-<%= render "shared/continue_button" %>
+
+<div class="spacing-above-60">
+  <%= render "shared/continue_button" %>
+</div>
+
