@@ -2,19 +2,17 @@ require "csv"
 
 module LocationData
   module States
-    DELAWARE = "DE"
     NORTH_CAROLINA = "NC"
     NOT_LISTED = "NOT_LISTED"
 
     def self.options
       [
-        ["Delaware", DELAWARE],
         ["North Carolina", NORTH_CAROLINA],
         [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
       ]
     end
 
-    VALID_VALUES = [DELAWARE, NORTH_CAROLINA, NOT_LISTED].freeze
+    VALID_VALUES = [NORTH_CAROLINA, NOT_LISTED].freeze
   end
 
   module Counties
@@ -28,6 +26,7 @@ module LocationData
     EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
     WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
     UPLOAD = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
+    IS_SUPPORTED = "Is Supported?"
 
     def self.load_all
       Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
@@ -47,7 +46,8 @@ module LocationData
             fax: row[FAX],
             email: row[EMAIL],
             website: row[WEBSITE],
-            upload: row[UPLOAD]
+            upload: row[UPLOAD],
+            is_supported: row[IS_SUPPORTED] == "Y"
           }
         end
 

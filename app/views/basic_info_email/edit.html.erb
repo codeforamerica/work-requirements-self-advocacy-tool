@@ -5,7 +5,7 @@
 <p><%= t("views.email.edit.title_help_text") %></p>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <%= f.cfa_input_field(:email, t("views.email.edit.email")) %>
-  <%= f.cfa_input_field(:email_confirmation, t("views.email.edit.email_confirmation")) %>
+  <%= f.cfa_input_field(:email, t("views.email.edit.email"), options: { oncopy: "return false;" }) %>
+  <%= f.cfa_input_field(:email_confirmation, t("views.email.edit.email_confirmation"), options: { onpaste: "return false;" }) %>
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>

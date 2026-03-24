@@ -9,7 +9,9 @@ en:
         one: "%{count} character remaining"
         other: "%{count} characters remaining"
     choose_all_that_apply: Choose all that apply.
+    close: Close
     continue: Continue
+    continue_without_this_number: Continue without it
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -21,6 +23,7 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     select: Select
     switched_locale: Español
+    this_is_optional: This is optional.
     work_rules: Work rules
   validations:
     date_missing_or_invalid: Date is missing or invalid
@@ -32,6 +35,20 @@ en:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
         title: Are you in a drug or alcohol treatment program?
+    basic_info_case_number:
+      edit:
+        case_number_label: Case number
+        help_text_county_letter:
+          help_bullets:
+          - Look for a section labeled "Case Number", "Case ID", or "Client Number".
+          - It's usually printed near your name, at the top of the first page.
+          title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
+        help_text_epass:
+          help_bullets_html:
+          - Log in to the official <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">NC ePass website</a> to view case details, including your case number.
+          - Use the ebtEDGE mobile app to view your account details.
+          title: Log in to your ePASS NC portal to find your case number.
+        title: Do you have a case number?
     basic_info_details:
       edit:
         birth_date_label: Birthdate
@@ -41,7 +58,7 @@ en:
           affirmative: Yes, you can text me
           help_text: This is optional. We may invite you to share feedback to help improve the form.
           label: Is it okay to send you texts at the phone number you added?
-          negative: No, don’t text me
+          negative: No, don't text me
         first_name_label: First or given name (required)
         first_name_label_help_text: Legally, as it appears on your ID.
         last_name_label: Last or family name (required)
@@ -54,7 +71,7 @@ en:
     basic_info_email_nudge:
       edit:
         add_an_email: Add an email
-        continue_without_it: Continue without it
+        continue_without_email: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
@@ -62,6 +79,12 @@ en:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
         instructions: This information helps your caseworker find your case when you submit your form.
         title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
+    basic_info_ssn:
+      edit:
+        help_text: This is optional. Enter the last 4 digits to confirm your identity and find your case.
+        notice: We'll keep your information private, safe, and secure.
+        ssn_label: Social Security number
+        title: Since you don't have a case number, would you like to provide the last four digits of your Social Security number (SSN)?
     caring_for_someone:
       edit:
         additional_care_info: Can you tell us about the kind of care you provide?
@@ -89,9 +112,9 @@ en:
         receiving_benefits_insurance_payments: Disability insurance payments
         receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
         receiving_benefits_ssi: Supplemental Security Income (SSI)
-        receiving_benefits_veterans_disability: Veteran’s disability
+        receiving_benefits_veterans_disability: Veteran's disability
         receiving_benefits_workers_compensation: Workers' compensation
-        receiving_benefits_write_in: If you don’t see your benefit above, please write it here.
+        receiving_benefits_write_in: If you don't see your benefit above, please write it here.
         title: Are you receiving any of these disability benefits?
     download_form:
       edit:
@@ -124,7 +147,7 @@ en:
         faq:
           cant_work: What if I have a medical or mental issue that limits my ability to work?
           cant_work_content_html: |
-            <p>If you can show that you can’t work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP.</p>
+            <p>If you can show that you can't work for a medical or health reason, the SNAP work rules do not apply to you and you can keep getting SNAP.</p>
             <p>If you usually have to follow the work rules but can't work for a good reason right now (for example, your car broke down, you had a family emergency, etc.) you can get excused for that month. Please contact your SNAP agency to explain that you have <strong>"good cause"</strong> for why you can't meet the SNAP work rules right now.</p>
           keep_snap: Will I be able to keep getting SNAP benefits?
           keep_snap_content_html: |
@@ -159,7 +182,7 @@ en:
             </ul>
         title: Check if the SNAP work rules apply to you
         title_help_text_html: |
-          <p> We’ll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
+          <p> We'll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
           <p class="spacing-below-0"><strong>It takes most people 10 minutes or less to complete this form.</strong></p>
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
@@ -175,7 +198,7 @@ en:
         work_rules_title: What are the SNAP work rules?
     living_with_someone:
       edit:
-        help_text: You do not have to be the child’s parent, be responsible for the child, or be their legal guardian. If you live with the child, select “Yes,” even if they aren’t included in your SNAP case.
+        help_text: You do not have to be the child's parent, be responsible for the child, or be their legal guardian. If you live with the child, select "Yes," even if they aren't included in your SNAP case.
         title: Is there a child under the age of 14 that lives in your household?
     location:
       edit:
@@ -187,15 +210,31 @@ en:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
         title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
+    nc:
+      edu_work_history:
+        edit:
+          notice_text: Select "No" if your only work has been occasional odd jobs.
+          title: Do you have a high school diploma or equivalent degree (for example, a GED)?
+          worked_last_five_years_label: Have you worked for pay in the last five years?
     new_response:
       edit:
         check_work_rules_for_someone_else: Check work rules for someone else
         close: Done
-        title: You’re all done.
+        title: You're all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
+    out_of_state:
+      edit:
+        contact_button: Go to my SNAP office
+        contact_details: Here's the link to your SNAP  agency website if you have questions or need help with your case.
+        contact_redirect: You are being redirected... You will be redirected within %{seconds} seconds.
+        contact_title: Contact your SNAP agency
+        find_button: Find Your SNAP Agency
+        title: This tool can't be filled out in your location at the moment.
+        title_help_text_county_specific: For help, please reach out to your SNAP agency.
+        title_help_text_html: "<p>If you need help, contact your state's SNAP agency. They can guide you through the process, answer your questions, and explain what to do next.</p><p>You can find their contact information below.</p>"
     pregnancy:
       edit:
-        pregnancy_due_date_help_text: You can estimate or skip this if you don’t know.
+        pregnancy_due_date_help_text: You can estimate or skip this if you don't know.
         pregnancy_due_date_label: When is the baby due?
         title: Are you pregnant?
     preventing_work_details:
@@ -234,7 +273,7 @@ en:
         - Professional certificate programs
         - On-the-job training
         - Apprenticeships
-        - Job or work training program that doesn’t require a high school degree
+        - Job or work training program that doesn't require a high school degree
         - Programs you can get connected to through SNAP or TANF.
         notice_title: What Job Training Includes
         title: Are you in a job or work training program?
@@ -243,7 +282,7 @@ en:
         work_training_name_label: What is the name of the organization or training program?
     tribe_or_nation:
       edit:
-        help_text: Also select “Yes” if you know you are eligible for Indian Health Services.
+        help_text: Also select "Yes" if you know you are eligible for Indian Health Services.
         title: Are you an American Indian, or the child or grandchild of an American Indian?
     unemployment:
       edit:

@@ -229,26 +229,59 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :email" do
+    context "with_context :basic_info_email" do
       it "requires a valid email" do
         screener = Screener.new(email: "hi.gmail", email_confirmation: "hi.gmail")
-        screener.valid?(:email)
+        screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array ["Email is invalid"]
       end
 
       it "requires a confirmed email" do
         screener = Screener.new(email: "anisha@example.com", email_confirmation: "jenny@example.com")
-        screener.valid?(:email)
+        screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
       end
 
       it "removed white spaces from the email and confirmation" do
         screener = Screener.new(email: "anisha@example.com ", email_confirmation: " anisha@example.com")
-        screener.valid?(:email)
+        screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array []
+      end
+    end
+
+    context "with_context :basic_info_ssn" do
+      it "allows valid last 4 digits of ssn" do
+        screener = Screener.new(ssn_last_four: "1234")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to_not be_present
+      end
+
+      it "allows empty last 4 digits of ssn" do
+        screener = Screener.new(ssn_last_four: "")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to_not be_present
+      end
+
+      it "requires valid last 4 digits of ssn" do
+        screener = Screener.new(ssn_last_four: "abc")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to be_present
+
+        screener = Screener.new(ssn_last_four: "12de")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to be_present
+
+        screener = Screener.new(ssn_last_four: "123-12-1234")
+        screener.valid?(:basic_info_ssn)
+
+        expect(screener.errors[:ssn_last_four]).to be_present
       end
     end
 

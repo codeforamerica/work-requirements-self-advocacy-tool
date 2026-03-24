@@ -2,6 +2,7 @@ module Navigation
   class ScreenerNavigation < ControllerNavigation::ControllerNavigation
     SECTIONS = [
       ControllerNavigation::NavigationStep.new(LocationController),
+      ControllerNavigation::NavigationStep.new(OutOfStateController),
       ControllerNavigation::NavigationStep.new(DateOfBirthController),
       ControllerNavigation::NavigationStep.new(TribeOrNationController),
       ControllerNavigation::NavigationStep.new(LivingWithSomeoneController),
@@ -14,6 +15,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(TrainingProgramController),
       ControllerNavigation::NavigationStep.new(SchoolEnrollmentController),
+      ControllerNavigation::NavigationStep.new(Nc::EduWorkHistoryController),
       ControllerNavigation::NavigationStep.new(AlcoholTreatmentProgramController),
       ControllerNavigation::NavigationStep.new(PreventingWorkMilestoneController),
       ControllerNavigation::NavigationStep.new(PreventingWorkSituationsController),
@@ -22,6 +24,8 @@ module Navigation
       ControllerNavigation::NavigationStep.new(BasicInfoDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailNudgeController),
+      ControllerNavigation::NavigationStep.new(BasicInfoCaseNumberController),
+      ControllerNavigation::NavigationStep.new(BasicInfoSsnController),
       ControllerNavigation::NavigationStep.new(DownloadFormController),
       ControllerNavigation::NavigationStep.new(NewResponseController)
     ].freeze

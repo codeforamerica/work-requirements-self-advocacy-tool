@@ -4,7 +4,7 @@ ruby_version = File.read(File.join(File.dirname(__FILE__), ".ruby-version")).str
 ruby ruby_version
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.2"
+gem "rails", "~> 8.1.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -42,17 +42,23 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem "ostruct"
-gem "dartsass-rails", "~> 0.5.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
-gem "pg-aws_rds_iam", "~> 0.7"
-gem "phonelib"
-gem "valid_email2"
-gem "mixpanel-ruby"
+gem "csv"
+gem "dartsass-rails", "~> 0.5.1"
+gem "devise", "~> 5.0"
 gem "grover"
 gem "hexapdf", "~> 1.6"
-gem "devise", "~> 5.0"
-gem "lograge"
+gem "mixpanel-ruby"
+gem "opentelemetry-exporter-otlp", "~> 0.32"
+gem "opentelemetry-instrumentation-all", "~> 0.91"
+gem "opentelemetry-resource-detector-aws", "~> 0.5"
+gem "opentelemetry-sdk", "~> 1.10"
+gem "ostruct"
+gem "pg-aws_rds_iam", "~> 0.7"
+gem "phonelib"
+gem "rails_semantic_logger", "~> 4.19"
+gem "request_store", "~> 1.7"
+gem "valid_email2"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -84,9 +90,3 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
-
-gem "opentelemetry-sdk", "~> 1.10"
-gem "opentelemetry-instrumentation-all", "~> 0.90.1"
-gem "opentelemetry-exporter-otlp", "~> 0.32.0"
-
-gem "csv"

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action do
     RequestStore.store[:session_id] = session.id
     RequestStore.store[:screener_id] = current_screener&.id
+    capture_trace_context
   end
   before_action :set_visitor_id
   after_action :track_page_view
@@ -61,5 +62,21 @@ class ApplicationController < ActionController::Base
 
   def track_page_view
     send_mixpanel_event(event_name: "page_view") if request.method == "GET"
+  end
+
+  # Store trace/span IDs in RequestStore so the log formatter can attach them even
+  # when it runs in a different fiber (OpenTelemetry context is fiber-local).
+  def capture_trace_context
+    span = OpenTelemetry::Trace.current_span
+    return unless span.recording?
+
+    RequestStore.store[:trace_id] = span.context.hex_trace_id if span.context.trace_id != 0
+    RequestStore.store[:span_id] = span.context.hex_span_id if span.context.span_id != 0
+  end
+
+  def sign_out_and_redirect
+    sign_out current_screener
+    redirect_path = params[:redirect_path] || root_path
+    redirect_to redirect_path
   end
 end

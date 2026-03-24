@@ -1,6 +1,7 @@
 class Screener < ApplicationRecord
   devise :timeoutable
   has_many :outgoing_emails, dependent: :destroy
+  has_one :nc_screener, dependent: :destroy
   attr_accessor :email_confirmation
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -119,8 +120,12 @@ class Screener < ApplicationRecord
     validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end
 
-  with_context :email do
+  with_context :basic_info_email do
     validates :email, "valid_email_2/email": true, confirmation: true
+  end
+
+  with_context :basic_info_ssn do
+    validates :ssn_last_four, format: {with: /\A\d{4}\z/}, allow_blank: true
   end
 
   DISABILITY_BENEFIT_ATTRIBUTES = %i[
