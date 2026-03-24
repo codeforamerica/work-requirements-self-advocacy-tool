@@ -9,33 +9,97 @@
       <div class="content"><%= full_name %>, (DOB: <%= birth_date %>) attests to the following exemptions from the SNAP work requirements:</div>
     </div>
 
-    <p class="section-header">General work requirement exemptions</p>
-    <ul>
-      <% if caring_for_child_under_6 %>
-        <li>Caring for a child under 6 years old <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
-      <% end %>
-      <li>Caring for an incapacitated person <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
-      <li>Currently getting unemployment benefits or has applied for unemployment benefits <span class="list-item--note">- 7 CFR 273.7(b)(1)(v)</span></li>
-      <li>Participating regularly in an alcohol or drug treatment program <span class="list-item--note">- 7 CFR 273.24(c)(2)</span></li>
-      <li>Enrolled in a school, training program, or institution of higher education at least half-time <span class="list-item--note">- 7 CFR 273.7(b)(1)(viii)</span></li>
-      <li>Working at least 30 hours a week <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
-      <li>Earning at least $217.50 a week, averaged monthly, from work <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
-    </ul>
+    <% if caring_for_child_under_6 || caring_for_disabled_or_ill_person || has_unemployment_benefits || in_drug_or_alcohol_program || enrolled_in_education || working_30_or_more_hours || earnings_above_minimum %>
+      <p class="section-header">General Work Requirement Exemptions</p>
+      <ul>
+        <% if caring_for_child_under_6 %>
+          <li>Caring for a child under 6 years old <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
+        <% end %>
+        <% if caring_for_disabled_or_ill_person %>
+          <li>Caring for an incapacitated person <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
+        <% end %>
+        <% if has_unemployment_benefits %>
+          <li>Currently getting unemployment benefits or has applied for unemployment benefits <span class="list-item--note">- 7 CFR 273.7(b)(1)(v)</span></li>
+        <% end %>
+        <% if in_drug_or_alcohol_program %>
+          <li>Participating regularly in an alcohol or drug treatment program <span class="list-item--note">- 7 CFR 273.24(c)(2)</span></li>
+        <% end %>
+        <% if enrolled_in_education %>
+          <li>Enrolled in a school, training program, or institution of higher education at least half-time <span class="list-item--note">- 7 CFR 273.7(b)(1)(viii)</span></li>
+        <% end %>
+        <% if working_30_or_more_hours %>
+          <li>Working at least 30 hours a week <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+        <% if earnings_above_minimum %>
+          <li>Earning at least $217.50 a week, averaged monthly, from work <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+      </ul>
+    <% end %>
 
+    <% if has_child || is_pregnant || receiving_disability_benefits || is_american_indian || seasonal_worker || any_preventing_work %>
+      <p class="section-header">Able-Bodied Adult Without Dependents (ABAWD) Work Requirement Exemptions</p>
+      <ul>
+        <% if has_child %>
+          <li>Living with a child under 14 years old <span class="list-item--note">- 7 USC 2015(o)(3)(C)</span></li>
+        <% end %>
+        <% if is_pregnant %>
+          <li>Pregnant (Due: <%= pregnancy_due_date %>) <span class="list-item--note">- 7 CFR 273.24(c)(6)</span></li>
+        <% end %>
+        <% if receiving_disability_benefits %>
+          <li>Receiving a disability benefit <span class="list-item--note">- 7 CFR 273.24(c)(2)(i)</span></li>
+        <% end %>
+        <% if is_american_indian %>
+          <li>A member of an Indian tribe or nation <span class="list-item--note">- 7 USC 2015(o)(3)(F),(G)</span></li>
+        <% end %>
+        <% if seasonal_worker %>
+          <li>Seasonal or migrant farmworker under an agreement or contract to start work within the next 30 days. <span class="list-item--note">7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+        <% if any_preventing_work %>
+          <li>"Unfit for work" - unable to consistently work 20 hours a week <span class="list-item--note">(7 CFR 273.24(c)(2))</span> because:
+            <ul>
+              <% if preventing_work_place_to_sleep %>
+                <li>Does not have a regular place to sleep or shower</li>
+              <% end %>
+              <% if preventing_work_domestic_violence %>
+                <li>Experiencing domestic violence</li>
+              <% end %>
+              <% if preventing_work_drugs_alcohol %>
+                <li>Substance use disorder</li>
+              <% end %>
+              <% if preventing_work_medical_condition %>
+                <li>Has a physical or mental medical condition preventing them from working at least 20 hours every week (see details on following pages).</li>
+              <% end %>
+              <% if preventing_work_other %>
+                <li>Other</li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
 
-    <p class="section-header">Able-Bodied Adult Without Dependents (ABAWD) Work Requirement Exemptions</p>
-    <ul>
-      <li>Living with a child under 14 years old - 7 USC 2015(o)(3)(C)</li>
-      <li>Pregnant (Due: [PREGNANT_DATE]) - 7 CFR 273.24(c)(6)</li>
-      <li>Receiving a disability benefit 7 CFR 273.24(c)(2)(i)</li>
-      <li>A member of an Indian tribe or nation 7 USC 2015(o)(3)(F),(G)</li>
-      <li>Seasonal or migrant farmworker under an agreement or contract to start work within the next 30 days. 7 CFR 273.7(b)(1)(vii)</li>
-      “Unfit for work” - unable to consistently work 20 hours a week 7 CFR 273.24(c)(2) because: [PREVENTING_WORK]
-      <li>Does not have a regular place to sleep or shower</li>
-      <li>Experiencing domestic violence</li>
-      <li>Substance use disorder</li>
-      <li>Has a physical or mental medical condition preventing them from working at least 20 hours every week (see details on following pages).</li>
-      <li>Other</li>
-    </ul>
+    <% combined_hours = work_hours + volunteering_hours + work_training_hours %>
+    <% if combined_hours >= 20 || weekly_earnings >= 217.50 %>
+      <p class="section-header"><%= full_name %> (DOB: <%= birth_date %>) is also reporting the following for SNAP ABAWD Work Requirements compliance:</p>
+      <ul>
+        <% if work_hours >= 20 %>
+          <li>Reporting <%= work_hours %> work hours per week <span class="list-item--note">- 7 CFR 273.24(a)(1)(i)</span></li>
+        <% end %>
+        <% if weekly_earnings >= 217.50 %>
+          <li>Reporting <%= weekly_earnings %> in weekly gross income <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+        <% if volunteering_hours >= 20 %>
+          <li>Participating in community service or volunteer work for <%= volunteering_hours %> per week <span class="list-item--note">- 7 CFR 273.24(a)(2)(iii)</span></li>
+        <% end %>
+        <% if work_training_hours >= 20 %>
+          <li>Participating in a job or work training program for <%= work_training_hours %> hours per week</li>
+        <% end %>
+        <% if work_hours < 20 && volunteering_hours < 20 && work_training_hours < 20 && combined_hours >= 20 %>
+          <li>Participating in combined work, volunteering and/or training for <%= combined_hours %> hours per week <span class="list-item--note">- 7 CFR 273.24(a)(2)(iv)</span></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <p>See the following page for details.</p>
   </div>
 </div>

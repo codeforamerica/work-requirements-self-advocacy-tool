@@ -4,130 +4,66 @@ module PdfFiller
       @screener = screener
     end
 
-    # TODO: remove page one of the fillable PDF
-    # the below commented lines are the field names from the PDF
     def hash_for_pdf
-      {
-        # full_name: @screener.full_name,
-        # general_work_requirements_exemptions: "",
-        # abawd_work_requirements_exemptions: "",
-        # abawd_work_requirement_compliance: "",
-        # confirmation_code: "",
-        full_name_with_middle: @screener.full_name_with_middle,
-        # birth_date: @screener.birth_date.to_s,
-        # birth_date_2: @screener.birth_date.to_s,
-        # email: @screener.email,
-        # phone_number: @screener.phone_number,
+      shared_fields.merge(
+        age: @screener.age.to_s,
+        # at_least_55_no_diploma_not_working: "",
         # case_number: "",
+        # confirmation_code: "",
+        details_of_care: @screener.additional_care_info,
+        drug_alcohol_program_name: @screener.alcohol_treatment_program_name,
+        earnings_per_week: @screener.working_weekly_earnings.to_s,
+        email: @screener.email,
+        full_name_with_middle: @screener.full_name_with_middle,
+        # homeschool_hours: "",
+        # homeschool_name: "",
+        is_in_work_training: @screener.is_in_work_training_yes?,
+        is_volunteering: @screener.volunteering?,
+        # operating_a_homeschool: "",
+        phone_number: @screener.phone_number,
+        preventing_work_write_in: @screener.preventing_work_write_in,
+        receiving_benefits_disability_medicaid: @screener.receiving_benefits_disability_medicaid_yes?,
+        receiving_benefits_disability_pension: @screener.receiving_benefits_disability_pension_yes?,
+        receiving_benefits_insurance_payments: @screener.receiving_benefits_insurance_payments_yes?,
+        receiving_benefits_other: @screener.receiving_benefits_other_yes?,
+        receiving_benefits_ssdi: @screener.receiving_benefits_ssdi_yes?,
+        receiving_benefits_ssi: @screener.receiving_benefits_ssi_yes?,
+        receiving_benefits_veterans_disability: @screener.receiving_benefits_veterans_disability_yes?,
+        receiving_benefits_workers_compensation: @screener.receiving_benefits_workers_compensation_yes?,
+        receiving_benefits_write_in: @screener.receiving_benefits_write_in,
+        receiving_disabilty_benefits: @screener.receiving_disability_benefits?,
+        signature: @screener.full_name_with_middle,
         # ssn_last_4: "",
-        # age: "",
-        # is_american_indian: @screener.is_american_indian_yes?,
-        # has_child: "",
-        # caring_for_child_under_6: @screener.caring_for_child_under_6_yes?
-        # caring_for_disabled_or_ill_person: "",
-        # is_pregnant: "",
-        # is_in_work_training: "",
-        # work_training_name: "",
-        # work_training_hours: "",
-        # has_unemployment_benefits: "",
-        # receiving_disabilty_benefits: "",
-        # receiving_benefits_ssdi: "",
-        # receiving_benefits_ssi: "",
-        # receiving_benefits_veterans_disability: "",
-        # receiving_benefits_workers_compensation: "",
-        # receiving_benefits_disability_pension: "",
-        # receiving_benefits_insurance_payments: "",
-        # receiving_benefits_disability_medicaid: "",
-        # receiving_benefits_other: "",
-        # receiving_benefits_write_in: "",
-        # details_of_care: "",
-        # pregnancy_due_date: "",
-        # working_or_earning: "",
-        # seasonal_worker: "",
-        # is_volunteering: "",
-        # work_hours: "",
-        # earnings_per_week: "",
-        # volunteering_hours: "",
-        # volunteering_org_name: "",
-        # enrolled_in_education: "",
-        # in_drug_or_alcohol_program: "",
-        # preventing_work_place_to_sleep: "",
-        # preventing_work_drugs_alcohol: "",
-        # preventing_work_domestic_violence: "",
-        # preventing_work_medical_condition: "",
-        # preventing_work_other: "",
-        # drug_alcohol_program_name: "",
-        # preventing_work_write_in: "",
-        # signature: "",
-        # submission_date: "",
-        # submission_date_2: ""
-      }
+        submission_date: submission_date,
+        submission_date_2: submission_date,
+        volunteering_hours: @screener.volunteering_hours.to_s,
+        volunteering_org_name: @screener.volunteering_org_name,
+        work_hours: @screener.working_hours.to_s,
+        work_training_name: @screener.work_training_name,
+        working_or_earning: @screener.working_exempt?
+      )
     end
 
     def hash_for_generated_pdf
-      {
+      shared_fields.merge(
+        any_preventing_work: @screener.any_preventing_work?,
+        earnings_above_minimum: @screener.earnings_above_minimum?,
         full_name: @screener.full_name,
-        # general_work_requirements_exemptions: "",
-        # abawd_work_requirements_exemptions: "",
-        # abawd_work_requirement_compliance: "",
-        # confirmation_code: "",
-        full_name_with_middle: @screener.full_name_with_middle,
-        birth_date: @screener.birth_date.to_s,
-        # birth_date_2: @screener.birth_date.to_s,
-        # email: @screener.email,
-        # phone_number: @screener.phone_number,
-        # case_number: "",
-        # ssn_last_4: "",
-        # age: "",
-        # is_american_indian: @screener.is_american_indian_yes?,
-        # has_child: "",
-        caring_for_child_under_6: @screener.caring_for_child_under_6_yes?
-        # caring_for_disabled_or_ill_person: "",
-        # is_pregnant: "",
-        # is_in_work_training: "",
-        # work_training_name: "",
-        # work_training_hours: "",
-        # has_unemployment_benefits: "",
-        # receiving_disabilty_benefits: "",
-        # receiving_benefits_ssdi: "",
-        # receiving_benefits_ssi: "",
-        # receiving_benefits_veterans_disability: "",
-        # receiving_benefits_workers_compensation: "",
-        # receiving_benefits_disability_pension: "",
-        # receiving_benefits_insurance_payments: "",
-        # receiving_benefits_disability_medicaid: "",
-        # receiving_benefits_other: "",
-        # receiving_benefits_write_in: "",
-        # details_of_care: "",
-        # pregnancy_due_date: "",
-        # working_or_earning: "",
-        # seasonal_worker: "",
-        # is_volunteering: "",
-        # work_hours: "",
-        # earnings_per_week: "",
-        # volunteering_hours: "",
-        # volunteering_org_name: "",
-        # enrolled_in_education: "",
-        # in_drug_or_alcohol_program: "",
-        # preventing_work_place_to_sleep: "",
-        # preventing_work_drugs_alcohol: "",
-        # preventing_work_domestic_violence: "",
-        # preventing_work_medical_condition: "",
-        # preventing_work_other: "",
-        # drug_alcohol_program_name: "",
-        # preventing_work_write_in: "",
-        # signature: "",
-        # submission_date: "",
-        # submission_date_2: ""
-      }
+        receiving_disability_benefits: @screener.receiving_disability_benefits?,
+        volunteering_hours: @screener.volunteering_hours.to_i,
+        weekly_earnings: @screener.working_weekly_earnings.to_f,
+        work_hours: @screener.working_hours.to_i,
+        work_training_hours: @screener.work_training_hours.to_i,
+        working_30_or_more_hours: @screener.working_30_or_more_hours?
+      )
     end
 
     def filled_pdf_path
-      case @screener.state
+      source_pdf_path = case @screener.state
       when LocationData::States::NORTH_CAROLINA
-        source_pdf_path = "app/assets/pdfs/nc_packet.pdf"
+        "app/assets/pdfs/nc_packet.pdf"
       else
-        source_pdf_path = "app/assets/pdfs/packet.pdf"
+        "app/assets/pdfs/packet.pdf"
       end
       template_doc = HexaPDF::Document.open(source_pdf_path)
       hash_for_pdf.each do |field_name, field_value|
@@ -162,6 +98,36 @@ module PdfFiller
       target.write_to_string
     ensure
       File.delete(generated_pdf_path) # not a Tempfile so we have to manually delete it
+    end
+
+    private
+
+    def shared_fields
+      {
+        birth_date: @screener.birth_date.to_s,
+        caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
+        caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,
+        enrolled_in_education: @screener.is_student_yes?,
+        has_child: @screener.has_child_yes?,
+        has_unemployment_benefits: @screener.has_unemployment_benefits_yes?,
+        in_drug_or_alcohol_program: @screener.is_in_alcohol_treatment_program_yes?,
+        is_american_indian: @screener.is_american_indian_yes?,
+        is_pregnant: @screener.is_pregnant_yes?,
+        pregnancy_due_date: @screener.pregnancy_due_date.to_s,
+        preventing_work_domestic_violence: @screener.preventing_work_domestic_violence_yes?,
+        preventing_work_drugs_alcohol: @screener.preventing_work_drugs_alcohol_yes?,
+        preventing_work_medical_condition: @screener.preventing_work_medical_condition_yes?,
+        preventing_work_other: @screener.preventing_work_other_yes?,
+        preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
+        seasonal_worker: @screener.is_migrant_farmworker_yes?,
+        volunteering_hours: @screener.volunteering_hours,
+        work_hours: @screener.working_hours,
+        work_training_hours: @screener.work_training_hours
+      }
+    end
+
+    def submission_date
+      Date.current.to_s
     end
   end
 end
