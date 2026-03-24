@@ -2,15 +2,13 @@ require "csv"
 
 module LocationData
   module States
-    DELAWARE = "DE"
     NORTH_CAROLINA = "NC"
     NOT_LISTED = "NOT_LISTED"
 
-    VALID_VALUES = [DELAWARE, NORTH_CAROLINA, NOT_LISTED].freeze
+    VALID_VALUES = [NORTH_CAROLINA, NOT_LISTED].freeze
 
     def self.options
       [
-        ["Delaware", DELAWARE],
         ["North Carolina", NORTH_CAROLINA],
         [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
       ]
