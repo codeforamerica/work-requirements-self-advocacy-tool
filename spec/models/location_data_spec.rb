@@ -9,7 +9,6 @@ RSpec.describe LocationData do
 
         options = described_class.options
 
-        expect(options).to include(["Delaware", "DE"])
         expect(options).to include(["North Carolina", "NC"])
         expect(options).to include(["Not listed", "NOT_LISTED"])
       end
@@ -17,7 +16,7 @@ RSpec.describe LocationData do
 
     describe "VALID_VALUES" do
       it "includes all valid state values" do
-        expect(described_class::VALID_VALUES).to contain_exactly("DE", "NC", "NOT_LISTED")
+        expect(described_class::VALID_VALUES).to contain_exactly("NC", "NOT_LISTED")
       end
     end
   end
