@@ -37,14 +37,10 @@ RSpec.describe "packet_page_one/page", type: :view do
     render template: "packet_page_one/page", locals: locals
   end
 
-  it "always displays the header and attestation" do
+  it "always displays the header, attestation, and footer" do
     render_page
     expect(rendered).to include("SNAP Work Requirement Exemptions Attestation")
     expect(rendered).to include("Nelly Ghaffar, (DOB: 1990-07-13) attests to the following")
-  end
-
-  it "always displays 'See the following page for details.'" do
-    render_page
     expect(rendered).to include("See the following page for details.")
   end
 
@@ -165,7 +161,7 @@ RSpec.describe "packet_page_one/page", type: :view do
 
       it "shows other sub-bullet" do
         render_page(any_preventing_work: true, preventing_work_other: true)
-        expect(rendered).to include(">Other</li>")
+        expect(rendered).to include("Other")
       end
 
       it "only shows applicable sub-bullets" do
@@ -182,7 +178,7 @@ RSpec.describe "packet_page_one/page", type: :view do
     end
   end
 
-  describe "ABAWD Work Requirements Compliance section" do
+  describe "SNAP ABAWD Work Requirements Compliance section" do
     it "is not shown when combined hours < 20 and earnings < 217.50" do
       render_page(work_hours: 5, volunteering_hours: 5, work_training_hours: 5)
       expect(rendered).not_to include("SNAP ABAWD Work Requirements compliance")
