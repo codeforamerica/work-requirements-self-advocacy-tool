@@ -1,0 +1,31 @@
+<% content_for :question_title, t("views.basic_info_ssn.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<div class="notice teal">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <%= image_tag "lock.svg", class: "illustration centered" %>
+    </div>
+    <div class="media-box__content">
+      <%= t("views.basic_info_ssn.edit.notice") %>
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <span><%= f.cfa_input_field(:ssn_last_four, t("views.basic_info_ssn.edit.ssn_label"),
+          help_text: t("views.basic_info_ssn.edit.help_text"),
+          options: {
+            maxlength: 4,
+            pattern: "\\d{4}",
+            inputmode: "numeric",
+            type: "tel"
+          },
+          prefix: "###&nbsp;\u2011&nbsp;##&nbsp;\u2011",
+          classes: ['ssn-last4', 'text-input']) %>
+  </span>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+  <br/>
+  <%= f.submit t("general.continue_without_this_number"), class: "button" %>
+<% end %>

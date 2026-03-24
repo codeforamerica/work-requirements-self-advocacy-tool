@@ -41,8 +41,8 @@ en:
         case_number_label: Case number
         help_text_county_letter:
           help_bullets:
-          - Look for a section labeled “Case Number,” “Case ID,” or “Client Number.”
-          - It’s usually printed near your name, at the top of the first page.
+          - Look for a section labeled "Case Number", "Case ID", or "Client Number".
+          - It's usually printed near your name, at the top of the first page.
           title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
         help_text_epass:
           help_bullets_html:
@@ -72,7 +72,7 @@ en:
     basic_info_email_nudge:
       edit:
         add_an_email: Add an email
-        continue_without_it: Continue without it
+        continue_without_email: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
@@ -80,6 +80,12 @@ en:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
         instructions: This information helps your caseworker find your case when you submit your form.
         title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
+    basic_info_ssn:
+      edit:
+        help_text: This is optional. Enter the last 4 digits to confirm your identity and find your case.
+        notice: We'll keep your information private, safe, and secure.
+        ssn_label: Social Security number
+        title: Since you don't have a case number, would you like to provide the last four digits of your Social Security number (SSN)?
     caring_for_someone:
       edit:
         additional_care_info: Can you tell us about the kind of care you provide?
