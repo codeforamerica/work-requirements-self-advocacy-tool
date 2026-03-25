@@ -45,7 +45,7 @@ class PdfController < QuestionController
   end
 
   def generate_pdf
-    send_data PdfFiller::PacketPdf.new(@temp_screener).combined_pdf, filename: "combined.pdf", disposition: "inline"
+    send_data PdfFiller::PacketPdf.new(current_screener).combined_pdf, filename: "combined.pdf", disposition: "inline"
   end
 
   def summary_page
