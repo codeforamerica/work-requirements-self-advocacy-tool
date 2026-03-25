@@ -2,6 +2,19 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
+<% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
+  <div class="notice teal">
+    <div class="media-box">
+      <div class="media-box__media media--icon">
+        <i class="icon-help"></i>
+      </div>
+      <div class="media-box__content">
+        <%= t("views.alcohol_treatment_program.edit.nc_notice_text") %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
   <%= f.hidden_field :is_in_alcohol_treatment_program, value: :unfilled %>
 

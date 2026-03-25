@@ -13,6 +13,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(EmploymentController),
       ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
+      ControllerNavigation::NavigationStep.new(Nc::HomeschoolController),
       ControllerNavigation::NavigationStep.new(TrainingProgramController),
       ControllerNavigation::NavigationStep.new(SchoolEnrollmentController),
       ControllerNavigation::NavigationStep.new(Nc::EduWorkHistoryController),
