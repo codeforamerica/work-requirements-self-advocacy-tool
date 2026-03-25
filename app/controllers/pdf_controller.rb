@@ -1,4 +1,4 @@
-class PacketPageOneController < QuestionController
+class PdfController < QuestionController
   layout "pdf"
   before_action :build_temp_screener
 
@@ -48,7 +48,7 @@ class PacketPageOneController < QuestionController
     send_data PdfFiller::PacketPdf.new(@temp_screener).combined_pdf, filename: "combined.pdf", disposition: "inline"
   end
 
-  def page
-    render :page, locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_generated_pdf
+  def summary_page
+    render :summary_page, locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_generated_pdf
   end
 end

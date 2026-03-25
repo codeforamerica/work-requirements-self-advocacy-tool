@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "packet_page_one/page", type: :view do
+RSpec.describe "pdf/summary_page", type: :view do
   let(:default_locals) do
     {
       at_least_55_no_diploma_not_working: false,
@@ -34,7 +34,7 @@ RSpec.describe "packet_page_one/page", type: :view do
 
   def render_page(overrides = {})
     locals = default_locals.merge(overrides)
-    render template: "packet_page_one/page", locals: locals
+    render template: "pdf/summary_page", locals: locals
   end
 
   it "always displays the header, attestation, and footer" do

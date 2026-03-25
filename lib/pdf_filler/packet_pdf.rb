@@ -69,9 +69,9 @@ module PdfFiller
     end
 
     def generated_pdf_path
-      html = PacketPageOneController.new.render_to_string(
+      html = PdfController.new.render_to_string(
         {
-          template: "packet_page_one/page",
+          template: "pdf/summary_page",
           layout: "pdf",
           locals: hash_for_generated_pdf
         }
