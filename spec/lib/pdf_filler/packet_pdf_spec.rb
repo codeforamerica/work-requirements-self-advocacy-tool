@@ -46,23 +46,23 @@ RSpec.describe PdfFiller::PacketPdf do
       end
 
       it "maps string fields from screener" do
-        screener.work_training_name = "Job Corps"
+        screener.work_training_name = "Bake Off Boot Camp"
         screener.work_training_hours = "25"
         screener.receiving_benefits_write_in = "Other disability"
-        screener.volunteering_org_name = "Food Bank"
+        screener.volunteering_org_name = "Muffins for Mums"
         screener.preventing_work_write_in = "Back pain"
-        screener.alcohol_treatment_program_name = "AA Program"
-        screener.additional_care_info = "Caring for my mother"
+        screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
+        screener.additional_care_info = "Babysitting Paul Hollywood"
 
         expect(result[:email]).to eq("nigella@example.com")
         expect(result[:phone_number]).to eq("(919) 555-1234")
-        expect(result[:work_training_name]).to eq("Job Corps")
+        expect(result[:work_training_name]).to eq("Bake Off Boot Camp")
         expect(result[:work_training_hours]).to eq("25")
         expect(result[:receiving_benefits_write_in]).to eq("Other disability")
-        expect(result[:volunteering_org_name]).to eq("Food Bank")
+        expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
         expect(result[:preventing_work_write_in]).to eq("Back pain")
-        expect(result[:drug_alcohol_program_name]).to eq("AA Program")
-        expect(result[:details_of_care]).to eq("Caring for my mother")
+        expect(result[:drug_alcohol_program_name]).to eq("Alcolisti Anonimi")
+        expect(result[:details_of_care]).to eq("Babysitting Paul Hollywood")
       end
 
       it "maps date and numeric fields as strings" do
@@ -169,7 +169,7 @@ RSpec.describe PdfFiller::PacketPdf do
         has_child: "yes",
         caring_for_child_under_6: "yes",
         caring_for_disabled_or_ill_person: "yes",
-        additional_care_info: "Caring for my mother",
+        additional_care_info: "Babysitting Paul Hollywood",
         is_pregnant: "yes",
         pregnancy_due_date: Date.new(2026, 9, 15),
         has_unemployment_benefits: "yes",
@@ -179,9 +179,9 @@ RSpec.describe PdfFiller::PacketPdf do
         working_weekly_earnings: 250.00,
         is_volunteer: "yes",
         volunteering_hours: 10,
-        volunteering_org_name: "Food Bank",
+        volunteering_org_name: "Muffins for Mums",
         is_in_work_training: "yes",
-        work_training_name: "Job Corps",
+        work_training_name: "Bake Off Boot Camp",
         work_training_hours: "15",
         is_student: "yes",
         is_migrant_farmworker: "yes",
