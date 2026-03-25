@@ -1,11 +1,12 @@
 module Nc
-  class EduWorkHistoryController < QuestionController
+  class HomeschoolController < QuestionController
     include WrExemptionsConcern
 
     def self.attributes_edited
       [
-        :has_hs_diploma,
-        :worked_last_five_years
+        :teaches_homeschool,
+        :homeschool_name,
+        :homeschool_hours
       ]
     end
 

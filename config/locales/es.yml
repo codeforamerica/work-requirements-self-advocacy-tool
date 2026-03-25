@@ -34,6 +34,7 @@ es:
       edit:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
+        nc_notice_text: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos.
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
     basic_info_case_number:
       edit:
@@ -216,6 +217,14 @@ es:
           notice_text: Seleccione "No" si su único trabajo ha sido hacer trabajos ocasionales.
           title: "¿Obtuvo un diploma de secundaria o un equivalente, como un GED?"
           worked_last_five_years_label: "¿Ha trabajado por pago en los últimos cinco años?"
+      homeschool:
+        edit:
+          homeschool_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+          homeschool_hours_label: "¿Cuántas horas a la semana imparte educación en el hogar?"
+          homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
+          homeschool_name_label: "¿Cuál es el nombre de la escuela en el hogar?"
+          notice_text: Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.
+          title: "¿Tiene un programa de educación en casa para un niño o niños?"
     new_response:
       edit:
         check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
