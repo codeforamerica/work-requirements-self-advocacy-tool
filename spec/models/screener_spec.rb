@@ -23,7 +23,8 @@ RSpec.describe Screener, type: :model do
     context "with_context :location" do
       it "must have a valid state and county combination" do
         screener = build(:screener,
-          state: "NC")
+          state: "NC",
+          county: nil)
 
         screener.valid?(:location)
         expect(screener.errors[:state]).to be_empty
