@@ -9,5 +9,11 @@
   <%= f.cfa_input_field(:email_confirmation, t("views.email.edit.email_confirmation"), options: { onpaste: "return false;" }) %>
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 
-  <%= f.hidden_field :from_download_form, value: @model.from_download_form %>
+  <% if params[:from_download_form].present? %>
+    <%= hidden_field_tag "from_download_form", params[:from_download_form] %>
+  <% end %>
+
+  <% if params[:return_to_review].present? %>
+    <%= hidden_field_tag "return_to_review", params[:return_to_review] %>
+  <% end %>
 <% end %>
