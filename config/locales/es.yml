@@ -291,6 +291,7 @@ es:
         online_county: 'En lugar de usar ePASS, también puede enviar este formulario y los comprobantes a la oficina de SNAP de su condado: %{website}'
         online_county_with_email: o por correo electrónico a %{email}
         online_epass_html: Si usted ya recibe beneficios de SNAP, puede usar <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> para enviar este formulario y cualquier comprobante que necesite. Necesitará una <a href="https://epass.nc.gov/nfridp/qa" target="_blank">cuenta mejorada</a> (enhanced account) para enviar estos documentos a través de ePASS.
+        online_epass_text: Si usted ya recibe beneficios de SNAP, puede usar North Carolina ePASS (https://epass.nc.gov/signuphomepage) para enviar este formulario y cualquier comprobante que necesite. Necesitará una cuenta mejorada (enhanced account) (https://epass.nc.gov/nfridp/qa) para enviar estos documentos a través de ePASS.
         online_label: 'En línea:'
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
