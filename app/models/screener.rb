@@ -219,7 +219,7 @@ class Screener < ApplicationRecord
   end
 
   def full_name_with_middle
-    [first_name, middle_name, last_name].compact.join(" ")
+    [first_name, middle_name.presence, last_name].compact.join(" ")
   end
 
   def pregnancy_due_date_day

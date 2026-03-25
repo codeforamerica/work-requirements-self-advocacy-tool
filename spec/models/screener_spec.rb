@@ -525,6 +525,40 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#full_name" do
+    it "joins first_name and last_name" do
+      screener = build(:screener, first_name: "Nigella", last_name: "Lawson")
+      expect(screener.full_name).to eq("Nigella Lawson")
+    end
+
+    it "handles nil first_name" do
+      screener = build(:screener, first_name: nil, last_name: "Lawson")
+      expect(screener.full_name).to eq("Lawson")
+    end
+
+    it "handles nil last_name" do
+      screener = build(:screener, first_name: "Nigella", last_name: nil)
+      expect(screener.full_name).to eq("Nigella")
+    end
+  end
+
+  describe "#full_name_with_middle" do
+    it "joins first_name, middle_name, and last_name" do
+      screener = build(:screener, first_name: "Nigella", middle_name: "Lucy", last_name: "Lawson")
+      expect(screener.full_name_with_middle).to eq("Nigella Lucy Lawson")
+    end
+
+    it "omits middle_name when nil" do
+      screener = build(:screener, first_name: "Nigella", middle_name: nil, last_name: "Lawson")
+      expect(screener.full_name_with_middle).to eq("Nigella Lawson")
+    end
+
+    it "formats correctly when middle_name is empty string" do
+      screener = build(:screener, first_name: "Nigella", middle_name: "", last_name: "Lawson")
+      expect(screener.full_name_with_middle).to eq("Nigella Lawson")
+    end
+  end
+
   describe "#exempt_from_work_rules?" do
     it "returns true if age qualified (under 18)" do
       screener = build(:screener,birth_date: 16.years.ago.to_date)

@@ -21,33 +21,28 @@ RSpec.describe PdfFiller::PacketPdf do
   describe "#hash_for_fillable_pdf" do
     subject(:result) { packet_pdf.hash_for_fillable_pdf }
 
-    describe "direct screener mappings" do
-      it "maps full_name_with_middle from screener" do
-        expect(result[:full_name_with_middle]).to eq("Nigella Lucy Lawson")
-      end
-
-      it "maps full_name_with_middle without middle name when absent" do
-        screener.middle_name = nil
-        expect(result[:full_name_with_middle]).to eq("Nigella Lawson")
-      end
-
-      it "maps birth_date as a string" do
-        expect(result[:birth_date]).to eq("1990-07-13")
-      end
-
-      it "maps email" do
-        expect(result[:email]).to eq("nigella@example.com")
-      end
-
-      it "maps phone_number" do
-        expect(result[:phone_number]).to eq("(919) 555-1234")
-      end
-
-      it "maps boolean enum fields" do
-        screener.is_american_indian = "yes"
-        screener.has_child = "no"
-        expect(result[:is_american_indian]).to be true
-        expect(result[:has_child]).to be false
+    describe "direct field mappings" do
+      {
+        caring_for_child_under_6: :caring_for_child_under_6,
+        caring_for_disabled_or_ill_person: :caring_for_disabled_or_ill_person,
+        enrolled_in_education: :is_student,
+        has_child: :has_child,
+        has_unemployment_benefits: :has_unemployment_benefits,
+        in_drug_or_alcohol_program: :is_in_alcohol_treatment_program,
+        is_american_indian: :is_american_indian,
+        is_pregnant: :is_pregnant,
+        preventing_work_domestic_violence: :preventing_work_domestic_violence,
+        preventing_work_drugs_alcohol: :preventing_work_drugs_alcohol,
+        preventing_work_medical_condition: :preventing_work_medical_condition,
+        preventing_work_other: :preventing_work_other,
+        preventing_work_place_to_sleep: :preventing_work_place_to_sleep,
+        receiving_benefits_disability_medicaid: :receiving_benefits_disability_medicaid,
+        seasonal_worker: :is_migrant_farmworker
+      }.each do |pdf_field, screener_attr|
+        it "maps #{pdf_field} from #{screener_attr}" do
+          screener.public_send("#{screener_attr}=", "yes")
+          expect(result[pdf_field]).to be true
+        end
       end
 
       it "maps string fields from screener" do
@@ -59,6 +54,8 @@ RSpec.describe PdfFiller::PacketPdf do
         screener.alcohol_treatment_program_name = "AA Program"
         screener.additional_care_info = "Caring for my mother"
 
+        expect(result[:email]).to eq("nigella@example.com")
+        expect(result[:phone_number]).to eq("(919) 555-1234")
         expect(result[:work_training_name]).to eq("Job Corps")
         expect(result[:work_training_hours]).to eq("25")
         expect(result[:receiving_benefits_write_in]).to eq("Other disability")
@@ -68,39 +65,15 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:details_of_care]).to eq("Caring for my mother")
       end
 
-      it "maps pregnancy_due_date as a string" do
+      it "maps date and numeric fields as strings" do
         screener.pregnancy_due_date = Date.new(2026, 9, 15)
-        expect(result[:pregnancy_due_date]).to eq("2026-09-15")
-      end
-
-      it "maps work_hours from working_hours as a string" do
         screener.working_hours = 35
-        expect(result[:work_hours]).to eq("35")
-      end
-
-      it "maps earnings_per_week from working_weekly_earnings as a string" do
         screener.working_weekly_earnings = 250.00
+
+        expect(result[:birth_date]).to eq("1990-07-13")
+        expect(result[:pregnancy_due_date]).to eq("2026-09-15")
+        expect(result[:work_hours]).to eq("35")
         expect(result[:earnings_per_week]).to eq("250.0")
-      end
-
-      it "maps seasonal_worker from is_migrant_farmworker" do
-        screener.is_migrant_farmworker = "yes"
-        expect(result[:seasonal_worker]).to be true
-      end
-
-      it "maps enrolled_in_education from is_student" do
-        screener.is_student = "yes"
-        expect(result[:enrolled_in_education]).to be true
-      end
-
-      it "maps in_drug_or_alcohol_program from is_in_alcohol_treatment_program" do
-        screener.is_in_alcohol_treatment_program = "yes"
-        expect(result[:in_drug_or_alcohol_program]).to be true
-      end
-
-      it "maps receiving_benefits_disability_medicaid" do
-        screener.receiving_benefits_disability_medicaid = "yes"
-        expect(result[:receiving_benefits_disability_medicaid]).to be true
       end
     end
 
@@ -113,39 +86,78 @@ RSpec.describe PdfFiller::PacketPdf do
       end
     end
 
-    describe "age" do
-      it "delegates to screener.age and converts to string" do
-        travel_to Date.new(2026, 1, 9) do
-          expect(result[:age]).to eq("35")
-        end
+    describe "calculated fields" do
+      it "delegates at_least_55_no_diploma_not_working to nc_screener" do
+        allow(screener.nc_screener).to receive(:at_least_55_no_diploma_not_working?).and_return(true)
+        expect(result[:at_least_55_no_diploma_not_working]).to be true
       end
 
-      it "returns empty string when birth_date is nil" do
-        screener.birth_date = nil
+      it "delegates age to screener and converts to string" do
+        allow(screener).to receive(:age).and_return(35)
+        expect(result[:age]).to eq("35")
+      end
+
+      it "returns empty string for age when screener.age is nil" do
+        allow(screener).to receive(:age).and_return(nil)
         expect(result[:age]).to eq("")
       end
-    end
 
-    describe "delegated calculated fields" do
+      it "delegates full_name_with_middle to screener" do
+        allow(screener).to receive(:full_name_with_middle).and_return("Nigella Lucy Lawson")
+        expect(result[:full_name_with_middle]).to eq("Nigella Lucy Lawson")
+      end
+
       it "delegates receiving_disabilty_benefits to screener" do
-        expect(result[:receiving_disabilty_benefits]).to be false
-        screener.receiving_benefits_ssdi = "yes"
-        expect(packet_pdf.hash_for_fillable_pdf[:receiving_disabilty_benefits]).to be true
+        allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
+        expect(result[:receiving_disabilty_benefits]).to be true
       end
 
       it "delegates working_or_earning to screener" do
-        expect(result[:working_or_earning]).to be false
-        screener.is_working = "yes"
-        screener.working_hours = 30
-        expect(packet_pdf.hash_for_fillable_pdf[:working_or_earning]).to be true
+        allow(screener).to receive(:working_exempt?).and_return(true)
+        expect(result[:working_or_earning]).to be true
       end
 
       it "delegates is_volunteering to screener" do
-        expect(result[:is_volunteering]).to be false
-        screener.is_volunteer = "yes"
-        screener.volunteering_hours = 1
-        expect(packet_pdf.hash_for_fillable_pdf[:is_volunteering]).to be true
+        allow(screener).to receive(:volunteering?).and_return(true)
+        expect(result[:is_volunteering]).to be true
       end
+    end
+  end
+
+  describe "#hash_for_generated_pdf" do
+    subject(:result) { packet_pdf.hash_for_generated_pdf }
+
+    it "converts numeric fields to integers" do
+      screener.working_hours = 25
+      screener.volunteering_hours = 10
+      screener.work_training_hours = "15"
+      screener.working_weekly_earnings = 220
+
+      expect(result[:work_hours]).to eq(25)
+      expect(result[:volunteering_hours]).to eq(10)
+      expect(result[:work_training_hours]).to eq(15)
+      expect(result[:weekly_earnings]).to eq(220.0)
+    end
+
+    it "defaults nil numeric fields to zero" do
+      expect(result[:work_hours]).to eq(0)
+      expect(result[:volunteering_hours]).to eq(0)
+      expect(result[:work_training_hours]).to eq(0)
+      expect(result[:weekly_earnings]).to eq(0.0)
+    end
+
+    it "delegates fields with helper methods to screener" do
+      allow(screener).to receive(:full_name).and_return("Nigella Lawson")
+      allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
+      allow(screener).to receive(:working_30_or_more_hours?).and_return(true)
+      allow(screener).to receive(:earnings_above_minimum?).and_return(false)
+      allow(screener).to receive(:any_preventing_work?).and_return(true)
+
+      expect(result[:full_name]).to eq("Nigella Lawson")
+      expect(result[:receiving_disability_benefits]).to be true
+      expect(result[:working_30_or_more_hours]).to be true
+      expect(result[:earnings_above_minimum]).to be false
+      expect(result[:any_preventing_work]).to be true
     end
   end
 
@@ -184,56 +196,6 @@ RSpec.describe PdfFiller::PacketPdf do
       )
 
       expect { packet_pdf.filled_pdf_path }.not_to raise_error
-    end
-  end
-
-  describe "#hash_for_generated_pdf" do
-    subject(:result) { packet_pdf.hash_for_generated_pdf }
-
-    it "includes full_name" do
-      expect(result[:full_name]).to eq("Nigella Lawson")
-    end
-
-    it "includes birth_date" do
-      expect(result[:birth_date]).to eq("1990-07-13")
-    end
-
-    it "converts working_hours to integer" do
-      screener.working_hours = 25
-      expect(result[:work_hours]).to eq(25)
-    end
-
-    it "converts volunteering_hours to integer" do
-      screener.volunteering_hours = 10
-      expect(result[:volunteering_hours]).to eq(10)
-    end
-
-    it "converts work_training_hours to integer" do
-      screener.work_training_hours = "15"
-      expect(result[:work_training_hours]).to eq(15)
-    end
-
-    it "converts working_weekly_earnings to float" do
-      screener.working_weekly_earnings = 220
-      expect(result[:weekly_earnings]).to eq(220.0)
-    end
-
-    it "defaults nil numeric fields to zero" do
-      expect(result[:work_hours]).to eq(0)
-      expect(result[:volunteering_hours]).to eq(0)
-      expect(result[:work_training_hours]).to eq(0)
-      expect(result[:weekly_earnings]).to eq(0.0)
-    end
-
-    it "delegates calculated boolean fields to screener" do
-      screener.receiving_benefits_ssdi = "yes"
-      screener.working_hours = 35
-      screener.preventing_work_domestic_violence = "yes"
-
-      expect(result[:receiving_disability_benefits]).to be true
-      expect(result[:working_30_or_more_hours]).to be true
-      expect(result[:earnings_above_minimum]).to be false
-      expect(result[:any_preventing_work]).to be true
     end
   end
 end

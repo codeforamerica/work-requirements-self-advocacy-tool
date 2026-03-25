@@ -58,12 +58,7 @@ module PdfFiller
     end
 
     def filled_pdf_path
-      source_pdf_path = case @screener.state
-      when LocationData::States::NORTH_CAROLINA
-        "app/assets/pdfs/nc_packet.pdf"
-      else
-        "app/assets/pdfs/packet.pdf"
-      end
+      source_pdf_path = "app/assets/pdfs/nc_packet.pdf"
       template_doc = HexaPDF::Document.open(source_pdf_path)
       hash_for_fillable_pdf.each do |field_name, field_value|
         template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
