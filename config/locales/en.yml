@@ -34,6 +34,7 @@ en:
       edit:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
+        nc_notice_text: Select “No” if your only treatment program is Alcoholics Anonymous.
         title: Are you in a drug or alcohol treatment program?
     basic_info_case_number:
       edit:
@@ -216,6 +217,14 @@ en:
           notice_text: Select "No" if your only work has been occasional odd jobs.
           title: Do you have a high school diploma or equivalent degree (for example, a GED)?
           worked_last_five_years_label: Have you worked for pay in the last five years?
+      homeschool:
+        edit:
+          homeschool_hours_help_text: If this changes, give your weekly average from the past month.
+          homeschool_hours_label: How many hours a week do you operate home school?
+          homeschool_name_help_text_html: Use the school name registered with the <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">NC Division of Non-Public Education</a>, if it is registered.
+          homeschool_name_label: What is the name of the home school?
+          notice_text: This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.
+          title: Do you teach home school?
     new_response:
       edit:
         check_work_rules_for_someone_else: Check work rules for someone else
@@ -265,6 +274,28 @@ en:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
         title: Do you go to school full-time, or at least half-time?
+    screener_mailer:
+      send_screener_results:
+        attachment_notice: Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
+        call_office: Call the office at %{phone}.
+        check_website: Check for information on their website %{website},
+        email_office: Email the office at %{email},
+        greeting: Hi %{first_name} %{last_name},
+        how_to_submit_heading: How to submit your form
+        in_person_instructions: Print your form and bring it and any proof you may need to a local office.
+        in_person_label: 'In person:'
+        mail_instructions: Send your form and any proof you may need.
+        mail_label: 'Mail:'
+        next_step_heading: 'Next step: Send this form to your SNAP agency.'
+        next_step_instructions: Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn't apply to you.
+        online_county: Instead of using ePASS, you can submit this form and any proof to your county's SNAP office %{website}
+        online_county_with_email: or by emailing %{email}
+        online_epass_html: If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
+        online_epass_text: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
+        online_label: 'Online:'
+        questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
+        reference_code: 'Your document reference code: %{code}'
+        subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
     training_program:
       edit:
         notice_content:
