@@ -5,6 +5,6 @@ class ScreenerMailer < ApplicationMailer
     @screener = outgoing_email.screener
     @county_data = LocationData::Counties.get(@screener.state, @screener.county)
     attachments.inline["gbh_email_header.png"] = File.binread(Rails.root.join("app/assets/images/gbh_email_header.png"))
-    mail(to: @screener.email, subject: I18n.t('views.screener_mailer.send_screener_results.subject'))
+    mail(to: @screener.email, subject: I18n.t("views.screener_mailer.send_screener_results.subject"))
   end
 end
