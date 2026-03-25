@@ -292,6 +292,27 @@ es:
       edit:
         help_text: If you are eligible for Indian Health Services, select "Yes."
         title: "¿Es usted miembro de una tribu o nación indígena?"
+    screener_mailer:
+      send_screener_results:
+        subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
+        greeting: "Hola %{first_name} %{last_name},"
+        attachment_notice: Su formulario de exención de las reglas de trabajo de SNAP de GetBenefitsHelp está adjunto al final de este correo.
+        next_step_heading: "Siguiente paso: Envíe este formulario a su oficina de SNAP."
+        next_step_instructions: Envíe este formulario y cualquier comprobante o documentacion necesario a su oficina de SNAP para notificar que las reglas de trabajo SNAP no deberían aplicar en su caso.
+        reference_code: "Código de referencia de su documento: %{code}"
+        how_to_submit_heading: Cómo enviar su formulario
+        online_label: "En línea:"
+        online_epass_html: "Si usted ya recibe beneficios de SNAP, puede usar <a href=\"https://epass.nc.gov/signuphomepage\" target=\"_blank\">North Carolina ePASS</a> para enviar este formulario y cualquier comprobante que necesite. Necesitará una <a href=\"https://epass.nc.gov/nfridp/qa\" target=\"_blank\">cuenta mejorada</a> (enhanced account) para enviar estos documentos a través de ePASS."
+        online_county: "En lugar de usar ePASS, también puede enviar este formulario y los comprobantes a la oficina de SNAP de su condado: %{website}"
+        online_county_with_email: "o por correo electrónico a %{email}"
+        mail_label: "Por correo físico:"
+        mail_instructions: "Envíe su formulario y cualquier comprobante necesario a:"
+        in_person_label: "En persona:"
+        in_person_instructions: "Imprima su formulario y llévelo junto con los comprobantes necesarios a una oficina local:"
+        questions_intro: "Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:"
+        check_website: "Revise la información en su sitio web %{website}"
+        email_office: "Envíe un correo electrónico a: %{email}"
+        call_office: "Llame al: %{phone}"
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"

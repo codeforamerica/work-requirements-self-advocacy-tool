@@ -2,45 +2,40 @@
 <hr style="border: none; border-top: 2px solid #034E46; margin: 0;">
 
 <p>
-  Hi <%= @screener.first_name %> <%= @screener.last_name %>,
+  <%= t('views.screener_mailer.send_screener_results.greeting', first_name: @screener.first_name, last_name: @screener.last_name) %>
 </p>
 
 <p>
-  Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
+  <%= t('views.screener_mailer.send_screener_results.attachment_notice') %>
 </p>
 
 <hr style="border: none; border-top: 1px solid #C6C6C6; margin: 0;">
 
 <h2 style="font-weight: bold;">
-  Next step: Send this form to your SNAP agency.
+  <%= t('views.screener_mailer.send_screener_results.next_step_heading') %>
 </h2>
 <p>
-  Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn’t
-  apply to you.
+  <%= t('views.screener_mailer.send_screener_results.next_step_instructions') %>
 </p>
 <p>
-  Your document reference code: <%= @screener.confirmation_code %>
+  <%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
 </p>
 
 <hr style="border: none; border-top: 1px solid #C6C6C6; margin: 0;">
 
 <h3 style="font-weight: bold;">
-  How to submit your form
+  <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 </h3>
 
 <ol style="line-height: 2;">
   <li>
-    <strong>Online:</strong> If you already receive SNAP benefits, you can use
-    <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any
-    proof you may need. You will need to have an
-    <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
+    <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t('views.screener_mailer.send_screener_results.online_epass_html').html_safe %>
     <br/><br/>
-    Instead of using ePASS, you can submit this form and any proof to your county’s SNAP
-    office <%= @county_data[:website] %><%= "or by emailing #{@county_data[:email]}" if @county_data[:email].present? %>.
+    <%= t('views.screener_mailer.send_screener_results.online_county', website: @county_data[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: @county_data[:email]) if @county_data[:email].present? %>.
   </li>
   </li>
   <li>
-    <strong>Mail:</strong> Send your form and any proof you may need.
+    <strong><%= t('views.screener_mailer.send_screener_results.mail_label') %></strong> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
     <br/><br/>
     <div style="font-style: italic;">
       <% @county_data[:mailing_address].split("\n").map do |line| %>
@@ -50,7 +45,7 @@
     </div>
   </li>
   <li>
-    <strong>In person:</strong> Print your form and bring it and any proof you may need to a local office.
+    <strong><%= t('views.screener_mailer.send_screener_results.in_person_label') %></strong> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
     <br/><br/>
     <div style="font-style: italic;">
       <% @county_data[:physical_address].split("\n").map do |line| %>
@@ -62,16 +57,15 @@
 </ol>
 
 <p>
-  If you have questions, or to find out if there are other ways to submit your form, you can contact your county’s
-  social services office.
+  <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
 </p>
 
 <ul style="line-height: 2;">
-  <li>Check for information on their website <%= @county_data[:website] %>,</li>
+  <li><%= t('views.screener_mailer.send_screener_results.check_website', website: @county_data[:website]) %></li>
   <% if @county_data[:email].present? %>
     <li>
-      Email the office at <%= @county_data[:email] %>,
+      <%= t('views.screener_mailer.send_screener_results.email_office', email: @county_data[:email]) %>
     </li>
   <% end %>
-  <li>Call the office at <%= @county_data[:phone] %>.</li>
+  <li><%= t('views.screener_mailer.send_screener_results.call_office', phone: @county_data[:phone]) %></li>
 </ul>

@@ -293,6 +293,27 @@ en:
       edit:
         help_text: Also select "Yes" if you know you are eligible for Indian Health Services.
         title: Are you an American Indian, or the child or grandchild of an American Indian?
+    screener_mailer:
+      send_screener_results:
+        subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
+        greeting: "Hi %{first_name} %{last_name},"
+        attachment_notice: Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
+        next_step_heading: "Next step: Send this form to your SNAP agency."
+        next_step_instructions: Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn't apply to you.
+        reference_code: "Your document reference code: %{code}"
+        how_to_submit_heading: How to submit your form
+        online_label: "Online:"
+        online_epass_html: "If you already receive SNAP benefits, you can use <a href=\"https://epass.nc.gov/signuphomepage\" target=\"_blank\">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href=\"https://epass.nc.gov/nfridp/qa\" target=\"_blank\">enhanced account</a> to submit these documents using ePASS."
+        online_county: "Instead of using ePASS, you can submit this form and any proof to your county's SNAP office %{website}"
+        online_county_with_email: "or by emailing %{email}"
+        mail_label: "Mail:"
+        mail_instructions: Send your form and any proof you may need.
+        in_person_label: "In person:"
+        in_person_instructions: Print your form and bring it and any proof you may need to a local office.
+        questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
+        check_website: "Check for information on their website %{website},"
+        email_office: "Email the office at %{email},"
+        call_office: "Call the office at %{phone}."
     unemployment:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
