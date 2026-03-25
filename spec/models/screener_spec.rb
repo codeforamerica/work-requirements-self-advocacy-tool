@@ -12,7 +12,7 @@ RSpec.describe Screener, type: :model do
         [:school_enrollment, :is_student]
       ].each do |controller, column|
         it "requires answer to be yes or no in context #{controller}" do
-          screener = build(:screener,column => "unfilled")
+          screener = build(:screener, column => "unfilled")
           screener.valid?(controller)
 
           expect(screener.errors).to match_array ["#{column.to_s.humanize} #{I18n.t("validations.must_answer_yes_or_no")}"]
@@ -23,8 +23,7 @@ RSpec.describe Screener, type: :model do
     context "with_context :location" do
       it "must have a valid state and county combination" do
         screener = build(:screener,
-          state: "NC"
-        )
+          state: "NC")
 
         screener.valid?(:location)
         expect(screener.errors[:state]).to be_empty
@@ -54,7 +53,7 @@ RSpec.describe Screener, type: :model do
 
     context "with_context :date_of_birth" do
       it "requires birth date" do
-        screener = build(:screener,birth_date: nil)
+        screener = build(:screener, birth_date: nil)
         screener.valid?(:date_of_birth)
 
         expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
@@ -63,7 +62,7 @@ RSpec.describe Screener, type: :model do
 
     context "with_context :basic_info_details" do
       it "requires first name and last name" do
-        screener = build(:screener,first_name: nil, last_name: nil)
+        screener = build(:screener, first_name: nil, last_name: nil)
         screener.valid?(:basic_info_details)
 
         expect(screener.errors).to match_array [
@@ -74,20 +73,20 @@ RSpec.describe Screener, type: :model do
 
       it "requires the phone number to be valid" do
         ["123", "55-111-2222"].each do |phone_number|
-          screener = build(:screener,first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: phone_number)
+          screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: phone_number)
           screener.valid?(:basic_info_details)
 
           expect(screener.errors).to match_array ["Phone number is invalid"]
         end
 
-        screener = build(:screener,first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
+        screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
         expect(screener.valid?(:basic_info_details)).to eq true
       end
     end
 
     context "with_context :pregnancy" do
       it "requires a due date in the future" do
-        screener = build(:screener,is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
+        screener = build(:screener, is_pregnant: "yes", pregnancy_due_date: Time.now - 2.months)
 
         screener.valid?(:pregnancy)
         expect(screener.errors[:pregnancy_due_date]).to eq [I18n.t("validations.date_must_be_in_future")]
@@ -99,7 +98,7 @@ RSpec.describe Screener, type: :model do
 
     context "with_context :caring_for_someone" do
       it "can have both types of dependents" do
-        screener = build(:screener,caring_for_child_under_6: "yes", caring_for_disabled_or_ill_person: "yes")
+        screener = build(:screener, caring_for_child_under_6: "yes", caring_for_disabled_or_ill_person: "yes")
         expect(screener.valid?(:caring_for_someone)).to eq true
       end
 
@@ -107,8 +106,7 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener,
           caring_for_child_under_6: "no",
           caring_for_disabled_or_ill_person: "yes",
-          caring_for_no_one: "yes"
-        )
+          caring_for_no_one: "yes")
         screener.valid?(:caring_for_someone)
 
         expect(screener.errors[:caring_for_no_one]).to be_present
@@ -116,8 +114,7 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener,
           caring_for_child_under_6: "yes",
           caring_for_disabled_or_ill_person: "no",
-          caring_for_no_one: "yes"
-        )
+          caring_for_no_one: "yes")
         screener.valid?(:caring_for_someone)
 
         expect(screener.errors[:caring_for_no_one]).to be_present
@@ -125,8 +122,7 @@ RSpec.describe Screener, type: :model do
 
       it "must not have value longer than CaringForSomeoneController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
-          additional_care_info: "This is just a test value."
-        )
+          additional_care_info: "This is just a test value.")
         # Valid value that is not too long
         expect(screener.valid?(:additional_care_info)).to eq true
 
@@ -150,8 +146,7 @@ RSpec.describe Screener, type: :model do
           receiving_benefits_workers_compensation: "no",
           receiving_benefits_insurance_payments: "yes",
           receiving_benefits_other: "no",
-          receiving_benefits_none: "yes"
-        )
+          receiving_benefits_none: "yes")
 
         screener.valid?(:disability_benefits)
         expect(screener.errors[:receiving_benefits_none]).to be_present
@@ -172,8 +167,7 @@ RSpec.describe Screener, type: :model do
       it "can only have a write-in answer if 'other' is checked" do
         screener = build(:screener,
           receiving_benefits_other: "no",
-          receiving_benefits_write_in: "a different benefit"
-        )
+          receiving_benefits_write_in: "a different benefit")
 
         screener.valid?(:disability_benefits)
         expect(screener.errors[:receiving_benefits_write_in]).to be_present
@@ -194,8 +188,7 @@ RSpec.describe Screener, type: :model do
           preventing_work_domestic_violence: "no",
           preventing_work_medical_condition: "no",
           preventing_work_other: "no",
-          preventing_work_none: "yes"
-        )
+          preventing_work_none: "yes")
 
         screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_none]).to be_present
@@ -215,8 +208,7 @@ RSpec.describe Screener, type: :model do
       it "can only have a write-in answer if 'other' is checked" do
         screener = build(:screener,
           preventing_work_other: "no",
-          preventing_work_write_in: "some other reason"
-        )
+          preventing_work_write_in: "some other reason")
 
         screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_write_in]).to be_present
@@ -231,21 +223,21 @@ RSpec.describe Screener, type: :model do
 
     context "with_context :basic_info_email" do
       it "requires a valid email" do
-        screener = build(:screener,email: "hi.gmail", email_confirmation: "hi.gmail")
+        screener = build(:screener, email: "hi.gmail", email_confirmation: "hi.gmail")
         screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array ["Email is invalid"]
       end
 
       it "requires a confirmed email" do
-        screener = build(:screener,email: "anisha@example.com", email_confirmation: "jenny@example.com")
+        screener = build(:screener, email: "anisha@example.com", email_confirmation: "jenny@example.com")
         screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
       end
 
       it "removed white spaces from the email and confirmation" do
-        screener = build(:screener,email: "anisha@example.com ", email_confirmation: " anisha@example.com")
+        screener = build(:screener, email: "anisha@example.com ", email_confirmation: " anisha@example.com")
         screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array []
@@ -254,31 +246,31 @@ RSpec.describe Screener, type: :model do
 
     context "with_context :basic_info_ssn" do
       it "allows valid last 4 digits of ssn" do
-        screener = build(:screener,ssn_last_four: "1234")
+        screener = build(:screener, ssn_last_four: "1234")
         screener.valid?(:basic_info_ssn)
 
         expect(screener.errors[:ssn_last_four]).to_not be_present
       end
 
       it "allows empty last 4 digits of ssn" do
-        screener = build(:screener,ssn_last_four: "")
+        screener = build(:screener, ssn_last_four: "")
         screener.valid?(:basic_info_ssn)
 
         expect(screener.errors[:ssn_last_four]).to_not be_present
       end
 
       it "requires valid last 4 digits of ssn" do
-        screener = build(:screener,ssn_last_four: "abc")
+        screener = build(:screener, ssn_last_four: "abc")
         screener.valid?(:basic_info_ssn)
 
         expect(screener.errors[:ssn_last_four]).to be_present
 
-        screener = build(:screener,ssn_last_four: "12de")
+        screener = build(:screener, ssn_last_four: "12de")
         screener.valid?(:basic_info_ssn)
 
         expect(screener.errors[:ssn_last_four]).to be_present
 
-        screener = build(:screener,ssn_last_four: "123-12-1234")
+        screener = build(:screener, ssn_last_four: "123-12-1234")
         screener.valid?(:basic_info_ssn)
 
         expect(screener.errors[:ssn_last_four]).to be_present
@@ -288,8 +280,7 @@ RSpec.describe Screener, type: :model do
     context "with_context :preventing_work_details" do
       it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
-          preventing_work_additional_info: "This is just a test value."
-        )
+          preventing_work_additional_info: "This is just a test value.")
 
         # Valid value that is not too long
         screener.valid?(:preventing_work_details)
@@ -312,8 +303,7 @@ RSpec.describe Screener, type: :model do
         screener = create(:screener,
           caring_for_child_under_6: "yes",
           caring_for_disabled_or_ill_person: "yes",
-          additional_care_info: "i care"
-        )
+          additional_care_info: "i care")
 
         screener.update(caring_for_child_under_6: "no", caring_for_disabled_or_ill_person: "no")
 
@@ -323,7 +313,7 @@ RSpec.describe Screener, type: :model do
 
     context "pregnancy attributes" do
       it "clears the due date if is_pregnant changes to no" do
-        screener = create(:screener,is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
+        screener = create(:screener, is_pregnant: "yes", pregnancy_due_date: Date.new(2026, 4, 3))
 
         screener.update(is_pregnant: "no")
 
@@ -333,7 +323,7 @@ RSpec.describe Screener, type: :model do
 
     context "employment attributes" do
       it "clears the working_hours and working_weekly_earnings if is_working changes to no" do
-        screener = create(:screener,is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
+        screener = create(:screener, is_working: "yes", working_hours: 7, working_weekly_earnings: 105.50)
 
         screener.update(is_working: "no")
 
@@ -344,7 +334,7 @@ RSpec.describe Screener, type: :model do
 
     context "work training attributes" do
       it "clears the program hours and name if is_in_work_training changes to no" do
-        screener = create(:screener,is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
+        screener = create(:screener, is_in_work_training: "yes", work_training_hours: "4", work_training_name: "Choo choo")
 
         screener.update(is_in_work_training: "no")
         screener.reload
@@ -355,7 +345,7 @@ RSpec.describe Screener, type: :model do
 
     context "volunteer attributes" do
       it "clears the volunteering_hours and volunteering_org_name if is_volunteer changes to no" do
-        screener = create(:screener,is_volunteer: "yes", volunteering_hours: 7, volunteering_org_name: "cfa")
+        screener = create(:screener, is_volunteer: "yes", volunteering_hours: 7, volunteering_org_name: "cfa")
 
         screener.update(is_volunteer: "no")
 
@@ -366,7 +356,7 @@ RSpec.describe Screener, type: :model do
 
     context "alcohol treatment program attributes" do
       it "clears alcohol_treatment_program_name if is_in_alcohol_treatment_program changes to no" do
-        screener = create(:screener,is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "nvm")
+        screener = create(:screener, is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "nvm")
 
         screener.update(is_in_alcohol_treatment_program: "no")
 
@@ -378,8 +368,7 @@ RSpec.describe Screener, type: :model do
       it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
         screener = create(:screener,
           preventing_work_additional_info: "This is just a test value.",
-          preventing_work_drugs_alcohol: "yes"
-        )
+          preventing_work_drugs_alcohol: "yes")
 
         screener.update(preventing_work_none: "yes")
         screener.update(preventing_work_drugs_alcohol: "no")
@@ -394,8 +383,7 @@ RSpec.describe Screener, type: :model do
       it "clears county if state selected has no county information" do
         screener = create(:screener,
           state: "NC",
-          county: "Alleghany County"
-        )
+          county: "Alleghany County")
 
         screener.update(state: "NOT_LISTED")
 
@@ -408,88 +396,88 @@ RSpec.describe Screener, type: :model do
 
   describe "#age" do
     it "calculates age from birth_date and current date" do
-      screener = build(:screener,birth_date: Date.new(1990, 7, 13))
+      screener = build(:screener, birth_date: Date.new(1990, 7, 13))
       travel_to Date.new(2026, 1, 9) do
         expect(screener.age).to eq(35)
       end
     end
 
     it "accounts for birthday not yet passed this year" do
-      screener = build(:screener,birth_date: Date.new(1990, 7, 13))
+      screener = build(:screener, birth_date: Date.new(1990, 7, 13))
       travel_to Date.new(2026, 3, 1) do
         expect(screener.age).to eq(35)
       end
     end
 
     it "accounts for birthday already passed this year" do
-      screener = build(:screener,birth_date: Date.new(1990, 7, 13))
+      screener = build(:screener, birth_date: Date.new(1990, 7, 13))
       travel_to Date.new(2026, 8, 1) do
         expect(screener.age).to eq(36)
       end
     end
 
     it "handles leap year birthday on Feb 28 of a non-leap year (birthday considered passed)" do
-      screener = build(:screener,birth_date: Date.new(2000, 2, 29))
+      screener = build(:screener, birth_date: Date.new(2000, 2, 29))
       travel_to Date.new(2025, 2, 28) do
         expect(screener.age).to eq(25)
       end
     end
 
     it "handles leap year birthday on Feb 27 of a non-leap year (birthday not yet passed)" do
-      screener = build(:screener,birth_date: Date.new(2000, 2, 29))
+      screener = build(:screener, birth_date: Date.new(2000, 2, 29))
       travel_to Date.new(2025, 2, 27) do
         expect(screener.age).to eq(24)
       end
     end
 
     it "handles leap year birthday on Feb 29 of a leap year" do
-      screener = build(:screener,birth_date: Date.new(2000, 2, 29))
+      screener = build(:screener, birth_date: Date.new(2000, 2, 29))
       travel_to Date.new(2028, 2, 29) do
         expect(screener.age).to eq(28)
       end
     end
 
     it "handles leap year birthday on Feb 28 of a leap year (birthday not yet passed)" do
-      screener = build(:screener,birth_date: Date.new(2000, 2, 29))
+      screener = build(:screener, birth_date: Date.new(2000, 2, 29))
       travel_to Date.new(2028, 2, 28) do
         expect(screener.age).to eq(27)
       end
     end
 
     it "returns nil when birth_date is nil" do
-      screener = build(:screener,birth_date: nil)
+      screener = build(:screener, birth_date: nil)
       expect(screener.age).to be_nil
     end
   end
 
   describe "#age_qualified?" do
     it "returns true if age is 17 or younger" do
-      screener = build(:screener,birth_date: 17.years.ago.to_date + 1.day)
+      screener = build(:screener, birth_date: 17.years.ago.to_date + 1.day)
       expect(screener.age_qualified?).to eq true
     end
 
     it "returns false if age is 18" do
-      screener = build(:screener,birth_date: 18.years.ago.to_date)
+      screener = build(:screener, birth_date: 18.years.ago.to_date)
       expect(screener.age_qualified?).to eq false
     end
 
     it "returns false if age is 37" do
-      screener = build(:screener,birth_date: 37.years.ago.to_date)
+      screener = build(:screener, birth_date: 37.years.ago.to_date)
       expect(screener.age_qualified?).to eq false
     end
 
     it "returns false if age is 64" do
-      screener = build(:screener,birth_date: 64.years.ago.to_date + 1.day)
+      screener = build(:screener, birth_date: 64.years.ago.to_date + 1.day)
       expect(screener.age_qualified?).to eq false
     end
 
     it "returns true if age is 65" do
-      screener = build(:screener,birth_date: 65.years.ago.to_date)
+      screener = build(:screener, birth_date: 65.years.ago.to_date)
       expect(screener.age_qualified?).to eq true
     end
 
     it "returns false if birth_date is nil" do
-      screener = build(:screener,birth_date: nil)
+      screener = build(:screener, birth_date: nil)
       expect(screener.age_qualified?).to eq false
     end
   end
@@ -502,7 +490,7 @@ RSpec.describe Screener, type: :model do
 
     Screener::PREVENTING_WORK_ATTRIBUTES.each do |attr|
       it "returns true when #{attr} is yes" do
-        screener = build(:screener,attr => "yes")
+        screener = build(:screener, attr => "yes")
         expect(screener.any_preventing_work?).to be true
       end
     end
@@ -510,12 +498,12 @@ RSpec.describe Screener, type: :model do
 
   describe "#earnings_above_minimum?" do
     it "returns true when working_weekly_earnings >= 217.50" do
-      screener = build(:screener,working_weekly_earnings: 217.50)
+      screener = build(:screener, working_weekly_earnings: 217.50)
       expect(screener.earnings_above_minimum?).to be true
     end
 
     it "returns false when working_weekly_earnings < 217.50" do
-      screener = build(:screener,working_weekly_earnings: 217.49)
+      screener = build(:screener, working_weekly_earnings: 217.49)
       expect(screener.earnings_above_minimum?).to be false
     end
 
@@ -561,22 +549,22 @@ RSpec.describe Screener, type: :model do
 
   describe "#exempt_from_work_rules?" do
     it "returns true if age qualified (under 18)" do
-      screener = build(:screener,birth_date: 16.years.ago.to_date)
+      screener = build(:screener, birth_date: 16.years.ago.to_date)
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
     it "returns true if age qualified (65 or older)" do
-      screener = build(:screener,birth_date: 70.years.ago.to_date)
+      screener = build(:screener, birth_date: 70.years.ago.to_date)
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
     it "returns true if a non-working exemption attribute is yes" do
-      screener = build(:screener,is_student: "yes")
+      screener = build(:screener, is_student: "yes")
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
     it "returns true if working exemption meets thresholds" do
-      screener = build(:screener,is_working: "yes", working_hours: 35)
+      screener = build(:screener, is_working: "yes", working_hours: 35)
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
@@ -584,8 +572,7 @@ RSpec.describe Screener, type: :model do
       screener = build(:screener,
         birth_date: 30.years.ago.to_date,
         is_working: "no",
-        is_student: "no"
-      )
+        is_student: "no")
 
       expect(screener.exempt_from_work_rules?).to eq false
     end
@@ -599,7 +586,7 @@ RSpec.describe Screener, type: :model do
 
     Screener::DISABILITY_BENEFIT_ATTRIBUTES.each do |benefit|
       it "returns true when #{benefit} is yes" do
-        screener = build(:screener,benefit => "yes")
+        screener = build(:screener, benefit => "yes")
         expect(screener.receiving_disability_benefits?).to be true
       end
     end
@@ -612,29 +599,29 @@ RSpec.describe Screener, type: :model do
     end
 
     it "returns false when volunteering_hours is 0" do
-      screener = build(:screener,volunteering_hours: 0)
+      screener = build(:screener, volunteering_hours: 0)
       expect(screener.volunteering?).to be false
     end
 
     it "returns true when is_volunteer is yes and volunteering_hours is greater than 0" do
-      screener = build(:screener,is_volunteer: "yes", volunteering_hours: 1)
+      screener = build(:screener, is_volunteer: "yes", volunteering_hours: 1)
       expect(screener.volunteering?).to be true
     end
 
     it "returns false when is_volunteer is no even with volunteering_hours" do
-      screener = build(:screener,is_volunteer: "no", volunteering_hours: 5)
+      screener = build(:screener, is_volunteer: "no", volunteering_hours: 5)
       expect(screener.volunteering?).to be false
     end
   end
 
   describe "#working_30_or_more_hours?" do
     it "returns true when working_hours >= 30" do
-      screener = build(:screener,working_hours: 30)
+      screener = build(:screener, working_hours: 30)
       expect(screener.working_30_or_more_hours?).to be true
     end
 
     it "returns false when working_hours < 30" do
-      screener = build(:screener,working_hours: 29)
+      screener = build(:screener, working_hours: 29)
       expect(screener.working_30_or_more_hours?).to be false
     end
 
@@ -646,22 +633,22 @@ RSpec.describe Screener, type: :model do
 
   describe "#working_exempt?" do
     it "returns true if working 30 or more hours" do
-      screener = build(:screener,is_working: "yes", working_hours: 30)
+      screener = build(:screener, is_working: "yes", working_hours: 30)
       expect(screener.working_exempt?).to eq true
     end
 
     it "returns true if earning at least 217.50 weekly" do
-      screener = build(:screener,is_working: "yes", working_weekly_earnings: 217.50)
+      screener = build(:screener, is_working: "yes", working_weekly_earnings: 217.50)
       expect(screener.working_exempt?).to eq true
     end
 
     it "returns false if working but under both thresholds" do
-      screener = build(:screener,is_working: "yes", working_hours: 10, working_weekly_earnings: 100)
+      screener = build(:screener, is_working: "yes", working_hours: 10, working_weekly_earnings: 100)
       expect(screener.working_exempt?).to eq false
     end
 
     it "returns false if not working" do
-      screener = build(:screener,is_working: "no")
+      screener = build(:screener, is_working: "no")
       expect(screener.working_exempt?).to eq false
     end
   end
