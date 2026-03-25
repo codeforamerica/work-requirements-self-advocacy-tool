@@ -1,4 +1,4 @@
-<%= image_tag "download.svg", class: "illustration left-justified spacing-above-60" %>
+<%= image_tag "download.svg", class: "illustration left-justified spacing-above-35" %>
 <% has_email = @current_screener.email.present? %>
 <% if has_email %>
   <% content_for :question_title, t("views.download_form.edit.title_sent", email: @current_screener.email) %>
@@ -11,17 +11,33 @@
 
 <% unless has_email %>
   <div>
-    <%= link_to("/download-form", class: "button button--primary") do %>
+    <%= link_to("/download-form", class: "button button--primary spacing-below-0") do %>
       <i class="button__icon--left icon-get_app"></i>
       <%= t("views.download_form.edit.download_form") %>
     <% end %>
   </div>
+  <hr class="spacing-above-35 spacing-below-35"/>
   <div>
-    <%= link_to("/basic-info-email", class: "button button--primary") do %>
+    <p><%= t("views.download_form.edit.add_email_guidance_html") %></p>
+    <ul>
+      <li>
+        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_1") %>
+      </li>
+      <li>
+        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_2") %>
+      </li>
+      <li>
+        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_3") %>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <%= link_to("/basic-info-email", class: "button button--primary spacing-below-0") do %>
       <i class="button__icon--left icon-markunread"></i>
       <%= t("views.download_form.edit.email_pdf") %>
     <% end %>
   </div>
+  <hr class="spacing-above-35"/>
 <% end %>
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
@@ -69,12 +85,15 @@
 <% end %>
 
 <% if has_email %>
+  <hr class="spacing-above-35 spacing-below-35"/>
+  <p><%= t("views.download_form.edit.download_guidance_html") %></p>
   <%= link_to(
         "/download-form",
-        class: "button button--primary") do %>
+        class: "button button--primary spacing-below-0") do %>
     <i class="button__icon--left icon-get_app"></i>
     <%= t("views.download_form.edit.download_form") %>
   <% end %>
+  <hr class="spacing-above-35"/>
 <% end %>
 
 <div>

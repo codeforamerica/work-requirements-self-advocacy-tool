@@ -118,6 +118,11 @@ es:
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     download_form:
       edit:
+        download_guidance_html: "<strong>Didn’t get the email?</strong> Download a copy to your device."
+        add_email_guidance_html: "Want helpful info in your inbox? Add your email to get:"
+        email_benefit_1: A copy for your records
+        email_benefit_2: Step-by-step guidance
+        email_benefit_3: A list of proof to submit
         download_form: Descargar formulario
         email_pdf: Enviar copia al correo electrónico
         expectation_1: Su oficina de SNAP puede llamarlo o enviarle un aviso por correo si necesita más información.
