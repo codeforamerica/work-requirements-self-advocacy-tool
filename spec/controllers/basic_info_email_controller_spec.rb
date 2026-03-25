@@ -75,4 +75,12 @@ RSpec.describe BasicInfoEmailController, type: :controller do
       end
     end
   end
+
+  it "adds the confirmation code" do
+    expect(screener.confirmation_code).to be_nil
+
+    post :update, params: {screener: {email: "boop@example.com ", email_confirmation: "boop@example.com"}}
+
+    expect(screener.reload.confirmation_code).to be_present
+  end
 end
