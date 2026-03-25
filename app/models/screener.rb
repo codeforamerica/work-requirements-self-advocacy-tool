@@ -172,7 +172,7 @@ class Screener < ApplicationRecord
 
   with_context :basic_info_email do
     validates :email, "valid_email_2/email": true, confirmation: true
-    validates :email, presence: true, if: -> { ActiveModel::Type::Boolean.new.cast(from_download_form) }
+    validates :email, presence: true, if: -> { from_download_form }
   end
 
   with_context :basic_info_ssn do
