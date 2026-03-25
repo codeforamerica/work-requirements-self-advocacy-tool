@@ -1,1 +1,35 @@
-Submit this form and any proof you need to your SNAP agency to tell them that the work rules don’t apply to you.
+<%= t('views.screener_mailer.send_screener_results.greeting', first_name: @screener.first_name, last_name: @screener.last_name) %>
+
+<%= t('views.screener_mailer.send_screener_results.attachment_notice') %>
+
+---
+
+<%= t('views.screener_mailer.send_screener_results.next_step_heading') %>
+
+<%= t('views.screener_mailer.send_screener_results.next_step_instructions') %>
+
+<%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
+
+---
+
+<%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
+
+1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
+
+   <%= t('views.screener_mailer.send_screener_results.online_county', website: @county_data[:website]) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: @county_data[:email])}" if @county_data[:email].present? %>.
+
+2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
+
+   <%= @county_data[:mailing_address].split("\n").join("\n   ") %>
+
+3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
+
+   <%= @county_data[:physical_address].split("\n").join("\n   ") %>
+
+<%= t('views.screener_mailer.send_screener_results.questions_intro') %>
+
+- <%= t('views.screener_mailer.send_screener_results.check_website', website: @county_data[:website]) %>
+<% if @county_data[:email].present? %>
+- <%= t('views.screener_mailer.send_screener_results.email_office', email: @county_data[:email]) %>
+<% end %>
+- <%= t('views.screener_mailer.send_screener_results.call_office', phone: @county_data[:phone]) %>

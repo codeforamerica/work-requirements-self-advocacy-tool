@@ -42,6 +42,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_20_184649) do
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
     t.string "case_number"
+    t.string "confirmation_code"
     t.integer "consented_to_texts", default: 0, null: false
     t.string "county"
     t.datetime "created_at", null: false
