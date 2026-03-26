@@ -66,7 +66,8 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.errors).to match_array [
           "First name can't be blank",
-          "Last name can't be blank"
+          "Last name can't be blank",
+          "Birth date Date is missing or invalid"
         ]
       end
 
