@@ -262,4 +262,17 @@ class Screener < ApplicationRecord
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
   end
+
+  with_context :employment do
+    validates :working_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :working_weekly_earnings, numericality: {only_decimal: true}, allow_blank: true
+  end
+
+  with_context :community_service do
+    validates :volunteering_hours, numericality: {only_integer: true}, allow_blank: true
+  end
+
+  with_context :training_program do
+    validates :work_training_hours, numericality: {only_integer: true}, allow_blank: true
+  end
 end
