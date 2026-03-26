@@ -43,7 +43,7 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
         birth_date_year: "1973"
       }
 
-      post :update, params: { screener: params }
+      post :update, params: {screener: params}
       expect(response).to render_template(:edit)
       screener.reload
 
