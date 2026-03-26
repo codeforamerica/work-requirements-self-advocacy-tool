@@ -29,6 +29,11 @@ en:
     date_missing_or_invalid: Date is missing or invalid
     date_must_be_in_future: Date must be in the future
     must_answer_yes_or_no: Must answer yes or no
+    first_name_required: Enter a first name
+    last_name_required: Enter a last name
+    email_invalid: "Make sure the email address is valid and follows this format: name@email.com"
+    email_confirmation_required: "Make sure the email address is valid and follows this format: name@email.com"
+    email_must_match: Email addresses must match
   views:
     alcohol_treatment_program:
       edit:

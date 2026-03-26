@@ -71,7 +71,6 @@ class Screener < ApplicationRecord
     preventing_work_other
   ].freeze
 
-  # TODO: Homeschooling and 5 year work eligibility for NC
   def exempt_from_work_rules?
     return true if age_qualified?
 
@@ -105,20 +104,21 @@ class Screener < ApplicationRecord
   end
 
   with_context :date_of_birth do
-    validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
+    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
 
   with_context :basic_info_details do
-    validates :first_name, :last_name, presence: true
+    validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
+    validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
   end
 
   with_context :american_indian do
-    validates :is_american_indian, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :living_with_someone do
-    validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :has_child, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :caring_for_someone do
@@ -127,11 +127,16 @@ class Screener < ApplicationRecord
   end
 
   with_context :pregnancy do
-    validates :pregnancy_due_date, comparison: {greater_than: Date.current, message: I18n.t("validations.date_must_be_in_future")}, allow_blank: true
+    validates :pregnancy_due_date,
+      comparison: {
+        greater_than: Date.current,
+        message: ->(*) { I18n.t("validations.date_must_be_in_future") }
+      },
+      allow_blank: true
   end
 
   with_context :unemployment do
-    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :disability_benefits do
@@ -150,7 +155,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :school_enrollment do
-    validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :is_student, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :preventing_work_situations do
@@ -170,7 +175,21 @@ class Screener < ApplicationRecord
   end
 
   with_context :basic_info_email do
-    validates :email, "valid_email_2/email": true, confirmation: true
+    validates :email,
+      "valid_email_2/email": {
+        message: ->(*) { I18n.t("validations.email_invalid") }
+      }
+
+    validates :email_confirmation,
+      presence: {
+        message: ->(*) { I18n.t("validations.email_confirmation_required") }
+      }
+
+    validates :email,
+      confirmation: {
+        message: ->(*) { I18n.t("validations.email_must_match") }
+      },
+      if: -> { email_confirmation.present? }
   end
 
   with_context :basic_info_ssn do
