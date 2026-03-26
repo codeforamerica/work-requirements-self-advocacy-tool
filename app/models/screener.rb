@@ -71,6 +71,7 @@ class Screener < ApplicationRecord
     preventing_work_other
   ].freeze
 
+  # TODO: Homeschooling and 5 year work eligibility for NC
   def exempt_from_work_rules?
     return true if age_qualified?
 
