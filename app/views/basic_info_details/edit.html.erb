@@ -47,31 +47,31 @@
   document.addEventListener("turbo:load", function () {
     const phoneInput = document.querySelector("input[name*='phone_number']");
     if (!phoneInput) return;
-    
+
     phoneInput.addEventListener("input", function (e) {
       let cursorPos = e.target.selectionStart;
       let originalLength = e.target.value.length;
 
-      // Keep only digits and limit to 10
+      // Only digits (ignore existing formatting)
       let digits = e.target.value.replace(/\D/g, "").slice(0, 10);
 
       // Format as (XXX) XXX-XXXX
-      let formatted;
+      let formatted = "";
       if (digits.length > 6) {
         formatted = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
       } else if (digits.length > 3) {
         formatted = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
       } else if (digits.length > 0) {
         formatted = `(${digits}`;
-      } else {
-        formatted = "";
       }
 
       e.target.value = formatted;
 
-      // Adjust cursor so it doesn't jump
+      // Adjust cursor to the nearest valid position
       let newLength = formatted.length;
       cursorPos += newLength - originalLength;
+      if (cursorPos < 0) cursorPos = 0;
+      if (cursorPos > newLength) cursorPos = newLength;
       e.target.setSelectionRange(cursorPos, cursorPos);
     });
   });
