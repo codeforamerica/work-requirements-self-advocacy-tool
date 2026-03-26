@@ -129,6 +129,7 @@ class Screener < ApplicationRecord
   end
 
   DISABILITY_BENEFIT_ATTRIBUTES = %i[
+    receiving_benefits_disability_medicaid
     receiving_benefits_disability_pension
     receiving_benefits_insurance_payments
     receiving_benefits_other
@@ -146,7 +147,7 @@ class Screener < ApplicationRecord
     preventing_work_place_to_sleep
   ].freeze
 
-  ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
+  OTHER_EXEMPTION_ATTRIBUTES = %i[
     caring_for_child_under_6
     caring_for_disabled_or_ill_person
     has_child
@@ -157,20 +158,9 @@ class Screener < ApplicationRecord
     is_pregnant
     is_student
     is_working
-    preventing_work_domestic_violence
-    preventing_work_drugs_alcohol
-    preventing_work_medical_condition
-    preventing_work_other
-    preventing_work_place_to_sleep
-    receiving_benefits_disability_medicaid
-    receiving_benefits_disability_pension
-    receiving_benefits_insurance_payments
-    receiving_benefits_other
-    receiving_benefits_ssdi
-    receiving_benefits_ssi
-    receiving_benefits_veterans_disability
-    receiving_benefits_workers_compensation
   ].freeze
+
+  ELIGIBILITY_EXEMPTION_ATTRIBUTES = DISABILITY_BENEFIT_ATTRIBUTES + PREVENTING_WORK_ATTRIBUTES + OTHER_EXEMPTION_ATTRIBUTES
 
   def age
     return nil unless birth_date
