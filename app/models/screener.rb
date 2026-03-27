@@ -111,8 +111,8 @@ class Screener < ApplicationRecord
   with_context :basic_info_details do
     validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
     validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
-    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
-    validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
+    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
+    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
 
   with_context :american_indian do
@@ -285,15 +285,15 @@ class Screener < ApplicationRecord
   end
 
   with_context :employment do
-    validates :working_hours, numericality: {only_integer: true}, allow_blank: true
-    validates :working_weekly_earnings, numericality: {only_decimal: true}, allow_blank: true
+    validates :working_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :working_weekly_earnings, numericality: {only_decimal: true, message: ->(*) { I18n.t("validations.amount_invalid") }}, allow_blank: true
   end
 
   with_context :community_service do
-    validates :volunteering_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :volunteering_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
   end
 
   with_context :training_program do
-    validates :work_training_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :work_training_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
   end
 end
