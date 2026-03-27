@@ -12,7 +12,7 @@ Grover.configure do |config|
   if chrome_path.present?
     config.options = {
       executable_path: chrome_path,
-      no_sandbox: true
+      launch_args: ["--no-sandbox", "--disable-setuid-sandbox"]
     }
   end
 end
