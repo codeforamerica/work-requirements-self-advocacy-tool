@@ -33,6 +33,24 @@ RSpec.describe CommunityServiceController, type: :controller do
         expect(screener.reload.volunteering_hours).to eq 1
         expect(screener.reload.volunteering_org_name).to eq "cfa"
       end
+
+      render_views
+
+      it "validation does not allow non-numerical values" do
+        screener = create(:screener)
+        sign_in screener
+
+        params = {
+          is_volunteer: "yes",
+          volunt: "6",
+          volunteering_hours: "not a valid number",
+          volunteering_org_name: "cfa"
+        }
+
+        post :update, params: {screener: params}
+        expect(response).to render_template :edit
+        expect(response.body).to have_text "is not a number"
+      end
     end
   end
 end
