@@ -33,7 +33,10 @@
             :working_weekly_earnings,
             t("views.employment.edit.working_weekly_earnings_label"),
             help_text: t("views.employment.edit.working_weekly_earnings_help_text"),
-            prefix: '$'
+            prefix: '$',
+            options: {
+              value: number_with_precision(f.object.working_weekly_earnings, precision: 2, strip_insignificant_zeros: false)
+            }
           ) %>
     </div>
   </div>

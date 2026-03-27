@@ -62,13 +62,14 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :basic_info_details" do
-      it "requires first name and last name" do
+      it "requires first name, last name, and birthday" do
         screener = build(:screener, first_name: nil, last_name: nil)
         screener.valid?(:basic_info_details)
 
         expect(screener.errors).to match_array [
           "First name can't be blank",
-          "Last name can't be blank"
+          "Last name can't be blank",
+          "Birth date Date is missing or invalid"
         ]
       end
 

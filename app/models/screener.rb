@@ -62,6 +62,7 @@ class Screener < ApplicationRecord
   with_context :basic_info_details do
     validates :first_name, :last_name, presence: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
+    validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
   end
 
   with_context :american_indian do
@@ -292,5 +293,18 @@ class Screener < ApplicationRecord
 
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
+  end
+
+  with_context :employment do
+    validates :working_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :working_weekly_earnings, numericality: {only_decimal: true}, allow_blank: true
+  end
+
+  with_context :community_service do
+    validates :volunteering_hours, numericality: {only_integer: true}, allow_blank: true
+  end
+
+  with_context :training_program do
+    validates :work_training_hours, numericality: {only_integer: true}, allow_blank: true
   end
 end
