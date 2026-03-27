@@ -73,7 +73,7 @@ RSpec.describe Screener, type: :model do
           screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: phone_number)
           screener.valid?(:basic_info_details)
 
-          expect(screener.errors).to match_array ["Phone number is invalid"]
+          expect(screener.errors[:phone_number]).to eq [I18n.t("validations.phone_invalid")]
         end
 
         screener = Screener.new(first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
