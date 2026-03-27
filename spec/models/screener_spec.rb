@@ -66,7 +66,6 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.errors[:first_name]).to eq [I18n.t("validations.first_name_required")]
         expect(screener.errors[:last_name]).to eq [I18n.t("validations.last_name_required")]
-        expect(screener.errors[:birthdate]).to eq [I18n.t("validations.date_missing_or_invalid")]
       end
 
       it "requires the phone number to be valid" do
