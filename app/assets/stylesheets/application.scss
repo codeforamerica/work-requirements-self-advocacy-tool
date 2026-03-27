@@ -169,3 +169,11 @@ i.no-button-cross {
   padding-right: 0;
 }
 
+.form-width--phone {
+  min-width: 9.5em;
+}
+
+.text-input-group .field_with_errors .form-width--phone.text-input {
+  padding-left: 0; 
+}
+
