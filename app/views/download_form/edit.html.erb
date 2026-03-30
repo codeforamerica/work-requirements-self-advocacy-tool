@@ -70,8 +70,9 @@
 <% if has_email %>
   <p><%= t("views.download_form.edit.download_guidance_html") %></p>
   <%= link_to(
-        "/download-form",
-        class: "button button--primary") do %>
+        generate_pdf_path,
+        class: "button button--primary",
+        target: "_blank") do %>
     <i class="button__icon--left icon-get_app"></i>
     <%= t("views.download_form.edit.download_form") %>
   <% end %>
@@ -89,4 +90,3 @@
 <div class="spacing-above-60">
   <%= render "shared/continue_button" %>
 </div>
-

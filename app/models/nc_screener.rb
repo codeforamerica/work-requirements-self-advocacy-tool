@@ -11,6 +11,16 @@ class NcScreener < ApplicationRecord
   before_save :remove_worked_last_five_years_if_has_diploma,
     :remove_homeschool_attributes_if_no
 
+  def at_least_55_no_diploma_not_working?
+    return false unless screener.age
+
+    screener.age >= 55 && has_hs_diploma_no? && worked_last_five_years_no?
+  end
+
+  def operating_homeschool_30_or_more_hours?
+    homeschool_hours.to_i >= 30
+  end
+
   private
 
   def remove_worked_last_five_years_if_has_diploma
