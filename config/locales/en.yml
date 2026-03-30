@@ -136,7 +136,7 @@ en:
         next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
         title: Download your form
         title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
-        title_sent: We sent your form to %{email}.
+        title_sent: We sent your form to %{email}
         what_to_expect: What to expect
     email:
       edit:

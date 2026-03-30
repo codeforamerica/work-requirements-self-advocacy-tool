@@ -136,7 +136,7 @@ es:
         next_steps_online_web_html: "<span><strong>Ir a:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
         title: Descargue  su formulario
         title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
-        title_sent: Hemos enviado su formulario a %{email}.
+        title_sent: Hemos enviado su formulario a %{email}
         what_to_expect: Lo que puede pasar
     email:
       edit:
