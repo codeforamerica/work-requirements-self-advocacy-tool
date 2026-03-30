@@ -45,55 +45,6 @@ class Screener < ApplicationRecord
     :remove_additional_care_info_if_caring_for_someone_is_no,
     :remove_county_if_state_does_not_require
 
-  ELIGIBILITY_EXEMPTION_ATTRIBUTES = %i[
-    is_american_indian
-    has_child
-    caring_for_child_under_6
-    caring_for_disabled_or_ill_person
-    is_pregnant
-    has_unemployment_benefits
-    receiving_benefits_ssdi
-    receiving_benefits_ssi
-    receiving_benefits_veterans_disability
-    receiving_benefits_workers_compensation
-    receiving_benefits_disability_pension
-    receiving_benefits_insurance_payments
-    receiving_benefits_disability_medicaid
-    receiving_benefits_other
-    is_working
-    is_migrant_farmworker
-    is_student
-    is_in_alcohol_treatment_program
-    preventing_work_place_to_sleep
-    preventing_work_drugs_alcohol
-    preventing_work_domestic_violence
-    preventing_work_medical_condition
-    preventing_work_other
-  ].freeze
-
-  # TODO: Homeschooling and 5 year work eligibility for NC
-  def exempt_from_work_rules?
-    return true if age_qualified?
-
-    ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
-      (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
-    end
-  end
-
-  def age_qualified?
-    return false unless birth_date
-
-    today = Date.current
-    age = today.year - birth_date.year
-    age -= 1 if today < birth_date + age.years
-
-    age <= 17 || age >= 65
-  end
-
-  def working_exempt?
-    is_working_yes? && (working_hours.to_i >= 30 || working_weekly_earnings.to_f >= 217.50)
-  end
-
   with_context :location do
     validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
 
@@ -178,41 +129,121 @@ class Screener < ApplicationRecord
     validates :ssn_last_four, format: {with: /\A\d{4}\z/}, allow_blank: true
   end
 
-  def full_name
-    [first_name, last_name].compact.join(" ")
+  DISABILITY_BENEFIT_ATTRIBUTES = %i[
+    receiving_benefits_disability_medicaid
+    receiving_benefits_disability_pension
+    receiving_benefits_insurance_payments
+    receiving_benefits_other
+    receiving_benefits_ssdi
+    receiving_benefits_ssi
+    receiving_benefits_veterans_disability
+    receiving_benefits_workers_compensation
+  ].freeze
+
+  PREVENTING_WORK_ATTRIBUTES = %i[
+    preventing_work_domestic_violence
+    preventing_work_drugs_alcohol
+    preventing_work_medical_condition
+    preventing_work_other
+    preventing_work_place_to_sleep
+  ].freeze
+
+  OTHER_EXEMPTION_ATTRIBUTES = %i[
+    caring_for_child_under_6
+    caring_for_disabled_or_ill_person
+    has_child
+    has_unemployment_benefits
+    is_american_indian
+    is_in_alcohol_treatment_program
+    is_migrant_farmworker
+    is_pregnant
+    is_student
+    is_working
+  ].freeze
+
+  ELIGIBILITY_EXEMPTION_ATTRIBUTES = DISABILITY_BENEFIT_ATTRIBUTES + PREVENTING_WORK_ATTRIBUTES + OTHER_EXEMPTION_ATTRIBUTES
+
+  def age
+    return nil unless birth_date
+    today = Date.current
+    a = today.year - birth_date.year
+    a -= 1 if today < birth_date + a.years
+    a
   end
 
-  def full_name_with_middle
-    [first_name, middle_name, last_name].compact.join(" ")
+  def age_qualified?
+    return false unless age
+    age <= 17 || age >= 65
   end
 
-  def birth_date_year
-    birth_date&.year
-  end
-
-  def birth_date_month
-    birth_date&.month
+  def any_preventing_work?
+    PREVENTING_WORK_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") }
   end
 
   def birth_date_day
     birth_date&.day
   end
 
-  def pregnancy_due_date_year
-    pregnancy_due_date&.year
+  def birth_date_month
+    birth_date&.month
   end
 
-  def pregnancy_due_date_month
-    pregnancy_due_date&.month
+  def birth_date_year
+    birth_date&.year
+  end
+
+  def earnings_above_minimum?
+    working_weekly_earnings.to_f >= 217.50
+  end
+
+  # TODO: Homeschooling and 5 year work eligibility for NC
+  def exempt_from_work_rules?
+    return true if age_qualified?
+
+    ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
+      (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
+    end
+  end
+
+  def full_name
+    [first_name, last_name].compact.join(" ")
+  end
+
+  def full_name_with_middle
+    [first_name, middle_name.presence, last_name].compact.join(" ")
   end
 
   def pregnancy_due_date_day
     pregnancy_due_date&.day
   end
 
+  def pregnancy_due_date_month
+    pregnancy_due_date&.month
+  end
+
+  def pregnancy_due_date_year
+    pregnancy_due_date&.year
+  end
+
+  def receiving_disability_benefits?
+    DISABILITY_BENEFIT_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") }
+  end
+
   def strip_email_and_confirmation
     self.email = email.strip.downcase if email.present?
     self.email_confirmation = email_confirmation.strip.downcase if email_confirmation.present?
+  end
+
+  def volunteering?
+    is_volunteer_yes? && volunteering_hours.to_i > 0
+  end
+
+  def working_30_or_more_hours?
+    working_hours.to_i >= 30
+  end
+
+  def working_exempt?
+    is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
   end
 
   private
