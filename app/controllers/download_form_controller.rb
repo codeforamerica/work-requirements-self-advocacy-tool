@@ -5,6 +5,10 @@ class DownloadFormController < QuestionController
 
   before_action :email_pdf
 
+  def show?(screener)
+    !!(screener&.exempt_from_work_rules? && super)
+  end
+
   def email_pdf
     return if current_screener.email.blank?
 
