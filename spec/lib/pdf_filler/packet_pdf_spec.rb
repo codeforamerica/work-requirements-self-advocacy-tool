@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe PdfFiller::PacketPdf do
   include ActiveSupport::Testing::TimeHelpers
 
+  let(:nc_screener) { create(:nc_screener) }
   let(:screener) do
     Screener.new(
       first_name: "Nigella",
@@ -12,7 +13,7 @@ RSpec.describe PdfFiller::PacketPdf do
       email: "nigella@example.com",
       phone_number: "9195551234",
       state: LocationData::States::NORTH_CAROLINA,
-      nc_screener: NcScreener.new
+      nc_screener: nc_screener
     )
   end
 
@@ -45,32 +46,47 @@ RSpec.describe PdfFiller::PacketPdf do
         end
       end
 
+      it "maps operating_a_homeschool from teaches_homeschool" do
+        nc_screener.teaches_homeschool = "yes"
+        expect(result[:operating_a_homeschool]).to be true
+      end
+
       it "maps string fields from screener" do
+        screener.additional_care_info = "Babysitting Paul Hollywood"
+        screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
+        screener.case_number = "543212345"
+        screener.confirmation_code = "ABQ39L"
+        nc_screener.homeschool_name = "Small Fry"
+        screener.preventing_work_write_in = "Back pain"
+        screener.receiving_benefits_write_in = "Other disability"
+        screener.ssn_last_four = "1111"
+        screener.volunteering_org_name = "Muffins for Mums"
         screener.work_training_name = "Bake Off Boot Camp"
         screener.work_training_hours = "25"
-        screener.receiving_benefits_write_in = "Other disability"
-        screener.volunteering_org_name = "Muffins for Mums"
-        screener.preventing_work_write_in = "Back pain"
-        screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
-        screener.additional_care_info = "Babysitting Paul Hollywood"
 
+        expect(result[:details_of_care]).to eq("Babysitting Paul Hollywood")
+        expect(result[:drug_alcohol_program_name]).to eq("Alcolisti Anonimi")
+        expect(result[:case_number]).to eq("543212345")
+        expect(result[:confirmation_code]).to eq("ABQ39L")
         expect(result[:email]).to eq("nigella@example.com")
+        expect(result[:homeschool_name]).to eq("Small Fry")
         expect(result[:phone_number]).to eq("(919) 555-1234")
+        expect(result[:preventing_work_write_in]).to eq("Back pain")
+        expect(result[:receiving_benefits_write_in]).to eq("Other disability")
+        expect(result[:ssn_last_4]).to eq("1111")
+        expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
         expect(result[:work_training_name]).to eq("Bake Off Boot Camp")
         expect(result[:work_training_hours]).to eq("25")
-        expect(result[:receiving_benefits_write_in]).to eq("Other disability")
-        expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
-        expect(result[:preventing_work_write_in]).to eq("Back pain")
-        expect(result[:drug_alcohol_program_name]).to eq("Alcolisti Anonimi")
-        expect(result[:details_of_care]).to eq("Babysitting Paul Hollywood")
       end
 
       it "maps date and numeric fields as strings" do
+        nc_screener.homeschool_hours = 20
         screener.pregnancy_due_date = Date.new(2026, 9, 15)
         screener.working_hours = 35
         screener.working_weekly_earnings = 250.00
 
         expect(result[:birth_date]).to eq("1990-07-13")
+        expect(result[:homeschool_hours]).to eq("20")
         expect(result[:pregnancy_due_date]).to eq("2026-09-15")
         expect(result[:work_hours]).to eq("35")
         expect(result[:earnings_per_week]).to eq("250.0")
@@ -88,7 +104,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
     describe "calculated fields" do
       it "delegates at_least_55_no_diploma_not_working to nc_screener" do
-        allow(screener.nc_screener).to receive(:at_least_55_no_diploma_not_working?).and_return(true)
+        allow(nc_screener).to receive(:at_least_55_no_diploma_not_working?).and_return(true)
         expect(result[:at_least_55_no_diploma_not_working]).to be true
       end
 
@@ -148,12 +164,14 @@ RSpec.describe PdfFiller::PacketPdf do
 
     it "delegates fields with helper methods to screener" do
       allow(screener).to receive(:full_name).and_return("Nigella Lawson")
+      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
       allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
       allow(screener).to receive(:working_30_or_more_hours?).and_return(true)
       allow(screener).to receive(:earnings_above_minimum?).and_return(false)
       allow(screener).to receive(:any_preventing_work?).and_return(true)
 
       expect(result[:full_name]).to eq("Nigella Lawson")
+      expect(result[:operating_homeschool_30_or_more_hours]).to be false
       expect(result[:receiving_disability_benefits]).to be true
       expect(result[:working_30_or_more_hours]).to be true
       expect(result[:earnings_above_minimum]).to be false

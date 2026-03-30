@@ -100,4 +100,21 @@ RSpec.describe NcScreener, type: :model do
       expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
     end
   end
+
+  describe "#operating_homeschool_30_or_more_hours?" do
+    it "returns true when homeschool_hours >= 30" do
+      nc_screener = build(:nc_screener, homeschool_hours: 30)
+      expect(nc_screener.operating_homeschool_30_or_more_hours?).to be true
+    end
+
+    it "returns false when homeschool_hours < 30" do
+      nc_screener = build(:nc_screener, homeschool_hours: 29)
+      expect(nc_screener.operating_homeschool_30_or_more_hours?).to be false
+    end
+
+    it "returns false when homeschool_hours is nil" do
+      nc_screener = build(:nc_screener)
+      expect(nc_screener.operating_homeschool_30_or_more_hours?).to be false
+    end
+  end
 end

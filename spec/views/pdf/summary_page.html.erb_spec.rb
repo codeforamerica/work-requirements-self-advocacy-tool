@@ -4,6 +4,7 @@ RSpec.describe "pdf/summary_page", type: :view do
   let(:default_locals) do
     {
       at_least_55_no_diploma_not_working: false,
+      operating_homeschool_30_or_more_hours: false,
       full_name: "Nelly Ghaffar",
       birth_date: "1990-07-13",
       caring_for_child_under_6: false,
@@ -90,6 +91,11 @@ RSpec.describe "pdf/summary_page", type: :view do
     it "shows earnings above minimum" do
       render_page(earnings_above_minimum: true)
       expect(rendered).to include("Earning at least $217.50 a week")
+    end
+
+    it "shows operating a homeschool 30 or more hours" do
+      render_page(operating_homeschool_30_or_more_hours: true)
+      expect(rendered).to include("Operating a home school for at least 30 hours a week")
     end
 
     it "only shows applicable bullets" do

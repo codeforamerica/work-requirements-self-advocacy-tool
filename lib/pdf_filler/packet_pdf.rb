@@ -2,23 +2,24 @@ module PdfFiller
   class PacketPdf
     def initialize(screener)
       @screener = screener
+      @nc_screener = screener.nc_screener
     end
 
     def hash_for_fillable_pdf
       shared_fields.merge(
         age: @screener.age.to_s,
-        # case_number: "",
-        # confirmation_code: "",
+        case_number: @screener.case_number,
+        confirmation_code: @screener.confirmation_code,
         details_of_care: @screener.additional_care_info,
         drug_alcohol_program_name: @screener.alcohol_treatment_program_name,
         earnings_per_week: @screener.working_weekly_earnings.to_s,
         email: @screener.email,
         full_name_with_middle: @screener.full_name_with_middle,
-        # homeschool_hours: "",
-        # homeschool_name: "",
+        homeschool_hours: @nc_screener.homeschool_hours.to_s,
+        homeschool_name: @nc_screener.homeschool_name,
         is_in_work_training: @screener.is_in_work_training_yes?,
         is_volunteering: @screener.volunteering?,
-        # operating_a_homeschool: "",
+        operating_a_homeschool: @nc_screener.teaches_homeschool_yes?,
         phone_number: @screener.phone_number,
         preventing_work_write_in: @screener.preventing_work_write_in,
         receiving_benefits_disability_medicaid: @screener.receiving_benefits_disability_medicaid_yes?,
@@ -32,7 +33,7 @@ module PdfFiller
         receiving_benefits_write_in: @screener.receiving_benefits_write_in,
         receiving_disabilty_benefits: @screener.receiving_disability_benefits?,
         signature: @screener.full_name_with_middle,
-        # ssn_last_4: "",
+        ssn_last_4: @screener.ssn_last_four,
         submission_date: submission_date,
         submission_date_2: submission_date,
         volunteering_hours: @screener.volunteering_hours.to_s,
@@ -48,6 +49,7 @@ module PdfFiller
         any_preventing_work: @screener.any_preventing_work?,
         earnings_above_minimum: @screener.earnings_above_minimum?,
         full_name: @screener.full_name,
+        operating_homeschool_30_or_more_hours: @nc_screener.operating_homeschool_30_or_more_hours?,
         receiving_disability_benefits: @screener.receiving_disability_benefits?,
         volunteering_hours: @screener.volunteering_hours.to_i,
         weekly_earnings: @screener.working_weekly_earnings.to_f,
