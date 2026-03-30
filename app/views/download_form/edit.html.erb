@@ -11,25 +11,10 @@
 
 <% unless has_email %>
   <div>
-    <%= link_to("/download-form", class: "button button--primary spacing-below-0") do %>
+    <%= link_to("/download-form", class: "button button--primary") do %>
       <i class="button__icon--left icon-get_app"></i>
       <%= t("views.download_form.edit.download_form") %>
     <% end %>
-  </div>
-  <hr class="spacing-above-35 spacing-below-35"/>
-  <div>
-    <p><%= t("views.download_form.edit.add_email_guidance_html") %></p>
-    <ul>
-      <li>
-        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_1") %>
-      </li>
-      <li>
-        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_2") %>
-      </li>
-      <li>
-        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_3") %>
-      </li>
-    </ul>
   </div>
   <div>
     <%= link_to("/basic-info-email?from_download_form=true", class: "button button--primary spacing-below-0") do %>
@@ -37,7 +22,6 @@
       <%= t("views.download_form.edit.email_pdf") %>
     <% end %>
   </div>
-  <hr class="spacing-above-35"/>
 <% end %>
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
@@ -52,23 +36,22 @@
     <% website = LocationData::Counties.website_for(@current_screener.state, @current_screener.county) %>
     <% upload_portal_or_email = LocationData::Counties.upload_portal_or_email_for(@current_screener.state, @current_screener.county) %>
 
-    <% if website.present? || upload_portal_or_email.present? %>
-      <li><%= t("views.download_form.edit.next_steps_online_html") %>
-        <ul class="list--bulleted">
-          <% if upload_portal_or_email.present? %>
-            <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
-            <% if is_email %>
-              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email)) %></li>
-            <% else %>
-              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
-            <% end %>
+    <li><%= t("views.download_form.edit.next_steps_online_html") %>
+      <ul class="list--bulleted">
+        <li class='spacing-above-15'><%= t("views.download_form.edit.nc_epass_html") %></li>
+        <% if upload_portal_or_email.present? %>
+          <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
+          <% if is_email %>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email)) %></li>
+          <% else %>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
           <% end %>
-          <% if website.present? && website != upload_portal_or_email %>
-            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: website) %></li>
-          <% end %>
-        </ul>
-      </li>
-    <% end %>
+        <% end %>
+        <% if website.present? && website != upload_portal_or_email %>
+          <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: website) %></li>
+        <% end %>
+      </ul>
+    </li>
 
     <% if (mailing_address = LocationData::Counties.mailing_address_for(@current_screener.state, @current_screener.county)).present? %>
       <li><%= t("views.download_form.edit.next_steps_mail_html", mailing_address: simple_format(mailing_address)) %></li>
@@ -80,20 +63,18 @@
 </div>
 
 <% if (phone = LocationData::Counties.phone_for(@current_screener.state, @current_screener.county)).present? %>
-  <p><strong><%= t("views.download_form.edit.have_questions") %></strong></p>
+  <p><%= t("views.download_form.edit.have_questions_html") %></p>
   <p><%= phone %></p>
 <% end %>
 
 <% if has_email %>
-  <hr class="spacing-above-35 spacing-below-35"/>
   <p><%= t("views.download_form.edit.download_guidance_html") %></p>
   <%= link_to(
         "/download-form",
-        class: "button button--primary spacing-below-0") do %>
+        class: "button button--primary") do %>
     <i class="button__icon--left icon-get_app"></i>
     <%= t("views.download_form.edit.download_form") %>
   <% end %>
-  <hr class="spacing-above-35"/>
 <% end %>
 
 <div>
