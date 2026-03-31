@@ -18,5 +18,23 @@ RSpec.describe EmploymentController, type: :controller do
       expect(screener.reload.working_hours).to eq 20
       expect(screener.reload.working_weekly_earnings).to eq 300.40
     end
+
+    render_views
+
+    it "validation does not allow non-numerical values" do
+      screener = create(:screener)
+      sign_in screener
+
+      params = {
+        is_working: "yes",
+        working_hours: "some words",
+        working_weekly_earnings: "some more words"
+      }
+
+      post :update, params: {screener: params}
+
+      expect(response).to render_template :edit
+      expect(response.body).to have_text "is not a number"
+    end
   end
 end

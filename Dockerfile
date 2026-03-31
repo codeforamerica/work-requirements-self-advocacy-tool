@@ -14,16 +14,18 @@ FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 # Rails app lives here
 WORKDIR /rails
 
-# Install base packages
+# Install base packages (including Chromium for PDF generation via Grover/Puppeteer)
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips postgresql-client && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips nodejs npm postgresql-client chromium && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development" \
+    PUPPETEER_SKIP_DOWNLOAD="true" \
+    PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
@@ -60,9 +62,6 @@ RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
-
-
-RUN rm -rf node_modules
 
 
 # Final stage for app image
