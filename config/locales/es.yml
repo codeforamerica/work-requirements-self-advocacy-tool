@@ -130,7 +130,7 @@ es:
         expectation_2: En algunos casos, es posible que tenga que enviar a su oficina más documentos (o documentos diferentes) que demuestren su situación, como, por ejemplo, comprobantes de pago o prueba de una condición médica.
         expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas [X] semanas.
         have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
-        how_to: "Cómo enviar su formulario a su oficina de SNAP:"
+        how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
         how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
         nc_epass_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
         next_steps_in_person_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
