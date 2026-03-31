@@ -130,20 +130,20 @@ class Screener < ApplicationRecord
 
   with_context :basic_info_email do
     validates :email,
-              "valid_email_2/email": { message: ->(*) { I18n.t("validations.email_invalid") } },
-              if: -> { email.present? }
+      "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
+      if: -> { email.present? }
 
     validates :email,
-              presence: { message: ->(*) { I18n.t("validations.email_invalid") } },
-              if: -> { from_download_form }
+      presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
+      if: -> { from_download_form }
 
     validates :email_confirmation,
-              presence: { message: ->(*) { I18n.t("validations.email_confirmation_required") } },
-              if: -> { from_download_form || email.present? }
+      presence: {message: ->(*) { I18n.t("validations.email_confirmation_required") }},
+      if: -> { from_download_form || email.present? }
 
     validates :email,
-              confirmation: { message: ->(*) { I18n.t("validations.email_must_match") } },
-              if: -> { email.present? || email_confirmation.present? }
+      confirmation: {message: ->(*) { I18n.t("validations.email_must_match") }},
+      if: -> { email.present? || email_confirmation.present? }
   end
 
   with_context :basic_info_ssn do
