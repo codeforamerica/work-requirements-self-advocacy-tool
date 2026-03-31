@@ -13,8 +13,7 @@ RSpec.describe PdfFiller::PacketPdf do
       email: "nigella@example.com",
       phone_number: "9195551234",
       state: LocationData::States::NORTH_CAROLINA,
-      nc_screener: nc_screener
-    )
+      nc_screener: nc_screener)
   end
 
   subject(:packet_pdf) { described_class.new(screener) }
