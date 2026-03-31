@@ -24,49 +24,51 @@
   </div>
 </div>
 
-<% if @current_screener.earnings_above_minimum? && !@current_screener.exempt_from_work_rules? %>
-  <div>
-    <%= image_tag "work.svg", class: "illustration left-justified" %>
-    <%= t("views.proof_guidance.edit.proof_of_working_html") %>
-  </div>
-<% end %>
+<div class="spacing-below-60">
+  <% if @current_screener.earnings_above_minimum? && !@current_screener.exempt_from_work_rules? %>
+    <div>
+      <%= image_tag "work.svg", class: "illustration left-justified" %>
+      <%= t("views.proof_guidance.edit.proof_of_working_html") %>
+    </div>
+  <% end %>
 
-<% if @current_screener.is_student_yes? %>
-  <div class="spacing-above-35">
-    <%= image_tag "school.svg", class: "illustration left-justified" %>
-    <%= t("views.proof_guidance.edit.proof_of_education_html") %>
-    <% if @current_screener.age && @current_screener.age > 50 %>
-      <%= t("views.proof_guidance.edit.proof_of_education_over_50_html") %>
-    <% end %>
-  </div>
-<% end %>
-
-<% if @current_screener.preventing_work_drugs_alcohol_yes? || @current_screener.preventing_work_medical_condition_yes? %>
-  <div class="spacing-above-35">
-    <%= image_tag "health.svg", class: "illustration left-justified" %>
-    <%= t("views.proof_guidance.edit.proof_of_health_condition_html") %>
-  </div>
-<% end %>
-
-<% if @current_screener.receiving_disability_benefits? %>
-  <div class="spacing-above-35">
-    <%= image_tag "disability.svg", class: "illustration left-justified" %>
-    <%= t("views.proof_guidance.edit.proof_of_disability_benefits_html") %>
-    <ul class="list--bulleted">
-      <% Screener::DISABILITY_BENEFIT_ATTRIBUTES.each do |benefit| %>
-        <% if @current_screener.public_send("#{benefit}_yes?") %>
-          <li><%= t("views.disability_benefits.edit.#{benefit}") %></li>
-        <% end %>
+  <% if @current_screener.is_student_yes? %>
+    <div class="spacing-above-35">
+      <%= image_tag "school.svg", class: "illustration left-justified" %>
+      <%= t("views.proof_guidance.edit.proof_of_education_html") %>
+      <% if @current_screener.age && @current_screener.age > 50 %>
+        <%= t("views.proof_guidance.edit.proof_of_education_over_50_html") %>
       <% end %>
-    </ul>
-  </div>
-<% end %>
+    </div>
+  <% end %>
 
-<% if @current_screener.is_in_alcohol_treatment_program_yes? %>
-  <div class="spacing-above-35">
-    <%= image_tag "treatment-program.svg", class: "illustration left-justified" %>
-    <%= t("views.proof_guidance.edit.proof_of_treatment_program_html") %>
-  </div>
-<% end %>
+  <% if @current_screener.preventing_work_drugs_alcohol_yes? || @current_screener.preventing_work_medical_condition_yes? %>
+    <div class="spacing-above-35">
+      <%= image_tag "health.svg", class: "illustration left-justified" %>
+      <%= t("views.proof_guidance.edit.proof_of_health_condition_html") %>
+    </div>
+  <% end %>
+
+  <% if @current_screener.receiving_disability_benefits? %>
+    <div class="spacing-above-35">
+      <%= image_tag "disability.svg", class: "illustration left-justified" %>
+      <%= t("views.proof_guidance.edit.proof_of_disability_benefits_html") %>
+      <ul class="list--bulleted">
+        <% Screener::DISABILITY_BENEFIT_ATTRIBUTES.each do |benefit| %>
+          <% if @current_screener.public_send("#{benefit}_yes?") %>
+            <li><%= t("views.disability_benefits.edit.#{benefit}") %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @current_screener.is_in_alcohol_treatment_program_yes? %>
+    <div class="spacing-above-35">
+      <%= image_tag "treatment-program.svg", class: "illustration left-justified" %>
+      <%= t("views.proof_guidance.edit.proof_of_treatment_program_html") %>
+    </div>
+  <% end %>
+</div>
 
 <%= render "shared/continue_button" %>
