@@ -4,8 +4,8 @@ RSpec.describe NcScreener, type: :model do
   describe "validations" do
     context "with_context :homeschool" do
       it "requires homeschool_hours to be an integer" do
-        screener = Screener.create(state: "NC")
-        nc_screener = NcScreener.new(screener: screener, homeschool_hours: "abc")
+        screener = create(:screener, state: "NC")
+        nc_screener = build(:nc_screener, screener: screener, homeschool_hours: "abc")
 
         nc_screener.valid?(:homeschool)
         expect(nc_screener.errors[:homeschool_hours]).to be_present
@@ -16,8 +16,8 @@ RSpec.describe NcScreener, type: :model do
       end
 
       it "allows homeschool_hours to be blank" do
-        screener = Screener.create(state: "NC")
-        nc_screener = NcScreener.new(screener: screener, homeschool_hours: nil)
+        screener = create(:screener, state: "NC")
+        nc_screener = build(:nc_screener, screener: screener, homeschool_hours: nil)
 
         nc_screener.valid?(:homeschool)
         expect(nc_screener.errors[:homeschool_hours]).to be_empty
@@ -43,8 +43,8 @@ RSpec.describe NcScreener, type: :model do
     end
 
     it "clears homeschool_name and homeschool_hours if teaches_homeschool is no" do
-      screener = Screener.create(state: "NC")
-      nc_screener = NcScreener.create(screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
+      screener = create(:screener, state: "NC")
+      nc_screener = create(:nc_screener, screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
 
       nc_screener.update(teaches_homeschool: "no")
 
@@ -53,8 +53,8 @@ RSpec.describe NcScreener, type: :model do
     end
 
     it "preserves homeschool attributes if teaches_homeschool is yes" do
-      screener = Screener.create(state: "NC")
-      nc_screener = NcScreener.create(screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
+      screener = create(:screener, state: "NC")
+      nc_screener = create(:nc_screener, screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
 
       nc_screener.update(teaches_homeschool: "yes")
 

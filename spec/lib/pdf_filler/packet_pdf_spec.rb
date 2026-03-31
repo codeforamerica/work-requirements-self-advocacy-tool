@@ -5,7 +5,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
   let(:nc_screener) { create(:nc_screener) }
   let(:screener) do
-    Screener.new(
+    build(:screener,
       first_name: "Nigella",
       middle_name: "Lucy",
       last_name: "Lawson",
