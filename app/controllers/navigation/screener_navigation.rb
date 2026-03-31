@@ -21,6 +21,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(PreventingWorkMilestoneController),
       ControllerNavigation::NavigationStep.new(PreventingWorkSituationsController),
       ControllerNavigation::NavigationStep.new(PreventingWorkDetailsController),
+      ControllerNavigation::NavigationStep.new(WorkRulesApplyController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
       ControllerNavigation::NavigationStep.new(BasicInfoDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
