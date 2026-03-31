@@ -1,10 +1,43 @@
-<% content_for :question_title, t("views.out_of_state.edit.title") %>
+<% content_for :question_title, t("views.proof_guidance.edit.title") %>
 
+<%= image_tag "next-steps.svg", class: "illustration left-justified" %>
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
-<p><%= t("views.out_of_state.edit.title_help_text_html") %></p>
-<div><%= link_to t("views.out_of_state.edit.find_button"), "https://www.fns.usda.gov/snap/state-directory", class: "button button--cta" %></div>
+<ol class="list--numbered">
+  <% t("views.proof_guidance.edit.next_steps_html").each do |li| %>
+    <li><%= li %></li>
+  <% end %>
+</ol>
 
+<h2 class="h2"><strong><%= t("views.proof_guidance.edit.proof_you_may_need") %></strong></h2>
 
-<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button button--primary" %></div>
+<div class="reveal">
+  <button class="reveal__button" aria-expanded="true">
+    <i class="icon-help" style="padding-right: 1rem;"></i><strong><%= t("views.proof_guidance.edit.already_has_proof") %></strong>
+  </button>
+  <div class="reveal__content">
+    <ul class="list--bulleted spacing-above-0">
+      <% t("views.proof_guidance.edit.already_has_proof_content").each do |list_item| %>
+        <li><%= list_item %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
+<%= image_tag "working.svg", class: "illustration left-justified" %>
+<%= t("views.proof_guidance.edit.proof_of_working_html") %>
+
+<%= image_tag "school.svg", class: "illustration left-justified" %>
+<%= t("views.proof_guidance.edit.proof_of_education_html") %>
+<% if @current_screener.age > 50 %>
+  <%= t("views.proof_guidance.edit.proof_of_education_over_50_html") %>
+<% end %>
+
+<%= image_tag "health.svg", class: "illustration left-justified" %>
+<%= t("views.proof_guidance.edit.proof_of_health_condition_html") %>
+
+<%= image_tag "disability.svg", class: "illustration left-justified" %>
+<%= t("views.proof_guidance.edit.proof_of_disability_benefits_html") %>
+
+<%= image_tag "treatment-program.svg", class: "illustration left-justified" %>
+<%= t("views.proof_guidance.edit.proof_of_treatment_program_html") %>
