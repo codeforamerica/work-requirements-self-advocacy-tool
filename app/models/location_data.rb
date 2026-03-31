@@ -5,6 +5,8 @@ module LocationData
     NORTH_CAROLINA = "NC"
     NOT_LISTED = "NOT_LISTED"
 
+    VALID_VALUES = [NORTH_CAROLINA, NOT_LISTED].freeze
+
     def self.options
       [
         ["North Carolina", NORTH_CAROLINA],
@@ -12,7 +14,9 @@ module LocationData
       ]
     end
 
-    VALID_VALUES = [NORTH_CAROLINA, NOT_LISTED].freeze
+    def self.name_for(code)
+      options.find { |name, value| value == code }&.first
+    end
   end
 
   module Counties
@@ -25,7 +29,7 @@ module LocationData
     FAX = "Office fax number [COUNTY_FAX]"
     EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
     WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
-    UPLOAD = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
+    UPLOAD_PORTAL_OR_EMAIL = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
     IS_SUPPORTED = "Is Supported?"
 
     def self.load_all
@@ -46,7 +50,7 @@ module LocationData
             fax: row[FAX],
             email: row[EMAIL],
             website: row[WEBSITE],
-            upload: row[UPLOAD],
+            upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
             is_supported: row[IS_SUPPORTED] == "Y"
           }
         end
@@ -56,6 +60,16 @@ module LocationData
     end
 
     ALL_COUNTIES = load_all
+
+    def self.fetch_county!(state_code, county_key)
+      raise ArgumentError, "state_code is required" if state_code.blank?
+      raise ArgumentError, "county_key is required" if county_key.blank?
+
+      county = ALL_COUNTIES.dig(state_code, county_key)
+      raise StandardError, "County not found for #{state_code} / #{county_key}" unless county
+
+      county
+    end
 
     def self.for_state(state)
       ALL_COUNTIES[state] || {}
@@ -67,6 +81,28 @@ module LocationData
 
     def self.get(state, county_key)
       for_state(state)[county_key]
+    end
+
+    def self.website_for(state_code, county_key)
+      fetch_county!(state_code, county_key)[:website]
+    end
+
+    def self.upload_portal_or_email_for(state_code, county_key)
+      county = fetch_county!(state_code, county_key)
+      county[:upload_portal_or_email].presence || county[:email]
+    end
+
+    def self.mailing_address_for(state_code, county_key)
+      fetch_county!(state_code, county_key)[:mailing_address]
+    end
+
+    def self.physical_address_for(state_code, county_key)
+      county = fetch_county!(state_code, county_key)
+      county[:physical_address].presence || county[:mailing_address]
+    end
+
+    def self.phone_for(state_code, county_key)
+      fetch_county!(state_code, county_key)[:phone]
     end
   end
 end

@@ -3,11 +3,16 @@ class DownloadFormController < QuestionController
     false
   end
 
-  # TODO: Remove this method.
-  # There are additional tickets for when the email is being sent
+  before_action :email_pdf
+
+  def show?(screener)
+    !!(screener&.exempt_from_work_rules? && super)
+  end
+
   def email_pdf
+    return if current_screener.email.blank?
+
     outgoing_email = OutgoingEmail.create(screener: current_screener)
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
-    redirect_to download_form_path
   end
 end
