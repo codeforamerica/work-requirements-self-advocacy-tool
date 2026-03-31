@@ -3,13 +3,15 @@ require "rails_helper"
 RSpec.describe SendOutgoingEmailJob, type: :job do
   describe "#perform" do
     let(:email_address) { "hi@example.com" }
-    let(:outgoing_email) { create(:outgoing_email,
-                                  screener: create(
-                                    :screener,
-                                    state: "NC",
-                                    email: email_address,
-                                    nc_screener: create(:nc_screener)
-                                  )) }
+    let(:outgoing_email) {
+      create(:outgoing_email,
+        screener: create(
+          :screener,
+          state: "NC",
+          email: email_address,
+          nc_screener: create(:nc_screener)
+        ))
+    }
 
     it "finds the outgoing email and sends an email" do
       expect { described_class.perform_now(outgoing_email.id) }.to change(ActionMailer::Base.deliveries, :count).by(1)

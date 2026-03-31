@@ -2,12 +2,14 @@ require "rails_helper"
 
 RSpec.describe ScreenerMailer, type: :mailer do
   describe "send_screener_results" do
-    let(:outgoing_email) { create(:outgoing_email,
-                                  screener: create(
-                                    :screener,
-                                    state: "NC",
-                                    nc_screener: create(:nc_screener))
-    ) }
+    let(:outgoing_email) {
+      create(:outgoing_email,
+        screener: create(
+          :screener,
+          state: "NC",
+          nc_screener: create(:nc_screener)
+        ))
+    }
 
     let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
 
