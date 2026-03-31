@@ -3,6 +3,7 @@ class Screener < ApplicationRecord
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
   attr_accessor :email_confirmation
+  attr_accessor :from_download_form
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -128,7 +129,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :basic_info_email do
-    validates :email, "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }}
+    validates :email, "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }}, presence: true, if: -> { from_download_form }
     validates :email_confirmation, presence: {message: ->(*) { I18n.t("validations.email_confirmation_required") }}
     validates :email, confirmation: {message: ->(*) { I18n.t("validations.email_must_match") }}, if: -> { email_confirmation.present? }
   end

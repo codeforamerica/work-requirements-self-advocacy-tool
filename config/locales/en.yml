@@ -82,7 +82,7 @@ en:
         add_an_email: Add an email
         continue_without_email: Continue without it
         title: Are you sure you don't want to add an email address?
-        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
+        title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you.
     basic_info_milestone:
       edit:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
@@ -127,9 +127,29 @@ en:
         title: Are you receiving any of these disability benefits?
     download_form:
       edit:
-        email_pdf: E-mail it to yourself
-        title: Download and submit to your SNAP agency
+        add_email_guidance_html: "<strong>Want helpful info in your inbox?</strong> Add your email to get:"
+        download_form: Download here
+        download_guidance_html: "<strong>Didn’t get the email?</strong> Download a copy to your device."
+        email_benefit_1: A copy for your records
+        email_benefit_2: Step-by-step guidance
+        email_benefit_3: A list of proof to submit
+        email_pdf: Add an email
+        expectation_1: Your SNAP agency may call you or mail you a notice if they need more information.
+        expectation_2: In some cases, you might need to send your agency more or different documents that show your situation, like paystubs or proof of a medical condition, for example.
+        expectation_3: The agency may not confirm receipt. We recommend calling your SNAP agency if you don’t hear anything in the next 4 weeks.
+        have_questions_html: "<strong>Have questions about how to submit your form?</strong> Call your agency."
+        how_to: 'How to submit your form to your SNAP agency:'
+        how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don’t apply to you.
+        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> to send your form and documents. You’ll need an enhanced account to do this."
+        next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
+        next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
+        next_steps_online_html: "<span><strong>Online: </strong>Send your form using one of these options:</span>"
+        next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        title: Download your form
         title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
+        title_sent: We sent your form to %{email}
+        what_to_expect: What to expect
     email:
       edit:
         email: Email
