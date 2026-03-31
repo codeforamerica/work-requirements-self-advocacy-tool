@@ -57,7 +57,11 @@ main {
 }
 
 .illustration.left-justified {
-  margin-left: 1rem;
+  margin-left: 0;
+}
+
+.illustration.centered {
+  margin-top: 0.1em;
 }
 
 .notice {
@@ -71,17 +75,13 @@ main {
   border-color: $color-grey-light;
   background-color: #FFFFFF;
   padding: 2.5rem;
-
-  .illustration.left-justified {
-    margin-left: 0;
-  }
 }
 
 .notice.teal {
-  color: #034E46;
   border: 2px solid #034E46;
   background-color: #EBFFFA;
   border-radius: 10px;
+  font-size: 1.6rem;
 }
 
 .progress-bar {
@@ -158,5 +158,22 @@ i.no-button-cross {
   border: 2px solid var(--Black, #000);
   background: var(--White, #FFF);
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.50);
+}
+
+.ssn-last4 {
+  width: 5.5ch;
+}
+.text-input-group,
+.text-input-group__prefix {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.form-width--phone {
+  min-width: 9.5em;
+}
+
+.text-input-group .field_with_errors .form-width--phone.text-input {
+  padding-left: 0; 
 }
 

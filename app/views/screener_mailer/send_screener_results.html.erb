@@ -1,1 +1,71 @@
-Submit this form and any proof you need to your SNAP agency to tell them that the work rules don’t apply to you.
+<%= image_tag attachments["gbh_email_header.png"].url, alt: "GetBenefitsHelp", style: "width: 100%; max-width: 300px; display: block;" %>
+<hr style="border: none; border-top: 2px solid #034E46; margin: 0;">
+
+<p>
+  <%= t('views.screener_mailer.send_screener_results.greeting', first_name: @screener.first_name, last_name: @screener.last_name) %>
+</p>
+
+<p>
+  <%= t('views.screener_mailer.send_screener_results.attachment_notice') %>
+</p>
+
+<hr style="border: none; border-top: 1px solid #C6C6C6; margin: 0;">
+
+<h2 style="font-weight: bold;">
+  <%= t('views.screener_mailer.send_screener_results.next_step_heading') %>
+</h2>
+<p>
+  <%= t('views.screener_mailer.send_screener_results.next_step_instructions') %>
+</p>
+<p>
+  <%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
+</p>
+
+<hr style="border: none; border-top: 1px solid #C6C6C6; margin: 0;">
+
+<h3 style="font-weight: bold;">
+  <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
+</h3>
+
+<ol style="line-height: 2;">
+  <li>
+    <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t('views.screener_mailer.send_screener_results.online_epass_html').html_safe %>
+    <br/><br/>
+    <%= t('views.screener_mailer.send_screener_results.online_county', website: @county_data[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: @county_data[:email]) if @county_data[:email].present? %>.
+  </li>
+  </li>
+  <li>
+    <strong><%= t('views.screener_mailer.send_screener_results.mail_label') %></strong> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
+    <br/><br/>
+    <div style="font-style: italic;">
+      <% @county_data[:mailing_address].split("\n").map do |line| %>
+        <%= line %>
+        <br/>
+      <% end %>
+    </div>
+  </li>
+  <li>
+    <strong><%= t('views.screener_mailer.send_screener_results.in_person_label') %></strong> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
+    <br/><br/>
+    <div style="font-style: italic;">
+      <% @county_data[:physical_address].split("\n").map do |line| %>
+        <%= line %>
+        <br/>
+      <% end %>
+    </div>
+  </li>
+</ol>
+
+<p>
+  <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
+</p>
+
+<ul style="line-height: 2;">
+  <li><%= t('views.screener_mailer.send_screener_results.check_website', website: @county_data[:website]) %></li>
+  <% if @county_data[:email].present? %>
+    <li>
+      <%= t('views.screener_mailer.send_screener_results.email_office', email: @county_data[:email]) %>
+    </li>
+  <% end %>
+  <li><%= t('views.screener_mailer.send_screener_results.call_office', phone: @county_data[:phone]) %></li>
+</ul>

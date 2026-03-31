@@ -11,6 +11,7 @@ es:
     choose_all_that_apply: Seleccione todas las que correspondan.
     close: Cerrar
     continue: Continuar
+    continue_without_this_number: Continuar sin este número
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -22,6 +23,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
+    this_is_optional: Opcional.
     work_rules: Reglas de trabajo
   validations:
     date_missing_or_invalid: La fecha falta o no es válida
@@ -32,7 +34,22 @@ es:
       edit:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
+        nc_notice_text: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos.
         title: "¿Está en un programa de tratamiento para drogas o alcohol?"
+    basic_info_case_number:
+      edit:
+        case_number_label: Número de caso
+        help_text_county_letter:
+          help_bullets:
+          - Busque una sección con el título “Case Number”, “Case ID” o “Client Number”.
+          - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
+          title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
+        help_text_epass:
+          help_bullets_html:
+          - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
+          - Use la aplicación ebtEDGE para consultar la información de su caso desde su teléfono.
+          title: Use su cuenta de ePASS NC para encontrar su número de caso.
+        title: "¿Tiene un número de caso?"
     basic_info_details:
       edit:
         birth_date_label: Fecha de nacimiento
@@ -55,7 +72,7 @@ es:
     basic_info_email_nudge:
       edit:
         add_an_email: Agregar un correo electrónico
-        continue_without_it: Continuar sin el correo electrónico
+        continue_without_email: Continuar sin el correo electrónico
         title: "¿Está seguro de que no quiere agregar un correo electrónico?"
         title_help_text: Agregar un correo electrónico nos ayuda a enviarle sus resultados y los próximos pasos de inmediato. Puede saltarse este paso, pero agregar su correo electrónico hace más fácil que reciba sus resultados y si usted debe cumplir con las nuevas reglas de trabajo de SNAP
     basic_info_milestone:
@@ -63,6 +80,12 @@ es:
         help_text_html: "<strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>"
         instructions: Esta información ayuda a la persona que lleva su caso a encontrar su solicitud cuando envíe su formulario.
         title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
+    basic_info_ssn:
+      edit:
+        help_text: Ingrese los últimos 4 dígitos para confirmar su identidad y encontrar su caso.
+        notice: Mantendremos su información privada, protegida y segura.
+        ssn_label: Número de Seguro Social
+        title: Como no tiene un número de caso, ¿le gustaría agregar los últimos cuatro dígitos de su número de Seguro Social (SSN)?
     caring_for_someone:
       edit:
         additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
@@ -188,6 +211,20 @@ es:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
         title: "¿Es usted un trabajador agrícola temporal o migrante que empezará a trabajar en los próximos 30 días?"
+    nc:
+      edu_work_history:
+        edit:
+          notice_text: Seleccione "No" si su único trabajo ha sido hacer trabajos ocasionales.
+          title: "¿Obtuvo un diploma de secundaria o un equivalente, como un GED?"
+          worked_last_five_years_label: "¿Ha trabajado por pago en los últimos cinco años?"
+      homeschool:
+        edit:
+          homeschool_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
+          homeschool_hours_label: "¿Cuántas horas a la semana imparte educación en el hogar?"
+          homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
+          homeschool_name_label: "¿Cuál es el nombre de la escuela en el hogar?"
+          notice_text: Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.
+          title: "¿Tiene un programa de educación en casa para un niño o niños?"
     new_response:
       edit:
         check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
@@ -237,6 +274,28 @@ es:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
         title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
+    screener_mailer:
+      send_screener_results:
+        attachment_notice: Su formulario de exención de las reglas de trabajo de SNAP de GetBenefitsHelp está adjunto al final de este correo.
+        call_office: 'Llame al: %{phone}'
+        check_website: Revise la información en su sitio web %{website}
+        email_office: 'Envíe un correo electrónico a: %{email}'
+        greeting: Hola %{first_name} %{last_name},
+        how_to_submit_heading: Cómo enviar su formulario
+        in_person_instructions: 'Imprima su formulario y llévelo junto con los comprobantes necesarios a una oficina local:'
+        in_person_label: 'En persona:'
+        mail_instructions: 'Envíe su formulario y cualquier comprobante necesario a:'
+        mail_label: 'Por correo físico:'
+        next_step_heading: 'Siguiente paso: Envíe este formulario a su oficina de SNAP.'
+        next_step_instructions: Envíe este formulario y cualquier comprobante o documentacion necesario a su oficina de SNAP para notificar que las reglas de trabajo SNAP no deberían aplicar en su caso.
+        online_county: 'En lugar de usar ePASS, también puede enviar este formulario y los comprobantes a la oficina de SNAP de su condado: %{website}'
+        online_county_with_email: o por correo electrónico a %{email}
+        online_epass_html: Si usted ya recibe beneficios de SNAP, puede usar <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> para enviar este formulario y cualquier comprobante que necesite. Necesitará una <a href="https://epass.nc.gov/nfridp/qa" target="_blank">cuenta mejorada</a> (enhanced account) para enviar estos documentos a través de ePASS.
+        online_epass_text: Si usted ya recibe beneficios de SNAP, puede usar North Carolina ePASS (https://epass.nc.gov/signuphomepage) para enviar este formulario y cualquier comprobante que necesite. Necesitará una cuenta mejorada (enhanced account) (https://epass.nc.gov/nfridp/qa) para enviar estos documentos a través de ePASS.
+        online_label: 'En línea:'
+        questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
+        reference_code: 'Código de referencia de su documento: %{code}'
+        subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
     training_program:
       edit:
         notice_content:

@@ -4,7 +4,7 @@ ruby_version = File.read(File.join(File.dirname(__FILE__), ".ruby-version")).str
 ruby ruby_version
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 8.1.2"
+gem "rails", "~> 8.1.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
@@ -54,7 +54,7 @@ gem "opentelemetry-instrumentation-all", "~> 0.91"
 gem "opentelemetry-resource-detector-aws", "~> 0.5"
 gem "opentelemetry-sdk", "~> 1.10"
 gem "ostruct"
-gem "pg-aws_rds_iam", "~> 0.7"
+gem "pg-aws_rds_iam", "~> 0.8"
 gem "phonelib"
 gem "rails_semantic_logger", "~> 4.19"
 gem "request_store", "~> 1.7"

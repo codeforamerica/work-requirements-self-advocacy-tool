@@ -1,0 +1,44 @@
+<% content_for :question_title, t("views.nc.homeschool.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<div class="notice teal">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-help"></i>
+    </div>
+    <div class="media-box__content">
+      <%= t("views.nc.homeschool.edit.notice_text") %>
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :teaches_homeschool, value: :unfilled %>
+
+  <div class="question-with-follow-up">
+    <div class="question-with-follow-up__question">
+      <%= f.cfa_radio_set(:teaches_homeschool, collection: [
+        { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#homeschool-details" }},
+        { value: :no, label: t("general.negative") },
+      ]) %>
+    </div>
+
+    <div class="question-with-follow-up__follow-up" id="homeschool-details">
+      <hr/>
+      <%= f.cfa_input_field(
+            :homeschool_name,
+            t("views.nc.homeschool.edit.homeschool_name_label"),
+            help_text: t("views.nc.homeschool.edit.homeschool_name_help_text_html")
+          ) %>
+
+      <%= f.cfa_input_field(
+            :homeschool_hours,
+            t("views.nc.homeschool.edit.homeschool_hours_label"),
+            help_text: t("views.nc.homeschool.edit.homeschool_hours_help_text")
+          ) %>
+    </div>
+  </div>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

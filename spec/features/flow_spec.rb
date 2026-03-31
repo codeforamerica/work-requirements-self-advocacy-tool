@@ -55,6 +55,12 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
+    choose I18n.t("general.affirmative")
+    fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: "Tough Nuts Academy"
+    fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: "25"
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.training_program.edit.title"))
     choose I18n.t("general.affirmative")
     fill_in I18n.t("views.training_program.edit.work_training_hours_label"), with: "20"
@@ -63,6 +69,15 @@ RSpec.feature "Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
+    within(".question-with-follow-up__question") do
+      choose I18n.t("general.negative")
+    end
+    within("#worked-last-five-years") do
+      choose I18n.t("general.affirmative")
+    end
+    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
     choose I18n.t("general.affirmative")
@@ -102,6 +117,23 @@ RSpec.feature "Screener flow", js: true do
 
     fill_in I18n.t("views.email.edit.email"), with: "hi@example.com"
     fill_in I18n.t("views.email.edit.email_confirmation"), with: "hi@example.com"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_case_number.edit.title"))
+    click_on I18n.t("general.continue_without_this_number")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_ssn.edit.title"))
+    fill_in I18n.t("views.basic_info_ssn.edit.ssn_label"), with: "1234"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))
+    click_on I18n.t("general.back")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_ssn.edit.title"))
+    click_on I18n.t("general.back")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.basic_info_case_number.edit.title"))
+    fill_in I18n.t("views.basic_info_case_number.edit.case_number_label"), with: "ABC-123"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))

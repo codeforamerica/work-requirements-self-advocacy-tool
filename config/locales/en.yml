@@ -11,6 +11,7 @@ en:
     choose_all_that_apply: Choose all that apply.
     close: Close
     continue: Continue
+    continue_without_this_number: Continue without it
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
@@ -22,6 +23,7 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     select: Select
     switched_locale: Español
+    this_is_optional: This is optional.
     work_rules: Work rules
   validations:
     date_missing_or_invalid: Date is missing or invalid
@@ -32,7 +34,22 @@ en:
       edit:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
+        nc_notice_text: Select “No” if your only treatment program is Alcoholics Anonymous.
         title: Are you in a drug or alcohol treatment program?
+    basic_info_case_number:
+      edit:
+        case_number_label: Case number
+        help_text_county_letter:
+          help_bullets:
+          - Look for a section labeled "Case Number", "Case ID", or "Client Number".
+          - It's usually printed near your name, at the top of the first page.
+          title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
+        help_text_epass:
+          help_bullets_html:
+          - Log in to the official <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">NC ePass website</a> to view case details, including your case number.
+          - Use the ebtEDGE mobile app to view your account details.
+          title: Log in to your ePASS NC portal to find your case number.
+        title: Do you have a case number?
     basic_info_details:
       edit:
         birth_date_label: Birthdate
@@ -55,7 +72,7 @@ en:
     basic_info_email_nudge:
       edit:
         add_an_email: Add an email
-        continue_without_it: Continue without it
+        continue_without_email: Continue without it
         title: Are you sure you don't want to add an email address?
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you..
     basic_info_milestone:
@@ -63,6 +80,12 @@ en:
         help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
         instructions: This information helps your caseworker find your case when you submit your form.
         title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
+    basic_info_ssn:
+      edit:
+        help_text: This is optional. Enter the last 4 digits to confirm your identity and find your case.
+        notice: We'll keep your information private, safe, and secure.
+        ssn_label: Social Security number
+        title: Since you don't have a case number, would you like to provide the last four digits of your Social Security number (SSN)?
     caring_for_someone:
       edit:
         additional_care_info: Can you tell us about the kind of care you provide?
@@ -188,6 +211,20 @@ en:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
         title: Are you a seasonal or migrant farmworker who will start a job in the next 30 days?
+    nc:
+      edu_work_history:
+        edit:
+          notice_text: Select "No" if your only work has been occasional odd jobs.
+          title: Do you have a high school diploma or equivalent degree (for example, a GED)?
+          worked_last_five_years_label: Have you worked for pay in the last five years?
+      homeschool:
+        edit:
+          homeschool_hours_help_text: If this changes, give your weekly average from the past month.
+          homeschool_hours_label: How many hours a week do you operate home school?
+          homeschool_name_help_text_html: Use the school name registered with the <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">NC Division of Non-Public Education</a>, if it is registered.
+          homeschool_name_label: What is the name of the home school?
+          notice_text: This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.
+          title: Do you teach home school?
     new_response:
       edit:
         check_work_rules_for_someone_else: Check work rules for someone else
@@ -293,6 +330,28 @@ en:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
         title: Do you go to school full-time, or at least half-time?
+    screener_mailer:
+      send_screener_results:
+        attachment_notice: Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
+        call_office: Call the office at %{phone}.
+        check_website: Check for information on their website %{website},
+        email_office: Email the office at %{email},
+        greeting: Hi %{first_name} %{last_name},
+        how_to_submit_heading: How to submit your form
+        in_person_instructions: Print your form and bring it and any proof you may need to a local office.
+        in_person_label: 'In person:'
+        mail_instructions: Send your form and any proof you may need.
+        mail_label: 'Mail:'
+        next_step_heading: 'Next step: Send this form to your SNAP agency.'
+        next_step_instructions: Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn't apply to you.
+        online_county: Instead of using ePASS, you can submit this form and any proof to your county's SNAP office %{website}
+        online_county_with_email: or by emailing %{email}
+        online_epass_html: If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
+        online_epass_text: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
+        online_label: 'Online:'
+        questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
+        reference_code: 'Your document reference code: %{code}'
+        subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
     training_program:
       edit:
         notice_content:
