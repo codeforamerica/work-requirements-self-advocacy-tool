@@ -1,5 +1,7 @@
 require "rails_helper"
 
+EMAIL = "hi@example.com"
+
 RSpec.feature "Screener flow", js: true do
   scenario "new client fills out the screener" do
     visit root_path
@@ -9,7 +11,7 @@ RSpec.feature "Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
     select "North Carolina", from: "screener_state"
-    select "Bertie County", from: "screener_county"
+    select "Avery County", from: "screener_county"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
@@ -115,8 +117,8 @@ RSpec.feature "Screener flow", js: true do
     confirmation_field = find_field(I18n.t("views.email.edit.email_confirmation"))
     expect(confirmation_field[:onpaste]).to eq "return false;"
 
-    fill_in I18n.t("views.email.edit.email"), with: "hi@example.com"
-    fill_in I18n.t("views.email.edit.email_confirmation"), with: "hi@example.com"
+    fill_in I18n.t("views.email.edit.email"), with: EMAIL
+    fill_in I18n.t("views.email.edit.email_confirmation"), with: EMAIL
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_case_number.edit.title"))
@@ -126,7 +128,7 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.basic_info_ssn.edit.ssn_label"), with: "1234"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
     click_on I18n.t("general.back")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_ssn.edit.title"))
@@ -136,7 +138,7 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.basic_info_case_number.edit.case_number_label"), with: "ABC-123"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))
+    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.proof_guidance.edit.title"))

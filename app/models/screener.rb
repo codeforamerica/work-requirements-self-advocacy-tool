@@ -3,6 +3,7 @@ class Screener < ApplicationRecord
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
   attr_accessor :email_confirmation
+  attr_accessor :from_download_form
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -123,6 +124,7 @@ class Screener < ApplicationRecord
 
   with_context :basic_info_email do
     validates :email, "valid_email_2/email": true, confirmation: true
+    validates :email, presence: true, if: -> { from_download_form }
   end
 
   with_context :basic_info_ssn do
