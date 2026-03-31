@@ -11,17 +11,34 @@
 
 <% unless has_email %>
   <div>
-    <%= link_to("/download-form", class: "button button--primary") do %>
+    <%= link_to("/download-form", class: "button button--primary spacing-below-0") do %>
       <i class="button__icon--left icon-get_app"></i>
       <%= t("views.download_form.edit.download_form") %>
     <% end %>
   </div>
+  <hr class="spacing-above-35 spacing-below-35"/>
+  <div>
+    <p><%= t("views.download_form.edit.add_email_guidance_html") %></p>
+    <ul>
+      <li>
+        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_1") %>
+      </li>
+      <li>
+        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_2") %>
+      </li>
+      <li>
+        <span class="text-green-innovation-lab">✓ </span><%= t("views.download_form.edit.email_benefit_3") %>
+      </li>
+    </ul>
+  </div>
+
   <div>
     <%= link_to("/basic-info-email?from_download_form=true&return_to_review=y", class: "button button--primary spacing-below-0") do %>
       <i class="button__icon--left icon-markunread"></i>
       <%= t("views.download_form.edit.email_pdf") %>
     <% end %>
   </div>
+  <hr class="spacing-above-35"/>
 <% end %>
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
@@ -68,14 +85,16 @@
 <% end %>
 
 <% if has_email %>
+  <hr class="spacing-above-35 spacing-below-35"/>
   <p><%= t("views.download_form.edit.download_guidance_html") %></p>
   <%= link_to(
         generate_pdf_path,
-        class: "button button--primary",
+        class: "button button--primary spacing-below-0",
         target: "_blank") do %>
     <i class="button__icon--left icon-get_app"></i>
     <%= t("views.download_form.edit.download_form") %>
   <% end %>
+  <hr class="spacing-above-35"/>
 <% end %>
 
 <div>
