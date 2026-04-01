@@ -78,7 +78,7 @@ es:
     basic_info_milestone:
       edit:
         help_text_html: "<strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>"
-        instructions: Esta información ayuda a la persona que lleva su caso a encontrar su solicitud cuando envíe su formulario.
+        instructions: Esta información ayuda a la persona encargada de su caso a encontrar su solicitud cuando envíe su formulario.
         title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
     basic_info_ssn:
       edit:
@@ -89,10 +89,10 @@ es:
     caring_for_someone:
       edit:
         additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
-        additional_care_info_help_text: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        additional_care_info_help_text: Compartir más detalles puede ayudar a la persona encargada de su caso a tomar una decisión más rápido.
         child_under_6: Niño menor de 6 años
         disabled_or_ill_person: Persona enferma o con una discapacidad
-        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted. Seleccione todas las que correspondan."
+        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted ni que sea su dependiente. Seleccione todas las que correspondan."
         notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
@@ -108,7 +108,7 @@ es:
         title: "¿Cuál es su fecha de nacimiento? (requerido)"
     disability_benefits:
       edit:
-        receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
+        receiving_benefits_disability_medicaid: Cobertura de Medicaid por discapacidad
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
         receiving_benefits_ssdi: Seguro Social
@@ -265,11 +265,11 @@ es:
       edit:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
-        title: "¿Está en embarazo?"
+        title: "¿Usted está en estado de embarazo?"
     preventing_work_details:
       edit:
         header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
-        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        instructions: Compartir más detalles puede ayudar a la persona encargada de su caso a tomar una decisión más rápido.
         question:
           one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
           other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
@@ -332,8 +332,8 @@ es:
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
     tribe_or_nation:
       edit:
-        help_text: If you are eligible for Indian Health Services, select "Yes."
-        title: "¿Es usted miembro de una tribu o nación indígena?"
+        help_text: 'Seleccione “Sí” si sabe que cumple los requisitos para recibir los Servicios de Salud para Indígenas (Indian Health Services).'
+        title: "¿Usted es una persona indígena o nativo estadounidense, o es hijo(a) o nieto(a) de una persona indígena estadounidense?"
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
