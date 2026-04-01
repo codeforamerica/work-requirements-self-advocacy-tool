@@ -9,7 +9,7 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
       end
     end
 
-    context "screener with any exemptions" do
+    context "screener with an exemption" do
       it "returns true" do
         screener = create(:screener, is_working: "yes", working_hours: "35")
         expect(subject.class.show?(screener)).to eq false
