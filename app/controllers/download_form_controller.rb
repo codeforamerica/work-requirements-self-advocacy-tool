@@ -11,7 +11,6 @@ class DownloadFormController < QuestionController
 
   def email_pdf
     return if current_screener.email.blank?
-
     outgoing_email = OutgoingEmail.create(screener: current_screener)
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
   end
