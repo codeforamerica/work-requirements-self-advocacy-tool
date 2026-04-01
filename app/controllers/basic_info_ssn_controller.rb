@@ -1,8 +1,8 @@
-class BasicInfoSsnController < QuestionController
+class BasicInfoSsnController < ExemptionAwareQuestionController
   include BasicInfoConcern
 
   def self.show?(screener)
-    screener.case_number.blank?
+    screener.case_number.blank? && super
   end
 
   def self.attributes_edited
