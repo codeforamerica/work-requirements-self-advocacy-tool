@@ -332,7 +332,7 @@ es:
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
     tribe_or_nation:
       edit:
-        help_text: 'Seleccione "Sí" si sabe que cumple los requisitos para recibir los Servicios de Salud para Indígenas (Indian Health Services).'
+        help_text: Seleccione "Sí" si sabe que cumple los requisitos para recibir los Servicios de Salud para Indígenas (Indian Health Services).
         title: "¿Usted es una persona indígena o nativo estadounidense, o es hijo(a) o nieto(a) de una persona indígena estadounidense?"
     unemployment:
       edit:
