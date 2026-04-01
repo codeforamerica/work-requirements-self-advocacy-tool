@@ -1,4 +1,4 @@
-RSpec.shared_examples "show? with work rules exemption" do
+RSpec.shared_examples "show? with work rules exemption and super" do
   context "when screener is nil" do
     let(:screener) { nil }
 

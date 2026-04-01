@@ -26,6 +26,6 @@ RSpec.describe BasicInfoConcern, type: :controller do
       controller.class.super_result = value
     end
 
-    it_behaves_like "show? with work rules exemption"
+    it_behaves_like "show? with work rules exemption and super"
   end
 end
