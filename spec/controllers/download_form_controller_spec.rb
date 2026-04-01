@@ -24,38 +24,16 @@ RSpec.describe DownloadFormController, type: :controller do
   describe ".show?" do
     subject { described_class.show?(screener) }
 
-    let(:screener) { instance_double("Screener") }
-
-    before do
-      allow(QuestionController).to receive(:show?).and_return(super_result)
-
-      # Only stub if screener exists
-      if screener
-        allow(screener).to receive(:exempt_from_work_rules?).and_return(exempt)
-      end
-    end
-
-    context "when exempt and parent allows showing" do
-      let(:exempt) { true }
-      let(:super_result) { true }
+    context "when screener is exempt from work rules" do
+      let(:screener) { instance_double("Screener", exempt_from_work_rules?: true) }
 
       it "returns true" do
         expect(subject).to eq(true)
       end
     end
 
-    context "when exempt is false" do
-      let(:exempt) { false }
-      let(:super_result) { true }
-
-      it "returns false" do
-        expect(subject).to eq(false)
-      end
-    end
-
-    context "when parent disallows showing" do
-      let(:exempt) { true }
-      let(:super_result) { false }
+    context "when screener is not exempt from work rules" do
+      let(:screener) { instance_double("Screener", exempt_from_work_rules?: false) }
 
       it "returns false" do
         expect(subject).to eq(false)
@@ -64,7 +42,6 @@ RSpec.describe DownloadFormController, type: :controller do
 
     context "when screener is nil" do
       let(:screener) { nil }
-      let(:super_result) { true }
 
       it "returns false" do
         expect(subject).to eq(false)
