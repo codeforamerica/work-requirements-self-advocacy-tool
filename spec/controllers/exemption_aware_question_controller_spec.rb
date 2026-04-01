@@ -17,7 +17,7 @@ RSpec.describe ExemptionAwareQuestionController, type: :controller do
       before { screener.update!(preventing_work_place_to_sleep: "yes") }
 
       it "returns true if parent allows showing" do
-        expect(subject).to eq(true)
+        expect(described_class.show?(screener)).to eq(true)
       end
     end
 
