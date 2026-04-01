@@ -9,7 +9,7 @@ RSpec.shared_examples "show? with work rules exemption only" do
     end
 
     it "returns false" do
-      expect(subject).to eq false
+      expect(described_class.show?(screener)).to eq false
     end
   end
 
