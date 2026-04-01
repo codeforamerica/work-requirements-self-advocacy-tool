@@ -22,24 +22,53 @@ RSpec.describe DownloadFormController, type: :controller do
   end
 
   describe ".show?" do
-    controller(DownloadFormController) do
-      def super_show_result
-        true
-      end
-
-      def show?(screener)
-        !!(screener&.exempt_from_work_rules? && super_show_result)
-      end
-    end
-
-    subject { controller.show?(screener) }
-
-    def set_super_result(value)
-      allow(controller).to receive(:super_show_result).and_return(value)
-    end
+    subject { described_class.show?(screener) }
 
     let(:screener) { instance_double("Screener") }
 
-    it_behaves_like "show? with work rules exemption"
+    before do
+      allow(QuestionController).to receive(:show?).and_return(super_result)
+
+      # Only stub if screener exists
+      if screener
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(exempt)
+      end
+    end
+
+    context "when exempt and parent allows showing" do
+      let(:exempt) { true }
+      let(:super_result) { true }
+
+      it "returns true" do
+        expect(subject).to eq(true)
+      end
+    end
+
+    context "when exempt is false" do
+      let(:exempt) { false }
+      let(:super_result) { true }
+
+      it "returns false" do
+        expect(subject).to eq(false)
+      end
+    end
+
+    context "when parent disallows showing" do
+      let(:exempt) { true }
+      let(:super_result) { false }
+
+      it "returns false" do
+        expect(subject).to eq(false)
+      end
+    end
+
+    context "when screener is nil" do
+      let(:screener) { nil }
+      let(:super_result) { true }
+
+      it "returns false" do
+        expect(subject).to eq(false)
+      end
+    end
   end
 end
