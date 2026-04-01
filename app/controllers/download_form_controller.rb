@@ -6,7 +6,7 @@ class DownloadFormController < QuestionController
   before_action :email_pdf
 
   def self.show?(screener)
-    !!(screener&.exempt_from_work_rules? && super)
+    !!screener&.exempt_from_work_rules?
   end
 
   def email_pdf
