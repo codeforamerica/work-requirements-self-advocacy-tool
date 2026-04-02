@@ -248,6 +248,14 @@ class Screener < ApplicationRecord
     is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
   end
 
+  def total_work_volunteer_and_training_hours
+    working_hours.to_i + volunteering_hours.to_i + work_training_hours.to_i
+  end
+
+  def no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?
+    !exempt_from_work_rules? && total_work_volunteer_and_training_hours >= 20
+  end
+
   private
 
   def remove_county_if_state_does_not_require

@@ -41,7 +41,7 @@ es:
         case_number_label: Número de caso
         help_text_county_letter:
           help_bullets:
-          - Busque una sección con el título “Case Number”, “Case ID” o “Client Number”.
+          - Busque una sección con el título "Case Number", "Case ID" o "Client Number".
           - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
           title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
         help_text_epass:
@@ -78,7 +78,7 @@ es:
     basic_info_milestone:
       edit:
         help_text_html: "<strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP.</strong>"
-        instructions: Esta información ayuda a la persona que lleva su caso a encontrar su solicitud cuando envíe su formulario.
+        instructions: Esta información ayuda a la persona encargada de su caso a encontrar su solicitud cuando envíe su formulario.
         title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
     basic_info_ssn:
       edit:
@@ -89,10 +89,10 @@ es:
     caring_for_someone:
       edit:
         additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
-        additional_care_info_help_text: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        additional_care_info_help_text: Compartir más detalles puede ayudar a la persona encargada de su caso a tomar una decisión más rápido.
         child_under_6: Niño menor de 6 años
         disabled_or_ill_person: Persona enferma o con una discapacidad
-        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted. Seleccione todas las que correspondan."
+        help_text_html: "<strong>No es necesario</strong> que la persona viva con usted ni que sea su dependiente. Seleccione todas las que correspondan."
         notice_text: Cuidar a alguien significa que usted regularmente hace cosas como preparar comida, ayudar con tareas diarias como bañarse o asearse, hacer mandados para esa persona y estar pendiente de su salud y bienestar.
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
@@ -108,7 +108,7 @@ es:
         title: "¿Cuál es su fecha de nacimiento? (requerido)"
     disability_benefits:
       edit:
-        receiving_benefits_disability_medicaid: Cobertura por discapacidad de Medicaid
+        receiving_benefits_disability_medicaid: Cobertura de Medicaid por discapacidad
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
         receiving_benefits_other: Otro
@@ -266,11 +266,11 @@ es:
       edit:
         pregnancy_due_date_help_text: Puede estimarlo o saltarse esta pregunta si no lo sabe.
         pregnancy_due_date_label: "¿Para qué fecha se espera el nacimiento del bebé?"
-        title: "¿Está en embarazo?"
+        title: "¿Usted está en estado de embarazo?"
     preventing_work_details:
       edit:
         header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
-        instructions: Compartir más detalles puede ayudar a la persona que lleva su caso a tomar una decisión más rápido.
+        instructions: Compartir más detalles puede ayudar a la persona encargada de su caso a tomar una decisión más rápido.
         question:
           one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
           other: "¿Puede compartir más información sobre cómo estas condiciones le limitan para trabajar al menos 20 horas a la semana?"
@@ -378,8 +378,32 @@ es:
         work_training_name_label: "¿Cuál es el nombre de la organización o del programa de capacitación?"
     tribe_or_nation:
       edit:
-        help_text: If you are eligible for Indian Health Services, select "Yes."
-        title: "¿Es usted miembro de una tribu o nación indígena?"
+        help_text: Seleccione "Sí" si sabe que cumple los requisitos para recibir los Servicios de Salud para Indígenas (Indian Health Services).
+        title: "¿Usted es una persona indígena o nativo estadounidense, o es hijo(a) o nieto(a) de una persona indígena estadounidense?"
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    work_rules_apply_met:
+      edit:
+        avoid_a_time_limit_on_your_snap_benefit_html: |
+          <p>Es posible que su oficina de SNAP necesite saber qué actividades está realizando para cumplir con las reglas de trabajo. Usted nos indicó que está realizando alguna de las siguientes actividades:
+          <ul>
+            <li>Trabajar, hacer voluntariado o participar en capacitación laboral por un total de al menos 20 horas a la semana.</li>
+          </ul>
+          <p><b>Si estas actividades suman al menos 20 horas por semana (80 horas al mes), es posible que cumpla con las reglas de trabajo de SNAP y pueda mantener sus beneficios de SNAP sin un tiempo límite.</b></p>
+          <p>Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.</p>
+        avoid_a_time_on_your_snap_benefit: Informe a su oficina de SNAP sobre sus actividades para seguir recibiendo sus beneficios.
+        proof_of_working: Comprobantes de trabajo
+        proof_of_working_html: |
+          <p>Envíe uno de los siguientes comprobantes:</p>
+          <ul>
+            <li>Talones de pago del último mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
+            <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
+          </ul>
+        proof_you_need: Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.
+        title: Es posible que deba cumplir con las reglas de trabajo de SNAP, y que las actividades que ya realiza cuenten para mantener sus beneficios de SNAP.
+        title_help_text_html: |
+          <p>No hemos encontrado una exención para usted, por lo que es posible que deba cumplir con las reglas de trabajo de SNAP.</p>
+          <p>Según sus respuestas, es posible que ya esté cumpliendo con estas reglas y que pueda recibir los beneficios de SNAP.</p>
