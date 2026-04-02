@@ -654,4 +654,62 @@ RSpec.describe Screener, type: :model do
       expect(screener.working_exempt?).to eq false
     end
   end
+
+  describe "#total_work_volunteer_and_training_hours" do
+    it "calculates the total number of hours between working, volunteering, and training hours" do
+      screener = build(:screener, working_hours: 5, volunteering_hours: 7, work_training_hours: 9)
+      expect(screener.total_work_volunteer_and_training_hours).to be 21
+    end
+  end
+
+  describe "#no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?" do
+    let(:screener) { create(:screener) }
+    context "when there are no exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
+      end
+
+      context "the total working, volunteering, and training is greater than or equal to 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
+        end
+        it "returns true" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be true
+        end
+      end
+
+      context "the total working, volunteering, and training is less than 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
+        end
+        it "returns false" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+    end
+
+    context "when there are exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+      end
+
+      context "the total working, volunteering, and training is greater than or equal to 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
+        end
+        it "returns true" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+
+      context "the total working, volunteering, and training is less than 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
+        end
+        it "returns false" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+    end
+  end
 end
