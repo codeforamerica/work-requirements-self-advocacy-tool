@@ -23,8 +23,8 @@ RSpec.describe Screener, type: :model do
     context "with_context :location" do
       it "must have a valid state and county combination" do
         screener = build(:screener,
-          state: "NC",
-          county: nil)
+                         state: "NC",
+                         county: nil)
 
         screener.valid?(:location)
         expect(screener.errors[:state]).to be_empty
@@ -67,10 +67,10 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:basic_info_details)
 
         expect(screener.errors).to match_array [
-          "First name can't be blank",
-          "Last name can't be blank",
-          "Birth date Date is missing or invalid"
-        ]
+                                                 "First name can't be blank",
+                                                 "Last name can't be blank",
+                                                 "Birth date Date is missing or invalid"
+                                               ]
       end
 
       it "requires the phone number to be valid" do
@@ -106,17 +106,17 @@ RSpec.describe Screener, type: :model do
 
       it "cannot have no one and someone" do
         screener = build(:screener,
-          caring_for_child_under_6: "no",
-          caring_for_disabled_or_ill_person: "yes",
-          caring_for_no_one: "yes")
+                         caring_for_child_under_6: "no",
+                         caring_for_disabled_or_ill_person: "yes",
+                         caring_for_no_one: "yes")
         screener.valid?(:caring_for_someone)
 
         expect(screener.errors[:caring_for_no_one]).to be_present
 
         screener = build(:screener,
-          caring_for_child_under_6: "yes",
-          caring_for_disabled_or_ill_person: "no",
-          caring_for_no_one: "yes")
+                         caring_for_child_under_6: "yes",
+                         caring_for_disabled_or_ill_person: "no",
+                         caring_for_no_one: "yes")
         screener.valid?(:caring_for_someone)
 
         expect(screener.errors[:caring_for_no_one]).to be_present
@@ -124,7 +124,7 @@ RSpec.describe Screener, type: :model do
 
       it "must not have value longer than CaringForSomeoneController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
-          additional_care_info: "This is just a test value.")
+                         additional_care_info: "This is just a test value.")
         # Valid value that is not too long
         expect(screener.valid?(:additional_care_info)).to eq true
 
@@ -141,14 +141,14 @@ RSpec.describe Screener, type: :model do
     context "with_context :disability_benefits" do
       it "cannot choose a benefit and 'none of the above'" do
         screener = build(:screener,
-          receiving_benefits_ssdi: "no",
-          receiving_benefits_ssi: "no",
-          receiving_benefits_veterans_disability: "yes",
-          receiving_benefits_disability_pension: "no",
-          receiving_benefits_workers_compensation: "no",
-          receiving_benefits_insurance_payments: "yes",
-          receiving_benefits_other: "no",
-          receiving_benefits_none: "yes")
+                         receiving_benefits_ssdi: "no",
+                         receiving_benefits_ssi: "no",
+                         receiving_benefits_veterans_disability: "yes",
+                         receiving_benefits_disability_pension: "no",
+                         receiving_benefits_workers_compensation: "no",
+                         receiving_benefits_insurance_payments: "yes",
+                         receiving_benefits_other: "no",
+                         receiving_benefits_none: "yes")
 
         screener.valid?(:disability_benefits)
         expect(screener.errors[:receiving_benefits_none]).to be_present
@@ -168,8 +168,8 @@ RSpec.describe Screener, type: :model do
 
       it "can only have a write-in answer if 'other' is checked" do
         screener = build(:screener,
-          receiving_benefits_other: "no",
-          receiving_benefits_write_in: "a different benefit")
+                         receiving_benefits_other: "no",
+                         receiving_benefits_write_in: "a different benefit")
 
         screener.valid?(:disability_benefits)
         expect(screener.errors[:receiving_benefits_write_in]).to be_present
@@ -185,12 +185,12 @@ RSpec.describe Screener, type: :model do
     context "with_context :preventing_work_situations" do
       it "cannot choose a situation and 'none of the above'" do
         screener = build(:screener,
-          preventing_work_place_to_sleep: "no",
-          preventing_work_drugs_alcohol: "yes",
-          preventing_work_domestic_violence: "no",
-          preventing_work_medical_condition: "no",
-          preventing_work_other: "no",
-          preventing_work_none: "yes")
+                         preventing_work_place_to_sleep: "no",
+                         preventing_work_drugs_alcohol: "yes",
+                         preventing_work_domestic_violence: "no",
+                         preventing_work_medical_condition: "no",
+                         preventing_work_other: "no",
+                         preventing_work_none: "yes")
 
         screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_none]).to be_present
@@ -209,8 +209,8 @@ RSpec.describe Screener, type: :model do
 
       it "can only have a write-in answer if 'other' is checked" do
         screener = build(:screener,
-          preventing_work_other: "no",
-          preventing_work_write_in: "some other reason")
+                         preventing_work_other: "no",
+                         preventing_work_write_in: "some other reason")
 
         screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_write_in]).to be_present
@@ -282,7 +282,7 @@ RSpec.describe Screener, type: :model do
     context "with_context :preventing_work_details" do
       it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
-          preventing_work_additional_info: "This is just a test value.")
+                         preventing_work_additional_info: "This is just a test value.")
 
         # Valid value that is not too long
         screener.valid?(:preventing_work_details)
@@ -303,9 +303,9 @@ RSpec.describe Screener, type: :model do
     context "caring for someone attributes" do
       it "clears additional_care_info if caring_for_child_under_6 is no and caring_for_disabled_or_ill_person is no" do
         screener = create(:screener,
-          caring_for_child_under_6: "yes",
-          caring_for_disabled_or_ill_person: "yes",
-          additional_care_info: "i care")
+                          caring_for_child_under_6: "yes",
+                          caring_for_disabled_or_ill_person: "yes",
+                          additional_care_info: "i care")
 
         screener.update(caring_for_child_under_6: "no", caring_for_disabled_or_ill_person: "no")
 
@@ -369,8 +369,8 @@ RSpec.describe Screener, type: :model do
     context "with_context :preventing_work_details" do
       it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
         screener = create(:screener,
-          preventing_work_additional_info: "This is just a test value.",
-          preventing_work_drugs_alcohol: "yes")
+                          preventing_work_additional_info: "This is just a test value.",
+                          preventing_work_drugs_alcohol: "yes")
 
         screener.update(preventing_work_none: "yes")
         screener.update(preventing_work_drugs_alcohol: "no")
@@ -384,8 +384,8 @@ RSpec.describe Screener, type: :model do
     context "with_context :location" do
       it "clears county if state selected has no county information" do
         screener = create(:screener,
-          state: "NC",
-          county: "Alleghany County")
+                          state: "NC",
+                          county: "Alleghany County")
 
         screener.update(state: "NOT_LISTED")
 
@@ -572,9 +572,9 @@ RSpec.describe Screener, type: :model do
 
     it "returns false if no exemptions apply" do
       screener = build(:screener,
-        birth_date: 30.years.ago.to_date,
-        is_working: "no",
-        is_student: "no")
+                       birth_date: 30.years.ago.to_date,
+                       is_working: "no",
+                       is_student: "no")
 
       expect(screener.exempt_from_work_rules?).to eq false
     end
@@ -652,6 +652,64 @@ RSpec.describe Screener, type: :model do
     it "returns false if not working" do
       screener = build(:screener, is_working: "no")
       expect(screener.working_exempt?).to eq false
+    end
+  end
+
+  describe "#total_work_volunteer_and_training_hours" do
+    it "calculates the total number of hours between working, volunteering, and training hours" do
+      screener = build(:screener, working_hours: 5, volunteering_hours: 7, work_training_hours: 9)
+      expect(screener.total_work_volunteer_and_training_hours).to be 21
+    end
+  end
+
+  describe "#no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?" do
+    let(:screener) { create(:screener) }
+    context "when there are no exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
+      end
+
+      context "the total working, volunteering, and training is greater than or equal to 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
+        end
+        it "returns true" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be true
+        end
+      end
+
+      context "the total working, volunteering, and training is less than 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
+        end
+        it "returns false" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+    end
+
+    context "when there are exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+      end
+
+      context "the total working, volunteering, and training is greater than or equal to 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
+        end
+        it "returns true" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+
+      context "the total working, volunteering, and training is less than 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
+        end
+        it "returns false" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
     end
   end
 end

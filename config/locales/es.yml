@@ -337,18 +337,27 @@ es:
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
-    work_rules_apply:
+    work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
-          <p>Usted puede mantener sus beneficios de SNAP si su oficina sabe que usted está haciendo <b>al menos una</b> de las siguientes cosas:</p>
+          <p>Es posible que su oficina de SNAP necesite saber qué actividades está realizando para cumplir con las reglas de trabajo. Usted nos indicó que está realizando alguna de las siguientes actividades:
           <ul>
-          	<li>Trabajar, hacer voluntariado o participar en capacitación laboral por un total de <b>al menos 20 horas a la semana, o</b></li>
-          	<li>Ganar <b>$217.50 a la semana, o</b></li>
-          	<li>Completar las horas requeridas de workfare (un trabajo voluntario que le asigna su oficina de SNAP).</li>
+            <li>Trabajar, hacer voluntariado o participar en capacitación laboral por un total de al menos 20 horas a la semana.</li>
           </ul>
-          <p><b>Si usted no está haciendo una de esas cosas,</b> solo puede recibir beneficios de SNAP por 3 meses.</p>
-        title: "Es posible que tenga que cumplir con las reglas de trabajo de SNAP."
-        title_help_text: "Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP."
-        avoid_a_time_on_your_snap_benefit: "Evite perder sus beneficios de SNAP y manténgalos por más tiempo"
-        reporting_hours_title: "Si no cumple con sus horas de trabajo en un mes, pero tiene una razón válida, infórmelo a su oficina de SNAP."
-        reporting_hours_description_description: "Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación."
+          <p><b>Si estas actividades suman al menos 20 horas por semana (80 horas al mes), es posible que cumpla con las reglas de trabajo de SNAP y pueda mantener sus beneficios de SNAP sin un tiempo límite.</b></p>
+          <p>Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.</p>
+        avoid_a_time_on_your_snap_benefit: Informe a su oficina de SNAP sobre sus actividades para seguir recibiendo sus beneficios.
+        proof_of_working: Comprobantes de trabajo
+        proof_of_working_html: |
+          <p>Envíe uno de los siguientes comprobantes:</p>
+          <ul>
+            <li>Talones de pago del último mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
+            <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
+          </ul>
+        proof_you_need: Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.
+        title: Es posible que deba cumplir con las reglas de trabajo de SNAP, y que las actividades que ya realiza cuenten para mantener sus beneficios de SNAP.
+        title_help_text_html: |
+          <p>No hemos encontrado una exención para usted, por lo que es posible que deba cumplir con las reglas de trabajo de SNAP.</p>
+          <p>Según sus respuestas, es posible que ya esté cumpliendo con estas reglas y que pueda recibir los beneficios de SNAP.</p>
