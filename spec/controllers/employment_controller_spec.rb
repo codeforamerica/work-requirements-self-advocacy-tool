@@ -60,7 +60,7 @@ RSpec.describe EmploymentController, type: :controller do
       working_weekly_earnings: "abc"
     }
 
-    post :update, params: { screener: params }
+    post :update, params: {screener: params}
 
     expect(response).to render_template(:edit)
     expect(response.body).to include('value="abc"')
