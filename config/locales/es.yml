@@ -337,6 +337,30 @@ es:
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    work_rules_apply_met:
+      edit:
+        avoid_a_time_limit_on_your_snap_benefit_html: |
+          <p>Es posible que su oficina de SNAP necesite saber qué actividades está realizando para cumplir con las reglas de trabajo. Usted nos indicó que está realizando alguna de las siguientes actividades:
+          <ul>
+            <li>Trabajar, hacer voluntariado o participar en capacitación laboral por un total de al menos 20 horas a la semana.</li>
+          </ul>
+          <p><b>Si estas actividades suman al menos 20 horas por semana (80 horas al mes), es posible que cumpla con las reglas de trabajo de SNAP y pueda mantener sus beneficios de SNAP sin un tiempo límite.</b></p>
+          <p>Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.</p>
+        avoid_a_time_on_your_snap_benefit: Informe a su oficina de SNAP sobre sus actividades para seguir recibiendo sus beneficios.
+        proof_of_working: Comprobantes de trabajo
+        proof_of_working_html: |
+          <p>Envíe uno de los siguientes comprobantes:</p>
+          <ul>
+            <li>Talones de pago del último mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
+            <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
+          </ul>
+        proof_you_need: Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.
+        title: Es posible que deba cumplir con las reglas de trabajo de SNAP, y que las actividades que ya realiza cuenten para mantener sus beneficios de SNAP.
+        title_help_text_html: |
+          <p>No hemos encontrado una exención para usted, por lo que es posible que deba cumplir con las reglas de trabajo de SNAP.</p>
+          <p>Según sus respuestas, es posible que ya esté cumpliendo con estas reglas y que pueda recibir los beneficios de SNAP.</p>
     work_rules_apply_unmet:
       edit:
         instructions_html: |
