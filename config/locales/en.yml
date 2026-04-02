@@ -250,7 +250,7 @@ en:
           homeschool_name_label: What is the name of the home school?
           notice_text_html: |
             <p>This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.</p>
-            <p>To qualify, you must be the child’s parent or legal guardian, or a member of the child’s household.</p>
+            <p>To qualify, you must be the child’s parent or legal guardian, or a member of the child's household.</p>
           title: Do you teach home school?
     new_response:
       edit:
@@ -361,13 +361,13 @@ en:
           <ul>
             <li>Paystubs from the last month, OR</li>
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
-            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don’t have a paystub, for example, if you were paid in cash)</li>
-            <li>If you’re self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
+            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don't have a paystub, for example, if you were paid in cash)</li>
+            <li>If you're self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
           </ul>
         proof_you_need: Here is the proof you may need to submit to your agency.
         title: You may need to follow SNAP work rules, and your activities may already count to keep your SNAP benefits.
         title_help_text_html: |
-          <p>We didn’t find an exemption for you, so you may need to follow SNAP work rules.</p>
+          <p>We didn't find an exemption for you, so you may need to follow SNAP work rules.</p>
           <p>Based on what you shared, you may already meet the requirements to get SNAP.</p>
     work_rules_apply_unmet:
       edit:
@@ -378,8 +378,8 @@ en:
             <li>Earning <strong>at least $217.50 a week.</strong></li>
           </ul>
           <p>You can <strong>only get SNAP</strong> for 3 months until Dec. 31, 2027, when you are not doing one of those things.</p>
-          <p><strong>If you lose SNAP</strong> and then start doing one of those things, you can reapply for benefits. You can also <strong>reapply for SNAP</strong> if your situation changes so that the work rules don’t apply to you.</p>
-          <p><strong>If you start doing one of those things and you weren’t before,</strong> send proof to your SNAP agency.</p>
+          <p><strong>If you lose SNAP</strong> and then start doing one of those things, you can reapply for benefits. You can also <strong>reapply for SNAP</strong> if your situation changes so that the work rules don't apply to you.</p>
+          <p><strong>If you start doing one of those things and you weren't before,</strong> send proof to your SNAP agency.</p>
         instructions_title: Avoid a time limit on your SNAP benefits
         title: You may need to follow the SNAP work rules
         title_help_text: If something changes about your situation and you cannot work at least 20 hours a week, every week, please tell your SNAP agency.
