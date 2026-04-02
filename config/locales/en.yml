@@ -338,3 +338,27 @@ en:
     unemployment:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
+    work_rules_apply_met:
+      edit:
+        avoid_a_time_limit_on_your_snap_benefit_html: |
+          <p>Your SNAP agency may need to know about the activities you are doing to meet the work rules. You told us that you are doing one or more of the following:</p>
+          <ul>
+            <li>Working, volunteering, or doing job training for a total of at least 20 hours a week.</li>
+          </ul>
+          <p><b>If these activities add at least 20 hours per week (80 hours per month), you may meet SNAP work rules and keep your SNAP benefits without a time limit.</b></p>
+          <p>Your SNAP agency may ask for proof or confirm this information.</p>
+        avoid_a_time_on_your_snap_benefit: Tell your SNAP agency about your activities to avoid a time limit.
+        proof_of_working: Proof of working
+        proof_of_working_html: |
+          <p>Send in <b>one</b> of these verifications:</p>
+          <ul>
+            <li>Paystubs from the last month, OR</li>
+            <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
+            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don’t have a paystub, for example, if you were paid in cash)</li>
+            <li>If you’re self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
+          </ul>
+        proof_you_need: Here is the proof you may need to submit to your agency.
+        title: You may need to follow SNAP work rules, and your activities may already count to keep your SNAP benefits.
+        title_help_text_html: |
+          <p>We didn’t find an exemption for you, so you may need to follow SNAP work rules.</p>
+          <p>Based on what you shared, you may already meet the requirements to get SNAP.</p>
