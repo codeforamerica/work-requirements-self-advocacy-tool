@@ -3,8 +3,7 @@ class WorkRulesApplyUnmetController < QuestionController
     false
   end
 
-  # Only show when no exemptions are identified
   def self.show?(screener)
-    !(screener&.exempt_from_work_rules? && super)
+    !screener&.exempt_from_work_rules?
   end
 end
