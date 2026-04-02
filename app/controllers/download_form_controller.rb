@@ -5,6 +5,13 @@ class DownloadFormController < ExemptionAwareQuestionController
 
   before_action :email_pdf
 
+<<<<<<< download-fix
+=======
+  def self.show?(screener)
+    !!(screener&.exempt_from_work_rules? && super)
+  end
+
+>>>>>>> main
   def email_pdf
     return if current_screener.email.blank?
 

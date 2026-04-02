@@ -1,0 +1,19 @@
+<% content_for :question_title, t("views.work_rules_apply_unmet.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<p><%= t("views.work_rules_apply_unmet.edit.title_help_text") %></p>
+
+<div class="notice white">
+  <%= image_tag "warning-sign.svg", class: "illustration left-justified" %>
+  <h2><%= t("views.work_rules_apply_unmet.edit.instructions_title") %></h2>
+  <p><%= t("views.work_rules_apply_unmet.edit.instructions_html") %></p>
+</div>
+<div class="notice white">
+  <%= image_tag "work-warning.svg", class: "illustration left-justified" %>
+  <h2><%= t("views.work_rules_apply_unmet.edit.unexpected_problems_title") %></h2>
+  <p><%= t("views.work_rules_apply_unmet.edit.unexpected_problems_html") %></p>
+</div>
+
+<div class="spacing-above-60">
+  <%= render "shared/continue_button" %>
+</div>

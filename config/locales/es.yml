@@ -361,3 +361,19 @@ es:
         title_help_text_html: |
           <p>No hemos encontrado una exención para usted, por lo que es posible que deba cumplir con las reglas de trabajo de SNAP.</p>
           <p>Según sus respuestas, es posible que ya esté cumpliendo con estas reglas y que pueda recibir los beneficios de SNAP.</p>
+    work_rules_apply_unmet:
+      edit:
+        instructions_html: |
+          <p>Usted puede mantener sus beneficios de SNAP si su oficina sabe que usted está haciendo <strong>al menos una</strong> de las siguientes cosas:</p>
+          <ul class='list--bulleted'>
+            <li>Trabajar, hacer voluntariado o participar en capacitación laboral por un total de <strong>al menos 20 horas a la semana, o</strong></li>
+            <li>Ganar <strong>$217.50 a la semana.</strong></li>
+          </ul>
+          <p>Puede <strong>recibir los beneficios de SNAP</strong> por solo 3 meses, hasta el 31 de diciembre de 2027, si no cumple con una de esas actividades.</p>
+          <p>Si pierde <strong>sus beneficios de SNAP</strong> y luego comienza a cumplir con uno de estos requisitos, puede volver a solicitarlos. También puede volver a solicitar <strong>sus beneficios de SNAP</strong> si su situación cambia y las reglas de trabajo ya no se aplican en su caso.</p>
+          <p><strong>Si comienza a hacer alguna de estas actividades y antes no las realizaba,</strong> envíe sus comprobantes a su oficina de SNAP.</p>
+        instructions_title: Evite perder sus beneficios de SNAP y manténgalos por más tiempo
+        title: Es posible que tenga que cumplir con las reglas de trabajo de SNAP.
+        title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
+        unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
+        unexpected_problems_title: Si no cumple con sus horas de trabajo en un mes, pero tiene una razón válida, infórmelo a su oficina de SNAP.
