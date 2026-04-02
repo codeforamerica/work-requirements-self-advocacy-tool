@@ -2,17 +2,25 @@ require "rails_helper"
 
 RSpec.describe WorkRulesApplyUnmetController, type: :controller do
   describe ".show?" do
-    context "screener without any exemptions" do
+    subject(:result) { described_class.show?(screener) }
+
+    context "when screener is not exempt" do
+      let(:screener) do
+        instance_double("Screener", exempt_from_work_rules?: false)
+      end
+
       it "returns true" do
-        screener = create(:screener, is_working: "no")
-        expect(subject.class.show?(screener)).to eq true
+        expect(result).to be true
       end
     end
 
-    context "screener with an exemption" do
-      it "returns true" do
-        screener = create(:screener, is_working: "yes", working_hours: "35")
-        expect(subject.class.show?(screener)).to eq false
+    context "when screener is exempt" do
+      let(:screener) do
+        instance_double("Screener", exempt_from_work_rules?: true)
+      end
+
+      it "returns false" do
+        expect(result).to be false
       end
     end
   end
