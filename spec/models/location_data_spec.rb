@@ -63,22 +63,6 @@ RSpec.describe LocationData do
       end
     end
 
-    describe ".get" do
-      it "returns the correct data for each county" do
-        all_counties.each do |state, counties|
-          counties.each do |county_name, data|
-            result = described_class.get(state, county_name)
-            expect(result).to eq(data)
-          end
-        end
-      end
-
-      it "returns nil for unknown county or state" do
-        expect(described_class.get("NC", "Fake County")).to be_nil
-        expect(described_class.get("FAKE", "Some County")).to be_nil
-      end
-    end
-
     describe "county counts" do
       it "reports correct number of counties per state" do
         all_counties.each do |state, counties|
@@ -89,30 +73,30 @@ RSpec.describe LocationData do
       end
     end
 
-    describe ".fetch_county!" do
+    describe ".get" do
       let(:state) { all_counties.keys.first }
       let(:county) { all_counties[state].keys.first }
 
       it "returns the county when valid inputs are provided" do
-        result = described_class.fetch_county!(state, county)
+        result = described_class.get(state, county)
         expect(result).to eq(all_counties[state][county])
       end
 
       it "raises error when state_code is blank" do
         expect {
-          described_class.fetch_county!(nil, county)
+          described_class.get(nil, county)
         }.to raise_error(ArgumentError, /state_code is required/)
       end
 
       it "raises error when county_key is blank" do
         expect {
-          described_class.fetch_county!(state, nil)
+          described_class.get(state, nil)
         }.to raise_error(ArgumentError, /county_key is required/)
       end
 
       it "raises error when county does not exist" do
         expect {
-          described_class.fetch_county!(state, "Fake County")
+          described_class.get(state, "Fake County")
         }.to raise_error(StandardError, /County not found/)
       end
     end
@@ -129,6 +113,22 @@ RSpec.describe LocationData do
       it "raises when county not found" do
         expect {
           described_class.website_for(state, "Fake County")
+        }.to raise_error(StandardError)
+      end
+    end
+
+    describe ".email_for" do
+      let(:state) { all_counties.keys.first }
+      let(:county) { all_counties[state].keys.first }
+
+      it "returns the email for a valid county" do
+        expected = all_counties[state][county][:email]
+        expect(described_class.email_for(state, county)).to eq(expected)
+      end
+
+      it "raises when county not found" do
+        expect {
+          described_class.email_for(state, "Fake County")
         }.to raise_error(StandardError)
       end
     end
