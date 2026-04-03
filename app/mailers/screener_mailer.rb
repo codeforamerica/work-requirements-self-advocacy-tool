@@ -3,7 +3,6 @@ class ScreenerMailer < ApplicationMailer
 
   def send_screener_results(outgoing_email:)
     @screener = outgoing_email.screener
-    @county_data = LocationData::Counties.get(@screener.state, @screener.county)
     attachments.inline["gbh_email_header.png"] = File.binread(Rails.root.join("app/assets/images/gbh_email_header.png"))
     attachments["work_requirements.pdf"] = {
       mime_type: "application/pdf",
