@@ -51,4 +51,8 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
       expect(assigns(:model).errors[:birth_date]).to include(I18n.t("validations.date_missing_or_invalid"))
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? with work rules exemption only"
+  end
 end

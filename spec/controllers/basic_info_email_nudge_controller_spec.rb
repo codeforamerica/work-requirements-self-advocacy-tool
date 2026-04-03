@@ -16,4 +16,8 @@ RSpec.describe BasicInfoEmailNudgeController, type: :controller do
       end
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? with work rules exemption only"
+  end
 end
