@@ -11,8 +11,10 @@
 <%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
 
 ---
-<% website = LocationData::Counties.website_for(@state, @county) %>
-<% email = LocationData::Counties.email_for(@state, @county) %>
+<% state = @screener.state %>
+<% county = @screener.county %>
+<% website = LocationData::Counties.website_for(state, county) %>
+<% email = LocationData::Counties.email_for(state, county) %>
 
 <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 
@@ -22,11 +24,11 @@
 
 2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
 
-   <%= LocationData::Counties.mailing_address_for(@state, @county).split("\n").join("\n   ") %>
+   <%= LocationData::Counties.mailing_address_for(state, county).split("\n").join("\n   ") %>
 
 3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
 
-   <%= LocationData::Counties.physical_address_for(@state, @county).split("\n").join("\n   ") %>
+   <%= LocationData::Counties.physical_address_for(state, county).split("\n").join("\n   ") %>
 
 <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
 
@@ -34,6 +36,6 @@
 <% if email.present? %>
 - <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
 <% end %>
-<% if (phone = LocationData::Counties.phone_for(@state, @county)).present? %>
+<% if (phone = LocationData::Counties.phone_for(state, county)).present? %>
 - <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
 <% end %>
