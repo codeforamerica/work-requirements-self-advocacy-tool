@@ -8,14 +8,4 @@ module BasicInfoConcern
   def section_name
     I18n.t("general.basic_information")
   end
-
-  included do
-    singleton_class.prepend(ClassMethodsOverride)
-  end
-
-  module ClassMethodsOverride
-    def show?(screener)
-      !!(screener&.exempt_from_work_rules? && super)
-    end
-  end
 end

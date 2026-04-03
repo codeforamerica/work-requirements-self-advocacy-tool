@@ -1,4 +1,4 @@
-class BasicInfoDetailsController < QuestionController
+class BasicInfoDetailsController < ExemptionAwareQuestionController
   include BasicInfoConcern
   include DateHelper
 
