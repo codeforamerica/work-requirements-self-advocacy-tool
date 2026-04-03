@@ -35,7 +35,9 @@ RSpec.describe OutOfStateController, type: :controller do
   describe ".county_not_supported?" do
     it "returns false when county is nil" do
       screener = create(:screener, state: state_with_counties, county: nil)
-      expect(described_class.county_not_supported?(screener)).to eq(false)
+      expect {
+        described_class.county_not_supported?(screener)
+      }.to raise_error(ArgumentError, /county_key is required/)
     end
 
     it "returns false for supported counties" do
