@@ -1,7 +1,7 @@
-class BasicInfoEmailNudgeController < QuestionController
+class BasicInfoEmailNudgeController < ExemptionAwareQuestionController
   include BasicInfoConcern
 
   def self.show?(screener)
-    screener.email.blank?
+    screener.email.blank? && super
   end
 end

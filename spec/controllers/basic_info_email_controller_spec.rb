@@ -83,4 +83,8 @@ RSpec.describe BasicInfoEmailController, type: :controller do
 
     expect(screener.reload.confirmation_code).to be_present
   end
+
+  describe ".show?" do
+    it_behaves_like "show? with work rules exemption only"
+  end
 end

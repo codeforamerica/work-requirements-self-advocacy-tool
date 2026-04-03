@@ -1,13 +1,9 @@
-class DownloadFormController < QuestionController
+class DownloadFormController < ExemptionAwareQuestionController
   def show_progress_bar
     false
   end
 
   before_action :email_pdf
-
-  def self.show?(screener)
-    !!(screener&.exempt_from_work_rules? && super)
-  end
 
   def email_pdf
     return if current_screener.email.blank?
