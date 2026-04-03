@@ -1,4 +1,4 @@
-class BasicInfoCaseNumberController < QuestionController
+class BasicInfoCaseNumberController < ExemptionAwareQuestionController
   include BasicInfoConcern
 
   def self.attributes_edited
