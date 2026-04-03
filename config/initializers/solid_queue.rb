@@ -8,6 +8,5 @@ SolidQueue.on_thread_error = lambda do |error|
   span.record_exception(error)
 
   Rails.logger.error("SolidQueue thread error", error: error.message,
-                     error_class: error.class.name,
-                     backtrace: error.backtrace&.first(5))
+    error_class: error.class.name, backtrace: error.backtrace&.first(5))
 end
