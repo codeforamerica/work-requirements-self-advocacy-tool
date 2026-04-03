@@ -61,16 +61,6 @@ module LocationData
 
     ALL_COUNTIES = load_all
 
-    def self.fetch_county!(state_code, county_key)
-      raise ArgumentError, "state_code is required" if state_code.blank?
-      raise ArgumentError, "county_key is required" if county_key.blank?
-
-      county = ALL_COUNTIES.dig(state_code, county_key)
-      raise StandardError, "County not found for #{state_code} / #{county_key}" unless county
-
-      county
-    end
-
     def self.for_state(state)
       ALL_COUNTIES[state] || {}
     end
@@ -80,29 +70,39 @@ module LocationData
     end
 
     def self.get(state, county_key)
-      for_state(state)[county_key]
+      raise ArgumentError, "state_code is required" if state.blank?
+      raise ArgumentError, "county_key is required" if county_key.blank?
+
+      county = ALL_COUNTIES.dig(state, county_key)
+      raise StandardError, "County not found for #{state} / #{county_key}" unless county
+
+      county
     end
 
     def self.website_for(state_code, county_key)
-      fetch_county!(state_code, county_key)[:website]
+      get(state_code, county_key)[:website]
     end
 
     def self.upload_portal_or_email_for(state_code, county_key)
-      county = fetch_county!(state_code, county_key)
+      county = get(state_code, county_key)
       county[:upload_portal_or_email].presence || county[:email]
     end
 
+    def self.email_for(state_code, county_key)
+      get(state_code, county_key)[:email]
+    end
+
     def self.mailing_address_for(state_code, county_key)
-      fetch_county!(state_code, county_key)[:mailing_address]
+      get(state_code, county_key)[:mailing_address]
     end
 
     def self.physical_address_for(state_code, county_key)
-      county = fetch_county!(state_code, county_key)
+      county = get(state_code, county_key)
       county[:physical_address].presence || county[:mailing_address]
     end
 
     def self.phone_for(state_code, county_key)
-      fetch_county!(state_code, county_key)[:phone]
+      get(state_code, county_key)[:phone]
     end
   end
 end
