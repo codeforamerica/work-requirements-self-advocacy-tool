@@ -116,7 +116,8 @@ es:
         receiving_benefits_disability_medicaid: Cobertura de Medicaid por discapacidad
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
-        receiving_benefits_ssdi: Seguro Social
+        receiving_benefits_other: Otro
+        receiving_benefits_ssdi: Seguro Social (SSDI)
         receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
         receiving_benefits_workers_compensation: Pensión por discapacidad
@@ -297,6 +298,51 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    proof_guidance:
+      edit:
+        already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
+        already_has_proof_content_html:
+        - "<strong>Sí, ya compartí esa información</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
+        - <strong>No, todavía no la he enviado</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso de evisará lo que usted envíe y decidirá si debe cumplir con las nuevas reglas de trabajo."
+        next_steps_html:
+        - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
+        - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, aun así puede enviar lo que tenga."
+        proof_of_disability_benefits_html: |
+          <h3>Comprobante de beneficios por discapacidad</h3>
+          <p>Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:</p>
+        proof_of_education_html: |
+          <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
+          <ul class="list--bulleted">
+            <li>Documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre, u otros documentos que demuestren que está inscrito al menos medio tiempo.</li>
+          </ul>
+        proof_of_education_over_50_html: |
+          <p>Si está <strong>inscrito en la escuela al menos medio tiempo</strong>, se aplican otras reglas de SNAP. Además de sus otras excepciones, también informe a su oficina de SNAP si usted:</p>
+          <ul class="list--bulleted">
+            <li>Tiene un trabajo de work study, o ha sido aprobado para un programa de work study y planea participar, o</li>
+            <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
+            <li>Es padre o madre soltero(a), está inscrito a tiempo completo y cuida a un niño menor de 12 años.</li>
+          </ul>
+        proof_of_health_condition_html: |
+          <h3>Comprobante de una condición de salud o discapacidad</h3>
+          <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
+          <ul class="list--bulleted">
+          <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
+          <li>Un <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          </ul>
+        proof_of_treatment_program_html: |
+          <h3>Comprobante de su programa de tratamiento</h3>
+          <p>Un documento de su centro o programa de tratamiento que indique que usted participa de forma regular.</p>
+        proof_of_working_html: |
+          <h3>Comprobantes de trabajo</h3>
+          <p>Envíe <strong>uno</strong> de los siguientes comprobantes:</p>
+          <ul class="list--bulleted">
+            <li>Talones de pago del último mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
+            <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
+          </ul>
+        proof_you_may_need: Estos son los documentos o comprobantes que podría necesitar enviar a su oficina.
+        title: Qué sigue
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.

@@ -116,6 +116,7 @@ en:
         receiving_benefits_disability_medicaid: Disability-related Medicaid
         receiving_benefits_disability_pension: Disability pension
         receiving_benefits_insurance_payments: Disability insurance payments
+        receiving_benefits_other: Other
         receiving_benefits_ssdi: Social Security Disability Benefits (SSDI)
         receiving_benefits_ssi: Supplemental Security Income (SSI)
         receiving_benefits_veterans_disability: Veteran's disability
@@ -297,6 +298,51 @@ en:
         preventing_work_place_to_sleep: Do not have a regular place to sleep and shower
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
+    proof_guidance:
+      edit:
+        already_has_proof: Does your agency already have proof of your exemptions?
+        already_has_proof_content_html:
+        - "<strong>Yes, I’ve already shared that information.</strong> You can still share this information with your worker, if you think there's a chance they don't have it already."
+        - "<strong>No, I haven’t shared that information yet.</strong> We’ll tell you what proof you may want to send below. Your SNAP worker will review what you share and decide if the new work rules apply to you."
+        next_steps_html:
+        - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
+        - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
+        proof_of_disability_benefits_html: |
+          <h3>Proof of disability benefits</h3>
+          <p>A letter or other document showing that you receive the disability benefits you selected:</p>
+        proof_of_education_html: |
+          <h3>Proof of attending college, university, trade school, or high school</h3>
+          <ul class="list--bulleted">
+            <li>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.</li>
+          </ul>
+        proof_of_education_over_50_html: |
+          <p>If you are <strong>enrolled in school at least half time</strong>, other SNAP rules apply. In addition to your other exemptions, also tell your SNAP agency if you:</p>
+          <ul class="list--bulleted">
+            <li>Have a work study job, or have been approved for work study that you intend to participate in, OR</li>
+            <li>Care for a child younger than 12, and don’t have the child care you need for you to go to school and work</li>
+            <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
+          </ul>
+        proof_of_health_condition_html: |
+          <h3>Proof of health conditions or disability</h3>
+          <p>This proof can be helpful, <u>but may not be required</u>.</p>
+          <ul class="list--bulleted">
+            <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
+            <li>A <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a> that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
+          </ul>
+        proof_of_treatment_program_html: |
+          <h3>Proof of your treatment program</h3>
+          <p>A document from your treatment center or program, stating that you regularly participate.</p>
+        proof_of_working_html: |
+          <h3>Proof of working</h3>
+          <p>Send in <strong>one</strong> of these verifications:</p>
+          <ul class="list--bulleted">
+            <li>Paystubs from the last month, OR</li>
+            <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
+            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don’t have a paystub, for example, if you were paid in cash)</li>
+            <li>If you’re self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
+          </ul>
+        proof_you_may_need: Here is the proof you may need to submit to your agency.
+        title: What’s next
     school_enrollment:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
