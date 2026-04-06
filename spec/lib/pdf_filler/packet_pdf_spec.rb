@@ -5,7 +5,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
   let(:nc_screener) { create(:nc_screener) }
   let(:screener) do
-    Screener.new(
+    build(:screener,
       first_name: "Nigella",
       middle_name: "Lucy",
       last_name: "Lawson",
@@ -13,8 +13,7 @@ RSpec.describe PdfFiller::PacketPdf do
       email: "nigella@example.com",
       phone_number: "9195551234",
       state: LocationData::States::NORTH_CAROLINA,
-      nc_screener: nc_screener
-    )
+      nc_screener: nc_screener)
   end
 
   subject(:packet_pdf) { described_class.new(screener) }

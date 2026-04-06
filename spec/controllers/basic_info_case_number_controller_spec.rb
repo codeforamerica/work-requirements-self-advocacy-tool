@@ -12,4 +12,8 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
       expect(screener.reload.case_number).to eq "ABC-123"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? with work rules exemption only"
+  end
 end

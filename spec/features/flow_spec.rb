@@ -141,6 +141,9 @@ RSpec.feature "Screener flow", js: true do
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.proof_guidance.edit.title"))
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
     click_on I18n.t("views.new_response.edit.check_work_rules_for_someone_else")
 

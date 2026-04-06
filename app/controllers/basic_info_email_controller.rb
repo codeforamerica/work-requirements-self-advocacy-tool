@@ -1,4 +1,4 @@
-class BasicInfoEmailController < QuestionController
+class BasicInfoEmailController < ExemptionAwareQuestionController
   include BasicInfoConcern
 
   before_action :set_from_download_form

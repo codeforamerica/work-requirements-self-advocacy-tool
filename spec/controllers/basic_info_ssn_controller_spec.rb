@@ -12,4 +12,8 @@ RSpec.describe BasicInfoSsnController, type: :controller do
       expect(screener.reload.ssn_last_four).to eq "4567"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? with work rules exemption only"
+  end
 end

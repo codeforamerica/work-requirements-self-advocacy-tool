@@ -30,6 +30,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(BasicInfoSsnController),
       ControllerNavigation::NavigationStep.new(WorkRulesApplyUnmetController),
       ControllerNavigation::NavigationStep.new(DownloadFormController),
+      ControllerNavigation::NavigationStep.new(ProofGuidanceController),
       ControllerNavigation::NavigationStep.new(NewResponseController)
     ].freeze
   end

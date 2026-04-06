@@ -132,14 +132,14 @@ class Screener < ApplicationRecord
   end
 
   DISABILITY_BENEFIT_ATTRIBUTES = %i[
-    receiving_benefits_disability_medicaid
-    receiving_benefits_disability_pension
-    receiving_benefits_insurance_payments
-    receiving_benefits_other
     receiving_benefits_ssdi
     receiving_benefits_ssi
     receiving_benefits_veterans_disability
     receiving_benefits_workers_compensation
+    receiving_benefits_disability_pension
+    receiving_benefits_insurance_payments
+    receiving_benefits_disability_medicaid
+    receiving_benefits_other
   ].freeze
 
   PREVENTING_WORK_ATTRIBUTES = %i[

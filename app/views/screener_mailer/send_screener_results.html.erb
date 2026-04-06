@@ -26,19 +26,22 @@
 <h3 style="font-weight: bold;">
   <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 </h3>
+<% state = @screener.state %>
+<% county = @screener.county %>
+<% website = LocationData::Counties.website_for(state, county) %>
+<% email = LocationData::Counties.email_for(state, county) %>
 
 <ol style="line-height: 2;">
   <li>
     <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t('views.screener_mailer.send_screener_results.online_epass_html').html_safe %>
     <br/><br/>
-    <%= t('views.screener_mailer.send_screener_results.online_county', website: @county_data[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: @county_data[:email]) if @county_data[:email].present? %>.
-  </li>
+    <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: email) if email.present? %>.
   </li>
   <li>
     <strong><%= t('views.screener_mailer.send_screener_results.mail_label') %></strong> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
     <br/><br/>
     <div style="font-style: italic;">
-      <% @county_data[:mailing_address].split("\n").map do |line| %>
+      <% LocationData::Counties.mailing_address_for(state, county).split("\n").map do |line| %>
         <%= line %>
         <br/>
       <% end %>
@@ -48,7 +51,7 @@
     <strong><%= t('views.screener_mailer.send_screener_results.in_person_label') %></strong> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
     <br/><br/>
     <div style="font-style: italic;">
-      <% @county_data[:physical_address].split("\n").map do |line| %>
+      <% LocationData::Counties.physical_address_for(state, county).split("\n").map do |line| %>
         <%= line %>
         <br/>
       <% end %>
@@ -61,11 +64,13 @@
 </p>
 
 <ul style="line-height: 2;">
-  <li><%= t('views.screener_mailer.send_screener_results.check_website', website: @county_data[:website]) %></li>
-  <% if @county_data[:email].present? %>
+  <li><%= t('views.screener_mailer.send_screener_results.check_website', website: website) %></li>
+  <% if email.present? %>
     <li>
-      <%= t('views.screener_mailer.send_screener_results.email_office', email: @county_data[:email]) %>
+      <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
     </li>
   <% end %>
-  <li><%= t('views.screener_mailer.send_screener_results.call_office', phone: @county_data[:phone]) %></li>
+  <% if (phone = LocationData::Counties.phone_for(state, county)).present? %>
+    <li><%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %></li>
+  <% end %>
 </ul>

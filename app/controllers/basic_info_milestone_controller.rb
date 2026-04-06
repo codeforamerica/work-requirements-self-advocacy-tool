@@ -1,3 +1,3 @@
-class BasicInfoMilestoneController < QuestionController
+class BasicInfoMilestoneController < ExemptionAwareQuestionController
   include BasicInfoConcern
 end

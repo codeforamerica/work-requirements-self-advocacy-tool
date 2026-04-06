@@ -11,25 +11,31 @@
 <%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
 
 ---
+<% state = @screener.state %>
+<% county = @screener.county %>
+<% website = LocationData::Counties.website_for(state, county) %>
+<% email = LocationData::Counties.email_for(state, county) %>
 
 <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 
 1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
 
-   <%= t('views.screener_mailer.send_screener_results.online_county', website: @county_data[:website]) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: @county_data[:email])}" if @county_data[:email].present? %>.
+   <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: email)}" if email.present? %>.
 
 2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
 
-   <%= @county_data[:mailing_address].split("\n").join("\n   ") %>
+   <%= LocationData::Counties.mailing_address_for(state, county).split("\n").join("\n   ") %>
 
 3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
 
-   <%= @county_data[:physical_address].split("\n").join("\n   ") %>
+   <%= LocationData::Counties.physical_address_for(state, county).split("\n").join("\n   ") %>
 
 <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
 
-- <%= t('views.screener_mailer.send_screener_results.check_website', website: @county_data[:website]) %>
-<% if @county_data[:email].present? %>
-- <%= t('views.screener_mailer.send_screener_results.email_office', email: @county_data[:email]) %>
+- <%= t('views.screener_mailer.send_screener_results.check_website', website: website) %>
+<% if email.present? %>
+- <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
 <% end %>
-- <%= t('views.screener_mailer.send_screener_results.call_office', phone: @county_data[:phone]) %>
+<% if (phone = LocationData::Counties.phone_for(state, county)).present? %>
+- <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
+<% end %>
