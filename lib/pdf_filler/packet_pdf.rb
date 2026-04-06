@@ -51,11 +51,11 @@ module PdfFiller
         full_name: @screener.full_name,
         operating_homeschool_30_or_more_hours: @nc_screener.operating_homeschool_30_or_more_hours?,
         receiving_disability_benefits: @screener.receiving_disability_benefits?,
-        # volunteering_hours: @screener.volunteering_hours.to_i,
-        # weekly_earnings: @screener.working_weekly_earnings.to_f,
-        # work_hours: @screener.working_hours.to_i,
-        # work_training_hours: @screener.work_training_hours.to_i,
-        # working_30_or_more_hours: @screener.working_30_or_more_hours?
+        volunteering_hours: @screener.volunteering_hours.to_i,
+        weekly_earnings: @screener.working_weekly_earnings.to_f,
+        work_hours: @screener.working_hours.to_i,
+        work_training_hours: @screener.work_training_hours.to_i,
+        working_30_or_more_hours: @screener.working_30_or_more_hours?
       )
     end
 
