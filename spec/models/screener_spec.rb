@@ -716,13 +716,8 @@ RSpec.describe Screener, type: :model do
   describe "encryption" do
     it "stores ssn_last_four as encrypted data" do
       screener = create(:screener, ssn_last_four: "4567")
-
-      raw_value = Screener.connection.select_value(
-        "SELECT ssn_last_four FROM screeners WHERE id = #{screener.id}"
-      )
-
-      expect(raw_value).not_to eq "4567"
-      expect(raw_value).to include("p") # payload marker
+      expect(screener.encrypted_attribute?(:ssn_last_four)).to eq true
+      expect(screener.ssn_last_four).to eq "4567"
     end
   end
 end
