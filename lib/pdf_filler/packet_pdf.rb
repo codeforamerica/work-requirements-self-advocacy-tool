@@ -34,7 +34,7 @@ module PdfFiller
         receiving_disabilty_benefits: @screener.receiving_disability_benefits?,
         signature: @screener.full_name_with_middle,
         ssn_last_4: @screener.ssn_last_four,
-        submission_date: submission_date,
+        submission_date: submission_date
         # submission_date_2: submission_date,
         # volunteering_hours: @screener.volunteering_hours.to_s,
         # volunteering_org_name: @screener.volunteering_org_name,
@@ -116,7 +116,7 @@ module PdfFiller
         preventing_work_medical_condition: @screener.preventing_work_medical_condition_yes?,
         preventing_work_other: @screener.preventing_work_other_yes?,
         preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
-        seasonal_worker: @screener.is_migrant_farmworker_yes?,
+        seasonal_worker: @screener.is_migrant_farmworker_yes?
         # volunteering_hours: @screener.volunteering_hours,
         # work_hours: @screener.working_hours,
         # work_training_hours: @screener.work_training_hours
