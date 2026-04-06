@@ -42,10 +42,6 @@ Rails.application.configure do
   # Replace the default in-process memory cache store with a durable alternative.
   config.cache_store = :solid_cache_store
 
-  # Highlight code that enqueued background job in logs.
-  # config.active_job.verbose_enqueue_logs = ENV.fetch("RAILS_LOG_LEVEL", "info").downcase == "debug"
-  config.active_job.verbose_enqueue_logs = true
-
   # Replace the default in-process and non-durable queuing backend for Active Job.
   config.active_job.queue_adapter = :solid_queue
   config.solid_queue.connects_to = {database: {writing: :queue}}
@@ -55,7 +51,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = {host: "development.wrsat.codeforamerica.app"}
+  config.action_mailer.default_url_options = {host: ENV.fetch("DOMAIN", "staging.wrsat.codeforamerica.app")}
   config.action_mailer.delivery_method = :ses_v2
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
