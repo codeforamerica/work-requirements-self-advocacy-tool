@@ -12,13 +12,13 @@ module PdfFiller
         confirmation_code: @screener.confirmation_code,
         details_of_care: @screener.additional_care_info,
         drug_alcohol_program_name: @screener.alcohol_treatment_program_name,
-        earnings_per_week: @screener.working_weekly_earnings.to_s,
+        # earnings_per_week: @screener.working_weekly_earnings.to_s,
         email: @screener.email,
         full_name_with_middle: @screener.full_name_with_middle,
         homeschool_hours: @nc_screener.homeschool_hours.to_s,
         homeschool_name: @nc_screener.homeschool_name,
-        is_in_work_training: @screener.is_in_work_training_yes?,
-        is_volunteering: @screener.volunteering?,
+        # is_in_work_training: @screener.is_in_work_training_yes?,
+        # is_volunteering: @screener.volunteering?,
         operating_a_homeschool: @nc_screener.teaches_homeschool_yes?,
         phone_number: @screener.phone_number,
         preventing_work_write_in: @screener.preventing_work_write_in,
@@ -35,12 +35,12 @@ module PdfFiller
         signature: @screener.full_name_with_middle,
         ssn_last_4: @screener.ssn_last_four,
         submission_date: submission_date,
-        submission_date_2: submission_date,
-        volunteering_hours: @screener.volunteering_hours.to_s,
-        volunteering_org_name: @screener.volunteering_org_name,
-        work_hours: @screener.working_hours.to_s,
-        work_training_name: @screener.work_training_name,
-        working_or_earning: @screener.working_exempt?
+        # submission_date_2: submission_date,
+        # volunteering_hours: @screener.volunteering_hours.to_s,
+        # volunteering_org_name: @screener.volunteering_org_name,
+        # work_hours: @screener.working_hours.to_s,
+        # work_training_name: @screener.work_training_name,
+        # working_or_earning: @screener.working_exempt?
       )
     end
 
@@ -51,16 +51,16 @@ module PdfFiller
         full_name: @screener.full_name,
         operating_homeschool_30_or_more_hours: @nc_screener.operating_homeschool_30_or_more_hours?,
         receiving_disability_benefits: @screener.receiving_disability_benefits?,
-        volunteering_hours: @screener.volunteering_hours.to_i,
-        weekly_earnings: @screener.working_weekly_earnings.to_f,
-        work_hours: @screener.working_hours.to_i,
-        work_training_hours: @screener.work_training_hours.to_i,
-        working_30_or_more_hours: @screener.working_30_or_more_hours?
+        # volunteering_hours: @screener.volunteering_hours.to_i,
+        # weekly_earnings: @screener.working_weekly_earnings.to_f,
+        # work_hours: @screener.working_hours.to_i,
+        # work_training_hours: @screener.work_training_hours.to_i,
+        # working_30_or_more_hours: @screener.working_30_or_more_hours?
       )
     end
 
     def filled_pdf_path
-      source_pdf_path = "app/assets/pdfs/nc_packet.pdf"
+      source_pdf_path = "app/assets/pdfs/nc_packet--no-income.pdf"
       template_doc = HexaPDF::Document.open(source_pdf_path)
       hash_for_fillable_pdf.each do |field_name, field_value|
         template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
@@ -117,9 +117,9 @@ module PdfFiller
         preventing_work_other: @screener.preventing_work_other_yes?,
         preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
         seasonal_worker: @screener.is_migrant_farmworker_yes?,
-        volunteering_hours: @screener.volunteering_hours,
-        work_hours: @screener.working_hours,
-        work_training_hours: @screener.work_training_hours
+        # volunteering_hours: @screener.volunteering_hours,
+        # work_hours: @screener.working_hours,
+        # work_training_hours: @screener.work_training_hours
       }
     end
 
