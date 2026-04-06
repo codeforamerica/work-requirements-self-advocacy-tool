@@ -9,10 +9,9 @@ class ApplicationJob < ActiveJob::Base
   rescue_from(Exception) do |error|
     span = OpenTelemetry::Trace.current_span
     span.status = OpenTelemetry::Trace::Status.error(error.message)
-    span.record_exception(
-      error,
-      attributes: {"job.class" => self.class.name, "job.id" => job_id}
-    )
+    span.set_attribute("job.class", self.class.name)
+    span.set_attribute("job.id", job_id)
+    span.record_exception(error)
 
     Rails.logger.error(
       "Job failed",
