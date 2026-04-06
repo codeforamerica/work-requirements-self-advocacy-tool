@@ -7,6 +7,9 @@ SolidQueue.on_thread_error = lambda do |error|
   span.status = OpenTelemetry::Trace::Status.error(error.message)
   span.record_exception(error)
 
-  Rails.logger.error("SolidQueue thread error", error: error.message,
-    error_class: error.class.name, backtrace: error.backtrace&.first(5))
+  Rails.logger.error("SolidQueue thread error", exception: {
+    message: error.message,
+    name: error.class.name,
+    stack_trace: error.backtrace
+  })
 end

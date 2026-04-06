@@ -9,14 +9,21 @@ class ApplicationJob < ActiveJob::Base
   rescue_from(Exception) do |error|
     span = OpenTelemetry::Trace.current_span
     span.status = OpenTelemetry::Trace::Status.error(error.message)
-    span.record_exception(
-      error,
-      attributes: {"job.class" => self.class.name, "job.id" => job_id}
-    )
+    span.record_exception(error)
+    # span.record_exception(
+    #   error,
+    #   attributes: {"job.class" => self.class.name, "job.id" => job_id}
+    # )
 
-    Rails.logger.error("Job failed", job_class: self.class.name, job_id: job_id,
-      error: error.message, error_class: error.class.name,
-      backtrace: error.backtrace&.first(5))
+    Rails.logger.error("Job failed",
+      job_class: self.class.name,
+      job_id: job_id,
+      exception: {
+        message: error.message,
+        name: error.class.name,
+        stack_trace: error.backtrace
+      }
+    )
 
     # Re-raise the exception to be handled by the job framework (SolidQueue).
     raise error
