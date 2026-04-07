@@ -47,7 +47,6 @@ es:
         help_text_epass:
           help_bullets_html:
           - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
-          - Use la aplicación ebtEDGE para consultar la información de su caso desde su teléfono.
           title: Use su cuenta de ePASS NC para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
@@ -97,6 +96,12 @@ es:
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
       edit:
+        help_content:
+        - una organización sin fines de lucro,
+        - una iglesia u otro grupo religioso,
+        - una organización comunitaria, o
+        - una agencia gubernamental.
+        help_title: 'El trabajo voluntario incluye actividades que usted realiza sin recibir pago para:'
         title: "¿Hace servicio comunitario o trabajo voluntario?"
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
@@ -170,7 +175,7 @@ es:
           cant_work: "¿Qué pasa si tengo un problema médico o de salud mental que limita mi capacidad para trabajar?"
           cant_work_content_html: |
             <p>Si puede demostrar que no puede trabajar por un motivo médico o de salud, las reglas de trabajo de SNAP no aplican en su caso y puede seguir recibiendo los beneficios de SNAP.</p>
-            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"motivo justificado"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
+            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"razón válida"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
           keep_snap: "¿Podré seguir recibiendo beneficios de SNAP?"
           keep_snap_content_html: |
             <p>Si <u>no tiene</u> que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una excepción.</strong></p>
@@ -196,11 +201,11 @@ es:
               <li>Cuida a alguien que no puede cuidarse por sí mismo (por ejemplo, una persona mayor o una persona con discapacidades), incluso si esa persona no vive con usted.</li>
               <li>Recibe beneficios de desempleo, o solicitó beneficios por desempleo y no se lo han negado.</li>
               <li>Asiste a la escuela tiempo completo, o al menos medio tiempo.</li>
-              <li>Recibe al menos $935.25 al mes por el trabajo que realiza.</li>
+              <li>Recibe $935.25 o más al mes por su trabajo.</li>
               <li>No puede trabajar al menos 20 horas a la semana debido a una condición médica (incluyendo problemas de salud física o mental).</li>
               <li>Recibe beneficios o pagos por discapacidad.</li>
               <li>Está en un programa de tratamiento por alcohol o drogas.</li>
-              <li>Es una persona indígena o Indio de los Estados Unidos.</li>
+              <li>Es una persona indígena o Indio de Estados Unidos.</li>
             </ul>
         title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
         title_help_text_html: |
@@ -208,11 +213,11 @@ es:
           <p><strong>Debería tomar alrededor de 20 minutos completar esta solicitud.</strong></p>
         work_rules_description_html: |
           <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
-          <p>Para SNAP, "actividades laborales" incluye:</p>
+          <p>Para SNAP, "actividades laborales" incluyen:</p>
           <ul class="list--bulleted">
-            <li><strong>Dinero proveniente</strong> del trabajo, incluyendo trabajo por cuenta propia o temporal.</li>
+            <li><strong>Recibir dinero por su trabajo</strong>, incluyendo un empleo, trabajo por cuenta propia o temporal.</li>
             <li><strong>Trabajar a cambio de algo</strong>, como comida, vivienda u otros servicios.</li>
-            <li>Hacer trabajo voluntario.</li>
+            <li>Hacer <strong>trabajo voluntario</strong> en una organización sin fines de lucro, iglesia u otro grupo religioso, organización comunitaria o agencia gubernamental.</li>
             <li>Participar en <strong>programas de capacitación laboral o en programas de Empleo y Capacitación de SNAP.</strong></li>
           </ul>
           <p>Si usted no trabaja durante 80 horas al mes, solo puede recibir beneficios de SNAP por 3 meses cada 3 años (36 meses).</p>
@@ -244,7 +249,9 @@ es:
           homeschool_hours_label: "¿Cuántas horas a la semana imparte educación en el hogar?"
           homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
           homeschool_name_label: "¿Cuál es el nombre de la escuela en el hogar?"
-          notice_text: Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.
+          notice_text_html: |
+            <p>Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.</p>
+            <p>Para ser elegible, debe ser padre, madre o tutor legal del niño, o vivir en su hogar.</p>
           title: "¿Tiene un programa de educación en casa para un niño o niños?"
     new_response:
       edit:
@@ -282,7 +289,7 @@ es:
     preventing_work_situations:
       edit:
         other: Otra razón
-        preventing_work_domestic_violence: Violencia doméstica
+        preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
         preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
         preventing_work_medical_condition_html: |
           Tiene una condición médica
