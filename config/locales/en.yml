@@ -55,7 +55,6 @@ en:
         help_text_epass:
           help_bullets_html:
           - Log in to the official <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">NC ePass website</a> to view case details, including your case number.
-          - Use the ebtEDGE mobile app to view your account details.
           title: Log in to your ePASS NC portal to find your case number.
         title: Do you have a case number?
     basic_info_details:
@@ -105,6 +104,12 @@ en:
         title: Do you care for someone who cannot care for themselves?
     community_service:
       edit:
+        help_content:
+        - a nonprofit organization,
+        - a church or other religious groups,
+        - a community organization, or
+        - a government agency
+        help_title: 'Volunteering includes work you do for free for:'
         title: Do you volunteer or do any community service?
         volunteering_hours_label: How many hours a week do you volunteer?
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
@@ -198,7 +203,7 @@ en:
           who_not_content_html: |
             <p>Some people do not have to follow the SNAP work rules. You do not have to follow the SNAP work rules if you are:</p>
             <ul class="list--bulleted">
-              <li>Younger than 18, or 65+ years old</li>
+              <li>Younger than 18, or 65 or older</li>
               <li>Living with a child under 14</li>
               <li>Pregnant</li>
               <li>Caring for someone who cannot fully care for themselves (for example, if they are elderly or have a disability), even if they don't live with you.</li>
@@ -220,7 +225,7 @@ en:
           <ul class="list--bulleted">
             <li><strong>Working a job</strong> for money, including self-employment or gigs</li>
             <li><strong>Working in exchange for something</strong> like food, housing, or other services</li>
-            <li><strong>Volunteering</strong></li>
+            <li><strong>Volunteering</strong> for a nonprofit organization, church or other religious group, community organization, or government agency</li>
             <li>Participating in <strong>job training or SNAP Employment & Training programs</strong></li>
           </ul>
           <p>If you do not do work activities for 80 hours a month, you can only get SNAP benefits for 3 months every 3 years (36 months).</p>
@@ -252,7 +257,9 @@ en:
           homeschool_hours_label: How many hours a week do you operate home school?
           homeschool_name_help_text_html: Use the school name registered with the <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">NC Division of Non-Public Education</a>, if it is registered.
           homeschool_name_label: What is the name of the home school?
-          notice_text: This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.
+          notice_text_html: |
+            <p>This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.</p>
+            <p>To qualify, you must be the child’s parent or legal guardian, or a member of the child's household.</p>
           title: Do you teach home school?
     new_response:
       edit:
@@ -290,7 +297,7 @@ en:
     preventing_work_situations:
       edit:
         other: Other
-        preventing_work_domestic_violence: Experiencing domestic violence
+        preventing_work_domestic_violence: Experiencing or recently experienced domestic abuse
         preventing_work_drugs_alcohol: Struggling with drugs or alcohol
         preventing_work_medical_condition_html: |
           A medical condition
@@ -408,13 +415,13 @@ en:
           <ul>
             <li>Paystubs from the last month, OR</li>
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
-            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don’t have a paystub, for example, if you were paid in cash)</li>
-            <li>If you’re self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
+            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don't have a paystub, for example, if you were paid in cash)</li>
+            <li>If you're self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
           </ul>
         proof_you_need: Here is the proof you may need to submit to your agency.
         title: You may need to follow SNAP work rules, and your activities may already count to keep your SNAP benefits.
         title_help_text_html: |
-          <p>We didn’t find an exemption for you, so you may need to follow SNAP work rules.</p>
+          <p>We didn't find an exemption for you, so you may need to follow SNAP work rules.</p>
           <p>Based on what you shared, you may already meet the requirements to get SNAP.</p>
     work_rules_apply_unmet:
       edit:
@@ -425,8 +432,8 @@ en:
             <li>Earning <strong>at least $217.50 a week.</strong></li>
           </ul>
           <p>You can <strong>only get SNAP</strong> for 3 months until Dec. 31, 2027, when you are not doing one of those things.</p>
-          <p><strong>If you lose SNAP</strong> and then start doing one of those things, you can reapply for benefits. You can also <strong>reapply for SNAP</strong> if your situation changes so that the work rules don’t apply to you.</p>
-          <p><strong>If you start doing one of those things and you weren’t before,</strong> send proof to your SNAP agency.</p>
+          <p><strong>If you lose SNAP</strong> and then start doing one of those things, you can reapply for benefits. You can also <strong>reapply for SNAP</strong> if your situation changes so that the work rules don't apply to you.</p>
+          <p><strong>If you start doing one of those things and you weren't before,</strong> send proof to your SNAP agency.</p>
         instructions_title: Avoid a time limit on your SNAP benefits
         title: You may need to follow the SNAP work rules
         title_help_text: If something changes about your situation and you cannot work at least 20 hours a week, every week, please tell your SNAP agency.
