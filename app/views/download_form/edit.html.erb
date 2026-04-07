@@ -11,7 +11,7 @@
 
 <% unless has_email %>
   <div>
-    <%= link_to(generate_pdf_path, class: "button button--primary spacing-below-0") do %>
+    <%= link_to(generate_pdf_path, class: "button button--primary spacing-below-0", target: "_blank") do %>
       <i class="button__icon--left icon-get_app"></i>
       <%= t("views.download_form.edit.download_form") %>
     <% end %>
