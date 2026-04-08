@@ -14,7 +14,8 @@ class ScreenerMailerPreview < ActionMailer::Preview
       receiving_benefits_ssi: "yes",
       receiving_benefits_veterans_disability: "yes",
       receiving_benefits_other: "yes",
-      is_in_alcohol_treatment_program: "yes"
+      is_in_alcohol_treatment_program: "yes",
+      nc_screener: FactoryBot.build(:nc_screener)
     )
     outgoing_email = FactoryBot.build(:outgoing_email, screener: screener)
     ScreenerMailer.send_screener_results(outgoing_email: outgoing_email)

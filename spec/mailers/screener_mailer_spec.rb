@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ScreenerMailer, type: :mailer do
   describe "send_screener_results" do
-    let(:screener) { create(:screener) }
+    let(:screener) { create(:screener, :with_nc_screener) }
     let(:outgoing_email) { create(:outgoing_email, screener: screener) }
     let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
     let(:body) { mail.html_part.body.to_s }
@@ -15,7 +15,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
 
     context "proof section" do
       context "when is_student is yes" do
-        let(:screener) { create(:screener, is_student: "yes") }
+        let(:screener) { create(:screener, :with_nc_screener, is_student: "yes") }
 
         it "includes proof of education" do
           expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.proofs_you_may_need.student_html"))
@@ -29,7 +29,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when preventing_work_drugs_alcohol is yes" do
-        let(:screener) { create(:screener, preventing_work_drugs_alcohol: "yes") }
+        let(:screener) { create(:screener, :with_nc_screener, preventing_work_drugs_alcohol: "yes") }
 
         it "includes proof of health conditions" do
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
@@ -37,7 +37,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when preventing_work_medical_condition is yes" do
-        let(:screener) { create(:screener, preventing_work_medical_condition: "yes") }
+        let(:screener) { create(:screener, :with_nc_screener, preventing_work_medical_condition: "yes") }
 
         it "includes proof of health conditions" do
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
@@ -51,7 +51,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when receiving disability benefits" do
-        let(:screener) { create(:screener, receiving_benefits_ssdi: "yes", receiving_benefits_ssi: "yes") }
+        let(:screener) { create(:screener, :with_nc_screener, receiving_benefits_ssdi: "yes", receiving_benefits_ssi: "yes") }
 
         it "includes proof of disability benefits with selected benefits" do
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_disability_benefits_html"))
@@ -65,7 +65,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when receiving other disability benefits with write-in" do
-        let(:screener) { create(:screener, receiving_benefits_other: "yes", receiving_benefits_write_in: "Many bennies") }
+        let(:screener) { create(:screener, :with_nc_screener, receiving_benefits_other: "yes", receiving_benefits_write_in: "Many bennies") }
 
         it "includes the write-in text" do
           expect(body).to include("Many bennies")
@@ -79,7 +79,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when is_in_alcohol_treatment_program is yes" do
-        let(:screener) { create(:screener, is_in_alcohol_treatment_program: "yes") }
+        let(:screener) { create(:screener, :with_nc_screener, is_in_alcohol_treatment_program: "yes") }
 
         it "includes proof of treatment program" do
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
@@ -91,6 +91,13 @@ RSpec.describe ScreenerMailer, type: :mailer do
           expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
         end
       end
+    end
+
+    it "attaches the work requirements PDF" do
+      pdf_attachment = mail.attachments["work_requirements.pdf"]
+      expect(pdf_attachment).to be_present
+      expect(pdf_attachment.content_type).to start_with("application/pdf")
+      expect(pdf_attachment.body.decoded).not_to be_empty
     end
   end
 end
