@@ -709,4 +709,12 @@ RSpec.describe Screener, type: :model do
       end
     end
   end
+
+  describe "encryption" do
+    it "stores ssn_last_four as encrypted data" do
+      screener = create(:screener, ssn_last_four: "4567")
+      expect(screener.encrypted_attribute?(:ssn_last_four)).to eq true
+      expect(screener.ssn_last_four).to eq "4567"
+    end
+  end
 end

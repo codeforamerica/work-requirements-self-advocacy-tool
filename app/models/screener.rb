@@ -4,6 +4,7 @@ class Screener < ApplicationRecord
   has_one :nc_screener, dependent: :destroy
   attr_accessor :email_confirmation
   attr_accessor :from_download_form
+  encrypts :ssn_last_four
   enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
