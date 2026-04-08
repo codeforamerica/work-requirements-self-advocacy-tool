@@ -18,7 +18,7 @@ class NcScreener < ApplicationRecord
   end
 
   def operating_homeschool_30_or_more_hours?
-    homeschool_hours.to_i >= 30
+    teaches_homeschool_yes? && homeschool_hours.to_i >= 30
   end
 
   def exempt_from_work_rules?
