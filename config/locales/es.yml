@@ -12,7 +12,6 @@ es:
     close: Cerrar
     continue: Continuar
     continue_without_this_number: Continuar sin este número
-    faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
     negative: 'No'
