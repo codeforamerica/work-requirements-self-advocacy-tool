@@ -49,7 +49,7 @@ RSpec.describe CommunityServiceController, type: :controller do
 
         post :update, params: {screener: params}
         expect(response).to render_template :edit
-        expect(response.body).to have_text "is not a number"
+        expect(response.body).to have_text(I18n.t("validations.number_invalid"))
       end
     end
   end
