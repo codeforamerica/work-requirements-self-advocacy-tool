@@ -21,6 +21,10 @@ class NcScreener < ApplicationRecord
     homeschool_hours.to_i >= 30
   end
 
+  def exempt_from_work_rules?
+    operating_homeschool_30_or_more_hours? || worked_last_five_years_yes?
+  end
+
   private
 
   def remove_worked_last_five_years_if_has_diploma
