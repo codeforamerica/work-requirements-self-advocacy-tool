@@ -28,7 +28,7 @@ RSpec.describe BasicInfoEmailController, type: :controller do
         post :update, params: {screener: params}
         expect(response).to render_template(:edit)
 
-        expect(assigns(:model).errors[:email]).to include("is invalid")
+        expect(assigns(:model).errors[:email]).to eq [I18n.t("validations.email_invalid")]
       end
     end
 
@@ -41,7 +41,7 @@ RSpec.describe BasicInfoEmailController, type: :controller do
 
         post :update, params: {screener: params}
         expect(response).to render_template(:edit)
-        expect(assigns(:model).errors[:email_confirmation]).to include("doesn't match Email")
+        expect(assigns(:model).errors[:email_confirmation]).to eq [I18n.t("validations.email_must_match")]
       end
     end
 
@@ -50,7 +50,7 @@ RSpec.describe BasicInfoEmailController, type: :controller do
         post :update, params: {screener: {email: "", email_confirmation: ""}, from_download_form: "true"}
 
         expect(response).to render_template(:edit)
-        expect(assigns(:model).errors[:email]).to include("can't be blank")
+        expect(assigns(:model).errors[:email]).to eq [I18n.t("validations.email_invalid")]
       end
     end
 

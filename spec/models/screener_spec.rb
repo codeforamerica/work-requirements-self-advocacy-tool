@@ -66,11 +66,8 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, first_name: nil, last_name: nil)
         screener.valid?(:basic_info_details)
 
-        expect(screener.errors).to match_array [
-          "First name can't be blank",
-          "Last name can't be blank",
-          "Birth date Date is missing or invalid"
-        ]
+        expect(screener.errors[:first_name]).to eq [I18n.t("validations.first_name_required")]
+        expect(screener.errors[:last_name]).to eq [I18n.t("validations.last_name_required")]
       end
 
       it "requires the phone number to be valid" do
@@ -78,7 +75,7 @@ RSpec.describe Screener, type: :model do
           screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: phone_number)
           screener.valid?(:basic_info_details)
 
-          expect(screener.errors).to match_array ["Phone number is invalid"]
+          expect(screener.errors[:phone_number]).to eq [I18n.t("validations.phone_invalid")]
         end
 
         screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
@@ -228,14 +225,14 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, email: "hi.gmail", email_confirmation: "hi.gmail")
         screener.valid?(:basic_info_email)
 
-        expect(screener.errors).to match_array ["Email is invalid"]
+        expect(screener.errors[:email]).to eq [I18n.t("validations.email_invalid")]
       end
 
       it "requires a confirmed email" do
         screener = build(:screener, email: "anisha@example.com", email_confirmation: "jenny@example.com")
         screener.valid?(:basic_info_email)
 
-        expect(screener.errors).to match_array ["Email confirmation doesn't match Email"]
+        expect(screener.errors[:email_confirmation]).to eq [I18n.t("validations.email_must_match")]
       end
 
       it "removed white spaces from the email and confirmation" do

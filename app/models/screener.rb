@@ -58,21 +58,22 @@ class Screener < ApplicationRecord
   end
 
   with_context :date_of_birth do
-    validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
+    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
 
   with_context :basic_info_details do
-    validates :first_name, :last_name, presence: true
-    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true}
-    validates :birth_date, presence: {message: I18n.t("validations.date_missing_or_invalid")}
+    validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
+    validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
+    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
+    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
 
   with_context :american_indian do
-    validates :is_american_indian, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :living_with_someone do
-    validates :has_child, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :has_child, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :caring_for_someone do
@@ -81,11 +82,16 @@ class Screener < ApplicationRecord
   end
 
   with_context :pregnancy do
-    validates :pregnancy_due_date, comparison: {greater_than: Date.current, message: I18n.t("validations.date_must_be_in_future")}, allow_blank: true
+    validates :pregnancy_due_date,
+      comparison: {
+        greater_than: Date.current,
+        message: ->(*) { I18n.t("validations.date_must_be_in_future") }
+      },
+      allow_blank: true
   end
 
   with_context :unemployment do
-    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :disability_benefits do
@@ -104,7 +110,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :school_enrollment do
-    validates :is_student, inclusion: {in: %w[yes no], message: I18n.t("validations.must_answer_yes_or_no")}
+    validates :is_student, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   with_context :preventing_work_situations do
@@ -124,8 +130,21 @@ class Screener < ApplicationRecord
   end
 
   with_context :basic_info_email do
-    validates :email, "valid_email_2/email": true, confirmation: true
-    validates :email, presence: true, if: -> { from_download_form }
+    validates :email,
+      "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
+      if: -> { email.present? }
+
+    validates :email,
+      presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
+      if: -> { from_download_form }
+
+    validates :email_confirmation,
+      presence: {message: ->(*) { I18n.t("validations.email_confirmation_required") }},
+      if: -> { from_download_form || email.present? }
+
+    validates :email,
+      confirmation: {message: ->(*) { I18n.t("validations.email_must_match") }},
+      if: -> { email.present? || email_confirmation.present? }
   end
 
   with_context :basic_info_ssn do
@@ -307,15 +326,15 @@ class Screener < ApplicationRecord
   end
 
   with_context :employment do
-    validates :working_hours, numericality: {only_integer: true}, allow_blank: true
-    validates :working_weekly_earnings, numericality: {only_decimal: true}, allow_blank: true
+    validates :working_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :working_weekly_earnings, numericality: {only_decimal: true, message: ->(*) { I18n.t("validations.amount_invalid") }}, allow_blank: true
   end
 
   with_context :community_service do
-    validates :volunteering_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :volunteering_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
   end
 
   with_context :training_program do
-    validates :work_training_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :work_training_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
   end
 end

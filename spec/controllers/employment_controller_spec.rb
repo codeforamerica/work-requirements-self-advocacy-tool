@@ -34,7 +34,35 @@ RSpec.describe EmploymentController, type: :controller do
       post :update, params: {screener: params}
 
       expect(response).to render_template :edit
-      expect(response.body).to have_text "is not a number"
+      expect(response.body).to have_text(I18n.t("validations.number_invalid"))
     end
+  end
+
+  render_views
+
+  it "formats working_weekly_earnings to 2 decimal places when valid" do
+    screener = create(:screener, working_weekly_earnings: 300.4)
+    sign_in screener
+
+    get :edit
+
+    expect(response.body).to include('value="300.40"')
+  end
+
+  render_views
+
+  it "shows raw input when working_weekly_earnings has validation errors" do
+    screener = create(:screener)
+    sign_in screener
+
+    params = {
+      is_working: "yes",
+      working_weekly_earnings: "abc"
+    }
+
+    post :update, params: {screener: params}
+
+    expect(response).to render_template(:edit)
+    expect(response.body).to include('value="abc"')
   end
 end
