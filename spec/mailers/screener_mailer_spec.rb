@@ -18,5 +18,12 @@ RSpec.describe ScreenerMailer, type: :mailer do
       expect(mail.from).to eq(["noreply@" + ENV.fetch("DOMAIN", "codeforamerica.app")])
       expect(mail.body.encoded).to include("Submit this form and any proof you need to your SNAP agency")
     end
+
+    it "attaches the work requirements PDF" do
+      pdf_attachment = mail.attachments["work_requirements.pdf"]
+      expect(pdf_attachment).to be_present
+      expect(pdf_attachment.content_type).to start_with("application/pdf")
+      expect(pdf_attachment.body.decoded).not_to be_empty
+    end
   end
 end
