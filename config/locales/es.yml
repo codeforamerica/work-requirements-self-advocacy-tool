@@ -47,7 +47,6 @@ es:
         help_text_epass:
           help_bullets_html:
           - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
-          - Use la aplicación ebtEDGE para consultar la información de su caso desde su teléfono.
           title: Use su cuenta de ePASS NC para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
@@ -97,6 +96,12 @@ es:
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
       edit:
+        help_content:
+        - una organización sin fines de lucro,
+        - una iglesia u otro grupo religioso,
+        - una organización comunitaria, o
+        - una agencia gubernamental.
+        help_title: 'El trabajo voluntario incluye actividades que usted realiza sin recibir pago para:'
         title: "¿Hace servicio comunitario o trabajo voluntario?"
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
@@ -111,7 +116,8 @@ es:
         receiving_benefits_disability_medicaid: Cobertura de Medicaid por discapacidad
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
-        receiving_benefits_ssdi: Seguro Social
+        receiving_benefits_other: Otro
+        receiving_benefits_ssdi: Seguro Social (SSDI)
         receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
         receiving_benefits_workers_compensation: Pensión por discapacidad
@@ -169,7 +175,7 @@ es:
           cant_work: "¿Qué pasa si tengo un problema médico o de salud mental que limita mi capacidad para trabajar?"
           cant_work_content_html: |
             <p>Si puede demostrar que no puede trabajar por un motivo médico o de salud, las reglas de trabajo de SNAP no aplican en su caso y puede seguir recibiendo los beneficios de SNAP.</p>
-            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"motivo justificado"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
+            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"razón válida"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
           keep_snap: "¿Podré seguir recibiendo beneficios de SNAP?"
           keep_snap_content_html: |
             <p>Si <u>no tiene</u> que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una excepción.</strong></p>
@@ -195,11 +201,11 @@ es:
               <li>Cuida a alguien que no puede cuidarse por sí mismo (por ejemplo, una persona mayor o una persona con discapacidades), incluso si esa persona no vive con usted.</li>
               <li>Recibe beneficios de desempleo, o solicitó beneficios por desempleo y no se lo han negado.</li>
               <li>Asiste a la escuela tiempo completo, o al menos medio tiempo.</li>
-              <li>Recibe al menos $935.25 al mes por el trabajo que realiza.</li>
+              <li>Recibe $935.25 o más al mes por su trabajo.</li>
               <li>No puede trabajar al menos 20 horas a la semana debido a una condición médica (incluyendo problemas de salud física o mental).</li>
               <li>Recibe beneficios o pagos por discapacidad.</li>
               <li>Está en un programa de tratamiento por alcohol o drogas.</li>
-              <li>Es una persona indígena o Indio de los Estados Unidos.</li>
+              <li>Es una persona indígena o Indio de Estados Unidos.</li>
             </ul>
         title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
         title_help_text_html: |
@@ -207,11 +213,11 @@ es:
           <p><strong>Debería tomar alrededor de 20 minutos completar esta solicitud.</strong></p>
         work_rules_description_html: |
           <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
-          <p>Para SNAP, "actividades laborales" incluye:</p>
+          <p>Para SNAP, "actividades laborales" incluyen:</p>
           <ul class="list--bulleted">
-            <li><strong>Dinero proveniente</strong> del trabajo, incluyendo trabajo por cuenta propia o temporal.</li>
+            <li><strong>Recibir dinero por su trabajo</strong>, incluyendo un empleo, trabajo por cuenta propia o temporal.</li>
             <li><strong>Trabajar a cambio de algo</strong>, como comida, vivienda u otros servicios.</li>
-            <li>Hacer trabajo voluntario.</li>
+            <li>Hacer <strong>trabajo voluntario</strong> en una organización sin fines de lucro, iglesia u otro grupo religioso, organización comunitaria o agencia gubernamental.</li>
             <li>Participar en <strong>programas de capacitación laboral o en programas de Empleo y Capacitación de SNAP.</strong></li>
           </ul>
           <p>Si usted no trabaja durante 80 horas al mes, solo puede recibir beneficios de SNAP por 3 meses cada 3 años (36 meses).</p>
@@ -243,7 +249,9 @@ es:
           homeschool_hours_label: "¿Cuántas horas a la semana imparte educación en el hogar?"
           homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
           homeschool_name_label: "¿Cuál es el nombre de la escuela en el hogar?"
-          notice_text: Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.
+          notice_text_html: |
+            <p>Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.</p>
+            <p>Para ser elegible, debe ser padre, madre o tutor legal del niño, o vivir en su hogar.</p>
           title: "¿Tiene un programa de educación en casa para un niño o niños?"
     new_response:
       edit:
@@ -281,7 +289,7 @@ es:
     preventing_work_situations:
       edit:
         other: Otra razón
-        preventing_work_domestic_violence: Violencia doméstica
+        preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
         preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
         preventing_work_medical_condition_html: |
           Tiene una condición médica
@@ -290,6 +298,51 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    proof_guidance:
+      edit:
+        already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
+        already_has_proof_content_html:
+        - "<strong>Sí, ya compartí esa información</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
+        - <strong>No, todavía no la he enviado</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso de evisará lo que usted envíe y decidirá si debe cumplir con las nuevas reglas de trabajo."
+        next_steps_html:
+        - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
+        - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, aun así puede enviar lo que tenga."
+        proof_of_disability_benefits_html: |
+          <h3>Comprobante de beneficios por discapacidad</h3>
+          <p>Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:</p>
+        proof_of_education_html: |
+          <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
+          <ul class="list--bulleted">
+            <li>Documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre, u otros documentos que demuestren que está inscrito al menos medio tiempo.</li>
+          </ul>
+        proof_of_education_over_50_html: |
+          <p>Si está <strong>inscrito en la escuela al menos medio tiempo</strong>, se aplican otras reglas de SNAP. Además de sus otras excepciones, también informe a su oficina de SNAP si usted:</p>
+          <ul class="list--bulleted">
+            <li>Tiene un trabajo de work study, o ha sido aprobado para un programa de work study y planea participar, o</li>
+            <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
+            <li>Es padre o madre soltero(a), está inscrito a tiempo completo y cuida a un niño menor de 12 años.</li>
+          </ul>
+        proof_of_health_condition_html: |
+          <h3>Comprobante de una condición de salud o discapacidad</h3>
+          <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
+          <ul class="list--bulleted">
+          <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
+          <li>Un <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          </ul>
+        proof_of_treatment_program_html: |
+          <h3>Comprobante de su programa de tratamiento</h3>
+          <p>Un documento de su centro o programa de tratamiento que indique que usted participa de forma regular.</p>
+        proof_of_working_html: |
+          <h3>Comprobantes de trabajo</h3>
+          <p>Envíe <strong>uno</strong> de los siguientes comprobantes:</p>
+          <ul class="list--bulleted">
+            <li>Talones de pago del último mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
+            <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
+          </ul>
+        proof_you_may_need: Estos son los documentos o comprobantes que podría necesitar enviar a su oficina.
+        title: Qué sigue
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
