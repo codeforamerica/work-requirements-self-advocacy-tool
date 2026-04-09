@@ -74,3 +74,46 @@
     <li><%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %></li>
   <% end %>
 </ul>
+
+<h3 style="font-weight: bold;">
+  <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.title') %>
+</h3>
+
+<p>
+  <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.help_text') %>
+</p>
+
+<ol style="line-height: 2;">
+  <% if @screener.is_student_yes? %>
+    <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.student_html') %>
+  <% end %>
+
+  <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
+    <li>
+      <%= t('views.proof_guidance.edit.proof_of_health_condition_html') %>
+    </li>
+  <% end %>
+
+  <% if @screener.receiving_disability_benefits? %>
+    <li>
+      <%= t('views.proof_guidance.edit.proof_of_disability_benefits_html') %>
+      <ul>
+        <% Screener::DISABILITY_BENEFIT_ATTRIBUTES.each do |benefit| %>
+          <% if @screener.public_send("#{benefit}_yes?") %>
+            <li>
+              <%= t("views.disability_benefits.edit.#{benefit}") %><% if benefit == :receiving_benefits_other && @screener.receiving_benefits_write_in.present? %>: <%= @screener.receiving_benefits_write_in %><% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+
+  <% if @screener.is_in_alcohol_treatment_program_yes? %>
+    <li>
+      <%= t('views.proof_guidance.edit.proof_of_treatment_program_html') %>
+    </li>
+  <% end %>
+</ol>
+
+<p><%= t('general.gbh_team') %></p>

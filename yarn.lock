@@ -279,9 +279,9 @@ bare-url@^2.2.2:
     bare-path "^3.0.0"
 
 basic-ftp@^5.0.2:
-  version "5.2.0"
-  resolved "https://registry.npmjs.org/basic-ftp/-/basic-ftp-5.2.0.tgz"
-  integrity sha512-VoMINM2rqJwJgfdHq6RiUudKt2BV+FY5ZFezP/ypmwayk68+NzzAQy4XXLlqsGD4MCzq3DrmNFD/uUmBJuGoXw==
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-5.2.1.tgz#818ba176e0e52a9e746e8576331f7e9474b94668"
+  integrity sha512-0yaL8JdxTknKDILitVpfYfV2Ob6yb3udX/hK97M7I3jOeznBNxQPtVvTUtnhUkyHlxFWyr5Lvknmgzoc7jf+1Q==
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
