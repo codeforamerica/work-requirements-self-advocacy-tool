@@ -22,7 +22,7 @@ class NcScreener < ApplicationRecord
   end
 
   def exempt_from_work_rules?
-    operating_homeschool_30_or_more_hours? || worked_last_five_years_yes?
+    operating_homeschool_30_or_more_hours? || (at_least_55_no_diploma_not_working? && screener.age <= 64 && screener.preventing_work_medical_condition_yes?)
   end
 
   private
