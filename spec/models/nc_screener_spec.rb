@@ -118,32 +118,76 @@ RSpec.describe NcScreener, type: :model do
     end
   end
 
-  describe "#exempt_from_work_rules?" do
-    it "returns true when operating a homeschool for 30 or more hours" do
-      nc_screener = build(:nc_screener, teaches_homeschool: "yes", homeschool_hours: 30, worked_last_five_years: "no")
-      expect(nc_screener.exempt_from_work_rules?).to be true
-    end
-
-    it "returns true when has not worked in the last five years and >= 55 and <= 64 years old and has medical condition and no diploma" do
-      nc_screener = build(:nc_screener, teaches_homeschool: "yes", homeschool_hours: 10, worked_last_five_years: "no", has_hs_diploma: "no")
+  describe "#age_work_education_health_exemption?" do
+    it "returns true when age >= 55 && age <= 64 && worked_last_five_years_no? && has_hs_diploma_no? && preventing_work_medical_condition_yes?" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no")
       create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be true
     end
 
-    it "returns true when all conditions are true" do
-      nc_screener = build(:nc_screener, teaches_homeschool: "yes", homeschool_hours: 40, worked_last_five_years: "no", has_hs_diploma: "no")
-      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
-      expect(nc_screener.exempt_from_work_rules?).to be true
-    end
-
-    it "returns false when no conditions are true" do
-      nc_screener = build(:nc_screener, teaches_homeschool: "no", worked_last_five_years: "yes", has_hs_diploma: "yes")
-      create(:screener, state: "NC", birth_date: 24.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
+    it "returns false when age is not set" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no")
+      create(:screener, state: "NC", preventing_work_medical_condition: "yes", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
 
-    it "returns false when homeschool_hours is nil and has not worked" do
-      nc_screener = build(:nc_screener, teaches_homeschool: "no", homeschool_hours: nil, worked_last_five_years: "no")
+    it "returns false when age is too young" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no")
+      create(:screener, state: "NC", birth_date: 20.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be false
+    end
+
+    it "returns false when age is too old" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no")
+      create(:screener, state: "NC", birth_date: 70.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be false
+    end
+
+    it "returns false worked_last_five_years is true" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "yes", has_hs_diploma: "no")
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be false
+    end
+
+    it "returns false when has_hs_diploma is true" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "yes")
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be false
+    end
+
+    it "returns false when preventing_work_medical_condition is false" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no")
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be false
+    end
+  end
+
+  describe "#exempt_from_work_rules?" do
+    it "returns true when operating a homeschool for 30 or more hours and age/work/education/health exemption is true" do
+      nc_screener = build(:nc_screener)
+      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(true)
+      allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
+      expect(nc_screener.exempt_from_work_rules?).to be true
+    end
+
+    it "returns true when not operating a homeschool for 30 or more hours and age/work/education/health exemption is true" do
+      nc_screener = build(:nc_screener)
+      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
+      allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
+      expect(nc_screener.exempt_from_work_rules?).to be true
+    end
+
+    it "returns true when operating a homeschool for 30 or more hours and age/work/education/health exemption is false" do
+      nc_screener = build(:nc_screener)
+      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(true)
+      allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(false)
+      expect(nc_screener.exempt_from_work_rules?).to be true
+    end
+
+    it "returns false when not operating a homeschool for 30 or more hours and age/work/education/health exemption is false" do
+      nc_screener = build(:nc_screener)
+      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
+      allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(false)
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
   end
