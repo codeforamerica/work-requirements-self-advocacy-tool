@@ -8,7 +8,6 @@ RSpec.describe DisabilityBenefitsController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
-
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener

@@ -8,7 +8,6 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
-
     it "persists attributes to the screener" do
       screener = create(:screener, birth_date: Date.new(1990, 1, 1))
       sign_in screener

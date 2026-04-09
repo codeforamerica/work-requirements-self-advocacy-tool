@@ -8,7 +8,6 @@ RSpec.describe Nc::HomeschoolController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
-
     it "persists the values to the nc_screener" do
       screener = create(:screener, state: "NC")
       screener.create_nc_screener

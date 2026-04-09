@@ -8,7 +8,6 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
-
     it "saves the case number and redirects to the next step" do
       screener = create(:screener)
       sign_in screener
