@@ -15,6 +15,7 @@ en:
     faq: Frequently Asked Questions
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
+    gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: None of the above
     other: Other
@@ -374,6 +375,37 @@ en:
         online_epass_html: If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
         online_epass_text: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
         online_label: 'Online:'
+        proofs_you_may_need:
+          disability_benefits_help_text: 'A letter or other document showing that you receive the disability benefits you selected:'
+          disability_benefits_title: Proof of disability benefits
+          health_condition_text: |
+            Proof of health conditions or disability
+            This proof can be helpful, but may not be required.
+            - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
+            - A North Carolina Medical Report form that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
+          help_text: If you know your SNAP agency already has proof of these things, you don’t need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
+          student_html: |
+            <li>
+              <h3>Proof of attending college, university, trade school, or high school</h3>
+              <p>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.</p>
+              <p>If you are enrolled in school at least half time, other SNAP rules apply. In addition to your other exemptions, also tell your SNAP agency if any of the following are true for you. Telling your agency about these situations can help you keep your SNAP benefits:</p>
+                <ul>
+                  <li>Have a work study job, or have been approved for work study that you intend to participate in, OR</li>
+                  <li>Care for a child younger than 12, and don’t have the child care you need for you to go to school and work, OR</li>
+                  <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
+                </ul>
+            </li>
+          student_text: |
+            Proof of attending college, university, trade school, or high school
+            Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.
+            If you are enrolled in school at least half time, other SNAP rules apply. In addition to your other exemptions, also tell your SNAP agency if any of the following are true for you. Telling your agency about these situations can help you keep your SNAP benefits:
+            - Have a work study job, or have been approved for work study that you intend to participate in, OR
+            - Care for a child younger than 12, and don’t have the child care you need for you to go to school and work, OR
+            - Are a single parent enrolled full-time and taking care of a child under 12
+          title: Proofs you may need
+          treatment_program_text: |
+            Proof of your treatment program
+            A document from your treatment center or program, stating that you regularly participate.
         questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
