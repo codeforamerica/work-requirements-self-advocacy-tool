@@ -1,7 +1,14 @@
 require "rails_helper"
 
 RSpec.describe BasicInfoDetailsController, type: :controller do
+  describe "#edit" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+  end
+
   describe "#update" do
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+
+
     it "persists attributes to the screener" do
       screener = create(:screener, birth_date: Date.new(1990, 1, 1))
       sign_in screener
