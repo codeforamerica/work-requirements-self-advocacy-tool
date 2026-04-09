@@ -14,6 +14,7 @@ es:
     continue_without_this_number: Continuar sin este número
     footer:
       content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
+    gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
@@ -373,6 +374,37 @@ es:
         online_epass_html: Si usted ya recibe beneficios de SNAP, puede usar <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> para enviar este formulario y cualquier comprobante que necesite. Necesitará una <a href="https://epass.nc.gov/nfridp/qa" target="_blank">cuenta mejorada</a> (enhanced account) para enviar estos documentos a través de ePASS.
         online_epass_text: Si usted ya recibe beneficios de SNAP, puede usar North Carolina ePASS (https://epass.nc.gov/signuphomepage) para enviar este formulario y cualquier comprobante que necesite. Necesitará una cuenta mejorada (enhanced account) (https://epass.nc.gov/nfridp/qa) para enviar estos documentos a través de ePASS.
         online_label: 'En línea:'
+        proofs_you_may_need:
+          disability_benefits_help_text: 'Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:'
+          disability_benefits_title: Comprobante de beneficios por discapacidad
+          health_condition_text: |
+            Comprobante de una condición de salud o discapacidad
+            Estos documentos puede ser útiles, pero puede que no sean obligatorios.
+            - Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O
+            - Un formulario de Informe Médico de Carolina del Norte, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
+          help_text: Si sabe que su oficina de SNAP ya tiene estos documentos o comprobantes, no necesita enviarlos nuevamente. Puede enviar su formulario aunque no tenga todos los comprobantes. Su oficina de SNAP puede comunicarse con usted para solicitarlos más adelante.
+          student_html: |
+            <li>
+              <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
+              <p>Envíe documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre u otros documentos que demuestren que está inscrito al menos medio tiempo.</p>
+              <p>Si está inscrito en la escuela al menos medio tiempo, se aplican otras reglas de SNAP. Además de sus otras excepciones, también debe informar a su oficina de SNAP si usted:</p>
+                <ul>
+                  <li>Tiene un trabajo de work-study, o ha sido aprobado para participar en uno.</li>
+                  <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
+                  <li>Es padre o madre soltero(a), está inscrito(a) tiempo completo y cuida a un niño menor de 12 años.</li>
+                </ul>
+              </li>
+          student_text: |
+            Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria
+            Envíe documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre u otros documentos que demuestren que está inscrito al menos medio tiempo.
+            Si está inscrito en la escuela al menos medio tiempo, se aplican otras reglas de SNAP. Además de sus otras excepciones, también debe informar a su oficina de SNAP si usted:
+            - Tiene un trabajo de work-study, o ha sido aprobado para participar en uno.
+            - Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o
+            - Es padre o madre soltero(a), está inscrito(a) tiempo completo y cuida a un niño menor de 12 años.
+          title: Documentación adicional que puede necesitar
+          treatment_program_text: |
+            Comprobante de su programa de tratamiento
+            Un documento de su centro o programa de tratamiento que indique que usted participa de forma regular.
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"

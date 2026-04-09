@@ -39,3 +39,31 @@
 <% if (phone = LocationData::Counties.phone_for(state, county)).present? %>
 - <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
 <% end %>
+
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.title') %>
+
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.help_text') %>
+<% if @screener.is_student_yes? %>
+
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.student_text') %>
+<% end %>
+<% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
+
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text') %>
+<% end %>
+<% if @screener.receiving_disability_benefits? %>
+
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.disability_benefits_title') %>
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.disability_benefits_help_text') %>
+<% Screener::DISABILITY_BENEFIT_ATTRIBUTES.each do |benefit| %>
+<% if @screener.public_send("#{benefit}_yes?") %>
+- <%= t("views.disability_benefits.edit.#{benefit}") %><% if benefit == :receiving_benefits_other && @screener.receiving_benefits_write_in.present? %>: <%= @screener.receiving_benefits_write_in %><% end %>
+<% end %>
+<% end %>
+<% end %>
+<% if @screener.is_in_alcohol_treatment_program_yes? %>
+
+<%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.treatment_program_text') %>
+<% end %>
+
+<%= t('general.gbh_team') %>
