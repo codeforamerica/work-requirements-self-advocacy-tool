@@ -126,19 +126,19 @@ RSpec.describe NcScreener, type: :model do
 
     it "returns true when has not worked in the last five years and >= 55 and <= 64 years old and has medical condition and no diploma" do
       nc_screener = build(:nc_screener, teaches_homeschool: "yes", homeschool_hours: 10, worked_last_five_years: "no", has_hs_diploma: "no")
-      screener = create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be true
     end
 
     it "returns true when all conditions are true" do
       nc_screener = build(:nc_screener, teaches_homeschool: "yes", homeschool_hours: 40, worked_last_five_years: "no", has_hs_diploma: "no")
-      screener = create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be true
     end
 
     it "returns false when no conditions are true" do
       nc_screener = build(:nc_screener, teaches_homeschool: "no", worked_last_five_years: "yes", has_hs_diploma: "yes")
-      screener = create(:screener, state: "NC", birth_date: 24.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
+      create(:screener, state: "NC", birth_date: 24.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
 
