@@ -11,14 +11,6 @@ class NcScreener < ApplicationRecord
   before_save :remove_worked_last_five_years_if_has_diploma,
     :remove_homeschool_attributes_if_no
 
-  # TODO: If this is actually supposed to be the same logic as age_work_education_health_exemption?, consolidate ASAP
-  # Or maybe use the exempt_from_work_rules?
-  def at_least_55_no_diploma_not_working?
-    return false unless screener.age
-
-    screener.age >= 55 && has_hs_diploma_no? && worked_last_five_years_no?
-  end
-
   def age_work_education_health_exemption?
     return false unless screener.age
 

@@ -63,44 +63,6 @@ RSpec.describe NcScreener, type: :model do
     end
   end
 
-  describe "#at_least_55_no_diploma_not_working?" do
-    it "returns true when age >= 55, no diploma, and not worked in last 5 years" do
-      nc_screener = build(:nc_screener,
-        screener: build(:screener, birth_date: 56.years.ago.to_date),
-        has_hs_diploma: "no",
-        worked_last_five_years: "no")
-
-      expect(nc_screener.at_least_55_no_diploma_not_working?).to be true
-    end
-
-    it "returns false when age < 55" do
-      nc_screener = build(:nc_screener,
-        screener: build(:screener, birth_date: 54.years.ago.to_date),
-        has_hs_diploma: "no",
-        worked_last_five_years: "no")
-
-      expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
-    end
-
-    it "returns false when has a diploma" do
-      nc_screener = build(:nc_screener,
-        screener: build(:screener, birth_date: 56.years.ago.to_date),
-        has_hs_diploma: "yes",
-        worked_last_five_years: "no")
-
-      expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
-    end
-
-    it "returns false when worked in last 5 years" do
-      nc_screener = build(:nc_screener,
-        screener: build(:screener, birth_date: 56.years.ago.to_date),
-        has_hs_diploma: "no",
-        worked_last_five_years: "yes")
-
-      expect(nc_screener.at_least_55_no_diploma_not_working?).to be false
-    end
-  end
-
   describe "#operating_homeschool_30_or_more_hours?" do
     it "returns true when homeschool_hours >= 30" do
       nc_screener = build(:nc_screener, teaches_homeschool: "yes", homeschool_hours: 30)
