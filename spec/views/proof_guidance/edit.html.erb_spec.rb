@@ -10,14 +10,12 @@ RSpec.describe "proof_guidance/edit", type: :view do
     end
   end
 
-  it "always displays the title, next steps, and 'already has proof' section" do
+  it "always displays the title and next steps" do
     render
     expect(rendered).to include(I18n.t("views.proof_guidance.edit.title"))
-    expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
     I18n.t("views.proof_guidance.edit.next_steps_html").each do |step|
       expect(rendered).to include(step)
     end
-    expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
   end
 
   describe "proof of working section" do
@@ -26,6 +24,9 @@ RSpec.describe "proof_guidance/edit", type: :view do
       allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_working_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "does not show when earnings are below minimum" do
@@ -48,6 +49,9 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(is_student: "yes")
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_education_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "does not show when is not a student" do
@@ -60,6 +64,9 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(is_student: "yes", birth_date: 51.years.ago.to_date)
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_education_over_50_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "does not show over-50 guidance when student is 50 or younger" do
@@ -80,12 +87,18 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(preventing_work_drugs_alcohol: "yes")
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "shows when preventing work due to medical condition" do
       screener.update(preventing_work_medical_condition: "yes")
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "does not show when no health-related preventing work conditions" do
@@ -100,6 +113,9 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(receiving_benefits_ssdi: "yes")
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_disability_benefits_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "lists only the specific benefits the screener receives" do
@@ -110,6 +126,9 @@ RSpec.describe "proof_guidance/edit", type: :view do
       expect(unescaped).to include(I18n.t("views.disability_benefits.edit.receiving_benefits_veterans_disability"))
       expect(unescaped).not_to include(I18n.t("views.disability_benefits.edit.receiving_benefits_ssi"))
       expect(unescaped).not_to include(I18n.t("views.disability_benefits.edit.receiving_benefits_workers_compensation"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "does not show when not receiving any disability benefits" do
@@ -123,6 +142,9 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(is_in_alcohol_treatment_program: "yes")
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
+
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "does not show when not in an alcohol treatment program" do
