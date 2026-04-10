@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe LocationController, type: :controller do
   describe "#edit" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+
     render_views
 
     it "reads and displays the state and county attributes if they are saved on screener" do
@@ -23,6 +25,8 @@ RSpec.describe LocationController, type: :controller do
   end
 
   describe "#update" do
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+
     context "location" do
       it "updates the state and county values" do
         screener = create(:screener)
