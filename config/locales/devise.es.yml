@@ -13,7 +13,7 @@ es:
       locked: "Tu cuenta está bloqueada."
       last_attempt: "Tienes un intento más antes que tu cuenta sea bloqueada."
       not_found_in_database: "%{authentication_keys} o contraseña inválidos."
-      timeout: "Tu sesión ha expirado. Inicia sesión nuevamente."
+      timeout: "Su sesión ha terminado. Por favor, vuelva a ingresar su información para continuar."
       unauthenticated: "Tienes que registrarte o iniciar sesión antes de continuar."
       unconfirmed: "Tienes que confirmar tu cuenta antes de continuar."
     mailer:

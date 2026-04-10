@@ -1,7 +1,13 @@
 require "rails_helper"
 
 RSpec.describe Nc::EduWorkHistoryController, type: :controller do
+  describe "#edit" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+  end
+
   describe "#update" do
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+
     it "persists the values to the nc_screener" do
       screener = create(:screener, state: "NC")
       screener.create_nc_screener
