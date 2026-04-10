@@ -57,6 +57,7 @@ RSpec.describe PdfFiller::PacketPdf do
         screener.confirmation_code = "ABQ39L"
         nc_screener.homeschool_name = "Small Fry"
         screener.preventing_work_write_in = "Back pain"
+        screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
         screener.receiving_benefits_write_in = "Other disability"
         screener.ssn_last_four = "1111"
         # screener.volunteering_org_name = "Muffins for Mums"
@@ -70,7 +71,8 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:email]).to eq("nigella@example.com")
         expect(result[:homeschool_name]).to eq("Small Fry")
         expect(result[:phone_number]).to eq("(919) 555-1234")
-        expect(result[:preventing_work_write_in]).to eq("Back pain")
+        expect(result[:preventing_work_other_write_in]).to eq("Back pain")
+        expect(result[:preventing_work_write_in]).to eq("I am carrying the weight of the world on my back.")
         expect(result[:receiving_benefits_write_in]).to eq("Other disability")
         expect(result[:ssn_last_4]).to eq("1111")
         # expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
