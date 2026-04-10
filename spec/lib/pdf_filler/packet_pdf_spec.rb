@@ -102,8 +102,8 @@ RSpec.describe PdfFiller::PacketPdf do
     end
 
     describe "calculated fields" do
-      it "delegates at_least_55_no_diploma_not_working to nc_screener" do
-        allow(nc_screener).to receive(:at_least_55_no_diploma_not_working?).and_return(true)
+      it "delegates age_work_education_health_exemption to nc_screener" do
+        allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
         expect(result[:at_least_55_no_diploma_not_working]).to be true
       end
 
