@@ -54,7 +54,7 @@ es:
           title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
         help_text_epass:
           help_bullets_html:
-          - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
+          - Inicie sesión en el sitio <a href="https://epass.nc.gov/" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
           title: Use su cuenta de ePASS NC para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
