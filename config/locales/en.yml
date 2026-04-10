@@ -54,7 +54,7 @@ en:
           title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
         help_text_epass:
           help_bullets_html:
-          - Log in to the official <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">NC ePass website</a> to view case details, including your case number.
+          - Log in to the official <a href="https://epass.nc.gov/" target="_blank">NC ePass website</a> to view case details, including your case number.
           title: Log in to your ePASS NC portal to find your case number.
         title: Do you have a case number?
     basic_info_details:
