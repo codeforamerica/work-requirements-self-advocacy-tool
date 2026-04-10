@@ -10,17 +10,29 @@ RSpec.describe "proof_guidance/edit", type: :view do
     end
   end
 
-  it "always displays the title, next steps, and 'already has proof' section" do
+  it "always displays the title and next steps" do
     render
     expect(rendered).to include(I18n.t("views.proof_guidance.edit.title"))
-    expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
     I18n.t("views.proof_guidance.edit.next_steps_html").each do |step|
       expect(rendered).to include(step)
     end
-    expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
   end
 
   describe "proof of working section" do
+    it "shows section when requires_proof? is true" do
+      allow(screener).to receive(:requires_proof?).and_return(true)
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
+    end
+
+    it "hides section when requires_proof? is false" do
+      allow(screener).to receive(:requires_proof?).and_return(false)
+      render
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
+    end
+
     it "shows when earnings are above minimum and not exempt from work rules" do
       allow(screener).to receive(:earnings_above_minimum?).and_return(true)
       allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
