@@ -557,6 +557,24 @@ RSpec.describe Screener, type: :model do
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
+    it "returns true if nc_screener is present and exempt" do
+      nc_screener = build(:nc_screener)
+      allow(nc_screener).to receive(:exempt_from_work_rules?).and_return(true)
+
+      screener = build(:screener, nc_screener: nc_screener)
+
+      expect(screener.exempt_from_work_rules?).to eq true
+    end
+
+    it "returns false if nc_screener is present but not exempt and no other exemptions apply" do
+      nc_screener = build(:nc_screener)
+      allow(nc_screener).to receive(:exempt_from_work_rules?).and_return(false)
+
+      screener = build(:screener, nc_screener: nc_screener)
+
+      expect(screener.exempt_from_work_rules?).to eq false
+    end
+
     it "returns true if a non-working exemption attribute is yes" do
       screener = build(:screener, is_student: "yes")
       expect(screener.exempt_from_work_rules?).to eq true
