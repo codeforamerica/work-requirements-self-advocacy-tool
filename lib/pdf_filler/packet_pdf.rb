@@ -62,9 +62,18 @@ module PdfFiller
     def filled_pdf_path
       source_pdf_path = "app/assets/pdfs/nc_packet--no-income.pdf"
       template_doc = HexaPDF::Document.open(source_pdf_path)
+
+      unless template_doc
+        Rails.logger.error "Unable to generate PDF from #{source_pdf_path}"
+        return
+      end
+
       hash_for_fillable_pdf.each do |field_name, field_value|
         template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
       end
+
+      template_doc.acro_form.flatten
+
       pdf_tempfile = Tempfile.new(["packet", ".pdf"], "tmp/")
       template_doc.write(pdf_tempfile)
       pdf_tempfile.path
