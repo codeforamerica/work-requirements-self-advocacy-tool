@@ -101,7 +101,7 @@ module PdfFiller
 
     def shared_fields
       {
-        at_least_55_no_diploma_not_working: @screener.nc_screener.at_least_55_no_diploma_not_working?,
+        at_least_55_no_diploma_not_working: @screener.nc_screener.age_work_education_health_exemption?,
         birth_date: @screener.birth_date.to_s,
         caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
         caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,
