@@ -235,6 +235,10 @@ class Screener < ApplicationRecord
     [first_name, middle_name.presence, last_name].compact.join(" ")
   end
 
+  def no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?
+    !exempt_from_work_rules? && total_work_volunteer_and_training_hours >= 20
+  end
+
   def pregnancy_due_date_day
     pregnancy_due_date&.day
   end
@@ -251,9 +255,22 @@ class Screener < ApplicationRecord
     DISABILITY_BENEFIT_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") }
   end
 
+  def requires_proof?
+    (earnings_above_minimum? && !exempt_from_work_rules?) ||
+      is_student_yes? ||
+      preventing_work_drugs_alcohol_yes? ||
+      preventing_work_medical_condition_yes? ||
+      receiving_disability_benefits? ||
+      is_in_alcohol_treatment_program_yes?
+  end
+
   def strip_email_and_confirmation
     self.email = email.strip.downcase if email.present?
     self.email_confirmation = email_confirmation.strip.downcase if email_confirmation.present?
+  end
+
+  def total_work_volunteer_and_training_hours
+    working_hours.to_i + volunteering_hours.to_i + work_training_hours.to_i
   end
 
   def volunteering?
@@ -266,14 +283,6 @@ class Screener < ApplicationRecord
 
   def working_exempt?
     is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
-  end
-
-  def total_work_volunteer_and_training_hours
-    working_hours.to_i + volunteering_hours.to_i + work_training_hours.to_i
-  end
-
-  def no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?
-    !exempt_from_work_rules? && total_work_volunteer_and_training_hours >= 20
   end
 
   private

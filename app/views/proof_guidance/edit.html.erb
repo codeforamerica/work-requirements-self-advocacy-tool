@@ -9,12 +9,7 @@
   <% end %>
 </ol>
 
-<% if (@current_screener.earnings_above_minimum? && !@current_screener.exempt_from_work_rules?) ||
-      @current_screener.is_student_yes? ||
-      @current_screener.preventing_work_drugs_alcohol_yes? ||
-      @current_screener.preventing_work_medical_condition_yes? ||
-      @current_screener.receiving_disability_benefits? ||
-      @current_screener.is_in_alcohol_treatment_program_yes? %>
+<% if @current_screener.requires_proof? %>
 
   <h2 class="h2"><%= t("views.proof_guidance.edit.proof_you_may_need") %></h2>
 
