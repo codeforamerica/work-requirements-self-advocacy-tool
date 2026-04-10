@@ -218,9 +218,9 @@ class Screener < ApplicationRecord
     working_weekly_earnings.to_f >= 217.50
   end
 
-  # TODO: Homeschooling and 5 year work eligibility for NC
   def exempt_from_work_rules?
     return true if age_qualified?
+    return true if nc_screener.present? && nc_screener.exempt_from_work_rules?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
       (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
