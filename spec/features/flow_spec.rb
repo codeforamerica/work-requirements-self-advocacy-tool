@@ -17,7 +17,7 @@ RSpec.feature "Screener flow", js: true do
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"
-    select "2000", from: "Year"
+    select "1965", from: "Year"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
