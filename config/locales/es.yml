@@ -12,7 +12,6 @@ es:
     close: Cerrar
     continue: Continuar
     continue_without_this_number: Continuar sin este número
-    faq: Preguntas frecuentes
     footer:
       content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> en colaboración con <a href="https://codethedream.org/" rel="noopener nofollow" target="_blank">Code the Dream</a> y <a href="https://meals4families.org/" rel="noopener nofollow" target="_blank">Meals for Families</a> para servir a las personas en los Estados Unidos.
     gbh_team: GetBenefitsHelp Team
