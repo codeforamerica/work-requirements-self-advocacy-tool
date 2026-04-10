@@ -105,7 +105,12 @@ RSpec.feature "Screener flow", js: true do
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))
     fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: "Prue"
     fill_in I18n.t("views.basic_info_details.edit.last_name_label"), with: "Leith"
+
+    expect(page).to_not have_selector("legend", text: I18n.t("views.basic_info_details.edit.consented_to_texts.label"))
+    fill_in I18n.t("views.basic_info_details.edit.phone_number_label"), with: "415-816"
+    expect(page).to_not have_selector("legend", text: I18n.t("views.basic_info_details.edit.consented_to_texts.label"))
     fill_in I18n.t("views.basic_info_details.edit.phone_number_label"), with: "415-816-1286"
+    expect(page).to have_selector("legend", text: I18n.t("views.basic_info_details.edit.consented_to_texts.label"))
     choose I18n.t("views.basic_info_details.edit.consented_to_texts.affirmative")
     click_on I18n.t("general.continue")
 
