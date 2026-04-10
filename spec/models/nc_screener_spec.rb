@@ -105,19 +105,19 @@ RSpec.describe NcScreener, type: :model do
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
 
-    it "returns false worked_last_five_years is true" do
+    it "returns false worked_last_five_years is yes" do
       nc_screener = build(:nc_screener, worked_last_five_years: "yes", has_hs_diploma: "no")
       create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
 
-    it "returns false when has_hs_diploma is true" do
+    it "returns false when has_hs_diploma is yes" do
       nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "yes")
       create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
 
-    it "returns false when preventing_work_medical_condition is false" do
+    it "returns false when preventing_work_medical_condition is no" do
       nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no")
       create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be false
