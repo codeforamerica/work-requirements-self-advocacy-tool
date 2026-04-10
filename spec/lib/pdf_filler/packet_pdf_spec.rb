@@ -181,7 +181,7 @@ RSpec.describe PdfFiller::PacketPdf do
   end
 
   describe "#filled_pdf_path" do
-    it "fills the PDF without errors" do
+    it "fills and flattens the PDF (no editable fields remain)" do
       screener.assign_attributes(
         phone_number: "9195550123",
         is_american_indian: "yes",
@@ -214,7 +214,19 @@ RSpec.describe PdfFiller::PacketPdf do
         preventing_work_write_in: "Chronic back pain"
       )
 
-      expect { packet_pdf.filled_pdf_path }.not_to raise_error
+      path = nil
+
+      expect {
+        path = packet_pdf.filled_pdf_path
+      }.not_to raise_error
+
+      doc = HexaPDF::Document.open(path)
+
+      # Assert it's flattened (read-only)
+      form = doc.acro_form
+      expect(form).to be_nil.or have_attributes(fields: be_empty)
+    ensure
+      File.delete(path) if path && File.exist?(path)
     end
   end
 end
