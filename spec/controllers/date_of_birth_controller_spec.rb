@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe DateOfBirthController, type: :controller do
   describe "#edit" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+
     render_views
 
     it "reads and displays the individual date attributes if birth_date is saved on screener" do
@@ -17,6 +19,8 @@ RSpec.describe DateOfBirthController, type: :controller do
   end
 
   describe "#update" do
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+
     context "birth date" do
       it "combines the date picker params into the birth_date attribute" do
         screener = create(:screener)
