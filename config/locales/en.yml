@@ -13,7 +13,7 @@ en:
     continue: Continue
     continue_without_this_number: Continue without it
     footer:
-      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
+      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership with <a href="https://codethedream.org/" rel="noopener nofollow" target="_blank">Code the Dream</a> and <a href="https://meals4families.org/" rel="noopener nofollow" target="_blank">Meals for Families</a> on behalf of the people of the United States.
     gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: None of the above
