@@ -710,6 +710,52 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#requires_proof?" do
+    let(:screener) { build(:screener) }
+
+    before do
+      allow(screener).to receive(:earnings_above_minimum?).and_return(false)
+      allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+      allow(screener).to receive(:is_student_yes?).and_return(false)
+      allow(screener).to receive(:preventing_work_drugs_alcohol_yes?).and_return(false)
+      allow(screener).to receive(:preventing_work_medical_condition_yes?).and_return(false)
+      allow(screener).to receive(:receiving_disability_benefits?).and_return(false)
+      allow(screener).to receive(:is_in_alcohol_treatment_program_yes?).and_return(false)
+    end
+
+    it "returns false when everything is false" do
+      expect(screener.requires_proof?).to be false
+    end
+
+    [
+      :is_student_yes?,
+      :preventing_work_drugs_alcohol_yes?,
+      :preventing_work_medical_condition_yes?,
+      :receiving_disability_benefits?,
+      :is_in_alcohol_treatment_program_yes?
+    ].each do |method_name|
+      it "returns true when only #{method_name} is true" do
+        allow(screener).to receive(method_name).and_return(true)
+
+        expect(screener.requires_proof?).to be true
+      end
+    end
+
+    it "returns true when earnings_above_minimum? is true and not exempt" do
+      allow(screener).to receive(:earnings_above_minimum?).and_return(true)
+      allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
+
+      expect(screener.requires_proof?).to be true
+    end
+
+    it "returns false when earnings_above_minimum? is true but exempt" do
+      allow(screener).to receive(:earnings_above_minimum?).and_return(true)
+      allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+
+      expect(screener.requires_proof?).to be false
+    end
+  end
+
   describe "encryption" do
     it "stores ssn_last_four as encrypted data" do
       screener = create(:screener, ssn_last_four: "4567")
