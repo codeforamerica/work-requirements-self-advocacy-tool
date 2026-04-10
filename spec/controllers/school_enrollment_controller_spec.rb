@@ -4,7 +4,7 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
   describe "#update" do
     context "when the answer is no" do
       it "persists the values to the current screener" do
-        screener = create(:screener, birth_date: 55.years.ago.to_date)
+        screener = create(:screener)
         sign_in screener
 
         params = {
