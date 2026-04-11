@@ -469,3 +469,34 @@ es:
         title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
         unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
         unexpected_problems_title: Si no cumple con sus horas de trabajo en un mes, pero tiene una razón válida, infórmelo a su oficina de SNAP.
+    signature:
+      edit:
+        title: Firme y complete su formulario
+        instructions: "Lea esta información antes de firmar."
+        exemptions_heading: "Es posible que no tenga que cumplir con las reglas de trabajo de SNAP porque usted:"
+        exemption_american_indian: Hace parte de una tribu o nación indígena
+        exemption_child_under_14: Vive con un niño menor de 14 años
+        exemption_caring_child_under_6: Cuida a un niño menor de 6 años
+        exemption_caring_incapacitated: Cuida a una persona enferma o con discapacidad
+        exemption_pregnant: "Está en embarazo (Fecha estimada del parto: %{date})"
+        exemption_pregnant_no_date: Está en embarazo
+        exemption_unemployment: Recibe o está solicitando beneficios de desempleo
+        exemption_disability_benefits: Recibe beneficios por discapacidad
+        exemption_working_30_hours: Ya trabaja al menos 30 horas a la semana
+        exemption_55_no_diploma: Tener al menos 55 años, no haber obtenido un diploma de secundaria, tener poca experiencia laboral reciente y una condición médica
+        exemption_homeschool: Operar una escuela en casa (home school) durante al menos 30 horas a la semana
+        exemption_earnings: Ya gana al menos $217.50 a la semana por trabajo
+        exemption_migrant_farmworker: Reporta trabajo agrícola estacional o migrante que comenzará en los próximos 30 días
+        exemption_student: Asiste a la escuela al menos medio tiempo
+        exemption_alcohol_treatment: Participa en un programa de tratamiento por consumo de drogas o alcohol
+        preventing_work_heading:
+          one: Reportar una situación personal que le impide trabajar 20 horas a la semana
+          other: Reportar una o más situaciones personales que le impiden trabajar 20 horas a la semana
+        preventing_work_place_to_sleep: No tienen un lugar estable donde dormir y bañarse
+        preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
+        preventing_work_drugs_alcohol: Tiene dificultades con el consumo de drogas o alcohol
+        preventing_work_medical_condition: Tiene una condición médica física o mental
+        preventing_work_other: Otra
+        perjury_statement: Al firmar a continuación, declaro bajo pena de perjurio, que la información en este formulario es verdadera y precisa.
+        signature_label: Escriba su nombre legal completo para firmar
+        signature_help_text: "Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social."

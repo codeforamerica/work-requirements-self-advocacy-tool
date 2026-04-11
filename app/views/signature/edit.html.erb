@@ -1,0 +1,93 @@
+<% content_for :question_title, t("views.signature.edit.title") %>
+
+<%= image_tag "signature.svg", class: "illustration left-justified" %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p><%= t("views.signature.edit.instructions") %></p>
+
+<div class="privacy-policy-scrollbox">
+  <%= render "signature/privacy_policy" %>
+</div>
+
+<div class="notice white spacing-above-35">
+  <%= image_tag "apple.svg", class: "illustration left-justified" %>
+  <h2 class="h3"><%= t("views.signature.edit.exemptions_heading") %></h2>
+  <ul class="list--bulleted">
+    <% if @current_screener.is_american_indian_yes? %>
+      <li><%= t("views.signature.edit.exemption_american_indian") %></li>
+    <% end %>
+    <% if @current_screener.has_child_yes? %>
+      <li><%= t("views.signature.edit.exemption_child_under_14") %></li>
+    <% end %>
+    <% if @current_screener.caring_for_child_under_6_yes? %>
+      <li><%= t("views.signature.edit.exemption_caring_child_under_6") %></li>
+    <% end %>
+    <% if @current_screener.caring_for_disabled_or_ill_person_yes? %>
+      <li><%= t("views.signature.edit.exemption_caring_incapacitated") %></li>
+    <% end %>
+    <% if @current_screener.is_pregnant_yes? %>
+      <% if @current_screener.pregnancy_due_date.present? %>
+        <li><%= t("views.signature.edit.exemption_pregnant", date: @current_screener.pregnancy_due_date.strftime("%m/%d/%Y")) %></li>
+      <% else %>
+        <li><%= t("views.signature.edit.exemption_pregnant_no_date") %></li>
+      <% end %>
+    <% end %>
+    <% if @current_screener.has_unemployment_benefits_yes? %>
+      <li><%= t("views.signature.edit.exemption_unemployment") %></li>
+    <% end %>
+    <% if @current_screener.receiving_disability_benefits? %>
+      <li><%= t("views.signature.edit.exemption_disability_benefits") %></li>
+    <% end %>
+    <% if @current_screener.is_working_yes? && @current_screener.working_30_or_more_hours? %>
+      <li><%= t("views.signature.edit.exemption_working_30_hours") %></li>
+    <% end %>
+    <% if @current_screener.nc_screener&.age_work_education_health_exemption? %>
+      <li><%= t("views.signature.edit.exemption_55_no_diploma") %></li>
+    <% end %>
+    <% if @current_screener.nc_screener&.operating_homeschool_30_or_more_hours? %>
+      <li><%= t("views.signature.edit.exemption_homeschool") %></li>
+    <% end %>
+    <% if @current_screener.earnings_above_minimum? %>
+      <li><%= t("views.signature.edit.exemption_earnings") %></li>
+    <% end %>
+    <% if @current_screener.is_migrant_farmworker_yes? %>
+      <li><%= t("views.signature.edit.exemption_migrant_farmworker") %></li>
+    <% end %>
+    <% if @current_screener.is_student_yes? %>
+      <li><%= t("views.signature.edit.exemption_student") %></li>
+    <% end %>
+    <% if @current_screener.is_in_alcohol_treatment_program_yes? %>
+      <li><%= t("views.signature.edit.exemption_alcohol_treatment") %></li>
+    <% end %>
+  </ul>
+
+  <% if @current_screener.any_preventing_work? %>
+    <% preventing_work_count = Screener::PREVENTING_WORK_ATTRIBUTES.count { |attr| @current_screener.public_send("#{attr}_yes?") } %>
+    <p><strong><%= t("views.signature.edit.preventing_work_heading", count: preventing_work_count) %></strong></p>
+    <ul class="list--bulleted">
+      <% if @current_screener.preventing_work_place_to_sleep_yes? %>
+        <li><%= t("views.signature.edit.preventing_work_place_to_sleep") %></li>
+      <% end %>
+      <% if @current_screener.preventing_work_domestic_violence_yes? %>
+        <li><%= t("views.signature.edit.preventing_work_domestic_violence") %></li>
+      <% end %>
+      <% if @current_screener.preventing_work_drugs_alcohol_yes? %>
+        <li><%= t("views.signature.edit.preventing_work_drugs_alcohol") %></li>
+      <% end %>
+      <% if @current_screener.preventing_work_medical_condition_yes? %>
+        <li><%= t("views.signature.edit.preventing_work_medical_condition") %></li>
+      <% end %>
+      <% if @current_screener.preventing_work_other_yes? %>
+        <li><%= t("views.signature.edit.preventing_work_other") %> <%= @current_screener.preventing_work_write_in %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<p class="spacing-above-35"><%= t("views.signature.edit.perjury_statement") %></p>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.cfa_input_field(:signature, t("views.signature.edit.signature_label"), help_text: t("views.signature.edit.signature_help_text")) %>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
