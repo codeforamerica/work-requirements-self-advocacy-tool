@@ -57,6 +57,7 @@ RSpec.describe PdfFiller::PacketPdf do
         screener.confirmation_code = "ABQ39L"
         nc_screener.homeschool_name = "Small Fry"
         screener.preventing_work_write_in = "Back pain"
+        screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
         screener.receiving_benefits_write_in = "Other disability"
         screener.signature = "Nigellla Lawson"
         screener.ssn_last_four = "1111"
@@ -71,7 +72,8 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:email]).to eq("nigella@example.com")
         expect(result[:homeschool_name]).to eq("Small Fry")
         expect(result[:phone_number]).to eq("(919) 555-1234")
-        expect(result[:preventing_work_write_in]).to eq("Back pain")
+        expect(result[:preventing_work_other_write_in]).to eq("Back pain")
+        expect(result[:preventing_work_write_in]).to eq("I am carrying the weight of the world on my back.")
         expect(result[:receiving_benefits_write_in]).to eq("Other disability")
         expect(result[:signature]).to eq("Nigellla Lawson")
         expect(result[:ssn_last_4]).to eq("1111")
@@ -181,7 +183,7 @@ RSpec.describe PdfFiller::PacketPdf do
   end
 
   describe "#filled_pdf_path" do
-    it "fills the PDF without errors" do
+    it "fills and flattens the PDF (no editable fields remain)" do
       screener.assign_attributes(
         phone_number: "9195550123",
         is_american_indian: "yes",
@@ -214,7 +216,19 @@ RSpec.describe PdfFiller::PacketPdf do
         preventing_work_write_in: "Chronic back pain"
       )
 
-      expect { packet_pdf.filled_pdf_path }.not_to raise_error
+      path = nil
+
+      expect {
+        path = packet_pdf.filled_pdf_path
+      }.not_to raise_error
+
+      doc = HexaPDF::Document.open(path)
+
+      # Assert it's flattened (read-only)
+      form = doc.acro_form
+      expect(form).to be_nil.or have_attributes(fields: be_empty)
+    ensure
+      File.delete(path) if path && File.exist?(path)
     end
   end
 end
