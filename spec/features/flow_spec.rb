@@ -128,6 +128,10 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.basic_info_ssn.edit.ssn_label"), with: "1234"
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
+    fill_in I18n.t("views.signature.edit.signature_label"), with: "Prudence Leith"
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
     click_on I18n.t("general.back")
 
