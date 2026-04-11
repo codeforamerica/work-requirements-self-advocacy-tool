@@ -20,7 +20,7 @@ RSpec.describe SignatureController, type: :controller do
 
       frozen_time = DateTime.new(2026, 1, 9)
       travel_to frozen_time do
-        post :update, params: { screener: params }
+        post :update, params: {screener: params}
         screener.reload
         expect(screener.signature).to eq "Rahul Mandal"
         expect(screener.signed_at).to eq(frozen_time)

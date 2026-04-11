@@ -408,6 +408,37 @@ en:
         questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
+    signature:
+      edit:
+        exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
+        exemption_alcohol_treatment: Participating in a drug or alcohol treatment program
+        exemption_american_indian: A member of an American Indian tribe or nation
+        exemption_caring_child_under_6: Caring for a child under 6
+        exemption_caring_incapacitated: Caring for an incapacitated person
+        exemption_child_under_14: Living with a child under 14
+        exemption_disability_benefits: Receiving disability benefits
+        exemption_earnings: Already earning at least $217.50 a week from work
+        exemption_homeschool: Operating a home school for at least 30 hours a week
+        exemption_migrant_farmworker: Reporting seasonal or migrant farmwork starting in the next 30 days
+        exemption_pregnant: 'Pregnant (Due: %{date})'
+        exemption_pregnant_no_date: Pregnant
+        exemption_student: Going to school at least half-time
+        exemption_unemployment: Getting or applying for unemployment benefits
+        exemption_working_30_hours: Already working at least 30 hours a week
+        exemptions_heading: 'You may not have to follow the SNAP work rules because you are:'
+        instructions: 'Read this before you sign your form:'
+        perjury_statement: By signing below, I am agreeing under penalty of perjury that the information in this form is true and correct.
+        preventing_work_domestic_violence: Experiencing or recently experienced domestic violence
+        preventing_work_drugs_alcohol: Struggling with drugs or alcohol
+        preventing_work_heading:
+          one: Reporting a personal situation that prevents you from working 20 hours a week
+          other: Reporting personal situations that prevent you from working 20 hours a week
+        preventing_work_medical_condition: Has a physical or mental medical condition
+        preventing_work_other: Other
+        preventing_work_place_to_sleep: Does not have a regular place to sleep or shower
+        signature_help_text: Enter your name as it appears on your driver's license, ID, or Social Security card.
+        signature_label: Type your full legal name here to sign
+        title: Sign & create your form
     training_program:
       edit:
         notice_content:
@@ -470,34 +501,3 @@ en:
         title_help_text: If something changes about your situation and you cannot work at least 20 hours a week, every week, please tell your SNAP agency.
         unexpected_problems_html: Unexpected problems happen, like a family emergency or your car breaking down. If you have a "good cause" reason why you could not work 20 hours a week in a month, please let your SNAP agency know. If you have any documents you have that can help prove what happened, that can help them understand your situation.
         unexpected_problems_title: If you miss your hours in a month but you had a good reason, report it to your SNAP agency
-    signature:
-      edit:
-        title: Sign & create your form
-        instructions: "Read this before you sign your form:"
-        exemptions_heading: "You may not have to follow the SNAP work rules because you are:"
-        exemption_american_indian: A member of an American Indian tribe or nation
-        exemption_child_under_14: Living with a child under 14
-        exemption_caring_child_under_6: Caring for a child under 6
-        exemption_caring_incapacitated: Caring for an incapacitated person
-        exemption_pregnant: "Pregnant (Due: %{date})"
-        exemption_pregnant_no_date: Pregnant
-        exemption_unemployment: Getting or applying for unemployment benefits
-        exemption_disability_benefits: Receiving disability benefits
-        exemption_working_30_hours: Already working at least 30 hours a week
-        exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
-        exemption_homeschool: Operating a home school for at least 30 hours a week
-        exemption_earnings: Already earning at least $217.50 a week from work
-        exemption_migrant_farmworker: Reporting seasonal or migrant farmwork starting in the next 30 days
-        exemption_student: Going to school at least half-time
-        exemption_alcohol_treatment: Participating in a drug or alcohol treatment program
-        preventing_work_heading:
-          one: Reporting a personal situation that prevents you from working 20 hours a week
-          other: Reporting personal situations that prevent you from working 20 hours a week
-        preventing_work_place_to_sleep: Does not have a regular place to sleep or shower
-        preventing_work_domestic_violence: Experiencing or recently experienced domestic violence
-        preventing_work_drugs_alcohol: Struggling with drugs or alcohol
-        preventing_work_medical_condition: Has a physical or mental medical condition
-        preventing_work_other: Other
-        perjury_statement: By signing below, I am agreeing under penalty of perjury that the information in this form is true and correct.
-        signature_label: Type your full legal name here to sign
-        signature_help_text: "Enter your name as it appears on your driver's license, ID, or Social Security card."
