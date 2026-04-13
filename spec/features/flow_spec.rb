@@ -69,6 +69,8 @@ RSpec.feature "Screener flow", js: true do
     # fill_in I18n.t("views.training_program.edit.work_training_name_label"), with: "The Great British Work Off"
     # click_on I18n.t("general.continue")
 
+    puts page.html
+    
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
 
