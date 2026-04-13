@@ -73,6 +73,7 @@ main {
 
 .notice.white {
   border-color: $color-grey-light;
+  border-radius: 3px;
   background-color: #FFFFFF;
   padding: 2.5rem;
 }
@@ -187,7 +188,22 @@ i.no-button-cross {
   min-width: 9.5em;
 }
 
+.privacy-policy-scrollbox {
+  border: 2px solid #A9AEB1;
+  border-radius: 5px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 2rem;
+
+  h2, h3 {
+    margin-top: 1.5rem;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
 .text-input-group .field_with_errors .form-width--phone.text-input {
-  padding-left: 0; 
+  padding-left: 0;
 }
 
