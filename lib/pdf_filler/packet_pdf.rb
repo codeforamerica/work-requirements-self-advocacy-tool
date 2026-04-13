@@ -33,7 +33,7 @@ module PdfFiller
         receiving_benefits_workers_compensation: @screener.receiving_benefits_workers_compensation_yes?,
         receiving_benefits_write_in: @screener.receiving_benefits_write_in,
         receiving_disabilty_benefits: @screener.receiving_disability_benefits?,
-        signature: @screener.full_name_with_middle,
+        signature: @screener.signature,
         ssn_last_4: @screener.ssn_last_four,
         submission_date: submission_date
         # submission_date_2: submission_date,
