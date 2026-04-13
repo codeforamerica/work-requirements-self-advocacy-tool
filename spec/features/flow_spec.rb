@@ -58,11 +58,9 @@ RSpec.feature "Screener flow", js: true do
     # click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
-    find("label", text: I18n.t("general.affirmative")).click
-    expect(page).to have_field(I18n.t("views.nc.homeschool.edit.homeschool_name_label"), visible: true)
+    choose I18n.t("general.affirmative")
     fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: "Tough Nuts Academy"
     fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: "25"
-
     click_on I18n.t("general.continue")
 
     # expect(page).to have_selector("h1", text: I18n.t("views.training_program.edit.title"))
