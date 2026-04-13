@@ -235,22 +235,22 @@ RSpec.describe PdfFiller::PacketPdf do
   describe "#strip_emojis" do
     it "removes simple emoji characters" do
       text = "Hello 😊 world 👍"
-      expect(packet_pdf.send(:strip_emojis, text)).to eq("Hello world")
+      expect(packet_pdf.strip_emojis(text)).to eq("Hello world")
     end
 
     it "removes complex emoji sequences with zero-width joiners" do
       text = "Family 👨‍👩‍👧‍👦 test"
-      expect(packet_pdf.send(:strip_emojis, text)).to eq("Family test")
+      expect(packet_pdf.strip_emojis(text)).to eq("Family test")
     end
 
     it "normalizes extra whitespace after removal" do
       text = "Hello 😊   world"
-      expect(packet_pdf.send(:strip_emojis, text)).to eq("Hello world")
+      expect(packet_pdf.strip_emojis(text)).to eq("Hello world")
     end
 
     it "returns a clean string when no emojis are present" do
       text = "Just plain text"
-      expect(packet_pdf.send(:strip_emojis, text)).to eq("Just plain text")
+      expect(packet_pdf.strip_emojis(text)).to eq("Just plain text")
     end
   end
 end
