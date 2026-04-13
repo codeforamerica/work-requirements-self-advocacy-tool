@@ -87,6 +87,11 @@ module PdfFiller
       pdf_tempfile.path
     end
 
+    # Sanitizes text by removing emoji sequences:
+    # - \p{Emoji_Presentation}: removes standalone emoji glyphs
+    # - \p{Emoji}\uFE0F: removes emojis followed by variation selector-16
+    # - \u200D: removes zero-width joiners used to combine emojis (e.g., family emojis)
+    # Then normalizes whitespace via squeeze(" ") and strip.
     def strip_emojis(text)
       text
         .gsub(/\p{Emoji_Presentation}/, "")
