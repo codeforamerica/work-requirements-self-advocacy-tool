@@ -306,6 +306,88 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    privacy_policy:
+      analytics: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. You can also email getbenefitshelp@codeforamerica.org for additional information.
+      auto_collect_intro: 'In addition to the information you provide, we automatically collect and store information about your visit to the Site. We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you submit in the GetBenefitsHelp.org Site. This information includes:'
+      auto_collect_items:
+      - Domain from which you access the Internet
+      - IP address (an IP or internet protocol address is a number that is automatically given to a computer connected to the Web)
+      - Operating system on your computer and information about the browser you used when visiting the site
+      - Date and time of your visit
+      - Pages you visited
+      - Address of the website that connected you to the Site (such as google.com)
+      breach_notification: In the event of a security system breach, you will be notified pursuant to applicable state statutes regarding breach notifications.
+      changes_text: We may change this Privacy Policy from time to time. Please check this page frequently for updates as your continued use of this site after any changes in this Privacy Policy will constitute your acceptance of the changes.
+      changes_title: Changes
+      contact_intro: If you have any questions or concerns about this Privacy Notice, please contact us at getbenefitshelp@codeforamerica.org.
+      data_retention_1_email_intro: 'You can email us at getbenefitshelp@codeforamerica.org to:'
+      data_retention_1_email_items:
+      - Request that your personal information be deleted sooner
+      - Request a copy of your personal information
+      - Request corrections to inaccuracies in your personal information
+      - Opt-out of further processing of your personal information
+      data_retention_1_intro_html: We will collect and store the following personal information for 24 months, or the maximum allowable period under relevant state or federal law, whichever is less
+      data_retention_1_items:
+      - All personal information that you provide in the GetBenefitsHelp.org Site, which may include your SNAP case number, the last four digits of your Social Security Number, typed signature, date of birth, language preference, name, phone number, and email address.
+      - Copies of any documents you upload, like pictures of your driver's license, pay stubs, birth certifications, rent receipts, etc.
+      - Any messages you send us through SMS, email, or live chat
+      - Any answers or comments you provide in response to a survey we send you
+      data_retention_2_intro_html: We will collect and store the following information for the maximum allowable period under relevant state or federal law. The information listed below can help us understand trends about the people using the Site, <strong>without</strong> connecting it to information that could identify who you are
+      data_retention_2_items:
+      - Non-identifiable Information you provide us about yourself, your household, or people you care for (for example, information about circumstances that may make you exempt from a benefit program's work requirements)
+      - Any answers or comments you provide in response to feedback surveys we may send you
+      data_retention_improve: This information is stored to help us improve our Site and Services.
+      data_retention_title: Data Retention
+      description: This Privacy Policy describes how we collect, use, and protect your personal information. By using our Services, you agree to the terms in this Privacy Policy. This Privacy Notice applies regardless of the type of device you use to access our services. If you do not agree with these terms, please do not continue to use the Site.
+      effective_date_text: This version of the policy is effective April 10, 2026.
+      effective_date_title: Effective Date
+      how_we_collect_intro: 'We collect your information from various sources, such as when you:'
+      how_we_collect_items:
+      - Visit our Site, fill out forms on our Site, or use our Services
+      - Provide us with documents to use our Services
+      - Communicate with us (for instance through email, chat, social media, or otherwise)
+      how_we_collect_title: How we collect your information
+      how_we_protect_title: How we protect your information
+      how_we_share_title: How we share your information
+      how_we_use_business_intro: We use your information for our business purposes, such as
+      how_we_use_business_items:
+      - To complete forms required for use of our Services
+      - To provide support to you through the process and communicate with you
+      - To monitor and understand how the Site and our Services are used
+      - To improve the quality or scope of the Site or our Services
+      - To suggest other services or assistance programs that may be useful to you
+      - For security purposes
+      - To comply with legal requirements and obligations
+      how_we_use_info_intro: 'We will only use your information to:'
+      how_we_use_info_items:
+      - Help you get or keep SNAP and any other benefit programs supported in future versions of the Site ("SNAP" herein refers to all such programs).
+      - Suggest other services or assistance programs that may be useful to you. We will only use your personal information in order to present those services or programs to you as an option, but will never send your personal information to any other services or programs without your permission.
+      how_we_use_title: How we use your information
+      intro: GetBenefitsHelp.org (the "Site") is a service created by Code for America Labs, Inc. ("Code for America," "we," "us," "our") to help people get and keep government benefits.
+      no_collection_without_consent: We will not collect personal information from you without your knowledge and consent.
+      no_disclose: We will not knowingly disclose your personal information to any third party, except as provided in this privacy policy.
+      no_email: We will not send you an email unless you provide your email on the Site or you email us first.
+      no_sell: 'We do not sell your personal information. We do not share your personal information with any third party, except as provided in this Privacy Policy. We may use or disclose your information in the following instances:'
+      no_text_html: We will not send you a text message unless you consent to text message communication in the application or you text us first. <strong>You can reply 'STOP' to any text message to unsubscribe.</strong>
+      protect_disclaimer: Although we try our best to protect the privacy of your personal information, we cannot guarantee complete security. The transmission of information via the Internet is not completely secure. Unauthorized entry or use, hardware or software failure, and other factors, may compromise the security of user information at any time.
+      protect_intro: 'Protecting your personal information is extremely important to us and we take all reasonable measures to do so. Here are some specific security practices we use:'
+      protect_items:
+      - When you enter your information on our site we encrypt the transmission of that information using transport layer security (TLS).
+      - We store your information in a secure, purpose-built environment hosted by Amazon Web Services (AWS).
+      questions_text: If you have any questions, comments, concerns, or complaints with the Site, please contact us by email at getbenefitshelp@codeforamerica.org.
+      questions_title: Questions
+      reasonable_measures: We will take all reasonable measures to protect your personal information.
+      resolve: We will do our best to resolve the issue.
+      security_questions: If you have questions about the security of your personal information, or if you have reason to believe that the personal information that we hold about you is no longer secure, please contact us immediately by email at getbenefitshelp@codeforamerica.org
+      share_contractors: If necessary, we may disclose your information to contractors who help us provide our services. We require our third parties acting on our behalf to keep your personal information secure, and do not allow these third parties to use or share your personal information for any purpose other than providing services on our behalf.
+      share_items:
+      - For analysis and reporting, we may share limited aggregate information with government agencies or other third parties, including state agencies administering public benefit programs, to analyze the use of our Services, in order to improve and expand our services. Such analysis is always performed using anonymized data.
+      share_legal: 'Legal Compliance: In certain situations, we may be required to disclose personal data in response to lawful requests by public authorities, including to meet national security or law enforcement requirements. We may also disclose your personal information as required by law, such as to comply with a subpoena or other legal process, when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request.'
+      share_research_intro: 'For research to improve our Services, including:'
+      share_research_items:
+      - To invite you to complete questionnaires regarding your experience using our product.
+      - To send you opportunities to participate in paid user research sessions, to learn more about your experience using our product and to guide the development of future products and services.
+      title: Privacy Policy
     proof_guidance:
       edit:
         already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
