@@ -1,10 +1,6 @@
 require "rails_helper"
 
 describe MixpanelService do
-  before do
-    allow(Rails.env).to receive(:production?).and_return(true)
-  end
-
   context "Testing concurrency" do
     let!(:procs) { [] }  # We maintain a list of procs because the internal the mutex prevents direct invocation
     before do
