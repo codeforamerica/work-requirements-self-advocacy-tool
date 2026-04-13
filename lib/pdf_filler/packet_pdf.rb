@@ -46,7 +46,7 @@ module PdfFiller
     end
 
     def hash_for_generated_pdf
-      shared_fields.merge(
+      raw_hash = shared_fields.merge(
         any_preventing_work: @screener.any_preventing_work?,
         earnings_above_minimum: @screener.earnings_above_minimum?,
         full_name: @screener.full_name,
@@ -58,6 +58,10 @@ module PdfFiller
         work_training_hours: @screener.work_training_hours.to_i,
         working_30_or_more_hours: @screener.working_30_or_more_hours?
       )
+
+      raw_hash.transform_values do |value|
+        value.is_a?(String) ? strip_emojis(value) : value
+      end
     end
 
     def filled_pdf_path
@@ -70,6 +74,9 @@ module PdfFiller
       end
 
       hash_for_fillable_pdf.each do |field_name, field_value|
+        if field_value.is_a?(String)
+          field_value = strip_emojis(field_value)
+        end
         template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
       end
 
@@ -78,6 +85,15 @@ module PdfFiller
       pdf_tempfile = Tempfile.new(["packet", ".pdf"], "tmp/")
       template_doc.write(pdf_tempfile)
       pdf_tempfile.path
+    end
+
+    def strip_emojis(text)
+      text
+        .gsub(/\p{Emoji_Presentation}/, "")
+        .gsub(/\p{Emoji}\uFE0F/, "")
+        .delete("\u200D")
+        .squeeze(" ")
+        .strip
     end
 
     def generated_pdf_path
