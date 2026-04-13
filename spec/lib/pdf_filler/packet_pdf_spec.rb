@@ -59,10 +59,11 @@ RSpec.describe PdfFiller::PacketPdf do
         screener.preventing_work_write_in = "Back pain"
         screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
         screener.receiving_benefits_write_in = "Other disability"
+        screener.signature = "Nigellla Lawson"
         screener.ssn_last_four = "1111"
         # screener.volunteering_org_name = "Muffins for Mums"
         # screener.work_training_name = "Bake Off Boot Camp"
-        screener.work_training_hours = "25"
+        # screener.work_training_hours = "25"
 
         expect(result[:details_of_care]).to eq("Babysitting Paul Hollywood")
         expect(result[:drug_alcohol_program_name]).to eq("Alcolisti Anonimi")
@@ -74,6 +75,7 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:preventing_work_other_write_in]).to eq("Back pain")
         expect(result[:preventing_work_write_in]).to eq("I am carrying the weight of the world on my back.")
         expect(result[:receiving_benefits_write_in]).to eq("Other disability")
+        expect(result[:signature]).to eq("Nigellla Lawson")
         expect(result[:ssn_last_4]).to eq("1111")
         # expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
         # expect(result[:work_training_name]).to eq("Bake Off Boot Camp")
