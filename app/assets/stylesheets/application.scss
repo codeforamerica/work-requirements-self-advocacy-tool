@@ -20,13 +20,33 @@ main {
 
 .toolbar {
   display: flex;
-  justify-content: flex-end;
-  padding-top: 1.5rem;
+  padding-top: 2.5rem;
 
   .button {
     margin: 0;
   }
+
+  .logo {
+    display: flex;
+    align-items: flex-end;
+    align-self: stretch;
+
+    img {
+      margin: 0;
+      height: 95px;
+      width: 95px;
+      display: flex;
+    }
+  }
+
+  .translate-button {
+    display: flex;
+    align-items: flex-end;
+    align-self: stretch;
+  }
 }
+
+
 
 .slab.slab-toolbar {
   padding-top: 0;
@@ -34,6 +54,7 @@ main {
 }
 
 .slab {
+  padding-top: 4rem;
   margin-left: 6rem;
   margin-right: 6rem;
 
@@ -188,6 +209,6 @@ i.no-button-cross {
 }
 
 .text-input-group .field_with_errors .form-width--phone.text-input {
-  padding-left: 0; 
+  padding-left: 0;
 }
 
