@@ -13,17 +13,9 @@ class MixpanelService
     @buffer = []
     @mutex = Mutex.new
 
-    @tracker =
-      if Rails.env.production?
-        Mixpanel::Tracker.new(mixpanel_key) do |type, message|
-          buffer_event_for_send(type, message)
-        end
-      else
-        Struct.new("DummyTracker") do
-          def track(_distinct_id, _event_name, _data)
-          end
-        end.new
-      end
+    @tracker = Mixpanel::Tracker.new(mixpanel_key) do |type, message|
+      buffer_event_for_send(type, message)
+    end
   end
 
   def run(distinct_id:, event_name:, data: {})
