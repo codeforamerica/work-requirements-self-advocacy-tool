@@ -19,10 +19,11 @@ main {
 }
 
 .toolbar {
-  display: flex;
   padding-top: 2.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   max-width: 820px;
-  
+
   .button {
     margin: 0;
   }
@@ -38,23 +39,10 @@ main {
       width: 190px;
     }
   }
-
-  .translate-button {
-    display: flex;
-    align-items: flex-end;
-    align-self: stretch;
-  }
-}
-
-
-
-.slab.slab-toolbar {
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .slab {
-  padding-top: 4rem;
+  padding-top: 1.5rem;
   margin-left: 6rem;
   margin-right: 6rem;
 
