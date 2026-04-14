@@ -31,19 +31,27 @@
       <div class="flash-alerts">
         <%= render "shared/flash_alerts", flash: flash %>
       </div>
-      <section class="slab slab-toolbar">
-        <div class="toolbar">
+      <div class="toolbar">
+        <div class="toolbar__left">
+          <div class="toolbar__item">
+            <%= link_to root_path do %>
+              <%= image_tag "gbh-logo.svg" %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="toolbar__right">
           <% switched_locale = I18n.locale == :en ? :es : :en %>
           <%= link_to(
             {locale: switched_locale, params: request.query_parameters},
             lang: switched_locale,
-            class: "button button--small",
+            class: "button button--small toolbar__item",
             id: "locale_switcher_#{switched_locale}") do %>
               <i class="button__icon--right icon-translate"></i>
               <%= t("general.switched_locale") %>
             <% end %>
         </div>
-      </section>
+      </div>
       <%= yield %>
     </main>
 

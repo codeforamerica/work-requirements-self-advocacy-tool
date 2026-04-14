@@ -19,18 +19,16 @@ main {
 }
 
 .toolbar {
-  display: flex;
-  justify-content: flex-end;
+  align-items: center;
   padding-top: 1.5rem;
+
+  .toolbar__left {
+    margin-left: 1.5rem;
+  }
 
   .button {
     margin: 0;
   }
-}
-
-.slab.slab-toolbar {
-  padding-top: 0;
-  padding-bottom: 0;
 }
 
 .slab {
@@ -66,6 +64,7 @@ main {
 
 .notice {
   padding: 0.8rem;
+
   .media--icon {
     margin-right: 0.8rem;
   }
@@ -133,6 +132,7 @@ i.no-button-cross {
   background: none;
   padding: 0;
   margin: 3.5rem 0;
+
   hr {
     margin-top: 0;
     margin-bottom: 3.5rem;
@@ -207,6 +207,7 @@ i.no-button-cross {
 
   h2, h3 {
     margin-top: 1.5rem;
+
     &:first-child {
       margin-top: 0;
     }
