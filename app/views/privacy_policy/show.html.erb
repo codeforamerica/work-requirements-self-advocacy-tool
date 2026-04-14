@@ -1,0 +1,29 @@
+<section class="slab">
+  <div class="grid">
+    <div class="grid__item width-three-fourths">
+      <div class="card">
+        <h1><%= t("views.privacy_policy.title") %></h1>
+        <p><%= t("views.privacy_policy.help_text") %></p>
+
+        <nav>
+          <h2><%= t("views.privacy_policy.on_this_page") %></h2>
+          <ul class="list--plain">
+            <li><%= link_to t("views.privacy_policy.title"), "#privacy-policy" %></li>
+            <li><%= link_to t("views.privacy_policy.how_we_collect_title"), "#how-we-collect" %></li>
+            <li><%= link_to t("views.privacy_policy.data_retention_title"), "#data-retention" %></li>
+            <li><%= link_to t("views.privacy_policy.how_we_use_title"), "#how-we-use" %></li>
+            <li><%= link_to t("views.privacy_policy.how_we_share_title"), "#how-we-share" %></li>
+            <li><%= link_to t("views.privacy_policy.how_we_protect_title"), "#how-we-protect" %></li>
+            <li><%= link_to t("views.privacy_policy.changes_title"), "#changes" %></li>
+            <li><%= link_to t("views.privacy_policy.effective_date_title"), "#effective-date" %></li>
+            <li><%= link_to t("views.privacy_policy.questions_title"), "#questions" %></li>
+          </ul>
+        </nav>
+
+        <hr class="spacing-above-35 spacing-below-35"/>
+
+        <%= render "signature/privacy_policy" %>
+      </div>
+    </div>
+  </div>
+</section>

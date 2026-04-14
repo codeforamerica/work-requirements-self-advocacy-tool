@@ -341,6 +341,7 @@ en:
       description: This Privacy Policy describes how we collect, use, and protect your personal information. By using our Services, you agree to the terms in this Privacy Policy. This Privacy Notice applies regardless of the type of device you use to access our services. If you do not agree with these terms, please do not continue to use the Site.
       effective_date_text: This version of the policy is effective April 10, 2026.
       effective_date_title: Effective Date
+      help_text: How we use, share, and protect your information.
       how_we_collect_intro: 'We collect your information from various sources, such as when you:'
       how_we_collect_items:
       - Visit our Site, fill out forms on our Site, or use our Services
@@ -369,6 +370,7 @@ en:
       no_email: We will not send you an email unless you provide your email on the Site or you email us first.
       no_sell: 'We do not sell your personal information. We do not share your personal information with any third party, except as provided in this Privacy Policy. We may use or disclose your information in the following instances:'
       no_text_html: We will not send you a text message unless you consent to text message communication in the application or you text us first. <strong>You can reply 'STOP' to any text message to unsubscribe.</strong>
+      on_this_page: On this page
       protect_disclaimer: Although we try our best to protect the privacy of your personal information, we cannot guarantee complete security. The transmission of information via the Internet is not completely secure. Unauthorized entry or use, hardware or software failure, and other factors, may compromise the security of user information at any time.
       protect_intro: 'Protecting your personal information is extremely important to us and we take all reasonable measures to do so. Here are some specific security practices we use:'
       protect_items:

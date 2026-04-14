@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get "start_flow" => "homepage#create_screener"
     get "generate_pdf" => "pdf#generate_pdf"
     get "page_one_preview" => "pdf#summary_page"
+    resource :privacy_policy, only: [:show], controller: "privacy_policy"
     get "clear_flashes" => "application#clear_flashes"
     get "sign_out_and_redirect" => "application#sign_out_and_redirect"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
