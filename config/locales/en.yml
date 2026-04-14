@@ -388,6 +388,8 @@ en:
       - To invite you to complete questionnaires regarding your experience using our product.
       - To send you opportunities to participate in paid user research sessions, to learn more about your experience using our product and to guide the development of future products and services.
       title: Privacy Policy
+      help_text: "How we use, share, and protect your information."
+      on_this_page: On this page
     proof_guidance:
       edit:
         already_has_proof: Does your agency already have proof of your exemptions?

@@ -388,6 +388,8 @@ es:
       - To invite you to complete questionnaires regarding your experience using our product.
       - To send you opportunities to participate in paid user research sessions, to learn more about your experience using our product and to guide the development of future products and services.
       title: Privacy Policy
+      help_text: "Cómo utilizamos, compartimos y protegemos su información."
+      on_this_page: En esta página
     proof_guidance:
       edit:
         already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
