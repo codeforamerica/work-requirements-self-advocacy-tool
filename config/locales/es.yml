@@ -490,6 +490,7 @@ es:
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
+        unsubscribe: Cancelar suscripción
     signature:
       edit:
         exemption_55_no_diploma: Tener al menos 55 años, no haber obtenido un diploma de secundaria, tener poca experiencia laboral reciente y una condición médica

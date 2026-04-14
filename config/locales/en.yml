@@ -490,6 +490,7 @@ en:
         questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
+        unsubscribe: Unsubscribe
     signature:
       edit:
         exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
