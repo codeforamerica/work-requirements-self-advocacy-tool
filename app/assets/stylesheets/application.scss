@@ -36,7 +36,11 @@ main {
     img {
       margin: 0;
       display: flex;
-      width: 190px;
+      width: 210px;
+
+      @media screen and (max-width: $tablet-up) {
+        width: 230px;
+      }
     }
   }
 }
