@@ -31,8 +31,13 @@
       <div class="flash-alerts">
         <%= render "shared/flash_alerts", flash: flash %>
       </div>
-      <section class="slab slab-toolbar">
         <div class="toolbar">
+          <%= link_to(
+                root_path,
+                class: "logo") do %>
+            <%= image_tag "gbh-logo.svg" %>
+          <% end %>
+
           <% switched_locale = I18n.locale == :en ? :es : :en %>
           <%= link_to(
             {locale: switched_locale, params: request.query_parameters},
@@ -43,7 +48,6 @@
               <%= t("general.switched_locale") %>
             <% end %>
         </div>
-      </section>
       <%= yield %>
     </main>
 

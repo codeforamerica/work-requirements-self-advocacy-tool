@@ -19,21 +19,34 @@ main {
 }
 
 .toolbar {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 1.5rem;
+  padding-top: 2.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  max-width: 820px;
 
   .button {
     margin: 0;
   }
-}
 
-.slab.slab-toolbar {
-  padding-top: 0;
-  padding-bottom: 0;
+  .logo {
+    display: flex;
+    align-items: flex-end;
+    align-self: stretch;
+
+    img {
+      margin: 0;
+      display: flex;
+      width: 210px;
+
+      @media screen and (max-width: $tablet-up) {
+        width: 230px;
+      }
+    }
+  }
 }
 
 .slab {
+  padding-top: 1.5rem;
   margin-left: 6rem;
   margin-right: 6rem;
 
