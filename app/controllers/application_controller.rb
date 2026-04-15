@@ -71,6 +71,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def utms_and_referrer
+    {
+      referrer: session[:referrer],
+      utm_source: session[:utm_source],
+      utm_term: session[:utm_term],
+      utm_medium: session[:utm_medium],
+      utm_campaign: session[:utm_campaign],
+    }
+  end
+
   def visitor_id
     current_screener&.visitor_id || cookies.encrypted[:visitor_id]
   end

@@ -141,6 +141,7 @@ describe MixpanelService do
           controller_double = instance_double(HomepageController)
           allow(controller_double).to receive(:class).and_return HomepageController
           allow(controller_double).to receive(:action_name).and_return "index"
+          allow(controller_double).to receive(:utms_and_referrer).and_return({referrer: "duckduckshrimp.com", utm_source: "duckduckshrimp", utm_medium: nil})
 
           MixpanelService.send_event(
             distinct_id: "123",
@@ -154,8 +155,11 @@ describe MixpanelService do
             {
               record_type: "Screener",
               record_id: screener.id,
+              controller_name: "Homepage",
               controller_action: "HomepageController#index",
-              locale: :en
+              locale: :en,
+              referrer: "duckduckshrimp.com",
+              utm_source: "duckduckshrimp"
             }
           )
         end

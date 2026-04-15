@@ -134,6 +134,26 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
+  describe "#utms_and_referrer" do
+    before do
+      session[:referrer] = "duckduckshrimp.com"
+      session[:utm_source] = "duckduckshrimp"
+      session[:utm_term] = "legs+shell"
+      session[:utm_medium] = "social"
+      session[:utm_campaign] = "aquariumseason"
+    end
+
+    it "returns the utm parameters and referrer in a hash" do
+      expect(subject.utms_and_referrer).to eq({
+        referrer: "duckduckshrimp.com",
+        utm_source: "duckduckshrimp",
+        utm_term: "legs+shell",
+        utm_medium: "social",
+        utm_campaign: "aquariumseason",
+      })
+    end
+  end
+
   describe "#set_referrer" do
     context "with an existing referrer in the session" do
       before do

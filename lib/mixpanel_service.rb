@@ -79,7 +79,11 @@ class MixpanelService
       end
 
       if controller
-        controller_data = {controller_action: "#{controller&.class&.name}##{controller&.action_name}"}
+        controller_data = {
+          controller_name: controller&.class&.name&.sub("Controller", ""),
+          controller_action: "#{controller&.class&.name}##{controller&.action_name}",
+          **controller.utms_and_referrer.compact
+        }
         data.merge!(controller_data)
       end
 
