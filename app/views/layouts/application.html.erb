@@ -43,6 +43,7 @@
             {locale: switched_locale, params: request.query_parameters},
             lang: switched_locale,
             class: "button button--small",
+            "data-turbo": "false",
             id: "locale_switcher_#{switched_locale}") do %>
               <i class="button__icon--right icon-translate"></i>
               <%= t("general.switched_locale") %>
