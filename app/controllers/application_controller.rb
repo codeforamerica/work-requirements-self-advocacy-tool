@@ -48,7 +48,11 @@ class ApplicationController < ActionController::Base
   end
 
   def referrer_from_different_host?
-    referrer_host = URI.parse(request.headers[:referer]).host rescue nil
+    referrer_host = begin
+      URI.parse(request.headers[:referer]).host
+    rescue
+      nil
+    end
     referrer_host != request.host
   end
 
@@ -77,7 +81,7 @@ class ApplicationController < ActionController::Base
       utm_source: session[:utm_source],
       utm_term: session[:utm_term],
       utm_medium: session[:utm_medium],
-      utm_campaign: session[:utm_campaign],
+      utm_campaign: session[:utm_campaign]
     }
   end
 

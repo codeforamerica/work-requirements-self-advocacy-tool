@@ -149,7 +149,7 @@ RSpec.describe ApplicationController, type: :controller do
         utm_source: "duckduckshrimp",
         utm_term: "legs+shell",
         utm_medium: "social",
-        utm_campaign: "aquariumseason",
+        utm_campaign: "aquariumseason"
       })
     end
   end
@@ -197,12 +197,12 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       context "with a very long HTTP_REFERER header" do
-        before { request.headers["HTTP_REFERER"] = 'http://' + ('!' * 9001) }
+        before { request.headers["HTTP_REFERER"] = "http://" + ("!" * 9001) }
 
         it "sets the referrer to a truncated version" do
           get :index
 
-          expect(session[:referrer]).to eq 'http://' + ('!' * 193)
+          expect(session[:referrer]).to eq "http://" + ("!" * 193)
         end
       end
 
@@ -229,7 +229,7 @@ RSpec.describe ApplicationController, type: :controller do
         end
 
         it "does not replace it" do
-          get :index, params: { utm_param => "moo" }
+          get :index, params: {utm_param => "moo"}
 
           expect(session[utm_param]).to eq "oink"
         end
@@ -238,7 +238,7 @@ RSpec.describe ApplicationController, type: :controller do
       context "when #{utm_param} is not saved in the session" do
         context "when #{utm_param} is in the params" do
           it "sets it in the session" do
-            get :index, params: { utm_param => "oink" }
+            get :index, params: {utm_param => "oink"}
 
             expect(session[utm_param]).to eq "oink"
           end
