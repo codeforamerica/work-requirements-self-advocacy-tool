@@ -142,7 +142,7 @@ es:
         email_pdf: Agreagar un correo electrónico
         expectation_1: Su oficina de SNAP puede llamarlo o enviarle un aviso por correo si necesita más información.
         expectation_2: En algunos casos, es posible que tenga que enviar a su oficina más documentos (o documentos diferentes) que demuestren su situación, como, por ejemplo, comprobantes de pago o prueba de una condición médica.
-        expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas [X] semanas.
+        expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas 4 semanas.
         have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
         how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
         how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
