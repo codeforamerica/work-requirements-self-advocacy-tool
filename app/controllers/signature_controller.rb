@@ -1,4 +1,4 @@
-class SignatureController < QuestionController
+class SignatureController < ExemptionAwareQuestionController
   include BasicInfoConcern
 
   def self.attributes_edited

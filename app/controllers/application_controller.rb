@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:screener_id] = current_screener&.id
     capture_trace_context
   end
-  before_action :set_visitor_id
+  before_action :set_visitor_id, :set_referrer, :set_utms
   after_action :track_page_view
 
   def navigation_class
@@ -45,6 +45,44 @@ class ApplicationController < ActionController::Base
     if current_screener.present? && current_screener.persisted? && current_screener.visitor_id.blank?
       current_screener.update(visitor_id: visitor_id)
     end
+  end
+
+  def referrer_from_different_host?
+    referrer_host = begin
+      URI.parse(request.headers[:referer]).host
+    rescue
+      nil
+    end
+    referrer_host != request.host
+  end
+
+  def set_referrer
+    return unless referrer_from_different_host?
+
+    # Use at most 200 chars in the session to avoid overflow.
+    header_value = request.headers.fetch(:referer, "None")
+    if header_value != "None" || session[:referrer].nil?
+      session[:referrer] = header_value.slice(0, 200)
+    end
+  end
+
+  def set_utms
+    [:utm_source, :utm_term, :utm_medium, :utm_campaign].each do |utm_param|
+      if params[utm_param].present? && session[utm_param].blank?
+        # Use at most 100 chars in the session to avoid overflow.
+        session[utm_param] = params[utm_param].slice(0, 100)
+      end
+    end
+  end
+
+  def utms_and_referrer
+    {
+      referrer: session[:referrer],
+      utm_source: session[:utm_source],
+      utm_term: session[:utm_term],
+      utm_medium: session[:utm_medium],
+      utm_campaign: session[:utm_campaign]
+    }
   end
 
   def visitor_id

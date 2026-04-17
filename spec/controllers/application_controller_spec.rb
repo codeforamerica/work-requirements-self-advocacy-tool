@@ -134,6 +134,127 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
+  describe "#utms_and_referrer" do
+    before do
+      session[:referrer] = "duckduckshrimp.com"
+      session[:utm_source] = "duckduckshrimp"
+      session[:utm_term] = "legs+shell"
+      session[:utm_medium] = "social"
+      session[:utm_campaign] = "aquariumseason"
+    end
+
+    it "returns the utm parameters and referrer in a hash" do
+      expect(subject.utms_and_referrer).to eq({
+        referrer: "duckduckshrimp.com",
+        utm_source: "duckduckshrimp",
+        utm_term: "legs+shell",
+        utm_medium: "social",
+        utm_campaign: "aquariumseason"
+      })
+    end
+  end
+
+  describe "#set_referrer" do
+    context "with an existing referrer in the session" do
+      before do
+        session[:referrer] = "searchengine.shrimp"
+      end
+
+      context "if the new referrer is from the same host" do
+        before do
+          request.headers["HTTP_REFERER"] = "http://test.host/previous_page"
+        end
+
+        it "does not override the referrer in the session" do
+          get :index
+
+          expect(session[:referrer]).to eq "searchengine.shrimp"
+        end
+      end
+
+      context "if the new referrer is from a different host" do
+        before do
+          request.headers["HTTP_REFERER"] = "http://computer.example"
+        end
+
+        it "replaces it" do
+          get :index
+
+          expect(session[:referrer]).to eq "http://computer.example"
+        end
+      end
+    end
+
+    context "with no referrer in the session" do
+      context "with an HTTP_REFERER header" do
+        before { request.headers["HTTP_REFERER"] = "http://coolwebsite.horse" }
+
+        it "sets the referrer from the headers" do
+          get :index
+
+          expect(session[:referrer]).to eq "http://coolwebsite.horse"
+        end
+      end
+
+      context "with a very long HTTP_REFERER header" do
+        before { request.headers["HTTP_REFERER"] = "http://" + ("!" * 9001) }
+
+        it "sets the referrer to a truncated version" do
+          get :index
+
+          expect(session[:referrer]).to eq "http://" + ("!" * 193)
+        end
+      end
+
+      context "without an HTTP_REFERER header" do
+        it "sets the referrer to 'None'" do
+          get :index
+
+          expect(session[:referrer]).to eq "None"
+        end
+      end
+    end
+  end
+
+  describe "#set_utms" do
+    [
+      :utm_source,
+      :utm_term,
+      :utm_medium,
+      :utm_campaign
+    ].each do |utm_param|
+      context "when #{utm_param} is already saved in the session" do
+        before do
+          session[utm_param] = "oink"
+        end
+
+        it "does not replace it" do
+          get :index, params: {utm_param => "moo"}
+
+          expect(session[utm_param]).to eq "oink"
+        end
+      end
+
+      context "when #{utm_param} is not saved in the session" do
+        context "when #{utm_param} is in the params" do
+          it "sets it in the session" do
+            get :index, params: {utm_param => "oink"}
+
+            expect(session[utm_param]).to eq "oink"
+          end
+        end
+
+        context "when #{utm_param} is not in the params" do
+          it "remains nil in the session" do
+            get :index
+
+            expect(session).not_to include(utm_param)
+          end
+        end
+      end
+    end
+  end
+
   describe "#send_mixpanel_event" do
     let(:current_screener) { create :screener }
 

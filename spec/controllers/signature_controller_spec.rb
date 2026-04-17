@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.describe SignatureController, type: :controller do
   include ActiveSupport::Testing::TimeHelpers
 
+  describe ".show?" do
+    it_behaves_like "show? with work rules exemption only"
+  end
+
   describe "#edit" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
   end
