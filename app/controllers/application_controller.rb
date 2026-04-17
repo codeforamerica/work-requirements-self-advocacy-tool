@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def navigation_class
     Navigation::ScreenerNavigation
   end
-  helper_method :navigation_class
+  helper_method :navigation_class, :visitor_id
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
