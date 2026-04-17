@@ -218,7 +218,7 @@ es:
         title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
         title_help_text_html: |
           <p>Le ayudaremos a preparar un documento con su información para enviarlo a su agencia de SNAP y determinar si debe cumplir con <strong>las reglas de trabajo de SNAP.</strong></p>
-          <p><strong>Debería tomar alrededor de 20 minutos completar esta solicitud.</strong></p>
+          <p><strong>Debería tomar alrededor de 10 minutos completar esta solicitud.</strong></p>
         work_rules_description_html: |
           <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
           <p>Para SNAP, "actividades laborales" incluyen:</p>
