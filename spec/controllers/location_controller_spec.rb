@@ -52,7 +52,7 @@ RSpec.describe LocationController, type: :controller do
         expect(MixpanelService).to have_received(:send_event).with(
           hash_including(
             event_name: "page_submit",
-            data: { state: "NC", county: "Anson County" }
+            data: {state: "NC", county: "Anson County"}
           )
         )
       end

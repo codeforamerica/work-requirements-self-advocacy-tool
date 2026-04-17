@@ -174,7 +174,7 @@ describe MixpanelService do
             MixpanelService.send_event(
               distinct_id: "123",
               event_name: "page_submit",
-              data: { state: "NC", county: "Anson County" },
+              data: {state: "NC", county: "Anson County"},
               controller: controller_double
             )
             expect(fake_tracker).to have_received(:track).with(

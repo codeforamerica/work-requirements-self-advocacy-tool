@@ -20,7 +20,7 @@ class LocationController < QuestionController
     end
     send_mixpanel_event(
       event_name: "page_submit",
-      data: { state: current_screener.state, county: current_screener.county }
+      data: {state: current_screener.state, county: current_screener.county}
     )
   end
 end
