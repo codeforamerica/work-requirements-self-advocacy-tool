@@ -19,11 +19,18 @@
       <p class="text-green-innovation-lab text--small">
         <%= t("views.out_of_state.edit.contact_redirect", seconds: redirect_delay_seconds) %>
       </p>
-      <div><%= link_to t("views.out_of_state.edit.contact_button"), redirect_url, class: "button button--cta" %></div>
+      <div>
+        <%= link_to t("views.out_of_state.edit.contact_button"),
+                    redirect_url,
+                    class: "button button--cta",
+                    "data-track-click": "snap_office_link_clicked",
+                    "data-track-controller_name": "OutOfState",
+                    "data-track-url": redirect_url %>
+      </div>
     </div>
   </div>
   <script>
-    setTimeout(function() {
+    setTimeout(function () {
       window.location.href = "<%= redirect_url %>";
     }, <%= redirect_delay_seconds * 1000 %>);
   </script>

@@ -36,6 +36,27 @@ var noneOfTheAbove = (function () {
   }
 })();
 
+function initClickTracking() {
+  document.querySelectorAll('[data-track-click]').forEach(function(el) {
+    el.addEventListener('click', function() {
+      if (typeof mixpanel === 'undefined') return;
+
+      var eventName = el.getAttribute('data-track-click');
+      var properties = {};
+
+      Array.from(el.attributes).forEach(function(attr) {
+        if (attr.name.startsWith('data-track-') && attr.name !== 'data-track-click') {
+          // "data-track-faq-name" becomes "faq_name"
+          var propName = attr.name.replace('data-track-', '').replace(/-/g, '_');
+          properties[propName] = attr.value;
+        }
+      });
+
+      mixpanel.track(eventName, properties);
+    });
+  });
+}
+
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
@@ -46,6 +67,7 @@ document.addEventListener("turbo:load", function() {
     followUpQuestion.update($(self));
   });
   initTextareaCounter();
+  initClickTracking();
 });
 
 document.addEventListener("turbo:render", function () {

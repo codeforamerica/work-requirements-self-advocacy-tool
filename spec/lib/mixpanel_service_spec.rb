@@ -136,32 +136,58 @@ describe MixpanelService do
           end
         end
 
-        it "tracks the event with record type, controller information, and locale" do
-          screener = create(:screener)
-          controller_double = instance_double(HomepageController)
-          allow(controller_double).to receive(:class).and_return HomepageController
-          allow(controller_double).to receive(:action_name).and_return "index"
-          allow(controller_double).to receive(:utms_and_referrer).and_return({referrer: "duckduckshrimp.com", utm_source: "duckduckshrimp", utm_medium: nil})
+        context "tracking information" do
+          it "tracks the event with record, controller, and other information" do
+            screener = create(:screener)
+            controller_double = instance_double(HomepageController)
+            allow(controller_double).to receive(:class).and_return HomepageController
+            allow(controller_double).to receive(:action_name).and_return "index"
+            allow(controller_double).to receive(:utms_and_referrer).and_return({referrer: "duckduckshrimp.com", utm_source: "duckduckshrimp", utm_medium: nil})
 
-          MixpanelService.send_event(
-            distinct_id: "123",
-            event_name: "page_view",
-            record: screener,
-            controller: controller_double
-          )
-          expect(fake_tracker).to have_received(:track).with(
-            "123",
-            "page_view",
-            {
-              record_type: "Screener",
-              record_id: screener.id,
-              controller_name: "Homepage",
-              controller_action: "HomepageController#index",
-              locale: :en,
-              referrer: "duckduckshrimp.com",
-              utm_source: "duckduckshrimp"
-            }
-          )
+            MixpanelService.send_event(
+              distinct_id: "123",
+              event_name: "page_view",
+              record: screener,
+              controller: controller_double
+            )
+            expect(fake_tracker).to have_received(:track).with(
+              "123",
+              "page_view",
+              {
+                record_type: "Screener",
+                record_id: screener.id,
+                controller_name: "Homepage",
+                controller_action: "HomepageController#index",
+                locale: :en,
+                referrer: "duckduckshrimp.com",
+                utm_source: "duckduckshrimp"
+              }
+            )
+          end
+
+          it "sends custom data with the rest of the event data" do
+            controller_double = instance_double(HomepageController)
+            allow(controller_double).to receive(:class).and_return HomepageController
+            allow(controller_double).to receive(:action_name).and_return "update"
+            allow(controller_double).to receive(:utms_and_referrer).and_return({})
+
+            MixpanelService.send_event(
+              distinct_id: "123",
+              event_name: "page_submit",
+              data: {state: "NC", county: "Anson County"},
+              controller: controller_double
+            )
+            expect(fake_tracker).to have_received(:track).with(
+              "123",
+              "page_submit",
+              hash_including(
+                state: "NC",
+                county: "Anson County",
+                controller_name: "Homepage",
+                locale: :en
+              )
+            )
+          end
         end
       end
     end
