@@ -89,10 +89,11 @@ class ApplicationController < ActionController::Base
     current_screener&.visitor_id || cookies.encrypted[:visitor_id]
   end
 
-  def send_mixpanel_event(event_name:)
+  def send_mixpanel_event(event_name:, data: {})
     MixpanelService.send_event(
       distinct_id: visitor_id,
       event_name: event_name,
+      data: data,
       record: current_screener,
       controller: self
     )
