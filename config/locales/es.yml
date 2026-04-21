@@ -37,7 +37,7 @@ es:
     must_answer_yes_or_no: Debe responder sí o no
     number_invalid: Ingrese un número
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
-    signature_required: Se requiere su firma.
+    signature_required: Se requiere su firma para continuar
   views:
     alcohol_treatment_program:
       edit:
