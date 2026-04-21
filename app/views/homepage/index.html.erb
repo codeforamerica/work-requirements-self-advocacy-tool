@@ -29,25 +29,25 @@
       <h2><%= t("views.homepage.index.faq.title") %></h2>
 
       <div class="accordion">
-        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who") %></button>
+        <button class="accordion__button" aria-expanded="true" data-track-click="faq_clicked" data-track-faq-name="snap-rules-apply"><%= t("views.homepage.index.faq.who") %></button>
         <div class="accordion__content">
           <%= t("views.homepage.index.faq.who_content_html") %>
         </div>
       </div>
       <div class="accordion">
-        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.who_not") %></button>
+        <button class="accordion__button" aria-expanded="true" data-track-click="faq_clicked" data-track-faq-name="snap-rules-do-not-apply"><%= t("views.homepage.index.faq.who_not") %></button>
         <div class="accordion__content">
           <%= t("views.homepage.index.faq.who_not_content_html") %>
         </div>
       </div>
       <div class="accordion">
-        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.keep_snap") %></button>
+        <button class="accordion__button" aria-expanded="true" data-track-click="faq_clicked" data-track-faq-name="keep-snap"><%= t("views.homepage.index.faq.keep_snap") %></button>
         <div class="accordion__content">
           <%= t("views.homepage.index.faq.keep_snap_content_html") %>
         </div>
       </div>
       <div class="accordion">
-        <button class="accordion__button" aria-expanded="true"><%= t("views.homepage.index.faq.cant_work") %></button>
+        <button class="accordion__button" aria-expanded="true" data-track-click="faq_clicked" data-track-faq-name="preventing-work-exemption"><%= t("views.homepage.index.faq.cant_work") %></button>
         <div class="accordion__content">
           <%= t("views.homepage.index.faq.cant_work_content_html") %>
         </div>

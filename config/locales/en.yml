@@ -146,7 +146,7 @@ en:
         have_questions_html: "<strong>Have questions about how to submit your form?</strong> Call your agency."
         how_to: 'How to submit your form to your SNAP agency:'
         how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
-        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
+        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
         next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
         next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
@@ -218,7 +218,7 @@ en:
         title: Check if the SNAP work rules apply to you
         title_help_text_html: |
           <p> We'll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
-          <p class="spacing-below-0"><strong>It takes most people 10 minutes or less to complete this form.</strong></p>
+          <p class="spacing-below-0"><strong>It usually takes about 10 minutes to complete this form.</strong></p>
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
           <p>Work activities include:</p>
