@@ -65,8 +65,8 @@ class MixpanelService
   end
 
   class << self
-    def send_event(distinct_id:, event_name:, record: nil, controller: nil)
-      data = {
+    def send_event(distinct_id:, event_name:, data: {}, record: nil, controller: nil, request: nil)
+      event_data = {
         locale: I18n.locale
       }
 
@@ -75,7 +75,7 @@ class MixpanelService
           record_type: record&.class.to_s,
           record_id: record&.id
         }
-        data.merge!(record_data)
+        event_data.merge!(record_data)
       end
 
       if controller
@@ -84,13 +84,15 @@ class MixpanelService
           controller_action: "#{controller&.class&.name}##{controller&.action_name}",
           **controller.utms_and_referrer.compact
         }
-        data.merge!(controller_data)
+        event_data.merge!(controller_data)
       end
+
+      event_data.merge!(data)
 
       MixpanelService.instance.run(
         distinct_id: distinct_id,
         event_name: event_name,
-        data: data
+        data: event_data
       )
     end
   end

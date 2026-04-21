@@ -146,7 +146,7 @@ en:
         have_questions_html: "<strong>Have questions about how to submit your form?</strong> Call your agency."
         how_to: 'How to submit your form to your SNAP agency:'
         how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
-        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
+        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
         next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
         next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"

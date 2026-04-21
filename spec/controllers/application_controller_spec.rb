@@ -271,6 +271,21 @@ RSpec.describe ApplicationController, type: :controller do
         {
           distinct_id: "123",
           event_name: "event",
+          data: {},
+          record: current_screener,
+          controller: subject
+        }
+      )
+    end
+
+    it "passes custom data through to MixpanelService" do
+      subject.send_mixpanel_event(event_name: "event", data: {bing: "bong"})
+
+      expect(MixpanelService).to have_received(:send_event).with(
+        {
+          distinct_id: "123",
+          event_name: "event",
+          data: {bing: "bong"},
           record: current_screener,
           controller: subject
         }
