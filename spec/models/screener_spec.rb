@@ -294,6 +294,15 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors[:preventing_work_additional_info]).to be_present
       end
     end
+
+    context "with_context :signature" do
+      it "requires signature" do
+        screener = build(:screener, signature: nil)
+        screener.valid?(:signature)
+
+        expect(screener.errors[:signature]).to be_present
+      end
+    end
   end
 
   describe "before_save" do

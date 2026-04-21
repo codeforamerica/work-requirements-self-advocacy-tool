@@ -151,6 +151,10 @@ class Screener < ApplicationRecord
     validates :ssn_last_four, format: {with: /\A\d{4}\z/}, allow_blank: true
   end
 
+  with_context :signature do
+    validates :signature, presence: true
+  end
+
   DISABILITY_BENEFIT_ATTRIBUTES = %i[
     receiving_benefits_ssdi
     receiving_benefits_ssi
