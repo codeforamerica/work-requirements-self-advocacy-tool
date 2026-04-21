@@ -152,7 +152,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :signature do
-    validates :signature, presence: true
+    validates :signature, presence: {message: ->(*) { I18n.t("validations.signature_required") }}
   end
 
   DISABILITY_BENEFIT_ATTRIBUTES = %i[
