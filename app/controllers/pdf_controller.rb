@@ -45,6 +45,7 @@ class PdfController < QuestionController
   end
 
   def generate_pdf
+    send_mixpanel_event(event_name: "pdf_downloaded")
     send_data PdfFiller::PacketPdf.new(current_screener).combined_pdf, filename: "combined.pdf", disposition: "inline"
   end
 

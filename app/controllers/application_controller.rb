@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   def navigation_class
     Navigation::ScreenerNavigation
   end
-  helper_method :navigation_class
+  helper_method :navigation_class, :visitor_id
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
@@ -89,10 +89,11 @@ class ApplicationController < ActionController::Base
     current_screener&.visitor_id || cookies.encrypted[:visitor_id]
   end
 
-  def send_mixpanel_event(event_name:)
+  def send_mixpanel_event(event_name:, data: {})
     MixpanelService.send_event(
       distinct_id: visitor_id,
       event_name: event_name,
+      data: data,
       record: current_screener,
       controller: self
     )
