@@ -1,41 +1,46 @@
 class Screener < ApplicationRecord
   devise :timeoutable
+
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
+
   attr_accessor :email_confirmation
   attr_accessor :from_download_form
+  attr_writer :birth_date_year, :birth_date_month, :birth_date_day
+  attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
+
   encrypts :ssn_last_four
-  enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :is_pregnant, {unfilled: 0, yes: 1, no: 2}, prefix: true
+
   enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_no_one, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :consented_to_texts, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :has_child, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :has_unemployment_benefits, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_ssdi, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_disability_pension, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_disability_medicaid, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :is_in_work_training, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :is_student, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :is_migrant_farmworker, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_american_indian, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :is_in_alcohol_treatment_program, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :preventing_work_place_to_sleep, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_in_work_training, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_migrant_farmworker, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_pregnant, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_student, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_working, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :is_volunteer, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_drugs_alcohol, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_domestic_violence, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_medical_condition, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :consented_to_texts, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  attr_writer :birth_date_year, :birth_date_month, :birth_date_day
-  attr_writer :pregnancy_due_date_year, :pregnancy_due_date_month, :pregnancy_due_date_day
+  enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :preventing_work_place_to_sleep, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_disability_pension, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_disability_medicaid, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_ssdi, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
+
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
   before_save :remove_pregnancy_attributes_if_no,
@@ -47,86 +52,8 @@ class Screener < ApplicationRecord
     :remove_additional_care_info_if_caring_for_someone_is_no,
     :remove_county_if_state_does_not_require
 
-  with_context :location do
-    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
-
-    validates :county,
-      inclusion: {
-        in: ->(record) { LocationData::Counties.for_state(record.state).keys }
-      },
-      if: ->(record) { LocationData::Counties.for_state(record.state).present? }
-  end
-
-  with_context :date_of_birth do
-    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
-  end
-
-  with_context :basic_info_details do
-    validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
-    validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
-    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
-    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
-  end
-
   with_context :american_indian do
     validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
-  end
-
-  with_context :living_with_someone do
-    validates :has_child, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
-  end
-
-  with_context :caring_for_someone do
-    validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
-    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}
-  end
-
-  with_context :pregnancy do
-    validates :pregnancy_due_date,
-      comparison: {
-        greater_than: Date.current,
-        message: ->(*) { I18n.t("validations.date_must_be_in_future") }
-      },
-      allow_blank: true
-  end
-
-  with_context :unemployment do
-    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
-  end
-
-  with_context :disability_benefits do
-    validates :receiving_benefits_none, inclusion: {in: %w[unfilled no]},
-      if: -> {
-        receiving_benefits_ssdi_yes? ||
-          receiving_benefits_ssi_yes? ||
-          receiving_benefits_veterans_disability_yes? ||
-          receiving_benefits_disability_pension_yes? ||
-          receiving_benefits_workers_compensation_yes? ||
-          receiving_benefits_insurance_payments_yes? ||
-          receiving_benefits_disability_medicaid_yes? ||
-          receiving_benefits_other_yes?
-      }
-    validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
-  end
-
-  with_context :school_enrollment do
-    validates :is_student, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
-  end
-
-  with_context :preventing_work_situations do
-    validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
-      if: -> {
-        preventing_work_place_to_sleep_yes? ||
-          preventing_work_drugs_alcohol_yes? ||
-          preventing_work_domestic_violence_yes? ||
-          preventing_work_medical_condition_yes? ||
-          preventing_work_other_yes?
-      }
-    validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
-  end
-
-  with_context :preventing_work_details do
-    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end
 
   with_context :basic_info_email do
@@ -147,12 +74,103 @@ class Screener < ApplicationRecord
       if: -> { email.present? || email_confirmation.present? }
   end
 
+  with_context :basic_info_details do
+    validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
+    validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
+    validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
+    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
+  end
+
   with_context :basic_info_ssn do
     validates :ssn_last_four, format: {with: /\A\d{4}\z/}, allow_blank: true
   end
 
+  with_context :caring_for_someone do
+    validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
+    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}
+  end
+
+  with_context :community_service do
+    validates :volunteering_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+  end
+
+  with_context :date_of_birth do
+    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
+  end
+
+  with_context :disability_benefits do
+    validates :receiving_benefits_none, inclusion: {in: %w[unfilled no]},
+      if: -> {
+        receiving_benefits_ssdi_yes? ||
+          receiving_benefits_ssi_yes? ||
+          receiving_benefits_veterans_disability_yes? ||
+          receiving_benefits_disability_pension_yes? ||
+          receiving_benefits_workers_compensation_yes? ||
+          receiving_benefits_insurance_payments_yes? ||
+          receiving_benefits_disability_medicaid_yes? ||
+          receiving_benefits_other_yes?
+      }
+    validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
+  end
+
+  with_context :employment do
+    validates :working_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :working_weekly_earnings, numericality: {only_decimal: true, message: ->(*) { I18n.t("validations.amount_invalid") }}, allow_blank: true
+  end
+
+  with_context :location do
+    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
+
+    validates :county,
+      inclusion: {
+        in: ->(record) { LocationData::Counties.for_state(record.state).keys }
+      },
+      if: ->(record) { LocationData::Counties.for_state(record.state).present? }
+  end
+
+  with_context :living_with_someone do
+    validates :has_child, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
+  end
+
+  with_context :pregnancy do
+    validates :pregnancy_due_date,
+      comparison: {
+        greater_than: Date.current,
+        message: ->(*) { I18n.t("validations.date_must_be_in_future") }
+      },
+      allow_blank: true
+  end
+
+  with_context :preventing_work_details do
+    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
+  end
+
+  with_context :preventing_work_situations do
+    validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
+      if: -> {
+        preventing_work_place_to_sleep_yes? ||
+          preventing_work_drugs_alcohol_yes? ||
+          preventing_work_domestic_violence_yes? ||
+          preventing_work_medical_condition_yes? ||
+          preventing_work_other_yes?
+      }
+    validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
+  end
+
+  with_context :school_enrollment do
+    validates :is_student, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
+  end
+
   with_context :signature do
     validates :signature, presence: {message: ->(*) { I18n.t("validations.signature_required") }}
+  end
+
+  with_context :training_program do
+    validates :work_training_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+  end
+
+  with_context :unemployment do
+    validates :has_unemployment_benefits, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 
   DISABILITY_BENEFIT_ATTRIBUTES = %i[
@@ -336,18 +354,5 @@ class Screener < ApplicationRecord
 
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
-  end
-
-  with_context :employment do
-    validates :working_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
-    validates :working_weekly_earnings, numericality: {only_decimal: true, message: ->(*) { I18n.t("validations.amount_invalid") }}, allow_blank: true
-  end
-
-  with_context :community_service do
-    validates :volunteering_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
-  end
-
-  with_context :training_program do
-    validates :work_training_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
   end
 end

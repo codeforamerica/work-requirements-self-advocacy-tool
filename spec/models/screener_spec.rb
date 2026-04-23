@@ -402,6 +402,14 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "encryption" do
+    it "stores ssn_last_four as encrypted data" do
+      screener = create(:screener, ssn_last_four: "4567")
+      expect(screener.encrypted_attribute?(:ssn_last_four)).to eq true
+      expect(screener.ssn_last_four).to eq "4567"
+    end
+  end
+
   describe "#age" do
     it "calculates age from birth_date and current date" do
       screener = build(:screener, birth_date: Date.new(1990, 7, 13))
@@ -604,6 +612,57 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?" do
+    let(:screener) { create(:screener) }
+    context "when there are no exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
+      end
+
+      context "the total working, volunteering, and training is greater than or equal to 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
+        end
+        it "returns true" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be true
+        end
+      end
+
+      context "the total working, volunteering, and training is less than 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
+        end
+        it "returns false" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+    end
+
+    context "when there are exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+      end
+
+      context "the total working, volunteering, and training is greater than or equal to 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
+        end
+        it "returns true" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+
+      context "the total working, volunteering, and training is less than 20" do
+        before do
+          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
+        end
+        it "returns false" do
+          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
+        end
+      end
+    end
+  end
+
   describe "#receiving_disability_benefits?" do
     it "returns false when no disability benefits are selected" do
       screener = build(:screener)
@@ -615,6 +674,59 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, benefit => "yes")
         expect(screener.receiving_disability_benefits?).to be true
       end
+    end
+  end
+
+  describe "#requires_proof?" do
+    let(:screener) { build(:screener) }
+
+    before do
+      allow(screener).to receive(:earnings_above_minimum?).and_return(false)
+      allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+      allow(screener).to receive(:is_student_yes?).and_return(false)
+      allow(screener).to receive(:preventing_work_drugs_alcohol_yes?).and_return(false)
+      allow(screener).to receive(:preventing_work_medical_condition_yes?).and_return(false)
+      allow(screener).to receive(:receiving_disability_benefits?).and_return(false)
+      allow(screener).to receive(:is_in_alcohol_treatment_program_yes?).and_return(false)
+    end
+
+    it "returns false when everything is false" do
+      expect(screener.requires_proof?).to be false
+    end
+
+    [
+      :is_student_yes?,
+      :preventing_work_drugs_alcohol_yes?,
+      :preventing_work_medical_condition_yes?,
+      :receiving_disability_benefits?,
+      :is_in_alcohol_treatment_program_yes?
+    ].each do |method_name|
+      it "returns true when only #{method_name} is true" do
+        allow(screener).to receive(method_name).and_return(true)
+
+        expect(screener.requires_proof?).to be true
+      end
+    end
+
+    it "returns true when earnings_above_minimum? is true and not exempt" do
+      allow(screener).to receive(:earnings_above_minimum?).and_return(true)
+      allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
+
+      expect(screener.requires_proof?).to be true
+    end
+
+    it "returns false when earnings_above_minimum? is true but exempt" do
+      allow(screener).to receive(:earnings_above_minimum?).and_return(true)
+      allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
+
+      expect(screener.requires_proof?).to be false
+    end
+  end
+
+  describe "#total_work_volunteer_and_training_hours" do
+    it "calculates the total number of hours between working, volunteering, and training hours" do
+      screener = build(:screener, working_hours: 5, volunteering_hours: 7, work_training_hours: 9)
+      expect(screener.total_work_volunteer_and_training_hours).to be 21
     end
   end
 
@@ -676,118 +788,6 @@ RSpec.describe Screener, type: :model do
     it "returns false if not working" do
       screener = build(:screener, is_working: "no")
       expect(screener.working_exempt?).to eq false
-    end
-  end
-
-  describe "#total_work_volunteer_and_training_hours" do
-    it "calculates the total number of hours between working, volunteering, and training hours" do
-      screener = build(:screener, working_hours: 5, volunteering_hours: 7, work_training_hours: 9)
-      expect(screener.total_work_volunteer_and_training_hours).to be 21
-    end
-  end
-
-  describe "#no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?" do
-    let(:screener) { create(:screener) }
-    context "when there are no exemptions" do
-      before do
-        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
-      end
-
-      context "the total working, volunteering, and training is greater than or equal to 20" do
-        before do
-          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
-        end
-        it "returns true" do
-          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be true
-        end
-      end
-
-      context "the total working, volunteering, and training is less than 20" do
-        before do
-          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
-        end
-        it "returns false" do
-          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
-        end
-      end
-    end
-
-    context "when there are exemptions" do
-      before do
-        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
-      end
-
-      context "the total working, volunteering, and training is greater than or equal to 20" do
-        before do
-          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
-        end
-        it "returns true" do
-          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
-        end
-      end
-
-      context "the total working, volunteering, and training is less than 20" do
-        before do
-          allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
-        end
-        it "returns false" do
-          expect(screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).to be false
-        end
-      end
-    end
-  end
-
-  describe "#requires_proof?" do
-    let(:screener) { build(:screener) }
-
-    before do
-      allow(screener).to receive(:earnings_above_minimum?).and_return(false)
-      allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
-      allow(screener).to receive(:is_student_yes?).and_return(false)
-      allow(screener).to receive(:preventing_work_drugs_alcohol_yes?).and_return(false)
-      allow(screener).to receive(:preventing_work_medical_condition_yes?).and_return(false)
-      allow(screener).to receive(:receiving_disability_benefits?).and_return(false)
-      allow(screener).to receive(:is_in_alcohol_treatment_program_yes?).and_return(false)
-    end
-
-    it "returns false when everything is false" do
-      expect(screener.requires_proof?).to be false
-    end
-
-    [
-      :is_student_yes?,
-      :preventing_work_drugs_alcohol_yes?,
-      :preventing_work_medical_condition_yes?,
-      :receiving_disability_benefits?,
-      :is_in_alcohol_treatment_program_yes?
-    ].each do |method_name|
-      it "returns true when only #{method_name} is true" do
-        allow(screener).to receive(method_name).and_return(true)
-
-        expect(screener.requires_proof?).to be true
-      end
-    end
-
-    it "returns true when earnings_above_minimum? is true and not exempt" do
-      allow(screener).to receive(:earnings_above_minimum?).and_return(true)
-      allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
-
-      expect(screener.requires_proof?).to be true
-    end
-
-    it "returns false when earnings_above_minimum? is true but exempt" do
-      allow(screener).to receive(:earnings_above_minimum?).and_return(true)
-      allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
-
-      expect(screener.requires_proof?).to be false
-    end
-  end
-
-  describe "encryption" do
-    it "stores ssn_last_four as encrypted data" do
-      screener = create(:screener, ssn_last_four: "4567")
-      expect(screener.encrypted_attribute?(:ssn_last_four)).to eq true
-      expect(screener.ssn_last_four).to eq "4567"
     end
   end
 end
