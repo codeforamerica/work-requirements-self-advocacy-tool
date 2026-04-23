@@ -58,20 +58,20 @@ class Screener < ApplicationRecord
 
   with_context :basic_info_email do
     validates :email,
-              "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
-              if: -> { email.present? }
+      "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
+      if: -> { email.present? }
 
     validates :email,
-              presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
-              if: -> { from_download_form }
+      presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
+      if: -> { from_download_form }
 
     validates :email_confirmation,
-              presence: {message: ->(*) { I18n.t("validations.email_confirmation_required") }},
-              if: -> { from_download_form || email.present? }
+      presence: {message: ->(*) { I18n.t("validations.email_confirmation_required") }},
+      if: -> { from_download_form || email.present? }
 
     validates :email,
-              confirmation: {message: ->(*) { I18n.t("validations.email_must_match") }},
-              if: -> { email.present? || email_confirmation.present? }
+      confirmation: {message: ->(*) { I18n.t("validations.email_must_match") }},
+      if: -> { email.present? || email_confirmation.present? }
   end
 
   with_context :basic_info_details do
@@ -100,16 +100,16 @@ class Screener < ApplicationRecord
 
   with_context :disability_benefits do
     validates :receiving_benefits_none, inclusion: {in: %w[unfilled no]},
-              if: -> {
-                receiving_benefits_ssdi_yes? ||
-                  receiving_benefits_ssi_yes? ||
-                  receiving_benefits_veterans_disability_yes? ||
-                  receiving_benefits_disability_pension_yes? ||
-                  receiving_benefits_workers_compensation_yes? ||
-                  receiving_benefits_insurance_payments_yes? ||
-                  receiving_benefits_disability_medicaid_yes? ||
-                  receiving_benefits_other_yes?
-              }
+      if: -> {
+        receiving_benefits_ssdi_yes? ||
+          receiving_benefits_ssi_yes? ||
+          receiving_benefits_veterans_disability_yes? ||
+          receiving_benefits_disability_pension_yes? ||
+          receiving_benefits_workers_compensation_yes? ||
+          receiving_benefits_insurance_payments_yes? ||
+          receiving_benefits_disability_medicaid_yes? ||
+          receiving_benefits_other_yes?
+      }
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
   end
 
@@ -122,10 +122,10 @@ class Screener < ApplicationRecord
     validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
 
     validates :county,
-              inclusion: {
-                in: ->(record) { LocationData::Counties.for_state(record.state).keys }
-              },
-              if: ->(record) { LocationData::Counties.for_state(record.state).present? }
+      inclusion: {
+        in: ->(record) { LocationData::Counties.for_state(record.state).keys }
+      },
+      if: ->(record) { LocationData::Counties.for_state(record.state).present? }
   end
 
   with_context :living_with_someone do
@@ -147,13 +147,13 @@ class Screener < ApplicationRecord
 
   with_context :preventing_work_situations do
     validates :preventing_work_none, inclusion: {in: %w[unfilled no]},
-              if: -> {
-                preventing_work_place_to_sleep_yes? ||
-                  preventing_work_drugs_alcohol_yes? ||
-                  preventing_work_domestic_violence_yes? ||
-                  preventing_work_medical_condition_yes? ||
-                  preventing_work_other_yes?
-              }
+      if: -> {
+        preventing_work_place_to_sleep_yes? ||
+          preventing_work_drugs_alcohol_yes? ||
+          preventing_work_domestic_violence_yes? ||
+          preventing_work_medical_condition_yes? ||
+          preventing_work_other_yes?
+      }
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
   end
 
