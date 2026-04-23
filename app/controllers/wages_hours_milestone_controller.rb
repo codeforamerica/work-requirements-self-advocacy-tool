@@ -1,0 +1,3 @@
+class WagesHoursMilestoneController < WagesQuestionController
+  include PersonalSituationsConcern
+end

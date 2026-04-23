@@ -241,11 +241,15 @@ class Screener < ApplicationRecord
   end
 
   def exempt_from_work_rules?
+    has_exemption? || working_exempt?
+  end
+
+  def has_exemption?
     return true if age_qualified?
     return true if nc_screener.present? && nc_screener.exempt_from_work_rules?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
-      (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
+      public_send("#{attribute}_yes?")
     end
   end
 
