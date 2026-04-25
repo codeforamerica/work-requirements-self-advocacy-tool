@@ -568,21 +568,21 @@ RSpec.describe Screener, type: :model do
 
     it "returns true when has_exemption? is true" do
       allow(screener).to receive(:has_exemption?).and_return(true)
-      allow(screener).to receive(:working_exempt?).and_return(false)
+      allow(screener).to receive(:has_earnings_exemption?).and_return(false)
 
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
-    it "returns true when working_exempt? is true" do
+    it "returns true when has_earnings_exemption? is true" do
       allow(screener).to receive(:has_exemption?).and_return(false)
-      allow(screener).to receive(:working_exempt?).and_return(true)
+      allow(screener).to receive(:has_earnings_exemption?).and_return(true)
 
       expect(screener.exempt_from_work_rules?).to eq true
     end
 
-    it "returns false when neither has_exemption? nor working_exempt? is true" do
+    it "returns false when neither has_exemption? nor has_earnings_exemption? is true" do
       allow(screener).to receive(:has_exemption?).and_return(false)
-      allow(screener).to receive(:working_exempt?).and_return(false)
+      allow(screener).to receive(:has_earnings_exemption?).and_return(false)
 
       expect(screener.exempt_from_work_rules?).to eq false
     end
@@ -619,11 +619,6 @@ RSpec.describe Screener, type: :model do
 
     it "returns true if a non-working exemption attribute is yes" do
       screener = build(:screener, is_student: "yes")
-      expect(screener.has_exemption?).to eq true
-    end
-
-    it "returns true if is_working is yes regardless of hours or earnings" do
-      screener = build(:screener, is_working: "yes", working_hours: 5, working_weekly_earnings: 10)
       expect(screener.has_exemption?).to eq true
     end
 
@@ -794,25 +789,25 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  describe "#working_exempt?" do
+  describe "#has_earnings_exemption?" do
     it "returns true if working 30 or more hours" do
       screener = build(:screener, is_working: "yes", working_hours: 30)
-      expect(screener.working_exempt?).to eq true
+      expect(screener.has_earnings_exemption?).to eq true
     end
 
     it "returns true if earning at least 217.50 weekly" do
       screener = build(:screener, is_working: "yes", working_weekly_earnings: 217.50)
-      expect(screener.working_exempt?).to eq true
+      expect(screener.has_earnings_exemption?).to eq true
     end
 
     it "returns false if working but under both thresholds" do
       screener = build(:screener, is_working: "yes", working_hours: 10, working_weekly_earnings: 100)
-      expect(screener.working_exempt?).to eq false
+      expect(screener.has_earnings_exemption?).to eq false
     end
 
     it "returns false if not working" do
       screener = build(:screener, is_working: "no")
-      expect(screener.working_exempt?).to eq false
+      expect(screener.has_earnings_exemption?).to eq false
     end
   end
 end

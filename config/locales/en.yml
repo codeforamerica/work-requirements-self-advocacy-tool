@@ -547,6 +547,12 @@ en:
     unemployment:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
+    wages_hours_milestone:
+      edit:
+        help_text_html: We will also ask about any volunteering or job training you do. Your information stays private, safe, and secure.
+        notice_content: We ask these questions to check if you qualify for an exemption based on how much you work. We also check to see if you are meeting the work requirements, in case you don't have an exemption.
+        notice_title: Why are we asking this?
+        title: We need to ask a few questions about your income and working hours.
     work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
@@ -587,9 +593,3 @@ en:
         title_help_text: If something changes about your situation and you cannot work at least 20 hours a week, every week, please tell your SNAP agency.
         unexpected_problems_html: Unexpected problems happen, like a family emergency or your car breaking down. If you have a "good cause" reason why you could not work 20 hours a week in a month, please let your SNAP agency know. If you have any documents you have that can help prove what happened, that can help them understand your situation.
         unexpected_problems_title: If you miss your hours in a month but you had a good reason, report it to your SNAP agency
-    wages_hours_milestone:
-      edit:
-        title: "We need to ask a few questions about your income and working hours."
-        help_text_html: "We will also ask about any volunteering or job training you do. Your information stays private, safe, and secure."
-        notice_title: "Why are we asking this?"
-        notice_content: "We ask these questions to check if you qualify for an exemption based on how much you work. We also check to see if you are meeting the work requirements, in case you don't have an exemption."

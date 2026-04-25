@@ -6,19 +6,16 @@ module PdfFiller
     end
 
     def hash_for_fillable_pdf
-      shared_fields.merge(
+      fields = shared_fields.merge(
         age: @screener.age.to_s,
         case_number: @screener.case_number,
         confirmation_code: @screener.confirmation_code,
         details_of_care: @screener.additional_care_info,
         drug_alcohol_program_name: @screener.alcohol_treatment_program_name,
-        # earnings_per_week: @screener.working_weekly_earnings.to_s,
         email: @screener.email,
         full_name_with_middle: @screener.full_name_with_middle,
         homeschool_hours: @nc_screener.homeschool_hours.to_s,
         homeschool_name: @nc_screener.homeschool_name,
-        # is_in_work_training: @screener.is_in_work_training_yes?,
-        # is_volunteering: @screener.volunteering?,
         operating_a_homeschool: @nc_screener.teaches_homeschool_yes?,
         phone_number: @screener.phone_number,
         preventing_work_write_in: @screener.preventing_work_additional_info,
@@ -36,13 +33,20 @@ module PdfFiller
         signature: @screener.signature,
         ssn_last_4: @screener.ssn_last_four,
         submission_date: submission_date
-        # submission_date_2: submission_date,
-        # volunteering_hours: @screener.volunteering_hours.to_s,
-        # volunteering_org_name: @screener.volunteering_org_name,
-        # work_hours: @screener.working_hours.to_s,
-        # work_training_name: @screener.work_training_name,
-        # working_or_earning: @screener.working_exempt?
       )
+      if @screener.has_earnings_exemption?
+        fields.merge!(
+          earnings_per_week: @screener.working_weekly_earnings.to_s,
+          is_in_work_training: @screener.is_in_work_training_yes?,
+          is_volunteering: @screener.volunteering?,
+          volunteering_hours: @screener.volunteering_hours.to_s,
+          volunteering_org_name: @screener.volunteering_org_name,
+          work_hours: @screener.working_hours.to_s,
+          work_training_name: @screener.work_training_name,
+          working_or_earning: @screener.has_earnings_exemption?
+        )
+      end
+      fields
     end
 
     def hash_for_generated_pdf
@@ -65,7 +69,11 @@ module PdfFiller
     end
 
     def filled_pdf_path
-      source_pdf_path = "app/assets/pdfs/nc_packet--no-income.pdf"
+      source_pdf_path = if @screener.has_exemption?
+                          "app/assets/pdfs/nc_packet--no-income.pdf"
+                        elsif @screener.has_earnings_exemption?
+                          "app/assets/pdfs/nc_packet.pdf"
+                        end
       template_doc = HexaPDF::Document.open(source_pdf_path)
 
       unless template_doc
@@ -130,7 +138,7 @@ module PdfFiller
     private
 
     def shared_fields
-      {
+      fields = {
         at_least_55_no_diploma_not_working: @screener.nc_screener.age_work_education_health_exemption?,
         birth_date: @screener.birth_date.to_s,
         caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
@@ -148,10 +156,15 @@ module PdfFiller
         preventing_work_other: @screener.preventing_work_other_yes?,
         preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
         seasonal_worker: @screener.is_migrant_farmworker_yes?
-        # volunteering_hours: @screener.volunteering_hours,
-        # work_hours: @screener.working_hours,
-        # work_training_hours: @screener.work_training_hours
       }
+      if @screener.has_earnings_exemption?
+        fields.merge!(
+          volunteering_hours: @screener.volunteering_hours,
+          work_hours: @screener.working_hours,
+          work_training_hours: @screener.work_training_hours
+        )
+      end
+      fields
     end
 
     def submission_date

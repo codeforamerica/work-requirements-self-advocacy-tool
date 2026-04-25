@@ -23,6 +23,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(TrainingProgramController),
       ControllerNavigation::NavigationStep.new(WorkRulesApplyMetController),
+      ControllerNavigation::NavigationStep.new(WorkRulesApplyUnmetController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
       ControllerNavigation::NavigationStep.new(BasicInfoDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
@@ -30,7 +31,6 @@ module Navigation
       ControllerNavigation::NavigationStep.new(BasicInfoCaseNumberController),
       ControllerNavigation::NavigationStep.new(BasicInfoSsnController),
       ControllerNavigation::NavigationStep.new(SignatureController),
-      ControllerNavigation::NavigationStep.new(WorkRulesApplyUnmetController),
       ControllerNavigation::NavigationStep.new(DownloadFormController),
       ControllerNavigation::NavigationStep.new(ProofGuidanceController),
       ControllerNavigation::NavigationStep.new(NewResponseController)

@@ -202,7 +202,6 @@ class Screener < ApplicationRecord
     is_migrant_farmworker
     is_pregnant
     is_student
-    is_working
   ].freeze
 
   ELIGIBILITY_EXEMPTION_ATTRIBUTES = DISABILITY_BENEFIT_ATTRIBUTES + PREVENTING_WORK_ATTRIBUTES + OTHER_EXEMPTION_ATTRIBUTES
@@ -241,7 +240,11 @@ class Screener < ApplicationRecord
   end
 
   def exempt_from_work_rules?
-    has_exemption? || working_exempt?
+    has_exemption? || has_earnings_exemption?
+  end
+
+  def has_earnings_exemption?
+    is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
   end
 
   def has_exemption?
@@ -305,10 +308,6 @@ class Screener < ApplicationRecord
 
   def working_30_or_more_hours?
     working_hours.to_i >= 30
-  end
-
-  def working_exempt?
-    is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
   end
 
   private

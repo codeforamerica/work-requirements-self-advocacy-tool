@@ -546,6 +546,12 @@ es:
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    wages_hours_milestone:
+      edit:
+        help_text_html: También le preguntaremos si hace voluntariado, servicio comunitario o si participa en un programa de empleo o capacitación. Su información se mantiene privada, segura y protegida.
+        notice_content: Las siguientes preguntas nos ayudan a entender cuánto trabaja y ver si puede tener una exención. Si no la tiene, también revisamos si cumple con las reglas de trabajo.
+        notice_title: "¿Por qué preguntamos esto?"
+        title: Necesitamos hacerle algunas preguntas sobre sus ingresos y sus horas de trabajo.
     work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
@@ -586,9 +592,3 @@ es:
         title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
         unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
         unexpected_problems_title: Si no cumple con sus horas de trabajo en un mes, pero tiene una razón válida, infórmelo a su oficina de SNAP.
-    wages_hours_milestone:
-      edit:
-        title: "Necesitamos hacerle algunas preguntas sobre sus ingresos y sus horas de trabajo."
-        help_text_html: "También le preguntaremos si hace voluntariado, servicio comunitario o si participa en un programa de empleo o capacitación. Su información se mantiene privada, segura y protegida."
-        notice_title: "¿Por qué preguntamos esto?"
-        notice_content: "Las siguientes preguntas nos ayudan a entender cuánto trabaja y ver si puede tener una exención. Si no la tiene, también revisamos si cumple con las reglas de trabajo."

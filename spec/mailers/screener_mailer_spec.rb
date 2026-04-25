@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe ScreenerMailer, type: :mailer do
   describe "send_screener_results" do
-    let(:screener) { create(:screener, :with_nc_screener) }
+    let(:screener) { create(:screener, :with_nc_screener, :with_exemption) }
     let(:outgoing_email) { create(:outgoing_email, screener: screener) }
     let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
     let(:body) { mail.html_part.body.to_s }
@@ -45,6 +45,8 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when neither drugs nor medical condition is yes" do
+        let(:screener) { create(:screener, :with_nc_screener, preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no", is_american_indian: "yes") }
+
         it "does not include proof of health conditions" do
           expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
         end
