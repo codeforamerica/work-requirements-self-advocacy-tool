@@ -19,19 +19,21 @@ RSpec.describe PdfFiller::PacketPdf do
   subject(:packet_pdf) { described_class.new(screener) }
 
   # Field names that only belong on the earnings-exemption PDF template
-  EARNINGS_ONLY_FILLABLE_KEYS = %i[
-    earnings_per_week
-    is_in_work_training
-    is_volunteering
-    submission_date_2
-    volunteering_hours
-    volunteering_org_name
-    work_hours
-    work_training_name
-    working_or_earning
-  ].freeze
+  let(:earnings_only_fillable_keys) do
+    %i[
+      earnings_per_week
+      is_in_work_training
+      is_volunteering
+      submission_date_2
+      volunteering_hours
+      volunteering_org_name
+      work_hours
+      work_training_name
+      working_or_earning
+    ]
+  end
 
-  EARNINGS_ONLY_SHARED_KEYS = %i[volunteering_hours work_hours work_training_hours].freeze
+  let(:earnings_only_shared_keys) { %i[volunteering_hours work_hours work_training_hours] }
 
   describe "#hash_for_fillable_pdf" do
     subject(:result) { packet_pdf.hash_for_fillable_pdf }
@@ -138,7 +140,7 @@ RSpec.describe PdfFiller::PacketPdf do
       before { screener.assign_attributes(preventing_work_medical_condition: "yes") }
 
       it "does not include any work, volunteer, or training fields" do
-        EARNINGS_ONLY_FILLABLE_KEYS.each do |key|
+        earnings_only_fillable_keys.each do |key|
           expect(result).not_to have_key(key),
             "expected #{key.inspect} not to appear for a regular exemption screener, but it did"
         end
@@ -154,7 +156,7 @@ RSpec.describe PdfFiller::PacketPdf do
           work_training_name: "Bake Off Boot Camp"
         )
 
-        EARNINGS_ONLY_FILLABLE_KEYS.each do |key|
+        earnings_only_fillable_keys.each do |key|
           expect(result).not_to have_key(key)
         end
       end
@@ -221,7 +223,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
       it "does not include work/volunteer/training hours in shared_fields" do
         shared_fields = packet_pdf.send(:shared_fields)
-        EARNINGS_ONLY_SHARED_KEYS.each do |key|
+        earnings_only_shared_keys.each do |key|
           expect(shared_fields).not_to have_key(key)
         end
       end

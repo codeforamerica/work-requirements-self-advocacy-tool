@@ -70,10 +70,10 @@ module PdfFiller
 
     def filled_pdf_path
       source_pdf_path = if @screener.has_exemption?
-                          "app/assets/pdfs/nc_packet--no-income.pdf"
-                        elsif @screener.has_earnings_exemption?
-                          "app/assets/pdfs/nc_packet.pdf"
-                        end
+        "app/assets/pdfs/nc_packet--no-income.pdf"
+      elsif @screener.has_earnings_exemption?
+        "app/assets/pdfs/nc_packet.pdf"
+      end
       template_doc = HexaPDF::Document.open(source_pdf_path)
 
       unless template_doc
