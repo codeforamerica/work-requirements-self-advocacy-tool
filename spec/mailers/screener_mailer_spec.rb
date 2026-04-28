@@ -94,7 +94,7 @@ RSpec.describe ScreenerMailer, type: :mailer do
     end
 
     it "attaches the work requirements PDF" do
-      pdf_attachment = mail.attachments["work_requirements.pdf"]
+      pdf_attachment = mail.attachments["getbenefitshelp.pdf"]
       expect(pdf_attachment).to be_present
       expect(pdf_attachment.content_type).to start_with("application/pdf")
       expect(pdf_attachment.body.decoded).not_to be_empty
