@@ -119,7 +119,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :location do
-    validates :state, inclusion: {in: LocationData::States::VALID_VALUES}
+    validates :state, inclusion: {in: LocationData::States.active_states.keys + [LocationData::States::NOT_LISTED]}
 
     validates :county,
       inclusion: {
@@ -240,13 +240,26 @@ class Screener < ApplicationRecord
     working_weekly_earnings.to_f >= 217.50
   end
 
+  def exempt_from_state_work_rules?
+    case state
+    when LocationData::States::NORTH_CAROLINA
+      nc_screener.present? && nc_screener.exempt_from_work_rules?
+    else
+      false
+    end
+  end
+
   def exempt_from_work_rules?
     return true if age_qualified?
-    return true if nc_screener.present? && nc_screener.exempt_from_work_rules?
+    return true if exempt_from_state_work_rules?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
       (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
     end
+  end
+
+  def pdf
+    LocationData::States::STATES_INFO[state][:pdf_filler_class].new(self).combined_pdf
   end
 
   def full_name

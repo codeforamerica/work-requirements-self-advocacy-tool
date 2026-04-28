@@ -2,24 +2,17 @@ module PdfFiller
   class PacketPdf
     def initialize(screener)
       @screener = screener
-      @nc_screener = screener.nc_screener
     end
 
     def hash_for_fillable_pdf
-      shared_fields.merge(
+      fields = shared_fields.merge(
         age: @screener.age.to_s,
         case_number: @screener.case_number,
         confirmation_code: @screener.confirmation_code,
         details_of_care: @screener.additional_care_info,
         drug_alcohol_program_name: @screener.alcohol_treatment_program_name,
-        # earnings_per_week: @screener.working_weekly_earnings.to_s,
         email: @screener.email,
         full_name_with_middle: @screener.full_name_with_middle,
-        homeschool_hours: @nc_screener.homeschool_hours.to_s,
-        homeschool_name: @nc_screener.homeschool_name,
-        # is_in_work_training: @screener.is_in_work_training_yes?,
-        # is_volunteering: @screener.volunteering?,
-        operating_a_homeschool: @nc_screener.teaches_homeschool_yes?,
         phone_number: @screener.phone_number,
         preventing_work_write_in: @screener.preventing_work_additional_info,
         preventing_work_other_write_in: @screener.preventing_work_write_in,
@@ -36,21 +29,27 @@ module PdfFiller
         signature: @screener.signature,
         ssn_last_4: @screener.ssn_last_four,
         submission_date: submission_date
-        # submission_date_2: submission_date,
-        # volunteering_hours: @screener.volunteering_hours.to_s,
-        # volunteering_org_name: @screener.volunteering_org_name,
-        # work_hours: @screener.working_hours.to_s,
-        # work_training_name: @screener.work_training_name,
-        # working_or_earning: @screener.working_exempt?
       )
+      if @screener.has_earnings_exemption?
+        fields.merge!(
+          earnings_per_week: @screener.working_weekly_earnings.to_s,
+          is_in_work_training: @screener.is_in_work_training_yes?,
+          is_volunteering: @screener.volunteering?,
+          volunteering_hours: @screener.volunteering_hours.to_s,
+          volunteering_org_name: @screener.volunteering_org_name,
+          work_hours: @screener.working_hours.to_s,
+          work_training_name: @screener.work_training_name,
+          working_or_earning: @screener.has_earnings_exemption?
+        )
+      end
+      fields
     end
 
     def hash_for_generated_pdf
-      raw_hash = shared_fields.merge(
+      shared_fields.merge(
         any_preventing_work: @screener.any_preventing_work?,
         earnings_above_minimum: @screener.earnings_above_minimum?,
         full_name: @screener.full_name,
-        operating_homeschool_30_or_more_hours: @nc_screener.operating_homeschool_30_or_more_hours?,
         receiving_disability_benefits: @screener.receiving_disability_benefits?,
         volunteering_hours: @screener.volunteering_hours.to_i,
         weekly_earnings: @screener.working_weekly_earnings.to_f,
@@ -58,14 +57,10 @@ module PdfFiller
         work_training_hours: @screener.work_training_hours.to_i,
         working_30_or_more_hours: @screener.working_30_or_more_hours?
       )
-
-      raw_hash.transform_values do |value|
-        value.is_a?(String) ? strip_emojis(value) : value
-      end
     end
 
     def filled_pdf_path
-      source_pdf_path = "app/assets/pdfs/nc_packet--no-income.pdf"
+      source_pdf_path = filled_pdf_source
       template_doc = HexaPDF::Document.open(source_pdf_path)
 
       unless template_doc
@@ -87,26 +82,12 @@ module PdfFiller
       pdf_tempfile.path
     end
 
-    # Sanitizes text by removing emoji sequences:
-    # - \p{Emoji_Presentation}: removes standalone emoji glyphs
-    # - \p{Emoji}\uFE0F: removes emojis followed by variation selector-16
-    # - \u200D: removes zero-width joiners used to combine emojis (e.g., family emojis)
-    # Then normalizes whitespace via squeeze(" ") and strip.
-    def strip_emojis(text)
-      text
-        .gsub(/\p{Emoji_Presentation}/, "")
-        .gsub(/\p{Emoji}\uFE0F/, "")
-        .delete("\u200D")
-        .squeeze(" ")
-        .strip
-    end
-
     def generated_pdf_path
       html = PdfController.new.render_to_string(
         {
-          template: "pdf/summary_page",
+          template: generated_pdf_template,
           layout: "pdf",
-          locals: hash_for_generated_pdf
+          locals: strip_emojis_from_hash(hash_for_generated_pdf)
         }
       )
       css_path = Rails.root.join("app", "assets", "stylesheets", "wr_exemption_pdf.css")
@@ -130,8 +111,7 @@ module PdfFiller
     private
 
     def shared_fields
-      {
-        at_least_55_no_diploma_not_working: @screener.nc_screener.age_work_education_health_exemption?,
+      fields = {
         birth_date: @screener.birth_date.to_s,
         caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
         caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,
@@ -148,10 +128,35 @@ module PdfFiller
         preventing_work_other: @screener.preventing_work_other_yes?,
         preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
         seasonal_worker: @screener.is_migrant_farmworker_yes?
-        # volunteering_hours: @screener.volunteering_hours,
-        # work_hours: @screener.working_hours,
-        # work_training_hours: @screener.work_training_hours
       }
+      if @screener.has_earnings_exemption?
+        fields.merge!(
+          volunteering_hours: @screener.volunteering_hours,
+          work_hours: @screener.working_hours,
+          work_training_hours: @screener.work_training_hours
+        )
+      end
+      fields
+    end
+
+    # Sanitizes text by removing emoji sequences:
+    # - \p{Emoji_Presentation}: removes standalone emoji glyphs
+    # - \p{Emoji}\uFE0F: removes emojis followed by variation selector-16
+    # - \u200D: removes zero-width joiners used to combine emojis (e.g., family emojis)
+    # Then normalizes whitespace via squeeze(" ") and strip.
+    def strip_emojis(text)
+      text
+        .gsub(/\p{Emoji_Presentation}/, "")
+        .gsub(/\p{Emoji}\uFE0F/, "")
+        .delete("\u200D")
+        .squeeze(" ")
+        .strip
+    end
+
+    def strip_emojis_from_hash(hash)
+      hash.transform_values do |value|
+        value.is_a?(String) ? strip_emojis(value) : value
+      end
     end
 
     def submission_date

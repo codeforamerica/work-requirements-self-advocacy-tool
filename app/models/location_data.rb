@@ -2,16 +2,30 @@ require "csv"
 
 module LocationData
   module States
+    DELAWARE = "DE"
     NORTH_CAROLINA = "NC"
     NOT_LISTED = "NOT_LISTED"
+    STATES_INFO = {
+      NORTH_CAROLINA => {
+        display_name: "North Carolina",
+        pdf_filler_class: PdfFiller::NCPacketPdf,
+        active: !!ENV[NORTH_CAROLINA]
+      },
+      DELAWARE => {
+        display_name: "Delaware",
+        active: !!ENV[DELAWARE]
+      }
+    }
 
-    VALID_VALUES = [NORTH_CAROLINA, NOT_LISTED].freeze
+    def self.active_states
+      STATES_INFO.select { |_, info| info[:active] }
+    end
 
-    def self.options
-      [
-        ["North Carolina", NORTH_CAROLINA],
-        [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
-      ]
+    def self.dropdown_options
+      states_and_labels = active_states.map do |state_abbrev, info|
+        [info[:display_name], state_abbrev]
+      end
+      states_and_labels << [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
     end
 
     def self.name_for(code)
