@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   end
 
   get(
-    '(:base_path)/s/:intended_source',
+    "(:base_path)/s/:intended_source",
     to: "homepage#redirect_without_source",
     as: :route_with_source
   )

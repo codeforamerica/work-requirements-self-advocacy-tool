@@ -323,7 +323,7 @@ RSpec.describe ApplicationController, type: :controller do
 
       context "when the source param in the request is not nil" do
         it "overwrites the source in the session" do
-          get :index, params: { source: "new_source_param" }
+          get :index, params: {source: "new_source_param"}
 
           expect(session[:source]).to eq "new_source_param"
         end
