@@ -21,4 +21,10 @@ Rails.application.routes.draw do
     get "sign_out_and_redirect" => "application#sign_out_and_redirect"
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
+
+  get(
+    '(:base_path)/s/:intended_source',
+    to: "homepage#redirect_without_source",
+    as: :route_with_source
+  )
 end

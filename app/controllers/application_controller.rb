@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:screener_id] = current_screener&.id
     capture_trace_context
   end
-  before_action :set_visitor_id, :set_referrer, :set_utms
+  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source
   after_action :track_page_view
 
   def navigation_class
@@ -117,5 +117,13 @@ class ApplicationController < ActionController::Base
     sign_out current_screener
     redirect_path = params[:redirect_path] || root_path
     redirect_to redirect_path
+  end
+
+  def set_source
+    source_from_params = params[:source] || params[:utm_source]
+    if source_from_params.present?
+      # Use at most 100 chars in session so we don't overflow it.
+      session[:source] = source_from_params.slice(0, 100)
+    end
   end
 end
