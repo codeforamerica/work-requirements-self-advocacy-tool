@@ -15,62 +15,49 @@ RSpec.describe ScreenerMailer, type: :mailer do
 
     context "proof section" do
       context "when is_student is yes" do
-        let(:screener) { create(:screener, :with_nc_screener, is_student: "yes") }
-
         it "includes proof of education" do
+          screener.update(is_student: "yes")
           expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.proofs_you_may_need.student_html"))
         end
       end
 
       context "when is_student is not yes" do
         it "does not include proof of education" do
+          screener.update(is_student: "no")
           expect(body).not_to include(I18n.t("views.screener_mailer.send_screener_results.proofs_you_may_need.student_html"))
         end
       end
 
       context "when preventing_work_drugs_alcohol is yes" do
-        let(:screener) { create(:screener, :with_nc_screener, preventing_work_drugs_alcohol: "yes") }
-
         it "includes proof of health conditions" do
+          screener.update(preventing_work_drugs_alcohol: "yes")
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
         end
       end
 
       context "when preventing_work_medical_condition is yes" do
-        let(:screener) { create(:screener, :with_nc_screener, preventing_work_medical_condition: "yes") }
-
         it "includes proof of health conditions" do
+          screener.update(preventing_work_medical_condition: "yes")
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
         end
       end
 
       context "when neither drugs nor medical condition is yes" do
-        let(:screener) { create(:screener, :with_nc_screener, preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no", is_american_indian: "yes") }
-
         it "does not include proof of health conditions" do
+          screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
           expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
         end
       end
 
       context "when receiving disability benefits" do
-        let(:screener) { create(:screener, :with_nc_screener, receiving_benefits_ssdi: "yes", receiving_benefits_ssi: "yes") }
+        it "includes proof of disability benefits with selected benefits only" do
+          screener.update(receiving_benefits_ssdi: "yes", receiving_benefits_ssi: "yes", receiving_benefits_other: "yes", receiving_benefits_write_in: "Many bennies")
 
-        it "includes proof of disability benefits with selected benefits" do
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_disability_benefits_html"))
           expect(body).to include(I18n.t("views.disability_benefits.edit.receiving_benefits_ssdi"))
           expect(body).to include(I18n.t("views.disability_benefits.edit.receiving_benefits_ssi"))
-        end
-
-        it "does not include unselected benefits" do
-          expect(body).not_to include(I18n.t("views.disability_benefits.edit.receiving_benefits_veterans_disability"))
-        end
-      end
-
-      context "when receiving other disability benefits with write-in" do
-        let(:screener) { create(:screener, :with_nc_screener, receiving_benefits_other: "yes", receiving_benefits_write_in: "Many bennies") }
-
-        it "includes the write-in text" do
           expect(body).to include("Many bennies")
+          expect(body).not_to include(I18n.t("views.disability_benefits.edit.receiving_benefits_veterans_disability"))
         end
       end
 
@@ -81,15 +68,15 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when is_in_alcohol_treatment_program is yes" do
-        let(:screener) { create(:screener, :with_nc_screener, is_in_alcohol_treatment_program: "yes") }
-
         it "includes proof of treatment program" do
+          screener.update(is_in_alcohol_treatment_program: "yes")
           expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
         end
       end
 
       context "when is_in_alcohol_treatment_program is not yes" do
         it "does not include proof of treatment program" do
+          screener.update(is_in_alcohol_treatment_program: "no")
           expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
         end
       end

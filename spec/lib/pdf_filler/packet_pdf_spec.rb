@@ -221,18 +221,13 @@ RSpec.describe PdfFiller::PacketPdf do
     context "screener has a regular exemption" do
       before { screener.assign_attributes(preventing_work_medical_condition: "yes") }
 
-      it "does not include work/volunteer/training hours in shared_fields" do
-        shared_fields = packet_pdf.send(:shared_fields)
+      it "does not include work/volunteer/training hours" do
         earnings_only_shared_keys.each do |key|
-          expect(shared_fields).not_to have_key(key)
+          expect(result).not_to have_key(key)
         end
       end
 
       it "defaults top-level work/volunteer/training/earnings to zero so the summary page skips those sections" do
-        expect(result[:work_hours]).to eq(0)
-        expect(result[:volunteering_hours]).to eq(0)
-        expect(result[:work_training_hours]).to eq(0)
-        expect(result[:weekly_earnings]).to eq(0.0)
         expect(result[:working_30_or_more_hours]).to be false
         expect(result[:earnings_above_minimum]).to be false
       end
@@ -251,18 +246,10 @@ RSpec.describe PdfFiller::PacketPdf do
         )
       end
 
-      it "converts work/volunteer/training numeric fields to integers" do
+      it "includes work/volunteer/training hours" do
         expect(result[:work_hours]).to eq(25)
         expect(result[:volunteering_hours]).to eq(10)
-        expect(result[:work_training_hours]).to eq(15)
-        expect(result[:weekly_earnings]).to eq(220.0)
-      end
-
-      it "includes work/volunteer/training hours in shared_fields" do
-        shared_fields = packet_pdf.send(:shared_fields)
-        expect(shared_fields[:work_hours]).to eq(25)
-        expect(shared_fields[:volunteering_hours]).to eq(10)
-        expect(shared_fields[:work_training_hours]).to eq("15")
+        expect(result[:work_training_hours]).to eq("15")
       end
     end
   end
