@@ -565,7 +565,7 @@ es:
         proof_of_working: Comprobantes de trabajo
         proof_of_working_html: |
           <p>Envíe uno de los siguientes comprobantes:</p>
-          <ul>
+          <ul class='list--bulleted'>
             <li>Talones de pago del último mes, o</li>
             <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
             <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>

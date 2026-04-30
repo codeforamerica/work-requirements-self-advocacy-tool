@@ -566,7 +566,7 @@ en:
         proof_of_working: Proof of working
         proof_of_working_html: |
           <p>Send in <b>one</b> of these verifications:</p>
-          <ul>
+          <ul class='list--bulleted'>
             <li>Paystubs from the last month, OR</li>
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
             <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don't have a paystub, for example, if you were paid in cash)</li>
