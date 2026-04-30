@@ -235,6 +235,10 @@ class Screener < ApplicationRecord
     birth_date&.year
   end
 
+  def complies_with_work_rules?
+    total_work_volunteer_and_training_hours >= 20
+  end
+
   def earnings_above_minimum?
     working_weekly_earnings.to_f >= 217.50
   end
@@ -262,10 +266,6 @@ class Screener < ApplicationRecord
 
   def full_name_with_middle
     [first_name, middle_name.presence, last_name].compact.join(" ")
-  end
-
-  def no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?
-    !exempt_from_work_rules? && total_work_volunteer_and_training_hours >= 20
   end
 
   def pregnancy_due_date_day
