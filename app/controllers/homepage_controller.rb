@@ -11,9 +11,6 @@ class HomepageController < ApplicationController
   end
 
   def redirect_without_source
-    needed_locale = (locale == I18n.default_locale) ? nil : locale
-
-    path_part = [needed_locale, params[:base_path].presence].compact.join("/")
-    redirect_to "/#{path_part}?source=#{params[:intended_source]}"
+    redirect_to "/#{params[:base_path]}?source=#{params[:intended_source]}"
   end
 end
