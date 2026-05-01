@@ -11,6 +11,7 @@ FactoryBot.define do
   end
 
   trait :with_exemption do
+    is_american_indian { "yes" }
     preventing_work_medical_condition { "yes" }
   end
 
