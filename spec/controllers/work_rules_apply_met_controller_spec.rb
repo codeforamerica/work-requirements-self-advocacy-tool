@@ -11,21 +11,48 @@ RSpec.describe WorkRulesApplyMetController, type: :controller do
 
   describe ".show?" do
     let(:screener) { create(:screener) }
-    context "screener without exemptions and greater than or equal to 20 hours of volunteer work or training?" do
+
+    context "screener without exemptions" do
       before do
-        allow(screener).to receive(:no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).and_return(true)
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
       end
-      it "returns true" do
-        expect(subject.class.show?(screener)).to eq true
+
+      context "complies with work rules" do
+        it "returns true" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(true)
+
+          expect(subject.class.show?(screener)).to eq true
+        end
+      end
+
+      context "does not comply with work rules" do
+        it "returns false" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(false)
+
+          expect(subject.class.show?(screener)).to eq false
+        end
       end
     end
 
-    context "screener with exemptions and greater than or equal to 20 hours of volunteer work or training?" do
+    context "screener with exemptions" do
       before do
-        allow(screener).to receive(:no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?).and_return(false)
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
       end
-      it "returns false " do
-        expect(subject.class.show?(screener)).to eq false
+
+      context "complies with work rules" do
+        it "returns false" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(true)
+
+          expect(subject.class.show?(screener)).to eq false
+        end
+      end
+
+      context "does not comply with work rules" do
+        it "returns false" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(false)
+
+          expect(subject.class.show?(screener)).to eq false
+        end
       end
     end
   end

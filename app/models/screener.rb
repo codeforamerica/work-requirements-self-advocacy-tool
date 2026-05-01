@@ -202,7 +202,6 @@ class Screener < ApplicationRecord
     is_migrant_farmworker
     is_pregnant
     is_student
-    is_working
   ].freeze
 
   ELIGIBILITY_EXEMPTION_ATTRIBUTES = DISABILITY_BENEFIT_ATTRIBUTES + PREVENTING_WORK_ATTRIBUTES + OTHER_EXEMPTION_ATTRIBUTES
@@ -236,16 +235,28 @@ class Screener < ApplicationRecord
     birth_date&.year
   end
 
+  def complies_with_work_rules?
+    total_work_volunteer_and_training_hours >= 20
+  end
+
   def earnings_above_minimum?
     working_weekly_earnings.to_f >= 217.50
   end
 
   def exempt_from_work_rules?
+    has_exemption? || has_earnings_exemption?
+  end
+
+  def has_earnings_exemption?
+    is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
+  end
+
+  def has_exemption?
     return true if age_qualified?
     return true if nc_screener.present? && nc_screener.exempt_from_work_rules?
 
     ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
-      (attribute == :is_working) ? working_exempt? : public_send("#{attribute}_yes?")
+      public_send("#{attribute}_yes?")
     end
   end
 
@@ -255,10 +266,6 @@ class Screener < ApplicationRecord
 
   def full_name_with_middle
     [first_name, middle_name.presence, last_name].compact.join(" ")
-  end
-
-  def no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?
-    !exempt_from_work_rules? && total_work_volunteer_and_training_hours >= 20
   end
 
   def pregnancy_due_date_day
@@ -301,10 +308,6 @@ class Screener < ApplicationRecord
 
   def working_30_or_more_hours?
     working_hours.to_i >= 30
-  end
-
-  def working_exempt?
-    is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
   end
 
   private
