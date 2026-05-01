@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe LocationController, type: :controller do
   describe "#edit" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+
     render_views
 
     it "reads and displays the state and county attributes if they are saved on screener" do
@@ -23,10 +25,13 @@ RSpec.describe LocationController, type: :controller do
   end
 
   describe "#update" do
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+
     context "location" do
-      it "updates the state and county values" do
+      it "updates the state and county values and sends a mixpanel event" do
         screener = create(:screener)
         sign_in screener
+        allow(MixpanelService).to receive(:send_event)
 
         params = {
           state: "NC",
@@ -44,6 +49,12 @@ RSpec.describe LocationController, type: :controller do
         post :update, params: {screener: params}
         expect(screener.reload.state).to eq "NOT_LISTED"
         expect(screener.reload.county).to be_nil
+        expect(MixpanelService).to have_received(:send_event).with(
+          hash_including(
+            event_name: "page_submit",
+            data: {state: "NC", county: "Anson County"}
+          )
+        )
       end
     end
   end

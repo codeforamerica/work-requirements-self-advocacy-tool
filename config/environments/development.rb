@@ -75,4 +75,8 @@ Rails.application.configure do
 
   config.hosts << "development.wrsat.codeforamerica.app"
   config.hosts << /.*\.development\.wrsat\.codeforamerica\.app$/
+
+  config.active_record.encryption.primary_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY", "edSK9biPXNhUVP17nNj6xPhtOeB84FAX")
+  config.active_record.encryption.deterministic_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY", "eVrXlDsnIP0iSDNuxeub906KGv7SOU6j")
+  config.active_record.encryption.key_derivation_salt = ENV.fetch("ACTIVE_RECORD_DERIVATION_SALT_KEY", "ZpsjowhMSuZXLkAgzJRXXEIIDVytGv4z")
 end

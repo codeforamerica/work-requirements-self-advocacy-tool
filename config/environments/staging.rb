@@ -51,7 +51,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Set host to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = {host: "staging.wrsat.codeforamerica.app"}
+  config.action_mailer.default_url_options = {host: ENV.fetch("DOMAIN", "staging.wrsat.codeforamerica.app")}
   config.action_mailer.delivery_method = :ses_v2
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
@@ -81,4 +81,8 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  config.active_record.encryption.primary_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY")
+  config.active_record.encryption.deterministic_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY")
+  config.active_record.encryption.key_derivation_salt = ENV.fetch("ACTIVE_RECORD_DERIVATION_SALT_KEY")
 end

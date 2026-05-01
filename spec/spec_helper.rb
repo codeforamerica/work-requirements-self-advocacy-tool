@@ -121,7 +121,7 @@ RSpec.configure do |config|
     options.add_argument("--headless=new")   # modern Chrome headless
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")     # required in CI
-    options.add_argument("--window-size=1400,1400")
+    options.add_argument("--window-size=1400,2400")
     options.add_argument("--disable-dev-shm-usage")     # prevents Chrome crashes in Docker CI (small /dev/shm)
     options.add_argument("--disable-features=BackForwardCache")  # prevents stale node refs with Turbo Drive
 

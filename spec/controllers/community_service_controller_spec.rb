@@ -1,7 +1,13 @@
 require "rails_helper"
 
 RSpec.describe CommunityServiceController, type: :controller do
+  describe "#edit" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+  end
+
   describe "#update" do
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+
     context "volunteering hours and organization" do
       it "ignores the volunteering hours and org when the answer is no" do
         screener = create(:screener)
@@ -49,7 +55,7 @@ RSpec.describe CommunityServiceController, type: :controller do
 
         post :update, params: {screener: params}
         expect(response).to render_template :edit
-        expect(response.body).to have_text "is not a number"
+        expect(response.body).to have_text(I18n.t("validations.number_invalid"))
       end
     end
   end

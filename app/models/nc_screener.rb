@@ -5,20 +5,24 @@ class NcScreener < ApplicationRecord
   enum :teaches_homeschool, {unfilled: 0, yes: 1, no: 2}, prefix: true
 
   with_context :homeschool do
-    validates :homeschool_hours, numericality: {only_integer: true}, allow_blank: true
+    validates :homeschool_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
   end
 
   before_save :remove_worked_last_five_years_if_has_diploma,
     :remove_homeschool_attributes_if_no
 
-  def at_least_55_no_diploma_not_working?
+  def age_work_education_health_exemption?
     return false unless screener.age
 
-    screener.age >= 55 && has_hs_diploma_no? && worked_last_five_years_no?
+    screener.age.between?(55, 64) && worked_last_five_years_no? && has_hs_diploma_no? && screener.preventing_work_medical_condition_yes?
   end
 
   def operating_homeschool_30_or_more_hours?
-    homeschool_hours.to_i >= 30
+    teaches_homeschool_yes? && homeschool_hours.to_i >= 30
+  end
+
+  def exempt_from_work_rules?
+    operating_homeschool_30_or_more_hours? || age_work_education_health_exemption?
   end
 
   private

@@ -11,13 +11,13 @@ RSpec.feature "Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
     select "North Carolina", from: "screener_state"
-    select "Avery County", from: "screener_county"
+    select "Durham County", from: "screener_county"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"
-    select "2000", from: "Year"
+    select "1965", from: "Year"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
@@ -42,20 +42,20 @@ RSpec.feature "Screener flow", js: true do
     check I18n.t("general.none_of_the_above")
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.employment.edit.title"))
-    choose I18n.t("general.affirmative")
-    fill_in I18n.t("views.employment.edit.working_hours_label"), with: 15
-    fill_in I18n.t("views.employment.edit.working_weekly_earnings_label"), with: 250.35
-    click_on I18n.t("general.continue")
+    # expect(page).to have_selector("h1", text: I18n.t("views.employment.edit.title"))
+    # choose I18n.t("general.affirmative")
+    # fill_in I18n.t("views.employment.edit.working_hours_label"), with: 15
+    # fill_in I18n.t("views.employment.edit.working_weekly_earnings_label"), with: 250.35
+    # click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.migrant_farmworker.edit.title"))
     click_on I18n.t("general.negative")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
-    choose I18n.t("general.affirmative")
-    fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
-    fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
-    click_on I18n.t("general.continue")
+    # expect(page).to have_selector("h1", text: I18n.t("views.community_service.edit.title"))
+    # choose I18n.t("general.affirmative")
+    # fill_in I18n.t("views.community_service.edit.volunteering_hours_label"), with: "1"
+    # fill_in I18n.t("views.community_service.edit.volunteering_org_label"), with: "Code for America"
+    # click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
     choose I18n.t("general.affirmative")
@@ -63,11 +63,11 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: "25"
     click_on I18n.t("general.continue")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.training_program.edit.title"))
-    choose I18n.t("general.affirmative")
-    fill_in I18n.t("views.training_program.edit.work_training_hours_label"), with: "20"
-    fill_in I18n.t("views.training_program.edit.work_training_name_label"), with: "The Great British Work Off"
-    click_on I18n.t("general.continue")
+    # expect(page).to have_selector("h1", text: I18n.t("views.training_program.edit.title"))
+    # choose I18n.t("general.affirmative")
+    # fill_in I18n.t("views.training_program.edit.work_training_hours_label"), with: "20"
+    # fill_in I18n.t("views.training_program.edit.work_training_name_label"), with: "The Great British Work Off"
+    # click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
@@ -128,7 +128,14 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.basic_info_ssn.edit.ssn_label"), with: "1234"
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
+    fill_in I18n.t("views.signature.edit.signature_label"), with: "Prudence Leith"
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
+    click_on I18n.t("general.back")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
     click_on I18n.t("general.back")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_ssn.edit.title"))
@@ -138,7 +145,13 @@ RSpec.feature "Screener flow", js: true do
     fill_in I18n.t("views.basic_info_case_number.edit.case_number_label"), with: "ABC-123"
     click_on I18n.t("general.continue")
 
+    expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
+    click_on I18n.t("general.continue")
+
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.proof_guidance.edit.title"))
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))

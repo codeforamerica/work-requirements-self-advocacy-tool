@@ -12,23 +12,32 @@ es:
     close: Cerrar
     continue: Continuar
     continue_without_this_number: Continuar sin este número
-    faq: Frequently Asked Questions
     footer:
-      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership on behalf of the people of the United States.
+      content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> en colaboración con <a href="https://codethedream.org/" rel="noopener nofollow" target="_blank">Code the Dream</a> y <a href="https://meals4families.org/" rel="noopener nofollow" target="_blank">Meals for Families</a> para servir a las personas en los Estados Unidos.
+    gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
     personal_situations: Personal situations
-    privacy_policy: Privacy Policy
+    privacy_policy: Política de privacidad
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
     this_is_optional: Opcional.
     work_rules: Reglas de trabajo
   validations:
+    amount_invalid: Asegúrese de ingresar una cantidad válida en dólares
     date_missing_or_invalid: La fecha falta o no es válida
     date_must_be_in_future: La fecha debe ser en el futuro
+    email_confirmation_required: 'Asegúrese de que el correo electrónico es válido y está escrito en este formato: nombre@email.com'
+    email_invalid: 'Asegúrese de que el correo electrónico es válido y está escrito en este formato: nombre@email.com'
+    email_must_match: Las direcciones de correo electrónico deben coincidir.
+    first_name_required: Ingrese su primer nombre
+    last_name_required: Ingrese su apellido
     must_answer_yes_or_no: Debe responder sí o no
+    number_invalid: Ingrese un número
+    phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
+    signature_required: Se requiere su firma para continuar
   views:
     alcohol_treatment_program:
       edit:
@@ -46,8 +55,7 @@ es:
           title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
         help_text_epass:
           help_bullets_html:
-          - Inicie sesión en el sitio <a href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/food-and-nutrition-services-food-stamps" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
-          - Use la aplicación ebtEDGE para consultar la información de su caso desde su teléfono.
+          - Inicie sesión en el sitio <a href="https://epass.nc.gov/" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
           title: Use su cuenta de ePASS NC para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
@@ -97,6 +105,12 @@ es:
         title: "¿Cuida usted a alguien que no puede cuidar de sí mismo?"
     community_service:
       edit:
+        help_content:
+        - una organización sin fines de lucro,
+        - una iglesia u otro grupo religioso,
+        - una organización comunitaria, o
+        - una agencia gubernamental.
+        help_title: 'El trabajo voluntario incluye actividades que usted realiza sin recibir pago para:'
         title: "¿Hace servicio comunitario o trabajo voluntario?"
         volunteering_hours_label: "¿Cuántas horas a la semana asiste?"
         volunteering_hours_label_help_text: Si esto varía, escriba el promedio semanal del último mes.
@@ -111,10 +125,11 @@ es:
         receiving_benefits_disability_medicaid: Cobertura de Medicaid por discapacidad
         receiving_benefits_disability_pension: Pensión por discapacidad
         receiving_benefits_insurance_payments: Pagos de seguro por discapacidad
-        receiving_benefits_ssdi: Seguro Social
+        receiving_benefits_other: Otro
+        receiving_benefits_ssdi: Seguro Social (SSDI)
         receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
-        receiving_benefits_workers_compensation: Pensión por discapacidad
+        receiving_benefits_workers_compensation: Compensación para trabajadores
         receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     download_form:
@@ -128,7 +143,7 @@ es:
         email_pdf: Agreagar un correo electrónico
         expectation_1: Su oficina de SNAP puede llamarlo o enviarle un aviso por correo si necesita más información.
         expectation_2: En algunos casos, es posible que tenga que enviar a su oficina más documentos (o documentos diferentes) que demuestren su situación, como, por ejemplo, comprobantes de pago o prueba de una condición médica.
-        expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas [X] semanas.
+        expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas 4 semanas.
         have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
         how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
         how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
@@ -169,7 +184,7 @@ es:
           cant_work: "¿Qué pasa si tengo un problema médico o de salud mental que limita mi capacidad para trabajar?"
           cant_work_content_html: |
             <p>Si puede demostrar que no puede trabajar por un motivo médico o de salud, las reglas de trabajo de SNAP no aplican en su caso y puede seguir recibiendo los beneficios de SNAP.</p>
-            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"motivo justificado"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
+            <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una excepción ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene un <strong>"razón válida"</strong> por el cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
           keep_snap: "¿Podré seguir recibiendo beneficios de SNAP?"
           keep_snap_content_html: |
             <p>Si <u>no tiene</u> que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una excepción.</strong></p>
@@ -195,23 +210,23 @@ es:
               <li>Cuida a alguien que no puede cuidarse por sí mismo (por ejemplo, una persona mayor o una persona con discapacidades), incluso si esa persona no vive con usted.</li>
               <li>Recibe beneficios de desempleo, o solicitó beneficios por desempleo y no se lo han negado.</li>
               <li>Asiste a la escuela tiempo completo, o al menos medio tiempo.</li>
-              <li>Recibe al menos $935.25 al mes por el trabajo que realiza.</li>
+              <li>Recibe $935.25 o más al mes por su trabajo.</li>
               <li>No puede trabajar al menos 20 horas a la semana debido a una condición médica (incluyendo problemas de salud física o mental).</li>
               <li>Recibe beneficios o pagos por discapacidad.</li>
               <li>Está en un programa de tratamiento por alcohol o drogas.</li>
-              <li>Es una persona indígena o Indio de los Estados Unidos.</li>
+              <li>Es una persona indígena o Indio de Estados Unidos.</li>
             </ul>
         title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
         title_help_text_html: |
           <p>Le ayudaremos a preparar un documento con su información para enviarlo a su agencia de SNAP y determinar si debe cumplir con <strong>las reglas de trabajo de SNAP.</strong></p>
-          <p><strong>Debería tomar alrededor de 20 minutos completar esta solicitud.</strong></p>
+          <p><strong>Debería tomar alrededor de 10 minutos completar esta solicitud.</strong></p>
         work_rules_description_html: |
           <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
-          <p>Para SNAP, "actividades laborales" incluye:</p>
+          <p>Para SNAP, "actividades laborales" incluyen:</p>
           <ul class="list--bulleted">
-            <li><strong>Dinero proveniente</strong> del trabajo, incluyendo trabajo por cuenta propia o temporal.</li>
+            <li><strong>Recibir dinero por su trabajo</strong>, incluyendo un empleo, trabajo por cuenta propia o temporal.</li>
             <li><strong>Trabajar a cambio de algo</strong>, como comida, vivienda u otros servicios.</li>
-            <li>Hacer trabajo voluntario.</li>
+            <li>Hacer <strong>trabajo voluntario</strong> en una organización sin fines de lucro, iglesia u otro grupo religioso, organización comunitaria o agencia gubernamental.</li>
             <li>Participar en <strong>programas de capacitación laboral o en programas de Empleo y Capacitación de SNAP.</strong></li>
           </ul>
           <p>Si usted no trabaja durante 80 horas al mes, solo puede recibir beneficios de SNAP por 3 meses cada 3 años (36 meses).</p>
@@ -243,7 +258,9 @@ es:
           homeschool_hours_label: "¿Cuántas horas a la semana imparte educación en el hogar?"
           homeschool_name_help_text_html: Escribe el nombre registrado en la <a href="https://www.dnpesys.nc.gov/NPEPublic/HSCountySearch.aspx" target="_blank">División de Educación No Pública de Carolina del Norte</a>, si está registrado.
           homeschool_name_label: "¿Cuál es el nombre de la escuela en el hogar?"
-          notice_text: Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.
+          notice_text_html: |
+            <p>Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.</p>
+            <p>Para ser elegible, debe ser padre, madre o tutor legal del niño, o vivir en su hogar.</p>
           title: "¿Tiene un programa de educación en casa para un niño o niños?"
     new_response:
       edit:
@@ -281,7 +298,7 @@ es:
     preventing_work_situations:
       edit:
         other: Otra razón
-        preventing_work_domestic_violence: Violencia doméstica
+        preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
         preventing_work_drugs_alcohol: Dificultades con el consumo de drogas o alcohol
         preventing_work_medical_condition_html: |
           Tiene una condición médica
@@ -290,6 +307,135 @@ es:
         preventing_work_place_to_sleep: Falta de vivienda estable (sin hogar de forma continua)
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
+    privacy_policy:
+      analytics: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. You can also email getbenefitshelp@codeforamerica.org for additional information.
+      auto_collect_intro: 'In addition to the information you provide, we automatically collect and store information about your visit to the Site. We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you submit in the GetBenefitsHelp.org Site. This information includes:'
+      auto_collect_items:
+      - Domain from which you access the Internet
+      - IP address (an IP or internet protocol address is a number that is automatically given to a computer connected to the Web)
+      - Operating system on your computer and information about the browser you used when visiting the site
+      - Date and time of your visit
+      - Pages you visited
+      - Address of the website that connected you to the Site (such as google.com)
+      breach_notification: In the event of a security system breach, you will be notified pursuant to applicable state statutes regarding breach notifications.
+      changes_text: We may change this Privacy Policy from time to time. Please check this page frequently for updates as your continued use of this site after any changes in this Privacy Policy will constitute your acceptance of the changes.
+      changes_title: Changes
+      contact_intro: If you have any questions or concerns about this Privacy Notice, please contact us at getbenefitshelp@codeforamerica.org.
+      data_retention_1_email_intro: 'You can email us at getbenefitshelp@codeforamerica.org to:'
+      data_retention_1_email_items:
+      - Request that your personal information be deleted sooner
+      - Request a copy of your personal information
+      - Request corrections to inaccuracies in your personal information
+      - Opt-out of further processing of your personal information
+      data_retention_1_intro_html: We will collect and store the following personal information for 24 months, or the maximum allowable period under relevant state or federal law, whichever is less
+      data_retention_1_items:
+      - All personal information that you provide in the GetBenefitsHelp.org Site, which may include your SNAP case number, the last four digits of your Social Security Number, typed signature, date of birth, language preference, name, phone number, and email address.
+      - Copies of any documents you upload, like pictures of your driver's license, pay stubs, birth certifications, rent receipts, etc.
+      - Any messages you send us through SMS, email, or live chat
+      - Any answers or comments you provide in response to a survey we send you
+      data_retention_2_intro_html: We will collect and store the following information for the maximum allowable period under relevant state or federal law. The information listed below can help us understand trends about the people using the Site, <strong>without</strong> connecting it to information that could identify who you are
+      data_retention_2_items:
+      - Non-identifiable Information you provide us about yourself, your household, or people you care for (for example, information about circumstances that may make you exempt from a benefit program's work requirements)
+      - Any answers or comments you provide in response to feedback surveys we may send you
+      data_retention_improve: This information is stored to help us improve our Site and Services.
+      data_retention_title: Data Retention
+      description: This Privacy Policy describes how we collect, use, and protect your personal information. By using our Services, you agree to the terms in this Privacy Policy. This Privacy Notice applies regardless of the type of device you use to access our services. If you do not agree with these terms, please do not continue to use the Site.
+      effective_date_text: This version of the policy is effective April 10, 2026.
+      effective_date_title: Effective Date
+      help_text: Cómo utilizamos, compartimos y protegemos su información.
+      how_we_collect_intro: 'We collect your information from various sources, such as when you:'
+      how_we_collect_items:
+      - Visit our Site, fill out forms on our Site, or use our Services
+      - Provide us with documents to use our Services
+      - Communicate with us (for instance through email, chat, social media, or otherwise)
+      how_we_collect_title: How we collect your information
+      how_we_protect_title: How we protect your information
+      how_we_share_title: How we share your information
+      how_we_use_business_intro: We use your information for our business purposes, such as
+      how_we_use_business_items:
+      - To complete forms required for use of our Services
+      - To provide support to you through the process and communicate with you
+      - To monitor and understand how the Site and our Services are used
+      - To improve the quality or scope of the Site or our Services
+      - To suggest other services or assistance programs that may be useful to you
+      - For security purposes
+      - To comply with legal requirements and obligations
+      how_we_use_info_intro: 'We will only use your information to:'
+      how_we_use_info_items:
+      - Help you get or keep SNAP and any other benefit programs supported in future versions of the Site ("SNAP" herein refers to all such programs).
+      - Suggest other services or assistance programs that may be useful to you. We will only use your personal information in order to present those services or programs to you as an option, but will never send your personal information to any other services or programs without your permission.
+      how_we_use_title: How we use your information
+      intro: GetBenefitsHelp.org (the "Site") is a service created by Code for America Labs, Inc. ("Code for America," "we," "us," "our") to help people get and keep government benefits.
+      no_collection_without_consent: We will not collect personal information from you without your knowledge and consent.
+      no_disclose: We will not knowingly disclose your personal information to any third party, except as provided in this privacy policy.
+      no_email: We will not send you an email unless you provide your email on the Site or you email us first.
+      no_sell: 'We do not sell your personal information. We do not share your personal information with any third party, except as provided in this Privacy Policy. We may use or disclose your information in the following instances:'
+      no_text_html: We will not send you a text message unless you consent to text message communication in the application or you text us first. <strong>You can reply 'STOP' to any text message to unsubscribe.</strong>
+      on_this_page: En esta página
+      protect_disclaimer: Although we try our best to protect the privacy of your personal information, we cannot guarantee complete security. The transmission of information via the Internet is not completely secure. Unauthorized entry or use, hardware or software failure, and other factors, may compromise the security of user information at any time.
+      protect_intro: 'Protecting your personal information is extremely important to us and we take all reasonable measures to do so. Here are some specific security practices we use:'
+      protect_items:
+      - When you enter your information on our site we encrypt the transmission of that information using transport layer security (TLS).
+      - We store your information in a secure, purpose-built environment hosted by Amazon Web Services (AWS).
+      questions_text: If you have any questions, comments, concerns, or complaints with the Site, please contact us by email at getbenefitshelp@codeforamerica.org.
+      questions_title: Questions
+      reasonable_measures: We will take all reasonable measures to protect your personal information.
+      resolve: We will do our best to resolve the issue.
+      security_questions: If you have questions about the security of your personal information, or if you have reason to believe that the personal information that we hold about you is no longer secure, please contact us immediately by email at getbenefitshelp@codeforamerica.org
+      share_contractors: If necessary, we may disclose your information to contractors who help us provide our services. We require our third parties acting on our behalf to keep your personal information secure, and do not allow these third parties to use or share your personal information for any purpose other than providing services on our behalf.
+      share_items:
+      - For analysis and reporting, we may share limited aggregate information with government agencies or other third parties, including state agencies administering public benefit programs, to analyze the use of our Services, in order to improve and expand our services. Such analysis is always performed using anonymized data.
+      share_legal: 'Legal Compliance: In certain situations, we may be required to disclose personal data in response to lawful requests by public authorities, including to meet national security or law enforcement requirements. We may also disclose your personal information as required by law, such as to comply with a subpoena or other legal process, when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request.'
+      share_research_intro: 'For research to improve our Services, including:'
+      share_research_items:
+      - To invite you to complete questionnaires regarding your experience using our product.
+      - To send you opportunities to participate in paid user research sessions, to learn more about your experience using our product and to guide the development of future products and services.
+      title: Privacy Policy
+    proof_guidance:
+      edit:
+        already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
+        already_has_proof_content_html:
+        - "<strong>Sí, ya compartí esa información</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
+        - <strong>No, todavía no la he enviado</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso de evisará lo que usted envíe y decidirá si debe cumplir con las nuevas reglas de trabajo."
+        next_steps_html:
+        - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
+        - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, aun así puede enviar lo que tenga."
+        proof_of_disability_benefits_html: |
+          <h3>Comprobante de beneficios por discapacidad</h3>
+          <p>Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:</p>
+        proof_of_education_html: |
+          <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
+          <ul class="list--bulleted">
+            <li>Documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre, u otros documentos que demuestren que está inscrito al menos medio tiempo.</li>
+          </ul>
+        proof_of_education_over_50_html: |
+          <p>Si está <strong>inscrito en la escuela al menos medio tiempo</strong>, se aplican otras reglas de SNAP. Además de sus otras excepciones, también informe a su oficina de SNAP si usted:</p>
+          <ul class="list--bulleted">
+            <li>Tiene un trabajo de work study, o ha sido aprobado para un programa de work study y planea participar, o</li>
+            <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
+            <li>Es padre o madre soltero(a), está inscrito a tiempo completo y cuida a un niño menor de 12 años.</li>
+          </ul>
+        proof_of_health_condition_html: |
+          <h3>Comprobante de una condición de salud o discapacidad</h3>
+          <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
+          <ul class="list--bulleted">
+          <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
+          <li>Un <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          </ul>
+        proof_of_treatment_program_html: |
+          <h3>Comprobante de su programa de tratamiento</h3>
+          <p>Un documento de su centro o programa de tratamiento que indique que usted participa de forma regular.</p>
+        proof_of_working_html: |
+          <h3>Comprobantes de trabajo</h3>
+          <p>Envíe <strong>uno</strong> de los siguientes comprobantes:</p>
+          <ul class="list--bulleted">
+            <li>Talones de pago del último mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
+            <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
+            <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
+          </ul>
+        proof_you_may_need: Estos son los documentos o comprobantes que podría necesitar enviar a su oficina.
+        title: Qué sigue
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
@@ -313,9 +459,72 @@ es:
         online_epass_html: Si usted ya recibe beneficios de SNAP, puede usar <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> para enviar este formulario y cualquier comprobante que necesite. Necesitará una <a href="https://epass.nc.gov/nfridp/qa" target="_blank">cuenta mejorada</a> (enhanced account) para enviar estos documentos a través de ePASS.
         online_epass_text: Si usted ya recibe beneficios de SNAP, puede usar North Carolina ePASS (https://epass.nc.gov/signuphomepage) para enviar este formulario y cualquier comprobante que necesite. Necesitará una cuenta mejorada (enhanced account) (https://epass.nc.gov/nfridp/qa) para enviar estos documentos a través de ePASS.
         online_label: 'En línea:'
+        proofs_you_may_need:
+          disability_benefits_help_text: 'Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:'
+          disability_benefits_title: Comprobante de beneficios por discapacidad
+          health_condition_text: |
+            Comprobante de una condición de salud o discapacidad
+            Estos documentos puede ser útiles, pero puede que no sean obligatorios.
+            - Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O
+            - Un formulario de Informe Médico de Carolina del Norte, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
+          help_text: Si sabe que su oficina de SNAP ya tiene estos documentos o comprobantes, no necesita enviarlos nuevamente. Puede enviar su formulario aunque no tenga todos los comprobantes. Su oficina de SNAP puede comunicarse con usted para solicitarlos más adelante.
+          student_html: |
+            <li>
+              <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
+              <p>Envíe documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre u otros documentos que demuestren que está inscrito al menos medio tiempo.</p>
+              <p>Si está inscrito en la escuela al menos medio tiempo, se aplican otras reglas de SNAP. Además de sus otras excepciones, también debe informar a su oficina de SNAP si usted:</p>
+                <ul>
+                  <li>Tiene un trabajo de work-study, o ha sido aprobado para participar en uno.</li>
+                  <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
+                  <li>Es padre o madre soltero(a), está inscrito(a) tiempo completo y cuida a un niño menor de 12 años.</li>
+                </ul>
+              </li>
+          student_text: |
+            Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria
+            Envíe documentos de ayuda financiera, una carta de inscripción, historial académico de este semestre u otros documentos que demuestren que está inscrito al menos medio tiempo.
+            Si está inscrito en la escuela al menos medio tiempo, se aplican otras reglas de SNAP. Además de sus otras excepciones, también debe informar a su oficina de SNAP si usted:
+            - Tiene un trabajo de work-study, o ha sido aprobado para participar en uno.
+            - Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o
+            - Es padre o madre soltero(a), está inscrito(a) tiempo completo y cuida a un niño menor de 12 años.
+          title: Documentación adicional que puede necesitar
+          treatment_program_text: |
+            Comprobante de su programa de tratamiento
+            Un documento de su centro o programa de tratamiento que indique que usted participa de forma regular.
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
+        unsubscribe: Cancelar suscripción
+    signature:
+      edit:
+        exemption_55_no_diploma: Tener al menos 55 años, no haber obtenido un diploma de secundaria, tener poca experiencia laboral reciente y una condición médica
+        exemption_alcohol_treatment: Participa en un programa de tratamiento por consumo de drogas o alcohol
+        exemption_american_indian: Hace parte de una tribu o nación indígena
+        exemption_caring_child_under_6: Cuida a un niño menor de 6 años
+        exemption_caring_incapacitated: Cuida a una persona enferma o con discapacidad
+        exemption_child_under_14: Vive con un niño menor de 14 años
+        exemption_disability_benefits: Recibe beneficios por discapacidad
+        exemption_earnings: Ya gana al menos $217.50 a la semana por trabajo
+        exemption_homeschool: Operar una escuela en casa (home school) durante al menos 30 horas a la semana
+        exemption_migrant_farmworker: Reporta trabajo agrícola estacional o migrante que comenzará en los próximos 30 días
+        exemption_pregnant: 'Está en embarazo (Fecha estimada del parto: %{date})'
+        exemption_pregnant_no_date: Está en embarazo
+        exemption_student: Asiste a la escuela al menos medio tiempo
+        exemption_unemployment: Recibe o está solicitando beneficios de desempleo
+        exemption_working_30_hours: Ya trabaja al menos 30 horas a la semana
+        exemptions_heading: 'Es posible que no tenga que cumplir con las reglas de trabajo de SNAP porque usted:'
+        instructions: Lea esta información antes de firmar.
+        perjury_statement: Al firmar a continuación, declaro bajo pena de perjurio, que la información en este formulario es verdadera y precisa.
+        preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
+        preventing_work_drugs_alcohol: Tiene dificultades con el consumo de drogas o alcohol
+        preventing_work_heading:
+          one: Reportar una situación personal que le impide trabajar 20 horas a la semana
+          other: Reportar una o más situaciones personales que le impiden trabajar 20 horas a la semana
+        preventing_work_medical_condition: Tiene una condición médica física o mental
+        preventing_work_other: Otra
+        preventing_work_place_to_sleep: No tienen un lugar estable donde dormir y bañarse
+        signature_help_text: Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
+        signature_label: Escriba su nombre legal completo para firmar
+        title: Firme y complete su formulario
     training_program:
       edit:
         notice_content:

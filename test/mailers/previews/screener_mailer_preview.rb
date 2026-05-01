@@ -8,6 +8,13 @@ class ScreenerMailerPreview < ActionMailer::Preview
       state: "NC",
       county: "Burke County",
       confirmation_code: "123ABC",
+      is_student: "yes",
+      preventing_work_drugs_alcohol: "yes",
+      receiving_benefits_ssdi: "yes",
+      receiving_benefits_ssi: "yes",
+      receiving_benefits_veterans_disability: "yes",
+      receiving_benefits_other: "yes",
+      is_in_alcohol_treatment_program: "yes",
       nc_screener: FactoryBot.build(:nc_screener)
     )
     outgoing_email = FactoryBot.build(:outgoing_email, screener: screener)

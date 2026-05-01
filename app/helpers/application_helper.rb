@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def robots_meta_tag
+    content = if Rails.env.production? && current_screener.blank?
+      "index, follow"
+    else
+      "nofollow, noindex, noarchive"
+    end
+    tag("meta", name: "robots", content: content)
+  end
+
   # From https://github.com/rwz/nestive/blob/master/lib/nestive/layout_helper.rb
   def extends(layout, &block)
     # Make sure it's a string

@@ -13,17 +13,9 @@ class MixpanelService
     @buffer = []
     @mutex = Mutex.new
 
-    @tracker =
-      if Rails.env.production?
-        Mixpanel::Tracker.new(mixpanel_key) do |type, message|
-          buffer_event_for_send(type, message)
-        end
-      else
-        Struct.new("DummyTracker") do
-          def track(_distinct_id, _event_name, _data)
-          end
-        end.new
-      end
+    @tracker = Mixpanel::Tracker.new(mixpanel_key) do |type, message|
+      buffer_event_for_send(type, message)
+    end
   end
 
   def run(distinct_id:, event_name:, data: {})
@@ -73,8 +65,8 @@ class MixpanelService
   end
 
   class << self
-    def send_event(distinct_id:, event_name:, record: nil, controller: nil)
-      data = {
+    def send_event(distinct_id:, event_name:, data: {}, record: nil, controller: nil, request: nil)
+      event_data = {
         locale: I18n.locale
       }
 
@@ -83,18 +75,24 @@ class MixpanelService
           record_type: record&.class.to_s,
           record_id: record&.id
         }
-        data.merge!(record_data)
+        event_data.merge!(record_data)
       end
 
       if controller
-        controller_data = {controller_action: "#{controller&.class&.name}##{controller&.action_name}"}
-        data.merge!(controller_data)
+        controller_data = {
+          controller_name: controller&.class&.name&.sub("Controller", ""),
+          controller_action: "#{controller&.class&.name}##{controller&.action_name}",
+          **controller.utms_and_referrer.compact
+        }
+        event_data.merge!(controller_data)
       end
+
+      event_data.merge!(data)
 
       MixpanelService.instance.run(
         distinct_id: distinct_id,
         event_name: event_name,
-        data: data
+        data: event_data
       )
     end
   end
