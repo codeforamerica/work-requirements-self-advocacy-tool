@@ -4,6 +4,6 @@ class WorkRulesApplyMetController < QuestionController
   end
 
   def self.show?(screener)
-    screener.no_exemptions_and_greater_than_or_equal_to_20_hours_of_volunteer_work_or_training?
+    !screener.exempt_from_work_rules? && screener.complies_with_work_rules?
   end
 end

@@ -547,6 +547,12 @@ en:
     unemployment:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
+    wages_hours_milestone:
+      edit:
+        help_text_html: We will also ask about any volunteering or job training you do. Your information stays private, safe, and secure.
+        notice_content: We ask these questions to check if you qualify for an exemption based on how much you work. We also check to see if you are meeting the work requirements, in case you don't have an exemption.
+        notice_title: Why are we asking this?
+        title: We need to ask a few questions about your income and working hours.
     work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
@@ -560,7 +566,7 @@ en:
         proof_of_working: Proof of working
         proof_of_working_html: |
           <p>Send in <b>one</b> of these verifications:</p>
-          <ul>
+          <ul class='list--bulleted'>
             <li>Paystubs from the last month, OR</li>
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
             <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don't have a paystub, for example, if you were paid in cash)</li>
