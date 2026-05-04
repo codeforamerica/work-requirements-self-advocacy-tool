@@ -17,13 +17,12 @@ module PdfFiller
       "pdf/summary_page"
     end
 
-
     def hash_for_fillable_pdf
       super.merge(
         {
           homeschool_hours: @nc_screener.homeschool_hours.to_s,
           homeschool_name: @nc_screener.homeschool_name,
-          operating_a_homeschool: @nc_screener.teaches_homeschool_yes?,
+          operating_a_homeschool: @nc_screener.teaches_homeschool_yes?
         }
       )
     end
@@ -31,7 +30,7 @@ module PdfFiller
     def hash_for_generated_pdf
       super.merge(
         {
-          operating_homeschool_30_or_more_hours: @nc_screener.operating_homeschool_30_or_more_hours?,
+          operating_homeschool_30_or_more_hours: @nc_screener.operating_homeschool_30_or_more_hours?
         }
       )
     end
@@ -43,5 +42,3 @@ module PdfFiller
     end
   end
 end
-
-
