@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe PdfFiller::PacketPdf do
   include ActiveSupport::Testing::TimeHelpers
 
-  let(:nc_screener) { create(:nc_screener) }
   let(:screener) do
     build(:screener,
       first_name: "Nigella",
@@ -12,8 +11,7 @@ RSpec.describe PdfFiller::PacketPdf do
       birth_date: Date.new(1990, 7, 13),
       email: "nigella@example.com",
       phone_number: "9195551234",
-      state: LocationData::States::NORTH_CAROLINA,
-      nc_screener: nc_screener)
+      state: LocationData::States::NORTH_CAROLINA)
   end
 
   subject(:packet_pdf) { described_class.new(screener) }
@@ -62,17 +60,11 @@ RSpec.describe PdfFiller::PacketPdf do
         end
       end
 
-      it "maps operating_a_homeschool from teaches_homeschool" do
-        nc_screener.teaches_homeschool = "yes"
-        expect(result[:operating_a_homeschool]).to be true
-      end
-
       it "maps string fields from screener" do
         screener.additional_care_info = "Babysitting Paul Hollywood"
         screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
         screener.case_number = "543212345"
         screener.confirmation_code = "ABQ39L"
-        nc_screener.homeschool_name = "Small Fry"
         screener.preventing_work_write_in = "Back pain"
         screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
         screener.receiving_benefits_write_in = "Other disability"
@@ -84,7 +76,6 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:case_number]).to eq("543212345")
         expect(result[:confirmation_code]).to eq("ABQ39L")
         expect(result[:email]).to eq("nigella@example.com")
-        expect(result[:homeschool_name]).to eq("Small Fry")
         expect(result[:phone_number]).to eq("(919) 555-1234")
         expect(result[:preventing_work_other_write_in]).to eq("Back pain")
         expect(result[:preventing_work_write_in]).to eq("I am carrying the weight of the world on my back.")
@@ -94,21 +85,14 @@ RSpec.describe PdfFiller::PacketPdf do
       end
 
       it "maps date and numeric fields as strings" do
-        nc_screener.homeschool_hours = 20
         screener.pregnancy_due_date = Date.new(2026, 9, 15)
 
         expect(result[:birth_date]).to eq("1990-07-13")
-        expect(result[:homeschool_hours]).to eq("20")
         expect(result[:pregnancy_due_date]).to eq("2026-09-15")
       end
     end
 
     describe "calculated fields" do
-      it "delegates age_work_education_health_exemption to nc_screener" do
-        allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
-        expect(result[:at_least_55_no_diploma_not_working]).to be true
-      end
-
       it "delegates age to screener and converts to string" do
         allow(screener).to receive(:age).and_return(35)
         expect(result[:age]).to eq("35")
@@ -204,14 +188,12 @@ RSpec.describe PdfFiller::PacketPdf do
 
     it "delegates fields with helper methods to screener" do
       allow(screener).to receive(:full_name).and_return("Nigella Lawson")
-      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
       allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
       allow(screener).to receive(:working_30_or_more_hours?).and_return(true)
       allow(screener).to receive(:earnings_above_minimum?).and_return(false)
       allow(screener).to receive(:any_preventing_work?).and_return(true)
 
       expect(result[:full_name]).to eq("Nigella Lawson")
-      expect(result[:operating_homeschool_30_or_more_hours]).to be false
       expect(result[:receiving_disability_benefits]).to be true
       expect(result[:working_30_or_more_hours]).to be true
       expect(result[:earnings_above_minimum]).to be false
@@ -283,7 +265,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
       it "uses the no-income template" do
         expect(HexaPDF::Document).to receive(:open)
-          .with("app/assets/pdfs/nc_packet--no-income.pdf")
+          .with("app/assets/pdfs/packet--no-income.pdf")
           .and_call_original
 
         path = packet_pdf.filled_pdf_path
@@ -323,7 +305,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
       it "uses the income-capable template" do
         expect(HexaPDF::Document).to receive(:open)
-          .with("app/assets/pdfs/nc_packet.pdf")
+          .with("app/assets/pdfs/packet.pdf")
           .and_call_original
 
         path = packet_pdf.filled_pdf_path

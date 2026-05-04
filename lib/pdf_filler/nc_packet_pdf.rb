@@ -13,10 +13,6 @@ module PdfFiller
       end
     end
 
-    def generated_pdf_template
-      "pdf/summary_page"
-    end
-
     def hash_for_fillable_pdf
       super.merge(
         {

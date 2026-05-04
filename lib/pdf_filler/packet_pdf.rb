@@ -4,6 +4,18 @@ module PdfFiller
       @screener = screener
     end
 
+    def filled_pdf_source
+      if @screener.has_exemption?
+        "app/assets/pdfs/packet--no-income.pdf"
+      elsif @screener.has_earnings_exemption?
+        "app/assets/pdfs/packet.pdf"
+      end
+    end
+
+    def generated_pdf_template
+      "pdf/summary_page"
+    end
+
     def hash_for_fillable_pdf
       fields = shared_fields.merge(
         age: @screener.age.to_s,
@@ -104,6 +116,26 @@ module PdfFiller
       File.delete(generated_pdf_path) # not a Tempfile so we have to manually delete it
     end
 
+    # Sanitizes text by removing emoji sequences:
+    # - \p{Emoji_Presentation}: removes standalone emoji glyphs
+    # - \p{Emoji}\uFE0F: removes emojis followed by variation selector-16
+    # - \u200D: removes zero-width joiners used to combine emojis (e.g., family emojis)
+    # Then normalizes whitespace via squeeze(" ") and strip.
+    def strip_emojis(text)
+      text
+        .gsub(/\p{Emoji_Presentation}/, "")
+        .gsub(/\p{Emoji}\uFE0F/, "")
+        .delete("\u200D")
+        .squeeze(" ")
+        .strip
+    end
+
+    def strip_emojis_from_hash(hash)
+      hash.transform_values do |value|
+        value.is_a?(String) ? strip_emojis(value) : value
+      end
+    end
+
     private
 
     def shared_fields
@@ -133,26 +165,6 @@ module PdfFiller
         )
       end
       fields
-    end
-
-    # Sanitizes text by removing emoji sequences:
-    # - \p{Emoji_Presentation}: removes standalone emoji glyphs
-    # - \p{Emoji}\uFE0F: removes emojis followed by variation selector-16
-    # - \u200D: removes zero-width joiners used to combine emojis (e.g., family emojis)
-    # Then normalizes whitespace via squeeze(" ") and strip.
-    def strip_emojis(text)
-      text
-        .gsub(/\p{Emoji_Presentation}/, "")
-        .gsub(/\p{Emoji}\uFE0F/, "")
-        .delete("\u200D")
-        .squeeze(" ")
-        .strip
-    end
-
-    def strip_emojis_from_hash(hash)
-      hash.transform_values do |value|
-        value.is_a?(String) ? strip_emojis(value) : value
-      end
     end
 
     def submission_date
