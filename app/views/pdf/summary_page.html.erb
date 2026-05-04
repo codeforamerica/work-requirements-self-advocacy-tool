@@ -84,28 +84,6 @@
       </ul>
     <% end %>
 
-    <% combined_hours = work_hours + volunteering_hours + work_training_hours %>
-    <% if combined_hours >= 20 || weekly_earnings >= 217.50 %>
-      <p><%= full_name %> (DOB: <%= birth_date %>) is also reporting the following for <span class="section-header">SNAP ABAWD Work Requirements compliance:</span></p>
-      <ul>
-        <% if work_hours >= 20 %>
-          <li>Reporting <%= work_hours %> work hours per week <span class="list-item--note">- FNS 260.04(B)(3), 7 CFR 273.24(a)(1)(i)</span></li>
-        <% end %>
-        <% if weekly_earnings >= 217.50 %>
-          <li>Reporting <%= weekly_earnings %> in weekly gross income <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
-        <% end %>
-        <% if volunteering_hours >= 20 %>
-          <li>Participating in community service or volunteer work for <%= volunteering_hours %> per week <span class="list-item--note">- FNS 260.04(B)(3)(c), 7 CFR 273.24(a)(2)(iii)</span></li>
-        <% end %>
-        <% if work_training_hours >= 20 %>
-          <li>Participating in a job or work training program for <%= work_training_hours %> hours per week <span class="list-item--note">-FNS 260.04(C)</span></li>
-        <% end %>
-        <% if work_hours < 20 && volunteering_hours < 20 && work_training_hours < 20 && combined_hours >= 20 %>
-          <li>Participating in combined work, volunteering and/or training for <%= combined_hours %> hours per week <span class="list-item--note">- FNS 260.04(B)(3), 7 CFR 273.24(a)(2)(iv)</span></li>
-        <% end %>
-      </ul>
-    <% end %>
-
     <p>See the following page for details.</p>
   </div>
 </div>

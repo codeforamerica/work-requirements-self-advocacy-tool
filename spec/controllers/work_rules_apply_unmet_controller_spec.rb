@@ -10,25 +10,49 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
   end
 
   describe ".show?" do
-    subject(:result) { described_class.show?(screener) }
+    let(:screener) { create(:screener) }
 
-    context "when screener is not exempt" do
-      let(:screener) do
-        instance_double("Screener", exempt_from_work_rules?: false)
+    context "screener without exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(false)
       end
 
-      it "returns true" do
-        expect(result).to be true
+      context "does not comply with work rules" do
+        it "returns true" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(false)
+
+          expect(subject.class.show?(screener)).to eq true
+        end
+      end
+
+      context "complies with work rules" do
+        it "returns false" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(true)
+
+          expect(subject.class.show?(screener)).to eq false
+        end
       end
     end
 
-    context "when screener is exempt" do
-      let(:screener) do
-        instance_double("Screener", exempt_from_work_rules?: true)
+    context "screener with exemptions" do
+      before do
+        allow(screener).to receive(:exempt_from_work_rules?).and_return(true)
       end
 
-      it "returns false" do
-        expect(result).to be false
+      context "does not comply with work rules" do
+        it "returns false" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(false)
+
+          expect(subject.class.show?(screener)).to eq false
+        end
+      end
+
+      context "complies with work rules" do
+        it "returns false" do
+          allow(screener).to receive(:complies_with_work_rules?).and_return(true)
+
+          expect(subject.class.show?(screener)).to eq false
+        end
       end
     end
   end
