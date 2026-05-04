@@ -72,16 +72,17 @@ class MixpanelService
 
       if record
         record_data = {
-          record_type: record&.class.to_s,
-          record_id: record&.id
+          record_type: record.class.to_s,
+          record_id: record.id,
+          **record_specific_data(record)
         }
         event_data.merge!(record_data)
       end
 
       if controller
         controller_data = {
-          controller_name: controller&.class&.name&.sub("Controller", ""),
-          controller_action: "#{controller&.class&.name}##{controller&.action_name}",
+          controller_name: controller.class.name&.sub("Controller", ""),
+          controller_action: "#{controller.class.name}##{controller.action_name}",
           **controller.utms_and_referrer.compact
         }
         event_data.merge!(controller_data)
@@ -94,6 +95,17 @@ class MixpanelService
         event_name: event_name,
         data: event_data
       )
+    end
+
+    def record_specific_data(record)
+      case record.class.name
+      when Screener.name
+        {
+          screener_state: record.state,
+        }
+      else
+        {}
+      end
     end
   end
 end

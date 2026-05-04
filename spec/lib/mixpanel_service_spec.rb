@@ -138,7 +138,7 @@ describe MixpanelService do
 
         context "tracking information" do
           it "tracks the event with record, controller, and other information" do
-            screener = create(:screener)
+            screener = create(:screener, state: LocationData::States::NORTH_CAROLINA)
             controller_double = instance_double(HomepageController)
             allow(controller_double).to receive(:class).and_return HomepageController
             allow(controller_double).to receive(:action_name).and_return "index"
@@ -156,6 +156,7 @@ describe MixpanelService do
               {
                 record_type: "Screener",
                 record_id: screener.id,
+                screener_state: LocationData::States::NORTH_CAROLINA,
                 controller_name: "Homepage",
                 controller_action: "HomepageController#index",
                 locale: :en,
