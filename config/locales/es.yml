@@ -261,7 +261,7 @@ es:
           notice_text_html: |
             <p>Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.</p>
             <p>Para ser elegible, debe ser padre, madre o tutor legal del niño, o vivir en su hogar.</p>
-          title: "¿Tiene un programa de educación en casa para un niño o niños?"
+          title: "¿Tiene un programa de educación en casa para uno o más niños?"
     new_response:
       edit:
         check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
