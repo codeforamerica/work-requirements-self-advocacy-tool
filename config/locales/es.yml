@@ -161,7 +161,7 @@ es:
       edit:
         email: Correo electrónico
         email_confirmation: Confirme su correo electrónico
-        title: ¿A dónde podemos enviarle sus resultados?
+        title: "¿A dónde podemos enviarle sus resultados?"
         title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su oficina de SNAP, por correo electrónico.
     employment:
       edit:
