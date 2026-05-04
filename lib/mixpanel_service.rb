@@ -101,7 +101,7 @@ class MixpanelService
       case record.class.name
       when Screener.name
         {
-          screener_state: record.state,
+          screener_state: record.state
         }
       else
         {}
