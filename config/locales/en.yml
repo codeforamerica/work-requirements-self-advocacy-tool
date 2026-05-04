@@ -37,6 +37,7 @@ en:
     must_answer_yes_or_no: Must answer yes or no
     number_invalid: Enter a number
     phone_invalid: Make sure the phone number is valid and includes 10 digits
+    signature_required: Your signature is required to continue
   views:
     alcohol_treatment_program:
       edit:
@@ -146,7 +147,7 @@ en:
         have_questions_html: "<strong>Have questions about how to submit your form?</strong> Call your agency."
         how_to: 'How to submit your form to your SNAP agency:'
         how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
-        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
+        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
         next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
         next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
@@ -218,7 +219,7 @@ en:
         title: Check if the SNAP work rules apply to you
         title_help_text_html: |
           <p> We'll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
-          <p class="spacing-below-0"><strong>It takes most people 10 minutes or less to complete this form.</strong></p>
+          <p class="spacing-below-0"><strong>It usually takes about 10 minutes to complete this form.</strong></p>
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
           <p>Work activities include:</p>
@@ -341,6 +342,7 @@ en:
       description: This Privacy Policy describes how we collect, use, and protect your personal information. By using our Services, you agree to the terms in this Privacy Policy. This Privacy Notice applies regardless of the type of device you use to access our services. If you do not agree with these terms, please do not continue to use the Site.
       effective_date_text: This version of the policy is effective April 10, 2026.
       effective_date_title: Effective Date
+      help_text: How we use, share, and protect your information.
       how_we_collect_intro: 'We collect your information from various sources, such as when you:'
       how_we_collect_items:
       - Visit our Site, fill out forms on our Site, or use our Services
@@ -369,6 +371,7 @@ en:
       no_email: We will not send you an email unless you provide your email on the Site or you email us first.
       no_sell: 'We do not sell your personal information. We do not share your personal information with any third party, except as provided in this Privacy Policy. We may use or disclose your information in the following instances:'
       no_text_html: We will not send you a text message unless you consent to text message communication in the application or you text us first. <strong>You can reply 'STOP' to any text message to unsubscribe.</strong>
+      on_this_page: On this page
       protect_disclaimer: Although we try our best to protect the privacy of your personal information, we cannot guarantee complete security. The transmission of information via the Internet is not completely secure. Unauthorized entry or use, hardware or software failure, and other factors, may compromise the security of user information at any time.
       protect_intro: 'Protecting your personal information is extremely important to us and we take all reasonable measures to do so. Here are some specific security practices we use:'
       protect_items:
@@ -490,6 +493,7 @@ en:
         questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
+        unsubscribe: Unsubscribe
     signature:
       edit:
         exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
@@ -543,6 +547,12 @@ en:
     unemployment:
       edit:
         title: Do you get, or are you applying for unemployment benefits?
+    wages_hours_milestone:
+      edit:
+        help_text_html: We will also ask about any volunteering or job training you do. Your information stays private, safe, and secure.
+        notice_content: We ask these questions to check if you qualify for an exemption based on how much you work. We also check to see if you are meeting the work requirements, in case you don't have an exemption.
+        notice_title: Why are we asking this?
+        title: We need to ask a few questions about your income and working hours.
     work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
@@ -556,7 +566,7 @@ en:
         proof_of_working: Proof of working
         proof_of_working_html: |
           <p>Send in <b>one</b> of these verifications:</p>
-          <ul>
+          <ul class='list--bulleted'>
             <li>Paystubs from the last month, OR</li>
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
             <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don't have a paystub, for example, if you were paid in cash)</li>

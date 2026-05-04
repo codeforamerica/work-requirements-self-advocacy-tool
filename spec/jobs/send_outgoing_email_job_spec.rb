@@ -7,6 +7,7 @@ RSpec.describe SendOutgoingEmailJob, type: :job do
       create(:outgoing_email,
         screener: create(
           :screener,
+          :with_exemption,
           state: "NC",
           email: email_address,
           nc_screener: create(:nc_screener)

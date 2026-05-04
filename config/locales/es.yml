@@ -37,6 +37,7 @@ es:
     must_answer_yes_or_no: Debe responder sí o no
     number_invalid: Ingrese un número
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
+    signature_required: Se requiere su firma para continuar
   views:
     alcohol_treatment_program:
       edit:
@@ -128,7 +129,7 @@ es:
         receiving_benefits_ssdi: Seguro Social (SSDI)
         receiving_benefits_ssi: Ingreso Suplementario del Seguro Social (SSI)
         receiving_benefits_veterans_disability: Beneficios de discapacidad para veteranos
-        receiving_benefits_workers_compensation: Pensión por discapacidad
+        receiving_benefits_workers_compensation: Compensación para trabajadores
         receiving_benefits_write_in: Si el beneficio que recibe no está en la lista, escríbalo aquí.
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     download_form:
@@ -142,7 +143,7 @@ es:
         email_pdf: Agreagar un correo electrónico
         expectation_1: Su oficina de SNAP puede llamarlo o enviarle un aviso por correo si necesita más información.
         expectation_2: En algunos casos, es posible que tenga que enviar a su oficina más documentos (o documentos diferentes) que demuestren su situación, como, por ejemplo, comprobantes de pago o prueba de una condición médica.
-        expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas [X] semanas.
+        expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas 4 semanas.
         have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
         how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
         how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
@@ -218,7 +219,7 @@ es:
         title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
         title_help_text_html: |
           <p>Le ayudaremos a preparar un documento con su información para enviarlo a su agencia de SNAP y determinar si debe cumplir con <strong>las reglas de trabajo de SNAP.</strong></p>
-          <p><strong>Debería tomar alrededor de 20 minutos completar esta solicitud.</strong></p>
+          <p><strong>Debería tomar alrededor de 10 minutos completar esta solicitud.</strong></p>
         work_rules_description_html: |
           <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
           <p>Para SNAP, "actividades laborales" incluyen:</p>
@@ -341,6 +342,7 @@ es:
       description: This Privacy Policy describes how we collect, use, and protect your personal information. By using our Services, you agree to the terms in this Privacy Policy. This Privacy Notice applies regardless of the type of device you use to access our services. If you do not agree with these terms, please do not continue to use the Site.
       effective_date_text: This version of the policy is effective April 10, 2026.
       effective_date_title: Effective Date
+      help_text: Cómo utilizamos, compartimos y protegemos su información.
       how_we_collect_intro: 'We collect your information from various sources, such as when you:'
       how_we_collect_items:
       - Visit our Site, fill out forms on our Site, or use our Services
@@ -369,6 +371,7 @@ es:
       no_email: We will not send you an email unless you provide your email on the Site or you email us first.
       no_sell: 'We do not sell your personal information. We do not share your personal information with any third party, except as provided in this Privacy Policy. We may use or disclose your information in the following instances:'
       no_text_html: We will not send you a text message unless you consent to text message communication in the application or you text us first. <strong>You can reply 'STOP' to any text message to unsubscribe.</strong>
+      on_this_page: En esta página
       protect_disclaimer: Although we try our best to protect the privacy of your personal information, we cannot guarantee complete security. The transmission of information via the Internet is not completely secure. Unauthorized entry or use, hardware or software failure, and other factors, may compromise the security of user information at any time.
       protect_intro: 'Protecting your personal information is extremely important to us and we take all reasonable measures to do so. Here are some specific security practices we use:'
       protect_items:
@@ -490,6 +493,7 @@ es:
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
+        unsubscribe: Cancelar suscripción
     signature:
       edit:
         exemption_55_no_diploma: Tener al menos 55 años, no haber obtenido un diploma de secundaria, tener poca experiencia laboral reciente y una condición médica
@@ -542,6 +546,12 @@ es:
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    wages_hours_milestone:
+      edit:
+        help_text_html: También le preguntaremos si hace voluntariado, servicio comunitario o si participa en un programa de empleo o capacitación. Su información se mantiene privada, segura y protegida.
+        notice_content: Las siguientes preguntas nos ayudan a entender cuánto trabaja y ver si puede tener una exención. Si no la tiene, también revisamos si cumple con las reglas de trabajo.
+        notice_title: "¿Por qué preguntamos esto?"
+        title: Necesitamos hacerle algunas preguntas sobre sus ingresos y sus horas de trabajo.
     work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
@@ -555,7 +565,7 @@ es:
         proof_of_working: Comprobantes de trabajo
         proof_of_working_html: |
           <p>Envíe uno de los siguientes comprobantes:</p>
-          <ul>
+          <ul class='list--bulleted'>
             <li>Talones de pago del último mes, o</li>
             <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
             <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>

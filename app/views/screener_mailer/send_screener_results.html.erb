@@ -117,3 +117,9 @@
 </ol>
 
 <p><%= t('general.gbh_team') %></p>
+
+<% if ENV["SES_CONTACT_LIST"] %>
+  <p style="font-size: 12px; color: #666666; margin-top: 20px;">
+    <a href="{{amazonSESUnsubscribeUrl}}"><%= t('views.screener_mailer.send_screener_results.unsubscribe') %></a>
+  </p>
+<% end %>

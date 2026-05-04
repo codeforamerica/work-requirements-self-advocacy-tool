@@ -9,4 +9,14 @@ FactoryBot.define do
     county { "Durham County" }
     nc_screener { create(:nc_screener) }
   end
+
+  trait :with_exemption do
+    is_american_indian { "yes" }
+    preventing_work_medical_condition { "yes" }
+  end
+
+  trait :with_earnings_exemption do
+    is_working { "yes" }
+    working_hours { 35 }
+  end
 end

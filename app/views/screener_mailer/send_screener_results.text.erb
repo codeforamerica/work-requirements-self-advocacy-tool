@@ -67,3 +67,7 @@
 <% end %>
 
 <%= t('general.gbh_team') %>
+<% if ENV["SES_CONTACT_LIST"] %>
+
+<%= t('views.screener_mailer.send_screener_results.unsubscribe') %>: {{amazonSESUnsubscribeUrl}}
+<% end %>

@@ -1,0 +1,14 @@
+<% content_for :question_title, t("views.wages_hours_milestone.edit.title") %>
+
+<%= image_tag "work.svg", class: "illustration left-justified" %>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<p><%= t("views.wages_hours_milestone.edit.help_text_html") %></p>
+<div class="reveal spacing-below-60">
+  <button class="reveal__button" aria-expanded="true" data-track-click="reveal_clicked" data-track-reveal="why-are-we-asking" data-track-controller_name="WagesHoursMilestone">
+    <i class="icon-help" style="padding-right: 1rem;"></i><strong><%= t("views.wages_hours_milestone.edit.notice_title") %></strong>
+  </button>
+  <div class="reveal__content">
+    <%= t("views.wages_hours_milestone.edit.notice_content") %>
+  </div>
+</div>
+<%= render "shared/continue_button" %>
