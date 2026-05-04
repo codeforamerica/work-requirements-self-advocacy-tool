@@ -159,10 +159,10 @@ es:
         what_to_expect: Lo que puede pasar
     email:
       edit:
-        email: Email
-        email_confirmation: Correo electrónico
-        title: Confirme su correo electrónico
-        title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
+        email: Correo electrónico
+        email_confirmation: Confirme su correo electrónico
+        title: ¿A dónde podemos enviarle sus resultados?
+        title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su oficina de SNAP, por correo electrónico.
     employment:
       edit:
         notice_content:
