@@ -3,20 +3,40 @@ require "csv"
 
 RSpec.describe LocationData do
   describe LocationData::States do
-    describe ".options" do
-      it "returns state options including translated not listed" do
-        allow(I18n).to receive(:t).with("views.location.edit.not_listed").and_return("Not listed")
+    [:display_name, :pdf_filler_class].each do |getter_method|
+      describe ".#{getter_method}" do
+        described_class.active_states.keys.each do |state_code|
+          it "defines the method for #{state_code}" do
+            expect(described_class.send(getter_method, state_code)).not_to be_nil
+          end
 
-        options = described_class.options
-
-        expect(options).to include(["North Carolina", "NC"])
-        expect(options).to include(["Not listed", "NOT_LISTED"])
+          it "throws an error for an invalid state code" do
+            expect do
+              described_class.send(getter_method, "boop")
+            end.to raise_error(StandardError, "Invalid state code: boop")
+          end
+        end
       end
     end
 
-    describe "VALID_VALUES" do
-      it "includes all valid state values" do
-        expect(described_class::VALID_VALUES).to contain_exactly("NC", "NOT_LISTED")
+    describe ".active_states" do
+      it "returns only states whose ENV var is set" do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with("NC").and_return("true")
+        allow(ENV).to receive(:[]).with("DE").and_return(nil)
+
+        expect(described_class.active_states.keys).to contain_exactly("NC")
+      end
+    end
+
+    describe ".dropdown_options" do
+      it "returns state options including translated not listed" do
+        allow(I18n).to receive(:t).with("views.location.edit.not_listed").and_return("Not listed")
+
+        options = described_class.dropdown_options
+
+        expect(options).to include(["North Carolina", "NC"])
+        expect(options).to include(["Not listed", "NOT_LISTED"])
       end
     end
   end

@@ -1,5 +1,5 @@
 module PdfFiller
-  class NCPacketPdf < PacketPdf
+  class NcPacketPdf < PacketPdf
     def initialize(screener)
       @nc_screener = screener.nc_screener
       super

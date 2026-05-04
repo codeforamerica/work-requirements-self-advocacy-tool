@@ -8,28 +8,36 @@ module LocationData
     STATES_INFO = {
       NORTH_CAROLINA => {
         display_name: "North Carolina",
-        pdf_filler_class: PdfFiller::NCPacketPdf,
-        active: !!ENV[NORTH_CAROLINA]
+        pdf_filler_class: PdfFiller::NcPacketPdf,
+        active: -> { !!ENV[NORTH_CAROLINA] }
       },
       DELAWARE => {
         display_name: "Delaware",
-        active: !!ENV[DELAWARE]
+        active: -> { !!ENV[DELAWARE] }
       }
     }
 
+    class << self
+      [:display_name, :pdf_filler_class].each do |attribute|
+        define_method(attribute) do |state_code|
+          unless STATES_INFO.key?(state_code)
+            raise StandardError, "Invalid state code: #{state_code}"
+          end
+
+          STATES_INFO[state_code][attribute]
+        end
+      end
+    end
+
     def self.active_states
-      STATES_INFO.select { |_, info| info[:active] }
+      STATES_INFO.select { |_, info| info[:active].call }
     end
 
     def self.dropdown_options
-      states_and_labels = active_states.map do |state_abbrev, info|
-        [info[:display_name], state_abbrev]
+      states_and_labels = active_states.map do |state_code, info|
+        [info[:display_name], state_code]
       end
       states_and_labels << [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
-    end
-
-    def self.name_for(code)
-      options.find { |name, value| value == code }&.first
     end
   end
 
