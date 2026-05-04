@@ -270,7 +270,7 @@ class Screener < ApplicationRecord
   end
 
   def pdf
-    LocationData::States::STATES_INFO[state][:pdf_filler_class].new(self).combined_pdf
+    LocationData::States.pdf_filler_class(state).new(self).combined_pdf
   end
 
   def full_name

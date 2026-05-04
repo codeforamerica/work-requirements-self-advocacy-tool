@@ -13,6 +13,7 @@ module LocationData
       },
       DELAWARE => {
         display_name: "Delaware",
+        pdf_filler_class: PdfFiller::PacketPdf,
         active: -> { !!ENV[DELAWARE] }
       }
     }
