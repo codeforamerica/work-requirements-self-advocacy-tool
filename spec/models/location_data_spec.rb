@@ -20,11 +20,14 @@ RSpec.describe LocationData do
     end
 
     describe ".active_states" do
-      it "returns only states whose ENV var is set" do
-        allow(ENV).to receive(:[]).and_call_original
-        allow(ENV).to receive(:[]).with("NC").and_return("true")
-        allow(ENV).to receive(:[]).with("DE").and_return(nil)
+      before do
+        stub_const("LocationData::States::STATES_INFO", {
+          "NC" => { display_name: "North Carolina", active: true },
+          "DE" => { display_name: "Delaware", active: false }
+        })
+      end
 
+      it "returns only states whose active flag is set" do
         expect(described_class.active_states.keys).to contain_exactly("NC")
       end
     end
