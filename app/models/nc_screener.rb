@@ -16,7 +16,10 @@ class NcScreener < ApplicationRecord
   def age_work_education_health_exemption?
     return false unless screener.age
 
-    screener.age.between?(55, 64) && worked_last_five_years_no? && has_hs_diploma_no? && screener.preventing_work_medical_condition_yes?
+    screener.age.between?(55, 64) &&
+      has_hs_diploma_no? &&
+      ((worked_last_five_years_yes? && earned_more_than_threshold_no?) || worked_last_five_years_no?) &&
+      (health_conditions_preventing_work_yes? || screener.preventing_work_medical_condition_yes?)
   end
 
   def operating_homeschool_30_or_more_hours?

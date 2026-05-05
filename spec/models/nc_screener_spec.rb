@@ -141,6 +141,24 @@ RSpec.describe NcScreener, type: :model do
       create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
       expect(nc_screener.exempt_from_work_rules?).to be false
     end
+
+    it "returns true when age >= 55 && age <= 64 && worked_last_five_years_no? && has_hs_diploma_no? && earned_more_than_threshold_no? && health_conditions_preventing_work_yes? && preventing_work_medical_condition_no?" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be true
+    end
+
+    it "returns true when age >= 55 && age <= 64 && worked_last_five_years_yes? && has_hs_diploma_no? && earned_more_than_threshold_no? && health_conditions_preventing_work_yes? && preventing_work_medical_condition_no?" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "yes", has_hs_diploma: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be true
+    end
+
+    it "returns false when health_conditions_preventing_work is no" do
+      nc_screener = build(:nc_screener, worked_last_five_years: "no", has_hs_diploma: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "no")
+      create(:screener, state: "NC", birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "no", nc_screener: nc_screener)
+      expect(nc_screener.exempt_from_work_rules?).to be false
+    end
   end
 
   describe "#exempt_from_work_rules?" do
