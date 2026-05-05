@@ -5,7 +5,9 @@ module Nc
     def self.attributes_edited
       [
         :has_hs_diploma,
-        :worked_last_five_years
+        :worked_last_five_years,
+        :earned_more_than_threshold,
+        :health_conditions_preventing_work
       ]
     end
 

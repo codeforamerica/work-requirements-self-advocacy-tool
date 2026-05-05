@@ -26,12 +26,31 @@ RSpec.describe NcScreener, type: :model do
   end
 
   describe "before_save" do
-    it "clears worked_last_five_years if has_hs_diploma is yes" do
-      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes")
+    it "clears worked_last_five_years, earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is yes" do
+      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
 
       nc_screener.update(has_hs_diploma: "yes")
 
       expect(nc_screener.reload.worked_last_five_years).to eq "unfilled"
+      expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
+      expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
+    end
+
+    it "clears earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is no" do
+      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
+
+      nc_screener.update(worked_last_five_years: "no")
+
+      expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
+      expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
+    end
+
+    it "clears health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is yes and earned_more_than_threshold is yes" do
+      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+
+      nc_screener.update(earned_more_than_threshold: "yes")
+
+      expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
     end
 
     it "preserves worked_last_five_years if has_hs_diploma is no" do
