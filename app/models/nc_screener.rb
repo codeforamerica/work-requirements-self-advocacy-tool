@@ -8,6 +8,7 @@ class NcScreener < ApplicationRecord
 
   with_context :homeschool do
     validates :homeschool_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :homeschool_name, length: {maximum:  Nc::HomeschoolController::CHARACTER_LIMIT}
   end
 
   before_save :remove_work_edu_history_attributes,

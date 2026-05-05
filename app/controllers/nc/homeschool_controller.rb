@@ -1,6 +1,7 @@
 module Nc
   class HomeschoolController < QuestionController
     include WrExemptionsConcern
+    CHARACTER_LIMIT = 40
 
     def self.attributes_edited
       [
