@@ -10,7 +10,7 @@
     <div class="question-with-follow-up__question">
       <%= f.cfa_radio_set(:has_hs_diploma, collection: [
         { value: :yes, label: t("general.affirmative") },
-        { value: :no, label: t("general.negative"), input_html: { "data-follow-up": "#worked-last-five-years" }},
+        { value: :no, label: t("general.negative"), input_html: { "data-follow-up": "#worked-last-five-years" } },
       ]) %>
     </div>
 
@@ -30,7 +30,31 @@
         </div>
       </div>
 
-      <%= f.cfa_radio_set(:worked_last_five_years, collection: [
+      <div class="question-with-follow-up__question">
+        <%= f.cfa_radio_set(:worked_last_five_years, collection: [
+          { value: :yes, label: t("general.affirmative"), input_html: { "data-follow-up": "#earned-more-than-threshold" } },
+          { value: :no, label: t("general.negative") },
+        ]) %>
+      </div>
+    </div>
+
+    <div class="question-with-follow-up__follow-up" id="earned-more-than-threshold">
+      <hr/>
+
+      <h2 class="h3"><%= t("views.nc.edu_work_history.edit.earned_more_than_threshold_label") %></h2>
+      <div class="question-with-follow-up__question">
+        <%= f.cfa_radio_set(:earned_more_than_threshold, collection: [
+          { value: :yes, label: t("general.affirmative") },
+          { value: :no, label: t("general.negative"), input_html: { "data-follow-up": "#health-conditions-preventing-work" } },
+        ]) %>
+      </div>
+    </div>
+
+    <div class="question-with-follow-up__follow-up" id="health-conditions-preventing-work">
+      <hr/>
+
+      <h2 class="h3"><%= t("views.nc.edu_work_history.edit.health_conditions_preventing_work_label") %></h2>
+      <%= f.cfa_radio_set(:health_conditions_preventing_work, collection: [
         { value: :yes, label: t("general.affirmative") },
         { value: :no, label: t("general.negative") },
       ]) %>

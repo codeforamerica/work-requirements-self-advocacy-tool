@@ -249,6 +249,8 @@ en:
     nc:
       edu_work_history:
         edit:
+          earned_more_than_threshold_label: In the last five years, did you ever earn more than $1,690 per month?
+          health_conditions_preventing_work_label: Do you have any mental or physical health conditions that make it hard to work?
           notice_text: Select "No" if your only work has been occasional odd jobs.
           title: Do you have a high school diploma or equivalent degree (for example, a GED)?
           worked_last_five_years_label: Have you worked for pay in the last five years?
