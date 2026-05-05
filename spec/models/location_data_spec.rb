@@ -22,8 +22,8 @@ RSpec.describe LocationData do
     describe ".active_states" do
       before do
         stub_const("LocationData::States::STATES_INFO", {
-          "NC" => { display_name: "North Carolina", active: true },
-          "DE" => { display_name: "Delaware", active: false }
+          "NC" => {display_name: "North Carolina", active: true},
+          "DE" => {display_name: "Delaware", active: false}
         })
       end
 
