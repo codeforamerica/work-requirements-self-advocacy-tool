@@ -52,6 +52,10 @@ class Screener < ApplicationRecord
     :remove_additional_care_info_if_caring_for_someone_is_no,
     :remove_county_if_state_does_not_require
 
+  with_context :alcohol_treatment_program do
+    validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT,}
+  end
+
   with_context :american_indian do
     validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
