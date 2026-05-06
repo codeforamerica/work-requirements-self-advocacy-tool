@@ -26,59 +26,63 @@ RSpec.describe NcScreener, type: :model do
   end
 
   describe "before_save" do
-    it "clears worked_last_five_years, earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is yes" do
-      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
+    context "work/education history attributes" do
+      it "clears worked_last_five_years, earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is yes" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
 
-      nc_screener.update(has_hs_diploma: "yes")
+        nc_screener.update(has_hs_diploma: "yes")
 
-      expect(nc_screener.reload.worked_last_five_years).to eq "unfilled"
-      expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
-      expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
+        expect(nc_screener.reload.worked_last_five_years).to eq "unfilled"
+        expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
+        expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
+      end
+
+      it "clears earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is no" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
+
+        nc_screener.update(worked_last_five_years: "no")
+
+        expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
+        expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
+      end
+
+      it "clears health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is yes and earned_more_than_threshold is yes" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+
+        nc_screener.update(earned_more_than_threshold: "yes")
+
+        expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
+      end
+
+      it "preserves worked_last_five_years if has_hs_diploma is no" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes")
+
+        nc_screener.update(has_hs_diploma: "no")
+
+        expect(nc_screener.reload.worked_last_five_years).to eq "yes"
+      end
     end
 
-    it "clears earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is no" do
-      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
+    context "homeschool attributes" do
+      it "clears homeschool_name and homeschool_hours if teaches_homeschool is no" do
+        screener = create(:screener, state: "NC")
+        nc_screener = create(:nc_screener, screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
 
-      nc_screener.update(worked_last_five_years: "no")
+        nc_screener.update(teaches_homeschool: "no")
 
-      expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
-      expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
-    end
+        expect(nc_screener.reload.homeschool_name).to be_nil
+        expect(nc_screener.reload.homeschool_hours).to be_nil
+      end
 
-    it "clears health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is yes and earned_more_than_threshold is yes" do
-      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+      it "preserves homeschool attributes if teaches_homeschool is yes" do
+        screener = create(:screener, state: "NC")
+        nc_screener = create(:nc_screener, screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
 
-      nc_screener.update(earned_more_than_threshold: "yes")
+        nc_screener.update(teaches_homeschool: "yes")
 
-      expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
-    end
-
-    it "preserves worked_last_five_years if has_hs_diploma is no" do
-      nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes")
-
-      nc_screener.update(has_hs_diploma: "no")
-
-      expect(nc_screener.reload.worked_last_five_years).to eq "yes"
-    end
-
-    it "clears homeschool_name and homeschool_hours if teaches_homeschool is no" do
-      screener = create(:screener, state: "NC")
-      nc_screener = create(:nc_screener, screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
-
-      nc_screener.update(teaches_homeschool: "no")
-
-      expect(nc_screener.reload.homeschool_name).to be_nil
-      expect(nc_screener.reload.homeschool_hours).to be_nil
-    end
-
-    it "preserves homeschool attributes if teaches_homeschool is yes" do
-      screener = create(:screener, state: "NC")
-      nc_screener = create(:nc_screener, screener: screener, teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: 25)
-
-      nc_screener.update(teaches_homeschool: "yes")
-
-      expect(nc_screener.reload.homeschool_name).to eq "Tough Nuts Academy"
-      expect(nc_screener.reload.homeschool_hours).to eq 25
+        expect(nc_screener.reload.homeschool_name).to eq "Tough Nuts Academy"
+        expect(nc_screener.reload.homeschool_hours).to eq 25
+      end
     end
   end
 
