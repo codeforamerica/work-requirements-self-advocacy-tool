@@ -20,15 +20,18 @@ RSpec.describe LocationData do
     end
 
     describe ".active_states" do
-      before do
-        stub_const("LocationData::States::STATES_INFO", {
-          "NC" => {display_name: "North Carolina", active: true},
-          "DE" => {display_name: "Delaware", active: false}
-        })
+      it "returns only states whose code is listed in ACTIVE_STATES" do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with("ACTIVE_STATES").and_return("NC")
+
+        expect(described_class.active_states.keys).to contain_exactly("NC")
       end
 
-      it "returns only states whose active flag is set" do
-        expect(described_class.active_states.keys).to contain_exactly("NC")
+      it "returns an empty hash when ACTIVE_STATES is unset" do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with("ACTIVE_STATES").and_return(nil)
+
+        expect(described_class.active_states).to eq({})
       end
     end
 

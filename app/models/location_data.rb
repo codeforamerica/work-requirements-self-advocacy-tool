@@ -8,13 +8,11 @@ module LocationData
     STATES_INFO = {
       NORTH_CAROLINA => {
         display_name: "North Carolina",
-        pdf_filler_class: PdfFiller::NcPacketPdf,
-        active: !!ENV[NORTH_CAROLINA]
+        pdf_filler_class: PdfFiller::NcPacketPdf
       },
       DELAWARE => {
         display_name: "Delaware",
-        pdf_filler_class: PdfFiller::PacketPdf,
-        active: !!ENV[DELAWARE]
+        pdf_filler_class: PdfFiller::PacketPdf
       }
     }
 
@@ -31,7 +29,8 @@ module LocationData
     end
 
     def self.active_states
-      STATES_INFO.select { |_, info| info[:active] }
+      active_codes = (ENV["ACTIVE_STATES"] || "").split(",")
+      STATES_INFO.slice(*active_codes)
     end
 
     def self.dropdown_options
