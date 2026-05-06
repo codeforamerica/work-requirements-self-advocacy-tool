@@ -250,7 +250,7 @@ es:
       edu_work_history:
         edit:
           earned_more_than_threshold_label: En los últimos cinco años, ¿alguna vez ganó más de $1,690 en un mes?
-          health_conditions_preventing_work_label: Do you have any mental or physical health conditions that make it hard to work?
+          health_conditions_preventing_work_label: "¿Tiene alguna condición física o de salud mental que le dificulte trabajar?"
           notice_text: Seleccione "No" si su único trabajo ha sido hacer trabajos ocasionales.
           title: "¿Obtuvo un diploma de secundaria o un equivalente, como un GED?"
           worked_last_five_years_label: "¿Ha trabajado por pago en los últimos cinco años?"
