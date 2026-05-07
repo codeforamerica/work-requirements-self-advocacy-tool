@@ -75,4 +75,8 @@ RSpec.describe EmploymentController, type: :controller do
     expect(response).to render_template(:edit)
     expect(response.body).to include('value="abc"')
   end
+
+  describe ".show?" do
+    it_behaves_like "show? without age exemption only"
+  end
 end

@@ -23,4 +23,8 @@ RSpec.describe AlcoholTreatmentProgramController, type: :controller do
       expect(screener.alcohol_treatment_program_name).to eq "Prog Ram"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? without age exemption only"
+  end
 end

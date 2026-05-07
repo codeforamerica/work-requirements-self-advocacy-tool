@@ -21,4 +21,8 @@ RSpec.describe MigrantFarmworkerController, type: :controller do
       expect(screener.is_migrant_farmworker).to eq "no"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? without age exemption only"
+  end
 end

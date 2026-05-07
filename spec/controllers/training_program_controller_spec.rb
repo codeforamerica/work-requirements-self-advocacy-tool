@@ -46,4 +46,8 @@ RSpec.describe TrainingProgramController, type: :controller do
       expect(response.body).to have_text(I18n.t("validations.number_invalid"))
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? without age exemption only"
+  end
 end

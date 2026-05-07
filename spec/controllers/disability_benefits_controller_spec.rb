@@ -39,4 +39,8 @@ RSpec.describe DisabilityBenefitsController, type: :controller do
       expect(screener.receiving_benefits_write_in).to eq "boop"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? without age exemption only"
+  end
 end

@@ -33,4 +33,8 @@ RSpec.describe PreventingWorkSituationsController, type: :controller do
       expect(screener.preventing_work_write_in).to eq "boop"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "show? without age exemption only"
+  end
 end
