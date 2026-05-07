@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :screener do
     state { "NC" }
     county { "Durham County" }
+    birth_date { 30.years.ago.to_date }
   end
 
   trait :with_nc_screener do
