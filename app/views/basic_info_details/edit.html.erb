@@ -3,10 +3,11 @@
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <%= f.cfa_input_field(:first_name, t("views.basic_info_details.edit.first_name_label"), help_text: t("views.basic_info_details.edit.first_name_label_help_text")) %>
-  <%= f.cfa_input_field(:middle_name, t("views.basic_info_details.edit.middle_name_label"), help_text: t("views.basic_info_details.edit.middle_name_label_help_text")) %>
-  <%= f.cfa_input_field(:last_name, t("views.basic_info_details.edit.last_name_label"), help_text: t("views.basic_info_details.edit.last_name_label_help_text")) %>
-  <%= f.cfa_date_select(
+<%= f.cfa_input_field(:first_name, t("views.basic_info_details.edit.first_name_label"), help_text: t("views.basic_info_details.edit.first_name_label_help_text")) %>
+<%= f.cfa_input_field(:middle_name, t("views.basic_info_details.edit.middle_name_label"), help_text: t("views.basic_info_details.edit.middle_name_label_help_text")) %>
+<%= f.cfa_input_field(:last_name, t("views.basic_info_details.edit.last_name_label"), help_text: t("views.basic_info_details.edit.last_name_label_help_text")) %>
+
+<%= f.cfa_date_select(
         :birth_date,
         t("views.basic_info_details.edit.birth_date_label"),
         help_text: "mm/dd/yyyy",
@@ -16,7 +17,7 @@
         }
       ) %>
 
-  <%= f.cfa_input_field(
+<%= f.cfa_input_field(
         :phone_number,
         t("views.basic_info_details.edit.phone_number_label"),
         help_text: t("views.basic_info_details.edit.phone_number_label_help_text"),
@@ -26,53 +27,71 @@
       )
   %>
 
+<div id="consent-to-texts" style="display: none;">
   <%= f.cfa_radio_set(
-        :consented_to_texts,
-        label_text: t("views.basic_info_details.edit.consented_to_texts.label"),
-        help_text: t("views.basic_info_details.edit.consented_to_texts.help_text"),
-        collection: [
-          { value: :yes, label: t("views.basic_info_details.edit.consented_to_texts.affirmative") },
-          { value: :no, label: t("views.basic_info_details.edit.consented_to_texts.negative") },
-        ]
-      ) %>
+          :consented_to_texts,
+          label_text: t("views.basic_info_details.edit.consented_to_texts.label"),
+          help_text: t("views.basic_info_details.edit.consented_to_texts.help_text"),
+          collection: [
+            { value: :yes, label: t("views.basic_info_details.edit.consented_to_texts.affirmative") },
+            { value: :no, label: t("views.basic_info_details.edit.consented_to_texts.negative") },
+          ]
+        ) %>
 
   <p class="spacing-below-60">
     <%= t("views.basic_info_details.edit.consent_to_texts.additional_info") %>
   </p>
+</div>
 
-  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 
 <script>
   document.addEventListener("turbo:load", function () {
     const phoneInput = document.querySelector("input[name*='phone_number']");
-    if (!phoneInput) return;
+    const consentSection = document.getElementById("consent-to-texts");
+
+    if (!phoneInput) {
+      return;
+    }
+
+    function toggleConsent(value) {
+      if (!consentSection) {
+        return;
+      }
+      const digits = value.replace(/\D/g, "");
+      consentSection.style.display = digits.length === 10 ? "block" : "none";
+    }
 
     phoneInput.addEventListener("input", function (e) {
       let cursorPos = e.target.selectionStart;
       let originalLength = e.target.value.length;
 
-      // Only digits (ignore existing formatting)
       let digits = e.target.value.replace(/\D/g, "").slice(0, 10);
-
-      // Format as (XXX) XXX-XXXX
       let formatted = "";
       if (digits.length > 6) {
-        formatted = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+        formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
       } else if (digits.length > 3) {
-        formatted = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+        formatted = `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
       } else if (digits.length > 0) {
         formatted = `(${digits}`;
       }
 
       e.target.value = formatted;
 
-      // Adjust cursor to the nearest valid position
+      toggleConsent(formatted);
+
       let newLength = formatted.length;
       cursorPos += newLength - originalLength;
-      if (cursorPos < 0) cursorPos = 0;
-      if (cursorPos > newLength) cursorPos = newLength;
+      if (cursorPos < 0) {
+        cursorPos = 0;
+      }
+      if (cursorPos > newLength) {
+        cursorPos = newLength;
+      }
       e.target.setSelectionRange(cursorPos, cursorPos);
     });
+
+    toggleConsent(phoneInput.value);
   });
 </script>
