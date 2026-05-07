@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resource :privacy_policy, only: [:show], controller: "privacy_policy"
     get "clear_flashes" => "application#clear_flashes"
     get "sign_out_and_redirect" => "application#sign_out_and_redirect"
+    get "/robots.txt", to: "robots#show", format: :text
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
 end
