@@ -159,6 +159,7 @@ class Screener < ApplicationRecord
           preventing_work_other_yes?
       }
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
+    validates :preventing_work_write_in, length: { maximum: PreventingWorkSituationsController::CHARACTER_LIMIT }
   end
 
   with_context :school_enrollment do

@@ -235,6 +235,22 @@ RSpec.describe Screener, type: :model do
         )
         expect(screener.valid?(:preventing_work_situations)).to eq true
       end
+
+
+      it "must not have value longer than AlcoholTreatmentProgramController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener,
+                         preventing_work_write_in: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:preventing_work_situations)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = PreventingWorkSituationsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(preventing_work_write_in: text)
+
+        screener.valid?(:preventing_work_situations)
+        expect(screener.errors[:preventing_work_write_in]).to be_present
+      end
     end
 
     context "with_context :basic_info_email" do
