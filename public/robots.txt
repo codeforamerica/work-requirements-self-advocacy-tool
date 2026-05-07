@@ -1,2 +1,4 @@
-User-agent: *
+User-Agent: *
 Disallow: /
+Allow: /sitemap.xml
+Sitemap: https://getbenefitshelp.org/sitemap.xml
