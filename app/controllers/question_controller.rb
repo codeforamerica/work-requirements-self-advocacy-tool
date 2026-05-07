@@ -8,4 +8,9 @@ class QuestionController < ApplicationController
   def show_progress_bar
     true
   end
+
+  def self.show?(screener)
+    return false unless screener.age
+    screener.age.to_i < 65 && screener.age.to_i >= 18
+  end
 end
