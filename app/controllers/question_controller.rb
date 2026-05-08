@@ -11,6 +11,6 @@ class QuestionController < ApplicationController
 
   def self.show?(screener)
     return false unless screener.age
-    screener.age.to_i < 65 && screener.age.to_i >= 18
+    screener.age < 65 && screener.age >= 18
   end
 end
