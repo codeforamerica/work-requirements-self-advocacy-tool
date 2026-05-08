@@ -1,6 +1,8 @@
 class Screener < ApplicationRecord
   devise :timeoutable
 
+  BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
+
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
 
@@ -80,7 +82,10 @@ class Screener < ApplicationRecord
 
   with_context :basic_info_details do
     validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
+    validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
     validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
+    validates :last_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
+    validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
     validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end

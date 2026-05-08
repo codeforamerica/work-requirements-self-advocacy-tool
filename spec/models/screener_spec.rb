@@ -98,6 +98,18 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
         expect(screener.valid?(:basic_info_details)).to eq true
       end
+
+      it "must not have value longer than Screener::BASIC_INFO_DETAILS_CHARACTER_LIMIT" do
+        [:first_name, :last_name, :middle_name].each do |name|
+          # Invalid value that is 1 character longer than the limit
+          limit = Screener::BASIC_INFO_DETAILS_CHARACTER_LIMIT
+          text = SecureRandom.alphanumeric(limit + 1)
+          screener = build(:screener, name => text)
+
+          screener.valid?(:basic_info_details)
+          expect(screener.errors[name]).to be_present
+        end
+      end
     end
 
     context "with_context :pregnancy" do
