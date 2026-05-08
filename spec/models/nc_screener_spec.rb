@@ -24,9 +24,9 @@ RSpec.describe NcScreener, type: :model do
       end
 
       it "must not have value longer than  Nc::HomeschoolController::CHARACTER_LIMIT, if a value is set" do
-        screener = create(:screener, state: "NC")
+        create(:screener, state: "NC")
         nc_screener = build(:nc_screener,
-                         homeschool_name: "This is just a test value.")
+          homeschool_name: "This is just a test value.")
         # Valid value that is not too long
         expect(nc_screener.valid?(:homeschool_name)).to eq true
 

@@ -23,7 +23,7 @@ RSpec.describe Screener, type: :model do
     context "with_context :alcohol_treatment_program" do
       it "must not have value longer than AlcoholTreatmentProgramController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
-                         alcohol_treatment_program_name: "This is just a test value.")
+          alcohol_treatment_program_name: "This is just a test value.")
         # Valid value that is not too long
         expect(screener.valid?(:alcohol_treatment_program)).to eq true
 
@@ -248,10 +248,9 @@ RSpec.describe Screener, type: :model do
         expect(screener.valid?(:preventing_work_situations)).to eq true
       end
 
-
       it "must not have value longer than AlcoholTreatmentProgramController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
-                         preventing_work_write_in: "This is just a test value.")
+          preventing_work_write_in: "This is just a test value.")
         # Valid value that is not too long
         expect(screener.valid?(:preventing_work_situations)).to eq true
 

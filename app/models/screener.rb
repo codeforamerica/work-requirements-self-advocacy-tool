@@ -56,7 +56,7 @@ class Screener < ApplicationRecord
     :remove_county_if_state_does_not_require
 
   with_context :alcohol_treatment_program do
-    validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT,}
+    validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}
   end
 
   with_context :american_indian do
@@ -167,7 +167,7 @@ class Screener < ApplicationRecord
           preventing_work_other_yes?
       }
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
-    validates :preventing_work_write_in, length: { maximum: PreventingWorkSituationsController::CHARACTER_LIMIT }
+    validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}
   end
 
   with_context :school_enrollment do
