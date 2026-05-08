@@ -6,7 +6,7 @@ class ScreenerMailer < ApplicationMailer
     attachments.inline["gbh_email_header.png"] = File.binread(Rails.root.join("app/assets/images/gbh_email_header.png"))
     attachments["getbenefitshelp.pdf"] = {
       mime_type: "application/pdf",
-      content: PdfFiller::PacketPdf.new(@screener).combined_pdf
+      content: @screener.pdf
     }
 
     if ENV["SES_CONFIGURATION_SET"]
