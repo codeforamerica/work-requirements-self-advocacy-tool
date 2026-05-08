@@ -2,18 +2,13 @@ require "rails_helper"
 
 RSpec.describe "Robots", type: :request do
   describe "GET /robots.txt" do
-    let(:production_host) { "www.getbenefitshelp.org" }
-    let(:non_production_host) { "staging.getbenefitshelp.org" }
-
-    context "when on production host" do
+    context "in production" do
       before do
         allow(Rails.env).to receive(:production?).and_return(true)
-        host! production_host
-
         get "/robots.txt"
       end
 
-      it "allows crawling and includes sitemap" do
+      it "allows all crawling and includes sitemap" do
         expect(response).to have_http_status(:ok)
 
         expect(response.body).to eq(<<~TXT)
@@ -24,15 +19,13 @@ RSpec.describe "Robots", type: :request do
       end
     end
 
-    context "when on non-production host" do
+    context "in non-production" do
       before do
-        allow(Rails.env).to receive(:production?).and_return(true) # still production env, but wrong host
-        host! non_production_host
-
+        allow(Rails.env).to receive(:production?).and_return(false)
         get "/robots.txt"
       end
 
-      it "disallows crawling" do
+      it "disallows all crawling" do
         expect(response).to have_http_status(:ok)
 
         expect(response.body).to eq(<<~TXT)

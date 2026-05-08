@@ -1,11 +1,6 @@
 class RobotsController < ApplicationController
-  PRODUCTION_HOSTS = [
-    "www.getbenefitshelp.org",
-    "getbenefitshelp.org"
-  ].freeze
-
   def show
-    if production_site?
+    if Rails.env.production?
       render plain: <<~TXT
         User-agent: *
         Allow: /
@@ -20,8 +15,4 @@ class RobotsController < ApplicationController
   end
 
   private
-
-  def production_site?
-    Rails.env.production?
-  end
 end
