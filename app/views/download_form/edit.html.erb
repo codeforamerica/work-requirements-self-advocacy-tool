@@ -42,7 +42,7 @@
 <% end %>
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
-<p class="spacing-below-0"><%= LocationData::States.name_for(@current_screener.state) %></p>
+<p class="spacing-below-0"><%= LocationData::States.display_name(@current_screener.state) %></p>
 <% if @current_screener.county.present? %>
   <p><strong><%= @current_screener.county %></strong></p>
 <% end %>
