@@ -1,4 +1,4 @@
-RSpec.shared_examples "show? without age exemption only" do
+RSpec.shared_examples "a show method that considers age exemption" do
   subject { described_class.show?(screener) }
 
   context "when screener is not exempt due to age" do

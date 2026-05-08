@@ -29,6 +29,6 @@ RSpec.describe CaringForSomeoneController, type: :controller do
   end
 
   describe ".show?" do
-    it_behaves_like "show? without age exemption only"
+    it_behaves_like "a show method that considers age exemption"
   end
 end

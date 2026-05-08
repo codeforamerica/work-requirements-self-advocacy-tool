@@ -296,7 +296,7 @@ RSpec.feature "Screener flow", js: true do
     select "Durham County", from: "screener_county"
     click_on I18n.t("general.continue")
 
-    # Adult over 65
+    # Applicant under 18
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
     select "21", from: "Day"
