@@ -22,6 +22,6 @@ class RobotsController < ApplicationController
   private
 
   def production_site?
-    Rails.env.production? && PRODUCTION_HOSTS.include?(request.host)
+    Rails.env.production?
   end
 end
