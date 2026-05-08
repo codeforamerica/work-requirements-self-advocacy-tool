@@ -2,20 +2,42 @@ require "csv"
 
 module LocationData
   module States
+    DELAWARE = "DE"
     NORTH_CAROLINA = "NC"
     NOT_LISTED = "NOT_LISTED"
+    STATES_INFO = {
+      NORTH_CAROLINA => {
+        display_name: "North Carolina",
+        pdf_filler_class: PdfFiller::NcPacketPdf
+      },
+      DELAWARE => {
+        display_name: "Delaware",
+        pdf_filler_class: PdfFiller::PacketPdf
+      }
+    }
 
-    VALID_VALUES = [NORTH_CAROLINA, NOT_LISTED].freeze
+    class << self
+      [:display_name, :pdf_filler_class].each do |attribute|
+        define_method(attribute) do |state_code|
+          unless STATES_INFO.key?(state_code)
+            raise StandardError, "Invalid state code: #{state_code}"
+          end
 
-    def self.options
-      [
-        ["North Carolina", NORTH_CAROLINA],
-        [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
-      ]
+          STATES_INFO[state_code][attribute]
+        end
+      end
     end
 
-    def self.name_for(code)
-      options.find { |name, value| value == code }&.first
+    def self.active_states
+      active_codes = (ENV["ACTIVE_STATES"] || "").split(",")
+      STATES_INFO.slice(*active_codes)
+    end
+
+    def self.dropdown_options
+      states_and_labels = active_states.map do |state_code, info|
+        [info[:display_name], state_code]
+      end
+      states_and_labels << [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
     end
   end
 
