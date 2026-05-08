@@ -280,11 +280,21 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors[:email_confirmation]).to eq [I18n.t("validations.email_must_match")]
       end
 
-      it "removed white spaces from the email and confirmation" do
+      it "removes white spaces from the email and confirmation" do
         screener = build(:screener, email: "anisha@example.com ", email_confirmation: " anisha@example.com")
         screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array []
+      end
+
+      it "must not have value longer than Screener::BASIC_INFO_EMAIL_CHARACTER_LIMIT" do
+        # Invalid value that is 1 character longer than the limit
+        limit = Screener::BASIC_INFO_EMAIL_CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener = build(:screener, email: text)
+
+        screener.valid?(:basic_info_email)
+        expect(screener.errors[:email]).to be_present
       end
     end
 

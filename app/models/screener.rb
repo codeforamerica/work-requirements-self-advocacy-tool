@@ -2,6 +2,7 @@ class Screener < ApplicationRecord
   devise :timeoutable
 
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
+  BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
@@ -66,6 +67,8 @@ class Screener < ApplicationRecord
     validates :email,
       "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
       if: -> { email.present? }
+
+    validates :email, length: {maximum: BASIC_INFO_EMAIL_CHARACTER_LIMIT}
 
     validates :email,
       presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
