@@ -55,9 +55,9 @@ RSpec.describe LocationData do
       skip "County CSV files not found" unless Dir.exist?(data_dir)
     end
 
-    it "loads all CSV files for states" do
-      csv_files = Dir.glob(data_dir.join("*.csv")).map { |f| File.basename(f, ".csv") }
-      expect(all_counties.keys).to match_array(csv_files)
+    it "loads CSV files for states that match offices to counties" do
+      states = LocationData::States::STATES_INFO.select { |_, state_info| state_info[:office_by] == :county }.keys
+      expect(all_counties.keys).to match_array(states)
     end
 
     describe ".for_state" do

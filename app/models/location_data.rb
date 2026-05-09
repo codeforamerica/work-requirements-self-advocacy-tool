@@ -8,11 +8,13 @@ module LocationData
     STATES_INFO = {
       NORTH_CAROLINA => {
         display_name: "North Carolina",
-        pdf_filler_class: PdfFiller::NcPacketPdf
+        pdf_filler_class: PdfFiller::NcPacketPdf,
+        office_by: :county
       },
       DELAWARE => {
         display_name: "Delaware",
-        pdf_filler_class: PdfFiller::PacketPdf
+        pdf_filler_class: PdfFiller::PacketPdf,
+        office_by: :zip
       }
     }
 
@@ -57,27 +59,28 @@ module LocationData
     def self.load_all
       Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
         state_code = File.basename(file, ".csv")
+        if States::STATES_INFO[state_code][:office_by] == :county
+          counties = {}
 
-        counties = {}
+          CSV.foreach(file, headers: true) do |row|
+            county = row[COUNTY_NAME]&.strip
+            next if county.blank?
 
-        CSV.foreach(file, headers: true) do |row|
-          county = row[COUNTY_NAME]&.strip
-          next if county.blank?
+            counties[county] = {
+              name: county,
+              mailing_address: row[MAIL_ADDRESS],
+              physical_address: row[PHYSICAL_ADDRESS],
+              phone: row[PHONE],
+              fax: row[FAX],
+              email: row[EMAIL],
+              website: row[WEBSITE],
+              upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
+              is_supported: row[IS_SUPPORTED] == "Y"
+            }
+          end
 
-          counties[county] = {
-            name: county,
-            mailing_address: row[MAIL_ADDRESS],
-            physical_address: row[PHYSICAL_ADDRESS],
-            phone: row[PHONE],
-            fax: row[FAX],
-            email: row[EMAIL],
-            website: row[WEBSITE],
-            upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
-            is_supported: row[IS_SUPPORTED] == "Y"
-          }
+          states[state_code] = counties.freeze
         end
-
-        states[state_code] = counties.freeze
       end.freeze
     end
 
