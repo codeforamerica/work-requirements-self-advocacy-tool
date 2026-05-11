@@ -745,6 +745,33 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#needs_proof_of_volunteering?" do
+    it "returns false when volunteering_hours is nil" do
+      screener = build(:screener, state: LocationData::States::DELAWARE)
+      expect(screener.needs_proof_of_volunteering?).to be false
+    end
+
+    it "returns false when volunteering_hours is 0" do
+      screener = build(:screener, volunteering_hours: 0, state: LocationData::States::DELAWARE)
+      expect(screener.needs_proof_of_volunteering?).to be false
+    end
+
+    it "returns false when is_volunteer is no even with volunteering_hours" do
+      screener = build(:screener, is_volunteer: "no", volunteering_hours: 5, state: LocationData::States::DELAWARE)
+      expect(screener.needs_proof_of_volunteering?).to be false
+    end
+
+    it "returns true when is_volunteer is yes and volunteering_hours is greater than 0, state requires proof" do
+      screener = build(:screener, is_volunteer: "yes", volunteering_hours: 1, state: LocationData::States::DELAWARE)
+      expect(screener.needs_proof_of_volunteering?).to be true
+    end
+
+    it "returns false when is_volunteer is yes and volunteering_hours is greater than 0, state does not require proof" do
+      screener = build(:screener, is_volunteer: "yes", volunteering_hours: 1, state: LocationData::States::NORTH_CAROLINA)
+      expect(screener.needs_proof_of_volunteering?).to be false
+    end
+  end
+
   describe "#working_30_or_more_hours?" do
     it "returns true when working_hours >= 30" do
       screener = build(:screener, working_hours: 30)
