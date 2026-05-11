@@ -33,7 +33,8 @@ module Navigation
       ControllerNavigation::NavigationStep.new(SignatureController),
       ControllerNavigation::NavigationStep.new(DownloadFormController),
       ControllerNavigation::NavigationStep.new(ProofGuidanceController),
-      ControllerNavigation::NavigationStep.new(NewResponseController)
+      ControllerNavigation::NavigationStep.new(NewResponseController),
+      ControllerNavigation::NavigationStep.new(AgeExemptionController)
     ].freeze
   end
 end

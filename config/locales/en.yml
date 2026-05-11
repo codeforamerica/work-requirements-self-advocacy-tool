@@ -8,6 +8,7 @@ en:
       remaining:
         one: "%{count} character remaining"
         other: "%{count} characters remaining"
+    check_work_rules_for_someone_else: Check work rules for someone else
     choose_all_that_apply: Choose all that apply.
     close: Close
     continue: Continue
@@ -39,6 +40,11 @@ en:
     phone_invalid: Make sure the phone number is valid and includes 10 digits
     signature_required: Your signature is required to continue
   views:
+    age_exemption:
+      edit:
+        next_steps_html: "<p>You're all done!</p><p>Do you want to check if the SNAP work rules apply to someone else in your household?</p>"
+        title_help: The work rules only apply to people who are between 18 and 64 years old.
+        title_html: Based on your answers, you do <u>not</u> have to follow the SNAP work rules.
     alcohol_treatment_program:
       edit:
         alcohol_treatment_program_name_help_text_label: This is optional.
@@ -249,6 +255,8 @@ en:
     nc:
       edu_work_history:
         edit:
+          earned_more_than_threshold_label: In the last five years, did you ever earn more than $1,690 per month?
+          health_conditions_preventing_work_label: Do you have any mental or physical health conditions that make it hard to work?
           notice_text: Select "No" if your only work has been occasional odd jobs.
           title: Do you have a high school diploma or equivalent degree (for example, a GED)?
           worked_last_five_years_label: Have you worked for pay in the last five years?
@@ -264,8 +272,6 @@ en:
           title: Do you teach home school?
     new_response:
       edit:
-        check_work_rules_for_someone_else: Check work rules for someone else
-        close: Done
         title: You're all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
     out_of_state:

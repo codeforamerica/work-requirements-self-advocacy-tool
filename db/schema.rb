@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_10_201838) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_05_203212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "nc_screeners", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "earned_more_than_threshold", default: 0, null: false
     t.integer "has_hs_diploma", default: 0, null: false
+    t.integer "health_conditions_preventing_work", default: 0, null: false
     t.integer "homeschool_hours"
     t.string "homeschool_name"
     t.bigint "screener_id", null: false

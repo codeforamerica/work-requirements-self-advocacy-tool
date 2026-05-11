@@ -15,13 +15,17 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
 
       params = {
         has_hs_diploma: "no",
-        worked_last_five_years: "yes"
+        worked_last_five_years: "yes",
+        earned_more_than_threshold: "no",
+        health_conditions_preventing_work: "no"
       }
 
       post :update, params: {nc_screener: params}
       screener.nc_screener.reload
       expect(screener.nc_screener.has_hs_diploma).to eq "no"
       expect(screener.nc_screener.worked_last_five_years).to eq "yes"
+      expect(screener.nc_screener.earned_more_than_threshold).to eq "no"
+      expect(screener.nc_screener.health_conditions_preventing_work).to eq "no"
     end
   end
 
