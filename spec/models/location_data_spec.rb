@@ -60,6 +60,16 @@ RSpec.describe LocationData do
       expect(all_counties.keys).to match_array(states)
     end
 
+    describe "county counts" do
+      it "reports correct number of counties per state" do
+        all_counties.each do |state, counties|
+          csv_file = data_dir.join("#{state}.csv")
+          expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::Counties::COUNTY_NAME]&.strip.present? } : 0
+          expect(counties.size).to eq(expected_count)
+        end
+      end
+    end
+
     describe ".for_state" do
       it "returns all counties from CSV for each state" do
         all_counties.each do |state, counties|
@@ -86,16 +96,6 @@ RSpec.describe LocationData do
 
       it "returns empty array for unknown state" do
         expect(described_class.options_for("FAKE")).to eq([])
-      end
-    end
-
-    describe "county counts" do
-      it "reports correct number of counties per state" do
-        all_counties.each do |state, counties|
-          csv_file = data_dir.join("#{state}.csv")
-          expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::Counties::COUNTY_NAME]&.strip.present? } : 0
-          expect(counties.size).to eq(expected_count)
-        end
       end
     end
 
@@ -216,6 +216,30 @@ RSpec.describe LocationData do
       it "returns the phone number" do
         expected = all_counties[state][county][:phone]
         expect(described_class.phone_for(state, county)).to eq(expected)
+      end
+    end
+  end
+
+  describe LocationData::ZipCodes do
+    let(:data_dir) { Rails.root.join("config/data/counties") }
+    let(:all_zip_codes) { described_class::ALL_ZIP_CODES }
+
+    before do
+      skip "CSV files not found" unless Dir.exist?(data_dir)
+    end
+
+    it "loads CSV files for states that match offices to zip codes" do
+      states = LocationData::States::STATES_INFO.select { |_, state_info| state_info[:office_by] == :zip }.keys
+      expect(all_zip_codes.keys).to match_array(states)
+    end
+
+    describe "zip code counts" do
+      it "reports correct number of offices per state" do
+        all_zip_codes.each do |state, zips|
+          csv_file = data_dir.join("#{state}.csv")
+          expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::ZipCodes::ZIP_CODE]&.strip.present? } : 0
+          expect(zips.values.flatten.size).to eq(expected_count)
+        end
       end
     end
   end
