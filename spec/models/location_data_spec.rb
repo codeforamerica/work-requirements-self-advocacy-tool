@@ -64,7 +64,7 @@ RSpec.describe LocationData do
       it "reports correct number of counties per state" do
         all_counties.each do |state, counties|
           csv_file = data_dir.join("#{state}.csv")
-          expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::Counties::COUNTY_NAME]&.strip.present? } : 0
+          expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::COUNTY_NAME]&.strip.present? } : 0
           expect(counties.size).to eq(expected_count)
         end
       end
