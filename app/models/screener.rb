@@ -320,6 +320,10 @@ class Screener < ApplicationRecord
     is_volunteer_yes? && volunteering_hours.to_i > 0
   end
 
+  def needs_proof_of_volunteering?
+    state != LocationData::States::NORTH_CAROLINA && volunteering?
+  end
+
   def working_30_or_more_hours?
     working_hours.to_i >= 30
   end

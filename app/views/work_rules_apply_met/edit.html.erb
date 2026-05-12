@@ -12,4 +12,11 @@
   <p><strong><%= t("views.work_rules_apply_met.edit.proof_of_working") %></strong></p>
   <p><%= t("views.work_rules_apply_met.edit.proof_of_working_html") %></p>
 </div>
+<% if @current_screener.needs_proof_of_volunteering? %>
+  <div class="notice white">
+    <%= image_tag "training.svg", class: "illustration left-justified" %>
+    <p><strong><%= t("views.work_rules_apply_met.edit.proof_of_volunteering") %></strong></p>
+    <p><%= t("views.work_rules_apply_met.edit.proof_of_volunteering_html") %></p>
+  </div>
+<% end %>
 <%= render "shared/continue_button" %>
