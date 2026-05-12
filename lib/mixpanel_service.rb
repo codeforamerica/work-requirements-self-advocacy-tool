@@ -74,7 +74,6 @@ class MixpanelService
         record_data = {
           record_type: record.class.to_s,
           record_id: record.id,
-          source: record.source,
           **record_specific_data(record)
         }
         event_data.merge!(record_data)
@@ -102,7 +101,8 @@ class MixpanelService
       case record.class.name
       when Screener.name
         {
-          screener_state: record.state
+          screener_state: record.state,
+          source: record.source
         }
       else
         {}
