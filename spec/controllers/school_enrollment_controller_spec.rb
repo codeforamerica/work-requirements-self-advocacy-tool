@@ -23,4 +23,8 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
       end
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "a show method that considers age exemption"
+  end
 end

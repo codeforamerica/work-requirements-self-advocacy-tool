@@ -143,7 +143,7 @@ RSpec.feature "NC Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
-    click_on I18n.t("views.new_response.edit.check_work_rules_for_someone_else")
+    click_on I18n.t("general.check_work_rules_for_someone_else")
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
   end
@@ -262,5 +262,47 @@ RSpec.feature "NC Screener flow", js: true do
     expect(screener.working_weekly_earnings).to eq 300.40
     expect(screener.has_earnings_exemption?).to eq true
     expect(screener.has_exemption?).to eq false
+  end
+
+  scenario "client with age 65+ exemption" do
+    visit root_path
+
+    expect(page).to have_selector("h1", text: I18n.t("views.homepage.index.title"))
+    click_on I18n.t("views.homepage.fill_out_form")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
+    select "North Carolina", from: "screener_state"
+    select "Durham County", from: "screener_county"
+    click_on I18n.t("general.continue")
+
+    # Adult over 65
+    expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
+    select "September", from: "Month"
+    select "21", from: "Day"
+    select "1945", from: "Year"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
+  end
+
+  scenario "client with age <18 exemption" do
+    visit root_path
+
+    expect(page).to have_selector("h1", text: I18n.t("views.homepage.index.title"))
+    click_on I18n.t("views.homepage.fill_out_form")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
+    select "North Carolina", from: "screener_state"
+    select "Durham County", from: "screener_county"
+    click_on I18n.t("general.continue")
+
+    # Applicant under 18
+    expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
+    select "September", from: "Month"
+    select "21", from: "Day"
+    select "2025", from: "Year"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
   end
 end

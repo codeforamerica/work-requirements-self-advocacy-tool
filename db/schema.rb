@@ -16,7 +16,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
 
   create_table "nc_screeners", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.integer "earned_more_than_threshold", default: 0, null: false
     t.integer "has_hs_diploma", default: 0, null: false
+    t.integer "health_conditions_preventing_work", default: 0, null: false
     t.integer "homeschool_hours"
     t.string "homeschool_name"
     t.bigint "screener_id", null: false

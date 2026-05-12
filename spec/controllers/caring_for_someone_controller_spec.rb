@@ -27,4 +27,8 @@ RSpec.describe CaringForSomeoneController, type: :controller do
       expect(screener.additional_care_info).to eq "lots of care"
     end
   end
+
+  describe ".show?" do
+    it_behaves_like "a show method that considers age exemption"
+  end
 end

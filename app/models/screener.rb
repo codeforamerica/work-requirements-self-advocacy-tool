@@ -228,7 +228,8 @@ class Screener < ApplicationRecord
   end
 
   def any_preventing_work?
-    PREVENTING_WORK_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") }
+    PREVENTING_WORK_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") } ||
+      state == LocationData::States::NORTH_CAROLINA && nc_screener.present? && nc_screener.age_work_education_health_exemption?
   end
 
   def birth_date_day
