@@ -84,6 +84,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_05_203212) do
     t.string "receiving_benefits_write_in"
     t.string "signature"
     t.datetime "signed_at"
+    t.string "source"
     t.string "ssn_last_four"
     t.string "state"
     t.datetime "updated_at", null: false

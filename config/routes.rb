@@ -22,4 +22,10 @@ Rails.application.routes.draw do
     get "/robots.txt", to: "robots#show", format: :text
     Navigation::ScreenerNavigation.scoped_navigation_routes(self)
   end
+
+  get(
+    "(:base_path)/s/:intended_source",
+    to: "homepage#redirect_without_source",
+    as: :route_with_source
+  )
 end
