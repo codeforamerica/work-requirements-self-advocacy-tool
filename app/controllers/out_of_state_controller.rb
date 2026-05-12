@@ -3,30 +3,30 @@ class OutOfStateController < QuestionController
     false
   end
 
+  def self.show?(screener)
+    not_listed?(screener) || county_not_supported?(screener)
+  end
+
   helper_method :not_listed?, :county, :redirect_delay_seconds
 
-  def not_listed?
-    self.class.not_listed?(@current_screener)
+  def self.county(screener)
+    LocationData::Counties.get(screener.state, screener.county)
   end
+  delegate :county, to: :class
 
-  def county
-    LocationData::Counties.get(@current_screener.state, @current_screener.county)
-  end
+  def self.county_not_supported?(screener)
+    return false unless LocationData::States::STATES_INFO[screener.state][:office_by] == :county
 
-  def redirect_delay_seconds
-    10
+    county = county(screener)
+    county.present? && !county[:is_supported]
   end
 
   def self.not_listed?(screener)
     screener.state == LocationData::States::NOT_LISTED
   end
+  delegate :not_listed?, to: :class
 
-  def self.county_not_supported?(screener)
-    county = LocationData::Counties.get(screener.state, screener.county)
-    county.present? && !county[:is_supported]
-  end
-
-  def self.show?(screener)
-    not_listed?(screener) || county_not_supported?(screener)
+  def redirect_delay_seconds
+    10
   end
 end
