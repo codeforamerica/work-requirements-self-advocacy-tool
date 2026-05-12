@@ -1,9 +1,5 @@
-class TrainingProgramController < QuestionController
-  include WrExemptionsConcern
-
-  def self.show?(screener)
-    false
-  end
+class TrainingProgramController < WagesQuestionController
+  include PersonalSituationsConcern
 
   def self.attributes_edited
     [

@@ -8,6 +8,7 @@ es:
       remaining:
         one: Queda %{count} caracter
         other: Quedan %{count} caracteres
+    check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
     choose_all_that_apply: Seleccione todas las que correspondan.
     close: Cerrar
     continue: Continuar
@@ -39,6 +40,11 @@ es:
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
     signature_required: Se requiere su firma para continuar
   views:
+    age_exemption:
+      edit:
+        next_steps_html: "<p>Ha finalizado.</p><p>¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?</p>"
+        title_help: Las reglas de trabajo solo aplican a personas entre 18 y 64 años.
+        title_html: Según sus respuestas, es posible que <u>no tenga</u> que cumplir con las reglas de trabajo de SNAP.
     alcohol_treatment_program:
       edit:
         alcohol_treatment_program_name_help_text_label: Opcional.
@@ -159,10 +165,10 @@ es:
         what_to_expect: Lo que puede pasar
     email:
       edit:
-        email: Email
-        email_confirmation: Correo electrónico
-        title: Confirme su correo electrónico
-        title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su agencia de SNAP, por correo electrónico.
+        email: Correo electrónico
+        email_confirmation: Confirme su correo electrónico
+        title: "¿A dónde podemos enviarle sus resultados?"
+        title_help_text: Le enviaremos los próximos pasos junto con los resultados de su formulario que deberá presentar a su oficina de SNAP, por correo electrónico.
     employment:
       edit:
         notice_content:
@@ -249,6 +255,8 @@ es:
     nc:
       edu_work_history:
         edit:
+          earned_more_than_threshold_label: En los últimos cinco años, ¿alguna vez ganó más de $1,690 en un mes?
+          health_conditions_preventing_work_label: "¿Tiene alguna condición física o de salud mental que le dificulte trabajar?"
           notice_text: Seleccione "No" si su único trabajo ha sido hacer trabajos ocasionales.
           title: "¿Obtuvo un diploma de secundaria o un equivalente, como un GED?"
           worked_last_five_years_label: "¿Ha trabajado por pago en los últimos cinco años?"
@@ -261,11 +269,9 @@ es:
           notice_text_html: |
             <p>Esto significa que usted enseña a un niño o niños en casa como parte de una escuela en casa (home school), en lugar de enviarlos a una escuela pública o privada.</p>
             <p>Para ser elegible, debe ser padre, madre o tutor legal del niño, o vivir en su hogar.</p>
-          title: "¿Tiene un programa de educación en casa para un niño o niños?"
+          title: "¿Tiene un programa de educación en casa para uno o más niños?"
     new_response:
       edit:
-        check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
-        close: Cerrar
         title: Ha finalizado.
         title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
     out_of_state:
@@ -546,6 +552,12 @@ es:
     unemployment:
       edit:
         title: "¿Recibe o está solicitando beneficios de desempleo?"
+    wages_hours_milestone:
+      edit:
+        help_text_html: También le preguntaremos si hace voluntariado, servicio comunitario o si participa en un programa de empleo o capacitación. Su información se mantiene privada, segura y protegida.
+        notice_content: Las siguientes preguntas nos ayudan a entender cuánto trabaja y ver si puede tener una exención. Si no la tiene, también revisamos si cumple con las reglas de trabajo.
+        notice_title: "¿Por qué preguntamos esto?"
+        title: Necesitamos hacerle algunas preguntas sobre sus ingresos y sus horas de trabajo.
     work_rules_apply_met:
       edit:
         avoid_a_time_limit_on_your_snap_benefit_html: |
@@ -559,7 +571,7 @@ es:
         proof_of_working: Comprobantes de trabajo
         proof_of_working_html: |
           <p>Envíe uno de los siguientes comprobantes:</p>
-          <ul>
+          <ul class='list--bulleted'>
             <li>Talones de pago del último mes, o</li>
             <li>Una carta con fecha y firmada por su empleador que muestre sus horas esperadas y su pago para el próximo mes, o</li>
             <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>

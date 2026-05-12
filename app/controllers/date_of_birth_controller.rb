@@ -5,6 +5,10 @@ class DateOfBirthController < QuestionController
     false
   end
 
+  def self.show?(screener)
+    true
+  end
+
   private
 
   def form_params(model)

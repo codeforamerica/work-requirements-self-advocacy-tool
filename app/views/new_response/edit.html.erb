@@ -1,6 +1,6 @@
-<%= image_tag "checkmark.svg", class: "illustration left-justified" %>
+<%= image_tag "checkmark.svg", class: "illustration left-justified spacing-above-35" %>
 <% content_for :question_title, t("views.new_response.edit.title") %>
 <h1 class="h2"><%= content_for(:question_title) %></h1>
-<p><%= t("views.new_response.edit.title_help_text") %></p>
-<div><%= link_to t("views.new_response.edit.check_work_rules_for_someone_else"), sign_out_and_redirect_path(redirect_path: start_flow_path), class: "button button--primary" %></div>
-<div><%= link_to t("views.new_response.edit.close"), sign_out_and_redirect_path, class: "button" %></div>
+<p class="spacing-below-60"><%= t("views.new_response.edit.title_help_text") %></p>
+<div><%= link_to t("general.check_work_rules_for_someone_else"), sign_out_and_redirect_path(redirect_path: start_flow_path), class: "button button--primary" %></div>
+<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button" %></div>

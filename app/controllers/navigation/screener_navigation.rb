@@ -10,18 +10,20 @@ module Navigation
       ControllerNavigation::NavigationStep.new(PregnancyController),
       ControllerNavigation::NavigationStep.new(UnemploymentController),
       ControllerNavigation::NavigationStep.new(DisabilityBenefitsController),
-      ControllerNavigation::NavigationStep.new(EmploymentController),
       ControllerNavigation::NavigationStep.new(MigrantFarmworkerController),
-      ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(Nc::HomeschoolController),
-      ControllerNavigation::NavigationStep.new(TrainingProgramController),
       ControllerNavigation::NavigationStep.new(SchoolEnrollmentController),
       ControllerNavigation::NavigationStep.new(Nc::EduWorkHistoryController),
       ControllerNavigation::NavigationStep.new(AlcoholTreatmentProgramController),
       ControllerNavigation::NavigationStep.new(PreventingWorkMilestoneController),
       ControllerNavigation::NavigationStep.new(PreventingWorkSituationsController),
       ControllerNavigation::NavigationStep.new(PreventingWorkDetailsController),
+      ControllerNavigation::NavigationStep.new(WagesHoursMilestoneController),
+      ControllerNavigation::NavigationStep.new(EmploymentController),
+      ControllerNavigation::NavigationStep.new(CommunityServiceController),
+      ControllerNavigation::NavigationStep.new(TrainingProgramController),
       ControllerNavigation::NavigationStep.new(WorkRulesApplyMetController),
+      ControllerNavigation::NavigationStep.new(WorkRulesApplyUnmetController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),
       ControllerNavigation::NavigationStep.new(BasicInfoDetailsController),
       ControllerNavigation::NavigationStep.new(BasicInfoEmailController),
@@ -29,10 +31,10 @@ module Navigation
       ControllerNavigation::NavigationStep.new(BasicInfoCaseNumberController),
       ControllerNavigation::NavigationStep.new(BasicInfoSsnController),
       ControllerNavigation::NavigationStep.new(SignatureController),
-      ControllerNavigation::NavigationStep.new(WorkRulesApplyUnmetController),
       ControllerNavigation::NavigationStep.new(DownloadFormController),
       ControllerNavigation::NavigationStep.new(ProofGuidanceController),
-      ControllerNavigation::NavigationStep.new(NewResponseController)
+      ControllerNavigation::NavigationStep.new(NewResponseController),
+      ControllerNavigation::NavigationStep.new(AgeExemptionController)
     ].freeze
   end
 end

@@ -4,6 +4,6 @@ class WorkRulesApplyUnmetController < QuestionController
   end
 
   def self.show?(screener)
-    !screener&.exempt_from_work_rules?
+    !screener.exempt_from_work_rules? && !screener.complies_with_work_rules? && super
   end
 end

@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe TrainingProgramController, type: :controller do
+  describe ".show?" do
+    it_behaves_like "show? when screener has no exemption"
+  end
+
   describe "#edit" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
   end
@@ -41,5 +45,9 @@ RSpec.describe TrainingProgramController, type: :controller do
       expect(response).to render_template :edit
       expect(response.body).to have_text(I18n.t("validations.number_invalid"))
     end
+  end
+
+  describe ".show?" do
+    it_behaves_like "a show method that considers age exemption"
   end
 end

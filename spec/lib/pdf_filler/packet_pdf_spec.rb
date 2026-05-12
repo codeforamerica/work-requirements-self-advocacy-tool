@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe PdfFiller::PacketPdf do
   include ActiveSupport::Testing::TimeHelpers
 
-  let(:nc_screener) { create(:nc_screener) }
   let(:screener) do
     build(:screener,
       first_name: "Nigella",
@@ -12,11 +11,27 @@ RSpec.describe PdfFiller::PacketPdf do
       birth_date: Date.new(1990, 7, 13),
       email: "nigella@example.com",
       phone_number: "9195551234",
-      state: LocationData::States::NORTH_CAROLINA,
-      nc_screener: nc_screener)
+      state: LocationData::States::NORTH_CAROLINA)
   end
 
   subject(:packet_pdf) { described_class.new(screener) }
+
+  # Field names that only belong on the earnings-exemption PDF template
+  let(:earnings_only_fillable_keys) do
+    %i[
+      earnings_per_week
+      is_in_work_training
+      is_volunteering
+      submission_date_2
+      volunteering_hours
+      volunteering_org_name
+      work_hours
+      work_training_name
+      working_or_earning
+    ]
+  end
+
+  let(:earnings_only_shared_keys) { %i[volunteering_hours work_hours work_training_hours] }
 
   describe "#hash_for_fillable_pdf" do
     subject(:result) { packet_pdf.hash_for_fillable_pdf }
@@ -45,72 +60,39 @@ RSpec.describe PdfFiller::PacketPdf do
         end
       end
 
-      it "maps operating_a_homeschool from teaches_homeschool" do
-        nc_screener.teaches_homeschool = "yes"
-        expect(result[:operating_a_homeschool]).to be true
-      end
-
       it "maps string fields from screener" do
         screener.additional_care_info = "Babysitting Paul Hollywood"
         screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
         screener.case_number = "543212345"
         screener.confirmation_code = "ABQ39L"
-        nc_screener.homeschool_name = "Small Fry"
         screener.preventing_work_write_in = "Back pain"
         screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
         screener.receiving_benefits_write_in = "Other disability"
         screener.signature = "Nigellla Lawson"
         screener.ssn_last_four = "1111"
-        # screener.volunteering_org_name = "Muffins for Mums"
-        # screener.work_training_name = "Bake Off Boot Camp"
-        # screener.work_training_hours = "25"
 
         expect(result[:details_of_care]).to eq("Babysitting Paul Hollywood")
         expect(result[:drug_alcohol_program_name]).to eq("Alcolisti Anonimi")
         expect(result[:case_number]).to eq("543212345")
         expect(result[:confirmation_code]).to eq("ABQ39L")
         expect(result[:email]).to eq("nigella@example.com")
-        expect(result[:homeschool_name]).to eq("Small Fry")
         expect(result[:phone_number]).to eq("(919) 555-1234")
         expect(result[:preventing_work_other_write_in]).to eq("Back pain")
         expect(result[:preventing_work_write_in]).to eq("I am carrying the weight of the world on my back.")
         expect(result[:receiving_benefits_write_in]).to eq("Other disability")
         expect(result[:signature]).to eq("Nigellla Lawson")
         expect(result[:ssn_last_4]).to eq("1111")
-        # expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
-        # expect(result[:work_training_name]).to eq("Bake Off Boot Camp")
-        # expect(result[:work_training_hours]).to eq("25")
       end
 
       it "maps date and numeric fields as strings" do
-        nc_screener.homeschool_hours = 20
         screener.pregnancy_due_date = Date.new(2026, 9, 15)
-        screener.working_hours = 35
-        screener.working_weekly_earnings = 250.00
 
         expect(result[:birth_date]).to eq("1990-07-13")
-        expect(result[:homeschool_hours]).to eq("20")
         expect(result[:pregnancy_due_date]).to eq("2026-09-15")
-        # expect(result[:work_hours]).to eq("35")
-        # expect(result[:earnings_per_week]).to eq("250.0")
-      end
-    end
-
-    describe "submission_date and submission_date_2" do
-      it "sets both to the current date" do
-        travel_to Date.new(2026, 1, 9) do
-          expect(result[:submission_date]).to eq("2026-01-09")
-          # expect(result[:submission_date_2]).to eq("2026-01-09")
-        end
       end
     end
 
     describe "calculated fields" do
-      it "delegates age_work_education_health_exemption to nc_screener" do
-        allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
-        expect(result[:at_least_55_no_diploma_not_working]).to be true
-      end
-
       it "delegates age to screener and converts to string" do
         allow(screener).to receive(:age).and_return(35)
         expect(result[:age]).to eq("35")
@@ -130,105 +112,219 @@ RSpec.describe PdfFiller::PacketPdf do
         allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
         expect(result[:receiving_disabilty_benefits]).to be true
       end
+    end
 
-      # it "delegates working_or_earning to screener" do
-      #   allow(screener).to receive(:working_exempt?).and_return(true)
-      #   expect(result[:working_or_earning]).to be true
-      # end
+    it "sets submission_date to the current date" do
+      travel_to Date.new(2026, 1, 9) do
+        expect(result[:submission_date]).to eq("2026-01-09")
+      end
+    end
 
-      # it "delegates is_volunteering to screener" do
-      #   allow(screener).to receive(:volunteering?).and_return(true)
-      #   expect(result[:is_volunteering]).to be true
-      # end
+    context "screener has a regular exemption" do
+      before { screener.assign_attributes(preventing_work_medical_condition: "yes") }
+
+      it "does not include any work, volunteer, or training fields" do
+        earnings_only_fillable_keys.each do |key|
+          expect(result).not_to have_key(key),
+            "expected #{key.inspect} not to appear for a regular exemption screener, but it did"
+        end
+      end
+
+      it "does not include work/volunteer/training hours even if those columns happen to hold values" do
+        screener.assign_attributes(
+          working_hours: 35,
+          working_weekly_earnings: 250.00,
+          volunteering_hours: 10,
+          volunteering_org_name: "Muffins for Mums",
+          work_training_hours: 15,
+          work_training_name: "Bake Off Boot Camp"
+        )
+
+        earnings_only_fillable_keys.each do |key|
+          expect(result).not_to have_key(key)
+        end
+      end
+    end
+
+    context "screener has only the earnings exemption" do
+      before do
+        screener.assign_attributes(
+          is_working: "yes",
+          working_hours: 35,
+          working_weekly_earnings: 250.00,
+          is_volunteer: "yes",
+          volunteering_hours: 10,
+          volunteering_org_name: "Muffins for Mums",
+          is_in_work_training: "yes",
+          work_training_hours: 15,
+          work_training_name: "Bake Off Boot Camp"
+        )
+      end
+
+      it "maps earnings, work, volunteer, and training fields" do
+        expect(result[:earnings_per_week]).to eq("250.0")
+        expect(result[:work_hours]).to eq("35")
+        expect(result[:volunteering_hours]).to eq("10")
+        expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
+        expect(result[:work_training_name]).to eq("Bake Off Boot Camp")
+      end
+
+      it "delegates working_or_earning to has_earnings_exemption?" do
+        expect(result[:working_or_earning]).to be true
+      end
+
+      it "delegates is_volunteering to screener" do
+        expect(result[:is_volunteering]).to be true
+      end
+
+      it "delegates is_in_work_training to screener" do
+        expect(result[:is_in_work_training]).to be true
+      end
     end
   end
 
   describe "#hash_for_generated_pdf" do
     subject(:result) { packet_pdf.hash_for_generated_pdf }
 
-    it "converts numeric fields to integers" do
-      screener.working_hours = 25
-      screener.volunteering_hours = 10
-      screener.work_training_hours = "15"
-      screener.working_weekly_earnings = 220
-
-      # expect(result[:work_hours]).to eq(25)
-      # expect(result[:volunteering_hours]).to eq(10)
-      # expect(result[:work_training_hours]).to eq(15)
-      # expect(result[:weekly_earnings]).to eq(220.0)
-    end
-
-    # it "defaults nil numeric fields to zero" do
-    #   expect(result[:work_hours]).to eq(0)
-    #   expect(result[:volunteering_hours]).to eq(0)
-    #   expect(result[:work_training_hours]).to eq(0)
-    #   expect(result[:weekly_earnings]).to eq(0.0)
-    # end
-
     it "delegates fields with helper methods to screener" do
       allow(screener).to receive(:full_name).and_return("Nigella Lawson")
-      allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
       allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
       allow(screener).to receive(:working_30_or_more_hours?).and_return(true)
       allow(screener).to receive(:earnings_above_minimum?).and_return(false)
       allow(screener).to receive(:any_preventing_work?).and_return(true)
 
       expect(result[:full_name]).to eq("Nigella Lawson")
-      expect(result[:operating_homeschool_30_or_more_hours]).to be false
       expect(result[:receiving_disability_benefits]).to be true
-      # expect(result[:working_30_or_more_hours]).to be true
+      expect(result[:working_30_or_more_hours]).to be true
       expect(result[:earnings_above_minimum]).to be false
       expect(result[:any_preventing_work]).to be true
+    end
+
+    context "screener has a regular exemption" do
+      before { screener.assign_attributes(preventing_work_medical_condition: "yes") }
+
+      it "does not include work/volunteer/training hours" do
+        earnings_only_shared_keys.each do |key|
+          expect(result).not_to have_key(key)
+        end
+      end
+
+      it "defaults top-level work/volunteer/training/earnings to zero so the summary page skips those sections" do
+        expect(result[:working_30_or_more_hours]).to be false
+        expect(result[:earnings_above_minimum]).to be false
+      end
+    end
+
+    context "screener has only the earnings exemption" do
+      before do
+        screener.assign_attributes(
+          is_working: "yes",
+          working_hours: 25,
+          working_weekly_earnings: 220,
+          is_volunteer: "yes",
+          volunteering_hours: 10,
+          is_in_work_training: "yes",
+          work_training_hours: 15
+        )
+      end
+
+      it "includes work/volunteer/training hours" do
+        expect(result[:work_hours]).to eq(25)
+        expect(result[:volunteering_hours]).to eq(10)
+        expect(result[:work_training_hours]).to eq("15")
+      end
     end
   end
 
   describe "#filled_pdf_path" do
-    it "fills and flattens the PDF (no editable fields remain)" do
-      screener.assign_attributes(
-        phone_number: "9195550123",
-        is_american_indian: "yes",
-        has_child: "yes",
-        caring_for_child_under_6: "yes",
-        caring_for_disabled_or_ill_person: "yes",
-        additional_care_info: "Babysitting Paul Hollywood",
-        is_pregnant: "yes",
-        pregnancy_due_date: Date.new(2026, 9, 15),
-        has_unemployment_benefits: "yes",
-        receiving_benefits_ssdi: "yes",
-        is_working: "yes",
-        working_hours: 35,
-        working_weekly_earnings: 250.00,
-        is_volunteer: "yes",
-        volunteering_hours: 10,
-        volunteering_org_name: "Muffins for Mums",
-        is_in_work_training: "yes",
-        work_training_name: "Bake Off Boot Camp",
-        work_training_hours: "15",
-        is_student: "yes",
-        is_migrant_farmworker: "yes",
-        is_in_alcohol_treatment_program: "yes",
-        alcohol_treatment_program_name: "Recovery Program",
-        preventing_work_place_to_sleep: "yes",
-        preventing_work_domestic_violence: "yes",
-        preventing_work_drugs_alcohol: "yes",
-        preventing_work_medical_condition: "yes",
-        preventing_work_other: "yes",
-        preventing_work_write_in: "Chronic back pain"
-      )
+    context "screener has a regular exemption" do
+      before do
+        screener.assign_attributes(
+          phone_number: "9195550123",
+          is_american_indian: "yes",
+          has_child: "yes",
+          caring_for_child_under_6: "yes",
+          caring_for_disabled_or_ill_person: "yes",
+          additional_care_info: "Babysitting Paul Hollywood",
+          is_pregnant: "yes",
+          pregnancy_due_date: Date.new(2026, 9, 15),
+          has_unemployment_benefits: "yes",
+          receiving_benefits_ssdi: "yes",
+          is_student: "yes",
+          is_migrant_farmworker: "yes",
+          is_in_alcohol_treatment_program: "yes",
+          alcohol_treatment_program_name: "Recovery Program",
+          preventing_work_place_to_sleep: "yes",
+          preventing_work_domestic_violence: "yes",
+          preventing_work_drugs_alcohol: "yes",
+          preventing_work_medical_condition: "yes",
+          preventing_work_other: "yes",
+          preventing_work_write_in: "Chronic back pain"
+        )
+      end
 
-      path = nil
+      it "uses the no-income template" do
+        expect(HexaPDF::Document).to receive(:open)
+          .with("app/assets/pdfs/packet--no-income.pdf")
+          .and_call_original
 
-      expect {
         path = packet_pdf.filled_pdf_path
-      }.not_to raise_error
+        File.delete(path) if path && File.exist?(path)
+      end
 
-      doc = HexaPDF::Document.open(path)
+      it "fills and flattens the PDF (no editable fields remain)" do
+        path = nil
 
-      # Assert it's flattened (read-only)
-      form = doc.acro_form
-      expect(form).to be_nil.or have_attributes(fields: be_empty)
-    ensure
-      File.delete(path) if path && File.exist?(path)
+        expect {
+          path = packet_pdf.filled_pdf_path
+        }.not_to raise_error
+
+        doc = HexaPDF::Document.open(path)
+        form = doc.acro_form
+        expect(form).to be_nil.or have_attributes(fields: be_empty)
+      ensure
+        File.delete(path) if path && File.exist?(path)
+      end
+    end
+
+    context "screener has only the earnings exemption" do
+      before do
+        screener.assign_attributes(
+          phone_number: "9195550123",
+          is_working: "yes",
+          working_hours: 35,
+          working_weekly_earnings: 250.00,
+          is_volunteer: "yes",
+          volunteering_hours: 10,
+          volunteering_org_name: "Muffins for Mums",
+          is_in_work_training: "yes",
+          work_training_name: "Bake Off Boot Camp",
+          work_training_hours: "15"
+        )
+      end
+
+      it "uses the income-capable template" do
+        expect(HexaPDF::Document).to receive(:open)
+          .with("app/assets/pdfs/packet.pdf")
+          .and_call_original
+
+        path = packet_pdf.filled_pdf_path
+        File.delete(path) if path && File.exist?(path)
+      end
+
+      it "fills and flattens the PDF (no editable fields remain)" do
+        path = nil
+
+        expect {
+          path = packet_pdf.filled_pdf_path
+        }.not_to raise_error
+
+        doc = HexaPDF::Document.open(path)
+        form = doc.acro_form
+        expect(form).to be_nil.or have_attributes(fields: be_empty)
+      ensure
+        File.delete(path) if path && File.exist?(path)
+      end
     end
   end
 
