@@ -12,10 +12,7 @@ class OutOfStateController < QuestionController
   def self.county(screener)
     LocationData::Counties.get(screener.state, screener.county)
   end
-
-  def county
-    self.class.county(@current_screener)
-  end
+  delegate :county, to: :class
 
   def self.county_not_supported?(screener)
     return false unless LocationData::States::STATES_INFO[screener.state][:office_by] == :county
@@ -27,10 +24,7 @@ class OutOfStateController < QuestionController
   def self.not_listed?(screener)
     screener.state == LocationData::States::NOT_LISTED
   end
-
-  def not_listed?
-    self.class.not_listed?(@current_screener)
-  end
+  delegate :not_listed?, to: :class
 
   def redirect_delay_seconds
     10
