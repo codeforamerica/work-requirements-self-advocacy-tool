@@ -8,11 +8,13 @@ module LocationData
     STATES_INFO = {
       NORTH_CAROLINA => {
         display_name: "North Carolina",
-        pdf_filler_class: PdfFiller::NcPacketPdf
+        pdf_filler_class: PdfFiller::NcPacketPdf,
+        office_by: :county
       },
       DELAWARE => {
         display_name: "Delaware",
-        pdf_filler_class: PdfFiller::PacketPdf
+        pdf_filler_class: PdfFiller::PacketPdf,
+        office_by: :zip_code
       }
     }
 

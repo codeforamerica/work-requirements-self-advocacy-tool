@@ -3,22 +3,9 @@ require "rails_helper"
 RSpec.describe OutOfStateController, type: :controller do
   # Only NC has counties
   let(:state_with_counties) { LocationData::States::NORTH_CAROLINA }
-
-  def all_nc_counties
-    LocationData::Counties.for_state(state_with_counties).values
-  end
-
-  def supported_counties
-    all_nc_counties.select { |c| c[:is_supported] }
-  end
-
-  def unsupported_counties
-    all_nc_counties.reject { |c| c[:is_supported] }
-  end
-
-  def county_name(county)
-    county[:name]
-  end
+  let(:all_nc_counties) { LocationData::Counties.for_state(state_with_counties).values }
+  let(:supported_counties) { all_nc_counties.select { |c| c[:is_supported] } }
+  let(:unsupported_counties) { all_nc_counties.reject { |c| c[:is_supported] } }
 
   describe ".not_listed?" do
     it "returns true when state is NOT_LISTED" do
@@ -33,23 +20,32 @@ RSpec.describe OutOfStateController, type: :controller do
   end
 
   describe ".county_not_supported?" do
-    it "returns false when county is nil" do
-      screener = create(:screener, state: state_with_counties, county: nil)
-      expect {
-        described_class.county_not_supported?(screener)
-      }.to raise_error(ArgumentError, /county_key is required/)
+    context "a state whose offices are keyed by county" do
+      it "returns false when county is nil" do
+        screener = create(:screener, state: state_with_counties, county: nil)
+        expect {
+          described_class.county_not_supported?(screener)
+        }.to raise_error(ArgumentError, /county_key is required/)
+      end
+
+      it "returns false for supported counties" do
+        county = supported_counties.first
+        screener = create(:screener, state: state_with_counties, county: county[:name])
+        expect(described_class.county_not_supported?(screener)).to eq(false)
+      end
+
+      it "returns true for unsupported counties" do
+        county = unsupported_counties.first
+        screener = create(:screener, state: state_with_counties, county: county[:name])
+        expect(described_class.county_not_supported?(screener)).to eq(true)
+      end
     end
 
-    it "returns false for supported counties" do
-      county = supported_counties.first
-      screener = create(:screener, state: state_with_counties, county: county_name(county))
-      expect(described_class.county_not_supported?(screener)).to eq(false)
-    end
-
-    it "returns true for unsupported counties" do
-      county = unsupported_counties.first
-      screener = create(:screener, state: state_with_counties, county: county_name(county))
-      expect(described_class.county_not_supported?(screener)).to eq(true)
+    context "a state whose offices are not keyed by county" do
+      it "returns false" do
+        screener = create(:screener, state: LocationData::States::DELAWARE, county: nil)
+        expect(described_class.county_not_supported?(screener)).to eq false
+      end
     end
   end
 
@@ -59,16 +55,25 @@ RSpec.describe OutOfStateController, type: :controller do
       expect(described_class.show?(screener)).to eq(true)
     end
 
-    it "returns true if county is not supported" do
-      county = unsupported_counties.first
-      screener = create(:screener, state: state_with_counties, county: county_name(county))
-      expect(described_class.show?(screener)).to eq(true)
+    context "a state whose offices are keyed by county" do
+      it "returns true if county is not supported" do
+        county = unsupported_counties.first
+        screener = create(:screener, state: state_with_counties, county: county[:name])
+        expect(described_class.show?(screener)).to eq(true)
+      end
+
+      it "returns false when county is supported" do
+        county = supported_counties.first
+        screener = create(:screener, state: state_with_counties, county: county[:name])
+        expect(described_class.show?(screener)).to eq(false)
+      end
     end
 
-    it "returns false when county is supported" do
-      county = supported_counties.first
-      screener = create(:screener, state: state_with_counties, county: county_name(county))
-      expect(described_class.show?(screener)).to eq(false)
+    context "a state whose offices are not keyed by county" do
+      it "returns false" do
+        screener = create(:screener, state: LocationData::States::DELAWARE, county: nil)
+        expect(described_class.show?(screener)).to eq false
+      end
     end
   end
 
@@ -92,7 +97,7 @@ RSpec.describe OutOfStateController, type: :controller do
 
     it "county specific view" do
       county = supported_counties.first
-      screener = create(:screener, state: state_with_counties, county: county_name(county))
+      screener = create(:screener, state: state_with_counties, county: county[:name])
       sign_in screener
 
       get :edit
