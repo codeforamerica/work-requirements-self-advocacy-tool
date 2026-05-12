@@ -139,7 +139,7 @@ module LocationData
   module ZipCodes
     ZIP_CODE = "ZIP Code [ZIP_CODE]"
     LAST_NAMES_A_SMH = "Last Names A-Smh [LN_A-Smh]"
-    LAST_NAMES_SMI_Z = "Last Names Smi-Z [LN_Smi-Z"
+    LAST_NAMES_SMI_Z = "Last Names Smi-Z [LN_Smi-Z]"
     SPECIAL_GEO = "Special Geo"
     INSTRUCTIONS = "Instructions"
 
