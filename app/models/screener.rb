@@ -290,6 +290,35 @@ class Screener < ApplicationRecord
     [first_name, middle_name.presence, last_name].compact.join(" ")
   end
 
+  def office_info_for(method)
+    case LocationData::States::STATES_INFO[state][:office_by]
+    when :county
+      LocationData::Counties.send(method, state, county)
+    else
+      ""
+    end
+  end
+
+  def office_mailing_address
+    office_info_for(:mailing_address_for)
+  end
+
+  def office_phone
+    office_info_for(:phone_for)
+  end
+
+  def office_physical_address
+    office_info_for(:physical_address_for)
+  end
+
+  def office_upload_or_portal_email
+    office_info_for(:upload_portal_or_email_for)
+  end
+
+  def office_website
+    office_info_for(:website_for)
+  end
+
   def pregnancy_due_date_day
     pregnancy_due_date&.day
   end

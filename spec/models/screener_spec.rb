@@ -425,8 +425,8 @@ RSpec.describe Screener, type: :model do
 
       it "clears zip if state selected does not index offices by zip" do
         screener = create(:screener,
-                          state: "DE",
-                          zip_code: "19954")
+          state: "DE",
+          zip_code: "19954")
         screener.update(state: "NC")
 
         expect(screener.reload.zip_code).to be_nil

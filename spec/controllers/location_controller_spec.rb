@@ -46,14 +46,14 @@ RSpec.describe LocationController, type: :controller do
         county: "Anson County"
       }
 
-      post :update, params: { screener: params }
+      post :update, params: {screener: params}
       expect(screener.reload.state).to eq "NC"
       expect(screener.reload.county).to eq "Anson County"
 
       expect(MixpanelService).to have_received(:send_event).with(
         hash_including(
           event_name: "page_submit",
-          data: { state: "NC", county: "Anson County" }
+          data: {state: "NC", county: "Anson County"}
         )
       )
     end
@@ -68,14 +68,14 @@ RSpec.describe LocationController, type: :controller do
         zip_code: "19954"
       }
 
-      post :update, params: { screener: params }
+      post :update, params: {screener: params}
       expect(screener.reload.state).to eq "DE"
       expect(screener.reload.zip_code).to eq "19954"
 
       expect(MixpanelService).to have_received(:send_event).with(
         hash_including(
           event_name: "page_submit",
-          data: { state: "DE", zip_code: "19954" }
+          data: {state: "DE", zip_code: "19954"}
         )
       )
     end

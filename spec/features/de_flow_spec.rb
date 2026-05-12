@@ -128,7 +128,7 @@ RSpec.feature "DE Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
-    click_on I18n.t("views.new_response.edit.check_work_rules_for_someone_else")
+    click_on I18n.t("general.check_work_rules_for_someone_else")
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
   end
@@ -140,8 +140,8 @@ RSpec.feature "DE Screener flow", js: true do
     click_on I18n.t("views.homepage.fill_out_form")
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
-    select "North Carolina", from: "screener_state"
-    select "Durham County", from: "screener_county"
+    select "Delaware", from: "screener_state"
+    fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
     click_on I18n.t("general.continue")
 
     # Adult under 55
