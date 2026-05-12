@@ -2,11 +2,11 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
-<% if not_listed? %>
+<% if not_listed?(@current_screener) %>
   <p><%= t("views.out_of_state.edit.title_help_text_html") %></p>
   <div><%= link_to t("views.out_of_state.edit.find_button"), "https://www.fns.usda.gov/snap/state-directory", class: "button button--cta" %></div>
 <% else %>
-  <% redirect_url = county&.dig(:website) %>
+  <% redirect_url = county(@current_screener)&.dig(:website) %>
 
   <p> <%= t("views.out_of_state.edit.title_help_text_county_specific") %></p>
   <div class="notice white">

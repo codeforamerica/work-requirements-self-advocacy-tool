@@ -21,34 +21,60 @@ RSpec.describe Screener, type: :model do
     end
 
     context "with_context :location" do
-      it "must have a valid state and county combination" do
-        screener = build(:screener,
-          state: "NC",
-          county: nil)
-
-        screener.valid?(:location)
-        expect(screener.errors[:state]).to be_empty
-        expect(screener.errors[:county]).to be_present
-
-        screener.assign_attributes(county: "Test County")
-        screener.valid?(:location)
-        expect(screener.errors[:state]).to be_empty
-        expect(screener.errors[:county]).to be_present
-
-        screener.assign_attributes(county: "Alleghany County")
+      it "accepts NOT_LISTED as state value" do
+        screener = build(:screener, state: "NOT_LISTED", county: nil, zip_code: nil)
         screener.valid?(:location)
         expect(screener.errors[:state]).to be_empty
         expect(screener.errors[:county]).to be_empty
+        expect(screener.errors[:zip_code]).to be_empty
+      end
 
-        screener.assign_attributes(state: "NOT_LISTED")
-        screener.valid?(:location)
-        expect(screener.errors[:state]).to be_empty
-        expect(screener.errors[:county]).to be_empty
-
-        screener.assign_attributes(state: "CA")
+      it "does not allow a random state" do
+        screener = build(:screener, state: "CA", county: nil, zip_code: nil)
         screener.valid?(:location)
         expect(screener.errors[:state]).to be_present
-        expect(screener.errors[:county]).to be_empty
+      end
+
+      context "a state with county-identified offices" do
+        let(:screener) { build(:screener, state: "NC") }
+
+        it "is valid with a county from the CSV" do
+          screener.assign_attributes(county: "Alleghany County")
+          expect(screener.valid?(:location)).to eq true
+        end
+
+        it "is invalid when county is nil" do
+          screener.assign_attributes(county: nil)
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:county]).to be_present
+        end
+
+        it "is invalid with a fake county" do
+          screener.assign_attributes(county: "Test County")
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:county]).to be_present
+        end
+      end
+
+      context "a state with zip-code-identified offices" do
+        let(:screener) { build(:screener, state: "DE") }
+
+        it "is valid with a zip code from the CSV" do
+          screener.assign_attributes(zip_code: "19954")
+          expect(screener.valid?(:location)).to eq true
+        end
+
+        it "is invalid when zip code is nil" do
+          screener.assign_attributes(zip_code: nil)
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:zip_code]).to eq [I18n.t("validations.zip_code_invalid")]
+        end
+
+        it "is invalid with a fake zip code" do
+          screener.assign_attributes(zip_code: "12345")
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:zip_code]).to eq [I18n.t("validations.zip_code_invalid")]
+        end
       end
     end
 
@@ -392,12 +418,18 @@ RSpec.describe Screener, type: :model do
         screener = create(:screener,
           state: "NC",
           county: "Alleghany County")
-
         screener.update(state: "NOT_LISTED")
 
-        screener.reload
+        expect(screener.reload.county).to be_nil
+      end
 
-        expect(screener.county).to be_nil
+      it "clears zip if state selected does not index offices by zip" do
+        screener = create(:screener,
+                          state: "DE",
+                          zip_code: "19954")
+        screener.update(state: "NC")
+
+        expect(screener.reload.zip_code).to be_nil
       end
     end
   end

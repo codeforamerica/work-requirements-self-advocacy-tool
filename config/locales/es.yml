@@ -38,6 +38,7 @@ es:
     number_invalid: Ingrese un número
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
     signature_required: Se requiere su firma para continuar
+    zip_code_invalid: Ingrese un código de área válido con por lo menos cinco números
   views:
     alcohol_treatment_program:
       edit:

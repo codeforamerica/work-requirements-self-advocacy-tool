@@ -2,7 +2,7 @@ require "rails_helper"
 
 EMAIL = "hi@example.com"
 
-RSpec.feature "Screener flow", js: true do
+RSpec.feature "DE Screener flow", js: true do
   scenario "client with regular exemption" do
     visit root_path
 
@@ -10,8 +10,8 @@ RSpec.feature "Screener flow", js: true do
     click_on I18n.t("views.homepage.fill_out_form")
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
-    select "North Carolina", from: "screener_state"
-    select "Durham County", from: "screener_county"
+    select "Delaware", from: "screener_state"
+    fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
@@ -45,23 +45,8 @@ RSpec.feature "Screener flow", js: true do
     expect(page).to have_selector("h1", text: I18n.t("views.migrant_farmworker.edit.title"))
     click_on I18n.t("general.negative")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
-    choose I18n.t("general.affirmative")
-    fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: "Tough Nuts Academy"
-    fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: "25"
-    click_on I18n.t("general.continue")
-
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.affirmative")
-
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
-    within(".question-with-follow-up__question") do
-      choose I18n.t("general.negative")
-    end
-    within("#worked-last-five-years") do
-      choose I18n.t("general.affirmative")
-    end
-    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
     choose I18n.t("general.affirmative")
@@ -189,10 +174,6 @@ RSpec.feature "Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.migrant_farmworker.edit.title"))
     click_on I18n.t("general.negative")
-
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
-    choose I18n.t("general.negative")
-    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on I18n.t("general.negative")

@@ -14,7 +14,7 @@ module LocationData
       DELAWARE => {
         display_name: "Delaware",
         pdf_filler_class: PdfFiller::PacketPdf,
-        office_by: :zip
+        office_by: :zip_code
       }
     }
 
@@ -154,7 +154,7 @@ module LocationData
     def self.load_all
       Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
         state_code = File.basename(file, ".csv")
-        if States::STATES_INFO[state_code][:office_by] == :zip
+        if States::STATES_INFO[state_code][:office_by] == :zip_code
           zip_codes = Hash.new { |hash, key| hash[key] = [] }
 
           CSV.foreach(file, headers: true) do |row|
@@ -184,5 +184,9 @@ module LocationData
     end
 
     ALL_ZIP_CODES = load_all
+
+    def self.for_state(state)
+      ALL_ZIP_CODES[state] || {}
+    end
   end
 end

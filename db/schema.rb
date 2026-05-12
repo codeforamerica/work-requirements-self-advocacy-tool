@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_10_201838) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -92,6 +92,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_10_201838) do
     t.string "work_training_name"
     t.integer "working_hours"
     t.decimal "working_weekly_earnings"
+    t.string "zip_code"
   end
 
   add_foreign_key "nc_screeners", "screeners"

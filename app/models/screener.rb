@@ -50,7 +50,8 @@ class Screener < ApplicationRecord
     :remove_pregnancy_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
     :remove_training_program_attributes_if_no,
-    :remove_volunteer_attributes_if_no
+    :remove_volunteer_attributes_if_no,
+    :remove_zip_code_if_state_does_not_require
 
   with_context :american_indian do
     validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
@@ -126,6 +127,13 @@ class Screener < ApplicationRecord
         in: ->(record) { LocationData::Counties.for_state(record.state).keys }
       },
       if: ->(record) { LocationData::Counties.for_state(record.state).present? }
+
+    validates :zip_code,
+      inclusion: {
+        in: ->(record) { LocationData::ZipCodes.for_state(record.state).keys },
+        message: ->(*) { I18n.t("validations.zip_code_invalid") }
+      },
+      if: ->(record) { LocationData::ZipCodes.for_state(record.state).present? }
   end
 
   with_context :living_with_someone do
@@ -370,5 +378,9 @@ class Screener < ApplicationRecord
 
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
+  end
+
+  def remove_zip_code_if_state_does_not_require
+    self.zip_code = nil unless state.present? && LocationData::ZipCodes.for_state(state).present?
   end
 end

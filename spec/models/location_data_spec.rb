@@ -229,7 +229,7 @@ RSpec.describe LocationData do
     end
 
     it "loads CSV files for states that match offices to zip codes" do
-      states = LocationData::States::STATES_INFO.select { |_, state_info| state_info[:office_by] == :zip }.keys
+      states = LocationData::States::STATES_INFO.select { |_, state_info| state_info[:office_by] == :zip_code }.keys
       expect(all_zip_codes.keys).to match_array(states)
     end
 

@@ -25,6 +25,10 @@
           ) %>
   </div>
 
+  <div id="zip_code_wrapper">
+    <%= f.cfa_input_field(:zip_code, t("views.location.edit.zip_code_label")) %>
+  </div>
+
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 
@@ -33,13 +37,16 @@
     const stateSelect = document.getElementById("screener_state");
     const countyWrapper = document.getElementById("county_wrapper");
     const countySelect = document.getElementById("screener_county");
+    const zipCodeWrapper = document.getElementById("zip_code_wrapper");
 
-    if (!stateSelect || !countyWrapper || !countySelect) {
+    if (!stateSelect || !countyWrapper || !countySelect || !zipCodeWrapper) {
       return;
     }
 
     // Map of state => counties (just names)
     const allCounties = <%= raw LocationData::Counties::ALL_COUNTIES.transform_values { |c| c.transform_values { |v| v[:name] } }.to_json %>;
+    // Map of state => office_by ("county" or "zip_code")
+    const statesOfficeBy = <%= raw LocationData::States::STATES_INFO.transform_values { |v| v[:office_by].to_s }.to_json %>;
 
     function clearCountyDropdown() {
       countySelect.innerHTML = "";
@@ -74,12 +81,22 @@
       });
     }
 
+    function showOrHideZipCodeInput(state) {
+      if (statesOfficeBy[state] === "zip_code") {
+        zipCodeWrapper.style.display = "block";
+      } else {
+        zipCodeWrapper.style.display = "none";
+      }
+    }
+
     // Initial population
     populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
+    showOrHideZipCodeInput(stateSelect.value);
 
     // Update counties whenever the state changes
     stateSelect.addEventListener("change", function () {
       populateCounties(stateSelect.value);
+      showOrHideZipCodeInput(stateSelect.value);
     });
   });
 </script>
