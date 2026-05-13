@@ -39,6 +39,7 @@ es:
     number_invalid: Ingrese un número
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
     signature_required: Se requiere su firma para continuar
+    zip_code_invalid: Ingrese un código de área válido con por lo menos cinco números
   views:
     age_exemption:
       edit:
@@ -248,6 +249,7 @@ es:
         not_listed: No está en la lista
         state_help_text: Cuéntenos en qué estado recibe beneficios de SNAP (requerido)
         title: Comencemos con su información básica
+        zip_code_label: "¿Cuál es su código de área? (requerido)"
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.

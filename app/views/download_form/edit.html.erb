@@ -43,15 +43,12 @@
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
 <p class="spacing-below-0"><%= LocationData::States.display_name(@current_screener.state) %></p>
-<% if @current_screener.county.present? %>
-  <p><strong><%= @current_screener.county %></strong></p>
-<% end %>
+<p><strong><%= @current_screener.office_name %></strong></p>
 
 <p><%= t("views.download_form.edit.how_to_help_text") %></p>
 <div class="notice grey-light">
   <ol class="list--numbered">
-    <% website = LocationData::Counties.website_for(@current_screener.state, @current_screener.county) %>
-    <% upload_portal_or_email = LocationData::Counties.upload_portal_or_email_for(@current_screener.state, @current_screener.county) %>
+    <% upload_portal_or_email = @current_screener.office_upload_or_portal_email %>
 
     <li><%= t("views.download_form.edit.next_steps_online_html") %>
       <ul class="list--bulleted">
@@ -64,22 +61,22 @@
             <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
           <% end %>
         <% end %>
-        <% if website.present? && website != upload_portal_or_email %>
-          <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: website) %></li>
+        <% if @current_screener.office_website.present? && @current_screener.office_website != upload_portal_or_email %>
+          <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: @current_screener.office_website) %></li>
         <% end %>
       </ul>
     </li>
 
-    <% if (mailing_address = LocationData::Counties.mailing_address_for(@current_screener.state, @current_screener.county)).present? %>
+    <% if (mailing_address = @current_screener.office_mailing_address).present? %>
       <li><%= t("views.download_form.edit.next_steps_mail_html", mailing_address: simple_format(mailing_address)) %></li>
     <% end %>
-    <% if (address = LocationData::Counties.physical_address_for(@current_screener.state, @current_screener.county)).present? %>
+    <% if (address = @current_screener.office_physical_address).present? %>
       <li><%= t("views.download_form.edit.next_steps_in_person_html", address: simple_format(address)) %></li>
     <% end %>
   </ol>
 </div>
 
-<% if (phone = LocationData::Counties.phone_for(@current_screener.state, @current_screener.county)).present? %>
+<% if (phone = @current_screener.office_phone).present? %>
   <p><%= t("views.download_form.edit.have_questions_html") %></p>
   <p><%= phone %></p>
 <% end %>

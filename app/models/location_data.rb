@@ -43,43 +43,49 @@ module LocationData
     end
   end
 
+  DATA_DIR = Rails.root.join("config/data/counties")
+  COUNTY_NAME = "County [COUNTY_AGENCY]"
+  MAIL_ADDRESS = "Office mailing address [COUNTY_MAIL_ADDRESS]"
+  PHYSICAL_ADDRESS = "Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS]"
+  PHONE = "Office phone number [COUNTY_PHONE]"
+  FAX = "Office fax number [COUNTY_FAX]"
+  EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
+  WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
+  UPLOAD_PORTAL_OR_EMAIL = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
+  IS_SUPPORTED = "Is Supported?"
+
   module Counties
-    DATA_DIR = Rails.root.join("config/data/counties")
-
-    COUNTY_NAME = "County [COUNTY_AGENCY]"
-    MAIL_ADDRESS = "Office mailing address [COUNTY_MAIL_ADDRESS]"
-    PHYSICAL_ADDRESS = "Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS]"
-    PHONE = "Office phone number [COUNTY_PHONE]"
-    FAX = "Office fax number [COUNTY_FAX]"
-    EMAIL = "Office email address [COUNTY_EMAIL_ADDRESS]"
-    WEBSITE = "Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE]"
-    UPLOAD_PORTAL_OR_EMAIL = "Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]"
-    IS_SUPPORTED = "Is Supported?"
-
+    # data structure looks like:
+    # {
+    #   STATE_CODE => {
+    #     COUNTY_NAME => { ... OFFICE INFO ... }
+    #   }
+    # }
     def self.load_all
       Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
         state_code = File.basename(file, ".csv")
+        if States::STATES_INFO[state_code][:office_by] == :county
+          counties = {}
 
-        counties = {}
+          CSV.foreach(file, headers: true) do |row|
+            county = row[COUNTY_NAME]&.strip
+            next if county.blank?
 
-        CSV.foreach(file, headers: true) do |row|
-          county = row[COUNTY_NAME]&.strip
-          next if county.blank?
+            counties[county] = {
+              name: county,
+              mailing_address: row[MAIL_ADDRESS],
+              physical_address: row[PHYSICAL_ADDRESS],
+              phone: row[PHONE],
+              fax: row[FAX],
+              email: row[EMAIL],
+              website: row[WEBSITE],
+              upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
+              is_supported: row[IS_SUPPORTED] == "Y"
+            }
+          end
 
-          counties[county] = {
-            name: county,
-            mailing_address: row[MAIL_ADDRESS],
-            physical_address: row[PHYSICAL_ADDRESS],
-            phone: row[PHONE],
-            fax: row[FAX],
-            email: row[EMAIL],
-            website: row[WEBSITE],
-            upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
-            is_supported: row[IS_SUPPORTED] == "Y"
-          }
+          states[state_code] = counties.freeze
         end
-
-        states[state_code] = counties.freeze
       end.freeze
     end
 
@@ -87,10 +93,6 @@ module LocationData
 
     def self.for_state(state)
       ALL_COUNTIES[state] || {}
-    end
-
-    def self.options_for(state)
-      for_state(state).map { |key, data| [data[:name], key] }
     end
 
     def self.get(state, county_key)
@@ -102,31 +104,71 @@ module LocationData
 
       county
     end
+  end
 
-    def self.website_for(state_code, county_key)
-      get(state_code, county_key)[:website]
+  module ZipCodes
+    ZIP_CODE = "ZIP Code [ZIP_CODE]"
+    LAST_NAMES_A_SMH = "Last Names A-Smh [LN_A-Smh]"
+    LAST_NAMES_SMI_Z = "Last Names Smi-Z [LN_Smi-Z]"
+    SPECIAL_GEO = "Special Geo"
+    INSTRUCTIONS = "Instructions"
+
+    # data structure looks like:
+    # {
+    #   STATE_CODE => {
+    #     ZIP_CODE => [
+    #       { ... OFFICE INFO ... }
+    #     ],
+    #   }
+    # }
+    def self.load_all
+      Dir.glob(DATA_DIR.join("*.csv")).each_with_object({}) do |file, states|
+        state_code = File.basename(file, ".csv")
+        if States::STATES_INFO[state_code][:office_by] == :zip_code
+          zip_codes = Hash.new { |hash, key| hash[key] = [] }
+
+          CSV.foreach(file, headers: true) do |row|
+            zip = row[ZIP_CODE]&.strip
+            next if zip.blank?
+
+            zip_codes[zip] << {
+              name: row[COUNTY_NAME]&.strip,
+              code: zip,
+              mailing_address: row[MAIL_ADDRESS],
+              physical_address: row[PHYSICAL_ADDRESS],
+              phone: row[PHONE],
+              fax: row[FAX],
+              email: row[EMAIL],
+              website: row[WEBSITE],
+              upload_portal_or_email: row[UPLOAD_PORTAL_OR_EMAIL],
+              is_supported: row[IS_SUPPORTED] == "Y",
+              special_geo: row[SPECIAL_GEO] == "TRUE",
+              last_names_a_smh: row[LAST_NAMES_A_SMH] == "TRUE",
+              last_names_smi_z: row[LAST_NAMES_SMI_Z] == "TRUE",
+              instructions: row[INSTRUCTIONS]
+            }
+          end
+
+          zip_codes.default_proc = nil
+          states[state_code] = zip_codes.freeze
+        end
+      end.freeze
     end
 
-    def self.upload_portal_or_email_for(state_code, county_key)
-      county = get(state_code, county_key)
-      county[:upload_portal_or_email].presence || county[:email]
+    ALL_ZIP_CODES = load_all
+
+    def self.for_state(state)
+      ALL_ZIP_CODES[state] || {}
     end
 
-    def self.email_for(state_code, county_key)
-      get(state_code, county_key)[:email]
-    end
+    def self.get_all(state, zip_code)
+      raise ArgumentError, "state_code is required" if state.blank?
+      raise ArgumentError, "zip_code is required" if zip_code.blank?
 
-    def self.mailing_address_for(state_code, county_key)
-      get(state_code, county_key)[:mailing_address]
-    end
+      zips = ALL_ZIP_CODES.dig(state, zip_code)
+      raise StandardError, "Zip code not found for #{state} / #{zip_code}" if zips.blank?
 
-    def self.physical_address_for(state_code, county_key)
-      county = get(state_code, county_key)
-      county[:physical_address].presence || county[:mailing_address]
-    end
-
-    def self.phone_for(state_code, county_key)
-      get(state_code, county_key)[:phone]
+      zips
     end
   end
 end

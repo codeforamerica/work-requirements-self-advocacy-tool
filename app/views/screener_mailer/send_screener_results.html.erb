@@ -26,10 +26,8 @@
 <h3 style="font-weight: bold;">
   <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 </h3>
-<% state = @screener.state %>
-<% county = @screener.county %>
-<% website = LocationData::Counties.website_for(state, county) %>
-<% email = LocationData::Counties.email_for(state, county) %>
+<% website = @screener.office_website %>
+<% email = @screener.office_email %>
 
 <ol style="line-height: 2;">
   <li>
@@ -41,7 +39,7 @@
     <strong><%= t('views.screener_mailer.send_screener_results.mail_label') %></strong> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
     <br/><br/>
     <div style="font-style: italic;">
-      <% LocationData::Counties.mailing_address_for(state, county).split("\n").map do |line| %>
+      <% @screener.office_mailing_address.split("\n").map do |line| %>
         <%= line %>
         <br/>
       <% end %>
@@ -51,7 +49,7 @@
     <strong><%= t('views.screener_mailer.send_screener_results.in_person_label') %></strong> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
     <br/><br/>
     <div style="font-style: italic;">
-      <% LocationData::Counties.physical_address_for(state, county).split("\n").map do |line| %>
+      <% @screener.office_physical_address.split("\n").map do |line| %>
         <%= line %>
         <br/>
       <% end %>
@@ -70,7 +68,7 @@
       <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
     </li>
   <% end %>
-  <% if (phone = LocationData::Counties.phone_for(state, county)).present? %>
+  <% if (phone = @screener.office_phone).present? %>
     <li><%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %></li>
   <% end %>
 </ul>
