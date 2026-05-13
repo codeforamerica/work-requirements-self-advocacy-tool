@@ -590,7 +590,6 @@ es:
           <p>Según sus respuestas, es posible que ya esté cumpliendo con estas reglas y que pueda recibir los beneficios de SNAP.</p>
     work_rules_apply_unmet:
       edit:
-        default_time_limit_text: out of every three years (36 months)
         instructions_html: |
           <p>Usted puede mantener sus beneficios de SNAP si su oficina sabe que usted está haciendo <strong>al menos una</strong> de las siguientes cosas:</p>
           <ul class='list--bulleted'>
@@ -601,7 +600,8 @@ es:
           <p>Si pierde <strong>sus beneficios de SNAP</strong> y luego comienza a cumplir con uno de estos requisitos, puede volver a solicitarlos. También puede volver a solicitar <strong>sus beneficios de SNAP</strong> si su situación cambia y las reglas de trabajo ya no se aplican en su caso.</p>
           <p><strong>Si comienza a hacer alguna de estas actividades y antes no las realizaba,</strong> envíe sus comprobantes a su oficina de SNAP.</p>
         instructions_title: Evite perder sus beneficios de SNAP y manténgalos por más tiempo
-        nc_time_limit_text: hasta el 31 de diciembre de 2027
+        time_limit_text_default: out of every three years (36 months)
+        time_limit_text_nc: hasta el 31 de diciembre de 2027
         title: Es posible que tenga que cumplir con las reglas de trabajo de SNAP.
         title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
         unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.

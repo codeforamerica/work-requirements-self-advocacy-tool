@@ -63,7 +63,7 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
         screener = build(:screener, state: "NC")
         controller.instance_variable_set(:@current_screener, screener)
 
-        expect(controller.time_limit_text).to eq(I18n.t("views.work_rules_apply_unmet.edit.nc_time_limit_text"))
+        expect(controller.time_limit_text).to eq(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_nc"))
       end
     end
 
@@ -72,7 +72,7 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
         screener = build(:screener, state: "DE")
         controller.instance_variable_set(:@current_screener, screener)
 
-        expect(controller.time_limit_text).to eq(I18n.t("views.work_rules_apply_unmet.edit.default_time_limit_text"))
+        expect(controller.time_limit_text).to eq(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_default"))
       end
     end
   end

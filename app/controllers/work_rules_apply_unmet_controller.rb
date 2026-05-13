@@ -11,9 +11,9 @@ class WorkRulesApplyUnmetController < QuestionController
 
   def time_limit_text
     if @current_screener.state == "NC"
-      I18n.t("views.work_rules_apply_unmet.edit.nc_time_limit_text")
+      I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_nc")
     else
-      I18n.t("views.work_rules_apply_unmet.edit.default_time_limit_text")
+      I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_default")
     end
   end
 end
