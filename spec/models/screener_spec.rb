@@ -815,4 +815,169 @@ RSpec.describe Screener, type: :model do
       expect(screener.has_earnings_exemption?).to eq false
     end
   end
+
+  describe "#office_or_offices_for_zip" do
+    context "when the zip code has a single office" do
+      let(:screener) { build(:screener, state: "DE", zip_code: "19703", last_name: "Anyone") }
+
+      it "returns that one office as a hash" do
+        result = screener.office_or_offices_for_zip
+        expect(result).to be_a(Hash)
+        expect(result[:name]).to eq("Claymont State Service Center")
+      end
+    end
+
+    context "when the zip code is split by last name" do
+      let(:screener) { build(:screener, state: "DE", zip_code: "19901", last_name: last_name) }
+
+      context "last name falls in A-Smh" do
+        let(:last_name) { "Anderson" }
+
+        it "returns the A-Smh office" do
+          expect(screener.office_or_offices_for_zip[:name]).to eq("Blue Hen Mall/Corporate Center")
+        end
+      end
+
+      context "last name falls in Smi-Z" do
+        let(:last_name) { "Williams" }
+
+        it "returns the Smi-Z office" do
+          expect(screener.office_or_offices_for_zip[:name]).to eq("James W. Williams State Service Center")
+        end
+      end
+
+      context "last name is at the A-Smh boundary" do
+        let(:last_name) { "Smh" }
+
+        it "returns the A-Smh office" do
+          expect(screener.office_or_offices_for_zip[:name]).to eq("Blue Hen Mall/Corporate Center")
+        end
+      end
+
+      context "last name is at the Smi-Z boundary" do
+        let(:last_name) { "Smi" }
+
+        it "returns the Smi-Z office" do
+          expect(screener.office_or_offices_for_zip[:name]).to eq("James W. Williams State Service Center")
+        end
+      end
+
+      context "last name is lowercase" do
+        let(:last_name) { "anderson" }
+
+        it "still resolves using capitalized comparison" do
+          expect(screener.office_or_offices_for_zip[:name]).to eq("Blue Hen Mall/Corporate Center")
+        end
+      end
+
+      context "last name is blank" do
+        let(:last_name) { nil }
+
+        it "returns nil because the office cannot be determined yet" do
+          expect(screener.office_or_offices_for_zip).to be_nil
+        end
+      end
+    end
+
+    context "when the zip code has special geo offices" do
+      let(:screener) { build(:screener, state: "DE", zip_code: "19720", last_name: "Anyone") }
+
+      it "returns all of the offices as an array" do
+        result = screener.office_or_offices_for_zip
+        expect(result).to be_an(Array)
+        expect(result.size).to be > 1
+        expect(result.map { |o| o[:name] }).to include("DeLaWarr State Service Center")
+      end
+    end
+  end
+
+  describe "#office_info_for" do
+    context "in a state with county-identified offices" do
+      let(:screener) { build(:screener, state: "NC", county: "Durham County") }
+
+      it "returns the requested attribute from the county data" do
+        expected = LocationData::Counties.get("NC", "Durham County")[:email]
+        expect(screener.office_info_for(:email)).to eq(expected)
+      end
+    end
+
+    context "in a state with zip-code-identified offices" do
+      context "and the zip has a single office" do
+        let(:screener) { build(:screener, state: "DE", zip_code: "19703", last_name: "Anyone") }
+
+        it "returns the requested attribute from that office" do
+          expect(screener.office_info_for(:name)).to eq("Claymont State Service Center")
+        end
+      end
+
+      context "and the zip is split by last name" do
+        let(:screener) { build(:screener, state: "DE", zip_code: "19901", last_name: "Williams") }
+
+        it "returns the requested attribute from the office matching the last name" do
+          expect(screener.office_info_for(:name)).to eq("James W. Williams State Service Center")
+        end
+      end
+
+      context "and the zip has multiple special geo offices" do
+        let(:screener) { build(:screener, state: "DE", zip_code: "19720", last_name: "Anyone") }
+
+        it "raises because a single office cannot be selected" do
+          expect {
+            screener.office_info_for(:name)
+          }.to raise_error(StandardError, /Cannot return office/)
+        end
+      end
+    end
+  end
+
+  describe "office accessor methods" do
+    let(:screener) { build(:screener, state: "DE", zip_code: "19703", last_name: "Anyone") }
+    let(:office) { LocationData::ZipCodes.get_all("DE", "19703").first }
+
+    it "#office_name returns the office name" do
+      expect(screener.office_name).to eq(office[:name])
+    end
+
+    it "#office_email returns the office email" do
+      expect(screener.office_email).to eq(office[:email])
+    end
+
+    it "#office_mailing_address returns the mailing address" do
+      expect(screener.office_mailing_address).to eq(office[:mailing_address])
+    end
+
+    it "#office_phone returns the office phone" do
+      expect(screener.office_phone).to eq(office[:phone])
+    end
+
+    it "#office_website returns the office website" do
+      expect(screener.office_website).to eq(office[:website])
+    end
+
+    describe "#office_physical_address" do
+      it "returns physical_address when present" do
+        allow(screener).to receive(:office_info_for).with(:physical_address).and_return("123 Real St")
+        expect(screener.office_physical_address).to eq("123 Real St")
+      end
+
+      it "falls back to the mailing address when physical_address is blank" do
+        allow(screener).to receive(:office_info_for).with(:physical_address).and_return(nil)
+        allow(screener).to receive(:office_info_for).with(:mailing_address).and_return("PO Box 1")
+        expect(screener.office_physical_address).to eq("PO Box 1")
+      end
+    end
+
+    describe "#office_upload_or_portal_email" do
+      it "returns upload_portal_or_email when present" do
+        allow(screener).to receive(:office_info_for).with(:upload_portal_or_email).and_return("https://upload.example")
+        expect(screener.office_upload_or_portal_email).to eq("https://upload.example")
+      end
+
+      it "falls back to the office email when upload_portal_or_email is blank" do
+        allow(screener).to receive(:office_info_for).with(:upload_portal_or_email).and_return(nil)
+        allow(screener).to receive(:office_info_for).with(:email).and_return("office@example.com")
+        expect(screener.office_upload_or_portal_email).to eq("office@example.com")
+      end
+    end
+  end
 end

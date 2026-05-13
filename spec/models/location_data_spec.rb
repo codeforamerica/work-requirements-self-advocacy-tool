@@ -82,23 +82,6 @@ RSpec.describe LocationData do
       end
     end
 
-    describe ".options_for" do
-      it "returns county options matching CSV data" do
-        all_counties.each do |state, counties|
-          options = described_class.options_for(state)
-          expect(options.size).to eq(counties.size)
-
-          counties.keys.each do |county_name|
-            expect(options).to include([county_name, county_name])
-          end
-        end
-      end
-
-      it "returns empty array for unknown state" do
-        expect(described_class.options_for("FAKE")).to eq([])
-      end
-    end
-
     describe ".get" do
       let(:state) { all_counties.keys.first }
       let(:county) { all_counties[state].keys.first }
@@ -127,97 +110,6 @@ RSpec.describe LocationData do
       end
     end
 
-    describe ".website_for" do
-      let(:state) { all_counties.keys.first }
-      let(:county) { all_counties[state].keys.first }
-
-      it "returns the website for a valid county" do
-        expected = all_counties[state][county][:website]
-        expect(described_class.website_for(state, county)).to eq(expected)
-      end
-
-      it "raises when county not found" do
-        expect {
-          described_class.website_for(state, "Fake County")
-        }.to raise_error(StandardError)
-      end
-    end
-
-    describe ".email_for" do
-      let(:state) { all_counties.keys.first }
-      let(:county) { all_counties[state].keys.first }
-
-      it "returns the email for a valid county" do
-        expected = all_counties[state][county][:email]
-        expect(described_class.email_for(state, county)).to eq(expected)
-      end
-
-      it "raises when county not found" do
-        expect {
-          described_class.email_for(state, "Fake County")
-        }.to raise_error(StandardError)
-      end
-    end
-
-    describe ".upload_portal_or_email_for" do
-      let(:state) { all_counties.keys.first }
-
-      it "returns upload value when present" do
-        county_name, county_data = all_counties[state].find { |name, data| data[:upload_portal_or_email].present? }
-        skip "No county with upload present" unless county_name
-
-        result = described_class.upload_portal_or_email_for(state, county_name)
-        expect(result).to eq(county_data[:upload_portal_or_email])
-      end
-
-      it "falls back to email when upload is blank" do
-        county_name, county_data = all_counties[state].find { |name, data| data[:upload_portal_or_email].blank? && data[:email].present? }
-        skip "No suitable county for fallback test" unless county_name
-
-        result = described_class.upload_portal_or_email_for(state, county_name)
-        expect(result).to eq(county_data[:email])
-      end
-    end
-
-    describe ".mailing_address_for" do
-      let(:state) { all_counties.keys.first }
-      let(:county) { all_counties[state].keys.first }
-
-      it "returns the mailing address" do
-        expected = all_counties[state][county][:mailing_address]
-        expect(described_class.mailing_address_for(state, county)).to eq(expected)
-      end
-    end
-
-    describe ".physical_address_for" do
-      let(:state) { all_counties.keys.first }
-
-      it "returns physical address when present" do
-        county_name, county_data = all_counties[state].find { |name, data| data[:physical_address].present? }
-        skip "No county with physical address" unless county_name
-
-        result = described_class.physical_address_for(state, county_name)
-        expect(result).to eq(county_data[:physical_address])
-      end
-
-      it "falls back to mailing address when physical is blank" do
-        county_name, county_data = all_counties[state].find { |name, data| data[:physical_address].blank? && data[:mailing_address].present? }
-        skip "No suitable county for fallback test" unless county_name
-
-        result = described_class.physical_address_for(state, county_name)
-        expect(result).to eq(county_data[:mailing_address])
-      end
-    end
-
-    describe ".phone_for" do
-      let(:state) { all_counties.keys.first }
-      let(:county) { all_counties[state].keys.first }
-
-      it "returns the phone number" do
-        expected = all_counties[state][county][:phone]
-        expect(described_class.phone_for(state, county)).to eq(expected)
-      end
-    end
   end
 
   describe LocationData::ZipCodes do
@@ -240,6 +132,42 @@ RSpec.describe LocationData do
           expected_count = File.exist?(csv_file) ? CSV.read(csv_file, headers: true).count { |row| row[LocationData::ZipCodes::ZIP_CODE]&.strip.present? } : 0
           expect(zips.values.flatten.size).to eq(expected_count)
         end
+      end
+    end
+
+    describe ".get_all" do
+      let(:state) { all_zip_codes.keys.first }
+      let(:zip_code) { all_zip_codes[state].keys.first }
+
+      it "returns the array of offices for a valid state/zip" do
+        result = described_class.get_all(state, zip_code)
+        expect(result).to eq(all_zip_codes[state][zip_code])
+      end
+
+      it "returns multiple offices when the zip has more than one" do
+        multi_zip = all_zip_codes[state].find { |_, offices| offices.size > 1 }&.first
+        skip "No zip with multiple offices" unless multi_zip
+
+        result = described_class.get_all(state, multi_zip)
+        expect(result.size).to be > 1
+      end
+
+      it "raises ArgumentError when state is blank" do
+        expect {
+          described_class.get_all(nil, zip_code)
+        }.to raise_error(ArgumentError, /state_code is required/)
+      end
+
+      it "raises ArgumentError when zip_code is blank" do
+        expect {
+          described_class.get_all(state, nil)
+        }.to raise_error(ArgumentError, /zip_code is required/)
+      end
+
+      it "raises StandardError when zip code is not found" do
+        expect {
+          described_class.get_all(state, "00000")
+        }.to raise_error(StandardError, /Zip code not found/)
       end
     end
   end

@@ -290,33 +290,62 @@ class Screener < ApplicationRecord
     [first_name, middle_name.presence, last_name].compact.join(" ")
   end
 
-  def office_info_for(method)
+  def office_info_for(attribute)
     case LocationData::States::STATES_INFO[state][:office_by]
     when :county
-      LocationData::Counties.send(method, state, county)
+      LocationData::Counties.get(state, county)[attribute]
     else
-      ""
+      raise StandardError, "Cannot return office for zip #{zip_code}" if office_or_offices_for_zip.is_a?(Array)
+
+      office_or_offices_for_zip[attribute]
     end
   end
 
+  def office_or_offices_for_zip
+    possible_offices = LocationData::ZipCodes.get_all(state, zip_code)
+    if possible_offices.length == 1
+      possible_offices.first
+    else
+      # if zip code is divided geographically, we don't know which office to send them to and must return all of them
+      return possible_offices if possible_offices.any? { |office| office[:special_geo] }.present?
+
+      # if there are multiple offices and they are not "special geo", it means they are divided by last name
+      return unless last_name.present?
+      range = "A".."Smh"
+      if range.cover?(last_name.capitalize)
+        possible_offices.find { |office| office[:last_names_a_smh] }
+      else
+        possible_offices.find { |office| office[:last_names_smi_z] }
+      end
+    end
+  end
+
+  def office_email
+    office_info_for(:email)
+  end
+
   def office_mailing_address
-    office_info_for(:mailing_address_for)
+    office_info_for(:mailing_address)
+  end
+
+  def office_name
+    office_info_for(:name)
   end
 
   def office_phone
-    office_info_for(:phone_for)
+    office_info_for(:phone)
   end
 
   def office_physical_address
-    office_info_for(:physical_address_for)
+    office_info_for(:physical_address) || office_mailing_address
   end
 
   def office_upload_or_portal_email
-    office_info_for(:upload_portal_or_email_for)
+    office_info_for(:upload_portal_or_email) || office_email
   end
 
   def office_website
-    office_info_for(:website_for)
+    office_info_for(:website)
   end
 
   def pregnancy_due_date_day

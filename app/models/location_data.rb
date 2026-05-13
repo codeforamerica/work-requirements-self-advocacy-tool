@@ -95,10 +95,6 @@ module LocationData
       ALL_COUNTIES[state] || {}
     end
 
-    def self.options_for(state)
-      for_state(state).map { |key, data| [data[:name], key] }
-    end
-
     def self.get(state, county_key)
       raise ArgumentError, "state_code is required" if state.blank?
       raise ArgumentError, "county_key is required" if county_key.blank?
@@ -107,32 +103,6 @@ module LocationData
       raise StandardError, "County not found for #{state} / #{county_key}" unless county
 
       county
-    end
-
-    def self.website_for(state_code, county_key)
-      get(state_code, county_key)[:website]
-    end
-
-    def self.upload_portal_or_email_for(state_code, county_key)
-      county = get(state_code, county_key)
-      county[:upload_portal_or_email].presence || county[:email]
-    end
-
-    def self.email_for(state_code, county_key)
-      get(state_code, county_key)[:email]
-    end
-
-    def self.mailing_address_for(state_code, county_key)
-      get(state_code, county_key)[:mailing_address]
-    end
-
-    def self.physical_address_for(state_code, county_key)
-      county = get(state_code, county_key)
-      county[:physical_address].presence || county[:mailing_address]
-    end
-
-    def self.phone_for(state_code, county_key)
-      get(state_code, county_key)[:phone]
     end
   end
 
@@ -162,6 +132,7 @@ module LocationData
             next if zip.blank?
 
             zip_codes[zip] << {
+              name: row[COUNTY_NAME]&.strip,
               code: zip,
               mailing_address: row[MAIL_ADDRESS],
               physical_address: row[PHYSICAL_ADDRESS],
@@ -178,6 +149,7 @@ module LocationData
             }
           end
 
+          zip_codes.default_proc = nil
           states[state_code] = zip_codes.freeze
         end
       end.freeze
@@ -187,6 +159,16 @@ module LocationData
 
     def self.for_state(state)
       ALL_ZIP_CODES[state] || {}
+    end
+
+    def self.get_all(state, zip_code)
+      raise ArgumentError, "state_code is required" if state.blank?
+      raise ArgumentError, "zip_code is required" if zip_code.blank?
+
+      zips = ALL_ZIP_CODES.dig(state, zip_code)
+      raise StandardError, "Zip code not found for #{state} / #{zip_code}" if zips.blank?
+
+      zips
     end
   end
 end
