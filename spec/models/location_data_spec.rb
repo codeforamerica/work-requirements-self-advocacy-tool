@@ -109,7 +109,6 @@ RSpec.describe LocationData do
         }.to raise_error(StandardError, /County not found/)
       end
     end
-
   end
 
   describe LocationData::ZipCodes do
