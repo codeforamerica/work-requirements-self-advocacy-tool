@@ -2,7 +2,7 @@ require "rails_helper"
 
 EMAIL = "hi@example.com"
 
-RSpec.feature "Screener flow", js: true do
+RSpec.feature "NC Screener flow", js: true do
   scenario "client with regular exemption" do
     visit root_path
 
