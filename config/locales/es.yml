@@ -570,6 +570,12 @@ es:
           <p><b>Si estas actividades suman al menos 20 horas por semana (80 horas al mes), es posible que cumpla con las reglas de trabajo de SNAP y pueda mantener sus beneficios de SNAP sin un tiempo límite.</b></p>
           <p>Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.</p>
         avoid_a_time_on_your_snap_benefit: Informe a su oficina de SNAP sobre sus actividades para seguir recibiendo sus beneficios.
+        proof_of_volunteering: Comprobantes de trabajo voluntario
+        proof_of_volunteering_html: |
+          <p>Incluya este comprobante si lo tiene disponible o puede obtenerlo fácilmente.</p>
+          <ul class='list--bulleted'>
+            <li>Una carta firmada por la persona u organización para la que hace trabajo voluntario. Debe incluir el número de horas de voluntariado que hace al mes.</li>
+          </ul>
         proof_of_working: Comprobantes de trabajo
         proof_of_working_html: |
           <p>Envíe uno de los siguientes comprobantes:</p>

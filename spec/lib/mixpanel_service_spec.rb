@@ -138,7 +138,7 @@ describe MixpanelService do
 
         context "tracking information" do
           it "tracks the event with record, controller, and other information" do
-            screener = create(:screener, state: LocationData::States::NORTH_CAROLINA)
+            screener = create(:screener, state: LocationData::States::NORTH_CAROLINA, source: "duckduckmonkey")
             controller_double = instance_double(HomepageController)
             allow(controller_double).to receive(:class).and_return HomepageController
             allow(controller_double).to receive(:action_name).and_return "index"
@@ -161,7 +161,8 @@ describe MixpanelService do
                 controller_action: "HomepageController#index",
                 locale: :en,
                 referrer: "duckduckshrimp.com",
-                utm_source: "duckduckshrimp"
+                utm_source: "duckduckshrimp",
+                source: "duckduckmonkey"
               }
             )
           end
