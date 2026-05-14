@@ -314,4 +314,20 @@ RSpec.describe ApplicationController, type: :controller do
       end
     end
   end
+
+  describe "#set_source" do
+    context "when there is already a source in the session" do
+      before do
+        session[:source] = "existing_source_param"
+      end
+
+      context "when the source param in the request is not nil" do
+        it "overwrites the source in the session" do
+          get :index, params: {source: "new_source_param"}
+
+          expect(session[:source]).to eq "new_source_param"
+        end
+      end
+    end
+  end
 end

@@ -64,7 +64,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
       - name: Log in to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2.1.4
+        uses: aws-actions/amazon-ecr-login@v2.1.5
       - name: Check if the image exists
         id: image_exists
         uses: k4kratik/container-image-check-custom-action@v4
@@ -87,7 +87,7 @@ jobs:
             --value "$IMAGE_TAG" \
             --overwrite
       - name: Get a deployment token
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@v3.1.1
         id: token
         with:
           app-id: ${{ secrets.DEPLOYMENT_APP_ID }}
