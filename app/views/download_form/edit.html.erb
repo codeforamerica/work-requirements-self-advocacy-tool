@@ -52,7 +52,7 @@
 
     <li><%= t("views.download_form.edit.next_steps_online_html") %>
       <ul class="list--bulleted">
-        <li class='spacing-above-15'><%= t("views.download_form.edit.#{@current_screener.state}_epass_html") %></li>
+        <li class='spacing-above-15'><%= state_epass_html %></li>
         <% if upload_portal_or_email.present? %>
           <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
           <% if is_email %>
