@@ -10,7 +10,7 @@ class WorkRulesApplyUnmetController < QuestionController
   end
 
   def time_limit_text
-    if @current_screener.state == "NC"
+    if @current_screener.state == LocationData::States::NORTH_CAROLINA
       I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_nc")
     else
       I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_default")
