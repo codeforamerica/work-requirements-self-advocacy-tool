@@ -55,14 +55,24 @@ es:
       edit:
         case_number_label: Número de caso
         help_text_county_letter:
+          case_number_label_default: '"Case #"'
+          case_number_label_nc: '"Case Number", "Case ID" o "Client Number"'
           help_bullets:
-          - Busque una sección con el título "Case Number", "Case ID" o "Client Number".
+          - Busque una sección con el título %{case_number_label}.
           - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
-          title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de %{state} %{county}.
-        help_text_epass:
-          help_bullets_html:
-          - Inicie sesión en el sitio <a href="https://epass.nc.gov/" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
-          title: Use su cuenta de ePASS NC para encontrar su número de caso.
+          office_name_default: DHHS
+          office_name_nc: "%{state} %{county}"
+          title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de  %{office_name}.
+        help_text_website:
+          de:
+            help_bullets_html:
+            - If you don’t have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
+            website_name: ASSIST portal
+          nc:
+            help_bullets_html:
+            - Inicie sesión en el sitio <a href="https://epass.nc.gov/" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
+            website_name: ePASS NC portal
+          title: Use su cuenta de %{website_name} para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
       edit:
