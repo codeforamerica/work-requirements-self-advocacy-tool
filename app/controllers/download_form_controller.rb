@@ -7,9 +7,9 @@ class DownloadFormController < ExemptionAwareQuestionController
 
   def state_epass_html
     if @current_screener.state == LocationData::States::NORTH_CAROLINA
-      I18n.t("views.download_form.edit.epass_nc_html")
+      I18n.t("views.download_form.edit.epass_nc_html").html_safe
     else
-      I18n.t("views.download_form.edit.epass_de_html")
+      I18n.t("views.download_form.edit.epass_de_html").html_safe
     end
   end
 

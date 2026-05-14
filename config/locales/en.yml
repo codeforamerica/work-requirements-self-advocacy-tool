@@ -158,16 +158,17 @@ en:
         email_benefit_2: Step-by-step guidance
         email_benefit_3: A list of proof to submit
         email_pdf: Add an email
+        epass_de_html: "<strong>Using Deleware ASSIST account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='de_assist_link_clicked' data-track-controller_name='DownloadForm'>Delware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this."
+        epass_nc_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
         expectation_1: Your SNAP agency may call you or mail you a notice if they need more information.
         expectation_2: In some cases, you might need to send your agency more or different documents that show your situation, like paystubs or proof of a medical condition, for example.
         expectation_3: The agency may not confirm receipt. We recommend calling your SNAP agency if you don't hear anything in the next 4 weeks.
         have_questions_html: "<strong>Have questions about how to submit your form?</strong> Call your agency."
         how_to: 'How to submit your form to your SNAP agency:'
         how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
-        epass_nc_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
-        epass_de_html: "<strong>Using Deleware Assist account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='de_assist_link_clicked' data-track-controller_name='DownloadForm'>Delware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this."
-        next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
-        next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_in_person_nc_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
+        next_steps_mail_nc_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_mail_or_in_person_de_html: "<p><strong>Mail or in person:</strong> Print your form and mail it or bring it to</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>Online: </strong>Send your form using one of these options:</span>"
         next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
