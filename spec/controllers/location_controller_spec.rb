@@ -6,7 +6,7 @@ RSpec.describe LocationController, type: :controller do
 
     render_views
 
-    it "reads and displays the state and county attributes if they are saved on screener" do
+    it "reads and displays the state and county attributes if they are saved on the screener" do
       screener = create(:screener, state: "NC", county: "Anson County")
       sign_in screener
       get :edit
@@ -15,7 +15,16 @@ RSpec.describe LocationController, type: :controller do
       expect(response.body).to include("Anson County")
     end
 
-    it "reads and displays the state attribute if it is saved on screener" do
+    it "reads and displays the state and zip code attributes if they are saved on the screener" do
+      screener = create(:screener, state: "DE", zip_code: "19954")
+      sign_in screener
+      get :edit
+
+      expect(response.body).to have_select("screener_state", selected: "Delaware")
+      expect(response.body).to include("19954")
+    end
+
+    it "reads and displays unlisted state attribute if it is saved on the screener" do
       screener = create(:screener, state: "NOT_LISTED")
       sign_in screener
       get :edit
@@ -27,35 +36,48 @@ RSpec.describe LocationController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
-    context "location" do
-      it "updates the state and county values and sends a mixpanel event" do
-        screener = create(:screener)
-        sign_in screener
-        allow(MixpanelService).to receive(:send_event)
+    it "updates the state and county values and sends a mixpanel event" do
+      screener = create(:screener)
+      sign_in screener
+      allow(MixpanelService).to receive(:send_event)
 
-        params = {
-          state: "NC",
-          county: "Anson County"
-        }
+      params = {
+        state: "NC",
+        county: "Anson County"
+      }
 
-        post :update, params: {screener: params}
-        expect(screener.reload.state).to eq "NC"
-        expect(screener.reload.county).to eq "Anson County"
+      post :update, params: {screener: params}
+      expect(screener.reload.state).to eq "NC"
+      expect(screener.reload.county).to eq "Anson County"
 
-        params = {
-          state: "NOT_LISTED"
-        }
-
-        post :update, params: {screener: params}
-        expect(screener.reload.state).to eq "NOT_LISTED"
-        expect(screener.reload.county).to be_nil
-        expect(MixpanelService).to have_received(:send_event).with(
-          hash_including(
-            event_name: "page_submit",
-            data: {state: "NC", county: "Anson County"}
-          )
+      expect(MixpanelService).to have_received(:send_event).with(
+        hash_including(
+          event_name: "page_submit",
+          data: {state: "NC", county: "Anson County"}
         )
-      end
+      )
+    end
+
+    it "updates the state and zip code values and sends a mixpanel event" do
+      screener = create(:screener)
+      sign_in screener
+      allow(MixpanelService).to receive(:send_event)
+
+      params = {
+        state: "DE",
+        zip_code: "19954"
+      }
+
+      post :update, params: {screener: params}
+      expect(screener.reload.state).to eq "DE"
+      expect(screener.reload.zip_code).to eq "19954"
+
+      expect(MixpanelService).to have_received(:send_event).with(
+        hash_including(
+          event_name: "page_submit",
+          data: {state: "DE", zip_code: "19954"}
+        )
+      )
     end
   end
 end
