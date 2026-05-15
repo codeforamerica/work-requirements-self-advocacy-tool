@@ -494,8 +494,10 @@ en:
             Proof of health conditions or disability
             This proof can be helpful, but may not be required.
             - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
-            - A North Carolina Medical Report form that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
+            - A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
           help_text: If you know your SNAP agency already has proof of these things, you don’t need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
+          proof_of_health_form_text_de: Delaware Health Assessment Form (Form 184)
+          proof_of_health_form_text_nc: North Carolina Medical Report form
           student_html: |
             <li>
               <h3>Proof of attending college, university, trade school, or high school</h3>
