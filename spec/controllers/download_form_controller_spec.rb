@@ -32,23 +32,4 @@ RSpec.describe DownloadFormController, type: :controller do
   describe ".show?" do
     it_behaves_like "show? with work rules exemption only"
   end
-
-  describe "#state_epass_html" do
-    let(:screener) { create(:screener, state: state) }
-    context "when NC" do
-      let(:state) { LocationData::States::NORTH_CAROLINA }
-      it "returns the translation for NC" do
-        controller.instance_variable_set(:@current_screener, screener)
-        expect(controller.state_epass_html).to eq(I18n.t("views.download_form.edit.epass_nc_html"))
-      end
-    end
-
-    context "when DE" do
-      let(:state) { create(:screener, state: LocationData::States::DELAWARE) }
-      it "returns the translation for DE" do
-        controller.instance_variable_set(:@current_screener, screener)
-        expect(controller.state_epass_html).to eq(I18n.t("views.download_form.edit.epass_de_html"))
-      end
-    end
-  end
 end

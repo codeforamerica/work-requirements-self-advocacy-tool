@@ -1,16 +1,7 @@
 class DownloadFormController < ExemptionAwareQuestionController
   before_action :email_pdf
-  helper_method :state_epass_html
   def show_progress_bar
     false
-  end
-
-  def state_epass_html
-    if @current_screener.state == LocationData::States::NORTH_CAROLINA
-      I18n.t("views.download_form.edit.epass_nc_html").html_safe
-    else
-      I18n.t("views.download_form.edit.epass_de_html").html_safe
-    end
   end
 
   def email_pdf

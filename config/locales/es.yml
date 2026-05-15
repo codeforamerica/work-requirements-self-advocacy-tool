@@ -158,8 +158,6 @@ es:
         email_benefit_2: Guía paso a paso del proceso
         email_benefit_3: Una lista de comprobantes que podría necesitar enviar
         email_pdf: Agreagar un correo electrónico
-        epass_de_html: "<strong>Usar su cuenta Delaware ASSIST:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://assist.dhss.delaware.gov/' target='_blank'data-track-click='de_assist_link_clicked'>Delaware ASSIST</a> para enviar su formulario y documentos."
-        epass_nc_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
         expectation_1: Su oficina de SNAP puede llamarlo o enviarle un aviso por correo si necesita más información.
         expectation_2: En algunos casos, es posible que tenga que enviar a su oficina más documentos (o documentos diferentes) que demuestren su situación, como, por ejemplo, comprobantes de pago o prueba de una condición médica.
         expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas 4 semanas.
@@ -172,6 +170,8 @@ es:
         next_steps_online_email_html: "<span><strong>Enviar por correo electrónico a:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>En línea:</strong> Envíe su formulario usando una de estas opciones:</span>"
         next_steps_online_web_html: "<span><strong>Ir a:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        state_website_de_html: "<strong>Usar su cuenta Delaware ASSIST:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked'>Delaware ASSIST</a> para enviar su formulario y documentos."
+        state_website_nc_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
         title: Descargue  su formulario
         title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
         title_sent: Hemos enviado su formulario a %{email}
