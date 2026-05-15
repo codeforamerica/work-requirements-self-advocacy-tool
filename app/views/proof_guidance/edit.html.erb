@@ -9,7 +9,7 @@
   <% end %>
 </ol>
 
-<% if @current_screener.requires_proof? || display_american_indian_guidance? %>
+<% if @current_screener.requires_proof? %>
 
   <h2 class="h2"><%= t("views.proof_guidance.edit.proof_you_may_need") %></h2>
 
@@ -27,7 +27,7 @@
   </div>
 
   <div class="spacing-below-60">
-    <% if display_american_indian_guidance? %>
+    <% if @current_screener.has_american_indian_exemption? %>
       <div class="spacing-above-35">
         <%= image_tag "magnifying-glass-doc.svg", class: "illustration left-justified spacing-below-10" %>
         <%= t("views.proof_guidance.edit.proof_of_native_american_html") %>
