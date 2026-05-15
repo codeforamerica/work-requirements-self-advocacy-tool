@@ -178,7 +178,7 @@ en:
         - Independent contracting
         - Running your own business
         - Work without pay in exchange for goods or services (such as a place to live)
-        notice_title: What Work Includes
+        notice_title: What counts as work
         title: Are you working?
         working_hours_help_text: If this changes, give your weekly average from the past month.
         working_hours_label: How many hours a week do you usually work?
@@ -430,6 +430,12 @@ en:
             <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
             <li>A <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a> that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
           </ul>
+        proof_of_native_american_html: |
+          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
+          <p>Include one of these if you have it available or can easily get it.</p>
+          <ul class="list--bulleted">
+            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
+          </ul>
         proof_of_treatment_program_html: |
           <h3 class="spacing-above-5">Proof of participation in drug or alcohol treatment</h3>
           <ul class="list--bulleted">
@@ -443,12 +449,6 @@ en:
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
             <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don’t have a paystub, for example, if you were paid in cash)</li>
             <li>If you’re self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
-          </ul>
-        proof_of_native_american_html: |
-          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
-          <p>Include one of these if you have it available or can easily get it.</p>
-          <ul class="list--bulleted">
-            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
           </ul>
         proof_you_may_need: Here is the proof you may need to submit to your agency.
         title: What’s next
@@ -551,7 +551,7 @@ en:
         - Apprenticeships
         - Job or work training program that doesn't require a high school degree
         - Programs you can get connected to through SNAP or TANF.
-        notice_title: What Job Training Includes
+        notice_title: What counts as Job Training
         title: Are you in a job or work training program?
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?
