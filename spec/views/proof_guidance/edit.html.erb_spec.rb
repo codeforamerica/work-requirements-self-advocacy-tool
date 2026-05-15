@@ -8,6 +8,8 @@ RSpec.describe "proof_guidance/edit", type: :view do
     without_partial_double_verification do
       allow(view).to receive(:next_path).and_return("/next")
     end
+
+    view.define_singleton_method(:display_american_indian_guidance?) { false }
   end
 
   it "always displays the title and next steps" do
@@ -141,6 +143,21 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(is_in_alcohol_treatment_program: "no")
       render
       expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
+    end
+  end
+
+  describe "proof of native american section" do
+    it "shows when american indian and not in NC" do
+      screener.update(is_american_indian: "yes")
+      view.define_singleton_method(:display_american_indian_guidance?) { true }
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_native_american_html"))
+    end
+
+    it "does not show when not american indian" do
+      screener.update(is_american_indian: "no")
+      render
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_native_american_html"))
     end
   end
 end
