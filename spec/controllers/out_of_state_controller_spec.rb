@@ -3,6 +3,31 @@ require "rails_helper"
 RSpec.describe OutOfStateController, type: :controller do
   # Only NC has counties
   let(:state_with_counties) { LocationData::States::NORTH_CAROLINA }
+
+  # This adds a single fake county for the tests, and it is a county that is not supported
+  # because all 100 counties for NC are currently supported
+  before do
+    fake_county = {
+      name: "FAKE COUNTY",
+      mailing_address: "123 Main Street",
+      physical_address: "123 Main Street",
+      phone: "555-555-5555",
+      fax: "123-123-1234",
+      email: "fake@fake",
+      website: "www.fake",
+      upload_portal_or_email: "fake@fake",
+      is_supported: false
+    }
+
+    modified_counties = LocationData::Counties::ALL_COUNTIES.deep_dup
+    modified_counties[state_with_counties]["FAKE COUNTY"] = fake_county
+
+    stub_const(
+      "LocationData::Counties::ALL_COUNTIES",
+      modified_counties
+    )
+  end
+
   let(:all_nc_counties) { LocationData::Counties.for_state(state_with_counties).values }
   let(:supported_counties) { all_nc_counties.select { |c| c[:is_supported] } }
   let(:unsupported_counties) { all_nc_counties.reject { |c| c[:is_supported] } }
