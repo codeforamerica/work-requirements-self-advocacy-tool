@@ -91,19 +91,31 @@ RSpec.describe "proof_guidance/edit", type: :view do
     it "shows when preventing work due to drugs/alcohol" do
       screener.update(preventing_work_drugs_alcohol: "yes")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_nc")))
     end
 
     it "shows when preventing work due to medical condition" do
       screener.update(preventing_work_medical_condition: "yes")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_nc")))
+    end
+
+    it "shows when preventing work due to drugs/alcohol -- DE version" do
+      screener.update(preventing_work_drugs_alcohol: "yes", state: "DE")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_de")))
+    end
+
+    it "shows when preventing work due to medical condition -- DE version" do
+      screener.update(preventing_work_medical_condition: "yes", state: "DE")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_de")))
     end
 
     it "does not show when no health-related preventing work conditions" do
       screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
       render
-      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_nc")))
     end
   end
 

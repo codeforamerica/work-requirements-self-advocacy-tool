@@ -54,7 +54,7 @@
     <% if @current_screener.preventing_work_drugs_alcohol_yes? || @current_screener.preventing_work_medical_condition_yes? %>
       <div class="spacing-above-35">
         <%= image_tag "health.svg", class: "illustration left-justified spacing-below-10" %>
-        <%= t("views.proof_guidance.edit.proof_of_health_condition_html") %>
+        <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe ) %>
       </div>
     <% end %>
 

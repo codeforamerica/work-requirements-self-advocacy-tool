@@ -438,8 +438,10 @@ es:
           <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
           <ul class="list--bulleted">
           <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
-          <li>Un <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          <li>Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
           </ul>
+        proof_of_health_form_de: formulario de evaluación de salud de Delaware
+        proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
         proof_of_native_american_html: |
           <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
           <p>Include one of these if you have it available or can easily get it.</p>
