@@ -39,7 +39,7 @@ RSpec.describe AlcoholTreatmentProgramController, type: :controller do
     end
 
     context "when DE" do
-      let(:state) {  create(:screener, state: LocationData::States::DELAWARE) }
+      let(:state) { create(:screener, state: LocationData::States::DELAWARE) }
       it "returns the translation for DE" do
         controller.instance_variable_set(:@current_screener, screener)
         expect(controller.state_notice_text).to eq(I18n.t("views.alcohol_treatment_program.edit.notice_text_de"))
