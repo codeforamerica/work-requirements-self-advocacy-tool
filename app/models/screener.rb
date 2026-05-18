@@ -278,6 +278,15 @@ class Screener < ApplicationRecord
     has_exemption? || has_earnings_exemption?
   end
 
+  def american_indian_exemption_requires_proof?
+    case state
+    when LocationData::States::NORTH_CAROLINA
+      false
+    else
+      is_american_indian_yes?
+    end
+  end
+
   def has_earnings_exemption?
     is_working_yes? && (working_30_or_more_hours? || earnings_above_minimum?)
   end
@@ -383,7 +392,8 @@ class Screener < ApplicationRecord
       preventing_work_drugs_alcohol_yes? ||
       preventing_work_medical_condition_yes? ||
       receiving_disability_benefits? ||
-      is_in_alcohol_treatment_program_yes?
+      is_in_alcohol_treatment_program_yes? ||
+      american_indian_exemption_requires_proof?
   end
 
   def strip_email_and_confirmation
