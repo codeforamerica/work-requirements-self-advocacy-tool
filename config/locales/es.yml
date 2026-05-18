@@ -188,7 +188,7 @@ es:
         - Trabajo como contratista independiente.
         - Tener y administrar su propio negocio.
         - Trabajo sin pago a cambio de bienes o servicios (por ejemplo, un lugar para vivir).
-        notice_title: Qué actividades se consideran trabajo
+        notice_title: "¿Qué actividades se consideran trabajo?"
         title: "¿Está trabajando?"
         working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
@@ -438,7 +438,15 @@ es:
           <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
           <ul class="list--bulleted">
           <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
-          <li>Un <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          <li>Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          </ul>
+        proof_of_health_form_de: formulario de evaluación de salud de Delaware
+        proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
+        proof_of_native_american_html: |
+          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
+          <p>Include one of these if you have it available or can easily get it.</p>
+          <ul class="list--bulleted">
+            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
           </ul>
         proof_of_treatment_program_html: |
           <h3>Comprobante de su programa de tratamiento</h3>
@@ -484,8 +492,10 @@ es:
             Comprobante de una condición de salud o discapacidad
             Estos documentos puede ser útiles, pero puede que no sean obligatorios.
             - Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O
-            - Un formulario de Informe Médico de Carolina del Norte, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
+            - Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
           help_text: Si sabe que su oficina de SNAP ya tiene estos documentos o comprobantes, no necesita enviarlos nuevamente. Puede enviar su formulario aunque no tenga todos los comprobantes. Su oficina de SNAP puede comunicarse con usted para solicitarlos más adelante.
+          proof_of_health_form_text_de: formulario de evaluación de salud de Delaware
+          proof_of_health_form_text_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
           student_html: |
             <li>
               <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
@@ -552,7 +562,7 @@ es:
         - Capacitación en el trabajo
         - Capacitación para aprender un oficio o empleo que no requiere un diploma de secundaria.
         - Aprendizajes o programas de capacitación a los que puede acceder a través de SNAP o TANF.
-        notice_title: La capacitación laboral incluye
+        notice_title: "¿Qué actividades se consideran capacitación laboral?"
         title: "¿Está en un programa de empleo o capacitación laboral?"
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"

@@ -188,7 +188,7 @@ en:
         - Independent contracting
         - Running your own business
         - Work without pay in exchange for goods or services (such as a place to live)
-        notice_title: What Work Includes
+        notice_title: What counts as work
         title: Are you working?
         working_hours_help_text: If this changes, give your weekly average from the past month.
         working_hours_label: How many hours a week do you usually work?
@@ -419,10 +419,10 @@ en:
         - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
         - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
         proof_of_disability_benefits_html: |
-          <h3>Proof of disability benefits</h3>
+          <h3 class="spacing-above-5">Proof of disability benefits</h3>
           <p>A letter or other document showing that you receive the disability benefits you selected:</p>
         proof_of_education_html: |
-          <h3>Proof of attending college, university, trade school, or high school</h3>
+          <h3 class="spacing-above-5">Proof of attending college, university, trade school, or high school</h3>
           <ul class="list--bulleted">
             <li>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.</li>
           </ul>
@@ -434,17 +434,27 @@ en:
             <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
           </ul>
         proof_of_health_condition_html: |
-          <h3>Proof of health conditions or disability</h3>
+          <h3 class="spacing-above-5">Proof of health conditions or disability</h3>
           <p>This proof can be helpful, <u>but may not be required</u>.</p>
           <ul class="list--bulleted">
             <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
-            <li>A <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a> that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
+            <li>A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
+          </ul>
+        proof_of_health_form_de: Delaware Health Assessment Form (Form 184)
+        proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a>
+        proof_of_native_american_html: |
+          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
+          <p>Include one of these if you have it available or can easily get it.</p>
+          <ul class="list--bulleted">
+            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
           </ul>
         proof_of_treatment_program_html: |
-          <h3>Proof of your treatment program</h3>
-          <p>A document from your treatment center or program, stating that you regularly participate.</p>
+          <h3 class="spacing-above-5">Proof of participation in drug or alcohol treatment</h3>
+          <ul class="list--bulleted">
+            <li>A letter from your treatment program stating that you are participating in treatment</li>
+          </ul>
         proof_of_working_html: |
-          <h3>Proof of working</h3>
+          <h3 class="spacing-above-5">Proof of working</h3>
           <p>Send in <strong>one</strong> of these verifications:</p>
           <ul class="list--bulleted">
             <li>Paystubs from the last month, OR</li>
@@ -484,8 +494,10 @@ en:
             Proof of health conditions or disability
             This proof can be helpful, but may not be required.
             - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
-            - A North Carolina Medical Report form that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
+            - A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
           help_text: If you know your SNAP agency already has proof of these things, you don’t need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
+          proof_of_health_form_text_de: Delaware Health Assessment Form (Form 184)
+          proof_of_health_form_text_nc: North Carolina Medical Report form
           student_html: |
             <li>
               <h3>Proof of attending college, university, trade school, or high school</h3>
@@ -553,7 +565,7 @@ en:
         - Apprenticeships
         - Job or work training program that doesn't require a high school degree
         - Programs you can get connected to through SNAP or TANF.
-        notice_title: What Job Training Includes
+        notice_title: What counts as Job Training
         title: Are you in a job or work training program?
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?

@@ -88,7 +88,7 @@
 
   <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
     <li>
-      <%= t('views.proof_guidance.edit.proof_of_health_condition_html') %>
+      <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{@screener.state.downcase}").html_safe ) %>
     </li>
   <% end %>
 
