@@ -159,14 +159,14 @@ RSpec.describe "proof_guidance/edit", type: :view do
   describe "proof of native american section" do
     it "shows when american indian exemption is true" do
       screener.update(is_american_indian: "yes")
-      allow(screener).to receive(:has_american_indian_exemption?).and_return(true)
+      allow(screener).to receive(:american_indian_exemption_requires_proof?).and_return(true)
       render
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_native_american_html"))
     end
 
     it "does not show when american indian exemeption is false" do
       screener.update(is_american_indian: "no")
-      allow(screener).to receive(:has_american_indian_exemption?).and_return(false)
+      allow(screener).to receive(:american_indian_exemption_requires_proof?).and_return(false)
       render
       expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_native_american_html"))
     end
