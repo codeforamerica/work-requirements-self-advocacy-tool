@@ -39,6 +39,7 @@ en:
     number_invalid: Enter a number
     phone_invalid: Make sure the phone number is valid and includes 10 digits
     signature_required: Your signature is required to continue
+    zip_code_invalid: Provide a valid ZIP Code with at least five numbers
   views:
     age_exemption:
       edit:
@@ -55,14 +56,24 @@ en:
       edit:
         case_number_label: Case number
         help_text_county_letter:
+          case_number_label_default: '"Case #"'
+          case_number_label_nc: '"Case Number", "Case ID", or "Client Number"'
           help_bullets:
-          - Look for a section labeled "Case Number", "Case ID", or "Client Number".
+          - Look for a section labeled %{case_number_label}.
           - It's usually printed near your name, at the top of the first page.
-          title: You can also find your case number on most letters or notices your %{state} %{county} office has sent you.
-        help_text_epass:
-          help_bullets_html:
-          - Log in to the official <a href="https://epass.nc.gov/" target="_blank">NC ePass website</a> to view case details, including your case number.
-          title: Log in to your ePASS NC portal to find your case number.
+          office_name_default: DHHS
+          office_name_nc: "%{state} %{county}"
+          title: You can also find your case number on most letters or notices your %{office_name} office has sent you.
+        help_text_website:
+          de:
+            help_bullets_html:
+            - If you don’t have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
+            website_name: ASSIST portal
+          nc:
+            help_bullets_html:
+            - Log in to the official <a href="https://epass.nc.gov/" target="_blank">NC ePass website</a> to view case details, including your case number.
+            website_name: ePASS NC portal
+          title: Log in to your %{website_name} to find your case number
         title: Do you have a case number?
     basic_info_details:
       edit:
@@ -248,6 +259,7 @@ en:
         not_listed: It's not listed here
         state_help_text: Tell us where you get SNAP benefits (required)
         title: Let's start with some basic information
+        zip_code_label: What's your ZIP Code (required)
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
@@ -597,10 +609,12 @@ en:
             <li>Working, volunteering, or doing job training for a total of <strong>at least 20 hours a week, OR</strong></li>
             <li>Earning <strong>at least $217.50 a week.</strong></li>
           </ul>
-          <p>You can <strong>only get SNAP</strong> for 3 months until Dec. 31, 2027, when you are not doing one of those things.</p>
+          <p>You can <strong>only get SNAP</strong> for 3 months %{time_limit_text}, when you are not doing one of those things.</p>
           <p><strong>If you lose SNAP</strong> and then start doing one of those things, you can reapply for benefits. You can also <strong>reapply for SNAP</strong> if your situation changes so that the work rules don't apply to you.</p>
           <p><strong>If you start doing one of those things and you weren't before,</strong> send proof to your SNAP agency.</p>
         instructions_title: Avoid a time limit on your SNAP benefits
+        time_limit_text_default: out of every three years (36 months)
+        time_limit_text_nc: until Dec. 31, 2027
         title: You may need to follow the SNAP work rules
         title_help_text: If something changes about your situation and you cannot work at least 20 hours a week, every week, please tell your SNAP agency.
         unexpected_problems_html: Unexpected problems happen, like a family emergency or your car breaking down. If you have a "good cause" reason why you could not work 20 hours a week in a month, please let your SNAP agency know. If you have any documents you have that can help prove what happened, that can help them understand your situation.

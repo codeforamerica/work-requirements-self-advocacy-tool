@@ -46,14 +46,15 @@ class Screener < ApplicationRecord
 
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
-  before_save :remove_pregnancy_attributes_if_no,
-    :remove_volunteer_attributes_if_no,
-    :remove_training_program_attributes_if_no,
-    :remove_employment_attributes_if_no,
+  before_save :remove_additional_care_info_if_caring_for_someone_is_no,
     :remove_alcohol_treatment_program_attributes_if_no,
+    :remove_county_if_state_does_not_require,
+    :remove_employment_attributes_if_no,
+    :remove_pregnancy_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
-    :remove_additional_care_info_if_caring_for_someone_is_no,
-    :remove_county_if_state_does_not_require
+    :remove_training_program_attributes_if_no,
+    :remove_volunteer_attributes_if_no,
+    :remove_zip_code_if_state_does_not_require
 
   with_context :alcohol_treatment_program do
     validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}
@@ -138,6 +139,13 @@ class Screener < ApplicationRecord
         in: ->(record) { LocationData::Counties.for_state(record.state).keys }
       },
       if: ->(record) { LocationData::Counties.for_state(record.state).present? }
+
+    validates :zip_code,
+      inclusion: {
+        in: ->(record) { LocationData::ZipCodes.for_state(record.state).keys },
+        message: ->(*) { I18n.t("validations.zip_code_invalid") }
+      },
+      if: ->(record) { LocationData::ZipCodes.for_state(record.state).present? }
   end
 
   with_context :living_with_someone do
@@ -295,6 +303,64 @@ class Screener < ApplicationRecord
     [first_name, middle_name.presence, last_name].compact.join(" ")
   end
 
+  def office_info_for(attribute)
+    case LocationData::States::STATES_INFO[state][:office_by]
+    when :county
+      LocationData::Counties.get(state, county)[attribute]
+    else
+      raise StandardError, "Cannot return office for zip #{zip_code}" if office_or_offices_for_zip.is_a?(Array)
+
+      office_or_offices_for_zip[attribute]
+    end
+  end
+
+  def office_or_offices_for_zip
+    possible_offices = LocationData::ZipCodes.get_all(state, zip_code)
+    if possible_offices.length == 1
+      possible_offices.first
+    else
+      # if zip code is divided geographically, we don't know which office to send them to and must return all of them
+      return possible_offices if possible_offices.any? { |office| office[:special_geo] }.present?
+
+      # if there are multiple offices and they are not "special geo", it means they are divided by last name
+      return unless last_name.present?
+      range = "A".."Smh"
+      if range.cover?(last_name.capitalize)
+        possible_offices.find { |office| office[:last_names_a_smh] }
+      else
+        possible_offices.find { |office| office[:last_names_smi_z] }
+      end
+    end
+  end
+
+  def office_email
+    office_info_for(:email)
+  end
+
+  def office_mailing_address
+    office_info_for(:mailing_address)
+  end
+
+  def office_name
+    office_info_for(:name)
+  end
+
+  def office_phone
+    office_info_for(:phone)
+  end
+
+  def office_physical_address
+    office_info_for(:physical_address) || office_mailing_address
+  end
+
+  def office_upload_or_portal_email
+    office_info_for(:upload_portal_or_email) || office_email
+  end
+
+  def office_website
+    office_info_for(:website)
+  end
+
   def pregnancy_due_date_day
     pregnancy_due_date&.day
   end
@@ -388,5 +454,9 @@ class Screener < ApplicationRecord
 
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
+  end
+
+  def remove_zip_code_if_state_does_not_require
+    self.zip_code = nil unless state.present? && LocationData::ZipCodes.for_state(state).present?
   end
 end
