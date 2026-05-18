@@ -67,7 +67,7 @@ module PdfFiller
       )
     end
 
-    def filled_pdf_path
+    def filled_pdf_tempfile
       source_pdf_path = filled_pdf_source
       template_doc = HexaPDF::Document.open(source_pdf_path)
 
@@ -86,8 +86,9 @@ module PdfFiller
       template_doc.acro_form.flatten
 
       pdf_tempfile = Tempfile.new(["packet", ".pdf"], "tmp/")
-      template_doc.write(pdf_tempfile)
-      pdf_tempfile.path
+      template_doc.write(pdf_tempfile.path)
+      pdf_tempfile.rewind
+      pdf_tempfile
     end
 
     def generated_pdf_path
@@ -107,13 +108,19 @@ module PdfFiller
 
     def combined_pdf
       target = HexaPDF::Document.new
-      [generated_pdf_path, filled_pdf_path].each do |file|
+
+      generated_path = generated_pdf_path
+      filled_pdf = filled_pdf_tempfile
+
+      [generated_path, filled_pdf.path].each do |file|
         pdf = HexaPDF::Document.open(file)
         pdf.pages.each { |page| target.pages << target.import(page) }
       end
+
       target.write_to_string
     ensure
-      File.delete(generated_pdf_path) # not a Tempfile so we have to manually delete it
+      File.delete(generated_path) if generated_path && File.exist?(generated_path)
+      filled_pdf&.close!
     end
 
     # Sanitizes text by removing emoji sequences:
