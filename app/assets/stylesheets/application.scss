@@ -88,13 +88,13 @@ main {
 .notice.white {
   border-color: $color-grey-light;
   border-radius: 3px;
-  background-color: #FFFFFF;
+  background-color: $color-white;
   padding: 2.5rem;
 }
 
 .notice.teal {
-  border: 2px solid #034E46;
-  background-color: #EBFFFA;
+  border: 2px solid $color-teal-dark;
+  background-color: $color-teal-light;
   border-radius: 10px;
   font-size: 1.6rem;
 }
@@ -184,7 +184,7 @@ i.no-button-cross {
   padding: 7px 15px;
   border-radius: 5px;
   border: 2px solid var(--Black, #000);
-  background: var(--White, #FFF);
+  background: var(--White, $color-white);
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.50);
 }
 
@@ -229,5 +229,48 @@ i.no-button-cross {
 
 .text-input-group .field_with_errors .form-width--phone.text-input {
   padding-left: 0;
+}
+
+.reveal:not(.is-hiding-content) > .reveal__button {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.reveal__button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: anchor-center;
+
+  span {
+    display: inline-block;
+    min-width: 85%;
+  }
+}
+
+.reveal__button:after {
+  font-weight: 900;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+.reveal__content {
+  margin-top: 0;
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  color: $color-teal-dark;
+  border-color: $color-teal-dark;
+  background-color: $color-teal-light;
+
+  .list--bulleted {
+    padding-left: 1.5em;
+
+    li {
+      margin: 0;
+    }
+  }
 }
 

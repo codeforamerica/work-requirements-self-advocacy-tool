@@ -1,4 +1,4 @@
-<%= image_tag attachments["gbh_email_header.png"].url, alt: "GetBenefitsHelp", style: "width: 100%; max-width: 300px; display: block;" %>
+<%= image_tag attachments["gbh_email_header.png"].url, alt: "GetBenefitsHelp", style: "width: 100%; max-width: 300px; display: block; margin-top: 10px; margin-bottom: 10px;" %>
 <hr style="border: none; border-top: 2px solid #034E46; margin: 0;">
 
 <p>
@@ -88,7 +88,7 @@
 
   <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
     <li>
-      <%= t('views.proof_guidance.edit.proof_of_health_condition_html') %>
+      <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{@screener.state.downcase}").html_safe ) %>
     </li>
   <% end %>
 

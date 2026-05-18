@@ -57,7 +57,7 @@ RSpec.feature "DE Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.preventing_work_situations.edit.title"))
-    check I18n.t("views.preventing_work_situations.edit.preventing_work_place_to_sleep")
+    check id: "screener_preventing_work_medical_condition"
     check I18n.t("views.preventing_work_situations.edit.other")
     fill_in I18n.t("views.preventing_work_situations.edit.preventing_work_write_in"), with: "my spoon carving side hustle"
     click_on I18n.t("general.continue")
