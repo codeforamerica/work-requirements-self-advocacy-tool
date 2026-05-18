@@ -135,7 +135,7 @@ en:
         volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
     date_of_birth:
       edit:
-        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
+        help_text: You do not have to follow the work rules if you are younger than 18 or 65 or older.
         title: What is your date of birth? (required)
     disability_benefits:
       edit:
