@@ -328,89 +328,89 @@ es:
         preventing_work_write_in: Si tiene otra razón, escríbala aquí.
         title: "¿Alguna de estas situaciones le impide trabajar al menos 20 horas a la semana?"
     privacy_policy:
-      analytics: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. You can also email getbenefitshelp@codeforamerica.org for additional information.
-      auto_collect_intro: 'In addition to the information you provide, we automatically collect and store information about your visit to the Site. We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you submit in the GetBenefitsHelp.org Site. This information includes:'
+      analytics_html: Usamos MixPanel y Google Analytics para entender cómo las personas usan nuestro sitio y obtener métricas de desempeño colectivas. También usamos Datadog para monitorear el desempeño del sistema. Para obtener más información sobre las prácticas de privacidad de MixPanel y las opciones que ofrece para darse de baja, haga clic <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank">AQUÍ</a>. Para obtener más información sobre las prácticas de privacidad de Google Analytics y las opciones que ofrece para darse de baja, haga clic <a href="https://policies.google.com/privacy?hl=en-US" target="_blank">AQUÍ</a>. Para obtener más información sobre las prácticas de privacidad de Datadog y las opciones que ofrece para darse de baja, haga clic <a href="https://www.datadoghq.com/privacy/" target="_blank">AQUÍ</a>. También puede enviar un correo electrónico a getbenefitshelp@codeforamerica.org para más información.
+      auto_collect_intro: 'Además de la información que usted proporciona, obtenemos y almacenamos automáticamente datos sobre su visita al sitio. Usamos esta información para entender cómo se usa el sitio, mejorarlo y monitorear su uso con fines de seguridad. Estos datos se almacenan por separado de la información personal que usted proporciona en el sitio GetBenefitsHelp.org. Esta información incluye:'
       auto_collect_items:
-      - Domain from which you access the Internet
-      - IP address (an IP or internet protocol address is a number that is automatically given to a computer connected to the Web)
-      - Operating system on your computer and information about the browser you used when visiting the site
-      - Date and time of your visit
-      - Pages you visited
-      - Address of the website that connected you to the Site (such as google.com)
-      breach_notification: In the event of a security system breach, you will be notified pursuant to applicable state statutes regarding breach notifications.
-      changes_text: We may change this Privacy Policy from time to time. Please check this page frequently for updates as your continued use of this site after any changes in this Privacy Policy will constitute your acceptance of the changes.
-      changes_title: Changes
-      contact_intro: If you have any questions or concerns about this Privacy Notice, please contact us at getbenefitshelp@codeforamerica.org.
-      data_retention_1_email_intro: 'You can email us at getbenefitshelp@codeforamerica.org to:'
+      - Dominio desde el que accede a Internet
+      - Dirección IP (una dirección IP o protocolo de Internet es un número que se asigna automáticamente a una computadora conectada a la web)
+      - Sistema operativo de su computadora e información sobre el navegador que usó al visitar el sitio
+      - Fecha y hora de su visita
+      - Páginas que visitó
+      - Dirección del sitio web que le conectó a nuestro sitio (por ejemplo, google.com)
+      breach_notification: En caso de una violación del sistema de seguridad, se le notificará de conformidad con las leyes estatales sobre notificación de violaciones de seguridad.
+      changes_text: Es posible que modifiquemos esta política de privacidad de vez en cuando. Por favor, consulte esta página con frecuencia para ver las actualizaciones, ya que, si continúa usando este sitio después de cualquier cambio en esta política de privacidad, ello constituirá su aceptación de dichos cambios.
+      changes_title: Cambios
+      contact_intro: Si tiene preguntas o inquietudes sobre este aviso de privacidad, contáctenos a través de getbenefitshelp@codeforamerica.org.
+      data_retention_1_email_intro: 'Puede enviarnos un correo electrónico a getbenefitshelp@codeforamerica.org para:'
       data_retention_1_email_items:
-      - Request that your personal information be deleted sooner
-      - Request a copy of your personal information
-      - Request corrections to inaccuracies in your personal information
-      - Opt-out of further processing of your personal information
-      data_retention_1_intro_html: We will collect and store the following personal information for 24 months, or the maximum allowable period under relevant state or federal law, whichever is less
+      - Solicitar que su información personal sea eliminada antes
+      - Solicitar una copia de su información personal
+      - Solicitar correcciones a errores en su información personal
+      - Solicitar que dejemos de usar su información persona
+      data_retention_1_intro_html: 'Obtendremos y almacenaremos la siguiente información personal por 24 meses o el período máximo permitido por la ley estatal o federal que corresponda (lo que sea menor):'
       data_retention_1_items:
-      - All personal information that you provide in the GetBenefitsHelp.org Site, which may include your SNAP case number, the last four digits of your Social Security Number, typed signature, date of birth, language preference, name, phone number, and email address.
-      - Copies of any documents you upload, like pictures of your driver's license, pay stubs, birth certifications, rent receipts, etc.
-      - Any messages you send us through SMS, email, or live chat
-      - Any answers or comments you provide in response to a survey we send you
-      data_retention_2_intro_html: We will collect and store the following information for the maximum allowable period under relevant state or federal law. The information listed below can help us understand trends about the people using the Site, <strong>without</strong> connecting it to information that could identify who you are
+      - Toda la información personal que usted proporcione en el sitio GetBenefitsHelp.org, que puede incluir su número de caso de SNAP, los últimos cuatro dígitos de su número de Seguro Social, su firma escrita, fecha de nacimiento, preferencia de idioma, nombre, número de teléfono y correo electrónico.
+      - Copias de cualquier documento que suba al sitio, como fotos de su licencia de conducir, comprobantes de pago, certificados de nacimiento, recibos de renta, etc.
+      - Cualquier mensaje de texto o correo electrónico que nos envíe o conversación de chat.
+      - Cualquier respuesta o comentario que proporcione en encuestas que le enviemos.
+      data_retention_2_intro_html: 'Obtendremos y almacenaremos la siguiente información durante el período máximo permitido por la ley estatal o federal que corresponda. La información que se menciona a continuación nos ayuda a entender tendencias sobre las personas que usan el sitio, <strong>sin conectarla</strong> con información que pueda identificar quién es usted:'
       data_retention_2_items:
-      - Non-identifiable Information you provide us about yourself, your household, or people you care for (for example, information about circumstances that may make you exempt from a benefit program's work requirements)
-      - Any answers or comments you provide in response to feedback surveys we may send you
-      data_retention_improve: This information is stored to help us improve our Site and Services.
-      data_retention_title: Data Retention
-      description: This Privacy Policy describes how we collect, use, and protect your personal information. By using our Services, you agree to the terms in this Privacy Policy. This Privacy Notice applies regardless of the type of device you use to access our services. If you do not agree with these terms, please do not continue to use the Site.
-      effective_date_text: This version of the policy is effective April 10, 2026.
-      effective_date_title: Effective Date
+      - Información no identificable que nos proporciona sobre usted, su hogar o personas que cuida (por ejemplo, información sobre circunstancias que pueden eximirle de las reglas de trabajo de un programa de beneficios)
+      - Cualquier respuesta o comentario que proporcione en encuestas que le enviemos para pedir su opinión sobre el sitio
+      data_retention_improve: Esta información se almacena para ayudarnos a mejorar nuestro sitio y servicios.
+      data_retention_title: Retención de datos
+      description: Esta política de privacidad describe cómo obtenemos, usamos y protegemos su información personal. Al usar nuestros servicios, usted acepta los términos de esta política de privacidad. Este aviso de privacidad aplica sin importar el tipo de dispositivo que use para acceder a nuestros servicios. Si no está de acuerdo con estos términos, por favor no continúe usando el sitio.
+      effective_date_text: Esta versión de la política de privacidad entró en vigencia el 10 de abril de 2026.
+      effective_date_title: Fecha de vigencia
       help_text: Cómo utilizamos, compartimos y protegemos su información.
-      how_we_collect_intro: 'We collect your information from various sources, such as when you:'
+      how_we_collect_intro: 'Obtenemos su información de varias fuentes, como cuando usted:'
       how_we_collect_items:
-      - Visit our Site, fill out forms on our Site, or use our Services
-      - Provide us with documents to use our Services
-      - Communicate with us (for instance through email, chat, social media, or otherwise)
-      how_we_collect_title: How we collect your information
-      how_we_protect_title: How we protect your information
-      how_we_share_title: How we share your information
-      how_we_use_business_intro: We use your information for our business purposes, such as
+      - Visita nuestro sitio, llena formularios en nuestro sitio o usa nuestros servicios
+      - Nos proporciona documentos para usar nuestros servicios
+      - Se comunica con nosotros (por ejemplo, por correo electrónico, chat, redes sociales u otros medios)
+      how_we_collect_title: Cómo obtenemos su información
+      how_we_protect_title: Cómo protegemos su información
+      how_we_share_title: Cómo compartimos su información
+      how_we_use_business_intro: 'Usamos su información para fines establecidos por nuestro servicio, por ejemplo:'
       how_we_use_business_items:
-      - To complete forms required for use of our Services
-      - To provide support to you through the process and communicate with you
-      - To monitor and understand how the Site and our Services are used
-      - To improve the quality or scope of the Site or our Services
-      - To suggest other services or assistance programs that may be useful to you
-      - For security purposes
-      - To comply with legal requirements and obligations
-      how_we_use_info_intro: 'We will only use your information to:'
+      - Para completar los formularios requeridos para el uso de nuestros servicios
+      - Para brindarle apoyo durante el proceso y comunicarnos con usted
+      - Para monitorear y entender cómo se usa el sitio y nuestros servicios
+      - Para mejorar la calidad o el alcance del sitio o nuestros servicios
+      - Para sugerirle otros servicios o programas de asistencia que puedan ser de utilidad para usted
+      - Con fines de seguridad
+      - Para cumplir con requisitos y obligaciones legales
+      how_we_use_info_intro: 'Solo usaremos su información para:'
       how_we_use_info_items:
-      - Help you get or keep SNAP and any other benefit programs supported in future versions of the Site ("SNAP" herein refers to all such programs).
-      - Suggest other services or assistance programs that may be useful to you. We will only use your personal information in order to present those services or programs to you as an option, but will never send your personal information to any other services or programs without your permission.
-      how_we_use_title: How we use your information
-      intro: GetBenefitsHelp.org (the "Site") is a service created by Code for America Labs, Inc. ("Code for America," "we," "us," "our") to help people get and keep government benefits.
-      no_collection_without_consent: We will not collect personal information from you without your knowledge and consent.
-      no_disclose: We will not knowingly disclose your personal information to any third party, except as provided in this privacy policy.
-      no_email: We will not send you an email unless you provide your email on the Site or you email us first.
-      no_sell: 'We do not sell your personal information. We do not share your personal information with any third party, except as provided in this Privacy Policy. We may use or disclose your information in the following instances:'
-      no_text_html: We will not send you a text message unless you consent to text message communication in the application or you text us first. <strong>You can reply 'STOP' to any text message to unsubscribe.</strong>
+      - Ayudarle a obtener o mantener SNAP y cualquier otro programa de beneficios disponible en el sitio en el futuro ("SNAP" en este documento se refiere a todos esos programas).
+      - Sugerirle otros servicios o programas de asistencia que puedan ser de utilidad para usted. Solo usaremos su información personal para presentarle esos servicios o programas como una opción, pero nunca enviaremos su información personal a otros servicios o programas sin su permiso.
+      how_we_use_title: Cómo usamos su información
+      intro: GetBenefitsHelp.org (el "sitio") es un servicio creado por Code for America Labs, Inc. ("Code for America", "nosotros" o "nuestro/a") para ayudar a las personas a obtener y mantener beneficios del gobierno.
+      no_collection_without_consent: No obtendremos información personal sin su conocimiento y consentimiento.
+      no_disclose: No divulgaremos intencionalmente su información personal a terceros, salvo lo establecido en esta política de privacidad.
+      no_email: No le enviaremos un correo electrónico a menos que usted proporcione su dirección de correo electrónico en el sitio o nos escriba primero.
+      no_sell: 'No vendemos su información personal. No compartimos su información personal con terceros, salvo lo establecido en esta política de privacidad. Podemos usar o divulgar su información en los siguientes casos:'
+      no_text_html: No le enviaremos un mensaje de texto a menos que usted acepte la comunicación por mensajes de texto en la solicitud de beneficios o nos escriba primero. <strong>Puede responder 'STOP' a cualquier mensaje de texto para dejar de recibir mensajes de texto.</strong>
       on_this_page: En esta página
-      protect_disclaimer: Although we try our best to protect the privacy of your personal information, we cannot guarantee complete security. The transmission of information via the Internet is not completely secure. Unauthorized entry or use, hardware or software failure, and other factors, may compromise the security of user information at any time.
-      protect_intro: 'Protecting your personal information is extremely important to us and we take all reasonable measures to do so. Here are some specific security practices we use:'
+      protect_disclaimer: Aunque hacemos todo nuestro esfuerzo por proteger la privacidad de su información personal, no podemos garantizarle una seguridad completa. La transmisión de información a través de Internet no es completamente segura. El acceso o uso no autorizado, fallas de hardware o software y otros factores pueden comprometer la seguridad de la información del usuario en cualquier momento.
+      protect_intro: 'Proteger su información personal es extremadamente importante para nosotros y tomamos todas las medidas razonables para hacerlo. Estas son algunas de las prácticas de seguridad específicas que usamos:'
       protect_items:
-      - When you enter your information on our site we encrypt the transmission of that information using transport layer security (TLS).
-      - We store your information in a secure, purpose-built environment hosted by Amazon Web Services (AWS).
-      questions_text: If you have any questions, comments, concerns, or complaints with the Site, please contact us by email at getbenefitshelp@codeforamerica.org.
-      questions_title: Questions
-      reasonable_measures: We will take all reasonable measures to protect your personal information.
-      resolve: We will do our best to resolve the issue.
-      security_questions: If you have questions about the security of your personal information, or if you have reason to believe that the personal information that we hold about you is no longer secure, please contact us immediately by email at getbenefitshelp@codeforamerica.org
-      share_contractors: If necessary, we may disclose your information to contractors who help us provide our services. We require our third parties acting on our behalf to keep your personal information secure, and do not allow these third parties to use or share your personal information for any purpose other than providing services on our behalf.
+      - Cuando ingresa su información en nuestro sitio, usamos tecnología de cifrado seguro (protocolo TLS, por sus siglas en inglés) para proteger su información al enviarla.
+      - 'Almacenamos su información en un entorno seguro y específicamente diseñado, alojado en Amazon Web Services (AWS). Para obtener más información sobre la seguridad de AWS, visite: https://aws.amazon.com/security/'
+      questions_text: Si tiene preguntas, comentarios, inquietudes o quejas sobre el sitio, contáctenos enviando un correo electrónico a getbenefitshelp@codeforamerica.org.
+      questions_title: Preguntas
+      reasonable_measures: Tomaremos todas las medidas razonables para proteger su información personal.
+      resolve: Haremos nuestro mejor esfuerzo para resolver el problema.
+      security_questions: Si tiene preguntas sobre la seguridad de su información personal, o si tiene motivos para creer que la información personal que tenemos sobre usted ya no está segura, contáctenos de inmediato enviando un correo electrónico a getbenefitshelp@codeforamerica.org.
+      share_contractors: Si es necesario, podemos divulgar su información a contratistas que nos ayudan a brindar nuestros servicios. Requerimos que los terceros que actúan en nuestro nombre mantengan su información personal segura y no les permitimos usar ni compartirla para ningún propósito distinto de brindar servicios en nuestro nombre.
       share_items:
-      - For analysis and reporting, we may share limited aggregate information with government agencies or other third parties, including state agencies administering public benefit programs, to analyze the use of our Services, in order to improve and expand our services. Such analysis is always performed using anonymized data.
-      share_legal: 'Legal Compliance: In certain situations, we may be required to disclose personal data in response to lawful requests by public authorities, including to meet national security or law enforcement requirements. We may also disclose your personal information as required by law, such as to comply with a subpoena or other legal process, when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request.'
-      share_research_intro: 'For research to improve our Services, including:'
+      - Podemos compartir información colectiva limitada (que no lo identifica) para análisis e informes con agencias gubernamentales u otros terceros, incluidas agencias estatales que administran programas de beneficios públicos, con el fin de analizar el uso de nuestros servicios y mejorar y ampliarlos. Dicho análisis siempre se realiza con datos anonimizados (que no revelan su identidad).
+      share_legal: 'Cumplimiento legal: En ciertas situaciones, es posible que debamos divulgar datos personales en respuesta a solicitudes legítimas de autoridades públicas, incluido el cumplimiento de requisitos de seguridad nacional o de la ley. También podemos divulgar su información personal según lo requiera la ley, como para cumplir con una orden de un tribunal u otro proceso legal, cuando creamos de buena fe que la divulgación es necesaria para proteger nuestros derechos, proteger su seguridad o la de otros, investigar fraudes o responder a una solicitud del gobierno.'
+      share_research_intro: 'Para investigación que mejore nuestros servicios, incluyendo:'
       share_research_items:
-      - To invite you to complete questionnaires regarding your experience using our product.
-      - To send you opportunities to participate in paid user research sessions, to learn more about your experience using our product and to guide the development of future products and services.
-      title: Privacy Policy
+      - Invitarle a completar cuestionarios sobre su experiencia con nuestro producto.
+      - Enviarle oportunidades de participar en sesiones de investigación pagas para conocer más sobre su experiencia y orientar el desarrollo de futuros productos y servicios.
+      title: Política de privacidad
     proof_guidance:
       edit:
         already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
@@ -554,7 +554,7 @@ es:
         preventing_work_place_to_sleep: No tienen un lugar estable donde dormir y bañarse
         signature_help_text: Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
         signature_label: Escriba su nombre legal completo para firmar
-        title: Firme y complete su formulario
+        title: Firme y descargue su formulario.
     training_program:
       edit:
         notice_content:
