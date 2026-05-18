@@ -698,6 +698,38 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#american_indian_exemption_requires_proof??" do
+    let(:screener) { build(:screener) }
+
+    it "returns true when state != NC and is_american_indian_yes?" do
+      allow(screener).to receive(:state).and_return("DE")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(true)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq true
+    end
+
+    it "returns false when state == NC and is_american_indian_yes?" do
+      allow(screener).to receive(:state).and_return("NC")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(true)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq false
+    end
+
+    it "returns false when state == NC and is_american_indian_no?" do
+      allow(screener).to receive(:state).and_return("NC")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(false)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq false
+    end
+
+    it "returns false when state != NC and is_american_indian_no?" do
+      allow(screener).to receive(:state).and_return("DE")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(false)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq false
+    end
+  end
+
   describe "#has_exemption?" do
     it "returns true if age qualified (under 18)" do
       screener = build(:screener, birth_date: 16.years.ago.to_date)
@@ -767,6 +799,7 @@ RSpec.describe Screener, type: :model do
       allow(screener).to receive(:preventing_work_medical_condition_yes?).and_return(false)
       allow(screener).to receive(:receiving_disability_benefits?).and_return(false)
       allow(screener).to receive(:is_in_alcohol_treatment_program_yes?).and_return(false)
+      allow(screener).to receive(:american_indian_exemption_requires_proof?).and_return(false)
     end
 
     it "returns false when everything is false" do
@@ -778,7 +811,8 @@ RSpec.describe Screener, type: :model do
       :preventing_work_drugs_alcohol_yes?,
       :preventing_work_medical_condition_yes?,
       :receiving_disability_benefits?,
-      :is_in_alcohol_treatment_program_yes?
+      :is_in_alcohol_treatment_program_yes?,
+      :american_indian_exemption_requires_proof?
     ].each do |method_name|
       it "returns true when only #{method_name} is true" do
         allow(screener).to receive(method_name).and_return(true)
