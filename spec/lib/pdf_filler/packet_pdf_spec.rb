@@ -236,7 +236,7 @@ RSpec.describe PdfFiller::PacketPdf do
     end
   end
 
-  describe "#filled_pdf_path" do
+  describe "#filled_pdf_tempfile" do
     context "screener has a regular exemption" do
       before do
         screener.assign_attributes(
@@ -268,7 +268,7 @@ RSpec.describe PdfFiller::PacketPdf do
           .with("app/assets/pdfs/packet--no-income.pdf")
           .and_call_original
 
-        path = packet_pdf.filled_pdf_path
+        path = packet_pdf.filled_pdf_tempfile.path
         File.delete(path) if path && File.exist?(path)
       end
 
@@ -276,7 +276,7 @@ RSpec.describe PdfFiller::PacketPdf do
         path = nil
 
         expect {
-          path = packet_pdf.filled_pdf_path
+          path = packet_pdf.filled_pdf_tempfile.path
         }.not_to raise_error
 
         doc = HexaPDF::Document.open(path)
@@ -308,7 +308,7 @@ RSpec.describe PdfFiller::PacketPdf do
           .with("app/assets/pdfs/packet.pdf")
           .and_call_original
 
-        path = packet_pdf.filled_pdf_path
+        path = packet_pdf.filled_pdf_tempfile.path
         File.delete(path) if path && File.exist?(path)
       end
 
@@ -316,7 +316,7 @@ RSpec.describe PdfFiller::PacketPdf do
         path = nil
 
         expect {
-          path = packet_pdf.filled_pdf_path
+          path = packet_pdf.filled_pdf_tempfile.path
         }.not_to raise_error
 
         doc = HexaPDF::Document.open(path)
