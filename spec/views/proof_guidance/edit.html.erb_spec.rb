@@ -91,19 +91,31 @@ RSpec.describe "proof_guidance/edit", type: :view do
     it "shows when preventing work due to drugs/alcohol" do
       screener.update(preventing_work_drugs_alcohol: "yes")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_nc")))
     end
 
     it "shows when preventing work due to medical condition" do
       screener.update(preventing_work_medical_condition: "yes")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+    end
+
+    it "shows when preventing work due to drugs/alcohol -- DE version" do
+      screener.update(preventing_work_drugs_alcohol: "yes", state: "DE")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de")))
+    end
+
+    it "shows when preventing work due to medical condition -- DE version" do
+      screener.update(preventing_work_medical_condition: "yes", state: "DE")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de")))
     end
 
     it "does not show when no health-related preventing work conditions" do
       screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
       render
-      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html"))
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
     end
   end
 
@@ -141,6 +153,22 @@ RSpec.describe "proof_guidance/edit", type: :view do
       screener.update(is_in_alcohol_treatment_program: "no")
       render
       expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_treatment_program_html"))
+    end
+  end
+
+  describe "proof of native american section" do
+    it "shows when american indian exemption is true" do
+      screener.update(is_american_indian: "yes")
+      allow(screener).to receive(:american_indian_exemption_requires_proof?).and_return(true)
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_native_american_html"))
+    end
+
+    it "does not show when american indian exemeption is false" do
+      screener.update(is_american_indian: "no")
+      allow(screener).to receive(:american_indian_exemption_requires_proof?).and_return(false)
+      render
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_native_american_html"))
     end
   end
 end

@@ -22,6 +22,21 @@ RSpec.describe NcScreener, type: :model do
         nc_screener.valid?(:homeschool)
         expect(nc_screener.errors[:homeschool_hours]).to be_empty
       end
+
+      it "must not have value longer than  Nc::HomeschoolController::CHARACTER_LIMIT, if a value is set" do
+        nc_screener = build(:nc_screener,
+          homeschool_name: "This is just a test value.")
+        # Valid value that is not too long
+        expect(nc_screener.valid?(:homeschool_name)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = Nc::HomeschoolController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        nc_screener.assign_attributes(homeschool_name: text)
+
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_name]).to be_present
+      end
     end
   end
 
