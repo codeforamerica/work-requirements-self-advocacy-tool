@@ -89,4 +89,46 @@ RSpec.describe ScreenerMailer, type: :mailer do
       expect(pdf_attachment.body.decoded).not_to be_empty
     end
   end
+
+  describe "send_screener_results for DE zips" do
+    before { allow_any_instance_of(Screener).to receive(:pdf).and_return("PDF") }
+
+    context "with a single-office zip" do
+      let(:screener) { create(:screener, state: "DE", zip_code: "19703", last_name: "Anyone", email: "preview@example.com") }
+      let(:outgoing_email) { create(:outgoing_email, screener: screener) }
+      let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
+
+      it "renders the single office in html and text" do
+        html = mail.html_part.body.to_s
+        text = mail.text_part.body.to_s
+
+        [html, text].each do |body|
+          expect(body).to include("3301 Green Street")
+          expect(body).to include("Claymont, DE 19703")
+          expect(body).to include("(302) 798-4093")
+          expect(body).not_to include("If you live")
+        end
+      end
+    end
+
+    context "with a special_geo zip" do
+      let(:screener) { create(:screener, state: "DE", zip_code: "19720", last_name: "Anyone", email: "preview@example.com") }
+      let(:outgoing_email) { create(:outgoing_email, screener: screener) }
+      let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
+
+      it "renders each office's subgeography, address, and phone in html and text" do
+        html = mail.html_part.body.to_s
+        text = mail.text_part.body.to_s
+
+        [html, text].each do |body|
+          expect(body).to include("If you live north of I-295")
+          expect(body).to include("If you live south of I-295")
+          expect(body).to include("500 Rogers Road")
+          expect(body).to include("84 Christiana Road")
+          expect(body).to include("(302) 622-4500")
+          expect(body).to include("(800) 372-2022")
+        end
+      end
+    end
+  end
 end

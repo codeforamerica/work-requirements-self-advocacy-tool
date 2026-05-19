@@ -1094,4 +1094,63 @@ RSpec.describe Screener, type: :model do
       end
     end
   end
+
+  describe "#offices_to_display" do
+    context "for an NC county" do
+      let(:screener) { build(:screener, state: "NC", county: "Durham County") }
+
+      it "returns a single-element array with the county office" do
+        result = screener.offices_to_display
+        expect(result.size).to eq(1)
+        expect(result.first[:name]).to eq("Durham County")
+        expect(result.first[:subgeography]).to be_nil
+      end
+    end
+
+    context "for a DE zip with a single office" do
+      let(:screener) { build(:screener, state: "DE", zip_code: "19703", last_name: "Anyone") }
+
+      it "returns a single-element array" do
+        result = screener.offices_to_display
+        expect(result.size).to eq(1)
+        expect(result.first[:name]).to eq("Claymont State Service Center")
+      end
+    end
+
+    context "for a DE zip split by last name" do
+      let(:screener) { build(:screener, state: "DE", zip_code: "19901", last_name: "Anderson") }
+
+      it "returns the resolved single office wrapped in an array" do
+        result = screener.offices_to_display
+        expect(result.size).to eq(1)
+        expect(result.first[:name]).to eq("Blue Hen Mall/Corporate Center")
+      end
+    end
+
+    context "for a DE special_geo zip" do
+      let(:screener) { build(:screener, state: "DE", zip_code: "19720", last_name: "Anyone") }
+
+      it "returns all offices with their subgeographies" do
+        result = screener.offices_to_display
+        expect(result.size).to be > 1
+        expect(result.map { |o| o[:subgeography] }).to all(be_present)
+      end
+    end
+
+    it "falls back physical_address to mailing_address when blank" do
+      screener = build(:screener, state: "DE", zip_code: "19703", last_name: "Anyone")
+      office = screener.offices_to_display.first
+      expect(office[:physical_address]).to eq(office[:mailing_address])
+    end
+
+    it "falls back upload_portal_or_email to email when blank" do
+      screener = build(:screener, state: "NC", county: "Durham County")
+      raw_office = LocationData::Counties.get("NC", "Durham County")
+      stubbed = raw_office.merge(upload_portal_or_email: nil, email: "fallback@example.com")
+      allow(LocationData::Counties).to receive(:get).with("NC", "Durham County").and_return(stubbed)
+
+      office = screener.offices_to_display.first
+      expect(office[:upload_portal_or_email]).to eq("fallback@example.com")
+    end
+  end
 end
