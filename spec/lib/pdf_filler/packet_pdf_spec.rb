@@ -328,6 +328,42 @@ RSpec.describe PdfFiller::PacketPdf do
     end
   end
 
+  describe "#combined_pdf" do
+    let(:screener) do
+      build(:screener,
+        first_name: "Nigella",
+        last_name: "Lawson",
+        birth_date: Date.new(1990, 7, 13),
+        state: LocationData::States::DELAWARE,
+        county: nil,
+        preventing_work_medical_condition: "yes")
+    end
+
+    it "returns a single PDF combining the summary page and the filled packet" do
+      filled_path = nil
+      # Skip headless Chrome; write a real 1-page PDF where Grover would have
+      # written, so HexaPDF can read and merge it back in.
+      allow_any_instance_of(Grover).to receive(:to_pdf) do |_, path|
+        doc = HexaPDF::Document.new
+        doc.pages.add
+        doc.write(path)
+      end
+      # Capture the filled-packet tempfile path so we can clean it up.
+      allow(packet_pdf).to receive(:filled_pdf_path).and_wrap_original do |original|
+        filled_path = original.call
+      end
+
+      result = packet_pdf.combined_pdf
+
+      expect(result).to start_with("%PDF")
+      merged = HexaPDF::Document.new(io: StringIO.new(result))
+      # one summary page + the filled-packet template's pages
+      expect(merged.pages.count).to be >= 2
+    ensure
+      File.delete(filled_path) if filled_path && File.exist?(filled_path)
+    end
+  end
+
   describe "#strip_emojis" do
     it "removes simple emoji characters" do
       text = "Hello 😊 world 👍"

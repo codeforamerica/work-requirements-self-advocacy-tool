@@ -107,12 +107,11 @@ module PdfFiller
     end
 
     def combined_pdf
-      target = HexaPDF::Document.new
-
       generated_path = generated_pdf_path
       filled_pdf = filled_pdf_tempfile
+      target = HexaPDF::Document.new
 
-      [generated_path, filled_pdf.path].each do |file|
+      [generated_path, filled_pdf_path].each do |file|
         pdf = HexaPDF::Document.open(file)
         pdf.pages.each { |page| target.pages << target.import(page) }
       end
