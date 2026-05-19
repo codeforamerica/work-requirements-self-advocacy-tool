@@ -1,6 +1,8 @@
 class PreventingWorkSituationsController < QuestionController
   include PersonalSituationsConcern
 
+  CHARACTER_LIMIT = 400
+
   def self.attributes_edited
     [
       :preventing_work_place_to_sleep,

@@ -1,6 +1,9 @@
 class Screener < ApplicationRecord
   devise :timeoutable
 
+  BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
+  BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
+
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
 
@@ -53,6 +56,10 @@ class Screener < ApplicationRecord
     :remove_volunteer_attributes_if_no,
     :remove_zip_code_if_state_does_not_require
 
+  with_context :alcohol_treatment_program do
+    validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}
+  end
+
   with_context :american_indian do
     validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
@@ -61,6 +68,8 @@ class Screener < ApplicationRecord
     validates :email,
       "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
       if: -> { email.present? }
+
+    validates :email, length: {maximum: BASIC_INFO_EMAIL_CHARACTER_LIMIT}
 
     validates :email,
       presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
@@ -77,7 +86,10 @@ class Screener < ApplicationRecord
 
   with_context :basic_info_details do
     validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
+    validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
     validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
+    validates :last_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
+    validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
     validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
@@ -163,6 +175,7 @@ class Screener < ApplicationRecord
           preventing_work_other_yes?
       }
     validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
+    validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}
   end
 
   with_context :school_enrollment do
@@ -265,8 +278,13 @@ class Screener < ApplicationRecord
     has_exemption? || has_earnings_exemption?
   end
 
-  def has_american_indian_exemption?
-    state != "NC" && is_american_indian_yes?
+  def american_indian_exemption_requires_proof?
+    case state
+    when LocationData::States::NORTH_CAROLINA
+      false
+    else
+      is_american_indian_yes?
+    end
   end
 
   def has_earnings_exemption?
@@ -375,7 +393,7 @@ class Screener < ApplicationRecord
       preventing_work_medical_condition_yes? ||
       receiving_disability_benefits? ||
       is_in_alcohol_treatment_program_yes? ||
-      has_american_indian_exemption?
+      american_indian_exemption_requires_proof?
   end
 
   def strip_email_and_confirmation

@@ -14,7 +14,7 @@ es:
     continue: Continuar
     continue_without_this_number: Continuar sin este número
     footer:
-      content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> en colaboración con <a href="https://codethedream.org/" rel="noopener nofollow" target="_blank">Code the Dream</a> y <a href="https://meals4families.org/" rel="noopener nofollow" target="_blank">Meals for Families</a> para servir a las personas en los Estados Unidos.
+      content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> para servir a las personas en los Estados Unidos.
     gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
@@ -164,12 +164,14 @@ es:
         have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
         how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
         how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
-        nc_epass_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
-        next_steps_in_person_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
-        next_steps_mail_html: "<p><strong>Envíelo por correo a: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
+        next_steps_mail_nc_html: "<p><strong>Envíelo por correo a: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_mail_or_in_person_de_html: "<p><strong>Mail or in person:</strong> Print your form and mail it or bring it to</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Enviar por correo electrónico a:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>En línea:</strong> Envíe su formulario usando una de estas opciones:</span>"
         next_steps_online_web_html: "<span><strong>Ir a:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        state_website_de_html: "<strong>Usar su cuenta Delaware ASSIST:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked'>Delaware ASSIST</a> para enviar su formulario y documentos."
+        state_website_nc_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
         title: Descargue  su formulario
         title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
         title_sent: Hemos enviado su formulario a %{email}

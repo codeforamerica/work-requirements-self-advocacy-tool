@@ -27,7 +27,7 @@
   </div>
 
   <div class="spacing-below-60">
-    <% if @current_screener.has_american_indian_exemption? %>
+    <% if @current_screener.american_indian_exemption_requires_proof? %>
       <div class="spacing-above-35">
         <%= image_tag "magnifying-glass-doc.svg", class: "illustration left-justified spacing-below-10" %>
         <%= t("views.proof_guidance.edit.proof_of_native_american_html") %>
