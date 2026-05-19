@@ -565,13 +565,13 @@ en:
         title: Sign & create your form
     survey_mailer:
       send_survey:
-        greeting: Hello, GetBenefitsHelp here!
-        paragraph_1_html: You recently used <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> to learn how the new SNAP work requirements affect you.
-        paragraph_1_text: You recently used GetBenefitsHelp.org (https://www.getbenefitshelp.org/) to learn how the new SNAP work requirements affect you.
-        paragraph_2: As a follow-up, we'd like to learn more about the steps you took after using the tool. Your feedback helps us improve the accuracy of the information we send to people who want to learn more about the SNAP work requirements.
-        paragraph_3_html: 'Click the link to fill out this 2 minute survey: <a href="https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6" target="_blank">https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6</a>'
-        paragraph_3_text: 'Click the link to fill out this 2 minute survey: https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6'
+        greeting: Hello,
+        paragraph_1_html: You recently used <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> to learn how the new SNAP work rules affect you.
+        paragraph_1_text: You recently used GetBenefitsHelp.org (https://www.getbenefitshelp.org/) to learn how the new SNAP work rules affect you.
+        paragraph_2: We'd like to learn more about the steps you took after using the tool. Your feedback helps us provide more accurate information about SNAP work rules.
         subject: "[GetBenefitsHelp] Please tell us about your experience"
+        survey_link_html: <a href="%{survey_link}" target="_blank">Take this 2-minute survey</a>
+        survey_link_text: 'Take this 2-minute survey: %{survey_link}'
     training_program:
       edit:
         notice_content:

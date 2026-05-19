@@ -14,6 +14,6 @@ class SurveyMailer < ApplicationMailer
       headers["X-SES-LIST-MANAGEMENT-OPTIONS"] = "#{ENV["SES_CONTACT_LIST"]}; topic=general"
     end
 
-    mail(to: @screener.email, subject: I18n.t("views.screener_mailer.send_screener_results.subject"))
+    mail(to: @screener.email, subject: I18n.t("views.survey_mailer.send_survey.subject"))
   end
 end

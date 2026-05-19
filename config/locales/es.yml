@@ -15,7 +15,7 @@ es:
     continue_without_this_number: Continuar sin este número
     footer:
       content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> para servir a las personas en los Estados Unidos.
-    gbh_team: GetBenefitsHelp Team
+    gbh_team: El equipo de GetBenefitsHelp
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
@@ -24,7 +24,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
-    thank_you: Thank you!
+    thank_you: "¡Muchas gracias!"
     this_is_optional: Opcional.
     unsubscribe: Cancelar suscripción
     work_rules: Reglas de trabajo
@@ -563,13 +563,13 @@ es:
         title: Firme y complete su formulario
     survey_mailer:
       send_survey:
-        greeting: Hello, GetBenefitsHelp here!
-        paragraph_1_html: You recently used <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> to learn how the new SNAP work requirements affect you.
-        paragraph_1_text: You recently used GetBenefitsHelp.org (https://www.getbenefitshelp.org/) to learn how the new SNAP work requirements affect you.
-        paragraph_2: As a follow-up, we'd like to learn more about the steps you took after using the tool. Your feedback helps us improve the accuracy of the information we send to people who want to learn more about the SNAP work requirements.
-        paragraph_3_html: 'Click the link to fill out this 2 minute survey: <a href="https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6" target="_blank">https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6</a>'
-        paragraph_3_text: 'Click the link to fill out this 2 minute survey: https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6'
+        greeting: Hola,
+        paragraph_1_html: Recientemente usó <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> para saber cómo le afectan las nuevas reglas de trabajo de SNAP.
+        paragraph_1_text: Recientemente usó GetBenefitsHelp.org (https://www.getbenefitshelp.org/) para saber cómo le afectan las nuevas reglas de trabajo de SNAP.
+        paragraph_2: Nos gustaría saber qué hizo después de usar la herramienta. Sus comentarios nos ayudan a mejorar la información sobre las reglas de trabajo de SNAP.
         subject: "[GetBenefitsHelp] Please tell us about your experience"
+        survey_link_html: <a href="%{survey_link}" target="_blank">Completar una encuesta de 2 minutos</a>
+        survey_link_text: 'Completar una encuesta de 2 minutos: %{survey_link}'
     training_program:
       edit:
         notice_content:
