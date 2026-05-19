@@ -13,15 +13,16 @@
 ---
 
 <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
+<% state = @screener.state.downcase %>
 <% @screener.offices_to_display.each do |office| %>
   <% if office[:subgeography].present? %>
 
     If you live <%= office[:subgeography] %>:
   <% end %>
 
-  1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
+  1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_text") %>
 
-     <%= t('views.screener_mailer.send_screener_results.online_county', website: office[:website]) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email])}" if office[:email].present? %>.
+     <%= t('views.screener_mailer.send_screener_results.online_county', website_name: t("views.screener_mailer.send_screener_results.website_name_#{state}"), website: office[:website]) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email])}" if office[:email].present? %>.
 
   <% if office[:mailing_address].present? %>
     2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
@@ -63,7 +64,7 @@
 <% end %>
 <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
 
-  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{@screener.state.downcase}") ) %>
+  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") ) %>
 <% end %>
 <% if @screener.receiving_disability_benefits? %>
 
