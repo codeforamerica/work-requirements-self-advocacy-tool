@@ -24,7 +24,9 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
+    thank_you: Thank you!
     this_is_optional: Opcional.
+    unsubscribe: Cancelar suscripción
     work_rules: Reglas de trabajo
   validations:
     amount_invalid: Asegúrese de ingresar una cantidad válida en dólares
@@ -68,7 +70,7 @@ es:
         help_text_website:
           de:
             help_bullets_html:
-            - If you don’t have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
+            - If you don't have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
             website_name: ASSIST portal
           nc:
             help_bullets_html:
@@ -526,7 +528,6 @@ es:
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
-        unsubscribe: Cancelar suscripción
         website_name_de: ASSIST
         website_name_nc: ePASS
     signature:
@@ -560,6 +561,15 @@ es:
         signature_help_text: Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
         signature_label: Escriba su nombre legal completo para firmar
         title: Firme y complete su formulario
+    survey_mailer:
+      send_survey:
+        greeting: Hello, GetBenefitsHelp here!
+        paragraph_1_html: You recently used <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> to learn how the new SNAP work requirements affect you.
+        paragraph_1_text: You recently used GetBenefitsHelp.org (https://www.getbenefitshelp.org/) to learn how the new SNAP work requirements affect you.
+        paragraph_2: As a follow-up, we'd like to learn more about the steps you took after using the tool. Your feedback helps us improve the accuracy of the information we send to people who want to learn more about the SNAP work requirements.
+        paragraph_3_html: 'Click the link to fill out this 2 minute survey: <a href="https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6" target="_blank">https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6</a>'
+        paragraph_3_text: 'Click the link to fill out this 2 minute survey: https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6'
+        subject: "[GetBenefitsHelp] Please tell us about your experience"
     training_program:
       edit:
         notice_content:
@@ -633,5 +643,5 @@ es:
         time_limit_text_nc: hasta el 31 de diciembre de 2027
         title: Es posible que tenga que cumplir con las reglas de trabajo de SNAP.
         title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
-        unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
+        unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una "razón válida" por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
         unexpected_problems_title: Si no cumple con sus horas de trabajo en un mes, pero tiene una razón válida, infórmelo a su oficina de SNAP.

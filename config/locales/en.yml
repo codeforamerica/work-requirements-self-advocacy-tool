@@ -24,7 +24,9 @@ en:
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     select: Select
     switched_locale: Español
+    thank_you: Thank you!
     this_is_optional: This is optional.
+    unsubscribe: Unsubscribe
     work_rules: Work rules
   validations:
     amount_invalid: Enter a valid dollar amount
@@ -68,7 +70,7 @@ en:
         help_text_website:
           de:
             help_bullets_html:
-            - If you don’t have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
+            - If you don't have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
             website_name: ASSIST portal
           nc:
             help_bullets_html:
@@ -283,7 +285,7 @@ en:
           homeschool_name_label: What is the name of the home school?
           notice_text_html: |
             <p>This means you teach a child or children at home as part of a home school instead of sending them to a public or private school.</p>
-            <p>To qualify, you must be the child’s parent or legal guardian, or a member of the child's household.</p>
+            <p>To qualify, you must be the child's parent or legal guardian, or a member of the child's household.</p>
           title: Do you teach home school?
     new_response:
       edit:
@@ -416,8 +418,8 @@ en:
       edit:
         already_has_proof: Does your agency already have proof of your exemptions?
         already_has_proof_content_html:
-        - "<strong>Yes, I’ve already shared that information.</strong> You can still share this information with your worker, if you think there's a chance they don't have it already."
-        - "<strong>No, I haven’t shared that information yet.</strong> We’ll tell you what proof you may want to send below. Your SNAP worker will review what you share and decide if the new work rules apply to you."
+        - "<strong>Yes, I've already shared that information.</strong> You can still share this information with your worker, if you think there's a chance they don't have it already."
+        - "<strong>No, I haven't shared that information yet.</strong> We'll tell you what proof you may want to send below. Your SNAP worker will review what you share and decide if the new work rules apply to you."
         next_steps_html:
         - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
         - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
@@ -427,13 +429,13 @@ en:
         proof_of_education_html: |
           <h3 class="spacing-above-5">Proof of attending college, university, trade school, or high school</h3>
           <ul class="list--bulleted">
-            <li>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.</li>
+            <li>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you're enrolled at least half time.</li>
           </ul>
         proof_of_education_over_50_html: |
           <p>If you are <strong>enrolled in school at least half time</strong>, other SNAP rules apply. In addition to your other exemptions, also tell your SNAP agency if you:</p>
           <ul class="list--bulleted">
             <li>Have a work study job, or have been approved for work study that you intend to participate in, OR</li>
-            <li>Care for a child younger than 12, and don’t have the child care you need for you to go to school and work</li>
+            <li>Care for a child younger than 12, and don't have the child care you need for you to go to school and work</li>
             <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
           </ul>
         proof_of_health_condition_html: |
@@ -462,11 +464,11 @@ en:
           <ul class="list--bulleted">
             <li>Paystubs from the last month, OR</li>
             <li>A signed and dated letter from your employer with your expected hours and pay for the coming month, OR</li>
-            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don’t have a paystub, for example, if you were paid in cash)</li>
-            <li>If you’re self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
+            <li>A signed and dated letter from your employer stating your hours and earnings for the last month (you might need this if you don't have a paystub, for example, if you were paid in cash)</li>
+            <li>If you're self-employed (for example, if you do gig work, contract work, or run your own business), records showing how much you earned in the last month (such as bank statements or records from a gig work platform)</li>
           </ul>
         proof_you_may_need: Here is the proof you may need to submit to your agency.
-        title: What’s next
+        title: What's next
     school_enrollment:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
@@ -500,26 +502,26 @@ en:
             This proof can be helpful, but may not be required.
             - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
             - A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
-          help_text: If you know your SNAP agency already has proof of these things, you don’t need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
+          help_text: If you know your SNAP agency already has proof of these things, you don't need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
           proof_of_health_form_text_de: Delaware Health Assessment Form (Form 184)
           proof_of_health_form_text_nc: North Carolina Medical Report form
           student_html: |
             <li>
               <h3>Proof of attending college, university, trade school, or high school</h3>
-              <p>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.</p>
+              <p>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you're enrolled at least half time.</p>
               <p>If you are enrolled in school at least half time, other SNAP rules apply. In addition to your other exemptions, also tell your SNAP agency if any of the following are true for you. Telling your agency about these situations can help you keep your SNAP benefits:</p>
                 <ul>
                   <li>Have a work study job, or have been approved for work study that you intend to participate in, OR</li>
-                  <li>Care for a child younger than 12, and don’t have the child care you need for you to go to school and work, OR</li>
+                  <li>Care for a child younger than 12, and don't have the child care you need for you to go to school and work, OR</li>
                   <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
                 </ul>
             </li>
           student_text: |
             Proof of attending college, university, trade school, or high school
-            Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.
+            Financial aid papers, an enrollment letter, a transcript, or other documents showing that you're enrolled at least half time.
             If you are enrolled in school at least half time, other SNAP rules apply. In addition to your other exemptions, also tell your SNAP agency if any of the following are true for you. Telling your agency about these situations can help you keep your SNAP benefits:
             - Have a work study job, or have been approved for work study that you intend to participate in, OR
-            - Care for a child younger than 12, and don’t have the child care you need for you to go to school and work, OR
+            - Care for a child younger than 12, and don't have the child care you need for you to go to school and work, OR
             - Are a single parent enrolled full-time and taking care of a child under 12
           title: Proofs you may need
           treatment_program_text: |
@@ -528,7 +530,6 @@ en:
         questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
-        unsubscribe: Unsubscribe
         website_name_de: ASSIST
         website_name_nc: ePASS
     signature:
@@ -562,6 +563,15 @@ en:
         signature_help_text: Enter your name as it appears on your driver's license, ID, or Social Security card.
         signature_label: Type your full legal name here to sign
         title: Sign & create your form
+    survey_mailer:
+      send_survey:
+        greeting: Hello, GetBenefitsHelp here!
+        paragraph_1_html: You recently used <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> to learn how the new SNAP work requirements affect you.
+        paragraph_1_text: You recently used GetBenefitsHelp.org (https://www.getbenefitshelp.org/) to learn how the new SNAP work requirements affect you.
+        paragraph_2: As a follow-up, we'd like to learn more about the steps you took after using the tool. Your feedback helps us improve the accuracy of the information we send to people who want to learn more about the SNAP work requirements.
+        paragraph_3_html: 'Click the link to fill out this 2 minute survey: <a href="https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6" target="_blank">https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6</a>'
+        paragraph_3_text: 'Click the link to fill out this 2 minute survey: https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6'
+        subject: "[GetBenefitsHelp] Please tell us about your experience"
     training_program:
       edit:
         notice_content:

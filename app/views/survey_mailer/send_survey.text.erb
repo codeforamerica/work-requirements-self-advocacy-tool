@@ -1,0 +1,18 @@
+<%= t('views.survey_mailer.send_survey.greeting') %>
+
+
+<%= t('views.survey_mailer.send_survey.paragraph_1_text') %>
+
+<%= t('views.survey_mailer.send_survey.paragraph_2') %>
+
+<%= t('views.survey_mailer.send_survey.paragraph_3_text') %>') %>
+
+<%= t('general.thank_you') %>
+
+<%= t('general.gbh_team') %>
+
+<%= t('general.gbh_team') %>
+<% if ENV["SES_CONTACT_LIST"] %>
+
+<%= t('general.unsubscribe') %>: {{amazonSESUnsubscribeUrl}}
+<% end %>
