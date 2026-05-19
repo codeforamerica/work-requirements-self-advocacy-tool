@@ -10,7 +10,7 @@ class AlcoholTreatmentProgramController < QuestionController
     if @current_screener.state == LocationData::States::NORTH_CAROLINA
       I18n.t("views.alcohol_treatment_program.edit.notice_text_nc")
     else
-      I18n.t("views.alcohol_treatment_program.edit.notice_text_de")
+      I18n.t("views.alcohol_treatment_program.edit.notice_text_default")
     end
   end
 end
