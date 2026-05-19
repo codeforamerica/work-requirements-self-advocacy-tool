@@ -13,12 +13,13 @@
 ---
 <% website = @screener.office_website %>
 <% email = @screener.office_email %>
+<% state = @screener.state.downcase %>
 
 <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 
-1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
+1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_text") %>
 
-   <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: email)}" if email.present? %>.
+   <%= t('views.screener_mailer.send_screener_results.online_county', website_name: t("views.screener_mailer.send_screener_results.website_name_#{state}"), website: website) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: email)}" if email.present? %>.
 
 2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
 

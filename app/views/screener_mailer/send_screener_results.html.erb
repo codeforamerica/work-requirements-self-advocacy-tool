@@ -28,12 +28,13 @@
 </h3>
 <% website = @screener.office_website %>
 <% email = @screener.office_email %>
+<% state = @screener.state.downcase %>
 
 <ol style="line-height: 2;">
   <li>
-    <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t('views.screener_mailer.send_screener_results.online_epass_html').html_safe %>
+    <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_html").html_safe %>
     <br/><br/>
-    <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: email) if email.present? %>.
+    <%= t('views.screener_mailer.send_screener_results.online_county', website_name: t("views.screener_mailer.send_screener_results.website_name_#{state}"), website: website) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: email) if email.present? %>.
   </li>
   <li>
     <strong><%= t('views.screener_mailer.send_screener_results.mail_label') %></strong> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
@@ -88,7 +89,7 @@
 
   <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
     <li>
-      <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{@screener.state.downcase}").html_safe ) %>
+      <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{state}").html_safe ) %>
     </li>
   <% end %>
 
