@@ -48,7 +48,7 @@
 <% end %>
 <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
 
-  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{@screener.state.downcase}") ) %>
+  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") ) %>
 <% end %>
 <% if @screener.receiving_disability_benefits? %>
 
