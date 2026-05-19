@@ -41,7 +41,7 @@
   <hr class="spacing-above-35"/>
 <% end %>
 
-<% if @current_screener.office_or_offices_for_zip.is_a?(Array) %>
+<% if @current_screener.state == LocationData::States::DELAWARE && @current_screener.office_or_offices_for_zip.is_a?(Array) %>
   <%= render "shared/office_info_special_geo" %>
 <% else %>
   <h2><%= t("views.download_form.edit.how_to") %></h2>

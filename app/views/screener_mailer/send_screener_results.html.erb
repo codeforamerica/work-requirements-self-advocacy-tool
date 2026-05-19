@@ -27,11 +27,11 @@
   <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 </h3>
 
-<% if @screener.office_or_offices_for_zip.is_a?(Array) %>
+<% if @screener.state == LocationData::States::DELAWARE && @screener.office_or_offices_for_zip.is_a?(Array) %>
   <% @screener.office_or_offices_for_zip.each do |office| %>
     <% website = office[:website] %>
     <% email = office[:email] %>
-
+    <p>If you live <%= office[:subgeography] %>:</p>
     <ol style="line-height: 2;">
       <li>
         <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t('views.screener_mailer.send_screener_results.online_epass_html').html_safe %>
