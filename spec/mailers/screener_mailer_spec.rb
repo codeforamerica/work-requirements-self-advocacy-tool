@@ -13,6 +13,26 @@ RSpec.describe ScreenerMailer, type: :mailer do
       expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.next_step_heading"))
     end
 
+    context "instructions section" do
+      context "when state is NC" do
+        it "includes NC ePASS instructions" do
+          screener.update(state: "NC")
+          expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_nc_html"))
+          doc = Nokogiri::HTML(body)
+          expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_nc"), website: "https://dconc.gov/Social-Services/Food-and-Nutrition-Services"))
+        end
+      end
+
+      context "when state is DE" do
+        it "includes DE ASSIST instructions" do
+          screener.update(state: "DE", zip_code: "19803")
+          expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
+          doc = Nokogiri::HTML(body)
+          expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_de"), website: "https://dhss.delaware.gov/dss/dssmap/claymont/"))
+        end
+      end
+    end
+
     context "proof section" do
       context "when is_student is yes" do
         it "includes proof of education" do
