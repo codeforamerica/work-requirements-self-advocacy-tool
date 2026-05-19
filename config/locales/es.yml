@@ -14,7 +14,7 @@ es:
     continue: Continuar
     continue_without_this_number: Continuar sin este número
     footer:
-      content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> en colaboración con <a href="https://codethedream.org/" rel="noopener nofollow" target="_blank">Code the Dream</a> y <a href="https://meals4families.org/" rel="noopener nofollow" target="_blank">Meals for Families</a> para servir a las personas en los Estados Unidos.
+      content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> para servir a las personas en los Estados Unidos.
     gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
@@ -165,12 +165,14 @@ es:
         have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
         how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
         how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
-        nc_epass_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
-        next_steps_in_person_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
-        next_steps_mail_html: "<p><strong>Envíelo por correo a: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
+        next_steps_mail_nc_html: "<p><strong>Envíelo por correo a: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_mail_or_in_person_de_html: "<p><strong>Mail or in person:</strong> Print your form and mail it or bring it to</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Enviar por correo electrónico a:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>En línea:</strong> Envíe su formulario usando una de estas opciones:</span>"
         next_steps_online_web_html: "<span><strong>Ir a:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        state_website_de_html: "<strong>Usar su cuenta Delaware ASSIST:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked'>Delaware ASSIST</a> para enviar su formulario y documentos."
+        state_website_nc_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
         title: Descargue  su formulario
         title_help_text: Su oficina de SNAP necesita revisar este formulario para decidir si las reglas de trabajo aplican en su caso.
         title_sent: Hemos enviado su formulario a %{email}
@@ -189,7 +191,7 @@ es:
         - Trabajo como contratista independiente.
         - Tener y administrar su propio negocio.
         - Trabajo sin pago a cambio de bienes o servicios (por ejemplo, un lugar para vivir).
-        notice_title: Qué actividades se consideran trabajo
+        notice_title: "¿Qué actividades se consideran trabajo?"
         title: "¿Está trabajando?"
         working_hours_help_text: Si esto varía, escriba el promedio semanal del último mes.
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
@@ -439,7 +441,15 @@ es:
           <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
           <ul class="list--bulleted">
           <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
-          <li>Un <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          <li>Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
+          </ul>
+        proof_of_health_form_de: formulario de evaluación de salud de Delaware
+        proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
+        proof_of_native_american_html: |
+          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
+          <p>Include one of these if you have it available or can easily get it.</p>
+          <ul class="list--bulleted">
+            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
           </ul>
         proof_of_treatment_program_html: |
           <h3>Comprobante de su programa de tratamiento</h3>
@@ -485,8 +495,10 @@ es:
             Comprobante de una condición de salud o discapacidad
             Estos documentos puede ser útiles, pero puede que no sean obligatorios.
             - Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O
-            - Un formulario de Informe Médico de Carolina del Norte, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
+            - Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
           help_text: Si sabe que su oficina de SNAP ya tiene estos documentos o comprobantes, no necesita enviarlos nuevamente. Puede enviar su formulario aunque no tenga todos los comprobantes. Su oficina de SNAP puede comunicarse con usted para solicitarlos más adelante.
+          proof_of_health_form_text_de: formulario de evaluación de salud de Delaware
+          proof_of_health_form_text_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
           student_html: |
             <li>
               <h3>Comprobante de que asiste a una universidad, colegio comunitario, escuela técnica o escuela secundaria</h3>
@@ -553,7 +565,7 @@ es:
         - Capacitación en el trabajo
         - Capacitación para aprender un oficio o empleo que no requiere un diploma de secundaria.
         - Aprendizajes o programas de capacitación a los que puede acceder a través de SNAP o TANF.
-        notice_title: La capacitación laboral incluye
+        notice_title: "¿Qué actividades se consideran capacitación laboral?"
         title: "¿Está en un programa de empleo o capacitación laboral?"
         work_training_hours_help_text: Si el número de horas cambia a veces, indique el promedio semanal del último mes.
         work_training_hours_label: "¿Cuántas horas a la semana asiste a este programa?"

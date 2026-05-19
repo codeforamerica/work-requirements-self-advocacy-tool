@@ -14,7 +14,7 @@ en:
     continue: Continue
     continue_without_this_number: Continue without it
     footer:
-      content_html: This benefits application is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> in partnership with <a href="https://codethedream.org/" rel="noopener nofollow" target="_blank">Code the Dream</a> and <a href="https://meals4families.org/" rel="noopener nofollow" target="_blank">Meals for Families</a> on behalf of the people of the United States.
+      content_html: This SNAP work rules screener is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> on behalf of the people of the United States.
     gbh_team: GetBenefitsHelp Team
     negative: 'No'
     none_of_the_above: None of the above
@@ -165,12 +165,14 @@ en:
         have_questions_html: "<strong>Have questions about how to submit your form?</strong> Call your agency."
         how_to: 'How to submit your form to your SNAP agency:'
         how_to_help_text: Submit this form and any proof you need to your agency to tell them that the work rules don't apply to you.
-        nc_epass_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='nc_epass_link_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
-        next_steps_in_person_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
-        next_steps_mail_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_in_person_nc_html: "<p><strong>In person: </strong>Print your form and bring it to:</p><p><i>%{address}</i></p>"
+        next_steps_mail_nc_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_mail_or_in_person_de_html: "<p><strong>Mail or in person:</strong> Print your form and mail it or bring it to</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>Online: </strong>Send your form using one of these options:</span>"
         next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        state_website_de_html: "<strong>Using Delaware ASSIST account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked' data-track-controller_name='DownloadForm'>Delaware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this."
+        state_website_nc_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
         title: Download your form
         title_help_text: Your SNAP agency needs to review this form to decide if the work rules apply to you.
         title_sent: We sent your form to %{email}
@@ -189,7 +191,7 @@ en:
         - Independent contracting
         - Running your own business
         - Work without pay in exchange for goods or services (such as a place to live)
-        notice_title: What Work Includes
+        notice_title: What counts as work
         title: Are you working?
         working_hours_help_text: If this changes, give your weekly average from the past month.
         working_hours_label: How many hours a week do you usually work?
@@ -420,10 +422,10 @@ en:
         - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
         - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
         proof_of_disability_benefits_html: |
-          <h3>Proof of disability benefits</h3>
+          <h3 class="spacing-above-5">Proof of disability benefits</h3>
           <p>A letter or other document showing that you receive the disability benefits you selected:</p>
         proof_of_education_html: |
-          <h3>Proof of attending college, university, trade school, or high school</h3>
+          <h3 class="spacing-above-5">Proof of attending college, university, trade school, or high school</h3>
           <ul class="list--bulleted">
             <li>Financial aid papers, an enrollment letter, a transcript, or other documents showing that you’re enrolled at least half time.</li>
           </ul>
@@ -435,17 +437,27 @@ en:
             <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
           </ul>
         proof_of_health_condition_html: |
-          <h3>Proof of health conditions or disability</h3>
+          <h3 class="spacing-above-5">Proof of health conditions or disability</h3>
           <p>This proof can be helpful, <u>but may not be required</u>.</p>
           <ul class="list--bulleted">
             <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
-            <li>A <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a> that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
+            <li>A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
+          </ul>
+        proof_of_health_form_de: Delaware Health Assessment Form (Form 184)
+        proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a>
+        proof_of_native_american_html: |
+          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
+          <p>Include one of these if you have it available or can easily get it.</p>
+          <ul class="list--bulleted">
+            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
           </ul>
         proof_of_treatment_program_html: |
-          <h3>Proof of your treatment program</h3>
-          <p>A document from your treatment center or program, stating that you regularly participate.</p>
+          <h3 class="spacing-above-5">Proof of participation in drug or alcohol treatment</h3>
+          <ul class="list--bulleted">
+            <li>A letter from your treatment program stating that you are participating in treatment</li>
+          </ul>
         proof_of_working_html: |
-          <h3>Proof of working</h3>
+          <h3 class="spacing-above-5">Proof of working</h3>
           <p>Send in <strong>one</strong> of these verifications:</p>
           <ul class="list--bulleted">
             <li>Paystubs from the last month, OR</li>
@@ -485,8 +497,10 @@ en:
             Proof of health conditions or disability
             This proof can be helpful, but may not be required.
             - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
-            - A North Carolina Medical Report form that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
+            - A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
           help_text: If you know your SNAP agency already has proof of these things, you don’t need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
+          proof_of_health_form_text_de: Delaware Health Assessment Form (Form 184)
+          proof_of_health_form_text_nc: North Carolina Medical Report form
           student_html: |
             <li>
               <h3>Proof of attending college, university, trade school, or high school</h3>
@@ -554,7 +568,7 @@ en:
         - Apprenticeships
         - Job or work training program that doesn't require a high school degree
         - Programs you can get connected to through SNAP or TANF.
-        notice_title: What Job Training Includes
+        notice_title: What counts as Job Training
         title: Are you in a job or work training program?
         work_training_hours_help_text: If this sometimes changes, give your weekly average from the past month.
         work_training_hours_label: How many hours a week do you attend this program?

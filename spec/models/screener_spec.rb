@@ -20,6 +20,23 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :alcohol_treatment_program" do
+      it "must not have value longer than AlcoholTreatmentProgramController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener,
+          alcohol_treatment_program_name: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:alcohol_treatment_program)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = AlcoholTreatmentProgramController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(alcohol_treatment_program_name: text)
+
+        screener.valid?(:alcohol_treatment_program)
+        expect(screener.errors[:alcohol_treatment_program_name]).to be_present
+      end
+    end
+
     context "with_context :location" do
       it "accepts NOT_LISTED as state value" do
         screener = build(:screener, state: "NOT_LISTED", county: nil, zip_code: nil)
@@ -106,6 +123,18 @@ RSpec.describe Screener, type: :model do
 
         screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.new(1960, 1, 1), phone_number: "415-816-1286")
         expect(screener.valid?(:basic_info_details)).to eq true
+      end
+
+      it "must not have value longer than Screener::BASIC_INFO_DETAILS_CHARACTER_LIMIT" do
+        [:first_name, :last_name, :middle_name].each do |name|
+          # Invalid value that is 1 character longer than the limit
+          limit = Screener::BASIC_INFO_DETAILS_CHARACTER_LIMIT
+          text = SecureRandom.alphanumeric(limit + 1)
+          screener = build(:screener, name => text)
+
+          screener.valid?(:basic_info_details)
+          expect(screener.errors[name]).to be_present
+        end
       end
     end
 
@@ -244,6 +273,21 @@ RSpec.describe Screener, type: :model do
         )
         expect(screener.valid?(:preventing_work_situations)).to eq true
       end
+
+      it "must not have value longer than AlcoholTreatmentProgramController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener,
+          preventing_work_write_in: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:preventing_work_situations)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = PreventingWorkSituationsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(preventing_work_write_in: text)
+
+        screener.valid?(:preventing_work_situations)
+        expect(screener.errors[:preventing_work_write_in]).to be_present
+      end
     end
 
     context "with_context :basic_info_email" do
@@ -261,11 +305,21 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors[:email_confirmation]).to eq [I18n.t("validations.email_must_match")]
       end
 
-      it "removed white spaces from the email and confirmation" do
+      it "removes white spaces from the email and confirmation" do
         screener = build(:screener, email: "anisha@example.com ", email_confirmation: " anisha@example.com")
         screener.valid?(:basic_info_email)
 
         expect(screener.errors).to match_array []
+      end
+
+      it "must not have value longer than Screener::BASIC_INFO_EMAIL_CHARACTER_LIMIT" do
+        # Invalid value that is 1 character longer than the limit
+        limit = Screener::BASIC_INFO_EMAIL_CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener = build(:screener, email: text)
+
+        screener.valid?(:basic_info_email)
+        expect(screener.errors[:email]).to be_present
       end
     end
 
@@ -644,6 +698,38 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#american_indian_exemption_requires_proof??" do
+    let(:screener) { build(:screener) }
+
+    it "returns true when state != NC and is_american_indian_yes?" do
+      allow(screener).to receive(:state).and_return("DE")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(true)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq true
+    end
+
+    it "returns false when state == NC and is_american_indian_yes?" do
+      allow(screener).to receive(:state).and_return("NC")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(true)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq false
+    end
+
+    it "returns false when state == NC and is_american_indian_no?" do
+      allow(screener).to receive(:state).and_return("NC")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(false)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq false
+    end
+
+    it "returns false when state != NC and is_american_indian_no?" do
+      allow(screener).to receive(:state).and_return("DE")
+      allow(screener).to receive(:is_american_indian_yes?).and_return(false)
+
+      expect(screener.american_indian_exemption_requires_proof?).to eq false
+    end
+  end
+
   describe "#has_exemption?" do
     it "returns true if age qualified (under 18)" do
       screener = build(:screener, birth_date: 16.years.ago.to_date)
@@ -713,6 +799,7 @@ RSpec.describe Screener, type: :model do
       allow(screener).to receive(:preventing_work_medical_condition_yes?).and_return(false)
       allow(screener).to receive(:receiving_disability_benefits?).and_return(false)
       allow(screener).to receive(:is_in_alcohol_treatment_program_yes?).and_return(false)
+      allow(screener).to receive(:american_indian_exemption_requires_proof?).and_return(false)
     end
 
     it "returns false when everything is false" do
@@ -724,7 +811,8 @@ RSpec.describe Screener, type: :model do
       :preventing_work_drugs_alcohol_yes?,
       :preventing_work_medical_condition_yes?,
       :receiving_disability_benefits?,
-      :is_in_alcohol_treatment_program_yes?
+      :is_in_alcohol_treatment_program_yes?,
+      :american_indian_exemption_requires_proof?
     ].each do |method_name|
       it "returns true when only #{method_name} is true" do
         allow(screener).to receive(method_name).and_return(true)

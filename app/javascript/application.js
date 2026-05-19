@@ -72,4 +72,5 @@ document.addEventListener("turbo:load", function() {
 
 document.addEventListener("turbo:render", function () {
   revealer.init();
+  accordion.init();
 });

@@ -26,11 +26,19 @@
 
     <div class="question-with-follow-up__follow-up" id="org-name">
       <hr class="spacing-above-0"/>
-      <%= f.cfa_input_field(
+      <%= f.cfa_textarea(
             :alcohol_treatment_program_name,
-            t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label"),
-            help_text: t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_help_text_label")
+            t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_label", count: @conditions_count),
+            help_text: t("views.alcohol_treatment_program.edit.alcohol_treatment_program_name_help_text_label"),
+            options: {
+              maxlength: AlcoholTreatmentProgramController::CHARACTER_LIMIT,
+              data: {
+                i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
+                i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
+              }
+            }
           ) %>
+      <p class="char-counter spacing-below-0">&nbsp;</p>
     </div>
   </div>
 
