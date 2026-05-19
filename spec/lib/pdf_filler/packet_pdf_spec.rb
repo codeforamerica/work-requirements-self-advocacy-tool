@@ -349,7 +349,7 @@ RSpec.describe PdfFiller::PacketPdf do
         doc.write(path)
       end
       # Capture the filled-packet tempfile path so we can clean it up.
-      allow(packet_pdf).to receive(:filled_pdf_path).and_wrap_original do |original|
+      allow(packet_pdf).to receive(:filled_pdf_tempfile).and_wrap_original do |original|
         filled_path = original.call
       end
 
@@ -360,7 +360,7 @@ RSpec.describe PdfFiller::PacketPdf do
       # one summary page + the filled-packet template's pages
       expect(merged.pages.count).to be >= 2
     ensure
-      File.delete(filled_path) if filled_path && File.exist?(filled_path)
+      File.delete(filled_path.path) if filled_path&.path && File.exist?(filled_path.path)
     end
   end
 
