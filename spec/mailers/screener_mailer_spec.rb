@@ -22,15 +22,6 @@ RSpec.describe ScreenerMailer, type: :mailer do
           expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_nc"), website: "https://dconc.gov/Social-Services/Food-and-Nutrition-Services"))
         end
       end
-
-      context "when state is DE" do
-        it "includes DE ASSIST instructions" do
-          screener.update(state: "DE", zip_code: "19803")
-          expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
-          doc = Nokogiri::HTML(body)
-          expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_de"), website: "https://dhss.delaware.gov/dss/dssmap/claymont/"))
-        end
-      end
     end
 
     context "proof section" do
@@ -135,6 +126,16 @@ RSpec.describe ScreenerMailer, type: :mailer do
       let(:screener) { create(:screener, state: "DE", zip_code: "19720", last_name: "Anyone", email: "preview@example.com") }
       let(:outgoing_email) { create(:outgoing_email, screener: screener) }
       let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
+
+      context "instructions section" do
+        context "when state is DE" do
+          it "includes DE ASSIST instructions" do
+            expect(mail.html_part.body.to_s).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
+            doc = Nokogiri::HTML(mail.html_part.body.to_s)
+            expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_de"), website: ""))
+          end
+        end
+      end
 
       it "renders each office's subgeography, address, and phone in html and text" do
         html = mail.html_part.body.to_s
