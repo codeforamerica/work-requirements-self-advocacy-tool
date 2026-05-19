@@ -11,36 +11,35 @@
 <%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
 
 ---
-<% website = @screener.office_website %>
-<% email = @screener.office_email %>
 
 <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 <% if @screener.state == LocationData::States::DELAWARE && @screener.office_or_offices_for_zip.is_a?(Array) %>
   <% @screener.office_or_offices_for_zip.each do |office| %>
+    <% website = office[:website] %>
+    <% email = office[:email] %>
+
     If you live <%= office[:subgeography] %>:
+
     1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
 
     <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: email)}" if email.present? %>.
 
-    2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
+    <% if office[:mailing_address] %>
+      2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
 
-    <%= office[:mailing_address].split("\n").join("\n   ") %>
-
-    3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
-
-    <%= office[:physical_address].split("\n").join("\n   ") %>
-
-    <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
-
-    - <%= t('views.screener_mailer.send_screener_results.check_website', website: website) %>
-    <% if email.present? %>
-      - <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
+      <%= office[:mailing_address].split("\n").join("\n   ") %>
     <% end %>
-    <% if (phone = office[:phone]).present? %>
-      - <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
+
+    <% if office[:physical_address] %>
+      3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
+
+      <%= office[:physical_address].split("\n").join("\n   ") %>
     <% end %>
+
   <% end %>
 <% else %>
+  <% website = @screener.office_website %>
+  <% email = @screener.office_email %>
   1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
 
      <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: email)}" if email.present? %>.
@@ -52,15 +51,27 @@
   3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
 
      <%= @screener.office_physical_address.split("\n").join("\n   ") %>
+<% end %>
 
-  <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
+<%= t('views.screener_mailer.send_screener_results.questions_intro') %>
 
+<% if @screener.state == LocationData::States::DELAWARE && @screener.office_or_offices_for_zip.is_a?(Array) %>
+  <% @screener.office_or_offices_for_zip.each do |office| %>
+    - <%= t('views.screener_mailer.send_screener_results.check_website', website: website) %>
+    <% if email.present? %>
+      - <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
+    <% end %>
+    <% if (phone = office[:phone]).present? %>
+      - <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
+    <% end %>
+  <% end %>
+<% else %>
   - <%= t('views.screener_mailer.send_screener_results.check_website', website: website) %>
   <% if email.present? %>
-  - <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
+    - <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
   <% end %>
   <% if (phone = @screener.office_phone).present? %>
-  - <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
+    - <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
   <% end %>
 <% end %>
 
