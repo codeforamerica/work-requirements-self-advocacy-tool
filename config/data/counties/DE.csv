@@ -1,196 +1,196 @@
-ZIP Code [ZIP_CODE],County [COUNTY_AGENCY],Office mailing address [COUNTY_MAIL_ADDRESS],Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS],Office phone number [COUNTY_PHONE],Office fax number [COUNTY_FAX],Office email address [COUNTY_EMAIL_ADDRESS],Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE],"Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]",Checked against current website,Is Supported?,Last Names A-Smh [LN_A-Smh],Last Names Smi-Z [LN_Smi-Z],Special Geo,Instructions
+ZIP Code [ZIP_CODE],County [COUNTY_AGENCY],Office mailing address [COUNTY_MAIL_ADDRESS],Office Physical Address (if different) [COUNTY_PHYSICAL_ADDRESS],Office phone number [COUNTY_PHONE],Office fax number [COUNTY_FAX],Office email address [COUNTY_EMAIL_ADDRESS],Office Website [Link instead of spelling out URL] [COUNTY_WEBSITE],"Upload portal or email [Link URLs, write out emails] [COUNTY_UPLOAD_EMAIL]",Checked against current website,Is Supported?,Last Names A-Smh [LN_A-Smh],Last Names Smi-Z [LN_Smi-Z],Special Geo,Subgeography [SUBGEOGRAPHY]
 19703,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19710,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19732,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19735,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19803,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19809,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19810,Claymont State Service Center,"3301 Green Street
-Claymont, DE 19703",,(302) 798-4093,,,https://dhss.delaware.gov/dss/dssmap/claymont/,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Claymont, DE 19703",,(302) 798-4093,,,,DHSS_DSS_Claymont_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19720,DeLaWarr State Service Center,"500 Rogers Road
-New Castle, DE 19720",,(302) 622-4500,,,https://dhss.delaware.gov/dss/dssmap/delawarr/,DHSS_DSS_DELAWARR_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live NORTH of  I-295:
+New Castle, DE 19720",,(302) 622-4500,,,,DHSS_DSS_DELAWARR_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,north of I-295
 19801,DeLaWarr State Service Center,"500 Rogers Road
-New Castle, DE 19720",,(302) 622-4500,,,https://dhss.delaware.gov/dss/dssmap/delawarr/,DHSS_DSS_DELAWARR_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live SOUTH of the Christina River:
+New Castle, DE 19720",,(302) 622-4500,,,,DHSS_DSS_DELAWARR_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,south of the Christiana River
 19708,Robscott Building,"153 East Chestnut Hill Road
-Newark, DE 19713",,(302) 451-3680,,,https://dhss.delaware.gov/main/maps/other/robscott/,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19713",,(302) 451-3680,,,,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19712,Robscott Building,"153 East Chestnut Hill Road
-Newark, DE 19713",,(302) 451-3680,,,https://dhss.delaware.gov/main/maps/other/robscott/,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19713",,(302) 451-3680,,,,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19713,Robscott Building,"153 East Chestnut Hill Road
-Newark, DE 19713",,(302) 451-3680,,,https://dhss.delaware.gov/main/maps/other/robscott/,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19713",,(302) 451-3680,,,,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19715,Robscott Building,"153 East Chestnut Hill Road
-Newark, DE 19713",,(302) 451-3680,,,https://dhss.delaware.gov/main/maps/other/robscott/,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19713",,(302) 451-3680,,,,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19808,Robscott Building,"153 East Chestnut Hill Road
-Newark, DE 19713",,(302) 451-3680,,,https://dhss.delaware.gov/main/maps/other/robscott/,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19713",,(302) 451-3680,,,,DHSS_DSS_Robscott_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19801,Northeast State Service Center,"1624 Jessup Street
-Wilmington, DE 19802",,(302) 552-3503,,,https://dhss.delaware.gov/dss/dssmap/northeas/,DHSS_DSS_NESSC_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live NORTH of the Christiana River and EAST of Market St:
+Wilmington, DE 19802",,(302) 552-3503,,,,DHSS_DSS_NESSC_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,north of the Christiana River and east of Market St
 19802,Northeast State Service Center,"1624 Jessup Street
-Wilmington, DE 19802",,(302) 552-3503,,,https://dhss.delaware.gov/dss/dssmap/northeas/,DHSS_DSS_NESSC_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Wilmington, DE 19802",,(302) 552-3503,,,,DHSS_DSS_NESSC_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19801,Winder Laird Porter State Service Center,"509 W. 8th Street
-Wilmington, DE 19801",,(302) 777-2830,,,https://dhss.delaware.gov/dss/dssmap/porter/,DHSS_DSS_MaintenanceMailbox_Area2@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live NORTH of the Christiana River and WEST of Market Street:
+Wilmington, DE 19801",,(302) 777-2830,,,,DHSS_DSS_MaintenanceMailbox_Area2@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,north of the Christiana River and west of Market Street
 19899,Winder Laird Porter State Service Center,"509 W. 8th Street
-Wilmington, DE 19801",,(302) 777-2830,,,https://dhss.delaware.gov/dss/dssmap/porter/,DHSS_DSS_MaintenanceMailbox_Area2@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Wilmington, DE 19801",,(302) 777-2830,,,,DHSS_DSS_MaintenanceMailbox_Area2@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19701,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19702,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19707,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19711,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19714,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19716,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19717,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19736,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19804,Floyd I. Hudson State Service Center,"501 Ogletown Road
-Newark, DE 19711",,(302) 283-7500,,,https://dhss.delaware.gov/dss/dssmap/hudson/,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Newark, DE 19711",,(302) 283-7500,,,,DHSS_DSS_HudsonSSC_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19901,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19903,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19904,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19934,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19943,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19946,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19952,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19953,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19961,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19962,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19964,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19979,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19980,Blue Hen Mall/Corporate Center,"655 Bay Road
-Dover, DE 19901",,(302) 672-9500,,,https://dhss.delaware.gov/main/maps/other/bluhenml/,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
+Dover, DE 19901",,(302) 672-9500,,,,DHSS_DSS_CPMaintenancepod@delaware.gov,TRUE,Y,TRUE,FALSE,FALSE,
 19941,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19942,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19950,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19954,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19960,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19963,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19933,Milford Annex,"13 S. W. Front Street
-Milford, DE 19963",,(302) 424-7250,,,https://dhss.delaware.gov/dss/dssmap/mlfdannx/,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Milford, DE 19963",,(302) 424-7250,,,,DHSS_DSS_MilfordMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19706,Appoquinimink State Service Center,"122 Silver Lake Road
-Middletown, DE 19709",,(302) 378-5781,,,https://dhss.delaware.gov/dss/dssmap/appoquin/,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Middletown, DE 19709",,(302) 378-5781,,,,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19709,Appoquinimink State Service Center,"122 Silver Lake Road
-Middletown, DE 19709",,(302) 378-5781,,,https://dhss.delaware.gov/dss/dssmap/appoquin/,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Middletown, DE 19709",,(302) 378-5781,,,,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19730,Appoquinimink State Service Center,"122 Silver Lake Road
-Middletown, DE 19709",,(302) 378-5781,,,https://dhss.delaware.gov/dss/dssmap/appoquin/,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Middletown, DE 19709",,(302) 378-5781,,,,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19731,Appoquinimink State Service Center,"122 Silver Lake Road
-Middletown, DE 19709",,(302) 378-5781,,,https://dhss.delaware.gov/dss/dssmap/appoquin/,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Middletown, DE 19709",,(302) 378-5781,,,,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19733,Appoquinimink State Service Center,"122 Silver Lake Road
-Middletown, DE 19709",,(302) 378-5781,,,https://dhss.delaware.gov/dss/dssmap/appoquin/,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Middletown, DE 19709",,(302) 378-5781,,,,DHSS_DSS_Appossc_FAQ@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19734,Smyrna State Service Center,"100 Sunnyside Road
 Delaware Hospital for the Chronically Ill Campus, Prickett Building
-Smyrna, DE 19977",,(302) 514-4500,,,https://dhss.delaware.gov/dss/dssmap/smyrna/,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Smyrna, DE 19977",,(302) 514-4500,,,,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19936,Smyrna State Service Center,"100 Sunnyside Road
 Delaware Hospital for the Chronically Ill Campus, Prickett Building
-Smyrna, DE 19977",,(302) 514-4500,,,https://dhss.delaware.gov/dss/dssmap/smyrna/,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Smyrna, DE 19977",,(302) 514-4500,,,,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19938,Smyrna State Service Center,"100 Sunnyside Road
 Delaware Hospital for the Chronically Ill Campus, Prickett Building
-Smyrna, DE 19977",,(302) 514-4500,,,https://dhss.delaware.gov/dss/dssmap/smyrna/,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Smyrna, DE 19977",,(302) 514-4500,,,,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19955,Smyrna State Service Center,"100 Sunnyside Road
 Delaware Hospital for the Chronically Ill Campus, Prickett Building
-Smyrna, DE 19977",,(302) 514-4500,,,https://dhss.delaware.gov/dss/dssmap/smyrna/,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Smyrna, DE 19977",,(302) 514-4500,,,,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19977,Smyrna State Service Center,"100 Sunnyside Road
 Delaware Hospital for the Chronically Ill Campus, Prickett Building
-Smyrna, DE 19977",,(302) 514-4500,,,https://dhss.delaware.gov/dss/dssmap/smyrna/,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Smyrna, DE 19977",,(302) 514-4500,,,,DHSS_DSS_SmyrnaMaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19901,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19903,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19904,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19934,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19943,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19946,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19952,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19953,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19961,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19962,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19964,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19979,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19980,James W. Williams State Service Center,"805 River Road
-Dover, DE 19901",,(302) 857-5000,,,https://dhss.delaware.gov/dss/dssmap/williams/,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
+Dover, DE 19901",,(302) 857-5000,,,,WMSMaintenance_POD@delaware.gov,TRUE,Y,FALSE,TRUE,FALSE,
 19931,Laurel State Service Center,"31039 North Poplar Street
-Laurel, DE 19956",,(302) 875-2280,,,https://dhss.delaware.gov/dss/dssmap/laurel/,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Laurel, DE 19956",,(302) 875-2280,,,,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19940,Laurel State Service Center,"31039 North Poplar Street
-Laurel, DE 19956",,(302) 875-2280,,,https://dhss.delaware.gov/dss/dssmap/laurel/,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Laurel, DE 19956",,(302) 875-2280,,,,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19956,Laurel State Service Center,"31039 North Poplar Street
-Laurel, DE 19956",,(302) 875-2280,,,https://dhss.delaware.gov/dss/dssmap/laurel/,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Laurel, DE 19956",,(302) 875-2280,,,,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19973,Laurel State Service Center,"31039 North Poplar Street
-Laurel, DE 19956",,(302) 875-2280,,,https://dhss.delaware.gov/dss/dssmap/laurel/,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live SOUTH of Route 20:
+Laurel, DE 19956",,(302) 875-2280,,,,DHSS_DSS_LaurelMaintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,south of Route 20
 19973,Anna C. Shipley State Service Center,"350 Virginia Ave.
-Seaford, DE 19973",,(302) 628-2011,,,https://dhss.delaware.gov/dss/dssmap/shipley/,DHSS_DSS_Shipley_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live NORTH of Route 20 or in the town of Blades:
+Seaford, DE 19973",,(302) 628-2011,,,,DHSS_DSS_Shipley_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,north of Route 20 or in the town of Blades
 19947,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19951,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19958,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19966,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19968,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19969,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19971,Thurman Adams State Service Center,"546 S. Bedford Street
-Georgetown, DE 19947",,(302) 515-3080,,,https://dhss.delaware.gov/dss/dssmap/gtown/,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Georgetown, DE 19947",,(302) 515-3080,,,,DHSS_DSSAdamsMaintenancepod@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19930,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19939,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19944,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19945,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19967,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19975,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19970,Edward W. Pyle State Service Center,"34314 Pyle Center Road
-Frankford, DE 19945",,(302) 732-9504,,,https://dhss.delaware.gov/dss/dssmap/pyle/,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Frankford, DE 19945",,(302) 732-9504,,,,DHSS_DSS_Pyle_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19805,Canby Park Office,"1920 Maryland Ave
-Wilmington, DE 19805",,(302) 498-5500,,,https://dhss.delaware.gov/main/maps/other/canbypark/,DHSS_DSS_CanbyPark_MaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Wilmington, DE 19805",,(302) 498-5500,,,,DHSS_DSS_CanbyPark_MaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19806,Canby Park Office,"1920 Maryland Ave
-Wilmington, DE 19805",,(302) 498-5500,,,https://dhss.delaware.gov/main/maps/other/canbypark/,DHSS_DSS_CanbyPark_MaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Wilmington, DE 19805",,(302) 498-5500,,,,DHSS_DSS_CanbyPark_MaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19807,Canby Park Office,"1920 Maryland Ave
-Wilmington, DE 19805",,(302) 498-5500,,,https://dhss.delaware.gov/main/maps/other/canbypark/,DHSS_DSS_CanbyPark_MaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+Wilmington, DE 19805",,(302) 498-5500,,,,DHSS_DSS_CanbyPark_MaintenancePOD@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
 19720,Churchman’s Corporate Office,"Churchman’s Corporate Center
 84 Christiana Road
-New Castle, DE 19720",,(800) 372-2022,,,dhss.delaware.gov/dhss/main/maps/other/chcorpctr.htm,DHSS_DSS_Churchmans_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,If you live SOUTH of  I-295:
+New Castle, DE 19720",,(800) 372-2022,,,,DHSS_DSS_Churchmans_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,TRUE,south of I-295
 19850,Churchman’s Corporate Office,"Churchman’s Corporate Center
 84 Christiana Road
-New Castle, DE 19720",,(800) 372-2022,,,dhss.delaware.gov/dhss/main/maps/other/chcorpctr.htm,DHSS_DSS_Churchmans_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
+New Castle, DE 19720",,(800) 372-2022,,,,DHSS_DSS_Churchmans_Maintenance@delaware.gov,TRUE,Y,FALSE,FALSE,FALSE,
