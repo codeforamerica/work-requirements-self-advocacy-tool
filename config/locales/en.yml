@@ -419,7 +419,7 @@ en:
         already_has_proof: Does your agency already have proof of your exemptions?
         already_has_proof_content_html:
         - "<strong>Yes, I’ve already shared that information.</strong> You can still share this information with your worker, if you think there's a chance they don't have it already."
-        - "<strong>No, I haven’t shared that information yet.</strong> We’ll tell you what proof you may want to send below. Your SNAP worker will review what you share and decide if the new work rules apply to you."
+        - "<strong>No, I haven’t shared that information yet.</strong> We’ll tell you what proof you may want to send below. Your worker will review what you share and decide if the new work rules apply to you."
         next_steps_html:
         - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
         - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
@@ -445,7 +445,7 @@ en:
             <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
             <li>A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
           </ul>
-        proof_of_health_form_de: Delaware Health Assessment Form (Form 184)
+        proof_of_health_form_de: Delaware Health Assessment Form (<a href="https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf" target="_blank">Form 184</a>)
         proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a>
         proof_of_native_american_html: |
           <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
@@ -455,6 +455,7 @@ en:
           </ul>
         proof_of_treatment_program_html: |
           <h3 class="spacing-above-5">Proof of participation in drug or alcohol treatment</h3>
+          <p>Include this if you have it available or can easily get it.</p>
           <ul class="list--bulleted">
             <li>A letter from your treatment program stating that you are participating in treatment</li>
           </ul>

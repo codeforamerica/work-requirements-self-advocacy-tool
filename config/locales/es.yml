@@ -418,11 +418,11 @@ es:
       edit:
         already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
         already_has_proof_content_html:
-        - "<strong>Sí, ya compartí esa información</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
-        - <strong>No, todavía no la he enviado</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso de evisará lo que usted envíe y decidirá si debe cumplir con las nuevas reglas de trabajo."
+        - "<strong>Sí, ya compartí esa información.</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
+        - <strong>No, todavía no la he enviado.</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
         next_steps_html:
         - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
-        - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, aun así puede enviar lo que tenga."
+        - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, debería enviar todo lo que tenga."
         proof_of_disability_benefits_html: |
           <h3>Comprobante de beneficios por discapacidad</h3>
           <p>Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:</p>
@@ -445,17 +445,18 @@ es:
           <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
           <li>Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
           </ul>
-        proof_of_health_form_de: formulario de evaluación de salud de Delaware
+        proof_of_health_form_de: formulario de evaluación de salud de Delaware (<a href="https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf" target="_blank">Form 184</a>)
         proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
         proof_of_native_american_html: |
-          <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
-          <p>Include one of these if you have it available or can easily get it.</p>
+          <h3 class="spacing-above-5">Comprobante de que es una persona indígena o nativa estadounidense</h3>
+          <p>Incluya uno de los siguientes comprobantes si lo tiene disponible o puede obtenerlo fácilmente.</p>
           <ul class="list--bulleted">
-            <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
+            <li>Una tarjeta de inscripción tribal, un documento del censo tribal o una carta de la tribu en papel membretado</li>
           </ul>
         proof_of_treatment_program_html: |
-          <h3>Comprobante de su programa de tratamiento</h3>
-          <p>Un documento de su centro o programa de tratamiento que indique que usted participa de forma regular.</p>
+          <h3>Comprobante de participación en un programa de rehabilitación de drogas o alcohol</h3>
+          <p>Incluya este comprobante si lo tiene disponible o puede obtenerlo fácilmente.</p>
+          <p>Una carta de su programa de rehabilitación que indique que está participando en el tratamiento</p>
         proof_of_working_html: |
           <h3>Comprobantes de trabajo</h3>
           <p>Envíe <strong>uno</strong> de los siguientes comprobantes:</p>
