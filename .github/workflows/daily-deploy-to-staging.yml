@@ -1,0 +1,28 @@
+name: Daily Deploy to Production from main
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Runs at 10:30 AM PST / 1:30 PM EST every day
+    # Note: Use UTC time for schedules
+    - cron: '30 17 * * 1-5'
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy to production
+    permissions:
+      checks: write
+      contents: write
+    uses: ./.github/workflows/deploy.yaml
+    with:
+      environment: production
+      infra_branch: main
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      DEPLOYMENT_APP_ID: ${{ secrets.DEPLOYMENT_APP_ID }}
+      DEPLOYMENT_APP_KEY: ${{ secrets.DEPLOYMENT_APP_KEY }}
