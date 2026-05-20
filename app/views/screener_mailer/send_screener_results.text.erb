@@ -11,31 +11,48 @@
 <%= t('views.screener_mailer.send_screener_results.reference_code', code: @screener.confirmation_code) %>
 
 ---
-<% website = @screener.office_website %>
-<% email = @screener.office_email %>
 
 <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
+<% state = @screener.state.downcase %>
+<% @screener.offices_to_display.each do |office| %>
+  <% if office[:subgeography].present? %>
 
-1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t('views.screener_mailer.send_screener_results.online_epass_text') %>
+    If you live <%= office[:subgeography] %>:
+  <% end %>
 
-   <%= t('views.screener_mailer.send_screener_results.online_county', website: website) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: email)}" if email.present? %>.
+  1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_text") %>
 
-2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
+     <%= t('views.screener_mailer.send_screener_results.online_county', website_name: t("views.screener_mailer.send_screener_results.website_name_#{state}"), website: office[:website]) %><%= " #{t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email])}" if office[:email].present? %>.
 
-   <%= @screener.office_mailing_address.split("\n").join("\n   ") %>
+  <% if office[:mailing_address].present? %>
+    2. <%= t('views.screener_mailer.send_screener_results.mail_label') %> <%= t('views.screener_mailer.send_screener_results.mail_instructions') %>
 
-3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
+       <%= office[:mailing_address].split("\n").join("\n       ") %>
+  <% end %>
 
-   <%= @screener.office_physical_address.split("\n").join("\n   ") %>
+  <% if office[:physical_address].present? %>
+    3. <%= t('views.screener_mailer.send_screener_results.in_person_label') %> <%= t('views.screener_mailer.send_screener_results.in_person_instructions') %>
+
+       <%= office[:physical_address].split("\n").join("\n       ") %>
+  <% end %>
+<% end %>
 
 <%= t('views.screener_mailer.send_screener_results.questions_intro') %>
 
-- <%= t('views.screener_mailer.send_screener_results.check_website', website: website) %>
-<% if email.present? %>
-- <%= t('views.screener_mailer.send_screener_results.email_office', email: email) %>
-<% end %>
-<% if (phone = @screener.office_phone).present? %>
-- <%= t('views.screener_mailer.send_screener_results.call_office', phone: phone) %>
+<% @screener.offices_to_display.each do |office| %>
+  <% if office[:subgeography].present? %>
+
+    If you live <%= office[:subgeography] %>:
+  <% end %>
+  <% if office[:website].present? %>
+    - <%= t('views.screener_mailer.send_screener_results.check_website', website: office[:website]) %>
+  <% end %>
+  <% if office[:email].present? %>
+    - <%= t('views.screener_mailer.send_screener_results.email_office', email: office[:email]) %>
+  <% end %>
+  <% if office[:phone].present? %>
+    - <%= t('views.screener_mailer.send_screener_results.call_office', phone: office[:phone]) %>
+  <% end %>
 <% end %>
 
 <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.title') %>
@@ -47,7 +64,7 @@
 <% end %>
 <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
 
-  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{@screener.state.downcase}") ) %>
+  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") ) %>
 <% end %>
 <% if @screener.receiving_disability_benefits? %>
 

@@ -42,48 +42,60 @@
 <% end %>
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
-<p class="spacing-below-0"><%= LocationData::States.display_name(@current_screener.state) %></p>
-<p><strong><%= @current_screener.office_name %></strong></p>
-
+<% offices = @current_screener.offices_to_display %>
+<% single_office = offices.one? && offices.first[:subgeography].blank? %>
+<% if single_office %>
+  <p class="spacing-below-0"><%= LocationData::States.display_name(@current_screener.state) %></p>
+  <p><strong><%= offices.first[:name] %></strong></p>
+<% end %>
 <p><%= t("views.download_form.edit.how_to_help_text") %></p>
-<div class="notice grey-light">
-  <ol class="list--numbered">
-    <% upload_portal_or_email = @current_screener.office_upload_or_portal_email %>
 
-    <li><%= t("views.download_form.edit.next_steps_online_html") %>
-      <ul class="list--bulleted">
-        <li class='spacing-above-15'><%= t("views.download_form.edit.state_website_#{current_screener.state.downcase}_html") %></li>
-        <% if upload_portal_or_email.present? %>
-          <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
-          <% if is_email %>
-            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email)) %></li>
-          <% else %>
-            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
-          <% end %>
-        <% end %>
-        <% if @current_screener.office_website.present? && @current_screener.office_website != upload_portal_or_email %>
-          <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: @current_screener.office_website) %></li>
-        <% end %>
-      </ul>
-    </li>
-    <% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
-      <% if (mailing_address = @current_screener.office_mailing_address).present? %>
-        <li><%= t("views.download_form.edit.next_steps_mail_nc_html", mailing_address: simple_format(mailing_address)) %></li>
-      <% end %>
-      <% if (address = @current_screener.office_physical_address).present? %>
-        <li><%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(address)) %></li>
-      <% end %>
-    <% else %>
-      <% if (mailing_address = @current_screener.office_mailing_address).present? %>
-        <li><%= t("views.download_form.edit.next_steps_mail_or_in_person_de_html", mailing_address: simple_format(mailing_address)) %></li>
-      <% end %>
+<% offices.each do |office| %>
+  <div class="notice grey-light">
+    <% unless single_office %>
+      <h3>If you live <%= office[:subgeography] %>, your office is: <%= office[:name] %></h3>
     <% end %>
-  </ol>
-</div>
+    <ol class="list--numbered" style="<%= single_office ? '' : 'padding-left: 1.5em;' %>">
+      <% upload_portal_or_email = office[:upload_portal_or_email] %>
+      <li><%= t("views.download_form.edit.next_steps_online_html") %>
+        <ul class="list--bulleted">
+          <li class='spacing-above-15'><%= t("views.download_form.edit.state_website_#{current_screener.state.downcase}_html") %></li>
+          <% if upload_portal_or_email.present? %>
+            <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
+            <% if is_email %>
+              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email)) %></li>
+            <% else %>
+              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
+            <% end %>
+          <% end %>
+          <% if office[:website].present? && office[:website] != upload_portal_or_email %>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: office[:website]) %></li>
+          <% end %>
+        </ul>
+      </li>
+      <% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
+        <% if (mailing_address = office[:mailing_address]).present? %>
+          <li><%= t("views.download_form.edit.next_steps_mail_nc_html", mailing_address: simple_format(mailing_address)) %></li>
+        <% end %>
+        <% if (address = office[:physical_address]).present? %>
+          <li><%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(address)) %></li>
+        <% end %>
+      <% else %>
+        <% if (mailing_address = office[:mailing_address]).present? %>
+          <li><%= t("views.download_form.edit.next_steps_mail_or_in_person_de_html", mailing_address: simple_format(mailing_address)) %></li>
+        <% end %>
+      <% end %>
+    </ol>
+    <% if !single_office && (phone = office[:phone]).present? %>
+      <p><%= t("views.download_form.edit.have_questions_html") %></p>
+      <p><%= phone %></p>
+    <% end %>
+  </div>
 
-<% if (phone = @current_screener.office_phone).present? %>
-  <p><%= t("views.download_form.edit.have_questions_html") %></p>
-  <p><%= phone %></p>
+  <% if single_office && (phone = office[:phone]).present? %>
+    <p><%= t("views.download_form.edit.have_questions_html") %></p>
+    <p><%= phone %></p>
+  <% end %>
 <% end %>
 
 <% if has_email %>
