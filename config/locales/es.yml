@@ -550,7 +550,7 @@ es:
         instructions: Lea esta información antes de firmar.
         perjury_statement: Al firmar a continuación, declaro bajo pena de perjurio, que la información en este formulario es verdadera y precisa.
         preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
-        preventing_work_drugs_alcohol: Tiene dificultades con el consumo de drogas o alcohol
+        preventing_work_drugs_alcohol: Tiene problemas de consumo de drogas o alcohol
         preventing_work_heading:
           one: Reportar una situación personal que le impide trabajar 20 horas a la semana
           other: Reportar una o más situaciones personales que le impiden trabajar 20 horas a la semana
@@ -559,7 +559,7 @@ es:
         preventing_work_place_to_sleep: No tienen un lugar estable donde dormir y bañarse
         signature_help_text: Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
         signature_label: Escriba su nombre legal completo para firmar
-        title: Firme y descargue su formulario.
+        title: Firme y descargue su formulario
     training_program:
       edit:
         notice_content:
