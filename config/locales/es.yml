@@ -50,9 +50,9 @@ es:
       edit:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
-        notice_text_default: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos o Narcotics Anónimos.
+        notice_text_default: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos o Narcóticos Anónimos.
         notice_text_nc: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos.
-        title: "¿Está en un programa de tratamiento para drogas o alcohol?"
+        title: "¿Está en un programa de rehabilitación de drogas o alcohol?"
     basic_info_case_number:
       edit:
         case_number_label: Número de caso
