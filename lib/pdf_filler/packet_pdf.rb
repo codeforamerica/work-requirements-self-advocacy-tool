@@ -87,7 +87,6 @@ module PdfFiller
 
       pdf_tempfile = Tempfile.new(["packet", ".pdf"], "tmp/")
       template_doc.write(pdf_tempfile.path)
-      pdf_tempfile.rewind
       pdf_tempfile
     end
 
