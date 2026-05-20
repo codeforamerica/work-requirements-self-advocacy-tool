@@ -111,7 +111,7 @@ module LocationData
     LAST_NAMES_A_SMH = "Last Names A-Smh [LN_A-Smh]"
     LAST_NAMES_SMI_Z = "Last Names Smi-Z [LN_Smi-Z]"
     SPECIAL_GEO = "Special Geo"
-    INSTRUCTIONS = "Instructions"
+    SUBGEOGRAPHY = "Subgeography [SUBGEOGRAPHY]"
 
     # data structure looks like:
     # {
@@ -145,7 +145,7 @@ module LocationData
               special_geo: row[SPECIAL_GEO] == "TRUE",
               last_names_a_smh: row[LAST_NAMES_A_SMH] == "TRUE",
               last_names_smi_z: row[LAST_NAMES_SMI_Z] == "TRUE",
-              instructions: row[INSTRUCTIONS]
+              subgeography: row[SUBGEOGRAPHY]
             }
           end
 

@@ -23,6 +23,38 @@ RSpec.describe DownloadFormController, type: :controller do
         }.not_to have_enqueued_job(SendOutgoingEmailJob)
       end
     end
+
+    context "for a DE special_geo zip" do
+      render_views
+      let(:screener) { create(:screener, :with_exemption, state: "DE", zip_code: "19720", last_name: "Anyone", email: "hi@example.com") }
+
+      before { sign_in screener }
+
+      it "renders one office card per office with subgeography and contact info" do
+        get :edit
+
+        expect(response.body).to include("DeLaWarr State Service Center")
+        expect(response.body).to include("Churchman")
+        expect(response.body).to include("north of I-295")
+        expect(response.body).to include("south of I-295")
+        expect(response.body).to include("(302) 622-4500")
+        expect(response.body).to include("(800) 372-2022")
+      end
+    end
+
+    context "for a DE single-office zip" do
+      render_views
+      let(:screener) { create(:screener, :with_exemption, state: "DE", zip_code: "19703", last_name: "Anyone", email: "hi@example.com") }
+
+      before { sign_in screener }
+
+      it "renders a single office with no subgeography heading" do
+        get :edit
+
+        expect(response.body).to include("Claymont State Service Center")
+        expect(response.body).not_to include("If you live")
+      end
+    end
   end
 
   describe "#update" do
