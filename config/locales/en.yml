@@ -263,7 +263,7 @@ en:
         not_listed: It's not listed here
         state_help_text: Tell us where you get SNAP benefits (required)
         title: Let's start with some basic information
-        zip_code_label: What's your ZIP Code (required)
+        zip_code_label: What's your ZIP Code? (required)
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.

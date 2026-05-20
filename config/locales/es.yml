@@ -263,7 +263,7 @@ es:
         not_listed: No está en la lista
         state_help_text: Cuéntenos en qué estado recibe beneficios de SNAP (requerido)
         title: Comencemos con su información básica
-        zip_code_label: "¿Cuál es su código de área? (requerido)"
+        zip_code_label: "¿Cuál es su código postal? (requerido)"
     migrant_farmworker:
       edit:
         help_text: Esto significa que usted trabaja en agricultura durante parte del año con un acuerdo de trabajo (como un contrato), o que se muda de un lugar a otro según la temporada.
