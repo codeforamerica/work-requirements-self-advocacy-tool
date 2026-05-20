@@ -62,19 +62,19 @@ en:
           help_bullets:
           - Look for a section labeled %{case_number_label}.
           - It's usually printed near your name, at the top of the first page.
-          office_name_default: DHHS
+          office_name_default: DHSS
           office_name_nc: "%{state} %{county}"
           title: You can also find your case number on most letters or notices your %{office_name} office has sent you.
         help_text_website:
           de:
             help_bullets_html:
-            - If you don’t have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
-            website_name: ASSIST portal
+            - If you don’t have a letter from DHSS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
+            website_name: ASSIST
           nc:
             help_bullets_html:
             - Log in to the official <a href="https://epass.nc.gov/" target="_blank">NC ePass website</a> to view case details, including your case number.
-            website_name: ePASS NC portal
-          title: Log in to your %{website_name} to find your case number
+            website_name: ePASS NC
+          title: Log in to your %{website_name} portal to find your case number
         title: Do you have a case number?
     basic_info_details:
       edit:
@@ -136,7 +136,7 @@ en:
         volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
     date_of_birth:
       edit:
-        help_text: You do not have to follow the work rules if you are younger than 18, or older than 65+ years.
+        help_text: You do not have to follow the work rules if you are younger than 18 or 65 or older.
         title: What is your date of birth? (required)
     disability_benefits:
       edit:
@@ -171,6 +171,7 @@ en:
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>Online: </strong>Send your form using one of these options:</span>"
         next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        single_office_instructions: 'If you live %{subgeography}, your office is: %{office}'
         state_website_de_html: "<strong>Using Delaware ASSIST account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked' data-track-controller_name='DownloadForm'>Delaware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this."
         state_website_nc_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."
         title: Download your form
@@ -239,6 +240,7 @@ en:
         title: Check if the SNAP work rules apply to you
         title_help_text_html: |
           <p> We'll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
+          <p>This is NOT a SNAP application.</p>
           <p class="spacing-below-0"><strong>It usually takes about 10 minutes to complete this form.</strong></p>
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
@@ -262,7 +264,7 @@ en:
         not_listed: It's not listed here
         state_help_text: Tell us where you get SNAP benefits (required)
         title: Let's start with some basic information
-        zip_code_label: What's your ZIP Code (required)
+        zip_code_label: What's your ZIP Code? (required)
     migrant_farmworker:
       edit:
         help_text: This means you work on a farm with a work agreement (like a contract) for part of the year, or you move from place to place for your farm work.
@@ -329,7 +331,7 @@ en:
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
     privacy_policy:
-      analytics: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. You can also email getbenefitshelp@codeforamerica.org for additional information.
+      analytics_html: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. To learn more about MixPanel's privacy practices and any opt-out choices it offers, click <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank">HERE</a>. To learn more about Google Analytics privacy practices and any opt-out choices it offers, click <a href="https://policies.google.com/privacy?hl=en-US" target="_blank">HERE</a>. To learn more about Datadog privacy practices and any opt-out choices it offers, click <a href="https://www.datadoghq.com/privacy/" target="_blank">HERE</a>. You can also email getbenefitshelp@codeforamerica.org for additional information.
       auto_collect_intro: 'In addition to the information you provide, we automatically collect and store information about your visit to the Site. We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you submit in the GetBenefitsHelp.org Site. This information includes:'
       auto_collect_items:
       - Domain from which you access the Internet
@@ -417,7 +419,7 @@ en:
         already_has_proof: Does your agency already have proof of your exemptions?
         already_has_proof_content_html:
         - "<strong>Yes, I’ve already shared that information.</strong> You can still share this information with your worker, if you think there's a chance they don't have it already."
-        - "<strong>No, I haven’t shared that information yet.</strong> We’ll tell you what proof you may want to send below. Your SNAP worker will review what you share and decide if the new work rules apply to you."
+        - "<strong>No, I haven’t shared that information yet.</strong> We’ll tell you what proof you may want to send below. Your worker will review what you share and decide if the new work rules apply to you."
         next_steps_html:
         - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
         - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
@@ -443,7 +445,7 @@ en:
             <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
             <li>A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
           </ul>
-        proof_of_health_form_de: Delaware Health Assessment Form (Form 184)
+        proof_of_health_form_de: Delaware Health Assessment Form (<a href="https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf" target="_blank">Form 184</a>)
         proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a>
         proof_of_native_american_html: |
           <h3 class="spacing-above-5">Proof of American Indian / Native American status</h3>
@@ -453,6 +455,7 @@ en:
           </ul>
         proof_of_treatment_program_html: |
           <h3 class="spacing-above-5">Proof of participation in drug or alcohol treatment</h3>
+          <p>Include this if you have it available or can easily get it.</p>
           <ul class="list--bulleted">
             <li>A letter from your treatment program stating that you are participating in treatment</li>
           </ul>
@@ -479,6 +482,7 @@ en:
         email_office: Email the office at %{email},
         greeting: Hi %{first_name} %{last_name},
         how_to_submit_heading: How to submit your form
+        if_you_live: 'If you live %{subgeography}:'
         in_person_instructions: Print your form and bring it and any proof you may need to a local office.
         in_person_label: 'In person:'
         mail_instructions: Send your form and any proof you may need.
@@ -561,7 +565,7 @@ en:
         preventing_work_place_to_sleep: Does not have a regular place to sleep or shower
         signature_help_text: Enter your name as it appears on your driver's license, ID, or Social Security card.
         signature_label: Type your full legal name here to sign
-        title: Sign & create your form
+        title: Sign & create your form.
     training_program:
       edit:
         notice_content:
