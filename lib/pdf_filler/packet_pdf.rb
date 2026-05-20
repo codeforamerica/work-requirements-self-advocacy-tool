@@ -106,14 +106,15 @@ module PdfFiller
     end
 
     def combined_pdf
+      generated_path = generated_pdf_path
       target = HexaPDF::Document.new
-      [generated_pdf_path, filled_pdf_path].each do |file|
+      [generated_path, filled_pdf_path].each do |file|
         pdf = HexaPDF::Document.open(file)
         pdf.pages.each { |page| target.pages << target.import(page) }
       end
       target.write_to_string
     ensure
-      File.delete(generated_pdf_path) # not a Tempfile so we have to manually delete it
+      File.delete(generated_path) if generated_path && File.exist?(generated_path)
     end
 
     # Sanitizes text by removing emoji sequences:

@@ -50,7 +50,8 @@ en:
       edit:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
-        nc_notice_text: Select "No" if your only treatment program is Alcoholics Anonymous.
+        notice_text_default: Select "No" if your only treatment program is Alcoholics Anonymous or Narcotics Anonymous.
+        notice_text_nc: Select "No" if your only treatment program is Alcoholics Anonymous.
         title: Are you in a drug or alcohol treatment program?
     basic_info_case_number:
       edit:
@@ -485,11 +486,13 @@ en:
         mail_label: 'Mail:'
         next_step_heading: 'Next step: Send this form to your SNAP agency.'
         next_step_instructions: Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn't apply to you.
-        online_county: Instead of using ePASS, you can submit this form and any proof to your county's SNAP office %{website}
+        online_county: Instead of using %{website_name}, you can submit this form and any proof to your county's SNAP office %{website}
         online_county_with_email: or by emailing %{email}
-        online_epass_html: If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
-        online_epass_text: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
         online_label: 'Online:'
+        online_submit_de_html: If you already receive SNAP benefits, you can use <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this.
+        online_submit_de_text: If you already receive SNAP benefits, you can use Delaware ASSIST (https://assist.dhss.delaware.gov/) to send your form and documents. You'll need an enhanced account to do this.
+        online_submit_nc_html: If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
+        online_submit_nc_text: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
         proofs_you_may_need:
           disability_benefits_help_text: 'A letter or other document showing that you receive the disability benefits you selected:'
           disability_benefits_title: Proof of disability benefits
@@ -527,6 +530,8 @@ en:
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
         unsubscribe: Unsubscribe
+        website_name_de: ASSIST
+        website_name_nc: ePASS
     signature:
       edit:
         exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
