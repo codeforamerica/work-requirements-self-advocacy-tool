@@ -239,6 +239,7 @@ en:
         title: Check if the SNAP work rules apply to you
         title_help_text_html: |
           <p> We'll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
+          <p>This is NOT a SNAP application.</p>
           <p class="spacing-below-0"><strong>It usually takes about 10 minutes to complete this form.</strong></p>
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
@@ -329,7 +330,7 @@ en:
         preventing_work_write_in: If you have another reason, please write it here.
         title: Are any of these things preventing you from working at least 20 hours a week?
     privacy_policy:
-      analytics: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. You can also email getbenefitshelp@codeforamerica.org for additional information.
+      analytics_html: We use MixPanel and Google Analytics to understand how visitors use our site and to gather aggregate performance metrics. We also use Datadog to monitor system performance. To learn more about MixPanel's privacy practices and any opt-out choices it offers, click <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank">HERE</a>. To learn more about Google Analytics privacy practices and any opt-out choices it offers, click <a href="https://policies.google.com/privacy?hl=en-US" target="_blank">HERE</a>. To learn more about Datadog privacy practices and any opt-out choices it offers, click <a href="https://www.datadoghq.com/privacy/" target="_blank">HERE</a>. You can also email getbenefitshelp@codeforamerica.org for additional information.
       auto_collect_intro: 'In addition to the information you provide, we automatically collect and store information about your visit to the Site. We use this information to understand how the Site is used, improve the Site, and monitor usage for security purposes. This data is stored separately from the personal information you submit in the GetBenefitsHelp.org Site. This information includes:'
       auto_collect_items:
       - Domain from which you access the Internet
@@ -561,7 +562,7 @@ en:
         preventing_work_place_to_sleep: Does not have a regular place to sleep or shower
         signature_help_text: Enter your name as it appears on your driver's license, ID, or Social Security card.
         signature_label: Type your full legal name here to sign
-        title: Sign & create your form
+        title: Sign & create your form.
     training_program:
       edit:
         notice_content:
