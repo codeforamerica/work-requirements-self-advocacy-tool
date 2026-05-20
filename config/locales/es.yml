@@ -307,7 +307,7 @@ es:
         title: "¿Usted está en estado de embarazo?"
     preventing_work_details:
       edit:
-        header: Lamentamos que las cosas hayan sido difíciles. Si necesita ayuda adicional, llame al 211.
+        header: Lamentamos saber que ha pasado por momentos difíciles. Si necesita ayuda adicional, llame al 211.
         instructions: Compartir más detalles puede ayudar a la persona encargada de su caso a tomar una decisión más rápido.
         question:
           one: "¿Puede compartir más información sobre cómo esta condición le limitan para trabajar al menos 20 horas a la semana?"
