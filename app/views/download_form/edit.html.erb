@@ -53,7 +53,7 @@
 <% offices.each do |office| %>
   <div class="notice grey-light">
     <% unless single_office %>
-      <h3>If you live <%= office[:subgeography] %>, your office is: <%= office[:name] %></h3>
+      <h3><%= t("views.download_form.edit.single_office_instructions", subgeography: office[:subgeography], office: office[:name]) %></h3>
     <% end %>
     <ol class="list--numbered" style="<%= single_office ? '' : 'padding-left: 1.5em;' %>">
       <% upload_portal_or_email = office[:upload_portal_or_email] %>

@@ -6,15 +6,15 @@ module LocationData
     NORTH_CAROLINA = "NC"
     NOT_LISTED = "NOT_LISTED"
     STATES_INFO = {
-      NORTH_CAROLINA => {
-        display_name: "North Carolina",
-        pdf_filler_class: PdfFiller::NcPacketPdf,
-        office_by: :county
-      },
       DELAWARE => {
         display_name: "Delaware",
         pdf_filler_class: PdfFiller::PacketPdf,
         office_by: :zip_code
+      },
+      NORTH_CAROLINA => {
+        display_name: "North Carolina",
+        pdf_filler_class: PdfFiller::NcPacketPdf,
+        office_by: :county
       }
     }
 
@@ -36,7 +36,7 @@ module LocationData
     end
 
     def self.dropdown_options
-      states_and_labels = active_states.map do |state_code, info|
+      states_and_labels = active_states.sort.map do |state_code, info|
         [info[:display_name], state_code]
       end
       states_and_labels << [I18n.t("views.location.edit.not_listed"), NOT_LISTED]
