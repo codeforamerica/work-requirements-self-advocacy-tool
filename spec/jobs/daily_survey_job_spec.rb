@@ -42,6 +42,13 @@ RSpec.describe DailySurveyJob, type: :job do
       expect(OutgoingEmail.count).to eq(0)
     end
 
+    it "does not send emails for screeners with empty email addresses" do
+      screener.update(email: "")
+
+      expect { described_class.perform_now }.not_to change(ActionMailer::Base.deliveries, :count)
+      expect(OutgoingEmail.count).to eq(0)
+    end
+
     it "does not send emails for screeners outside the signed_at range" do
       screener.update(signed_at: 30.days.ago)
 
