@@ -17,7 +17,7 @@
 <% @screener.offices_to_display.each do |office| %>
   <% if office[:subgeography].present? %>
 
-    If you live <%= office[:subgeography] %>:
+    <%= t("views.screener_mailer.send_screener_results.if_you_live", subgeography: office[:subgeography]) %>
   <% end %>
 
   1. <%= t('views.screener_mailer.send_screener_results.online_label') %> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_text") %>
@@ -42,7 +42,7 @@
 <% @screener.offices_to_display.each do |office| %>
   <% if office[:subgeography].present? %>
 
-    If you live <%= office[:subgeography] %>:
+    <%= t("views.screener_mailer.send_screener_results.if_you_live", subgeography: office[:subgeography]) %>
   <% end %>
   <% if office[:website].present? %>
     - <%= t('views.screener_mailer.send_screener_results.check_website', website: office[:website]) %>
