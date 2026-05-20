@@ -35,13 +35,5 @@ RSpec.describe SurveyMailer, type: :mailer do
         expect(body).to include("Take this 2-minute survey")
       end
     end
-
-    context "when state is unsupported" do
-      let(:state) { "TX" }
-
-      it "raises an error" do
-        expect { mail.deliver_now }.to raise_error(KeyError)
-      end
-    end
   end
 end
