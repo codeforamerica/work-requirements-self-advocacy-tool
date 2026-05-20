@@ -11,8 +11,6 @@ class SurveyMailer < ApplicationMailer
     @screener = outgoing_email.screener
     @survey_link = SURVEY_LINKS.fetch(@screener.state)
 
-    raise "Survey not configured for #{@screener.state}" unless @survey_link
-
     attachments.inline["gbh_email_header.png"] = File.binread(Rails.root.join("app/assets/images/gbh_email_header.png"))
 
     if ENV["SES_CONFIGURATION_SET"]
