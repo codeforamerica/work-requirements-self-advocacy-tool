@@ -71,6 +71,7 @@ en:
           de:
             help_bullets_html:
             - If you don't have a letter from DHSS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
+            website_name: ASSIST
           nc:
             help_bullets_html:
             - Log in to the official <a href="https://epass.nc.gov/" target="_blank">NC ePass website</a> to view case details, including your case number.
