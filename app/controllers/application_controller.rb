@@ -47,22 +47,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def referrer_from_different_host?
-    referrer_host = begin
-      URI.parse(request.headers[:referer]).host
-    rescue
-      nil
-    end
-    referrer_host != request.host
+  def parsed_referrer
+    uri = URI.parse(request.headers[:referer].to_s)
+    return nil unless uri.is_a?(URI::HTTP) && uri.host.present?
+    uri
+  rescue URI::InvalidURIError
+    nil
   end
 
   def set_referrer
-    return unless referrer_from_different_host?
+    uri = parsed_referrer
 
-    # Use at most 200 chars in the session to avoid overflow.
-    header_value = request.headers.fetch(:referer, "None")
-    if header_value != "None" || session[:referrer].nil?
-      session[:referrer] = header_value.slice(0, 200)
+    if uri.nil?
+      session[:referrer] = "None" if session[:referrer].nil?
+    elsif uri.host != request.host
+      # Use at most 200 chars in the session to avoid overflow.
+      session[:referrer] = uri.to_s.slice(0, 200)
     end
   end
 
