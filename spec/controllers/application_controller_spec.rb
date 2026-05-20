@@ -197,17 +197,40 @@ RSpec.describe ApplicationController, type: :controller do
       end
 
       context "with a very long HTTP_REFERER header" do
-        before { request.headers["HTTP_REFERER"] = "http://" + ("!" * 9001) }
+        let(:long_referer) { "http://example.com/" + ("a" * 9001) }
+        before { request.headers["HTTP_REFERER"] = long_referer }
 
         it "sets the referrer to a truncated version" do
           get :index
 
-          expect(session[:referrer]).to eq "http://" + ("!" * 193)
+          expect(session[:referrer]).to eq long_referer.slice(0, 200)
         end
       end
 
       context "without an HTTP_REFERER header" do
         it "sets the referrer to 'None'" do
+          get :index
+
+          expect(session[:referrer]).to eq "None"
+        end
+      end
+
+      context "with a malformed HTTP_REFERER header (e.g. scanner attack payload)" do
+        before do
+          request.headers["HTTP_REFERER"] = "\"=sleep(2)=\"\n))';waitfor delay '0:0:2'-- '"
+        end
+
+        it "ignores the value and sets the referrer to 'None'" do
+          get :index
+
+          expect(session[:referrer]).to eq "None"
+        end
+      end
+
+      context "with a non-http(s) HTTP_REFERER header" do
+        before { request.headers["HTTP_REFERER"] = "javascript:alert(1)" }
+
+        it "ignores the value and sets the referrer to 'None'" do
           get :index
 
           expect(session[:referrer]).to eq "None"
