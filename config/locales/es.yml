@@ -111,7 +111,7 @@ es:
         help_text: Ingrese los últimos 4 dígitos para confirmar su identidad y encontrar su caso.
         notice: Mantendremos su información privada, protegida y segura.
         ssn_label: Número de Seguro Social
-        title: Como no tiene un número de caso, ¿le gustaría agregar los últimos cuatro dígitos de su número de Seguro Social (SSN)?
+        title: Como no tiene un número de caso, ¿podría proporcionar los últimos 4 dígitos de su número de Seguro Social (SSN) para encontrar su caso?
     caring_for_someone:
       edit:
         additional_care_info: "¿Puede contarnos sobre el tipo de cuidado que le brinda a esta persona?"
