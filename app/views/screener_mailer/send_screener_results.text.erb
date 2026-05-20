@@ -82,7 +82,4 @@
 <% end %>
 
 <%= t('general.gbh_team') %>
-<% if ENV["SES_CONTACT_LIST"] %>
-
-<%= t('general.unsubscribe') %>: {{amazonSESUnsubscribeUrl}}
-<% end %>
+<%= render "shared/email_footer" %>

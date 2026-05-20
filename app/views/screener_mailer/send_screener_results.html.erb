@@ -1,5 +1,4 @@
-<%= image_tag attachments["gbh_email_header.png"].url, alt: "GetBenefitsHelp", style: "width: 100%; max-width: 300px; display: block; margin-top: 10px; margin-bottom: 10px;" %>
-<hr style="border: none; border-top: 2px solid #034E46; margin: 0;">
+<%= render "shared/email_header" %>
 
 <p>
   <%= t('views.screener_mailer.send_screener_results.greeting', first_name: @screener.first_name, last_name: @screener.last_name) %>
@@ -131,8 +130,4 @@
 
 <p><%= t('general.gbh_team') %></p>
 
-<% if ENV["SES_CONTACT_LIST"] %>
-  <p style="font-size: 12px; color: #666666; margin-top: 20px;">
-    <a href="{{amazonSESUnsubscribeUrl}}"><%= t('general.unsubscribe') %></a>
-  </p>
-<% end %>
+<%= render "shared/email_footer" %>
