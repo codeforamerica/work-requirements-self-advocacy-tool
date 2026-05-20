@@ -136,7 +136,7 @@ es:
         volunteering_org_label_help_text: Si realiza trabajo voluntario en más de una organización, puede escribirlas aquí.
     date_of_birth:
       edit:
-        help_text: No tiene que cumplir con las reglas de trabajo SNAP si es menor de 18 años o tiene 65 años o más.
+        help_text: No tiene que cumplir con las reglas de trabajo de SNAP si es menor de 18 años o tiene 65 años o más.
         title: "¿Cuál es su fecha de nacimiento? (requerido)"
     disability_benefits:
       edit:
