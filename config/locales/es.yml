@@ -24,7 +24,7 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
-    this_is_optional: Opcional.
+    this_is_optional: Este paso es opcional.
     work_rules: Reglas de trabajo
   validations:
     amount_invalid: Asegúrese de ingresar una cantidad válida en dólares
@@ -62,18 +62,18 @@ es:
           help_bullets:
           - Busque una sección con el título %{case_number_label}.
           - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
-          office_name_default: DHHS
-          office_name_nc: "%{state} %{county}"
-          title: También puede encontrar su número de caso en la mayoría de las cartas o avisos que le envíe su oficina de  %{office_name}.
+          office_name_default: el Departamento de Salud y Servicios Sociales (DHSS)
+          office_name_nc: "su oficina de %{state} %{county}"
+          title: Tambien puede encontrar su número de caso en la mayoría de las cartas o notificaciones que le ha enviado %{office_name}.
         help_text_website:
           de:
             help_bullets_html:
-            - If you don’t have a letter from DHHS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
-            website_name: ASSIST portal
+            - Si no tiene disponible una carta del DHSS, ingrese a su cuenta en el sitio web oficial de <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST</a> para ver sus notificaciones y encontrar su número de caso.
+            website_name: ASSIST
           nc:
             help_bullets_html:
             - Inicie sesión en el sitio <a href="https://epass.nc.gov/" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
-            website_name: ePASS NC portal
+            website_name: ePASS NC
           title: Use su cuenta de %{website_name} para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
