@@ -370,6 +370,25 @@ class Screener < ApplicationRecord
     office_info_for(:website)
   end
 
+  # TEMPORARY: replace when we add a question for subgeography/"special geo"
+  # Always returns an array of office hashes so views can iterate without special logic.
+  def offices_to_display
+    raw = case LocationData::States::STATES_INFO[state][:office_by]
+    when :county
+      [LocationData::Counties.get(state, county)]
+    else
+      result = office_or_offices_for_zip
+      result.is_a?(Array) ? result : [result].compact
+    end
+
+    raw.map do |office|
+      office.merge(
+        physical_address: office[:physical_address].presence || office[:mailing_address],
+        upload_portal_or_email: office[:upload_portal_or_email].presence || office[:email]
+      )
+    end
+  end
+
   def pregnancy_due_date_day
     pregnancy_due_date&.day
   end
