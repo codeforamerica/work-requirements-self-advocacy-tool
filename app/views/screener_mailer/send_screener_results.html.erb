@@ -29,7 +29,7 @@
 <% state = @screener.state.downcase %>
 <% @screener.offices_to_display.each do |office| %>
   <% if office[:subgeography].present? %>
-    <p>If you live <%= office[:subgeography] %>:</p>
+    <p><%= t("views.screener_mailer.send_screener_results.if_you_live", subgeography: office[:subgeography]) %></p>
   <% end %>
   <ol style="line-height: 2;">
     <li>
@@ -70,7 +70,7 @@
 
 <% @screener.offices_to_display.each do |office| %>
   <% if office[:subgeography].present? %>
-    <p>If you live <%= office[:subgeography] %>:</p>
+    <p><%= t("views.screener_mailer.send_screener_results.if_you_live", subgeography: office[:subgeography]) %></p>
   <% end %>
   <ul style="line-height: 2;">
     <% if office[:website].present? %>
