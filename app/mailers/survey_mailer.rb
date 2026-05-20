@@ -2,14 +2,16 @@ class SurveyMailer < ApplicationMailer
   default from: "noreply@" + ENV.fetch("DOMAIN", "codeforamerica.app")
 
   SURVEY_LINKS = {
-    "nc" => "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6",
-    "de" => "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_8rdcUjhPOWA0XzM"
+    LocationData::States::NORTH_CAROLINA => "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6",
+    LocationData::States::DELAWARE => "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_8rdcUjhPOWA0XzM"
   }.freeze
 
   def send_survey(outgoing_email:)
     Rails.logger.info "Sending survey to #{outgoing_email.screener.id}"
     @screener = outgoing_email.screener
-    @survey_link = SURVEY_LINKS.fetch(@screener.state&.downcase)
+    @survey_link = SURVEY_LINKS.fetch(@screener.state)
+
+    raise "Survey not configured for #{@screener.state}" unless @survey_link
 
     attachments.inline["gbh_email_header.png"] = File.binread(Rails.root.join("app/assets/images/gbh_email_header.png"))
 
