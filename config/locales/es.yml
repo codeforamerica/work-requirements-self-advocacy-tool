@@ -421,7 +421,7 @@ es:
         - "<strong>Sí, ya compartí esa información.</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
         - <strong>No, todavía no la he enviado.</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
         condition_medical_health: condición
-        condition_substance_use: substance use disorder
+        condition_substance_use: trastorno por uso de sustancias
         next_steps_html:
         - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
         - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, debería enviar todo lo que tenga."
@@ -440,7 +440,7 @@ es:
             <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
             <li>Es padre o madre soltero(a), está inscrito a tiempo completo y cuida a un niño menor de 12 años.</li>
           </ul>
-        proof_of_health_and_substance_use_condition_title: Proof of health conditions, substance use disorder, or disability
+        proof_of_health_and_substance_use_condition_title: Comprobante de condiciones de salud, trastorno por uso de sustancias o discapacidad
         proof_of_health_condition_html: |
           <h3>%{proof_of_condition_title}</h3>
           <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
@@ -457,7 +457,7 @@ es:
           <ul class="list--bulleted">
             <li>Una tarjeta de inscripción tribal, un documento del censo tribal o una carta de la tribu en papel membretado</li>
           </ul>
-        proof_of_substance_use_condition_only_title: Proof of substance use disorder
+        proof_of_substance_use_condition_only_title: Comprobante de trastorno por uso de sustancias
         proof_of_treatment_program_html: |
           <h3>Comprobante de participación en un programa de rehabilitación de drogas o alcohol</h3>
           <p>Incluya este comprobante si lo tiene disponible o puede obtenerlo fácilmente.</p>
