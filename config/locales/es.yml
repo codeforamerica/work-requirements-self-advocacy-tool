@@ -438,8 +438,11 @@ es:
             <li>Cuida a un niño menor de 12 años y no cuenta con el cuidado infantil que necesita para poder asistir a la escuela y trabajar, o</li>
             <li>Es padre o madre soltero(a), está inscrito a tiempo completo y cuida a un niño menor de 12 años.</li>
           </ul>
+        proof_of_health_condition_only_title: Comprobante de una condición de salud o discapacidad
+        proof_of_health_and_substance_use_condition_title: Proof of health conditions, substance use disorder, or disability
+        proof_of_substance_use_condition_only_title: Proof of substance use disorder
         proof_of_health_condition_html: |
-          <h3>Comprobante de una condición de salud o discapacidad</h3>
+          <h3>%{proof_of_condition_title}</h3>
           <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
           <ul class="list--bulleted">
           <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>

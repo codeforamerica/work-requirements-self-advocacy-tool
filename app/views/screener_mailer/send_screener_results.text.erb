@@ -62,9 +62,22 @@
 
 <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.student_text') %>
 <% end %>
-<% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
-
-  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") ) %>
+<% has_substance_use_condition = @current_screener.preventing_work_drugs_alcohol_yes? %>
+<% has_medical_condition = @current_screener.preventing_work_medical_condition_yes? %>
+<% if has_substance_use_condition || has_medical_condition %>
+  <% proof_of_health_form = t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") %>
+  <%
+    proof_of_condition_title =
+      if has_medical_condition && has_substance_use_condition
+        t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title")
+      elsif has_medical_condition
+        t("views.proof_guidance.edit.proof_of_health_condition_only_title")
+      elsif has_substance_use_condition
+        t("views.proof_guidance.edit.proof_of_substance_use_condition_only_title")
+      end
+  %>
+  
+  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title ) %>
 <% end %>
 <% if @screener.receiving_disability_benefits? %>
 

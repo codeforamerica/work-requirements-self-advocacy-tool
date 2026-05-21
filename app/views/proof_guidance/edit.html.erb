@@ -51,10 +51,23 @@
       </div>
     <% end %>
 
-    <% if @current_screener.preventing_work_drugs_alcohol_yes? || @current_screener.preventing_work_medical_condition_yes? %>
+    <% has_substance_use_condition = @current_screener.preventing_work_drugs_alcohol_yes? %>
+    <% has_medical_condition = @current_screener.preventing_work_medical_condition_yes? %>
+    <% if has_substance_use_condition || has_medical_condition %>
       <div class="spacing-above-35">
         <%= image_tag "health.svg", class: "illustration left-justified spacing-below-10" %>
-        <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe ) %>
+        <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe %>
+        <%
+          proof_of_condition_title =
+            if has_medical_condition && has_substance_use_condition
+              t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title")
+            elsif has_medical_condition
+              t("views.proof_guidance.edit.proof_of_health_condition_only_title")
+            elsif has_substance_use_condition
+              t("views.proof_guidance.edit.proof_of_substance_use_condition_only_title")
+            end
+        %>
+        <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title ) %>
       </div>
     <% end %>
 

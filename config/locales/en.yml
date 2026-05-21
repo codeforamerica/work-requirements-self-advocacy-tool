@@ -438,8 +438,11 @@ en:
             <li>Care for a child younger than 12, and don’t have the child care you need for you to go to school and work</li>
             <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
           </ul>
+        proof_of_health_condition_only_title: Proof of health conditions or disability
+        proof_of_health_and_substance_use_condition_title: Proof of health conditions, substance use disorder, or disability
+        proof_of_substance_use_condition_only_title: Proof of substance use disorder
         proof_of_health_condition_html: |
-          <h3 class="spacing-above-5">Proof of health conditions or disability</h3>
+          <h3 class="spacing-above-5">%{proof_of_condition_title}</h3>
           <p>This proof can be helpful, <u>but may not be required</u>.</p>
           <ul class="list--bulleted">
             <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
@@ -500,7 +503,7 @@ en:
           disability_benefits_help_text: 'A letter or other document showing that you receive the disability benefits you selected:'
           disability_benefits_title: Proof of disability benefits
           health_condition_text: |
-            Proof of health conditions or disability
+            %{proof_of_condition_title}
             This proof can be helpful, but may not be required.
             - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
             - A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
