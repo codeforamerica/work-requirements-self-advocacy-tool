@@ -173,7 +173,7 @@ module PdfFiller
     end
 
     def submission_date
-      Date.current.to_s
+      Date.current.strftime("%B %-d, %Y")
     end
   end
 end

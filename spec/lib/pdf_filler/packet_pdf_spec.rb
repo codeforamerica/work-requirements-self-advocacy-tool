@@ -116,7 +116,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
     it "sets submission_date to the current date" do
       travel_to Date.new(2026, 1, 9) do
-        expect(result[:submission_date]).to eq("2026-01-09")
+        expect(result[:submission_date]).to eq("January 9, 2026")
       end
     end
 
