@@ -573,7 +573,7 @@ en:
         paragraph_1_html: You recently used <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> to learn how the new SNAP work rules affect you.
         paragraph_1_text: You recently used GetBenefitsHelp.org (https://www.getbenefitshelp.org/) to learn how the new SNAP work rules affect you.
         paragraph_2: We'd like to learn more about the steps you took after using the tool. Your feedback helps us provide more accurate information about SNAP work rules.
-        subject: "[GetBenefitsHelp] Please tell us about your experience"
+        subject: Did GetBenefitsHelp make a difference for your SNAP case?
         survey_link_html: <a href="%{survey_link}" target="_blank">Take this 2-minute survey</a>
         survey_link_text: 'Take this 2-minute survey: %{survey_link}'
     training_program:
