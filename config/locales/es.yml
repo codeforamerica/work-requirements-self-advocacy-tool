@@ -63,7 +63,7 @@ es:
           - Busque una sección con el título %{case_number_label}.
           - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
           office_name_default: el Departamento de Salud y Servicios Sociales (DHSS)
-          office_name_nc: su oficina de %{state} %{county}
+          office_name_nc: su oficina de %{county}
           title: Tambien puede encontrar su número de caso en la mayoría de las cartas o notificaciones que le ha enviado %{office_name}.
         help_text_website:
           de:
