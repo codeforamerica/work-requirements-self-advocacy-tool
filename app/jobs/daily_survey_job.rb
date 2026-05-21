@@ -9,7 +9,8 @@ class DailySurveyJob < ApplicationJob
         Rails.env.production? ? 14.days.ago.all_day : Date.yesterday.all_day
       end
 
-    screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
+    # screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
+    screeners = Screener.where(email: "wrsat-eng@codeforamerica.org").order(created_at: :desc).limit(5)
 
     Rails.logger.info "Found #{screeners.count} screeners with email addresses signed #{signed_at_range.begin.to_date}"
 

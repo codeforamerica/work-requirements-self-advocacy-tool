@@ -15,7 +15,8 @@ staging:
     schedule: every hour at minute 12
   daily_survey_job:
     class: DailySurveyJob
-    schedule: every day at 7:25am America/Los_Angeles
+#    schedule: every day at 7:25am America/Los_Angeles
+    schedule: every day at 9:05am America/Los_Angeles
 
 production:
   clear_solid_queue_finished_jobs:
