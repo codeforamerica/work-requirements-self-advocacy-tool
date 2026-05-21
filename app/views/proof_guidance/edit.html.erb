@@ -58,16 +58,24 @@
         <%= image_tag "health.svg", class: "illustration left-justified spacing-below-10" %>
         <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe %>
         <%
-          proof_of_condition_title =
-            if has_medical_condition && has_substance_use_condition
+          if has_medical_condition && has_substance_use_condition
+            proof_of_condition_title =
               t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title")
-            elsif has_medical_condition
+            condition_type =
+              t("views.proof_guidance.edit.condition_medical_health")
+          elsif has_medical_condition
+            proof_of_condition_title =
               t("views.proof_guidance.edit.proof_of_health_condition_only_title")
-            elsif has_substance_use_condition
+            condition_type =
+              t("views.proof_guidance.edit.condition_medical_health")
+          elsif has_substance_use_condition
+            proof_of_condition_title =
               t("views.proof_guidance.edit.proof_of_substance_use_condition_only_title")
-            end
+            condition_type =
+              t("views.proof_guidance.edit.condition_substance_use")
+          end
         %>
-        <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title ) %>
+        <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title, condition_type: condition_type ) %>
       </div>
     <% end %>
 

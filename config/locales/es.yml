@@ -420,6 +420,8 @@ es:
         already_has_proof_content_html:
         - "<strong>Sí, ya compartí esa información.</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
         - <strong>No, todavía no la he enviado.</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
+        condition_medical_health: condición
+        condition_substance_use: substance use disorder
         next_steps_html:
         - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
         - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, debería enviar todo lo que tenga."
@@ -443,7 +445,7 @@ es:
           <h3>%{proof_of_condition_title}</h3>
           <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
           <ul class="list--bulleted">
-          <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
+          <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su %{condition_type} le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
           <li>Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
           </ul>
         proof_of_health_condition_only_title: Comprobante de una condición de salud o discapacidad
@@ -503,7 +505,7 @@ es:
           health_condition_text: |
             %{proof_of_condition_title}
             Estos documentos puede ser útiles, pero puede que no sean obligatorios.
-            - Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su condición le impide trabajar de manera constante 20 horas por semana, todas las semanas, O
+            - Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su %{condition_type} le impide trabajar de manera constante 20 horas por semana, todas las semanas, O
             - Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.
           help_text: Si sabe que su oficina de SNAP ya tiene estos documentos o comprobantes, no necesita enviarlos nuevamente. Puede enviar su formulario aunque no tenga todos los comprobantes. Su oficina de SNAP puede comunicarse con usted para solicitarlos más adelante.
           proof_of_health_form_text_de: formulario de evaluación de salud de Delaware
