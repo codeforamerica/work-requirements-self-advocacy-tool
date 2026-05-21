@@ -40,23 +40,30 @@ RSpec.describe ScreenerMailer, type: :mailer do
       end
 
       context "when preventing_work_drugs_alcohol is yes" do
-        it "includes proof of health conditions" do
+        it "includes proof of health and substance conditions" do
           screener.update(preventing_work_drugs_alcohol: "yes")
-          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title")))
+        end
+      end
+
+      context "when preventing_work_drugs_alcohol is yes and preventing_work_medical_condition is no" do
+        it "includes proof of only substance conditions" do
+          screener.update(preventing_work_drugs_alcohol: "yes", preventing_work_medical_condition: "no")
+          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_substance_use_condition_only_title")))
         end
       end
 
       context "when preventing_work_medical_condition is yes" do
-        it "includes proof of health conditions" do
+        it "includes proof of only health conditions" do
           screener.update(preventing_work_medical_condition: "yes")
-          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_condition_only_title")))
         end
       end
 
       context "when neither drugs nor medical condition is yes" do
-        it "does not include proof of health conditions" do
+        it "does not include proof of health or substance conditions" do
           screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
-          expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+          expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_condition_only_title")))
         end
       end
 
