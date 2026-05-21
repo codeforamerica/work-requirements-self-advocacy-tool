@@ -98,8 +98,8 @@
     <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.student_html') %>
   <% end %>
 
-  <% has_substance_use_condition = @current_screener.preventing_work_drugs_alcohol_yes? %>
-  <% has_medical_condition = @current_screener.preventing_work_medical_condition_yes? %>
+  <% has_substance_use_condition = @screener.preventing_work_drugs_alcohol_yes? %>
+  <% has_medical_condition = @screener.preventing_work_medical_condition_yes? %>
   <% if has_substance_use_condition || has_medical_condition %>
     <li>
       <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{state}").html_safe %>
