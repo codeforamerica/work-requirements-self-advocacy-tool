@@ -101,7 +101,7 @@ module PdfFiller
       css_path = Rails.root.join("app", "assets", "stylesheets", "wr_exemption_pdf.css")
       style_tag_options = [{path: css_path}]
       path = "tmp/page_1#{SecureRandom.uuid}.pdf"
-      Grover.new(html, style_tag_options: style_tag_options, print_background: true).to_pdf(path)
+      Grover.new(html, style_tag_options: style_tag_options, print_background: true, timeout: 120_000).to_pdf(path)
       path
     end
 
