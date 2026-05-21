@@ -3,7 +3,7 @@ en:
   general:
     affirmative: 'Yes'
     back: Go back
-    basic_information: Basic Information
+    basic_information: Basic information
     char_counter:
       remaining:
         one: "%{count} character remaining"
