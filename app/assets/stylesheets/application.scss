@@ -274,3 +274,12 @@ i.no-button-cross {
   }
 }
 
+.flash-alerts {
+  display: flex;
+  justify-self: center;
+}
+
+.flash__dismiss {
+  top: -4px;
+}
+
