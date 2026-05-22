@@ -209,7 +209,7 @@ GEM
       google-protobuf (~> 4.26)
     grover (1.2.10)
       nokogiri (~> 1)
-    hexapdf (1.7.0)
+    hexapdf (1.8.0)
       cmdparse (~> 3.0, >= 3.0.3)
       geom2d (~> 0.4, >= 0.4.1)
       openssl (>= 2.2.1)
@@ -299,7 +299,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.3-x86_64-linux-musl)
       racc (~> 1.4)
-    openssl (4.0.1)
+    openssl (4.0.2)
     opentelemetry-api (1.10.0)
       logger
     opentelemetry-common (0.25.0)
@@ -756,7 +756,7 @@ DEPENDENCIES
   dotenv
   factory_bot_rails
   grover
-  hexapdf (~> 1.7)
+  hexapdf (~> 1.8)
   i18n-tasks (~> 1.1.2)
   jbuilder
   jsbundling-rails
@@ -865,7 +865,7 @@ CHECKSUMS
   google-protobuf (4.35.0-x86_64-linux-musl) sha256=be0218520d77b2aee898b363514b03819f6f63f9c041ae0d0d79b4ce5247bffd
   googleapis-common-protos-types (1.23.0) sha256=992e740a523794d9fc5f29a504465d8fc737aaa16c930fe7228e3346860faf0a
   grover (1.2.10) sha256=989b21d1a0048e3793b9939b392152fb309c7a107911ad04c10e422de4e1479b
-  hexapdf (1.7.0) sha256=df9502a157ee2c3248573a14be8410045f104ca7ae8f46a2a4301406c5ce4155
+  hexapdf (1.8.0) sha256=3437154213be17a3d0422bdb26638b739da20fce98db1cc3554b0a675eb50437
   highline (3.1.2) sha256=67cbd34d19f6ef11a7ee1d82ffab5d36dfd5b3be861f450fc1716c7125f4bb4a
   i18n (1.14.8) sha256=285778639134865c5e0f6269e0b818256017e8cde89993fdfcbfb64d088824a5
   i18n-tasks (1.1.2) sha256=4dcfba49e52a623f30661cb316cb80d84fbba5cb8c6d88ef5e02545fffa3637a
@@ -903,7 +903,7 @@ CHECKSUMS
   nokogiri (1.19.3-x86_64-darwin) sha256=77f3fba57d46c53ab31e62fc6c28f705109d1bf6264356c76f132b2be5728d4d
   nokogiri (1.19.3-x86_64-linux-gnu) sha256=2f5078620fe12e83669b5b17311b32532a8153d02eee7ad06948b926d6080976
   nokogiri (1.19.3-x86_64-linux-musl) sha256=248c906d2166eca5efb56d52fdee5f9a1f51d69a72e2b64fdac647b4ce39ea3f
-  openssl (4.0.1) sha256=e27974136b7b02894a1bce46c5397ee889afafe704a839446b54dc81cb9c5f7d
+  openssl (4.0.2) sha256=1037ad2868ae58df9ad917891c0c0f9815a1172f6846d4bcdd508e4c2ee747c2
   opentelemetry-api (1.10.0) sha256=99ee7c829b18381c31a817ee9bf6a160d737542d99cb8da55d443336d266bfa9
   opentelemetry-common (0.25.0) sha256=73915362e58d337fc92acbe1abfdaee1f725442527125fdb2af1420417f1149d
   opentelemetry-exporter-otlp (0.34.0) sha256=3b3cdf4329ba30f4389d849c7f13b8f9f983ecb4a030031c03997dffae1e2a60
