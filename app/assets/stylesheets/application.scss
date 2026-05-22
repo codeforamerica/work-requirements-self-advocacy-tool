@@ -66,6 +66,15 @@ main {
 
   .accordion {
     background-color: $color-white;
+
+    button.accordion__button[aria-expanded="true"]:after {
+      background-image: url("/icon_accordion_close.svg");
+    }
+
+    button.accordion__button[aria-expanded="false"]:after {
+      background-image: url("/icon_accordion_open.svg");
+    }
+
   }
 }
 
@@ -286,4 +295,3 @@ i.no-button-cross {
 .flash__dismiss {
   top: -4px;
 }
-
