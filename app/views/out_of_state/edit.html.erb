@@ -30,9 +30,17 @@
     </div>
   </div>
   <script>
-    setTimeout(function () {
+    const redirectTimeout = setTimeout(() => {
       window.location.href = "<%= redirect_url %>";
     }, <%= redirect_delay_seconds * 1000 %>);
+
+    addEventListener("turbo:before-visit", () => {
+      clearTimeout(redirectTimeout);
+    }, { once: true });
+
+    addEventListener("turbo:before-cache", () => {
+      clearTimeout(redirectTimeout);
+    }, { once: true });
   </script>
 <% end %>
 
