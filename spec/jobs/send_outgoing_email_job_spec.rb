@@ -14,6 +14,10 @@ RSpec.describe SendOutgoingEmailJob, type: :job do
         ))
     }
 
+    before do
+      allow_any_instance_of(Screener).to receive(:pdf).and_return("%PDF-1.4 fake pdf")
+    end
+
     it "finds the outgoing email and sends an email" do
       expect { described_class.perform_now(outgoing_email.id) }.to change(ActionMailer::Base.deliveries, :count).by(1)
       email = ActionMailer::Base.deliveries.last
