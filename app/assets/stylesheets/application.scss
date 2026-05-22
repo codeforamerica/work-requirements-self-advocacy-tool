@@ -283,3 +283,42 @@ i.no-button-cross {
   top: -4px;
 }
 
+.input-group--inline {
+  @media screen and (max-width: 1150px) {
+    display: flex;
+
+    .select {
+      width: 33%;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &:after {
+        top: 0.1em;
+        width: 3rem;
+      }
+    }
+
+    .select__element {
+      padding-inline: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 395px) {
+    .select__element {
+      font-size: 1.7rem;
+      padding-inline: 0.5rem;
+    }
+
+    .select:after {
+      width: 2.5rem;
+    }
+  }
+
+  @media screen and (max-width: 360px) {
+    .select__element {
+      font-size: 1.6rem;
+    }
+  }
+}
