@@ -12,7 +12,6 @@ en:
     choose_all_that_apply: Choose all that apply.
     close: Close
     continue: Continue
-    continue_without_this_number: Continue without it
     footer:
       content_html: This SNAP work rules screener is a service built by <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> on behalf of the people of the United States.
     gbh_team: GetBenefitsHelp Team
