@@ -5,11 +5,12 @@ RSpec.describe ScreenerMailer, type: :mailer do
     let(:screener) { create(:screener, :with_nc_screener, :with_exemption) }
     let(:outgoing_email) { create(:outgoing_email, screener: screener) }
     let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
-    let(:body) { mail.html_part.body.to_s }
+    let(:body) { html_body(mail) }
+
+    it_behaves_like "a mailer with default headers"
 
     it "renders the headers and body" do
       expect(mail.subject).to eq(I18n.t("views.screener_mailer.send_screener_results.subject"))
-      expect(mail.from).to eq(["noreply@" + ENV.fetch("DOMAIN", "codeforamerica.app")])
       expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.next_step_heading"))
     end
 
@@ -18,8 +19,9 @@ RSpec.describe ScreenerMailer, type: :mailer do
         it "includes NC ePASS instructions" do
           screener.update(state: "NC")
           expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_nc_html"))
-          doc = Nokogiri::HTML(body)
-          expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_nc"), website: "https://dconc.gov/Social-Services/Food-and-Nutrition-Services"))
+          expect(html_doc(mail).text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county",
+            website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_nc"),
+            website: "https://dconc.gov/Social-Services/Food-and-Nutrition-Services"))
         end
       end
     end
@@ -42,21 +44,24 @@ RSpec.describe ScreenerMailer, type: :mailer do
       context "when preventing_work_drugs_alcohol is yes" do
         it "includes proof of health conditions" do
           screener.update(preventing_work_drugs_alcohol: "yes")
-          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html",
+            proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
         end
       end
 
       context "when preventing_work_medical_condition is yes" do
         it "includes proof of health conditions" do
           screener.update(preventing_work_medical_condition: "yes")
-          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+          expect(body).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html",
+            proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
         end
       end
 
       context "when neither drugs nor medical condition is yes" do
         it "does not include proof of health conditions" do
           screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
-          expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+          expect(body).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html",
+            proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
         end
       end
 
@@ -110,8 +115,8 @@ RSpec.describe ScreenerMailer, type: :mailer do
       let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
 
       it "renders the single office in html and text" do
-        html = mail.html_part.body.to_s
-        text = mail.text_part.body.to_s
+        html = html_body(mail)
+        text = text_body(mail)
 
         [html, text].each do |body|
           expect(body).to include("3301 Green Street")
@@ -130,16 +135,15 @@ RSpec.describe ScreenerMailer, type: :mailer do
       context "instructions section" do
         context "when state is DE" do
           it "includes DE ASSIST instructions" do
-            expect(mail.html_part.body.to_s).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
-            doc = Nokogiri::HTML(mail.html_part.body.to_s)
-            expect(doc.text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_de"), website: ""))
+            expect(html_body(mail)).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
+            expect(html_doc(mail).text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: I18n.t("views.screener_mailer.send_screener_results.website_name_de"), website: ""))
           end
         end
       end
 
       it "renders each office's subgeography, address, and phone in html and text" do
-        html = mail.html_part.body.to_s
-        text = mail.text_part.body.to_s
+        html = html_body(mail)
+        text = text_body(mail)
 
         [html, text].each do |body|
           expect(body).to include("If you live north of I-295")
