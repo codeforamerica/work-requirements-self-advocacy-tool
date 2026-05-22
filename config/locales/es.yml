@@ -15,7 +15,7 @@ es:
     continue_without_this_number: Continuar sin este número
     footer:
       content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> para servir a las personas en los Estados Unidos.
-    gbh_team: GetBenefitsHelp Team
+    gbh_team: El equipo de GetBenefitsHelp
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
@@ -24,7 +24,9 @@ es:
     progress_bar_text_html: Sección %{step} de 3 <strong>%{section_name}</strong>
     select: Seleccione
     switched_locale: English
+    thank_you: "¡Muchas gracias!"
     this_is_optional: Este paso es opcional.
+    unsubscribe: Cancelar suscripción
     work_rules: Reglas de trabajo
   validations:
     amount_invalid: Asegúrese de ingresar una cantidad válida en dólares
@@ -530,7 +532,6 @@ es:
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
-        unsubscribe: Cancelar suscripción
         website_name_de: ASSIST
         website_name_nc: ePASS
     signature:
@@ -563,7 +564,16 @@ es:
         preventing_work_place_to_sleep: No tienen un lugar estable donde dormir y bañarse
         signature_help_text: Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
         signature_label: Escriba su nombre legal completo para firmar
-        title: Firme y descargue su formulario
+        title: Firme y complete su formulario
+    survey_mailer:
+      send_survey:
+        greeting: Hola,
+        paragraph_1_html: Recientemente usó <a href="https://www.getbenefitshelp.org/" target="_blank">GetBenefitsHelp.org</a> para saber cómo le afectan las nuevas reglas de trabajo de SNAP.
+        paragraph_1_text: Recientemente usó GetBenefitsHelp.org (https://www.getbenefitshelp.org/) para saber cómo le afectan las nuevas reglas de trabajo de SNAP.
+        paragraph_2: Nos gustaría saber qué hizo después de usar la herramienta. Sus comentarios nos ayudan a mejorar la información sobre las reglas de trabajo de SNAP.
+        subject: "¿Le ayudó GetBenefitsHelp con su caso de SNAP?"
+        survey_link_html: <a href="%{survey_link}" target="_blank">Completar una encuesta de 2 minutos</a>
+        survey_link_text: 'Completar una encuesta de 2 minutos: %{survey_link}'
     training_program:
       edit:
         notice_content:
@@ -637,5 +647,5 @@ es:
         time_limit_text_nc: hasta el 31 de diciembre de 2027
         title: Es posible que tenga que cumplir con las reglas de trabajo de SNAP.
         title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
-        unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una “razón válida” por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
+        unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una "razón válida" por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.
         unexpected_problems_title: Si no cumple con sus horas de trabajo en un mes, pero tiene una razón válida, infórmelo a su oficina de SNAP.
