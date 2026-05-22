@@ -12,7 +12,7 @@ RSpec.describe "proof_guidance/edit", type: :view do
 
   it "always displays the title and next steps" do
     render
-    expect(rendered).to include(I18n.t("views.proof_guidance.edit.title"))
+    expect(rendered).to have_css("h1", text: I18n.t("views.proof_guidance.edit.title"))
     I18n.t("views.proof_guidance.edit.next_steps_html").each do |step|
       expect(rendered).to include(step)
     end
