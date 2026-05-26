@@ -17,7 +17,7 @@ class BasicInfoCaseNumberController < ExemptionAwareQuestionController
 
   def office_name
     if @current_screener.state == LocationData::States::NORTH_CAROLINA
-      I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_nc", state: @current_screener.state, county: @current_screener.county)
+      I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_nc", county: @current_screener.county)
     else
       I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_default")
     end
