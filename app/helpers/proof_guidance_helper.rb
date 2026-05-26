@@ -1,5 +1,8 @@
 module ProofGuidanceHelper
-  def proof_of_condition_title_and_type(has_medical_condition, has_substance_use_condition)
+  def proof_of_condition_title_and_type(screener)
+    has_substance_use_condition = screener.preventing_work_drugs_alcohol_yes?
+    has_medical_condition = screener.preventing_work_medical_condition_yes?
+
     if has_medical_condition && has_substance_use_condition
       [
         t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title"),

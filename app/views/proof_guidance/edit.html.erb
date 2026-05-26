@@ -51,13 +51,11 @@
       </div>
     <% end %>
 
-    <% has_substance_use_condition = @current_screener.preventing_work_drugs_alcohol_yes? %>
-    <% has_medical_condition = @current_screener.preventing_work_medical_condition_yes? %>
-    <% if has_substance_use_condition || has_medical_condition %>
+    <% if @current_screener.preventing_work_drugs_alcohol_yes? || @current_screener.preventing_work_medical_condition_yes? %>
       <div class="spacing-above-35">
         <%= image_tag "health.svg", class: "illustration left-justified spacing-below-10" %>
         <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe %>
-        <% proof_of_condition_title, condition_type = proof_of_condition_title_and_type(has_medical_condition, has_substance_use_condition) %>
+        <% proof_of_condition_title, condition_type = proof_of_condition_title_and_type(@current_screener) %>
         <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title, condition_type: condition_type ) %>
       </div>
     <% end %>
