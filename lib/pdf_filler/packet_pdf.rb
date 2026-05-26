@@ -145,7 +145,7 @@ module PdfFiller
 
     def shared_fields
       fields = {
-        birth_date: @screener.birth_date.to_s,
+        birth_date: @screener.birth_date.strftime("%B %-d, %Y"),
         caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
         caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,
         enrolled_in_education: @screener.is_student_yes?,
@@ -154,7 +154,7 @@ module PdfFiller
         in_drug_or_alcohol_program: @screener.is_in_alcohol_treatment_program_yes?,
         is_american_indian: @screener.is_american_indian_yes?,
         is_pregnant: @screener.is_pregnant_yes?,
-        pregnancy_due_date: @screener.pregnancy_due_date.to_s,
+        pregnancy_due_date: @screener.pregnancy_due_date.strftime("%B %-d, %Y"),
         preventing_work_domestic_violence: @screener.preventing_work_domestic_violence_yes?,
         preventing_work_drugs_alcohol: @screener.preventing_work_drugs_alcohol_yes?,
         preventing_work_medical_condition: @screener.preventing_work_medical_condition_yes?,
