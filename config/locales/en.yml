@@ -421,6 +421,8 @@ en:
         already_has_proof_content_html:
         - "<strong>Yes, I've already shared that information.</strong> You can still share this information with your worker, if you think there's a chance they don't have it already."
         - "<strong>No, I haven't shared that information yet.</strong> We'll tell you what proof you may want to send below. Your worker will review what you share and decide if the new work rules apply to you."
+        condition_medical_health: condition
+        condition_substance_use: substance use disorder
         next_steps_html:
         - "<strong>Submit your downloaded form</strong> to your SNAP agency using the option that works best for you."
         - "<strong>If needed, submit additional proof to your SNAP agency.</strong> If you don't have all the proof you may need right now, you should still submit what you have."
@@ -439,13 +441,15 @@ en:
             <li>Care for a child younger than 12, and don't have the child care you need for you to go to school and work</li>
             <li>Are a single parent enrolled full-time and taking care of a child under 12</li>
           </ul>
+        proof_of_health_and_substance_use_condition_title: Proof of health conditions, substance use disorder, or disability
         proof_of_health_condition_html: |
-          <h3 class="spacing-above-5">Proof of health conditions or disability</h3>
+          <h3 class="spacing-above-5">%{proof_of_condition_title}</h3>
           <p>This proof can be helpful, <u>but may not be required</u>.</p>
           <ul class="list--bulleted">
-            <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR</li>
+            <li>A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your %{condition_type} makes you unable to consistently work 20 hours per week, every week, OR</li>
             <li>A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.</li>
           </ul>
+        proof_of_health_condition_only_title: Proof of health conditions or disability
         proof_of_health_form_de: Delaware Health Assessment Form (<a href="https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf" target="_blank">Form 184</a>)
         proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">North Carolina Medical Report form</a>
         proof_of_native_american_html: |
@@ -454,6 +458,7 @@ en:
           <ul class="list--bulleted">
             <li>A tribal enrollment card, a tribal census document, or a letter from the tribe on letterhead</li>
           </ul>
+        proof_of_substance_use_condition_only_title: Proof of substance use disorder
         proof_of_treatment_program_html: |
           <h3 class="spacing-above-5">Proof of participation in drug or alcohol treatment</h3>
           <p>Include this if you have it available or can easily get it.</p>
@@ -501,9 +506,9 @@ en:
           disability_benefits_help_text: 'A letter or other document showing that you receive the disability benefits you selected:'
           disability_benefits_title: Proof of disability benefits
           health_condition_text: |
-            Proof of health conditions or disability
+            %{proof_of_condition_title}
             This proof can be helpful, but may not be required.
-            - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your condition makes you unable to consistently work 20 hours per week, every week, OR
+            - A letter from a medical or mental health provider (for example, a doctor, nurse, social worker, or other medical professional) stating that your %{condition_type} makes you unable to consistently work 20 hours per week, every week, OR
             - A %{proof_of_health_form} that is completed, signed, and dated by a medical or mental health provider, a member of their staff, a social worker, or another professional.
           help_text: If you know your SNAP agency already has proof of these things, you don't need to submit it. You can always submit your form without additional proof. Your agency may follow up to ask for these documents.
           proof_of_health_form_text_de: Delaware Health Assessment Form (Form 184)
