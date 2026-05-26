@@ -30,7 +30,7 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
         controller.instance_variable_set(:@current_screener, screener)
 
         expect(controller.case_number_label).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.case_number_label_nc"))
-        expect(controller.office_name).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_nc", state: "NC", county: "Durham County"))
+        expect(controller.office_name).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_nc", county: "Durham County"))
       end
     end
 

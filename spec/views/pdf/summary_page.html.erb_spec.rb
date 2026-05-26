@@ -41,7 +41,7 @@ RSpec.describe "pdf/summary_page", type: :view do
   it "always displays the header, attestation, and footer" do
     render_page
     expect(rendered).to include("SNAP Work Requirement Exemptions Attestation")
-    expect(rendered).to include("Nelly Ghaffar, (DOB: 1990-07-13) attests to the following")
+    expect(rendered).to include("Nelly Ghaffar, (DOB: July 13, 1990) attests to the following")
     expect(rendered).to include("See the following page for details.")
   end
 
@@ -121,7 +121,7 @@ RSpec.describe "pdf/summary_page", type: :view do
 
     it "shows pregnant with due date" do
       render_page(is_pregnant: true, pregnancy_due_date: "2026-09-15")
-      expect(rendered).to include("Pregnant (Due: 2026-09-15)")
+      expect(rendered).to include("Pregnant (Due: September 15, 2026)")
     end
 
     it "shows receiving a disability benefit" do
