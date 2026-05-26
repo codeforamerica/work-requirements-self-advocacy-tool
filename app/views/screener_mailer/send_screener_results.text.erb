@@ -63,8 +63,10 @@
 <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.student_text') %>
 <% end %>
 <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
+  <% proof_of_health_form = t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") %>
+  <% proof_of_condition_title, condition_type = proof_of_condition_title_and_type(@screener) %>
 
-  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: t("views.screener_mailer.send_screener_results.proofs_you_may_need.proof_of_health_form_text_#{state}") ) %>
+  <%= t("views.screener_mailer.send_screener_results.proofs_you_may_need.health_condition_text", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title, condition_type: condition_type) %> ) %>
 <% end %>
 <% if @screener.receiving_disability_benefits? %>
 

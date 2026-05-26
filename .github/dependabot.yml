@@ -21,3 +21,7 @@ updates:
   open-pull-requests-limit: 10
   cooldown:
     default-days: 7
+  ignore:
+  - dependency-name: "puppeteer"
+    versions:
+    - ">=25"

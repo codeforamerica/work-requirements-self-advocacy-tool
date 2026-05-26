@@ -97,7 +97,9 @@
 
   <% if @screener.preventing_work_drugs_alcohol_yes? || @screener.preventing_work_medical_condition_yes? %>
     <li>
-      <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_#{state}").html_safe) %>
+      <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{state}").html_safe %>
+      <% proof_of_condition_title, condition_type = proof_of_condition_title_and_type(@screener) %>
+      <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title, condition_type: condition_type ) %>
     </li>
   <% end %>
 
