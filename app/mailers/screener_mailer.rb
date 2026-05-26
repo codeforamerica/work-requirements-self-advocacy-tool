@@ -1,4 +1,6 @@
 class ScreenerMailer < ApplicationMailer
+  helper ProofGuidanceHelper
+
   def send_screener_results(outgoing_email:)
     @screener = outgoing_email.screener
 
