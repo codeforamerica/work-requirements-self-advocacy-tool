@@ -52,7 +52,8 @@ RSpec.feature "NC Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
-    click_on I18n.t("general.affirmative")
+    choose I18n.t("general.affirmative")
+    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
     within(".question-with-follow-up__question") do

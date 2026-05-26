@@ -473,7 +473,7 @@ class Screener < ApplicationRecord
   end
 
   def remove_school_type_if_not_student
-    self.school_type = nil if is_student_no?
+    self.school_type = nil if is_student_no? || state == LocationData::States::NORTH_CAROLINA
   end
 
   def remove_training_program_attributes_if_no

@@ -46,7 +46,9 @@ RSpec.feature "DE Screener flow", js: true do
     click_on I18n.t("general.negative")
 
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
-    click_on I18n.t("general.affirmative")
+    choose I18n.t("general.affirmative")
+    choose I18n.t("views.school_enrollment.edit.school_type_college_or_trade_school")
+    click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
     choose I18n.t("general.affirmative")
