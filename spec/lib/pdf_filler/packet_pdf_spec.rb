@@ -87,8 +87,8 @@ RSpec.describe PdfFiller::PacketPdf do
       it "maps date and numeric fields as strings" do
         screener.pregnancy_due_date = Date.new(2026, 9, 15)
 
-        expect(result[:birth_date]).to eq("1990-07-13")
-        expect(result[:pregnancy_due_date]).to eq("2026-09-15")
+        expect(result[:birth_date]).to eq("July 13, 1990")
+        expect(result[:pregnancy_due_date]).to eq("September 15, 2026")
       end
     end
 
