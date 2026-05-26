@@ -8,7 +8,7 @@
   <div class="grey-box">
     <div class="attestation-header">
       <%= image_tag "https://staging.wrsat.codeforamerica.app/assets/apple-b1e632b6.svg" %>
-      <div class="content"><%= full_name %>, (DOB: <%= birth_date %>) attests to the following exemptions from the SNAP work requirements:</div>
+      <div class="content"><%= full_name %>, (DOB: <%= l(Date.parse(birth_date), format: :long) %>) attests to the following exemptions from the SNAP work requirements:</div>
     </div>
 
     <% if caring_for_child_under_6 || caring_for_disabled_or_ill_person || has_unemployment_benefits || in_drug_or_alcohol_program || enrolled_in_education || working_30_or_more_hours || seasonal_worker || earnings_above_minimum || operating_homeschool_30_or_more_hours %>
@@ -51,7 +51,7 @@
           <li>Living with a child under 14 years old <span class="list-item--note">- 7 USC 2015(o)(3)(C)</span></li>
         <% end %>
         <% if is_pregnant %>
-          <li>Pregnant (Due: <%= pregnancy_due_date %>) <span class="list-item--note">- 7 CFR 273.24(c)(6)</span></li>
+          <li>Pregnant (Due: <%= l(Date.parse(pregnancy_due_date), format: :long) %>) <span class="list-item--note">- 7 CFR 273.24(c)(6)</span></li>
         <% end %>
         <% if receiving_disability_benefits %>
           <li>Receiving a disability benefit <span class="list-item--note">- 7 CFR 273.24(c)(2)(i)</span></li>
