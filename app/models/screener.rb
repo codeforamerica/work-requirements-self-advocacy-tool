@@ -43,6 +43,8 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :school_type, {unfilled: 0, college_or_trade_school: 1, high_school_or_ged: 2}, prefix: true
+  SCHOOL_TYPE_VALUES = school_types.keys.freeze
 
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
@@ -52,6 +54,7 @@ class Screener < ApplicationRecord
     :remove_employment_attributes_if_no,
     :remove_pregnancy_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
+    :remove_school_type_if_not_student,
     :remove_training_program_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_zip_code_if_state_does_not_require
@@ -180,6 +183,7 @@ class Screener < ApplicationRecord
 
   with_context :school_enrollment do
     validates :is_student, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
+    validates :school_type, inclusion: {in: SCHOOL_TYPE_VALUES}, allow_blank: true
   end
 
   with_context :signature do
@@ -466,6 +470,10 @@ class Screener < ApplicationRecord
       self.volunteering_hours = nil
       self.volunteering_org_name = nil
     end
+  end
+
+  def remove_school_type_if_not_student
+    self.school_type = nil if is_student_no?
   end
 
   def remove_training_program_attributes_if_no

@@ -473,6 +473,9 @@ es:
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        school_type_college_or_trade_school: Universidad, colegio universitario o escuela técnica
+        school_type_high_school_or_ged: Escuela secundaria o programa de GED
+        school_type_text: "¿A qué tipo de institución educativa asiste?"
         title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     screener_mailer:
       send_screener_results:

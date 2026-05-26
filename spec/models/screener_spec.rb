@@ -383,6 +383,18 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors[:signature]).to be_present
       end
     end
+
+    context "with_context :school_enrollment" do
+      it "does not require school_type when is_student is yes" do
+        screener = build(:screener, is_student: "yes", school_type: nil)
+        screener.valid?(:school_enrollment)
+      end
+
+      it "does not require school_type when is_student is no" do
+        screener = build(:screener, is_student: "no", school_type: nil)
+        screener.valid?(:school_enrollment)
+      end
+    end
   end
 
   describe "before_save" do
@@ -484,6 +496,14 @@ RSpec.describe Screener, type: :model do
         screener.update(state: "NC")
 
         expect(screener.reload.zip_code).to be_nil
+      end
+    end
+
+    context "school enrollment attributes" do
+      it "clears school_type if is_student to no" do
+        screener = create(:screener, is_student: "yes", school_type: :college_or_trade_school)
+        screener.update(is_student: "no")
+        expect(screener.reload.school_type).to be_nil
       end
     end
   end

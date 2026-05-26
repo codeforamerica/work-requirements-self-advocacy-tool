@@ -475,6 +475,9 @@ en:
     school_enrollment:
       edit:
         help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        school_type_college_or_trade_school: College, university, or trade school
+        school_type_high_school_or_ged: High school or GED program
+        school_type_text: What kind of school are you attending?
         title: Do you go to school full-time, or at least half-time?
     screener_mailer:
       send_screener_results:

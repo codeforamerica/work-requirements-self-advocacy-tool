@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_26_221510) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -82,6 +82,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
+    t.integer "school_type"
     t.string "signature"
     t.datetime "signed_at"
     t.string "source"
