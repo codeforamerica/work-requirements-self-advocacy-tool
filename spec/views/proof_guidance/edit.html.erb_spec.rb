@@ -87,35 +87,47 @@ RSpec.describe "proof_guidance/edit", type: :view do
     end
   end
 
-  describe "proof of health condition section" do
-    it "shows when preventing work due to drugs/alcohol" do
+  describe "proof of health and/or substance use condition section" do
+    it "only shows substance use when preventing work due to drugs/alcohol" do
       screener.update(preventing_work_drugs_alcohol: "yes")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: t("views.proof_guidance.edit.proof_of_health_form_nc")))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_substance_use_condition_only_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_substance_use")))
     end
 
-    it "shows when preventing work due to medical condition" do
+    it "only shows medical condition when preventing work due to medical condition" do
       screener.update(preventing_work_medical_condition: "yes")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_condition_only_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_medical_health")))
     end
 
-    it "shows when preventing work due to drugs/alcohol -- DE version" do
+    it "shows both medical condition and substance use when preventing work due to medical condition and preventing work due to drugs/alcohol" do
+      screener.update(preventing_work_medical_condition: "yes", preventing_work_drugs_alcohol: "yes")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_medical_health")))
+    end
+
+    it "only shows substance use when preventing work due to drugs/alcohol -- DE version" do
       screener.update(preventing_work_drugs_alcohol: "yes", state: "DE")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de")))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_substance_use_condition_only_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_substance_use")))
     end
 
-    it "shows when preventing work due to medical condition -- DE version" do
+    it "only shows medical condition when preventing work due to medical condition -- DE version" do
       screener.update(preventing_work_medical_condition: "yes", state: "DE")
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de")))
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_condition_only_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_medical_health")))
+    end
+
+    it "shows both medical condition and substance use when preventing work due to medical condition and preventing work due to drugs/alcohol -- DE version" do
+      screener.update(preventing_work_medical_condition: "yes", preventing_work_drugs_alcohol: "yes", state: "DE")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_medical_health")))
     end
 
     it "does not show when no health-related preventing work conditions" do
       screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
       render
-      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc")))
+      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_nc"), proof_of_condition_title: "", condition_type: ""))
     end
   end
 
