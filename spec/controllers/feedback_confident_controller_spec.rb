@@ -7,7 +7,7 @@ RSpec.describe FeedbackConfidentController, type: :controller do
       sign_in screener
 
       params = {
-        survey_confidence_in_exemption_rules: "very",
+        survey_confidence_in_exemption_rules: "very"
       }
 
       post :update, params: {screener: params}
