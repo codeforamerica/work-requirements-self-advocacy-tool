@@ -1,0 +1,17 @@
+<%= image_tag "checkmark.svg", class: "illustration left-justified spacing-above-35" %>
+<% content_for :question_title, t("views.new_response_with_feedback.edit.title") %>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<p class="spacing-below-60"><%= t("views.new_response_with_feedback.edit.title_help_text") %></p>
+<div><%= link_to t("general.check_work_rules_for_someone_else"), sign_out_and_redirect_path(redirect_path: start_flow_path), class: "button button--primary" %></div>
+<p class="spacing-below-60"><%= t("views.new_response_with_feedback.edit.feedback_question") %></p>
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <div class="checkbox-group spacing-below-60">
+    <%= f.cfa_checkbox(:survey_very_easy_experience, t("views.new_response_with_feedback.edit.very_easy"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_easy_experience, t("views.new_response_with_feedback.edit.easy"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_neutral_experience, t("views.new_response_with_feedback.edit.neutral"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_somewhat_difficult_experience, t("views.new_response_with_feedback.edit.difficult"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_very_difficult_experience, t("views.new_response_with_feedback.edit.very_difficult"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+  </div>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button" %></div>
