@@ -24,16 +24,14 @@
       ]) %>
     </div>
 
-    <% if @current_screener.state != LocationData::States::NORTH_CAROLINA %>
-      <div class="question-with-follow-up__follow-up" id="school-type">
-        <hr/>
-        <h2 class="h3"><%= t("views.school_enrollment.edit.school_type_text") %></h2>
-        <%= f.cfa_radio_set(:school_type, collection: [
-          { value: :college_or_trade_school, label: t("views.school_enrollment.edit.school_type_college_or_trade_school") },
-          { value: :high_school_or_ged, label: t("views.school_enrollment.edit.school_type_high_school_or_ged") }
-        ]) %>
-      </div>
-    <% end %>
+    <div class="question-with-follow-up__follow-up" id="school-type">
+      <hr/>
+      <h2 class="h3"><%= t("views.school_enrollment.edit.school_type_text") %></h2>
+      <%= f.cfa_radio_set(:school_type, collection: [
+        { value: :college_or_trade_school, label: t("views.school_enrollment.edit.school_type_college_or_trade_school") },
+        { value: :high_school_or_ged, label: t("views.school_enrollment.edit.school_type_high_school_or_ged") }
+      ]) %>
+    </div>
   </div>
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 

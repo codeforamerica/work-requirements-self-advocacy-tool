@@ -23,7 +23,7 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
       end
     end
 
-    context "when the state is not North Carolina" do
+    context "saves school_type when selected" do
       it "persists school_type" do
         screener = create(:screener, state: LocationData::States::DELAWARE)
         sign_in screener
@@ -36,36 +36,6 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
         post :update, params: {screener: params}
         screener.reload
         expect(screener.school_type).to eq "college_or_trade_school"
-      end
-    end
-
-    context "when the state is North Carolina" do
-      it "does not persist school_type (college or trade school)" do
-        screener = create(:screener, state: LocationData::States::NORTH_CAROLINA)
-        sign_in screener
-
-        params = {
-          is_student: "yes",
-          school_type: "college_or_trade_school"
-        }
-
-        post :update, params: {screener: params}
-        screener.reload
-        expect(screener.school_type).to be_nil
-      end
-
-      it "does not persist school_type (high school or GED)" do
-        screener = create(:screener, state: LocationData::States::NORTH_CAROLINA)
-        sign_in screener
-
-        params = {
-          is_student: "yes",
-          school_type: "high_school_or_ged"
-        }
-
-        post :update, params: {screener: params}
-        screener.reload
-        expect(screener.school_type).to be_nil
       end
     end
   end
