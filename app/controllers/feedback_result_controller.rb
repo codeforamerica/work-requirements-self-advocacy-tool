@@ -1,5 +1,5 @@
 class FeedbackResultController < QuestionController
-  CHARACTER_LIMIT = 200
+  CHARACTER_LIMIT = 400
 
   def show_progress_bar
     false
