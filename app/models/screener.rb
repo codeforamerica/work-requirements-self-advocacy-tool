@@ -172,6 +172,10 @@ class Screener < ApplicationRecord
       allow_blank: true
   end
 
+  with_context :feedback_result do
+    validates :survey_additional_feedback, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}
+  end
+
   with_context :preventing_work_details do
     validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
   end

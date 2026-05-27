@@ -375,6 +375,23 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :feedback_result" do
+      it "must not have value longer than FeedbackResultController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener,
+          survey_additional_feedback: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:feedback_result)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = FeedbackResultController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(survey_additional_feedback: text)
+
+        screener.valid?(:feedback_result)
+        expect(screener.errors[:survey_additional_feedback]).to be_present
+      end
+    end
+
     context "with_context :signature" do
       it "requires signature" do
         screener = build(:screener, signature: nil)

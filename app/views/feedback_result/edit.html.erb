@@ -13,9 +13,17 @@
   </div>
 
   <%= f.cfa_textarea(:survey_additional_feedback,
-         t("views.feedback_result.edit.additional_feedback" ),
-         help_text: t("views.feedback_result.edit.additional_feedback_help_text" ),
+         t("views.feedback_result.edit.additional_feedback"),
+         help_text: t("views.feedback_result.edit.additional_feedback_help_text"),
+         options: {
+           maxlength: FeedbackResultController::CHARACTER_LIMIT,
+           data: {
+             i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
+             i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
+           }
+         }
    ) %>
+  <p class="char-counter spacing-below-0">&nbsp;</p>
 
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
