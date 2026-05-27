@@ -12,7 +12,6 @@ es:
     choose_all_that_apply: Seleccione todas las que correspondan.
     close: Cerrar
     continue: Continuar
-    continue_without_this_number: Continuar sin este número
     footer:
       content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> para servir a las personas en los Estados Unidos.
     gbh_team: El equipo de GetBenefitsHelp
