@@ -80,6 +80,15 @@ main {
 
   .accordion {
     background-color: $color-white;
+
+    button.accordion__button[aria-expanded="true"]:after {
+      background-image: url("/icon_accordion_close.svg");
+    }
+
+    button.accordion__button[aria-expanded="false"]:after {
+      background-image: url("/icon_accordion_open.svg");
+    }
+
   }
 }
 
@@ -164,6 +173,10 @@ i.no-button-cross {
   hr {
     margin-top: 0;
     margin-bottom: 3.5rem;
+  }
+
+  .text-input {
+    background-color: $color-grey-light;
   }
 }
 
