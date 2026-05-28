@@ -19,6 +19,6 @@ class ApplicationMailer < ActionMailer::Base
   end
 
   def default_from_address
-    "noreply@#{ENV.fetch("DOMAIN", "codeforamerica.app")}"
+    "noreply@#{ENV.fetch("EMAIL_DOMAIN", "codeforamerica.app")}"
   end
 end
