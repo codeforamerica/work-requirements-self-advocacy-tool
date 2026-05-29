@@ -1,5 +1,5 @@
 class DownloadFormController < ExemptionAwareQuestionController
-  before_action :email_pdf, only: edit
+  before_action :email_pdf, only: :edit
   def show_progress_bar
     false
   end
