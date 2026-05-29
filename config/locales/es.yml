@@ -315,14 +315,14 @@ es:
       edit:
         difficult: Algo difícil
         easy: Fácil
+        feedback_question: "¿Qué tan fácil o difícil fue completar su solicitud?"
+        feedback_question_help_text: Cuéntenos sobre su experiencia con este formulario. Esto es opcional.
         feedback_question_title: "¿Desea dar su opinión?"
         neutral: Ni fácil ni difícil
         title: Ha finalizado.
         title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
         very_difficult: Muy difícil
         very_easy: Muy fácil
-        feedback_question_help_text: "Cuéntenos sobre su experiencia con este formulario. Esto es opcional."
-        feedback_question: "¿Qué tan fácil o difícil fue completar su solicitud?"
     out_of_state:
       edit:
         contact_button: Ir a mi oficina de SNAP

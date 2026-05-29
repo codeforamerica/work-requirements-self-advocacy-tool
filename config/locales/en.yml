@@ -315,14 +315,14 @@ en:
       edit:
         difficult: Somewhat difficult
         easy: Easy
+        feedback_question: How easy or difficult was the application experience overall?
+        feedback_question_help_text: Tell us about your experience with this form. This is optional.
         feedback_question_title: Want to give some feedback?
         neutral: Neither easy nor difficult
         title: You're all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
         very_difficult: Very difficult
         very_easy: Very easy
-        feedback_question_help_text: "Tell us about your experience with this form. This is optional."
-        feedback_question: "How easy or difficult was the application experience overall?"
     out_of_state:
       edit:
         contact_button: Go to my SNAP office
