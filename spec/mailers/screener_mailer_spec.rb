@@ -2,6 +2,8 @@ require "rails_helper"
 
 RSpec.describe ScreenerMailer, type: :mailer do
   describe "send_screener_results" do
+    before { allow_any_instance_of(Screener).to receive(:pdf).and_return("PDF") }
+
     let(:screener) { create(:screener, :with_nc_screener, :with_exemption) }
     let(:outgoing_email) { create(:outgoing_email, screener: screener) }
     let(:mail) { ScreenerMailer.send_screener_results(outgoing_email: outgoing_email) }
