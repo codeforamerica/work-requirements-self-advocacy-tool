@@ -467,7 +467,7 @@ GEM
       opentelemetry-semantic_conventions (>= 1.8.0)
     opentelemetry-registry (0.6.0)
       opentelemetry-api (~> 1.1)
-    opentelemetry-resource-detector-aws (0.6.0)
+    opentelemetry-resource-detector-aws (0.7.0)
       opentelemetry-sdk (~> 1.10)
     opentelemetry-sdk (1.12.0)
       logger
@@ -475,7 +475,7 @@ GEM
       opentelemetry-common (~> 0.20)
       opentelemetry-registry (~> 0.2)
       opentelemetry-semantic_conventions
-    opentelemetry-semantic_conventions (1.37.1)
+    opentelemetry-semantic_conventions (1.38.0)
       opentelemetry-api (~> 1.0)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
@@ -763,7 +763,7 @@ DEPENDENCIES
   mixpanel-ruby
   opentelemetry-exporter-otlp (~> 0.34)
   opentelemetry-instrumentation-all (~> 0.93)
-  opentelemetry-resource-detector-aws (~> 0.6)
+  opentelemetry-resource-detector-aws (~> 0.7)
   opentelemetry-sdk (~> 1.12)
   ostruct
   pg (~> 1.1)
@@ -823,6 +823,7 @@ CHECKSUMS
   bourbon (7.3.0) sha256=8a150f97d574ef13d4b50a1c936e5059efe2ae2483de13a7f265e5129c6f98b7
   brakeman (8.0.4) sha256=7bf921fa9638544835df9aa7b3e720a9a72c0267f34f92135955edd80d4dcf6f
   builder (3.3.0) sha256=497918d2f9dca528fdca4b88d84e4ef4387256d984b8154e9d5d3fe5a9c8835f
+  bundler (4.0.12) sha256=7f8b757d28dfb636e7b24fba2344ac6dd13b5b24f4b46d62573d483f211825ac
   capybara (3.40.0) sha256=42dba720578ea1ca65fd7a41d163dd368502c191804558f6e0f71b391054aeef
   cfa-styleguide (0.18.0)
   cmdparse (3.0.7) sha256=f7c5cace10bec6abf853370ae095e4b97a84ed9d847b3fb38f41cc4fbc950739
@@ -956,9 +957,9 @@ CHECKSUMS
   opentelemetry-instrumentation-sinatra (0.30.0) sha256=b67301153420f43264a0c68cdb3ca5bd77467cf5054e57b83a2bf891aaaa0361
   opentelemetry-instrumentation-trilogy (0.68.0) sha256=24b31efdf21a08644ad26038b574f4b0876195b1502f3f64b1065eff3fe0f588
   opentelemetry-registry (0.6.0) sha256=5d3ed32ab9eee0fbdb30d4f0d0bb61ad11a4040b267b475ae815b80a8498a728
-  opentelemetry-resource-detector-aws (0.6.0) sha256=b6d72c3c1446fc3b3ed4d7431ecfa7b6319c6a26035731a25fe27c4d1941ee52
+  opentelemetry-resource-detector-aws (0.7.0) sha256=4ee5f27e1ed749259e96c7855d00f83b291b107ff12800f4ca3de99c9ec6549f
   opentelemetry-sdk (1.12.0) sha256=a224abe0c59023d41cb7ac1c634d9d28843907efcd045ed1ae320796c48b864b
-  opentelemetry-semantic_conventions (1.37.1) sha256=74e87b31ab88c38410c5447d3bc5e692dcc0a73ee2114910c0142fc4546531c1
+  opentelemetry-semantic_conventions (1.38.0) sha256=f0c2275a9c921ad7b5e70b658e269bfc6d46e3471d0636e1529fd7f34ae9a663
   orm_adapter (0.5.0) sha256=aa5d0be5d540cbb46d3a93e88061f4ece6a25f6e97d6a47122beb84fe595e9b9
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (1.27.0) sha256=4ac151e1806b755fb4e2dc2332cbf0e54f2e24ba821ff2d3dcf86bf6dc4ae130
