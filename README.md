@@ -35,3 +35,33 @@ To send a test email, you can deploy the application to the development environm
   * The branch of the infrastructure repository to deploy: main
 * when the deploy is finished, go to the deployed development environment and trigger your email
   * you can use the GBH eng team's google group email, it is verified
+
+## Access to Database
+
+Locally, you can use `bin/rails console`
+
+On Heroku, you can use `heroku run rails c -a <review-app-name>`
+
+On Staging and Production, use the `aws ecs execute-command`. You must have `awscli` isntalled on your machine already (check with `aws --version`).
+If not, `brew install awscli` on your local machine ([AWS instructions here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)).
+Please download the [AWS Session Manager as well following AWS instructions](https://docs.aws.amazon.com/systems-manager/latest/userguide/install-plugin-macos-overview.html)
+
+You also need an `AWS_PROFILE` for Work Requirements (for both Prod and Non-Prod AWS accounts). [Follow AWS Identity Center: Configuring SSO instructions](https://www.notion.so/cfa/AWS-Identity-Center-e8a28122b2f44595a2ef56b46788ce2c?source=copy_link#ef1c6c77703b4215bbe1953de4692054) to configure your profile correctly.
+Name the Work Requirements - Prod profile as `wrsat-prod` and Work Requirements - Non-prod profile as `wrsat-nonprod`.
+
+It is important to name your profiles _exactly_ as above, as the script will not work if (for example) your profile is named `wrsat-non-prod`. You can rename your aws profile by editing your `~/.aws/config` and `~/.aws/credentials`.
+
+
+### Use bin/ecs_exec script (recommended in most cases)
+
+1. Make sure you're logged into aws: `aws sso login`. This should open up an AWS console and have you sign in (if you aren't signed in already). After verification, it'll return you to the terminal
+2. For staging, you can use `bin/ecs_exec`
+3. For production, you can pass in `bin/ecs_exec --environment production`
+4. You can pass in other parameters like:
+  1. `--desired-status`: `RUNNING` by default, but can specify `STOPPED`. See documentation for [list-tasks](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html).
+  2. `--command`: if you want to run something other than `bin/sh`
+  3. There are other commands that the aws ecs can call. The options can be passed manually into the `list-tasks` ([doc](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html)) and `execute-command`([doc](https://docs.aws.amazon.com/cli/latest/reference/ecs/execute-command.html)) commands. See linked documentation.
+5. Type in `bin/rails c --sandbox` (remove `--sandbox` if you must perform operations that will write/modify data in the db; please pair/try to be loud as possible when performing a write operation)
+  1. When you start rails console, it will say `Loading production environment (Rails <version>)` for both staging AND production. This is because we don't explicitly set a `staging` environment for the RAILS_ENV in our app, to make sure that the environments are similar as possible (We use `REVIEW_APP` to specify heroku/staging environments against the production environment).
+
+---
