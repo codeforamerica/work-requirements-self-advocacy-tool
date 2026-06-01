@@ -8,14 +8,15 @@ RSpec.describe PregnancyController, type: :controller do
       render_views
 
       it "reads and displays the individual date attributes if pregnancy_due_date is saved on screener" do
-        screener = create(:screener, pregnancy_due_date: Date.new(2026, 6, 1))
+        due_date = Date.current.advance(months: 2).beginning_of_month
+        screener = create(:screener, pregnancy_due_date: due_date)
         sign_in screener
 
         get :edit
 
-        expect(response.body).to have_select("Year", selected: "2026")
-        expect(response.body).to have_select("Month", selected: "June")
-        expect(response.body).to have_select("Day", selected: "1")
+        expect(response.body).to have_select("Year", selected: due_date.year.to_s)
+        expect(response.body).to have_select("Month", selected: due_date.strftime("%B"))
+        expect(response.body).to have_select("Day", selected: due_date.day.to_s)
       end
     end
   end
@@ -25,35 +26,41 @@ RSpec.describe PregnancyController, type: :controller do
 
     context "due date" do
       it "ignores the due date parameters when the answer is no" do
+        due_date = Date.current.advance(months: 2).beginning_of_month
+
         screener = create(:screener)
         sign_in screener
 
         params = {
           is_pregnant: "no",
-          pregnancy_due_date_month: "6",
-          pregnancy_due_date_day: "1",
-          pregnancy_due_date_year: "2026"
+          pregnancy_due_date_month: due_date.month.to_s,
+          pregnancy_due_date_day: due_date.day.to_s,
+          pregnancy_due_date_year: due_date.year.to_s
         }
 
         post :update, params: {screener: params}
+
         expect(response).to redirect_to subject.next_path
         expect(screener.reload.is_pregnant_no?).to eq true
         expect(screener.reload.pregnancy_due_date).to be_nil
       end
 
       it "combines the date picker params into the pregnancy_due_date attribute" do
+        due_date = Date.current.advance(months: 2).beginning_of_month
+
         screener = create(:screener)
         sign_in screener
 
         params = {
           is_pregnant: "yes",
-          pregnancy_due_date_month: "6",
-          pregnancy_due_date_day: "1",
-          pregnancy_due_date_year: "2026"
+          pregnancy_due_date_month: due_date.month.to_s,
+          pregnancy_due_date_day: due_date.day.to_s,
+          pregnancy_due_date_year: due_date.year.to_s
         }
 
         post :update, params: {screener: params}
-        expect(screener.reload.pregnancy_due_date).to eq Date.new(2026, 6, 1)
+
+        expect(screener.reload.pregnancy_due_date).to eq due_date
       end
 
       it "does not save the date when any date params are missing" do
