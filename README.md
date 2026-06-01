@@ -42,17 +42,23 @@ Locally, you can use `bin/rails console`
 
 On Heroku, you can use `heroku run rails c -a <review-app-name>`
 
-On Staging and Production, use the `aws ecs execute-command`. You must have `awscli` isntalled on your machine already (check with `aws --version`).
+On Staging and Production, use the `bin/ecs_exec` script.
+
+### Using bin/ecs_exec script to connect to Staging or Production
+
+#### Prerequisites:
+
+* You must have `awscli` installed on your machine already (check with `aws --version`).
 If not, `brew install awscli` on your local machine ([AWS instructions here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)).
 Please download the [AWS Session Manager as well following AWS instructions](https://docs.aws.amazon.com/systems-manager/latest/userguide/install-plugin-macos-overview.html)
 
-You also need an `AWS_PROFILE` for Work Requirements (for both Prod and Non-Prod AWS accounts). [Follow AWS Identity Center: Configuring SSO instructions](https://www.notion.so/cfa/AWS-Identity-Center-e8a28122b2f44595a2ef56b46788ce2c?source=copy_link#ef1c6c77703b4215bbe1953de4692054) to configure your profile correctly.
-Name the Work Requirements - Prod profile as `wrsat-prod` and Work Requirements - Non-prod profile as `wrsat-nonprod`.
+* You need an `AWS_PROFILE` for Work Requirements (for both Prod and Non-Prod AWS accounts). [Follow AWS Identity Center: Configuring SSO instructions](https://www.notion.so/cfa/AWS-Identity-Center-e8a28122b2f44595a2ef56b46788ce2c?source=copy_link#ef1c6c77703b4215bbe1953de4692054) to configure your profile correctly.
+  * For your Production profile use `wrsat-prod`
+  * For your Staging profile use `wrsat-nonprod`
 
-It is important to name your profiles _exactly_ as above, as the script will not work if (for example) your profile is named `wrsat-non-prod`. You can rename your aws profile by editing your `~/.aws/config` and `~/.aws/credentials`.
+⚠️ It is important to name your profiles _exactly_ as above, as the script will not work if (for example) your profile is named `wrsat-non-prod`. You can rename your aws profile by editing your `~/.aws/config` and `~/.aws/credentials`.
 
-
-### Use bin/ecs_exec script (recommended in most cases)
+#### Connecting:
 
 1. Make sure you're logged into aws: `aws sso login`. This should open up an AWS console and have you sign in (if you aren't signed in already). After verification, it'll return you to the terminal
 2. For staging, you can use `bin/ecs_exec`
