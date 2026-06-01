@@ -58,10 +58,10 @@ It is important to name your profiles _exactly_ as above, as the script will not
 2. For staging, you can use `bin/ecs_exec`
 3. For production, you can pass in `bin/ecs_exec --environment production`
 4. You can pass in other parameters like:
-  1. `--desired-status`: `RUNNING` by default, but can specify `STOPPED`. See documentation for [list-tasks](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html).
-  2. `--command`: if you want to run something other than `bin/sh`
-  3. There are other commands that the aws ecs can call. The options can be passed manually into the `list-tasks` ([doc](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html)) and `execute-command`([doc](https://docs.aws.amazon.com/cli/latest/reference/ecs/execute-command.html)) commands. See linked documentation.
+   1. `--desired-status`: `RUNNING` by default, but can specify `STOPPED`. See documentation for [list-tasks](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html).
+   2. `--command`: if you want to run something other than `bin/sh`
+   3. There are other commands that the aws ecs can call. The options can be passed manually into the `list-tasks` ([doc](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html)) and `execute-command`([doc](https://docs.aws.amazon.com/cli/latest/reference/ecs/execute-command.html)) commands. See linked documentation.
 5. Type in `bin/rails c --sandbox` (remove `--sandbox` if you must perform operations that will write/modify data in the db; please pair/try to be loud as possible when performing a write operation)
-  1. When you start rails console, it will say `Loading production environment (Rails <version>)` for both staging AND production. This is because we don't explicitly set a `staging` environment for the RAILS_ENV in our app, to make sure that the environments are similar as possible (We use `REVIEW_APP` to specify heroku/staging environments against the production environment).
+   1. When you start rails console, it will say `Loading production environment (Rails <version>)` for both staging AND production. This is because we don't explicitly set a `staging` environment for the RAILS_ENV in our app, to make sure that the environments are similar as possible (We use `REVIEW_APP` to specify heroku/staging environments against the production environment).
 
 ---
