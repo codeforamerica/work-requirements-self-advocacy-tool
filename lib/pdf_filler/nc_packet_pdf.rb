@@ -38,7 +38,7 @@ module PdfFiller
         at_least_55_no_diploma_not_working: @screener.nc_screener.age_work_education_health_exemption?,
         preventing_work_domestic_violence: @screener.preventing_work_domestic_violence_yes?,
         preventing_work_drugs_alcohol: @screener.preventing_work_drugs_alcohol_yes?,
-        preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
+        preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?
       )
     end
   end
