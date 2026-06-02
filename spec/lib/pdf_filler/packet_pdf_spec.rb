@@ -11,7 +11,7 @@ RSpec.describe PdfFiller::PacketPdf do
       birth_date: Date.new(1990, 7, 13),
       email: "nigella@example.com",
       phone_number: "9195551234",
-      state: LocationData::States::NORTH_CAROLINA)
+      state: LocationData::States::DELAWARE)
   end
 
   subject(:packet_pdf) { described_class.new(screener) }
@@ -46,11 +46,8 @@ RSpec.describe PdfFiller::PacketPdf do
         in_drug_or_alcohol_program: :is_in_alcohol_treatment_program,
         is_american_indian: :is_american_indian,
         is_pregnant: :is_pregnant,
-        preventing_work_domestic_violence: :preventing_work_domestic_violence,
-        preventing_work_drugs_alcohol: :preventing_work_drugs_alcohol,
         preventing_work_medical_condition: :preventing_work_medical_condition,
         preventing_work_other: :preventing_work_other,
-        preventing_work_place_to_sleep: :preventing_work_place_to_sleep,
         receiving_benefits_disability_medicaid: :receiving_benefits_disability_medicaid,
         seasonal_worker: :is_migrant_farmworker
       }.each do |pdf_field, screener_attr|
@@ -254,9 +251,6 @@ RSpec.describe PdfFiller::PacketPdf do
           is_migrant_farmworker: "yes",
           is_in_alcohol_treatment_program: "yes",
           alcohol_treatment_program_name: "Recovery Program",
-          preventing_work_place_to_sleep: "yes",
-          preventing_work_domestic_violence: "yes",
-          preventing_work_drugs_alcohol: "yes",
           preventing_work_medical_condition: "yes",
           preventing_work_other: "yes",
           preventing_work_write_in: "Chronic back pain"
