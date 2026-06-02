@@ -21,7 +21,7 @@ class WorkRulesApplyUnmetController < QuestionController
 
   private
 
-  def save_outcome
-    current_screener.update!(outcome: Screener::NOT_EXEMPT_WORK_RULES_NOT_MET, outcome_arrived_at: Time.current)
+  def outcome_value
+    Screener::NOT_EXEMPT_WORK_RULES_NOT_MET
   end
 end

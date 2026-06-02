@@ -13,7 +13,7 @@ class DownloadFormController < ExemptionAwareQuestionController
 
   private
 
-  def save_outcome
-    current_screener.update!(outcome: Screener::EXEMPT, outcome_arrived_at: Time.current)
+  def outcome_value
+    Screener::EXEMPT
   end
 end
