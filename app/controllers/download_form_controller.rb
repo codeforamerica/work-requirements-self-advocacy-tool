@@ -10,7 +10,7 @@ class DownloadFormController < ExemptionAwareQuestionController
       return
     end
 
-    outgoing_email = OutgoingEmail.create!(screener: current_screener)
+    outgoing_email = OutgoingEmail.create!(screener: current_screener, email: current_screener.email)
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
   end
 end

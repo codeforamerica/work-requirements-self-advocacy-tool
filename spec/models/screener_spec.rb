@@ -934,7 +934,7 @@ RSpec.describe Screener, type: :model do
     context "when the screener has reached the email attempt limit" do
       before do
         Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
-          create(:outgoing_email, screener: screener)
+          create(:outgoing_email, screener: screener, email: screener.email)
         end
       end
 
@@ -958,7 +958,7 @@ RSpec.describe Screener, type: :model do
     context "when the screener has reached the email attempt limit" do
       before do
         Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
-          create(:outgoing_email, screener: screener)
+          create(:outgoing_email, screener: screener, email: screener.email)
         end
       end
 

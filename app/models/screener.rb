@@ -444,7 +444,9 @@ class Screener < ApplicationRecord
 
   def screener_results_email_block_reason
     return :email_blank if email.blank?
-    return :attempt_limit_reached if outgoing_emails.count >= NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED
+
+    count = OutgoingEmail.where(screener_id: id, email: email).count
+    return :attempt_limit_reached if count >= NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED
 
     nil
   end
