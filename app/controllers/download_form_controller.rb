@@ -5,8 +5,12 @@ class DownloadFormController < ExemptionAwareQuestionController
   end
 
   def email_pdf
-    return if current_screener.email.blank?
-    outgoing_email = OutgoingEmail.create(screener: current_screener)
+    if (reason = current_screener.screener_results_email_block_reason)
+      Rails.logger.info("Skipping screener results email for Screener #{current_screener.id}: #{reason}")
+      return
+    end
+
+    outgoing_email = OutgoingEmail.create!(screener: current_screener)
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
   end
 end
