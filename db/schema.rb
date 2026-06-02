@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_27_202614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -48,6 +48,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
     t.integer "consented_to_texts", default: 0, null: false
     t.string "county"
     t.datetime "created_at", null: false
+    t.string "current_step"
     t.string "email"
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
@@ -62,6 +63,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
     t.integer "is_working", default: 0, null: false
     t.string "last_name"
     t.string "middle_name"
+    t.string "outcome"
+    t.datetime "outcome_arrived_at"
     t.string "phone_number"
     t.date "pregnancy_due_date"
     t.text "preventing_work_additional_info"
@@ -87,6 +90,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_12_014029) do
     t.string "source"
     t.string "ssn_last_four"
     t.string "state"
+    t.text "survey_additional_feedback"
+    t.integer "survey_confidence_in_exemption_rules", default: 0, null: false
+    t.integer "survey_easy_experience", default: 0, null: false
+    t.integer "survey_neutral_experience", default: 0, null: false
+    t.integer "survey_plan_to_bring_results_to_interview", default: 0, null: false
+    t.integer "survey_plan_to_bring_results_to_organization", default: 0, null: false
+    t.integer "survey_plan_to_email_results", default: 0, null: false
+    t.integer "survey_plan_to_keep_it_in_records", default: 0, null: false
+    t.integer "survey_plan_to_submit_results_to_site", default: 0, null: false
+    t.integer "survey_somewhat_difficult_experience", default: 0, null: false
+    t.integer "survey_very_difficult_experience", default: 0, null: false
+    t.integer "survey_very_easy_experience", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "visitor_id"
     t.integer "volunteering_hours"

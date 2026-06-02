@@ -1,4 +1,6 @@
 class WorkRulesApplyUnmetController < QuestionController
+  before_action :save_outcome, only: :edit
+
   def show_progress_bar
     false
   end
@@ -15,5 +17,11 @@ class WorkRulesApplyUnmetController < QuestionController
     else
       I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_default")
     end
+  end
+
+  private
+
+  def save_outcome
+    current_screener.update!(outcome: Screener::NOT_EXEMPT_WORK_RULES_NOT_MET, outcome_arrived_at: Time.current)
   end
 end

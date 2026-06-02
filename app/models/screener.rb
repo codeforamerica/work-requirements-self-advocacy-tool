@@ -4,6 +4,10 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
+  NOT_EXEMPT_WORK_RULES_MET = "not_exempt_work_rules_met"
+  NOT_EXEMPT_WORK_RULES_NOT_MET = "not_exempt_work_rules_not_met"
+  EXEMPT = "exempt"
+
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
 
