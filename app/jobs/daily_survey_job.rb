@@ -15,7 +15,7 @@ class DailySurveyJob < ApplicationJob
 
     screeners.find_each do |screener|
       Rails.logger.info "Processing screener #{screener.id} for survey"
-      outgoing_email = OutgoingEmail.create!(screener: screener, email: screener.email)
+      outgoing_email = OutgoingEmail.create!(screener: screener, email: screener.email, email_type: :post_results_survey)
       begin
         SurveyMailer.send_survey(outgoing_email: outgoing_email).deliver_now
         outgoing_email.update(sent_at: DateTime.now)
