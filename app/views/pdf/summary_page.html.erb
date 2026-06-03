@@ -53,8 +53,8 @@
         <% if has_child %>
           <li>Living with a child under 14 years old <span class="list-item--note">- 7 USC 2015(o)(3)(C)</span></li>
         <% end %>
-        <% if is_pregnant && pregnancy_due_date.present? %>
-          <li>Pregnant (Due: <%= l(Date.parse(pregnancy_due_date), format: :long) %>) <span class="list-item--note">- 7 CFR 273.24(c)(6)</span></li>
+        <% if is_pregnant %>
+          <li>Pregnant <% if pregnancy_due_date.present? %>(Due: <%= l(Date.parse(pregnancy_due_date), format: :long) %>) <% end %><span class="list-item--note">- 7 CFR 273.24(c)(6)</span></li>
         <% end %>
         <% if receiving_disability_benefits %>
           <li>Receiving a disability benefit <span class="list-item--note">- 7 CFR 273.24(c)(2)(i)</span></li>
