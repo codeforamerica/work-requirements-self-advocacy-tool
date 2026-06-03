@@ -1,6 +1,6 @@
 module Navigation
   class ScreenerNavigation < ControllerNavigation::ControllerNavigation
-    SECTIONS = [
+    FLOW = [
       ControllerNavigation::NavigationStep.new(LocationController),
       ControllerNavigation::NavigationStep.new(OutOfStateController),
       ControllerNavigation::NavigationStep.new(DateOfBirthController),
@@ -34,7 +34,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(DownloadFormController),
       ControllerNavigation::NavigationStep.new(ProofGuidanceController),
       ControllerNavigation::NavigationStep.new(NewResponseController),
-      ControllerNavigation::NavigationStep.new(AgeExemptionController)
+      ControllerNavigation::NavigationStep.new(AgeExemptionController, false)
     ].freeze
   end
 end
