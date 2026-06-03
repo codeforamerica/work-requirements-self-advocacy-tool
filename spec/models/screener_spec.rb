@@ -942,6 +942,20 @@ RSpec.describe Screener, type: :model do
         expect(screener.can_send_screener_results_email?).to be false
       end
     end
+
+    context "when the screener has reached the email attempt limit for original email, but not new email" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email)
+        end
+      end
+
+      it "returns true" do
+        screener.update(email: "second@email.biz")
+        create(:outgoing_email, screener: screener, email: screener.email)
+        expect(screener.can_send_screener_results_email?).to be true
+      end
+    end
   end
 
   describe "#screener_results_email_block_reason" do
@@ -964,6 +978,20 @@ RSpec.describe Screener, type: :model do
 
       it "returns :attempt_limit_reached" do
         expect(screener.screener_results_email_block_reason).to eq(:attempt_limit_reached)
+      end
+    end
+
+    context "when the screener has reached the email attempt limit for original email, but not new email" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email)
+        end
+      end
+
+      it "returns nil" do
+        screener.update(email: "second@email.biz")
+        create(:outgoing_email, screener: screener, email: screener.email)
+        expect(screener.screener_results_email_block_reason).to be_nil
       end
     end
 
