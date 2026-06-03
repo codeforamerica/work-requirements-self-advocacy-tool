@@ -102,8 +102,10 @@ class MixpanelService
       when Screener.name
         {
           screener_state: record.state,
+          screener_county: record.county,
+          screener_zip_code: record.zip_code,
           source: record.source
-        }
+        }.compact
       else
         {}
       end
