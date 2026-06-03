@@ -12,5 +12,7 @@ class DownloadFormController < ExemptionAwareQuestionController
 
     outgoing_email = OutgoingEmail.create!(screener: current_screener, email: current_screener.email, email_type: :screener_results)
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
+
+    Rails.logger.info("Created screener results email #{outgoing_email.id} for Screener #{current_screener.id}")
   end
 end
