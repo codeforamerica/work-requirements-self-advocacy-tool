@@ -4,12 +4,6 @@ class NewResponseWithFeedbackController < QuestionController
   end
 
   def self.attributes_edited
-    [
-      :survey_very_easy_experience,
-      :survey_easy_experience,
-      :survey_neutral_experience,
-      :survey_somewhat_difficult_experience,
-      :survey_very_difficult_experience
-    ]
+    [:survey_ease_of_experience]
   end
 end

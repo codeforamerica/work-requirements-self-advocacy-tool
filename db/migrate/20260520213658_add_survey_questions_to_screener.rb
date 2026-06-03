@@ -1,10 +1,6 @@
 class AddSurveyQuestionsToScreener < ActiveRecord::Migration[8.1]
   def change
-    add_column :screeners, :survey_very_easy_experience, :integer, null: false, default: 0
-    add_column :screeners, :survey_easy_experience, :integer, null: false, default: 0
-    add_column :screeners, :survey_neutral_experience, :integer, null: false, default: 0
-    add_column :screeners, :survey_somewhat_difficult_experience, :integer, null: false, default: 0
-    add_column :screeners, :survey_very_difficult_experience, :integer, null: false, default: 0
+    add_column :screeners, :survey_ease_of_experience, :integer, null: false, default: 0
 
     add_column :screeners, :survey_confidence_in_exemption_rules, :integer, null: false, default: 0
 

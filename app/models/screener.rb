@@ -43,11 +43,7 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :survey_very_easy_experience, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :survey_easy_experience, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :survey_neutral_experience, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :survey_somewhat_difficult_experience, {unfilled: 0, yes: 1, no: 2}, prefix: true
-  enum :survey_very_difficult_experience, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :survey_ease_of_experience, {unfilled: 0, very_easy: 1, easy: 2, neutral: 3, somewhat_difficult: 4, very_difficult: 5}, prefix: true
   enum :survey_confidence_in_exemption_rules, {unfilled: 0, very: 1, somewhat: 2, little: 3, not_at_all: 4}, prefix: true
   enum :survey_plan_to_email_results, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :survey_plan_to_submit_results_to_site, {unfilled: 0, yes: 1, no: 2}, prefix: true

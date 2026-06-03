@@ -143,7 +143,7 @@ RSpec.feature "NC Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.new_response_with_feedback.edit.title"))
-    check I18n.t("views.new_response_with_feedback.edit.very_easy")
+    choose I18n.t("views.new_response_with_feedback.edit.very_easy")
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.feedback_confident.edit.title"))
