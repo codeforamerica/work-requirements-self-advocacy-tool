@@ -3,11 +3,11 @@ class AgeExemptionController < QuestionController
     false
   end
 
-  def self.show?(screener)
-    !super
-  end
-
   def show_progress_percentage
     false
+  end
+
+  def self.show?(screener)
+    !super
   end
 end
