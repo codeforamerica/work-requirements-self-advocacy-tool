@@ -4,6 +4,8 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
+  NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED = 3
+
   has_many :outgoing_emails, dependent: :destroy
   has_one :nc_screener, dependent: :destroy
 
@@ -434,6 +436,19 @@ class Screener < ApplicationRecord
 
   def working_30_or_more_hours?
     working_hours.to_i >= 30
+  end
+
+  def can_send_screener_results_email?
+    screener_results_email_block_reason.nil?
+  end
+
+  def screener_results_email_block_reason
+    return :email_blank if email.blank?
+
+    count = OutgoingEmail.screener_results.where(screener_id: id, email: email).count
+    return :attempt_limit_reached if count >= NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED
+
+    nil
   end
 
   private
