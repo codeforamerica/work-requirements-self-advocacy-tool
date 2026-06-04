@@ -19,9 +19,16 @@ RSpec.describe PdfFiller::NcPacketPdf do
   describe "#hash_for_fillable_pdf" do
     subject(:result) { packet_pdf.hash_for_fillable_pdf }
 
-    it "maps operating_a_homeschool from teaches_homeschool" do
+    it "direct field mappings" do
       nc_screener.teaches_homeschool = "yes"
+      screener.preventing_work_place_to_sleep = "yes"
+      screener.preventing_work_domestic_violence = "yes"
+      screener.preventing_work_drugs_alcohol = "yes"
+
       expect(result[:operating_a_homeschool]).to be true
+      expect(result[:preventing_work_place_to_sleep]).to be true
+      expect(result[:preventing_work_domestic_violence]).to be true
+      expect(result[:preventing_work_drugs_alcohol]).to be true
     end
 
     it "maps homeschool_name from nc_screener" do

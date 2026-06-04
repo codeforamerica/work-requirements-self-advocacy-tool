@@ -124,6 +124,18 @@ RSpec.describe "pdf/summary_page", type: :view do
       expect(rendered).to include("Pregnant (Due: September 15, 2026)")
     end
 
+    it "does NOT show due date when blank" do
+      render_page(is_pregnant: true, pregnancy_due_date: "")
+      expect(rendered).to include("Pregnant")
+      expect(rendered).not_to include("(Due:")
+    end
+
+    it "does NOT show due date when nil" do
+      render_page(is_pregnant: true, pregnancy_due_date: nil)
+      expect(rendered).to include("Pregnant")
+      expect(rendered).not_to include("(Due:")
+    end
+
     it "shows receiving a disability benefit" do
       render_page(receiving_disability_benefits: true)
       expect(rendered).to include("Receiving a disability benefit")

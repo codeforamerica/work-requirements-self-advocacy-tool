@@ -155,11 +155,8 @@ module PdfFiller
         is_american_indian: @screener.is_american_indian_yes?,
         is_pregnant: @screener.is_pregnant_yes?,
         pregnancy_due_date: @screener.pregnancy_due_date&.strftime("%B %-d, %Y").to_s,
-        preventing_work_domestic_violence: @screener.preventing_work_domestic_violence_yes?,
-        preventing_work_drugs_alcohol: @screener.preventing_work_drugs_alcohol_yes?,
         preventing_work_medical_condition: @screener.preventing_work_medical_condition_yes?,
         preventing_work_other: @screener.preventing_work_other_yes?,
-        preventing_work_place_to_sleep: @screener.preventing_work_place_to_sleep_yes?,
         seasonal_worker: @screener.is_migrant_farmworker_yes?
       }
       if @screener.has_earnings_exemption?
