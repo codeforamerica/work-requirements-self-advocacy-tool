@@ -133,6 +133,7 @@ class Screener < ApplicationRecord
           receiving_benefits_other_yes?
       }
     validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
+    validates :receiving_benefits_write_in, length: {maximum: DisabilityBenefitsController::CHARACTER_LIMIT}
   end
 
   with_context :employment do
