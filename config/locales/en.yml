@@ -8,7 +8,7 @@ en:
       remaining:
         one: "%{count} character remaining"
         other: "%{count} characters remaining"
-    check_work_rules_for_someone_else: Check work rules for someone else
+    check_work_rules_for_someone_else: Check for someone else
     choose_all_that_apply: Choose all that apply.
     close: Close
     continue: Continue
@@ -199,6 +199,25 @@ en:
         working_hours_label: How many hours a week do you usually work?
         working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
         working_weekly_earnings_label: How much do you earn each week before taxes?
+    feedback_confident:
+      edit:
+        little: A little confident
+        not_at_all: Not confident at all
+        somewhat: Somewhat confident
+        title: How confident are you that you understand whether you are exempt from SNAP work rules?
+        title_help_text: This is optional. Select one
+        very: Very confident
+    feedback_result:
+      edit:
+        additional_feedback: Do you have any additional feedback for us?
+        additional_feedback_help_text: This is optional.
+        bring_results_to_interview: Bring it with me to my interview
+        bring_results_to_organization: Bring it with me to a legal aid or community organization
+        email_results: Email it to my SNAP agency
+        keep_it_in_records: Keep it for my records
+        submit_results_to_site: Submit it online through %{state_site} or another option
+        title: What do you plan to do with the result of the GetBenefitsHelp screener?
+        title_help_text: This is optional. Choose all that apply.
     homepage:
       fill_out_form: Fill out the form
       index:
@@ -292,6 +311,18 @@ en:
       edit:
         title: You're all done.
         title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
+    new_response_with_feedback:
+      edit:
+        difficult: Somewhat difficult
+        easy: Easy
+        feedback_question: How easy or difficult was the application experience overall?
+        feedback_question_help_text: Tell us about your experience with this form. This is optional.
+        feedback_question_title: Want to give some feedback?
+        neutral: Neither easy nor difficult
+        title: You're all done.
+        title_help_text: Do you want to check if the SNAP work rules apply to someone else in your household?
+        very_difficult: Very difficult
+        very_easy: Very easy
     out_of_state:
       edit:
         contact_button: Go to my SNAP office

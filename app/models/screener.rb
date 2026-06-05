@@ -45,6 +45,13 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :survey_ease_of_experience, {unfilled: 0, very_easy: 1, easy: 2, neutral: 3, somewhat_difficult: 4, very_difficult: 5}, prefix: true
+  enum :survey_confidence_in_exemption_rules, {unfilled: 0, very: 1, somewhat: 2, little: 3, not_at_all: 4}, prefix: true
+  enum :survey_plan_to_email_results, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :survey_plan_to_submit_results_to_site, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :survey_plan_to_bring_results_to_interview, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :survey_plan_to_bring_results_to_organization, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :survey_plan_to_keep_it_in_records, {unfilled: 0, yes: 1, no: 2}, prefix: true
 
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
@@ -161,6 +168,10 @@ class Screener < ApplicationRecord
         message: ->(*) { I18n.t("validations.date_must_be_in_future") }
       },
       allow_blank: true
+  end
+
+  with_context :feedback_result do
+    validates :survey_additional_feedback, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}
   end
 
   with_context :preventing_work_details do
