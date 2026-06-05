@@ -1,7 +1,6 @@
 class DisabilityBenefitsController < QuestionController
   include WrExemptionsConcern
-
-  RECEIVING_BENEFITS_WRITE_IN_CHARACTER_LIMIT = 40
+  CHARACTER_LIMIT = 100
 
   def self.attributes_edited
     [

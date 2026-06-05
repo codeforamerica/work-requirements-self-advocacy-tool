@@ -26,7 +26,7 @@
         <%= f.cfa_textarea(:receiving_benefits_write_in,
               t("views.disability_benefits.edit.receiving_benefits_write_in"),
               options: {
-                maxlength: DisabilityBenefitsController::RECEIVING_BENEFITS_WRITE_IN_CHARACTER_LIMIT,
+                maxlength: DisabilityBenefitsController::CHARACTER_LIMIT,
                 data: {
                   i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
                   i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
