@@ -1,7 +1,7 @@
 class PreventingWorkSituationsController < QuestionController
   include PersonalSituationsConcern
 
-  CHARACTER_LIMIT = 400
+  CHARACTER_LIMIT = 250
 
   def self.attributes_edited
     [
