@@ -232,6 +232,20 @@ RSpec.describe Screener, type: :model do
         )
         expect(screener.valid?(:disability_benefits)).to eq true
       end
+
+      it "must not have value longer than DisabilityBenefitsController::RECEIVING_BENEFITS_WRITE_IN_CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener, receiving_benefits_write_in: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:disability_benefits)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = DisabilityBenefitsController::RECEIVING_BENEFITS_WRITE_IN_CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(receiving_benefits_write_in: text)
+
+        screener.valid?(:disability_benefits)
+        expect(screener.errors[:receiving_benefits_write_in]).to be_present
+      end
     end
 
     context "with_context :preventing_work_situations" do

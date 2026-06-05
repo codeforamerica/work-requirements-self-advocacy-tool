@@ -1,6 +1,8 @@
 class DisabilityBenefitsController < QuestionController
   include WrExemptionsConcern
 
+  RECEIVING_BENEFITS_WRITE_IN_CHARACTER_LIMIT = 40
+
   def self.attributes_edited
     [
       :receiving_benefits_ssdi,
