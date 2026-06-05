@@ -27,7 +27,7 @@ module PdfFiller
         full_name_with_middle: @screener.full_name_with_middle,
         phone_number: @screener.phone_number,
         preventing_work_write_in: @screener.preventing_work_additional_info,
-        preventing_work_other_write_in: @screener.preventing_work_write_in,
+        preventing_work_other_write_in: @screener.preventing_work_write_in.to_s.presence&.truncate(250),
         receiving_benefits_disability_medicaid: @screener.receiving_benefits_disability_medicaid_yes?,
         receiving_benefits_disability_pension: @screener.receiving_benefits_disability_pension_yes?,
         receiving_benefits_insurance_payments: @screener.receiving_benefits_insurance_payments_yes?,
