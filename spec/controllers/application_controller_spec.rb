@@ -14,6 +14,17 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
+  describe "rescue_from ActionController::InvalidAuthenticityToken" do
+    it "redirects to root with a session expired alert" do
+      allow(controller).to receive(:verify_authenticity_token).and_raise(ActionController::InvalidAuthenticityToken)
+
+      post :create
+
+      expect(response).to redirect_to(root_path)
+      expect(flash[:alert]).to eq I18n.t("devise.failure.timeout")
+    end
+  end
+
   describe "#switch_locale" do
     let(:language) { "es" }
     let(:available_locales) { ["es", "en"] }
