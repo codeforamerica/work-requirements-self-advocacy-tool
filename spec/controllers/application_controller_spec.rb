@@ -24,7 +24,7 @@ RSpec.describe ApplicationController, type: :controller do
       expect(flash[:alert]).to eq I18n.t("devise.failure.timeout")
     end
   end
-  
+
   describe "rescue_from ActionController::UnknownFormat" do
     it "returns 406 Not Acceptable for unsupported request formats" do
       request.accept = "application/json"

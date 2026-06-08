@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::InvalidAuthenticityToken do
     redirect_to root_path, alert: t("devise.failure.timeout")
   end
-  
+
   rescue_from ActionController::UnknownFormat do
     head :not_acceptable
   end
