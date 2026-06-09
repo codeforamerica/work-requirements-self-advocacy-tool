@@ -26,6 +26,14 @@
           <% end %>
           <%= yield %>
         </div>
+        <% if show_progress_percentage %>
+          <div class="progress-percentage-bar">
+            <div class="percentage-track">
+              <div class="percentage-indicator" style="width:<%= percent_complete %>%"></div>
+            </div>
+            <p class="percentage-label"><%= I18n.t("general.percent_complete", percent: percent_complete) %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   </section>
