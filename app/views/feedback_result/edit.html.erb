@@ -1,0 +1,29 @@
+<% content_for :question_title, t("views.feedback_result.edit.title") %>
+<%= image_tag "message.svg", class: "illustration left-justified spacing-above-35" %>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<p><%= t("views.feedback_result.edit.title_help_text") %></p>
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <div class="checkbox-group spacing-below-60">
+    <% state_site = @current_screener.state == LocationData::States::NORTH_CAROLINA ? "NC ePASS" : "Delaware ASSIST" %>
+    <%= f.cfa_checkbox(:survey_plan_to_submit_results_to_site, t("views.feedback_result.edit.submit_results_to_site", state_site: state_site), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_plan_to_email_results, t("views.feedback_result.edit.email_results"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_interview, t("views.feedback_result.edit.bring_results_to_interview"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_organization, t("views.feedback_result.edit.bring_results_to_organization"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+    <%= f.cfa_checkbox(:survey_plan_to_keep_it_in_records, t("views.feedback_result.edit.keep_it_in_records"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+  </div>
+
+  <%= f.cfa_textarea(:survey_additional_feedback,
+         t("views.feedback_result.edit.additional_feedback"),
+         help_text: t("views.feedback_result.edit.additional_feedback_help_text"),
+         options: {
+           maxlength: FeedbackResultController::CHARACTER_LIMIT,
+           data: {
+             i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
+             i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
+           }
+         }
+   ) %>
+  <p class="char-counter spacing-below-0">&nbsp;</p>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

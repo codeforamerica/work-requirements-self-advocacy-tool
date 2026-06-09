@@ -232,6 +232,20 @@ RSpec.describe Screener, type: :model do
         )
         expect(screener.valid?(:disability_benefits)).to eq true
       end
+
+      it "must not have value longer than DisabilityBenefitsController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener, receiving_benefits_write_in: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:disability_benefits)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = DisabilityBenefitsController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(receiving_benefits_write_in: text)
+
+        screener.valid?(:disability_benefits)
+        expect(screener.errors[:receiving_benefits_write_in]).to be_present
+      end
     end
 
     context "with_context :preventing_work_situations" do
@@ -372,6 +386,23 @@ RSpec.describe Screener, type: :model do
 
         screener.valid?(:preventing_work_details)
         expect(screener.errors[:preventing_work_additional_info]).to be_present
+      end
+    end
+
+    context "with_context :feedback_result" do
+      it "must not have value longer than FeedbackResultController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener,
+          survey_additional_feedback: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:feedback_result)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = FeedbackResultController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(survey_additional_feedback: text)
+
+        screener.valid?(:feedback_result)
+        expect(screener.errors[:survey_additional_feedback]).to be_present
       end
     end
 
@@ -905,6 +936,140 @@ RSpec.describe Screener, type: :model do
     it "returns false when working_hours is nil" do
       screener = build(:screener)
       expect(screener.working_30_or_more_hours?).to be false
+    end
+  end
+
+  describe "#can_send_screener_results_email?" do
+    let(:screener) { create(:screener, email: "test@example.com") }
+
+    context "when the screener has no email" do
+      let(:screener) { create(:screener, email: nil) }
+
+      it "returns false" do
+        expect(screener.can_send_screener_results_email?).to be false
+      end
+    end
+
+    context "when the screener has an email and is below the email attempt limit" do
+      before do
+        (Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED - 1).times do
+          create(:outgoing_email, screener: screener, email_type: :screener_results)
+        end
+      end
+
+      it "returns true" do
+        expect(screener.can_send_screener_results_email?).to be true
+      end
+    end
+
+    context "when the screener has reached the email attempt limit" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email, email_type: :screener_results)
+        end
+      end
+
+      it "returns false" do
+        expect(screener.can_send_screener_results_email?).to be false
+      end
+    end
+
+    context "when another screener has sent emails to the same address" do
+      let(:other_screener) { create(:screener, email: screener.email) }
+
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: other_screener, email: screener.email, email_type: :screener_results)
+        end
+      end
+
+      it "returns true" do
+        expect(screener.can_send_screener_results_email?).to be true
+      end
+    end
+
+    context "when only post_results_survey emails exist" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email, email_type: :post_results_survey)
+        end
+      end
+
+      it "returns true" do
+        expect(screener.can_send_screener_results_email?).to be true
+      end
+    end
+
+    context "when the screener has reached the email attempt limit for original email, but not new email" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email, email_type: :screener_results)
+        end
+      end
+
+      it "returns true" do
+        screener.update(email: "second@email.biz")
+        create(:outgoing_email, screener: screener, email: screener.email, email_type: :screener_results)
+        expect(screener.can_send_screener_results_email?).to be true
+      end
+    end
+  end
+
+  describe "#screener_results_email_block_reason" do
+    let(:screener) { create(:screener, email: "test@example.com") }
+
+    context "when the screener has no email" do
+      let(:screener) { create(:screener, email: nil) }
+
+      it "returns :email_blank" do
+        expect(screener.screener_results_email_block_reason).to eq(:email_blank)
+      end
+    end
+
+    context "when the screener has reached the email attempt limit" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email, email_type: :screener_results)
+        end
+      end
+
+      it "returns :attempt_limit_reached" do
+        expect(screener.screener_results_email_block_reason).to eq(:attempt_limit_reached)
+      end
+    end
+
+    context "when the screener has reached the email attempt limit for original email, but not new email" do
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: screener, email: screener.email)
+        end
+      end
+
+      it "returns nil" do
+        screener.update(email: "second@email.biz")
+        create(:outgoing_email, screener: screener, email: screener.email)
+        expect(screener.screener_results_email_block_reason).to be_nil
+      end
+    end
+
+    context "when the screener can receive an email" do
+      it "returns nil" do
+        expect(screener.screener_results_email_block_reason).to be_nil
+      end
+    end
+
+    context "when another screener reached the limit for the same email address" do
+      let(:other_screener) { create(:screener, email: screener.email) }
+
+      before do
+        Screener::NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED.times do
+          create(:outgoing_email, screener: other_screener, email: screener.email, email_type: :screener_results)
+        end
+      end
+
+      it "returns nil" do
+        expect(screener.screener_results_email_block_reason).to be_nil
+      end
     end
   end
 

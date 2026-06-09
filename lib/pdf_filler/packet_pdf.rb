@@ -80,7 +80,15 @@ module PdfFiller
         if field_value.is_a?(String)
           field_value = strip_emojis(field_value)
         end
-        template_doc.acro_form.field_by_name(field_name.to_s).field_value = field_value
+
+        field = template_doc.acro_form.field_by_name(field_name.to_s)
+
+        begin
+          field.field_value = field_value
+        rescue HexaPDF::Error
+          Rails.logger.error("PDF field assignment failed: field=#{field_name} max_len=#{field[:MaxLen].inspect} length=#{field_value.to_s.length} screener=#{@screener.id}")
+          raise
+        end
       end
 
       template_doc.acro_form.flatten

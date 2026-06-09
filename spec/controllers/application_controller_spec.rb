@@ -14,6 +14,15 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
+  describe "rescue_from ActionController::UnknownFormat" do
+    it "returns 406 Not Acceptable for unsupported request formats" do
+      request.accept = "application/json"
+      get :index
+
+      expect(response).to have_http_status(:not_acceptable)
+    end
+  end
+
   describe "#switch_locale" do
     let(:language) { "es" }
     let(:available_locales) { ["es", "en"] }

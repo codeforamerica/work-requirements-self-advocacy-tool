@@ -8,7 +8,7 @@ es:
       remaining:
         one: Queda %{count} caracter
         other: Quedan %{count} caracteres
-    check_work_rules_for_someone_else: Verificar las reglas de trabajo para otra persona
+    check_work_rules_for_someone_else: Verificar para otra persona
     choose_all_that_apply: Seleccione todas las que correspondan.
     close: Cerrar
     continue: Continuar
@@ -200,6 +200,25 @@ es:
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
         working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
         working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
+    feedback_confident:
+      edit:
+        little: Poco seguro
+        not_at_all: Nada seguro
+        somewhat: Algo seguro
+        title: "¿Qué tan seguro está de entender si está exento de las reglas de trabajo de SNAP?"
+        title_help_text: Esto es opcional. Seleccione una opción.
+        very: Muy seguro
+    feedback_result:
+      edit:
+        additional_feedback: "¿Tiene algún comentario adicional que quiera compartirnos?"
+        additional_feedback_help_text: Esto es opcional.
+        bring_results_to_interview: Llevarlo conmigo a mi entrevista
+        bring_results_to_organization: Llevarlo conmigo a una organización legal o comunitaria
+        email_results: Enviarlo por correo electrónico a mi oficina de SNAP
+        keep_it_in_records: Guardarlo para mis registros
+        submit_results_to_site: Enviarlo en línea a través de %{state_site} u otra opción
+        title: "¿Qué planea hacer con el resultado del formulario de GetBenefitsHelp?"
+        title_help_text: Esto es opcional. Seleccione todas las que correspondan.
     homepage:
       fill_out_form: Complete el formulario
       index:
@@ -293,6 +312,18 @@ es:
       edit:
         title: Ha finalizado.
         title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
+    new_response_with_feedback:
+      edit:
+        difficult: Algo difícil
+        easy: Fácil
+        feedback_question: "¿Qué tan fácil o difícil fue completar su solicitud?"
+        feedback_question_help_text: Cuéntenos sobre su experiencia con este formulario. Esto es opcional.
+        feedback_question_title: "¿Desea dar su opinión?"
+        neutral: Ni fácil ni difícil
+        title: Ha finalizado.
+        title_help_text: "¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?"
+        very_difficult: Muy difícil
+        very_easy: Muy fácil
     out_of_state:
       edit:
         contact_button: Ir a mi oficina de SNAP
