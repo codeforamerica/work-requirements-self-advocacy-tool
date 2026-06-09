@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_02_202827) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -89,7 +89,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
-    t.integer "school_type"
     t.string "signature"
     t.datetime "signed_at"
     t.string "source"
@@ -97,16 +96,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
     t.string "state"
     t.text "survey_additional_feedback"
     t.integer "survey_confidence_in_exemption_rules", default: 0, null: false
-    t.integer "survey_easy_experience", default: 0, null: false
-    t.integer "survey_neutral_experience", default: 0, null: false
+    t.integer "survey_ease_of_experience", default: 0, null: false
     t.integer "survey_plan_to_bring_results_to_interview", default: 0, null: false
     t.integer "survey_plan_to_bring_results_to_organization", default: 0, null: false
     t.integer "survey_plan_to_email_results", default: 0, null: false
     t.integer "survey_plan_to_keep_it_in_records", default: 0, null: false
     t.integer "survey_plan_to_submit_results_to_site", default: 0, null: false
-    t.integer "survey_somewhat_difficult_experience", default: 0, null: false
-    t.integer "survey_very_difficult_experience", default: 0, null: false
-    t.integer "survey_very_easy_experience", default: 0, null: false
     t.datetime "updated_at", null: false
     t.string "visitor_id"
     t.integer "volunteering_hours"
