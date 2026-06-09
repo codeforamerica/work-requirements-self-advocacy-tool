@@ -459,5 +459,25 @@ RSpec.describe ApplicationController, type: :controller do
         expect(screener.current_step).to eq("/download-form")
       end
     end
+
+    context "when the current path includes a locale prefix" do
+      let(:current_path) { "/en/new-response" }
+
+      it "strips the locale and saves the path without it" do
+        get :index
+        screener.reload
+        expect(screener.current_step).to eq("new-response")
+      end
+    end
+
+    context "when the current path includes a spanish locale prefix" do
+      let(:current_path) { "/es/new-response" }
+
+      it "strips the locale and saves the path without it" do
+        get :index
+        screener.reload
+        expect(screener.current_step).to eq("new-response")
+      end
+    end
   end
 end

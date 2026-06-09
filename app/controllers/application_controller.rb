@@ -138,6 +138,7 @@ class ApplicationController < ActionController::Base
 
   def set_current_step
     return unless request.get? && current_screener&.persisted? && (path = current_path)
+    path = path.sub(%r{\A/(en|es)/}, "")
     current_screener.update!(current_step: path) unless current_screener.current_step == path
   end
 end
