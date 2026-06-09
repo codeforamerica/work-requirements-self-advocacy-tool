@@ -11,14 +11,21 @@ RSpec.describe AgeExemptionController, type: :controller do
   end
 
   describe ".show?" do
-    context "screener outside the age range" do
+    context "screener is 65 or older" do
       it "returns true" do
         screener = create(:screener, birth_date: 66.years.ago)
         expect(subject.class.show?(screener)).to eq true
       end
     end
 
-    context "screener within the age range" do
+    context "screener is under 18" do
+      it "returns true" do
+        screener = create(:screener, birth_date: 16.years.ago)
+        expect(subject.class.show?(screener)).to eq true
+      end
+    end
+
+    context "screener is within the 18-64 range" do
       it "returns false" do
         screener = create(:screener, birth_date: 30.years.ago)
         expect(subject.class.show?(screener)).to eq false
