@@ -11,8 +11,6 @@ namespace :backfill do
     errored = 0
 
     scope.find_each do |screener|
-      # Use signed_at as the reference date when available; fall back to updated_at.
-      # Compute age at that point in time rather than today to avoid drift.
       reference_date = (screener.signed_at || screener.updated_at).to_date
       age_at_time = ((reference_date - screener.birth_date) / 365.25).to_i
 
@@ -22,9 +20,11 @@ namespace :backfill do
         Screener::EXEMPT
       elsif screener.complies_with_work_rules?
         Screener::NOT_EXEMPT_WORK_RULES_MET
-      else
+      elsif !screener.exempt_from_work_rules? && !screener.complies_with_work_rules?
         Screener::NOT_EXEMPT_WORK_RULES_NOT_MET
       end
+
+      next if outcome.nil?
 
       # update_columns bypasses callbacks and validations — appropriate for backfills
       screener.update_columns(
