@@ -34,8 +34,8 @@ module Navigation
       ControllerNavigation::NavigationStep.new(DownloadFormController),
       ControllerNavigation::NavigationStep.new(ProofGuidanceController),
       ControllerNavigation::NavigationStep.new(NewResponseWithFeedbackController),
-      ControllerNavigation::NavigationStep.new(FeedbackConfidentController),
-      ControllerNavigation::NavigationStep.new(FeedbackResultController),
+      ControllerNavigation::NavigationStep.new(FeedbackConfidentController, false),
+      ControllerNavigation::NavigationStep.new(FeedbackResultController, false),
       ControllerNavigation::NavigationStep.new(NewResponseController),
       ControllerNavigation::NavigationStep.new(AgeExemptionController, false)
     ].freeze
