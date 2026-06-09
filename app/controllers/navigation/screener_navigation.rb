@@ -36,7 +36,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(NewResponseWithFeedbackController),
       ControllerNavigation::NavigationStep.new(FeedbackConfidentController, false),
       ControllerNavigation::NavigationStep.new(FeedbackResultController, false),
-      ControllerNavigation::NavigationStep.new(NewResponseController),
+      ControllerNavigation::NavigationStep.new(NewResponseController, false),
       ControllerNavigation::NavigationStep.new(AgeExemptionController, false)
     ].freeze
   end
