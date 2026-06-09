@@ -18,6 +18,7 @@ en:
     negative: 'No'
     none_of_the_above: None of the above
     other: Other
+    percent_complete: "%{percent}% complete"
     personal_situations: Personal situations
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>

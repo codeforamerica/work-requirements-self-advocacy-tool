@@ -5,6 +5,10 @@ class FeedbackResultController < QuestionController
     false
   end
 
+  def show_progress_percentage
+    false
+  end
+
   def self.attributes_edited
     [
       :survey_plan_to_submit_results_to_site,
