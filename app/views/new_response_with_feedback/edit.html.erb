@@ -1,0 +1,23 @@
+<%= image_tag "checkmark.svg", class: "illustration left-justified spacing-above-35" %>
+<% content_for :question_title, t("views.new_response_with_feedback.edit.title") %>
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+<h1 class="h2"><%= t("views.new_response_with_feedback.edit.title_help_text") %></h1>
+<div><%= link_to t("general.check_work_rules_for_someone_else"), sign_out_and_redirect_path(redirect_path: start_flow_path), class: "button button--primary" %></div>
+<hr/>
+<h1 class="h2"><%= t("views.new_response_with_feedback.edit.feedback_question_title") %></h1>
+<p><%= t("views.new_response_with_feedback.edit.feedback_question_help_text") %></p>
+<h1 class="h3"><%= t("views.new_response_with_feedback.edit.feedback_question") %></h1>
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :survey_ease_of_experience, value: :unfilled %>
+  <div class="spacing-below-60">
+    <%= f.cfa_radio_set(:survey_ease_of_experience, collection: [
+      { value: :very_easy, label: t("views.new_response_with_feedback.edit.very_easy") },
+      { value: :easy, label: t("views.new_response_with_feedback.edit.easy") },
+      { value: :neutral, label: t("views.new_response_with_feedback.edit.neutral") },
+      { value: :somewhat_difficult, label: t("views.new_response_with_feedback.edit.difficult") },
+      { value: :very_difficult, label: t("views.new_response_with_feedback.edit.very_difficult") },
+    ]) %>
+  </div>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>
+<div><%= link_to t("general.close"), sign_out_and_redirect_path, class: "button" %></div>
