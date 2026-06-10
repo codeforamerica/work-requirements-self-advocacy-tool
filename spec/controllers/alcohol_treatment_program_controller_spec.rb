@@ -42,13 +42,13 @@ RSpec.describe AlcoholTreatmentProgramController, type: :controller do
       end
     end
 
-    context "when the screener is not in NC" do
-      it "renders the default notice (Alcoholics or Narcotics Anonymous)" do
+    context "when the screener is in DE" do
+      it "renders the DE notice (Alcoholics or Narcotics Anonymous)" do
         sign_in create(:screener, state: LocationData::States::DELAWARE)
 
         get :edit
 
-        expect(response.body).to include(ERB::Util.html_escape(I18n.t("views.alcohol_treatment_program.edit.notice_text.default")))
+        expect(response.body).to include(ERB::Util.html_escape(I18n.t("views.alcohol_treatment_program.edit.notice_text.de")))
       end
     end
   end

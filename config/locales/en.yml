@@ -53,7 +53,7 @@ en:
         alcohol_treatment_program_name_help_text_label: This is optional.
         alcohol_treatment_program_name_label: What is the name of the program?
         notice_text:
-          default: Select "No" if your only treatment program is Alcoholics Anonymous or Narcotics Anonymous.
+          de: Select "No" if your only treatment program is Alcoholics Anonymous or Narcotics Anonymous.
           nc: Select "No" if your only treatment program is Alcoholics Anonymous.
         title: Are you in a drug or alcohol treatment program?
     basic_info_case_number:
@@ -221,7 +221,7 @@ en:
         keep_it_in_records: Keep it for my records
         submit_results_to_site: Submit it online through %{state_site} or another option
         submit_site_name:
-          default: Delaware ASSIST
+          de: Delaware ASSIST
           nc: NC ePASS
         title: What do you plan to do with the result of the GetBenefitsHelp screener?
         title_help_text: This is optional. Choose all that apply.
@@ -689,7 +689,7 @@ en:
           <p><strong>If you start doing one of those things and you weren't before,</strong> send proof to your SNAP agency.</p>
         instructions_title: Avoid a time limit on your SNAP benefits
         time_limit_text:
-          default: out of every three years (36 months)
+          de: out of every three years (36 months)
           nc: until Dec. 31, 2027
         title: You may need to follow the SNAP work rules
         title_help_text: If something changes about your situation and you cannot work at least 20 hours a week, every week, please tell your SNAP agency.

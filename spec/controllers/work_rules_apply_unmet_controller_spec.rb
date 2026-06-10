@@ -71,13 +71,13 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
       end
     end
 
-    context "when the screener is not in NC" do
-      it "renders the default time limit" do
+    context "when the screener is in DE" do
+      it "renders the DE time limit" do
         sign_in create(:screener, state: "DE")
 
         get :edit
 
-        expect(response.body).to include(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text.default"))
+        expect(response.body).to include(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text.de"))
       end
     end
   end
