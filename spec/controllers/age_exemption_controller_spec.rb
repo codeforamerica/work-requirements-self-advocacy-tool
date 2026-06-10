@@ -11,7 +11,6 @@ RSpec.describe AgeExemptionController, type: :controller do
     end
   end
 
-
   describe "#show_progress_percentage" do
     it "hides the progress percentage on the age exemption page" do
       expect(controller.show_progress_percentage).to eq(false)
