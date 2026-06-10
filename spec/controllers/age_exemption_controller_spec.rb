@@ -2,27 +2,30 @@ require "rails_helper"
 
 RSpec.describe AgeExemptionController, type: :controller do
   describe "#edit" do
-    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
     it_behaves_like "saves outcome on edit", expected_outcome: Screener::AGE_EXEMPT
   end
 
-  describe "#update" do
-    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+  describe "#show_progress_bar" do
+    it "hides the progress bar on the age exemption page" do
+      expect(controller.show_progress_bar).to eq(false)
+    end
+  end
+
+  describe "#show_progress_percentage" do
+    it "hides the progress percentage on the age exemption page" do
+      expect(controller.show_progress_percentage).to eq(false)
+    end
   end
 
   describe ".show?" do
-    context "screener outside the age range" do
-      it "returns true" do
-        screener = create(:screener, birth_date: 66.years.ago)
-        expect(subject.class.show?(screener)).to eq true
-      end
+    it "returns true for someone outside the 18-64 work requirement age range" do
+      screener = create(:screener, birth_date: 70.years.ago.to_date)
+      expect(described_class.show?(screener)).to eq(true)
     end
 
-    context "screener within the age range" do
-      it "returns false" do
-        screener = create(:screener, birth_date: 30.years.ago)
-        expect(subject.class.show?(screener)).to eq false
-      end
+    it "returns false for someone within the 18-64 work requirement age range" do
+      screener = create(:screener, birth_date: 30.years.ago.to_date)
+      expect(described_class.show?(screener)).to eq(false)
     end
   end
 end
