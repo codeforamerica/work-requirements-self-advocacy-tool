@@ -6,7 +6,7 @@
 <div class="notice white">
   <%= image_tag "warning-sign.svg", class: "illustration left-justified" %>
   <h2><%= t("views.work_rules_apply_unmet.edit.instructions_title") %></h2>
-  <p><%= t("views.work_rules_apply_unmet.edit.instructions_html", time_limit_text: time_limit_text) %></p>
+  <p><%= t("views.work_rules_apply_unmet.edit.instructions_html", time_limit_text: t("views.work_rules_apply_unmet.edit.time_limit_text.#{@current_screener.state.downcase}", default: :"views.work_rules_apply_unmet.edit.time_limit_text.default")) %></p>
 </div>
 <div class="notice white">
   <%= image_tag "work-warning.svg", class: "illustration left-justified" %>

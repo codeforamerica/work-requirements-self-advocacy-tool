@@ -23,24 +23,28 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
     it_behaves_like "show? with work rules exemption only"
   end
 
-  describe "#case_number_label and #office_name" do
-    context "when the screener is in NC" do
-      it "returns the NC-specific translation" do
-        screener = build(:screener, state: "NC", county: "Durham County")
-        controller.instance_variable_set(:@current_screener, screener)
+  describe "the state-specific case number help text" do
+    render_views
 
-        expect(controller.case_number_label).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.case_number_label_nc"))
-        expect(controller.office_name).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_nc", county: "Durham County"))
+    context "when the screener is in NC" do
+      it "renders the county as the office name and the NC case number labels" do
+        sign_in create(:screener, state: "NC", county: "Durham County")
+
+        get :edit
+
+        expect(response.body).to include("Durham County")
+        expect(response.body).to include(ERB::Util.html_escape(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.case_number_label.nc")))
       end
     end
 
     context "when the screener is not in NC" do
-      it "returns the default translation" do
-        screener = build(:screener, state: "DE")
-        controller.instance_variable_set(:@current_screener, screener)
+      it "renders the default office name and case number labels" do
+        sign_in create(:screener, state: "DE")
 
-        expect(controller.case_number_label).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.case_number_label_default"))
-        expect(controller.office_name).to eq(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name_default"))
+        get :edit
+
+        expect(response.body).to include(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.office_name.default"))
+        expect(response.body).to include(ERB::Util.html_escape(I18n.t("views.basic_info_case_number.edit.help_text_county_letter.case_number_label.default")))
       end
     end
   end

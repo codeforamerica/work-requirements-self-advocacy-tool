@@ -28,21 +28,27 @@ RSpec.describe AlcoholTreatmentProgramController, type: :controller do
     it_behaves_like "a show method that considers age exemption"
   end
 
-  describe "#state_notice_text" do
-    let(:screener) { create(:screener, state: state) }
-    context "when NC" do
-      let(:state) { LocationData::States::NORTH_CAROLINA }
-      it "returns the translation for NC" do
-        controller.instance_variable_set(:@current_screener, screener)
-        expect(controller.state_notice_text).to eq(I18n.t("views.alcohol_treatment_program.edit.notice_text_nc"))
+  describe "the state-specific treatment notice" do
+    render_views
+
+    context "when the screener is in NC" do
+      it "renders the NC notice (Alcoholics Anonymous only)" do
+        sign_in create(:screener, state: LocationData::States::NORTH_CAROLINA)
+
+        get :edit
+
+        expect(response.body).to include(ERB::Util.html_escape(I18n.t("views.alcohol_treatment_program.edit.notice_text.nc")))
+        expect(response.body).not_to include("Narcotics Anonymous")
       end
     end
 
-    context "when DE" do
-      let(:state) { create(:screener, state: LocationData::States::DELAWARE) }
-      it "returns the translation for DE" do
-        controller.instance_variable_set(:@current_screener, screener)
-        expect(controller.state_notice_text).to eq(I18n.t("views.alcohol_treatment_program.edit.notice_text_default"))
+    context "when the screener is in DE" do
+      it "renders the DE notice (Alcoholics or Narcotics Anonymous)" do
+        sign_in create(:screener, state: LocationData::States::DELAWARE)
+
+        get :edit
+
+        expect(response.body).to include(ERB::Util.html_escape(I18n.t("views.alcohol_treatment_program.edit.notice_text.de")))
       end
     end
   end

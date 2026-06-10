@@ -1,4 +1,5 @@
 <% content_for :question_title, t("views.basic_info_case_number.edit.title") %>
+<% state = @current_screener.state.downcase %>
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
@@ -6,10 +7,10 @@
   <%= image_tag "magnifying-glass-doc.svg", class: "illustration left-justified" %>
 
   <p>
-    <strong><%= t("views.basic_info_case_number.edit.help_text_county_letter.title", office_name: office_name) %></strong>
+    <strong><%= t("views.basic_info_case_number.edit.help_text_county_letter.title", office_name: t("views.basic_info_case_number.edit.help_text_county_letter.office_name.#{state}", county: @current_screener.county, default: :"views.basic_info_case_number.edit.help_text_county_letter.office_name.default")) %></strong>
   </p>
   <ol class="list--bulleted">
-    <% t("views.basic_info_case_number.edit.help_text_county_letter.help_bullets", case_number_label: case_number_label).each do |li| %>
+    <% t("views.basic_info_case_number.edit.help_text_county_letter.help_bullets", case_number_label: t("views.basic_info_case_number.edit.help_text_county_letter.case_number_label.#{state}", default: :"views.basic_info_case_number.edit.help_text_county_letter.case_number_label.default")).each do |li| %>
       <li><%= li %></li>
     <% end %>
   </ol>
@@ -17,7 +18,6 @@
 
 <div class="notice white">
   <%= image_tag "desktop-monitor.svg", class: "illustration left-justified" %>
-  <% state = @current_screener.state.downcase %>
   <p>
     <strong><%= t("views.basic_info_case_number.edit.help_text_website.title", website_name: t("views.basic_info_case_number.edit.help_text_website.#{state}.website_name")) %></strong>
   </p>

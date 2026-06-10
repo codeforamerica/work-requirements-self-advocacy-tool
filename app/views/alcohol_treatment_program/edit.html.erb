@@ -8,7 +8,7 @@
       <i class="icon-help"></i>
     </div>
     <div class="media-box__content">
-      <%= state_notice_text %>
+      <%= t("views.alcohol_treatment_program.edit.notice_text.#{@current_screener.state.downcase}", default: :"views.alcohol_treatment_program.edit.notice_text.default") %>
     </div>
   </div>
 </div>
