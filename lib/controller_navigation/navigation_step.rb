@@ -1,12 +1,12 @@
 module ControllerNavigation
   class NavigationStep
-    attr_accessor :show_steps
-    # Indicates whether navigation widget should be displayed on this step
-    alias_method :show_steps?, :show_steps
+    attr_accessor :increment_step
+    # Indicates whether this step contributes to the overall count (Cancel / Failure steps typically don't)
+    alias_method :increment_step?, :increment_step
 
-    def initialize(controller, show_steps = true)
+    def initialize(controller, increment_step = true)
       @controller = controller
-      @show_steps = show_steps
+      @increment_step = increment_step
     end
 
     def controllers

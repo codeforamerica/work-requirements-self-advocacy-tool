@@ -3,6 +3,10 @@ class FeedbackConfidentController < QuestionController
     false
   end
 
+  def show_progress_percentage
+    false
+  end
+
   def self.attributes_edited
     [:survey_confidence_in_exemption_rules]
   end
