@@ -4,6 +4,11 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
+  AGE_EXEMPT = "age_exempt"
+  EXEMPT = "exempt"
+  NOT_EXEMPT_WORK_RULES_MET = "not_exempt_work_rules_met"
+  NOT_EXEMPT_WORK_RULES_NOT_MET = "not_exempt_work_rules_not_met"
+
   NUMBER_OF_SCREENER_RESULT_EMAIL_ATTEMPTS_ALLOWED = 3
 
   has_many :outgoing_emails, dependent: :destroy
