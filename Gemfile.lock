@@ -122,7 +122,7 @@ GEM
     bcrypt (3.1.22)
     bigdecimal (4.1.2)
     bindex (0.8.1)
-    bootsnap (1.24.5)
+    bootsnap (1.24.6)
       msgpack (~> 1.2)
     bourbon (7.3.0)
       thor (~> 1.0)
@@ -271,7 +271,7 @@ GEM
       base64
       json-logic-rb (~> 0.1.5)
       mutex_m
-    msgpack (1.8.1)
+    msgpack (1.8.3)
     mutex_m (0.3.0)
     net-imap (0.6.4.1)
       date
