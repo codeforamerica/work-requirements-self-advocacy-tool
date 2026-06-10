@@ -57,22 +57,26 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
     end
   end
 
-  describe "#time_limit_text" do
-    context "when the screener is in NC" do
-      it "returns the NC-specific translation" do
-        screener = build(:screener, state: "NC")
-        controller.instance_variable_set(:@current_screener, screener)
+  describe "the state-specific time limit text" do
+    render_views
 
-        expect(controller.time_limit_text).to eq(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_nc"))
+    context "when the screener is in NC" do
+      it "renders the NC time limit" do
+        sign_in create(:screener, state: "NC")
+
+        get :edit
+
+        expect(response.body).to include(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text.nc"))
       end
     end
 
     context "when the screener is not in NC" do
-      it "returns the default translation" do
-        screener = build(:screener, state: "DE")
-        controller.instance_variable_set(:@current_screener, screener)
+      it "renders the default time limit" do
+        sign_in create(:screener, state: "DE")
 
-        expect(controller.time_limit_text).to eq(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_default"))
+        get :edit
+
+        expect(response.body).to include(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text.default"))
       end
     end
   end

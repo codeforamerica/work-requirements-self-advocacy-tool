@@ -52,20 +52,23 @@ es:
       edit:
         alcohol_treatment_program_name_help_text_label: Opcional.
         alcohol_treatment_program_name_label: "¿Cuál es el nombre del programa?"
-        notice_text_default: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos o Narcóticos Anónimos.
-        notice_text_nc: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos.
+        notice_text:
+          default: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos o Narcóticos Anónimos.
+          nc: Seleccione "No" si su único programa de tratamiento es Alcohólicos Anónimos.
         title: "¿Está en un programa de rehabilitación de drogas o alcohol?"
     basic_info_case_number:
       edit:
         case_number_label: Número de caso
         help_text_county_letter:
-          case_number_label_default: '"Case #"'
-          case_number_label_nc: '"Case Number", "Case ID" o "Client Number"'
+          case_number_label:
+            default: '"Case #"'
+            nc: '"Case Number", "Case ID" o "Client Number"'
           help_bullets:
           - Busque una sección con el título %{case_number_label}.
           - Por lo general, aparece cerca de su nombre, en la parte superior de la primera página.
-          office_name_default: el Departamento de Salud y Servicios Sociales (DHSS)
-          office_name_nc: su oficina de %{county}
+          office_name:
+            default: el Departamento de Salud y Servicios Sociales (DHSS)
+            nc: su oficina de %{county}
           title: Tambien puede encontrar su número de caso en la mayoría de las cartas o notificaciones que le ha enviado %{office_name}.
         help_text_website:
           de:
@@ -217,6 +220,9 @@ es:
         email_results: Enviarlo por correo electrónico a mi oficina de SNAP
         keep_it_in_records: Guardarlo para mis registros
         submit_results_to_site: Enviarlo en línea a través de %{state_site} u otra opción
+        submit_site_name:
+          default: Delaware ASSIST
+          nc: NC ePASS
         title: "¿Qué planea hacer con el resultado del formulario de GetBenefitsHelp?"
         title_help_text: Esto es opcional. Seleccione todas las que correspondan.
     homepage:
@@ -679,8 +685,9 @@ es:
           <p>Si pierde <strong>sus beneficios de SNAP</strong> y luego comienza a cumplir con uno de estos requisitos, puede volver a solicitarlos. También puede volver a solicitar <strong>sus beneficios de SNAP</strong> si su situación cambia y las reglas de trabajo ya no se aplican en su caso.</p>
           <p><strong>Si comienza a hacer alguna de estas actividades y antes no las realizaba,</strong> envíe sus comprobantes a su oficina de SNAP.</p>
         instructions_title: Evite perder sus beneficios de SNAP y manténgalos por más tiempo
-        time_limit_text_default: out of every three years (36 months)
-        time_limit_text_nc: hasta el 31 de diciembre de 2027
+        time_limit_text:
+          default: out of every three years (36 months)
+          nc: hasta el 31 de diciembre de 2027
         title: Es posible que tenga que cumplir con las reglas de trabajo de SNAP.
         title_help_text: Si cambia algo en su situación y ya no puede trabajar al menos 20 horas a la semana, todas las semanas, por favor informe a su oficina de SNAP.
         unexpected_problems_html: Sabemos que pueden ocurrir imprevistos, como una emergencia familiar o una falla en su carro. Si usted tiene una "razón válida" por la que no pudo trabajar 20 horas a la semana durante un mes, por favor infórmelo a su oficina de SNAP. Si tiene algún documento que ayude a comprobar lo ocurrido, puede enviarlo para que su oficina de SNAP pueda entender mejor su situación.

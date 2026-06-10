@@ -3,17 +3,7 @@ class WorkRulesApplyUnmetController < QuestionController
     false
   end
 
-  helper_method :time_limit_text
-
   def self.show?(screener)
     !screener.exempt_from_work_rules? && !screener.complies_with_work_rules? && super
-  end
-
-  def time_limit_text
-    if @current_screener.state == LocationData::States::NORTH_CAROLINA
-      I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_nc")
-    else
-      I18n.t("views.work_rules_apply_unmet.edit.time_limit_text_default")
-    end
   end
 end
