@@ -1,7 +1,7 @@
 class PreventingWorkDetailsController < QuestionController
   include PersonalSituationsConcern
 
-  CHARACTER_LIMIT = 750
+  CHARACTER_LIMIT = 475
 
   PREVENTING_WORK_FIELDS = %i[
     preventing_work_place_to_sleep
