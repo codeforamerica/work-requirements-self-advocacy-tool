@@ -1,5 +1,6 @@
 class DownloadFormController < ExemptionAwareQuestionController
-  before_action :email_pdf, only: :edit
+  before_action :email_pdf, :save_outcome, only: :edit
+
   def show_progress_bar
     false
   end
@@ -14,5 +15,11 @@ class DownloadFormController < ExemptionAwareQuestionController
     SendOutgoingEmailJob.perform_later(outgoing_email.id)
 
     Rails.logger.info("Created screener results email #{outgoing_email.id} for Screener #{current_screener.id}")
+  end
+
+  private
+
+  def outcome_value
+    Screener::EXEMPT
   end
 end

@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:screener_id] = current_screener&.id
     capture_trace_context
   end
-  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source
+  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_current_step
   after_action :track_page_view
 
   def navigation_class
@@ -133,5 +133,16 @@ class ApplicationController < ActionController::Base
       # Use at most 100 chars in session so we don't overflow it.
       session[:source] = source_from_params.slice(0, 100)
     end
+  end
+
+  def current_path(params = {})
+    return unless self.class.respond_to?(:to_path_helper)
+    self.class.to_path_helper(params)
+  end
+
+  def set_current_step
+    return unless request.get? && current_screener&.persisted? && (path = current_path)
+    path = path.sub(%r{\A/(en|es)/}, "")
+    current_screener.update!(current_step: path) unless current_screener.current_step == path
   end
 end

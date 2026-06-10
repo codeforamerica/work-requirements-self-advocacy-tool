@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe AgeExemptionController, type: :controller do
+  describe "#edit" do
+    it_behaves_like "saves outcome on edit", expected_outcome: Screener::AGE_EXEMPT
+  end
+
   describe "#show_progress_bar" do
     it "hides the progress bar on the age exemption page" do
       expect(controller.show_progress_bar).to eq(false)
