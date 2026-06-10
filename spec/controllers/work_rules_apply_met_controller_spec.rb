@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe WorkRulesApplyMetController, type: :controller do
   describe "#edit" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+    it_behaves_like "saves outcome on edit", expected_outcome: Screener::NOT_EXEMPT_WORK_RULES_MET
   end
 
   describe "#update" do

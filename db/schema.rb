@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_02_202827) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
     t.integer "consented_to_texts", default: 0, null: false
     t.string "county"
     t.datetime "created_at", null: false
+    t.string "current_step"
     t.string "email"
     t.string "first_name"
     t.integer "has_child", default: 0, null: false
@@ -66,6 +67,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
     t.integer "is_working", default: 0, null: false
     t.string "last_name"
     t.string "middle_name"
+    t.string "outcome"
+    t.datetime "outcome_arrived_at"
     t.string "phone_number"
     t.date "pregnancy_due_date"
     t.text "preventing_work_additional_info"
@@ -86,7 +89,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_02_203052) do
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
-    t.integer "school_type"
     t.string "signature"
     t.datetime "signed_at"
     t.string "source"

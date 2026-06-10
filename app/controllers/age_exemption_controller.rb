@@ -1,4 +1,6 @@
 class AgeExemptionController < QuestionController
+  before_action :save_outcome, only: :edit
+
   def show_progress_bar
     false
   end
@@ -9,5 +11,11 @@ class AgeExemptionController < QuestionController
 
   def self.show?(screener)
     !super
+  end
+
+  private
+
+  def outcome_value
+    Screener::AGE_EXEMPT
   end
 end
