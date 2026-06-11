@@ -111,7 +111,7 @@
           <% if @screener.public_send("#{benefit}_yes?") %>
             <li>
               <%= t("views.disability_benefits.edit.#{benefit}") %>
-              <% if benefit == :receiving_benefits_other && @screener.receiving_benefits_write_in.present? %>
+              <% if benefit == :receiving_benefits_other && @screener.receiving_benefits_write_in.present? && @screener.receiving_benefits_other_yes? %>
                 : <%= @screener.receiving_benefits_write_in %>
               <% end %>
             </li>

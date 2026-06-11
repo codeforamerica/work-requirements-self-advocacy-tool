@@ -137,7 +137,6 @@ class Screener < ApplicationRecord
           receiving_benefits_disability_medicaid_yes? ||
           receiving_benefits_other_yes?
       }
-    validates :receiving_benefits_write_in, presence: true, if: -> { receiving_benefits_other_yes? }
     validates :receiving_benefits_write_in, length: {maximum: DisabilityBenefitsController::CHARACTER_LIMIT}
   end
 
@@ -193,7 +192,6 @@ class Screener < ApplicationRecord
           preventing_work_medical_condition_yes? ||
           preventing_work_other_yes?
       }
-    validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
     validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}
   end
 
@@ -320,6 +318,7 @@ class Screener < ApplicationRecord
   end
 
   def pdf
+    Rails.logger.info("Generating PDF for screener #{id}")
     LocationData::States.pdf_filler_class(state).new(self).combined_pdf
   end
 

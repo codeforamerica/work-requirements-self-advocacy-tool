@@ -274,19 +274,20 @@ RSpec.describe Screener, type: :model do
         expect(screener.valid?(:preventing_work_situations)).to eq true
       end
 
-      it "can only have a write-in answer if 'other' is checked" do
+      it "write-in answer existance is not validated regardless if 'other' is checked" do
         screener = build(:screener,
           preventing_work_other: "no",
-          preventing_work_write_in: "some other reason")
+          preventing_work_write_in: "some reason")
 
-        screener.valid?(:preventing_work_situations)
-        expect(screener.errors[:preventing_work_write_in]).to be_present
+        expect(screener.valid?(:preventing_work_situations)).to eq true
+        expect(screener.preventing_work_write_in).to eq "some reason"
 
         screener.assign_attributes(
           preventing_work_other: "yes",
           preventing_work_write_in: "some other reason"
         )
         expect(screener.valid?(:preventing_work_situations)).to eq true
+        expect(screener.preventing_work_write_in).to eq "some other reason"
       end
 
       it "must not have value longer than AlcoholTreatmentProgramController::CHARACTER_LIMIT, if a value is set" do
