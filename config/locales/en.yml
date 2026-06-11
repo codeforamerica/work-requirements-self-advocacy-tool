@@ -23,6 +23,7 @@ en:
     privacy_policy: Privacy Policy
     progress_bar_text_html: Section %{step} of 3 <strong>%{section_name}</strong>
     select: Select
+    select_required: Please select an item in the list
     switched_locale: Español
     thank_you: Thank you!
     this_is_optional: This is optional.
@@ -35,11 +36,15 @@ en:
     email_confirmation_required: 'Make sure the email address is valid and follows this format: name@email.com'
     email_invalid: 'Make sure the email address is valid and follows this format: name@email.com'
     email_must_match: Email addresses must match
-    first_name_required: Enter a first name
-    last_name_required: Enter a last name
+    fields:
+      first_name: First or given name
+      last_name: Last name
+      middle_name: Middle name
+    maximum_length: "%{field_name} is too long (maximum is %{max_length} characters)."
     must_answer_yes_or_no: Must answer yes or no
     number_invalid: Enter a number
     phone_invalid: Make sure the phone number is valid and includes 10 digits
+    required: Enter a %{field_name}
     signature_required: Your signature is required to continue
     zip_code_invalid: Provide a valid ZIP Code with at least five numbers
   views:

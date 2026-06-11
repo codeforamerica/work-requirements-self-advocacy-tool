@@ -109,8 +109,8 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, first_name: nil, last_name: nil)
         screener.valid?(:basic_info_details)
 
-        expect(screener.errors[:first_name]).to eq [I18n.t("validations.first_name_required")]
-        expect(screener.errors[:last_name]).to eq [I18n.t("validations.last_name_required")]
+        expect(screener.errors[:first_name]).to eq [I18n.t("validations.required", field_name: I18n.t("validations.fields.first_name").downcase)]
+        expect(screener.errors[:last_name]).to eq [I18n.t("validations.required", field_name: I18n.t("validations.fields.last_name").downcase)]
       end
 
       it "requires the phone number to be valid" do
@@ -218,19 +218,20 @@ RSpec.describe Screener, type: :model do
         expect(screener.valid?(:disability_benefits)).to eq true
       end
 
-      it "can only have a write-in answer if 'other' is checked" do
+      it "write-in answer existence is not validated regardless if 'other' is checked" do
         screener = build(:screener,
           receiving_benefits_other: "no",
-          receiving_benefits_write_in: "a different benefit")
+          receiving_benefits_write_in: "a benefit")
 
-        screener.valid?(:disability_benefits)
-        expect(screener.errors[:receiving_benefits_write_in]).to be_present
+        expect(screener.valid?(:disability_benefits)).to eq true
+        expect(screener.receiving_benefits_write_in).to eq "a benefit"
 
         screener.assign_attributes(
           receiving_benefits_other: "yes",
           receiving_benefits_write_in: "a different benefit"
         )
         expect(screener.valid?(:disability_benefits)).to eq true
+        expect(screener.receiving_benefits_write_in).to eq "a different benefit"
       end
 
       it "must not have value longer than DisabilityBenefitsController::CHARACTER_LIMIT, if a value is set" do
