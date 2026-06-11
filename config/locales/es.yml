@@ -44,7 +44,7 @@ es:
     must_answer_yes_or_no: Debe responder sí o no
     number_invalid: Ingrese un número
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
-    required: " Ingrese %{field_name}"
+    required: "Ingrese %{field_name}"
     signature_required: Se requiere su firma para continuar
     zip_code_invalid: Ingrese un código de área válido con por lo menos cinco números
   views:
