@@ -62,7 +62,9 @@ RSpec.describe PdfFiller::PacketPdf do
         screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
         screener.case_number = "543212345"
         screener.confirmation_code = "ABQ39L"
+        screener.preventing_work_other = "yes"
         screener.preventing_work_write_in = "Back pain"
+        screener.receiving_benefits_other = "yes"
         screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
         screener.receiving_benefits_write_in = "Other disability"
         screener.signature = "Nigellla Lawson"
@@ -105,9 +107,9 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:full_name_with_middle]).to eq("Nigella Lucy Lawson")
       end
 
-      it "delegates receiving_disabilty_benefits to screener" do
+      it "delegates receiving_disability_benefits to screener" do
         allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
-        expect(result[:receiving_disabilty_benefits]).to be true
+        expect(result[:receiving_disability_benefits]).to be true
       end
     end
 

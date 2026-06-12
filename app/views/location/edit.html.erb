@@ -89,6 +89,16 @@
       }
     }
 
+    const selectRequiredMessage = "<%= j t('general.select_required') %>";
+    [stateSelect, countySelect].forEach(function(el) {
+      el.addEventListener("invalid", function() {
+        el.setCustomValidity(selectRequiredMessage);
+      });
+      el.addEventListener("change", function() {
+        el.setCustomValidity("");
+      });
+    });
+
     // Initial population
     populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
     showOrHideZipCodeInput(stateSelect.value);

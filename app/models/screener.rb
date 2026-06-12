@@ -99,11 +99,11 @@ class Screener < ApplicationRecord
   end
 
   with_context :basic_info_details do
-    validates :first_name, presence: {message: ->(*) { I18n.t("validations.first_name_required") }}
-    validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
-    validates :last_name, presence: {message: ->(*) { I18n.t("validations.last_name_required") }}
-    validates :last_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
-    validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT}
+    validates :first_name, presence: {message: ->(*) { I18n.t("validations.required", field_name: I18n.t("validations.fields.first_name").downcase) }}
+    validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.first_name")) }}
+    validates :last_name, presence: {message: ->(*) { I18n.t("validations.required", field_name: I18n.t("validations.fields.last_name").downcase) }}
+    validates :last_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.last_name")) }}
+    validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.middle_name")) }}
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
     validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
@@ -137,7 +137,6 @@ class Screener < ApplicationRecord
           receiving_benefits_disability_medicaid_yes? ||
           receiving_benefits_other_yes?
       }
-    validates :receiving_benefits_write_in, absence: true, if: -> { receiving_benefits_other_no? }
     validates :receiving_benefits_write_in, length: {maximum: DisabilityBenefitsController::CHARACTER_LIMIT}
   end
 
@@ -193,7 +192,6 @@ class Screener < ApplicationRecord
           preventing_work_medical_condition_yes? ||
           preventing_work_other_yes?
       }
-    validates :preventing_work_write_in, absence: true, if: -> { preventing_work_other_no? }
     validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}
   end
 
@@ -320,6 +318,7 @@ class Screener < ApplicationRecord
   end
 
   def pdf
+    Rails.logger.info("Generating PDF for screener #{id}")
     LocationData::States.pdf_filler_class(state).new(self).combined_pdf
   end
 

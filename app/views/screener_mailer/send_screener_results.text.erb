@@ -74,7 +74,7 @@
 <%= t('views.screener_mailer.send_screener_results.proofs_you_may_need.disability_benefits_help_text') %>
 <% Screener::DISABILITY_BENEFIT_ATTRIBUTES.each do |benefit| %>
 <% if @screener.public_send("#{benefit}_yes?") %>
-- <%= t("views.disability_benefits.edit.#{benefit}") %><% if benefit == :receiving_benefits_other && @screener.receiving_benefits_write_in.present? %>: <%= @screener.receiving_benefits_write_in %><% end %>
+- <%= t("views.disability_benefits.edit.#{benefit}") %><% if benefit == :receiving_benefits_other && @screener.receiving_benefits_write_in.present? && @screener.receiving_benefits_other_yes? %>: <%= @screener.receiving_benefits_write_in %><% end %>
 <% end %>
 <% end %>
 <% end %>
