@@ -15,7 +15,11 @@ class OutOfStateController < QuestionController
   delegate :county, to: :class
 
   def self.county_not_supported?(screener)
-    return false unless LocationData::States::STATES_INFO[screener.state][:office_by] == :county
+    office_by = LocationData::States::STATES_INFO.dig(screener.state, :office_by)
+    unless office_by
+      Rails.logger.warn("county_not_supported? called with unrecognized state | screener_id=#{screener.id} | state=#{screener.state.inspect}")
+    end
+    return false unless office_by == :county
 
     county = county(screener)
     county.present? && !county[:is_supported]

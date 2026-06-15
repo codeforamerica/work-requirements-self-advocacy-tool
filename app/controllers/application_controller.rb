@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     head :not_acceptable
   end
 
+  rescue_from ActionDispatch::ParameterTypeError do |e|
+    Rails.logger.warn("ParameterTypeError: #{e.message} | url=#{request.original_url} | ip=#{request.remote_ip} | ua=#{request.user_agent}")
+    head :bad_request
+  end
+
   before_action do
     RequestStore.store[:session_id] = session.id
     RequestStore.store[:screener_id] = current_screener&.id
