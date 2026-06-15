@@ -11,7 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActionDispatch::ParameterTypeError do |e|
-    Rails.logger.warn("ParameterTypeError: #{e.message} | url=#{request.original_url} | ip=#{request.remote_ip} | ua=#{request.user_agent}")
+    safe_path = request.path.to_s.gsub(/[[:cntrl:]]/, "?").truncate(200)
+    safe_ip = request.remote_ip.to_s.gsub(/[[:cntrl:]]/, "?")
+    safe_ua = request.user_agent.to_s.gsub(/[[:cntrl:]]/, "?").truncate(200)
+    Rails.logger.warn("ParameterTypeError: #{e.message} | path=#{safe_path} | ip=#{safe_ip} | ua=#{safe_ua}")
     head :bad_request
   end
 
