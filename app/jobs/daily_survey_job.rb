@@ -20,8 +20,8 @@ class DailySurveyJob < ApplicationJob
         SurveyMailer.send_survey(outgoing_email: outgoing_email).deliver_now
         outgoing_email.update(sent_at: DateTime.now)
         Rails.logger.info "Processed screener #{screener.id} for survey. Sent email #{outgoing_email.id}."
-      rescue Aws::SESV2::Errors::AccessDeniedException => e
-        Rails.logger.warn("SES access denied for screener #{screener.id}: #{e.message}")
+      rescue Aws::SESV2::Errors::AccessDeniedException
+        Rails.logger.warn("SES access denied for screener #{screener.id}")
         next
       rescue => e
         Rails.logger.error "Failed sending survey for screener #{screener.id}: #{e.class} - #{e.message}"
