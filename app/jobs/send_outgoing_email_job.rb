@@ -1,8 +1,8 @@
 class SendOutgoingEmailJob < ApplicationJob
   queue_as :default
 
-  discard_on Aws::SESV2::Errors::AccessDeniedException do |job, error|
-    Rails.logger.warn("SES access denied, discarding email job | email_id=#{job.arguments.first} | error=#{error.message}")
+  discard_on Aws::SESV2::Errors::AccessDeniedException do |job, _error|
+    Rails.logger.warn("SES access denied, discarding email job | email_id=#{job.arguments.first}")
   end
 
   def perform(email_id)
