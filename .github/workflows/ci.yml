@@ -57,7 +57,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version-file: .tool-versions
           cache: yarn
 
       - name: Run migrations and check schema
@@ -106,7 +106,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v6
         with:
-          node-version: 22
+          node-version-file: .tool-versions
           cache: yarn
 
       - name: Run tests
