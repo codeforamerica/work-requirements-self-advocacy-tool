@@ -5,7 +5,7 @@ require Rails.root.join("lib", "log_formatter")
 # Omit request params and error messages from AWS SDK logs — both can contain
 # email addresses and full message bodies.
 Aws.config[:log_formatter] = Aws::Log::Formatter.new(
-  "[:client_class :http_response_status_code :retries retries :duration] :operation :error_class"
+  "[:client_class :http_response_status_code :retries retries :time] :operation :error_class"
 )
 
 Rails.application.configure do
