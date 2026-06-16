@@ -4,6 +4,12 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
+  PII_ATTRIBUTES = %i[email email_confirmation ssn_last_four case_number phone_number].freeze
+
+  def self.pii_attributes
+    PII_ATTRIBUTES
+  end
+
   AGE_EXEMPT = "age_exempt"
   EXEMPT = "exempt"
   NOT_EXEMPT_WORK_RULES_MET = "not_exempt_work_rules_met"
