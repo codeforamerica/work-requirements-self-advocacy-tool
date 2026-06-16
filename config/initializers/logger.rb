@@ -8,6 +8,16 @@ Aws.config[:log_formatter] = Aws::Log::Formatter.new(
   "[:client_class :http_response_status_code :retries retries :time] :operation :error_class"
 )
 
+# Recursively redact email addresses from any string, array, or hash value.
+REDACT_EMAILS = lambda do |value|
+  case value
+  when String then value.gsub(/[\w.+-]+@[\w.-]+\.\w+/, "[email redacted]")
+  when Array then value.map { |v| REDACT_EMAILS.call(v) }
+  when Hash then value.transform_values { |v| REDACT_EMAILS.call(v) }
+  else value
+  end
+end
+
 Rails.application.configure do
   # Setup structured logging.
   config.semantic_logger.application = "getbenefitshelp"
@@ -15,16 +25,6 @@ Rails.application.configure do
 
   config.rails_semantic_logger.add_file_appender = false
   config.semantic_logger.add_appender(io: $stdout, formatter: LogFormatter.new)
-
-  # Recursively redact email addresses from any string, array, or hash value.
-  REDACT_EMAILS = lambda do |value|
-    case value
-    when String then value.gsub(/[\w.+\-]+@[\w.\-]+\.\w+/, "[email redacted]")
-    when Array  then value.map { |v| REDACT_EMAILS.call(v) }
-    when Hash   then value.transform_values { |v| REDACT_EMAILS.call(v) }
-    else value
-    end
-  end
 
   # Use the `on_log` callback to set attributes that we want to include in all
   # logs, but need to be set in the same fiber as the caller.
