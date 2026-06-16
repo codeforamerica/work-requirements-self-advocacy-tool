@@ -16,6 +16,16 @@ Rails.application.configure do
   config.rails_semantic_logger.add_file_appender = false
   config.semantic_logger.add_appender(io: $stdout, formatter: LogFormatter.new)
 
+  # Recursively redact email addresses from any string, array, or hash value.
+  REDACT_EMAILS = lambda do |value|
+    case value
+    when String then value.gsub(/[\w.+\-]+@[\w.\-]+\.\w+/, "[email redacted]")
+    when Array  then value.map { |v| REDACT_EMAILS.call(v) }
+    when Hash   then value.transform_values { |v| REDACT_EMAILS.call(v) }
+    else value
+    end
+  end
+
   # Use the `on_log` callback to set attributes that we want to include in all
   # logs, but need to be set in the same fiber as the caller.
   config.semantic_logger.on_log do |log|
@@ -29,6 +39,13 @@ Rails.application.configure do
     elsif RequestStore[:trace_id].present?
       log.set_context(:trace_id, RequestStore[:trace_id]) unless RequestStore[:trace_id].blank?
       log.set_context(:span_id, RequestStore[:span_id]) unless RequestStore[:span_id].blank?
+    end
+
+    log.message = REDACT_EMAILS.call(log.message) if log.message.present?
+    log.payload = REDACT_EMAILS.call(log.payload) if log.payload.is_a?(Hash)
+    if log.exception
+      log.exception = log.exception.exception(REDACT_EMAILS.call(log.exception.message))
+      log.level = :warn if log.exception.is_a?(Aws::SESV2::Errors::AccessDeniedException)
     end
   end
 end
