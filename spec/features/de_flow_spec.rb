@@ -68,7 +68,7 @@ RSpec.feature "DE Screener flow", js: true do
 
     # The screener has an exemption, so every work/volunteer/training pages are skipped
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.basic_info_milestone.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))
     fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: "Prue"
@@ -220,7 +220,7 @@ RSpec.feature "DE Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.basic_info_milestone.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))
     fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: "Mary"
