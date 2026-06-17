@@ -178,7 +178,7 @@ module ScreenerSteps
     fill_in I18n.t("views.basic_info_case_number.edit.case_number_label"), with: "ABC-123"
     click_on I18n.t("general.continue")
     expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.signature.edit.button_label")
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: email))
   end
 
