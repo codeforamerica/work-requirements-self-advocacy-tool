@@ -163,7 +163,7 @@ module ScreenerSteps
     expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
     expect(page).to have_content(I18n.t("views.signature.edit.exemption_working_30_hours")) if check_earnings_exemption
     fill_in I18n.t("views.signature.edit.signature_label"), with: signature
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.signature.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: email))
 
