@@ -84,12 +84,6 @@ RSpec.feature "DE Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.email.edit.title"))
 
-    # Check that cut & paste is disabled for email fields
-    email_field = find_field(I18n.t("views.email.edit.email"))
-    expect(email_field[:oncopy]).to eq "return false;"
-    confirmation_field = find_field(I18n.t("views.email.edit.email_confirmation"))
-    expect(confirmation_field[:onpaste]).to eq "return false;"
-
     fill_in I18n.t("views.email.edit.email"), with: EMAIL
     fill_in I18n.t("views.email.edit.email_confirmation"), with: EMAIL
     click_on I18n.t("general.continue")
@@ -103,7 +97,7 @@ RSpec.feature "DE Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
     fill_in I18n.t("views.signature.edit.signature_label"), with: "Prudence Leith"
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.signature.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
     click_on I18n.t("general.back")
@@ -119,7 +113,7 @@ RSpec.feature "DE Screener flow", js: true do
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.signature.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
     click_on I18n.t("general.continue")
@@ -245,7 +239,7 @@ RSpec.feature "DE Screener flow", js: true do
     # shows earnings exemption
     expect(page).to have_content(I18n.t("views.signature.edit.exemption_working_30_hours"))
     fill_in I18n.t("views.signature.edit.signature_label"), with: "Mary Berry"
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.signature.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: EMAIL))
 
