@@ -209,7 +209,7 @@ GEM
       google-protobuf (~> 4.26)
     grover (1.2.10)
       nokogiri (~> 1)
-    hexapdf (1.8.0)
+    hexapdf (1.9.1)
       cmdparse (~> 3.0, >= 3.0.3)
       geom2d (~> 0.4, >= 0.4.1)
       openssl (>= 2.2.1)
@@ -756,7 +756,7 @@ DEPENDENCIES
   dotenv
   factory_bot_rails
   grover
-  hexapdf (~> 1.8)
+  hexapdf (~> 1.9)
   i18n-tasks (~> 1.1.2)
   jbuilder
   jsbundling-rails
