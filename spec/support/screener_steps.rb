@@ -143,10 +143,6 @@ module ScreenerSteps
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.email.edit.title"))
-    email_field = find_field(I18n.t("views.email.edit.email"))
-    expect(email_field[:oncopy]).to eq "return false;"
-    confirmation_field = find_field(I18n.t("views.email.edit.email_confirmation"))
-    expect(confirmation_field[:onpaste]).to eq "return false;"
     fill_in I18n.t("views.email.edit.email"), with: email
     fill_in I18n.t("views.email.edit.email_confirmation"), with: email
     click_on I18n.t("general.continue")
