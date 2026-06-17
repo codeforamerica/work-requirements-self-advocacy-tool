@@ -14,10 +14,10 @@ RSpec.feature "NC Screener flow", js: true do
     step_prevention_section(situations: [:place_to_sleep, :other], details: "Some things are best left unwritten.")
     step_personal_info_section(
       first_name: "Prue", last_name: "Leith",
-      phone: "415-816-1286", email: EMAIL, ssn: "1234",
+      phone: "415-816-1286", email: ScreenerSteps::EMAIL, ssn: "1234",
       check_phone_toggle: true
     )
-    step_signature_and_download(signature: "Prudence Leith", email: EMAIL, with_back_nav: true)
+    step_signature_and_download(signature: "Prudence Leith", email: ScreenerSteps::EMAIL, with_back_nav: true)
     step_feedback_section
   end
 
@@ -34,9 +34,9 @@ RSpec.feature "NC Screener flow", js: true do
     step_work_activity_section(hours: 35, earnings: 300.40)
     step_personal_info_section(
       first_name: "Mary", last_name: "Berry",
-      phone: "415-816-1286", email: EMAIL, ssn: "1234"
+      phone: "415-816-1286", email: ScreenerSteps::EMAIL, ssn: "1234"
     )
-    step_signature_and_download(signature: "Mary Berry", email: EMAIL, check_earnings_exemption: true)
+    step_signature_and_download(signature: "Mary Berry", email: ScreenerSteps::EMAIL, check_earnings_exemption: true)
 
     screener = Screener.order(:created_at).last
     expect(screener.is_working_yes?).to eq true
@@ -62,5 +62,36 @@ RSpec.feature "NC Screener flow", js: true do
     step_date_of_birth(year: "2025")
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
+  end
+
+  private
+
+  def step_nc_location
+    select "North Carolina", from: "screener_state"
+    select "Durham County", from: "screener_county"
+    click_on I18n.t("general.continue")
+  end
+
+  def step_nc_homeschool(enrolled:, name: "Tough Nuts Academy", hours: "25")
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
+    if enrolled
+      choose I18n.t("general.affirmative")
+      fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: name
+      fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: hours
+    else
+      choose I18n.t("general.negative")
+    end
+    click_on I18n.t("general.continue")
+  end
+
+  def step_nc_edu_work_history
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
+    within(".question-with-follow-up__question") do
+      choose I18n.t("general.negative")
+    end
+    within("#worked-last-five-years") do
+      choose I18n.t("general.affirmative")
+    end
+    click_on I18n.t("general.continue")
   end
 end

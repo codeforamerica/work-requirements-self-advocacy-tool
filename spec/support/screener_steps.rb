@@ -1,10 +1,6 @@
-# frozen_string_literal: true
-
-EMAIL = "hi@example.com"
-
 module ScreenerSteps
+  EMAIL = "hi@example.com"
   # -- Homepage ---------------------------------------------------------------
-
   def step_homepage
     visit root_path
     expect(page).to have_selector("h1", text: I18n.t("views.homepage.index.title"))
@@ -12,22 +8,7 @@ module ScreenerSteps
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
   end
 
-  # -- State-specific location ------------------------------------------------
-
-  def step_nc_location
-    select "North Carolina", from: "screener_state"
-    select "Durham County", from: "screener_county"
-    click_on I18n.t("general.continue")
-  end
-
-  def step_de_location
-    select "Delaware", from: "screener_state"
-    fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
-    click_on I18n.t("general.continue")
-  end
-
   # -- Age screening ----------------------------------------------------------
-
   def step_date_of_birth(year:)
     expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
     select "September", from: "Month"
@@ -37,7 +18,6 @@ module ScreenerSteps
   end
 
   # -- Common exemption questions (tribe → migrant farmworker) ----------------
-
   # caring: :disabled_or_ill or :none
   def step_exemption_questions(caring:)
     expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
@@ -71,40 +51,13 @@ module ScreenerSteps
     click_on I18n.t("general.negative")
   end
 
-  # -- NC-specific education screens ------------------------------------------
-
-  # Call between step_exemption_questions and step_school_enrollment for NC.
-  def step_nc_homeschool(enrolled:, name: "Tough Nuts Academy", hours: "25")
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
-    if enrolled
-      choose I18n.t("general.affirmative")
-      fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: name
-      fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: hours
-    else
-      choose I18n.t("general.negative")
-    end
-    click_on I18n.t("general.continue")
-  end
-
+  # -- School enrollment ------------------------------------------------------
   def step_school_enrollment(answer:)
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
     click_on (answer == :yes) ? I18n.t("general.affirmative") : I18n.t("general.negative")
   end
 
-  # Call after step_school_enrollment(answer: :yes) for NC.
-  def step_nc_edu_work_history
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
-    within(".question-with-follow-up__question") do
-      choose I18n.t("general.negative")
-    end
-    within("#worked-last-five-years") do
-      choose I18n.t("general.affirmative")
-    end
-    click_on I18n.t("general.continue")
-  end
-
   # -- Alcohol treatment ------------------------------------------------------
-
   def step_alcohol_treatment_program(answer:, program_name: nil)
     expect(page).to have_selector("h1", text: I18n.t("views.alcohol_treatment_program.edit.title"))
     if answer == :yes
@@ -117,7 +70,6 @@ module ScreenerSteps
   end
 
   # -- Preventing work section ------------------------------------------------
-
   # situations: array of symbols (:medical_condition, :place_to_sleep, :other) or :none
   # details: required text when situations is not :none (preventing_work_details page)
   def step_prevention_section(situations:, details: nil)
@@ -149,7 +101,6 @@ module ScreenerSteps
   end
 
   # -- Work activity section (no regular exemption only) ----------------------
-
   def step_work_activity_section(hours:, earnings:)
     expect(page).to have_selector("h1", text: I18n.t("views.wages_hours_milestone.edit.title"))
     click_on I18n.t("general.continue")
@@ -170,7 +121,6 @@ module ScreenerSteps
   end
 
   # -- Personal info section --------------------------------------------------
-
   # check_phone_toggle: verify the SMS consent legend appears only after a full phone number
   def step_personal_info_section(first_name:, last_name:, phone:, email:, ssn:, check_phone_toggle: false)
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
@@ -237,7 +187,6 @@ module ScreenerSteps
   end
 
   # -- Feedback section (regular exemption only) ------------------------------
-
   def step_feedback_section
     click_on I18n.t("general.continue")
 

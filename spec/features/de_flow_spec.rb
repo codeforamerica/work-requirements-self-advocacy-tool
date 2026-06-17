@@ -12,10 +12,10 @@ RSpec.feature "DE Screener flow", js: true do
     step_prevention_section(situations: [:medical_condition, :other], details: "Some things are best left unwritten.")
     step_personal_info_section(
       first_name: "Prue", last_name: "Leith",
-      phone: "415-816-1286", email: EMAIL, ssn: "1234",
+      phone: "415-816-1286", email: ScreenerSteps::EMAIL, ssn: "1234",
       check_phone_toggle: true
     )
-    step_signature_and_download(signature: "Prudence Leith", email: EMAIL, with_back_nav: true)
+    step_signature_and_download(signature: "Prudence Leith", email: ScreenerSteps::EMAIL, with_back_nav: true)
     step_feedback_section
   end
 
@@ -31,9 +31,9 @@ RSpec.feature "DE Screener flow", js: true do
     step_work_activity_section(hours: 35, earnings: 300.40)
     step_personal_info_section(
       first_name: "Mary", last_name: "Berry",
-      phone: "415-816-1286", email: EMAIL, ssn: "1234"
+      phone: "415-816-1286", email: ScreenerSteps::EMAIL, ssn: "1234"
     )
-    step_signature_and_download(signature: "Mary Berry", email: EMAIL, check_earnings_exemption: true)
+    step_signature_and_download(signature: "Mary Berry", email: ScreenerSteps::EMAIL, check_earnings_exemption: true)
 
     screener = Screener.order(:created_at).last
     expect(screener.is_working_yes?).to eq true
@@ -41,5 +41,13 @@ RSpec.feature "DE Screener flow", js: true do
     expect(screener.working_weekly_earnings).to eq 300.40
     expect(screener.has_earnings_exemption?).to eq true
     expect(screener.has_exemption?).to eq false
+  end
+
+  private
+
+  def step_de_location
+    select "Delaware", from: "screener_state"
+    fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
+    click_on I18n.t("general.continue")
   end
 end
