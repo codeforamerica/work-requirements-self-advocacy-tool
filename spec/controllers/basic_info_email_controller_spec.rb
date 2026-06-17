@@ -84,14 +84,14 @@ RSpec.describe BasicInfoEmailController, type: :controller do
 
       context "when from_download_form is true" do
         it "routes review to DownloadFormController" do
-          post :update, params: { screener: { email: "test@example.com", email_confirmation: "test@example.com" }, from_download_form: "true" }
+          post :update, params: {screener: {email: "test@example.com", email_confirmation: "test@example.com"}, from_download_form: "true"}
           expect(subject.send(:review_controller)).to eq DownloadFormController
         end
       end
 
       context "when from_download_form is false" do
         it "routes review to SignatureController" do
-          post :update, params: { screener: { email: "test@example.com", email_confirmation: "test@example.com" } }
+          post :update, params: {screener: {email: "test@example.com", email_confirmation: "test@example.com"}}
           expect(subject.send(:review_controller)).to eq SignatureController
         end
       end
