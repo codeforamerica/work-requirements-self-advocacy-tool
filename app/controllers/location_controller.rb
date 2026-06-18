@@ -23,5 +23,4 @@ class LocationController < QuestionController
       current_screener.create_nc_screener
     end
   end
-
 end

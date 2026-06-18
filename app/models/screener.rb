@@ -20,7 +20,8 @@ class Screener < ApplicationRecord
     signature
     ssn_last_four
     survey_additional_feedback
-    zip_code].freeze
+    zip_code
+  ].freeze
 
   def self.pii_attributes
     PII_ATTRIBUTES
