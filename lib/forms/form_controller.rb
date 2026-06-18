@@ -63,7 +63,7 @@ module Forms
     end
 
     def track_page_submit(submitted_params, model_class)
-      pii_attrs = model_class.respond_to?(:pii_attributes) ? model_class.pii_attributes : []
+      pii_attrs = model_class.respond_to?(:pii_attributes) ? model_class.pii_attributes(submitted_params.to_h) : []
       sanitized = submitted_params.to_h.each_with_object({}) do |(key, value), hash|
         if pii_attrs.include?(key.to_sym)
           hash[:"has_#{key}"] = value.present?

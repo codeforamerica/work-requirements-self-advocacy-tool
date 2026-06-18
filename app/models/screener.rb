@@ -4,11 +4,10 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
-  PII_ATTRIBUTES = %i[
+  BASE_PII_ATTRIBUTES = %i[
     alcohol_treatment_program_name
     birth_date
     case_number
-    county
     email
     first_name
     last_name
@@ -20,11 +19,15 @@ class Screener < ApplicationRecord
     signature
     ssn_last_four
     survey_additional_feedback
-    zip_code
   ].freeze
 
-  def self.pii_attributes
-    PII_ATTRIBUTES
+  def self.pii_attributes(params = {})
+    location_pii = case params[:state]
+                   when LocationData::States::NORTH_CAROLINA then [:county]
+                   when LocationData::States::DELAWARE then [:zip_code]
+                   else []
+                   end
+    BASE_PII_ATTRIBUTES + location_pii
   end
 
   AGE_EXEMPT = "age_exempt"
