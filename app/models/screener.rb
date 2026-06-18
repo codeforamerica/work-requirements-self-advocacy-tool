@@ -4,7 +4,23 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
-  PII_ATTRIBUTES = %i[email email_confirmation ssn_last_four case_number phone_number].freeze
+  PII_ATTRIBUTES = %i[
+    alcohol_treatment_program_name
+    birth_date
+    case_number
+    county
+    email
+    first_name
+    last_name
+    middle_name
+    phone_number
+    pregnancy_due_date
+    preventing_work_write_in
+    receiving_benefits_write_in
+    signature
+    ssn_last_four
+    survey_additional_feedback
+    zip_code].freeze
 
   def self.pii_attributes
     PII_ATTRIBUTES

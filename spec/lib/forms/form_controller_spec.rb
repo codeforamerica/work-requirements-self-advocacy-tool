@@ -16,8 +16,9 @@ RSpec.describe Forms::FormController, type: :controller do
   end
 
   before do
-    routes.draw { post "update" => "anonymous#update" }
-    allow(MixpanelService).to receive(:send_event)
+    routes.draw { post "update" => "question#update" }
+    controller.prepend_view_path(ActionView::FixtureResolver.new("question/edit.html.erb" => ""))
+allow(MixpanelService).to receive(:send_event)
     sign_in create(:screener)
   end
 
