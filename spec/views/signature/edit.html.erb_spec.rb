@@ -30,7 +30,7 @@ RSpec.describe "signature/edit", type: :view do
     it "shows the email address when email is present" do
       screener.update!(email: "test@example.com")
       render
-      expect(rendered).to include("test@example.com")
+      expect(rendered).to include(I18n.t("views.signature.edit.email_confirmation_html", email: "test@example.com"))
     end
 
     it "does not show the email confirmation when email is blank" do
