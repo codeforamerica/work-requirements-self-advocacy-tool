@@ -1292,19 +1292,21 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  describe ".pii_attributes" do
-    it "returns base PII attributes when no state is given" do
-      expect(Screener.pii_attributes).not_to include(:county, :zip_code)
+  describe "#pii_attributes" do
+    it "returns base PII attributes when state is blank" do
+      expect(build(:screener, state: nil).pii_attributes).not_to include(:county, :zip_code)
     end
 
     it "includes county for NC" do
-      expect(Screener.pii_attributes({state: LocationData::States::NORTH_CAROLINA})).to include(:county)
-      expect(Screener.pii_attributes({state: LocationData::States::NORTH_CAROLINA})).not_to include(:zip_code)
+      screener = build(:screener, state: LocationData::States::NORTH_CAROLINA)
+      expect(screener.pii_attributes).to include(:county)
+      expect(screener.pii_attributes).not_to include(:zip_code)
     end
 
     it "includes zip_code for DE" do
-      expect(Screener.pii_attributes({state: LocationData::States::DELAWARE})).to include(:zip_code)
-      expect(Screener.pii_attributes({state: LocationData::States::DELAWARE})).not_to include(:county)
+      screener = build(:screener, state: LocationData::States::DELAWARE)
+      expect(screener.pii_attributes).to include(:zip_code)
+      expect(screener.pii_attributes).not_to include(:county)
     end
   end
 

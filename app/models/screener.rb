@@ -21,12 +21,14 @@ class Screener < ApplicationRecord
     survey_additional_feedback
   ].freeze
 
-  def self.pii_attributes(params = {})
-    location_pii = case params[:state]
-    when LocationData::States::NORTH_CAROLINA then [:county]
-    when LocationData::States::DELAWARE then [:zip_code]
-    else []
-    end
+  def pii_attributes
+    return BASE_PII_ATTRIBUTES if state.blank?
+
+    location_pii = case state
+                   when LocationData::States::NORTH_CAROLINA then [:county]
+                   when LocationData::States::DELAWARE then [:zip_code]
+                   else []
+                   end
     BASE_PII_ATTRIBUTES + location_pii
   end
 
