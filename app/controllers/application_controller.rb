@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:screener_id] = current_screener&.id
     capture_trace_context
   end
-  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_current_step, :set_locale
+  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_screener_request_metadata
 
   def navigation_class
     Navigation::ScreenerNavigation
@@ -148,15 +148,19 @@ class ApplicationController < ActionController::Base
     self.class.to_path_helper(params)
   end
 
-  def set_current_step
-    return unless request.get? && current_screener&.persisted? && (path = current_path)
-    path = path.sub(%r{\A/(en|es)/}, "")
-    current_screener.update!(current_step: path) unless current_screener.current_step == path
-  end
+  def set_screener_request_metadata
+    return unless current_screener&.persisted?
 
-  def set_locale
-    return unless request.get? && current_screener&.persisted?
+    updates = {}
+
+    if request.get? && (path = current_path)
+      path = path.sub(%r{\A/(en|es)/}, "")
+      updates[:current_step] = path unless current_screener.current_step == path
+    end
+
     locale = params[:locale].presence || I18n.default_locale.to_s
-    current_screener.update!(locale: locale) unless current_screener.locale == locale
+    updates[:locale] = locale unless current_screener.locale == locale
+
+    current_screener.update!(updates) if updates.any?
   end
 end

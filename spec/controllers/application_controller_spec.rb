@@ -420,7 +420,7 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  describe "#set_current_step" do
+  describe "#set_screener_request_metadata" do
     let(:screener) { create :screener, current_step: "/download-form" }
 
     before do
@@ -502,6 +502,57 @@ RSpec.describe ApplicationController, type: :controller do
         get :index
         screener.reload
         expect(screener.current_step).to eq("new-response")
+      end
+    end
+  end
+
+  describe "#set_screener_request_metadata (locale)" do
+    let(:screener) { create :screener }
+
+    before do
+      allow(subject).to receive(:current_screener).and_return(screener)
+    end
+
+    context "when locale param is present" do
+      it "saves the locale to the screener" do
+        get :index, params: { locale: "es" }
+        expect(screener.reload.locale).to eq("es")
+      end
+    end
+
+    context "when locale param is absent" do
+      it "saves the default locale" do
+        get :index
+        expect(screener.reload.locale).to eq(I18n.default_locale.to_s)
+      end
+    end
+
+    context "when the locale already matches" do
+      before { screener.update!(locale: "es") }
+
+      it "does not update the locale" do
+        expect(screener).not_to receive(:update!).with(hash_including(locale: anything))
+        get :index, params: { locale: "es" }
+      end
+    end
+
+    context "when there is no current screener" do
+      before do
+        allow(subject).to receive(:current_screener).and_return(nil)
+      end
+
+      it "does not raise an error" do
+        expect { get :index }.not_to raise_error
+      end
+    end
+
+    context "when the current screener is not persisted" do
+      let(:screener) { build(:screener) }
+
+      it "does not update the locale" do
+        get :index, params: { locale: "es" }
+        expect(screener.locale).to be_nil
+        expect(screener).not_to be_persisted
       end
     end
   end
