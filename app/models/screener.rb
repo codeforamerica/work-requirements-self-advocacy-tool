@@ -25,10 +25,10 @@ class Screener < ApplicationRecord
     return BASE_PII_ATTRIBUTES if state.blank?
 
     location_pii = case state
-                   when LocationData::States::NORTH_CAROLINA then [:county]
-                   when LocationData::States::DELAWARE then [:zip_code]
-                   else []
-                   end
+    when LocationData::States::NORTH_CAROLINA then [:county]
+    when LocationData::States::DELAWARE then [:zip_code]
+    else []
+    end
     BASE_PII_ATTRIBUTES + location_pii
   end
 
