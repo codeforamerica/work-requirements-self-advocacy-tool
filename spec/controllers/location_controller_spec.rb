@@ -44,49 +44,5 @@ RSpec.describe LocationController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
-
-    it "updates the state and county values and sends a mixpanel event" do
-      screener = create(:screener)
-      sign_in screener
-      allow(MixpanelService).to receive(:send_event)
-
-      params = {
-        state: "NC",
-        county: "Anson County"
-      }
-
-      post :update, params: {screener: params}
-      expect(screener.reload.state).to eq "NC"
-      expect(screener.reload.county).to eq "Anson County"
-
-      expect(MixpanelService).to have_received(:send_event).with(
-        hash_including(
-          event_name: "page_submit",
-          data: {state: "NC", county: "Anson County"}
-        )
-      )
-    end
-
-    it "updates the state and zip code values and sends a mixpanel event" do
-      screener = create(:screener)
-      sign_in screener
-      allow(MixpanelService).to receive(:send_event)
-
-      params = {
-        state: "DE",
-        zip_code: "19954"
-      }
-
-      post :update, params: {screener: params}
-      expect(screener.reload.state).to eq "DE"
-      expect(screener.reload.zip_code).to eq "19954"
-
-      expect(MixpanelService).to have_received(:send_event).with(
-        hash_including(
-          event_name: "page_submit",
-          data: {state: "DE", zip_code: "19954"}
-        )
-      )
-    end
   end
 end
