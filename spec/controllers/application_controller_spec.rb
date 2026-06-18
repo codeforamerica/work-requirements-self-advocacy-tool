@@ -515,7 +515,7 @@ RSpec.describe ApplicationController, type: :controller do
 
     context "when locale param is present" do
       it "saves the locale to the screener" do
-        get :index, params: { locale: "es" }
+        get :index, params: {locale: "es"}
         expect(screener.reload.locale).to eq("es")
       end
     end
@@ -532,7 +532,7 @@ RSpec.describe ApplicationController, type: :controller do
 
       it "does not update the locale" do
         expect(screener).not_to receive(:update!).with(hash_including(locale: anything))
-        get :index, params: { locale: "es" }
+        get :index, params: {locale: "es"}
       end
     end
 
@@ -550,7 +550,7 @@ RSpec.describe ApplicationController, type: :controller do
       let(:screener) { build(:screener) }
 
       it "does not update the locale" do
-        get :index, params: { locale: "es" }
+        get :index, params: {locale: "es"}
         expect(screener.locale).to be_nil
         expect(screener).not_to be_persisted
       end
