@@ -104,6 +104,4 @@ RSpec.describe Forms::FormController, type: :controller do
       end
     end
   end
-
-
 end

@@ -23,10 +23,10 @@ class Screener < ApplicationRecord
 
   def self.pii_attributes(params = {})
     location_pii = case params[:state]
-                   when LocationData::States::NORTH_CAROLINA then [:county]
-                   when LocationData::States::DELAWARE then [:zip_code]
-                   else []
-                   end
+    when LocationData::States::NORTH_CAROLINA then [:county]
+    when LocationData::States::DELAWARE then [:zip_code]
+    else []
+    end
     BASE_PII_ATTRIBUTES + location_pii
   end
 
