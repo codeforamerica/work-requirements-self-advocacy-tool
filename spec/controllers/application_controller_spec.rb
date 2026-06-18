@@ -346,6 +346,20 @@ RSpec.describe ApplicationController, type: :controller do
       allow(subject).to receive(:send_mixpanel_event)
     end
 
+    context "with a non-default locale" do
+      before do
+        allow(subject).to receive(:send_mixpanel_event).and_call_original
+        allow(MixpanelService.instance).to receive(:run)
+      end
+
+      it "sends the page_view event with the request locale" do
+        get :index, params: {locale: "es"}
+        expect(MixpanelService.instance).to have_received(:run).with(
+          hash_including(data: hash_including(locale: :es))
+        )
+      end
+    end
+
     context "request is get" do
       it "sends an event" do
         get :index
