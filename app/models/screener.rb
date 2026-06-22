@@ -5,6 +5,7 @@ class Screener < ApplicationRecord
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
   BASE_PII_ATTRIBUTES = %i[
+    additional_care_info
     alcohol_treatment_program_name
     birth_date
     case_number
@@ -98,7 +99,7 @@ class Screener < ApplicationRecord
     validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}
   end
 
-  with_context :american_indian do
+  with_context :tribe_or_nation do
     validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 

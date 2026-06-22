@@ -43,6 +43,22 @@ RSpec.describe LocationController, type: :controller do
   end
 
   describe "#update" do
-    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :update
+
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) {
+        [
+          {
+            form_params: {state: "NC", county: "Anson County"},
+            expected_data: {state: "NC", has_county: true}
+          },
+          {
+            form_params: {state: "DE", zip_code: "19954"},
+            expected_data: {state: "DE", has_zip_code: true}
+          }
+        ]
+      }
+      let(:invalid_params) { {state: ""} }
+    end
   end
 end

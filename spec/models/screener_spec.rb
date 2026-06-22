@@ -6,7 +6,7 @@ RSpec.describe Screener, type: :model do
   describe "validations" do
     context "required yes/no" do
       [
-        [:american_indian, :is_american_indian],
+        [:tribe_or_nation, :is_american_indian],
         [:living_with_someone, :has_child],
         [:unemployment, :has_unemployment_benefits],
         [:school_enrollment, :is_student]
