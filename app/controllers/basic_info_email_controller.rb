@@ -12,7 +12,11 @@ class BasicInfoEmailController < ExemptionAwareQuestionController
   end
 
   def review_controller
-    DownloadFormController
+    if current_screener.from_download_form
+      DownloadFormController
+    else
+      SignatureController
+    end
   end
 
   private

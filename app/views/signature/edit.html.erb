@@ -6,12 +6,18 @@
 
 <p><%= t("views.signature.edit.instructions") %></p>
 
-<div class="privacy-policy-scrollbox">
-  <%= render "signature/privacy_policy" %>
+<div class="notice teal">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-check_circle"></i>
+    </div>
+    <div class="media-box__content">
+      <%= t("views.signature.edit.notice") %>
+    </div>
+  </div>
 </div>
 
-<div class="notice white spacing-above-35">
-  <%= image_tag "apple.svg", class: "illustration left-justified" %>
+<div class="notice grey-light spacing-above-35">
   <h2 class="h3"><%= t("views.signature.edit.exemptions_heading") %></h2>
   <ul class="list--bulleted">
     <% if @current_screener.is_american_indian_yes? %>
@@ -85,9 +91,18 @@
   <% end %>
 </div>
 
-<p class="spacing-above-35"><%= t("views.signature.edit.perjury_statement") %></p>
+<p><%= t("views.signature.edit.final_instructions") %></p>
+
+<div class="privacy-policy-scrollbox">
+  <%= render "signature/privacy_policy" %>
+</div>
+
+<% if @current_screener.email.present? %>
+  <div class="spacing-above-35"><div class="media-box__media media--icon narrow"><i class="icon-markunread"></i></div><%= t("views.signature.edit.email_confirmation_html", email: @current_screener.email) %></div>
+<% end %>
+<div class="<%= 'spacing-above-35 ' unless @current_screener.email.present? %>spacing-below-35"><div class="media-box__media media--icon narrow"><i class="icon-">&#xE897;</i></div><%= t("views.signature.edit.perjury_statement") %></div>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
   <%= f.cfa_input_field(:signature, t("views.signature.edit.signature_label"), help_text: t("views.signature.edit.signature_help_text")) %>
-  <%= f.submit t("general.continue"), class: "button button--primary" %>
+  <%= f.submit t("views.signature.edit.button_label"), class: "button button--primary" %>
 <% end %>
