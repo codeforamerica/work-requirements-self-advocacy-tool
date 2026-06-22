@@ -18,6 +18,28 @@ RSpec.describe "signature/edit", type: :view do
     expect(rendered).to include(I18n.t("views.signature.edit.signature_help_text"))
   end
 
+  it "displays the notice, final instructions, and submit button label" do
+    render
+    unescaped = CGI.unescape_html(rendered)
+    expect(unescaped).to include(I18n.t("views.signature.edit.notice"))
+    expect(unescaped).to include(I18n.t("views.signature.edit.final_instructions"))
+    expect(unescaped).to include(I18n.t("views.signature.edit.button_label"))
+  end
+
+  describe "email confirmation" do
+    it "shows the email address when email is present" do
+      screener.update!(email: "test@example.com")
+      render
+      expect(rendered).to include(I18n.t("views.signature.edit.email_confirmation_html", email: "test@example.com"))
+    end
+
+    it "does not show the email confirmation when email is blank" do
+      screener.update!(email: nil)
+      render
+      expect(rendered).not_to include(I18n.t("views.signature.edit.email_confirmation_html", email: ""))
+    end
+  end
+
   describe "exemption: American Indian" do
     it "shows when selected" do
       screener.update(is_american_indian: "yes")
