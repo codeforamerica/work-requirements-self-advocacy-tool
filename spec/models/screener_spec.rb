@@ -1293,7 +1293,8 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "#pii_attributes" do
-    it "returns base PII attributes when state is blank" do
+    it "returns only the base PII attributes when state is blank" do
+      expect(build(:screener, state: nil).pii_attributes).to eq(Screener::BASE_PII_ATTRIBUTES)
       expect(build(:screener, state: nil).pii_attributes).not_to include(:county, :zip_code)
     end
 
