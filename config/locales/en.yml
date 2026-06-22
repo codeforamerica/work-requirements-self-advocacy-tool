@@ -592,6 +592,10 @@ en:
         website_name_nc: ePASS
     signature:
       edit:
+        button_label: Sign & create my form
+        email_confirmation_html: |
+          <p class="spacing-below-5">We'll send your form to <strong>%{email}</strong></p>
+          <p class="text-25-small">Wrong email? <a href="/basic-info-email?return_to_review=y">Edit it here</a></p>
         exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
         exemption_alcohol_treatment: Participating in a drug or alcohol treatment program
         exemption_american_indian: A member of an American Indian tribe or nation
@@ -608,7 +612,9 @@ en:
         exemption_unemployment: Getting or applying for unemployment benefits
         exemption_working_30_hours: Already working at least 30 hours a week
         exemptions_heading: 'You may not have to follow the SNAP work rules because you are:'
-        instructions: 'Read this before you sign your form:'
+        final_instructions: 'Read this before you sign your form:'
+        instructions: Once you sign, your form is ready. We'll walk you through how to submit it, including any proof you may need to attach.
+        notice: You are likely exempt
         perjury_statement: By signing below, I am agreeing under penalty of perjury that the information in this form is true and correct.
         preventing_work_domestic_violence: Experiencing or recently experienced domestic violence
         preventing_work_drugs_alcohol: Struggling with drugs or alcohol
@@ -618,8 +624,8 @@ en:
         preventing_work_medical_condition: Has a physical or mental medical condition
         preventing_work_other: Other
         preventing_work_place_to_sleep: Does not have a regular place to sleep or shower
-        signature_help_text: Enter your name as it appears on your driver's license, ID, or Social Security card.
-        signature_label: Type your full legal name here to sign
+        signature_help_text: As it appears on your driver's license, ID, or Social Security card.
+        signature_label: Type your full legal name here to sign (required)
         title: Sign & create your form
     survey_mailer:
       send_survey:

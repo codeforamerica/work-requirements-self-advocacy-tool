@@ -590,6 +590,10 @@ es:
         website_name_nc: ePASS
     signature:
       edit:
+        button_label: Firmar y crear mi formulario
+        email_confirmation_html: |
+          <p class="spacing-below-5">Le enviaremos su formulario a <strong>%{email}</strong></p>
+          <p class="text-25-small">¿El correo no es correcto? <a href="">Edítelo aquí.</a></p>
         exemption_55_no_diploma: Tener al menos 55 años, no haber obtenido un diploma de secundaria, tener poca experiencia laboral reciente y una condición médica
         exemption_alcohol_treatment: Participa en un programa de tratamiento por consumo de drogas o alcohol
         exemption_american_indian: Hace parte de una tribu o nación indígena
@@ -606,7 +610,9 @@ es:
         exemption_unemployment: Recibe o está solicitando beneficios de desempleo
         exemption_working_30_hours: Ya trabaja al menos 30 horas a la semana
         exemptions_heading: 'Es posible que no tenga que cumplir con las reglas de trabajo de SNAP porque usted:'
-        instructions: Lea esta información antes de firmar.
+        final_instructions: Lea esta información antes de firmar.
+        instructions: Una vez que firme, su formulario estará listo. Le mostraremos cómo enviarlo, incluyendo cualquier comprobante o información que pueda necesitar adjuntar.
+        notice: Es probable que esté exento
         perjury_statement: Al firmar a continuación, declaro bajo pena de perjurio, que la información en este formulario es verdadera y precisa.
         preventing_work_domestic_violence: Está viviendo o vivió recientemente una situación de violencia doméstica o abuso doméstico
         preventing_work_drugs_alcohol: Tiene problemas de consumo de drogas o alcohol
@@ -616,8 +622,8 @@ es:
         preventing_work_medical_condition: Tiene una condición médica física o mental
         preventing_work_other: Otra
         preventing_work_place_to_sleep: No tienen un lugar estable donde dormir y bañarse
-        signature_help_text: Escriba su nombre tal como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
-        signature_label: Escriba su nombre legal completo para firmar
+        signature_help_text: Como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
+        signature_label: Escriba su nombre legal completo para firmar. (Requerido)
         title: Firme y complete su formulario
     survey_mailer:
       send_survey:
