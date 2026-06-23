@@ -23,6 +23,7 @@ RSpec.describe PregnancyController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like "rejects invalid enum values", fields: [:is_pregnant]
 
     context "due date" do
       it "ignores the due date parameters when the answer is no" do

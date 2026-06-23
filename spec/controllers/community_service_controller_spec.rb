@@ -11,6 +11,7 @@ RSpec.describe CommunityServiceController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like "rejects invalid enum values", fields: [:is_volunteer]
 
     context "volunteering hours and organization" do
       it "ignores the volunteering hours and org when the answer is no" do
