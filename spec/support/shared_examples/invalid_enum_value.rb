@@ -5,7 +5,7 @@ RSpec.shared_examples "rejects invalid enum values" do |fields:|
         screener = create(:screener)
         sign_in screener
 
-        post :update, params: { screener: { field => "invalid_enum_value" } }
+        post :update, params: {screener: {field => "invalid_enum_value"}}
 
         expect(response).to have_http_status(:unprocessable_content)
       end
