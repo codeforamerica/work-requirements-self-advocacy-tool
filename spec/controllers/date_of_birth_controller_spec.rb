@@ -21,16 +21,7 @@ RSpec.describe DateOfBirthController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
-    context "with missing screener params" do
-      it "returns 422 unprocessable content and does not raise" do
-        screener = create(:screener)
-        sign_in screener
-
-        post :update, params: {}
-
-        expect(response).to have_http_status(:unprocessable_content)
-      end
-    end
+    it_behaves_like "handles missing screener params", status: :unprocessable_content
 
     context "birth date" do
       it "combines the date picker params into the birth_date attribute" do
