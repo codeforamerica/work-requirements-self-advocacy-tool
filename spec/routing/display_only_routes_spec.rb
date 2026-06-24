@@ -1,27 +1,23 @@
 require "rails_helper"
 
 RSpec.describe "display-only page routing", type: :routing do
+  all_controllers = Navigation::ScreenerNavigation.controllers.uniq
+  display_only = all_controllers.reject(&:accepts_update?)
+  accepts_update = all_controllers.select(&:accepts_update?)
+
   describe "display-only controllers" do
-    it "do not respond to PUT (no update route registered)" do
-      expect(put("/proof-guidance")).not_to be_routable
-      expect(put("/wages-hours-milestone")).not_to be_routable
-      expect(put("/work-rules-apply-met")).not_to be_routable
-      expect(put("/work-rules-apply-unmet")).not_to be_routable
-      expect(put("/basic-info-milestone")).not_to be_routable
-      expect(put("/out-of-state")).not_to be_routable
-      expect(put("/preventing-work-milestone")).not_to be_routable
-      expect(put("/age-exemption")).not_to be_routable
-      expect(put("/new-response")).not_to be_routable
+    display_only.each do |controller|
+      it "does not route PUT to #{controller.name}" do
+        expect(put("/#{controller.to_param}")).not_to be_routable
+      end
     end
   end
 
-  describe "form controllers" do
-    it "respond to PUT (update route is registered)" do
-      expect(put("/tribe-or-nation")).to be_routable
-      expect(put("/date-of-birth")).to be_routable
-      expect(put("/pregnancy")).to be_routable
-      expect(put("/basic-info-details")).to be_routable
-      expect(put("/location")).to be_routable
+  describe "form controllers that accept user input" do
+    accepts_update.each do |controller|
+      it "routes PUT to #{controller.name}" do
+        expect(put("/#{controller.to_param}")).to be_routable
+      end
     end
   end
 end
