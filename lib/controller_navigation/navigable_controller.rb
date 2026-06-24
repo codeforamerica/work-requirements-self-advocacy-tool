@@ -22,7 +22,7 @@ module ControllerNavigation
         end
 
         def accepts_update?
-          respond_to?(:attributes_edited) || private_instance_methods(false).include?(:form_params)
+          respond_to?(:attributes_edited) || private_method_defined?(:form_params, false)
         end
 
         def to_path_helper(options = {})
