@@ -10,6 +10,7 @@ class Screener < ApplicationRecord
     birth_date
     case_number
     email
+    email_confirmation
     first_name
     last_name
     middle_name
