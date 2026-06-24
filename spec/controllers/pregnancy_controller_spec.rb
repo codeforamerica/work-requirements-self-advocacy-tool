@@ -24,6 +24,17 @@ RSpec.describe PregnancyController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
+    context "with missing screener params" do
+      it "returns 400 bad request and does not raise" do
+        screener = create(:screener)
+        sign_in screener
+
+        post :update, params: {}
+
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
     context "due date" do
       it "ignores the due date parameters when the answer is no" do
         due_date = Date.current.advance(months: 2).beginning_of_month
