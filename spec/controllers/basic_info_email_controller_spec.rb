@@ -8,6 +8,16 @@ RSpec.describe BasicInfoEmailController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        [{
+          form_params: {email: "anisha@codeforamerica.org", email_confirmation: "anisha@codeforamerica.org"},
+          expected_data: {has_email: true, email_confirmation: "anisha@codeforamerica.org"}
+        }]
+      end
+      let(:invalid_params) { {email: "invalid-email", email_confirmation: "invalid-email"} }
+    end
+
     context "with signed in screener" do
       let(:screener) { create(:screener) }
       before { sign_in screener }

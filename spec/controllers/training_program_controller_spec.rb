@@ -13,6 +13,14 @@ RSpec.describe TrainingProgramController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_in_work_training]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        params = {is_in_work_training: "yes", work_training_hours: "5", work_training_name: "How to do job"}
+        [{form_params: params, expected_data: params}]
+      end
+      let(:invalid_params) { {is_in_work_training: "yes", work_training_hours: "five hours not a number", work_training_name: "How to do job"} }
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener
