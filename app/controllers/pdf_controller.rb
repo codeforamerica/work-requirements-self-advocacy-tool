@@ -1,6 +1,6 @@
 class PdfController < QuestionController
   layout "pdf"
-  skip_before_action :set_current_step
+  skip_before_action :set_screener_current_step_and_locale
   before_action :build_temp_screener
 
   def build_temp_screener
