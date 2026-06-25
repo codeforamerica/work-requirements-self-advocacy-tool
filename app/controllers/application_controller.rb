@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:screener_id] = current_screener&.id
     capture_trace_context
   end
-  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_screener_request_metadata
+  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_screener_current_step_and_locale
 
   def navigation_class
     Navigation::ScreenerNavigation
@@ -148,7 +148,7 @@ class ApplicationController < ActionController::Base
     self.class.to_path_helper(params)
   end
 
-  def set_screener_request_metadata
+  def set_screener_current_step_and_locale
     return unless current_screener&.persisted?
 
     updates = {}
