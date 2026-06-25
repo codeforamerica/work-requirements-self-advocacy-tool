@@ -1,6 +1,16 @@
 class Screener < ApplicationRecord
   devise :timeoutable
 
+  before_create :generate_session_token
+
+  def authenticatable_salt
+    session_token
+  end
+
+  def rotate_session_token!
+    update_column(:session_token, SecureRandom.hex(20))
+  end
+
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
@@ -468,6 +478,10 @@ class Screener < ApplicationRecord
   end
 
   private
+
+  def generate_session_token
+    self.session_token ||= SecureRandom.hex(20)
+  end
 
   def remove_county_if_state_does_not_require
     self.county = nil unless state.present? && LocationData::Counties.for_state(state).present?

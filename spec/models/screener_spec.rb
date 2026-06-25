@@ -1320,4 +1320,43 @@ RSpec.describe Screener, type: :model do
       expect(office[:upload_portal_or_email]).to eq("fallback@example.com")
     end
   end
+
+  describe "session token" do
+    describe "on create" do
+      it "generates a session_token automatically" do
+        screener = create(:screener)
+        expect(screener.session_token).to be_present
+      end
+
+      it "generates a unique token for each screener" do
+        tokens = Array.new(3) { create(:screener).session_token }
+        expect(tokens.uniq.length).to eq(3)
+      end
+    end
+
+    describe "#authenticatable_salt" do
+      it "returns the session_token" do
+        screener = create(:screener)
+        expect(screener.authenticatable_salt).to eq(screener.session_token)
+      end
+    end
+
+    describe "#rotate_session_token!" do
+      it "replaces the session_token with a new value" do
+        screener = create(:screener)
+        old_token = screener.session_token
+
+        screener.rotate_session_token!
+
+        expect(screener.reload.session_token).to be_present
+        expect(screener.reload.session_token).not_to eq(old_token)
+      end
+
+      it "persists the new token to the database" do
+        screener = create(:screener)
+        screener.rotate_session_token!
+        expect(Screener.find(screener.id).session_token).to eq(screener.reload.session_token)
+      end
+    end
+  end
 end

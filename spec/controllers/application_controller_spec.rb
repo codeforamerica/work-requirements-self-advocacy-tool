@@ -491,4 +491,49 @@ RSpec.describe ApplicationController, type: :controller do
       end
     end
   end
+
+  describe "#sign_out_and_redirect" do
+    let(:screener) { create(:screener) }
+
+    before do
+      routes.draw { get "sign_out_and_redirect" => "anonymous#sign_out_and_redirect" }
+      sign_in screener
+    end
+
+    it "rotates the session token before signing out" do
+      old_token = screener.session_token
+
+      get :sign_out_and_redirect
+
+      expect(screener.reload.session_token).not_to eq(old_token)
+    end
+
+    it "signs the screener out" do
+      get :sign_out_and_redirect
+
+      expect(controller.current_screener).to be_nil
+    end
+
+    it "redirects to root by default" do
+      get :sign_out_and_redirect
+
+      expect(response).to redirect_to(root_path)
+    end
+
+    it "redirects to the given redirect_path param" do
+      get :sign_out_and_redirect, params: {redirect_path: "/en"}
+
+      expect(response).to redirect_to("/en")
+    end
+
+    context "when there is no current screener" do
+      before do
+        sign_out screener
+      end
+
+      it "does not raise an error" do
+        expect { get :sign_out_and_redirect }.not_to raise_error
+      end
+    end
+  end
 end
