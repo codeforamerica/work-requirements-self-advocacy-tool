@@ -113,8 +113,15 @@ en:
         title_help_text: Adding an email helps us send you your results and next steps right away. You can skip this, but including your email makes it easier to receive your results and find out if the new SNAP work rules apply to you.
     basic_info_milestone:
       edit:
-        help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know.</strong>"
-        instructions: This information helps your caseworker find your case when you submit your form.
+        button_label: Create my form
+        help_text_html: "<strong>Let's create a document you can submit to your SNAP agency to let them know. We just need two more things:</strong>"
+        next_steps_html: |
+          <h3>What we’ll ask next</h3>
+          <ul class="list--bulleted">
+          <li><strong>Your SNAP case details (name, case number):</strong> So your caseworker can find your file more easily.</li>
+          <li><strong>Your digital signature:</strong> To authorize and complete your exemption form.</li>
+          </ul>
+        notice: You are likely exempt
         title_html: Based on your answers, you may <u>not</u> have to follow the SNAP work rules.
     basic_info_ssn:
       edit:

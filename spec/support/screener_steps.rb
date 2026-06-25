@@ -124,7 +124,7 @@ module ScreenerSteps
   # check_phone_toggle: verify the SMS consent legend appears only after a full phone number
   def step_personal_info_section(first_name:, last_name:, phone:, email:, ssn:, check_phone_toggle: false)
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.basic_info_milestone.edit.title_html")))
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.basic_info_milestone.edit.button_label")
 
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))
     fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: first_name

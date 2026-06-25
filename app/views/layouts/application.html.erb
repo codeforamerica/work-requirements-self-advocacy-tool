@@ -18,7 +18,7 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module", defer: true %>
-    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery3" %>
     <%= javascript_include_tag "honeycrisp" %>
     <%= javascript_include_tag "cfa_styleguide_main" %>
     <% if ENV["MIXPANEL_TOKEN"].present? %>
