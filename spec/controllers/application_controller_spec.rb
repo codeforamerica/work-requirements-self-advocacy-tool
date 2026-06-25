@@ -346,6 +346,34 @@ RSpec.describe ApplicationController, type: :controller do
       allow(subject).to receive(:send_mixpanel_event)
     end
 
+    context "with the default locale" do
+      before do
+        allow(subject).to receive(:send_mixpanel_event).and_call_original
+        allow(MixpanelService.instance).to receive(:run)
+      end
+
+      it "sends the page_view event with the default locale" do
+        get :index
+        expect(MixpanelService.instance).to have_received(:run).with(
+          hash_including(data: hash_including(locale: I18n.default_locale))
+        )
+      end
+    end
+
+    context "with a non-default locale" do
+      before do
+        allow(subject).to receive(:send_mixpanel_event).and_call_original
+        allow(MixpanelService.instance).to receive(:run)
+      end
+
+      it "sends the page_view event with the request locale" do
+        get :index, params: {locale: "es"}
+        expect(MixpanelService.instance).to have_received(:run).with(
+          hash_including(data: hash_including(locale: :es))
+        )
+      end
+    end
+
     context "request is get" do
       it "sends an event" do
         get :index
@@ -406,39 +434,11 @@ RSpec.describe ApplicationController, type: :controller do
     end
   end
 
-  describe "#set_current_step" do
-    let(:screener) { create :screener, current_step: "/download-form" }
+  describe "#set_screener_current_step_and_locale" do
+    let(:screener) { create :screener }
 
     before do
       allow(subject).to receive(:current_screener).and_return(screener)
-    end
-
-    context "when the screener's current step is different than the current path" do
-      let(:current_path) { "/new-response" }
-
-      it "sets the current step to the current page" do
-        get :index
-        screener.reload
-        expect(screener.current_step).to eq("/new-response")
-      end
-    end
-
-    context "when the current step matches the current path" do
-      let(:current_path) { "/download-form" }
-
-      it "does not change the current step" do
-        get :index
-        screener.reload
-        expect(screener.current_step).to eq("/download-form")
-      end
-    end
-
-    context "when the request is not a GET" do
-      it "does not update the current step" do
-        post :create
-        screener.reload
-        expect(screener.current_step).to eq("/download-form")
-      end
     end
 
     context "when there is no current screener" do
@@ -451,43 +451,110 @@ RSpec.describe ApplicationController, type: :controller do
       end
     end
 
-    context "when the current screener is not persisted" do
-      let(:screener) { build(:screener, current_step: "/download-form") }
+    context "when setting the current path" do
+      let(:screener) { create :screener, current_step: "/download-form" }
 
-      it "does not update the current step" do
-        get :index
-        expect(screener.current_step).to eq("/download-form")
-        expect(screener).not_to be_persisted
+      context "when the screener's current step is different than the current path" do
+        let(:current_path) { "/new-response" }
+
+        it "sets the current step to the current page" do
+          get :index
+          screener.reload
+          expect(screener.current_step).to eq("/new-response")
+        end
+      end
+
+      context "when the current step matches the current path" do
+        let(:current_path) { "/download-form" }
+
+        it "does not change the current step" do
+          get :index
+          screener.reload
+          expect(screener.current_step).to eq("/download-form")
+        end
+      end
+
+      context "when the request is not a GET" do
+        it "does not update the current step" do
+          post :create
+          screener.reload
+          expect(screener.current_step).to eq("/download-form")
+        end
+      end
+
+      context "when the current screener is not persisted" do
+        let(:screener) { build(:screener, current_step: "/download-form") }
+
+        it "does not update the current step" do
+          get :index
+          expect(screener.current_step).to eq("/download-form")
+          expect(screener).not_to be_persisted
+        end
+      end
+
+      context "when the current path is nil" do
+        let(:current_path) { nil }
+
+        it "does not update the current step" do
+          get :index
+          screener.reload
+          expect(screener.current_step).to eq("/download-form")
+        end
+      end
+
+      context "when the current path includes a locale prefix" do
+        let(:current_path) { "/en/new-response" }
+
+        it "strips the locale and saves the path without it" do
+          get :index
+          screener.reload
+          expect(screener.current_step).to eq("new-response")
+        end
+      end
+
+      context "when the current path includes a spanish locale prefix" do
+        let(:current_path) { "/es/new-response" }
+
+        it "strips the locale and saves the path without it" do
+          get :index
+          screener.reload
+          expect(screener.current_step).to eq("new-response")
+        end
       end
     end
 
-    context "when the current path is nil" do
-      let(:current_path) { nil }
-
-      it "does not update the current step" do
-        get :index
-        screener.reload
-        expect(screener.current_step).to eq("/download-form")
+    context "when setting the locale" do
+      context "when locale param is present" do
+        it "saves the locale to the screener" do
+          get :index, params: {locale: "es"}
+          expect(screener.reload.locale).to eq("es")
+        end
       end
-    end
 
-    context "when the current path includes a locale prefix" do
-      let(:current_path) { "/en/new-response" }
-
-      it "strips the locale and saves the path without it" do
-        get :index
-        screener.reload
-        expect(screener.current_step).to eq("new-response")
+      context "when locale param is absent" do
+        it "saves the default locale" do
+          get :index
+          expect(screener.reload.locale).to eq(I18n.default_locale.to_s)
+        end
       end
-    end
 
-    context "when the current path includes a spanish locale prefix" do
-      let(:current_path) { "/es/new-response" }
+      context "when the locale already matches" do
+        before { screener.update!(locale: "es") }
 
-      it "strips the locale and saves the path without it" do
-        get :index
-        screener.reload
-        expect(screener.current_step).to eq("new-response")
+        it "does not update the locale" do
+          expect(screener).not_to receive(:update!).with(hash_including(locale: anything))
+          get :index, params: {locale: "es"}
+        end
+      end
+
+      context "when the current screener is not persisted" do
+        let(:screener) { build(:screener) }
+
+        it "does not update the locale" do
+          get :index, params: {locale: "es"}
+          expect(screener.locale).to be_nil
+          expect(screener).not_to be_persisted
+        end
       end
     end
   end
