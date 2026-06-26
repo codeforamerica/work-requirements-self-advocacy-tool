@@ -32,7 +32,16 @@ module Forms
 
     def update
       @model = self.class.load_model(current_screener, item_index: item_index)
-      @model.assign_attributes(form_params(@model))
+      begin
+        @model.assign_attributes(form_params(@model))
+      rescue ArgumentError
+        self.class.model_valid?(@model)
+        render :edit, status: :unprocessable_content
+        return
+      rescue ActionController::ParameterMissing
+        render :edit, status: :bad_request
+        return
+      end
       if self.class.model_valid?(@model)
         self.class.save_model(@model)
         after_update_success
