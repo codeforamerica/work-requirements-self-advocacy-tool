@@ -7,6 +7,17 @@ RSpec.describe DisabilityBenefitsController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like "rejects invalid enum values", fields: [
+      :receiving_benefits_ssdi,
+      :receiving_benefits_ssi,
+      :receiving_benefits_veterans_disability,
+      :receiving_benefits_disability_pension,
+      :receiving_benefits_workers_compensation,
+      :receiving_benefits_insurance_payments,
+      :receiving_benefits_disability_medicaid,
+      :receiving_benefits_other,
+      :receiving_benefits_none
+    ]
 
     it "persists the values to the current screener" do
       screener = create(:screener)

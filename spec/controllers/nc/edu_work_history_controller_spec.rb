@@ -8,6 +8,15 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
+    it_behaves_like "rejects invalid enum values",
+      fields: [:has_hs_diploma, :worked_last_five_years, :earned_more_than_threshold, :health_conditions_preventing_work],
+      params_key: :nc_screener,
+      screener_factory: -> {
+        s = create(:screener, state: "NC")
+        s.create_nc_screener
+        s
+      }
+
     it "persists the values to the nc_screener" do
       screener = create(:screener, state: "NC")
       screener.create_nc_screener
