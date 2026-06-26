@@ -21,6 +21,10 @@ module ControllerNavigation
           [:edit]
         end
 
+        def accepts_update?
+          respond_to?(:attributes_edited) || private_method_defined?(:form_params, false)
+        end
+
         def to_path_helper(options = {})
           action = options.delete(:action) || :edit
           full_url = options.delete(:full_url) || false
