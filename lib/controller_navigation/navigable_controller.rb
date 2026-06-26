@@ -47,6 +47,10 @@ module ControllerNavigation
     def item_index
     end
 
+    def review_controller
+      nil
+    end
+
     def navigation_instance
       navigation_class.new(self, item_index: item_index)
     end

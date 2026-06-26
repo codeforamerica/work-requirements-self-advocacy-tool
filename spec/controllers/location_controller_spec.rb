@@ -79,5 +79,23 @@ RSpec.describe LocationController, type: :controller do
         )
       )
     end
+
+    it "redirects successfully when item_index=0 is passed as a query param" do
+      screener = create(:screener)
+      sign_in screener
+
+      post :update, params: {screener: {state: "NC", county: "Anson County"}, item_index: "0"}
+
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it "redirects successfully when return_to_review=1 is passed as a query param" do
+      screener = create(:screener)
+      sign_in screener
+
+      post :update, params: {screener: {state: "NC", county: "Anson County"}, return_to_review: "1"}
+
+      expect(response).to have_http_status(:redirect)
+    end
   end
 end
