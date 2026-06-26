@@ -9,6 +9,8 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:consented_to_texts]
 
+    it_behaves_like "handles missing screener params", status: :bad_request
+
     it "persists attributes to the screener" do
       screener = create(:screener, birth_date: Date.new(1990, 1, 1))
       sign_in screener

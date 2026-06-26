@@ -38,7 +38,11 @@ module Forms
         self.class.model_valid?(@model)
         render :edit, status: :unprocessable_content
         return
+      rescue ActionController::ParameterMissing
+        render :edit, status: :bad_request
+        return
       end
+      
       if self.class.model_valid?(@model)
         self.class.save_model(@model)
         after_update_success

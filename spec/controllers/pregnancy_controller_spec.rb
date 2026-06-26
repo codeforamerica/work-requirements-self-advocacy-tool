@@ -25,6 +25,8 @@ RSpec.describe PregnancyController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_pregnant]
 
+    it_behaves_like "handles missing screener params", status: :bad_request
+
     context "due date" do
       it "ignores the due date parameters when the answer is no" do
         due_date = Date.current.advance(months: 2).beginning_of_month
