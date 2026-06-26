@@ -41,7 +41,9 @@ module ControllerNavigation
     end
 
     def set_item_index
-      @item_index = params[:item_index]&.to_i
+      value = params[:item_index]
+      return head(:bad_request) if value.is_a?(Array)
+      @item_index = value&.to_i
     end
 
     def item_index
