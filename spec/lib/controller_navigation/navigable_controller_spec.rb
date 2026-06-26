@@ -36,8 +36,14 @@ RSpec.describe ControllerNavigation::NavigableController do
         expect(response).to have_http_status(:bad_request)
       end
     end
-  end
 
+    context "when item_index is submitted as a hash" do
+      it "returns 400 bad request and does not raise" do
+        expect { get :index, params: {"item_index" => {"foo" => "0"}} }.not_to raise_error
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+  end
 
   describe ".accepts_update?" do
     context "when the controller defines attributes_edited" do
