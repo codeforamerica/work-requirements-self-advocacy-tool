@@ -63,13 +63,13 @@
           <% if upload_portal_or_email.present? %>
             <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
             <% if is_email %>
-              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email)) %></li>
+              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email, upload_portal_or_email, "data-track-click" => "office_email_link_#{@current_screener.state.downcase}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
             <% else %>
-              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: upload_portal_or_email) %></li>
+              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", link: link_to(upload_portal_or_email, upload_portal_or_email, target: "_blank", "data-track-click" => "office_website_link_#{@current_screener.state.downcase}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
             <% end %>
           <% end %>
           <% if office[:website].present? && office[:website] != upload_portal_or_email %>
-            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", website: office[:website]) %></li>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", link: link_to(office[:website], office[:website], target: "_blank", "data-track-click" => "office_website_link_#{@current_screener.state.downcase}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
           <% end %>
         </ul>
       </li>
