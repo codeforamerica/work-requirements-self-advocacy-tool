@@ -7,6 +7,7 @@ RSpec.describe MigrantFarmworkerController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like "rejects invalid enum values", fields: [:is_migrant_farmworker]
 
     it "persists the values to the current screener" do
       screener = create(:screener)

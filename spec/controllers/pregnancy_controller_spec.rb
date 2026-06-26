@@ -23,6 +23,7 @@ RSpec.describe PregnancyController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like "rejects invalid enum values", fields: [:is_pregnant]
 
     it_behaves_like "handles missing screener params", status: :bad_request
 

@@ -7,6 +7,14 @@ RSpec.describe PreventingWorkSituationsController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like "rejects invalid enum values", fields: [
+      :preventing_work_place_to_sleep,
+      :preventing_work_drugs_alcohol,
+      :preventing_work_domestic_violence,
+      :preventing_work_medical_condition,
+      :preventing_work_other,
+      :preventing_work_none
+    ]
 
     it "persists the values to the current screener" do
       screener = create(:screener)
