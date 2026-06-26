@@ -31,6 +31,15 @@ RSpec.describe LocationController, type: :controller do
 
       expect(response.body).to have_select("screener_state", selected: "It's not listed here")
     end
+
+    it "returns 400 when item_index is submitted as an array" do
+      screener = create(:screener)
+      sign_in screener
+
+      get :edit, params: {item_index: ["1"]}
+
+      expect(response).to have_http_status(:bad_request)
+    end
   end
 
   describe "#update" do
