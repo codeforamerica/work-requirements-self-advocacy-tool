@@ -42,6 +42,7 @@ module Forms
         render :edit, status: :bad_request
         return
       end
+
       if self.class.model_valid?(@model)
         self.class.save_model(@model)
         after_update_success
