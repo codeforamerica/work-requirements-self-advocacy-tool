@@ -37,9 +37,11 @@ es:
     email_invalid: 'Asegúrese de que el correo electrónico es válido y está escrito en este formato: nombre@email.com'
     email_must_match: Las direcciones de correo electrónico deben coincidir.
     fields:
+      case_number: Número de caso
       first_name: Su primer nombre
       last_name: Su apellido
       middle_name: Segundo nombre
+      signature: Firma
     maximum_length: "%{field_name} es demasiado largo. El límite es de %{max_length} caracteres."
     must_answer_yes_or_no: Debe responder sí o no
     number_invalid: Ingrese un número

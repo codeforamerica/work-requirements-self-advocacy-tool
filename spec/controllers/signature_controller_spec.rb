@@ -30,5 +30,14 @@ RSpec.describe SignatureController, type: :controller do
         expect(screener.signed_at).to eq(frozen_time)
       end
     end
+
+    it "re-renders the form when signature exceeds the character limit" do
+      screener = create(:screener)
+      sign_in screener
+
+      post :update, params: {screener: {signature: "A" * (SignatureController::CHARACTER_LIMIT + 1)}}
+
+      expect(response).to have_http_status(:unprocessable_content)
+    end
   end
 end
