@@ -372,6 +372,22 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :basic_info_case_number" do
+      it "must not have value longer than BasicInfoCaseNumberController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener, case_number: "ABC-123")
+        # Valid value that is not too long
+        expect(screener.valid?(:basic_info_case_number)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = BasicInfoCaseNumberController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(case_number: text)
+
+        screener.valid?(:basic_info_case_number)
+        expect(screener.errors[:case_number]).to be_present
+      end
+    end
+
     context "with_context :preventing_work_details" do
       it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
@@ -413,6 +429,20 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, signature: nil)
         screener.valid?(:signature)
 
+        expect(screener.errors[:signature]).to be_present
+      end
+
+      it "must not have value longer than SignatureController::CHARACTER_LIMIT" do
+        screener = build(:screener, signature: "John Smith")
+        # Valid value that is not too long
+        expect(screener.valid?(:signature)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = SignatureController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(signature: text)
+
+        screener.valid?(:signature)
         expect(screener.errors[:signature]).to be_present
       end
     end

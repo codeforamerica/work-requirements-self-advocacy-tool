@@ -17,15 +17,6 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
       expect(response).to redirect_to subject.next_path
       expect(screener.reload.case_number).to eq "ABC-123"
     end
-
-    it "re-renders the form when case_number exceeds the character limit" do
-      screener = create(:screener)
-      sign_in screener
-
-      post :update, params: {screener: {case_number: "A" * (BasicInfoCaseNumberController::CHARACTER_LIMIT + 1)}}
-
-      expect(response).to have_http_status(:unprocessable_content)
-    end
   end
 
   describe ".show?" do
