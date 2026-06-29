@@ -10,14 +10,6 @@ class ApplicationController < ActionController::Base
     head :not_acceptable
   end
 
-  rescue_from ActionDispatch::ParameterTypeError do |e|
-    safe_path = request.path.to_s.gsub(/[[:cntrl:]]/, "?").truncate(200)
-    safe_ip = request.remote_ip.to_s.gsub(/[[:cntrl:]]/, "?")
-    safe_ua = request.user_agent.to_s.gsub(/[[:cntrl:]]/, "?").truncate(200)
-    Rails.logger.warn("ParameterTypeError: #{e.message} | path=#{safe_path} | ip=#{safe_ip} | ua=#{safe_ua}")
-    head :bad_request
-  end
-
   before_action do
     RequestStore.store[:session_id] = session.id
     RequestStore.store[:screener_id] = current_screener&.id
