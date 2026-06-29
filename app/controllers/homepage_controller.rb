@@ -11,6 +11,7 @@ class HomepageController < ApplicationController
   end
 
   def redirect_without_source
-    redirect_to "/#{params[:base_path]}?source=#{params[:intended_source]}"
+    path = params[:base_path].present? ? "/#{CGI.escape(params[:base_path])}" : "/"
+    redirect_to "#{path}?source=#{CGI.escape(params[:intended_source].to_s)}"
   end
 end
