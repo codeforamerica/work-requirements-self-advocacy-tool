@@ -98,6 +98,10 @@ class Screener < ApplicationRecord
       if: -> { email.present? || email_confirmation.present? }
   end
 
+  with_context :basic_info_case_number do
+    validates :case_number, length: {maximum: BasicInfoCaseNumberController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BasicInfoCaseNumberController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.case_number")) }}
+  end
+
   with_context :basic_info_details do
     validates :first_name, presence: {message: ->(*) { I18n.t("validations.required", field_name: I18n.t("validations.fields.first_name").downcase) }}
     validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.first_name")) }}
@@ -201,6 +205,7 @@ class Screener < ApplicationRecord
 
   with_context :signature do
     validates :signature, presence: {message: ->(*) { I18n.t("validations.signature_required") }}
+    validates :signature, length: {maximum: SignatureController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: SignatureController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.signature")) }}
   end
 
   with_context :training_program do
