@@ -264,7 +264,7 @@ class Screener < ApplicationRecord
 
   def any_preventing_work?
     PREVENTING_WORK_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") } ||
-      state == LocationData::States::NORTH_CAROLINA && nc_screener.present? && nc_screener.age_work_education_health_exemption?
+      state_policy.extra_preventing_work?
   end
 
   def birth_date_day
@@ -287,26 +287,16 @@ class Screener < ApplicationRecord
     working_weekly_earnings.to_f >= 217.50
   end
 
-  def exempt_from_state_work_rules?
-    case state
-    when LocationData::States::NORTH_CAROLINA
-      nc_screener.present? && nc_screener.exempt_from_work_rules?
-    else
-      false
-    end
+  def state_policy
+    StatePolicy.for(self)
   end
+  delegate :exempt_from_state_work_rules?,
+    :american_indian_exemption_requires_proof?,
+    :needs_proof_of_volunteering?,
+    to: :state_policy
 
   def exempt_from_work_rules?
     has_exemption? || has_earnings_exemption?
-  end
-
-  def american_indian_exemption_requires_proof?
-    case state
-    when LocationData::States::NORTH_CAROLINA
-      false
-    else
-      is_american_indian_yes?
-    end
   end
 
   def has_earnings_exemption?
@@ -449,10 +439,6 @@ class Screener < ApplicationRecord
 
   def volunteering?
     is_volunteer_yes? && volunteering_hours.to_i > 0
-  end
-
-  def needs_proof_of_volunteering?
-    state != LocationData::States::NORTH_CAROLINA && volunteering?
   end
 
   def working_30_or_more_hours?
