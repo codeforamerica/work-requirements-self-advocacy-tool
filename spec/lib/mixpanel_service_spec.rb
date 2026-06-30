@@ -136,6 +136,17 @@ describe MixpanelService do
           end
         end
 
+        context "with a non-default locale" do
+          it "uses the current I18n locale" do
+            I18n.with_locale(:es) do
+              MixpanelService.send_event(distinct_id: "123", event_name: "page_view")
+            end
+            expect(fake_tracker).to have_received(:track).with(
+              "123", "page_view", hash_including(locale: :es)
+            )
+          end
+        end
+
         context "tracking information" do
           it "tracks the event with record, controller, and other information" do
             screener = create(:screener, state: LocationData::States::NORTH_CAROLINA, county: "Durham County", source: "duckduckmonkey")

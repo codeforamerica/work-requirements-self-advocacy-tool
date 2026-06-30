@@ -10,21 +10,12 @@ class ApplicationController < ActionController::Base
     head :not_acceptable
   end
 
-  rescue_from ActionDispatch::ParameterTypeError do |e|
-    safe_path = request.path.to_s.gsub(/[[:cntrl:]]/, "?").truncate(200)
-    safe_ip = request.remote_ip.to_s.gsub(/[[:cntrl:]]/, "?")
-    safe_ua = request.user_agent.to_s.gsub(/[[:cntrl:]]/, "?").truncate(200)
-    Rails.logger.warn("ParameterTypeError: #{e.message} | path=#{safe_path} | ip=#{safe_ip} | ua=#{safe_ua}")
-    head :bad_request
-  end
-
   before_action do
     RequestStore.store[:session_id] = session.id
     RequestStore.store[:screener_id] = current_screener&.id
     capture_trace_context
   end
-  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_current_step
-  after_action :track_page_view
+  before_action :set_visitor_id, :set_referrer, :set_utms, :set_source, :set_screener_current_step_and_locale
 
   def navigation_class
     Navigation::ScreenerNavigation
@@ -36,6 +27,7 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(locale, &action)
   end
   around_action :switch_locale
+  after_action :track_page_view
 
   def self.default_url_options
     {locale: I18n.locale}
@@ -148,9 +140,19 @@ class ApplicationController < ActionController::Base
     self.class.to_path_helper(params)
   end
 
-  def set_current_step
-    return unless request.get? && current_screener&.persisted? && (path = current_path)
-    path = path.sub(%r{\A/(en|es)/}, "")
-    current_screener.update!(current_step: path) unless current_screener.current_step == path
+  def set_screener_current_step_and_locale
+    return unless current_screener&.persisted?
+
+    updates = {}
+
+    if request.get? && (path = current_path)
+      path = path.sub(%r{\A/(en|es)/}, "")
+      updates[:current_step] = path unless current_screener.current_step == path
+    end
+
+    locale = params[:locale].presence || I18n.default_locale.to_s
+    updates[:locale] = locale unless current_screener.locale == locale
+
+    current_screener.update!(updates) if updates.any?
   end
 end

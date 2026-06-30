@@ -37,9 +37,11 @@ en:
     email_invalid: 'Make sure the email address is valid and follows this format: name@email.com'
     email_must_match: Email addresses must match
     fields:
+      case_number: Case number
       first_name: First or given name
       last_name: Last name
       middle_name: Middle name
+      signature: Signature
     maximum_length: "%{field_name} is too long (maximum is %{max_length} characters)."
     must_answer_yes_or_no: Must answer yes or no
     number_invalid: Enter a number
@@ -187,7 +189,7 @@ en:
         next_steps_mail_or_in_person_de_html: "<p><strong>Mail or in person:</strong> Print your form and mail it or bring it to</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: "<span><strong>Online: </strong>Send your form using one of these options:</span>"
-        next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i><a href='%{website}' target='_blank'>%{website}</a></i></span>"
+        next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i>%{link}</i></span>"
         single_office_instructions: 'If you live %{subgeography}, your office is: %{office}'
         state_website_de_html: "<strong>Using Delaware ASSIST account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked' data-track-controller_name='DownloadForm'>Delaware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this."
         state_website_nc_html: "<strong>Using ePASS account:</strong><br/>If you already receive SNAP benefits, you can use <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked' data-track-controller_name='DownloadForm'>North Carolina ePASS</a> to send your form and documents. You'll need an enhanced account to do this."

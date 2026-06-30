@@ -21,6 +21,10 @@ module ControllerNavigation
           [:edit]
         end
 
+        def accepts_update?
+          respond_to?(:attributes_edited) || private_method_defined?(:form_params, false)
+        end
+
         def to_path_helper(options = {})
           action = options.delete(:action) || :edit
           full_url = options.delete(:full_url) || false
@@ -37,7 +41,12 @@ module ControllerNavigation
     end
 
     def set_item_index
-      @item_index = params[:item_index]&.to_i
+      value = params[:item_index]
+      unless value.nil? || value.is_a?(String)
+        head :bad_request
+        return
+      end
+      @item_index = value&.to_i
     end
 
     def item_index

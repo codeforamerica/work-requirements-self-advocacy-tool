@@ -9,7 +9,7 @@ class PregnancyController < QuestionController
   private
 
   def form_params(model)
-    model_from_params = params[model.class.params_key]
+    model_from_params = params[model.class.params_key] || {}
     date_params = [model_from_params[:pregnancy_due_date_year], model_from_params[:pregnancy_due_date_month], model_from_params[:pregnancy_due_date_day]]
     if date_params.all?(&:present?)
       pregnancy_due_date = parse_date_params(*date_params)
