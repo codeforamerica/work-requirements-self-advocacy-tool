@@ -19,9 +19,7 @@ class LocationController < QuestionController
   private
 
   def after_update_success
-    if current_screener.state == LocationData::States::NORTH_CAROLINA && current_screener.nc_screener.nil?
-      current_screener.create_nc_screener
-    end
+    current_screener.state_policy.ensure_state_data!
 
     send_mixpanel_event(
       event_name: "page_submit",
