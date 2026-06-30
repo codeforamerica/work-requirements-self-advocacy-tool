@@ -168,7 +168,6 @@ describe MixpanelService do
                 record_type: "Screener",
                 record_id: screener.id,
                 screener_state: LocationData::States::NORTH_CAROLINA,
-                screener_county: "Durham County",
                 controller_name: "Homepage",
                 controller_action: "HomepageController#index",
                 locale: :en,
@@ -188,7 +187,7 @@ describe MixpanelService do
             MixpanelService.send_event(
               distinct_id: "123",
               event_name: "page_submit",
-              data: {state: "NC", county: "Anson County"},
+              data: {state: "NC"},
               controller: controller_double
             )
             expect(fake_tracker).to have_received(:track).with(
@@ -196,7 +195,6 @@ describe MixpanelService do
               "page_submit",
               hash_including(
                 state: "NC",
-                county: "Anson County",
                 controller_name: "Homepage",
                 locale: :en
               )
