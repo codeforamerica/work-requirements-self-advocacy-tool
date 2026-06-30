@@ -58,7 +58,7 @@ module WorkRulesPolicy
     end
 
     def requires_proof_of_american_indian_status?
-      true
+      false
     end
 
     def requires_proof_of_volunteering?
@@ -79,10 +79,6 @@ module WorkRulesPolicy
       screener.create_nc_screener if nc_screener.nil?
     end
 
-    def requires_proof_of_american_indian_status?
-      false
-    end
-
     def requires_proof_of_volunteering?
       false
     end
@@ -95,5 +91,8 @@ module WorkRulesPolicy
   end
 
   class Delaware < Base
+    def requires_proof_of_american_indian_status?
+      true
+    end
   end
 end

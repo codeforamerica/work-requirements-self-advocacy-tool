@@ -39,27 +39,27 @@ RSpec.describe WorkRulesPolicy do
     describe "#has_exemption?" do
       before { screener.birth_date = 30.years.ago.to_date }
 
-      it "is true when the applicant is age-qualified (under 18)" do
+      it "is true when age qualified (under 18)" do
         screener.birth_date = 16.years.ago.to_date
         expect(policy.has_exemption?).to eq true
       end
 
-      it "is true when the applicant is age-qualified (65 or older)" do
+      it "is true when age qualified (65 or older)" do
         screener.birth_date = 70.years.ago.to_date
         expect(policy.has_exemption?).to eq true
       end
 
-      it "is true when a federal exemption attribute is selected" do
+      it "is true when a non-working exemption attribute is yes" do
         screener.is_student = "yes"
         expect(policy.has_exemption?).to eq true
       end
 
-      it "is true when there is a state-specific exemption" do
+      it "is false when there is a state-specific exemption" do
         allow(policy).to receive(:exempt_from_state_work_rules?).and_return(true)
         expect(policy.has_exemption?).to eq true
       end
 
-      it "is false when no exemption applies" do
+      it "is false when no exemptions apply" do
         screener.assign_attributes(is_working: "no", is_student: "no")
         expect(policy.has_exemption?).to eq false
       end
@@ -71,7 +71,7 @@ RSpec.describe WorkRulesPolicy do
         expect(policy.has_earnings_exemption?).to eq true
       end
 
-      it "is true when earning at least the weekly minimum" do
+      it "is true when earning at least 217.50 weekly" do
         screener.assign_attributes(is_working: "yes", working_weekly_earnings: 217.50)
         expect(policy.has_earnings_exemption?).to eq true
       end
@@ -100,30 +100,38 @@ RSpec.describe WorkRulesPolicy do
     end
 
     describe "#american_indian_exemption_requires_proof?" do
-      it "is true when the applicant is American Indian (federal default requires proof)" do
+      it "is true when the applicant is American Indian and proof is required" do
         screener.is_american_indian = "yes"
+        allow(policy).to receive(:requires_proof_of_american_indian_status?).and_return(true)
         expect(policy.american_indian_exemption_requires_proof?).to eq true
+      end
+
+      it "is false when proof is not required" do
+        screener.is_american_indian = "yes"
+        allow(policy).to receive(:requires_proof_of_american_indian_status?).and_return(false)
+        expect(policy.american_indian_exemption_requires_proof?).to eq false
       end
 
       it "is false when the applicant is not American Indian" do
         screener.is_american_indian = "no"
+        allow(policy).to receive(:requires_proof_of_american_indian_status?).and_return(true)
         expect(policy.american_indian_exemption_requires_proof?).to eq false
       end
     end
 
     describe "#needs_proof_of_volunteering?" do
-      it "is true when the applicant volunteers (federal default requires proof)" do
+      it "is true when volunteering? is true" do
         allow(screener).to receive(:volunteering?).and_return(true)
         expect(policy.needs_proof_of_volunteering?).to eq true
       end
 
-      it "is false when the applicant does not volunteer" do
+      it "is false when volunteering? is false" do
         allow(screener).to receive(:volunteering?).and_return(false)
         expect(policy.needs_proof_of_volunteering?).to eq false
       end
     end
 
-    it "claims no state-specific exemption and creates no state-specific record" do
+    it "exempt_from_state_work_rules? and extra_preventing_work? are false by default; creates no state-specific record by default" do
       expect(policy.exempt_from_state_work_rules?).to eq false
       expect(policy.extra_preventing_work?).to eq false
       expect(policy.ensure_state_data!).to be_nil
@@ -185,6 +193,16 @@ RSpec.describe WorkRulesPolicy do
         screener.create_nc_screener
         expect { policy.ensure_state_data! }.not_to change { screener.reload.nc_screener.id }
       end
+    end
+  end
+
+  describe WorkRulesPolicy::Delaware do
+    let(:screener) { build(:screener, state: "DE") }
+    let(:policy) { screener.state_policy }
+
+    it "requires proof of American Indian status" do
+      screener.is_american_indian = "yes"
+      expect(policy.american_indian_exemption_requires_proof?).to eq true
     end
   end
 end

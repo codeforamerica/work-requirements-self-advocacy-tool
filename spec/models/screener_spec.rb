@@ -682,9 +682,7 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  # The work-rule decisions themselves live in WorkRulesPolicy (see
-  # work_rules_policy_spec); these just confirm Screener forwards to its policy.
-  describe "work-rule predicates delegated to #state_policy" do
+  describe "work rule policy methods delegated to #state_policy object" do
     let(:screener) { build(:screener) }
     let(:policy) { instance_double(WorkRulesPolicy::Base) }
 
