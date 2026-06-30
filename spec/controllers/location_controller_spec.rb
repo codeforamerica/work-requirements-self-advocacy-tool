@@ -60,5 +60,33 @@ RSpec.describe LocationController, type: :controller do
       }
       let(:invalid_params) { {state: ""} }
     end
+
+
+    it "updates the state and county values" do
+      screener = create(:screener)
+      sign_in screener
+
+      params = {
+        state: "NC",
+        county: "Anson County"
+      }
+
+      post :update, params: {screener: params}
+      expect(screener.reload.state).to eq "NC"
+      expect(screener.reload.county).to eq "Anson County"
+      end
+
+    it "updates the state and zip code values" do
+      screener = create(:screener)
+      sign_in screener
+      params = {
+        state: "DE",
+        zip_code: "19954"
+      }
+
+      post :update, params: {screener: params}
+      expect(screener.reload.state).to eq "DE"
+      expect(screener.reload.zip_code).to eq "19954"
+    end
   end
 end
