@@ -11,6 +11,43 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
 
     it_behaves_like "handles missing screener params", status: :bad_request
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        [{
+          form_params: {
+            first_name: "Noel",
+            middle_name: "G",
+            last_name: "Fielding",
+            phone_number: "4158161286",
+            consented_to_texts: "yes",
+            birth_date_month: "10",
+            birth_date_day: "13",
+            birth_date_year: "1973"
+          },
+          expected_data: {
+            has_first_name: true,
+            has_middle_name: true,
+            has_last_name: true,
+            has_phone_number: true,
+            consented_to_texts: "yes",
+            has_birth_date: true
+          }
+        }]
+      end
+      let(:invalid_params) do
+        {
+          first_name: "Noel",
+          middle_name: "G",
+          last_name: "Fielding",
+          phone_number: "4158161286",
+          consented_to_texts: "yes",
+          birth_date_month: "",
+          birth_date_day: "13",
+          birth_date_year: "1973"
+        }
+      end
+    end
+
     it "persists attributes to the screener" do
       screener = create(:screener, birth_date: Date.new(1990, 1, 1))
       sign_in screener

@@ -19,6 +19,51 @@ RSpec.describe DisabilityBenefitsController, type: :controller do
       :receiving_benefits_none
     ]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        [{
+          form_params: {
+            receiving_benefits_ssdi: "no",
+            receiving_benefits_ssi: "yes",
+            receiving_benefits_veterans_disability: "no",
+            receiving_benefits_disability_pension: "no",
+            receiving_benefits_workers_compensation: "no",
+            receiving_benefits_insurance_payments: "no",
+            receiving_benefits_disability_medicaid: "yes",
+            receiving_benefits_other: "yes",
+            receiving_benefits_none: "no",
+            receiving_benefits_write_in: "boop"
+          },
+          expected_data: {
+            receiving_benefits_ssdi: "no",
+            receiving_benefits_ssi: "yes",
+            receiving_benefits_veterans_disability: "no",
+            receiving_benefits_disability_pension: "no",
+            receiving_benefits_workers_compensation: "no",
+            receiving_benefits_insurance_payments: "no",
+            receiving_benefits_disability_medicaid: "yes",
+            receiving_benefits_other: "yes",
+            receiving_benefits_none: "no",
+            has_receiving_benefits_write_in: true
+          }
+        }]
+      end
+      let(:invalid_params) do
+        {
+          receiving_benefits_ssdi: "no",
+          receiving_benefits_ssi: "yes",
+          receiving_benefits_veterans_disability: "no",
+          receiving_benefits_disability_pension: "no",
+          receiving_benefits_workers_compensation: "no",
+          receiving_benefits_insurance_payments: "no",
+          receiving_benefits_disability_medicaid: "no",
+          receiving_benefits_other: "no",
+          receiving_benefits_none: "yes",
+          receiving_benefits_write_in: ""
+        }
+      end
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener

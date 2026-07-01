@@ -37,9 +37,11 @@ en:
     email_invalid: 'Make sure the email address is valid and follows this format: name@email.com'
     email_must_match: Email addresses must match
     fields:
+      case_number: Case number
       first_name: First or given name
       last_name: Last name
       middle_name: Middle name
+      signature: Signature
     maximum_length: "%{field_name} is too long (maximum is %{max_length} characters)."
     must_answer_yes_or_no: Must answer yes or no
     number_invalid: Enter a number

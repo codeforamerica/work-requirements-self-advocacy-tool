@@ -17,6 +17,14 @@ RSpec.describe Nc::HomeschoolController, type: :controller do
         s
       }
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event", {nc_screener: true} do
+      let(:page_submit_cases) do
+        params = {teaches_homeschool: "yes", homeschool_name: "Tough Nuts Academy", homeschool_hours: "25"}
+        [{form_params: params, expected_data: params}]
+      end
+      let(:invalid_params) { {teaches_homeschool: "yes", homeschool_name: "Academy", homeschool_hours: "not a number"} }
+    end
+
     it "persists the values to the nc_screener" do
       screener = create(:screener, state: "NC")
       screener.create_nc_screener
