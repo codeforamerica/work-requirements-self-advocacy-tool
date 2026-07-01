@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "work_rules_apply_met/edit", type: :view do
+RSpec.describe "work_rules_apply_met/display", type: :view do
   let(:screener) { create(:screener) }
 
   before do

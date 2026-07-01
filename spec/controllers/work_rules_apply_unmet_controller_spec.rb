@@ -1,13 +1,9 @@
 require "rails_helper"
 
 RSpec.describe WorkRulesApplyUnmetController, type: :controller do
-  describe "#edit" do
-    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
-    it_behaves_like "saves outcome on edit", expected_outcome: Screener::NOT_EXEMPT_WORK_RULES_NOT_MET
-  end
-
-  describe "#update" do
-    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+  describe "#display" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :display
+    it_behaves_like "saves outcome on display", expected_outcome: Screener::NOT_EXEMPT_WORK_RULES_NOT_MET
   end
 
   describe ".show?" do
@@ -65,7 +61,7 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
       it "renders the NC time limit" do
         sign_in create(:screener, state: "NC")
 
-        get :edit
+        get :display
 
         expect(response.body).to include(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text.nc"))
       end
@@ -75,7 +71,7 @@ RSpec.describe WorkRulesApplyUnmetController, type: :controller do
       it "renders the DE time limit" do
         sign_in create(:screener, state: "DE")
 
-        get :edit
+        get :display
 
         expect(response.body).to include(I18n.t("views.work_rules_apply_unmet.edit.time_limit_text.de"))
       end
