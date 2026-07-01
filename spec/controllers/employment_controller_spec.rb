@@ -13,6 +13,14 @@ RSpec.describe EmploymentController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_working]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        params = {is_working: "yes", working_hours: "20", working_weekly_earnings: "300.40"}
+        [{form_params: params, expected_data: params}]
+      end
+      let(:invalid_params) { {is_working: "yes", working_hours: "some words", working_weekly_earnings: "some more words"} }
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener

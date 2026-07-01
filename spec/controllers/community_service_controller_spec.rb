@@ -13,6 +13,14 @@ RSpec.describe CommunityServiceController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_volunteer]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        params = {is_volunteer: "yes", volunteering_hours: "1", volunteering_org_name: "cfa"}
+        [{form_params: params, expected_data: params}]
+      end
+      let(:invalid_params) { {is_volunteer: "yes", volunteering_hours: "not a valid number", volunteering_org_name: "cfa"} }
+    end
+
     context "volunteering hours and organization" do
       it "ignores the volunteering hours and org when the answer is no" do
         screener = create(:screener)

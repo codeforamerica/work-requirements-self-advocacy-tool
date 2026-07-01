@@ -27,6 +27,29 @@ RSpec.describe PregnancyController, type: :controller do
 
     it_behaves_like "handles missing screener params", status: :bad_request
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        due_date = Date.current.advance(months: 2).beginning_of_month
+        [{
+          form_params: {
+            is_pregnant: "yes",
+            pregnancy_due_date_month: due_date.month.to_s,
+            pregnancy_due_date_day: due_date.day.to_s,
+            pregnancy_due_date_year: due_date.year.to_s
+          },
+          expected_data: {is_pregnant: "yes", has_pregnancy_due_date: true}
+        }]
+      end
+      let(:invalid_params) {
+        {
+          is_pregnant: "yes",
+          pregnancy_due_date_month: "10",
+          pregnancy_due_date_day: "2",
+          pregnancy_due_date_year: "2024"
+        }
+      }
+    end
+
     context "due date" do
       it "ignores the due date parameters when the answer is no" do
         due_date = Date.current.advance(months: 2).beginning_of_month

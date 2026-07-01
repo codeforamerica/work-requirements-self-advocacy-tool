@@ -9,6 +9,13 @@ RSpec.describe MigrantFarmworkerController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_migrant_farmworker]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        params = {is_migrant_farmworker: "no"}
+        [{form_params: params, expected_data: params}]
+      end
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener

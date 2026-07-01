@@ -6,7 +6,7 @@ RSpec.describe Screener, type: :model do
   describe "validations" do
     context "required yes/no" do
       [
-        [:american_indian, :is_american_indian],
+        [:tribe_or_nation, :is_american_indian],
         [:living_with_someone, :has_child],
         [:unemployment, :has_unemployment_benefits],
         [:school_enrollment, :is_student]
@@ -372,6 +372,22 @@ RSpec.describe Screener, type: :model do
       end
     end
 
+    context "with_context :basic_info_case_number" do
+      it "must not have value longer than BasicInfoCaseNumberController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener, case_number: "ABC-123")
+        # Valid value that is not too long
+        expect(screener.valid?(:basic_info_case_number)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = BasicInfoCaseNumberController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(case_number: text)
+
+        screener.valid?(:basic_info_case_number)
+        expect(screener.errors[:case_number]).to be_present
+      end
+    end
+
     context "with_context :preventing_work_details" do
       it "must not have a value longer than PreventingWorkDetailsController::CHARACTER_LIMIT, if a value is set" do
         screener = build(:screener,
@@ -413,6 +429,20 @@ RSpec.describe Screener, type: :model do
         screener = build(:screener, signature: nil)
         screener.valid?(:signature)
 
+        expect(screener.errors[:signature]).to be_present
+      end
+
+      it "must not have value longer than SignatureController::CHARACTER_LIMIT" do
+        screener = build(:screener, signature: "John Smith")
+        # Valid value that is not too long
+        expect(screener.valid?(:signature)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = SignatureController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(signature: text)
+
+        screener.valid?(:signature)
         expect(screener.errors[:signature]).to be_present
       end
     end
@@ -1259,6 +1289,25 @@ RSpec.describe Screener, type: :model do
         allow(screener).to receive(:office_info_for).with(:email).and_return("office@example.com")
         expect(screener.office_upload_or_portal_email).to eq("office@example.com")
       end
+    end
+  end
+
+  describe "#pii_attributes" do
+    it "returns only the base PII attributes when the state is blank" do
+      expect(build(:screener, state: nil).pii_attributes).to eq(Screener::BASE_PII_ATTRIBUTES)
+      expect(build(:screener, state: nil).pii_attributes).not_to include(:county, :zip_code)
+    end
+
+    it "includes county for NC" do
+      screener = build(:screener, state: LocationData::States::NORTH_CAROLINA)
+      expect(screener.pii_attributes).to include(:county)
+      expect(screener.pii_attributes).not_to include(:zip_code)
+    end
+
+    it "includes zip_code for DE" do
+      screener = build(:screener, state: LocationData::States::DELAWARE)
+      expect(screener.pii_attributes).to include(:zip_code)
+      expect(screener.pii_attributes).not_to include(:county)
     end
   end
 
