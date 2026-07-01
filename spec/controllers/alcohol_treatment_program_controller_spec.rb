@@ -9,6 +9,16 @@ RSpec.describe AlcoholTreatmentProgramController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_in_alcohol_treatment_program]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        [{
+          form_params: {is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "Prog Ram"},
+          expected_data: {is_in_alcohol_treatment_program: "yes", has_alcohol_treatment_program_name: true}
+        }]
+      end
+      let(:invalid_params) { {is_in_alcohol_treatment_program: "yes", alcohol_treatment_program_name: "a" * 51} }
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener

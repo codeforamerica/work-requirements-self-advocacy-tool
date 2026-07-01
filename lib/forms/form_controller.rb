@@ -46,6 +46,7 @@ module Forms
       if self.class.model_valid?(@model)
         self.class.save_model(@model)
         after_update_success
+        track_page_submit(form_params(@model), @model)
         redirect_to(next_path)
       else
         render :edit, status: :unprocessable_content
@@ -59,6 +60,18 @@ module Forms
 
     def form_params(model)
       params.expect(model.class.params_key => self.class.attributes_edited)
+    end
+
+    def track_page_submit(submitted_params, model)
+      pii_attrs = model.respond_to?(:pii_attributes) ? model.pii_attributes : []
+      sanitized = submitted_params.to_h.each_with_object({}) do |(key, value), hash|
+        if pii_attrs.include?(key.to_sym)
+          hash[:"has_#{key}"] = value.present?
+        else
+          hash[key.to_sym] = value
+        end
+      end
+      send_mixpanel_event(event_name: "page_submit", data: sanitized)
     end
   end
 end

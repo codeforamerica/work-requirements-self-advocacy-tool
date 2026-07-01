@@ -22,10 +22,5 @@ class LocationController < QuestionController
     if current_screener.state == LocationData::States::NORTH_CAROLINA && current_screener.nc_screener.nil?
       current_screener.create_nc_screener
     end
-
-    send_mixpanel_event(
-      event_name: "page_submit",
-      data: form_params(current_screener).compact_blank.to_h
-    )
   end
 end

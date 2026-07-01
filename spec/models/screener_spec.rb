@@ -6,7 +6,7 @@ RSpec.describe Screener, type: :model do
   describe "validations" do
     context "required yes/no" do
       [
-        [:american_indian, :is_american_indian],
+        [:tribe_or_nation, :is_american_indian],
         [:living_with_someone, :has_child],
         [:unemployment, :has_unemployment_benefits],
         [:school_enrollment, :is_student]
@@ -1289,6 +1289,25 @@ RSpec.describe Screener, type: :model do
         allow(screener).to receive(:office_info_for).with(:email).and_return("office@example.com")
         expect(screener.office_upload_or_portal_email).to eq("office@example.com")
       end
+    end
+  end
+
+  describe "#pii_attributes" do
+    it "returns only the base PII attributes when the state is blank" do
+      expect(build(:screener, state: nil).pii_attributes).to eq(Screener::BASE_PII_ATTRIBUTES)
+      expect(build(:screener, state: nil).pii_attributes).not_to include(:county, :zip_code)
+    end
+
+    it "includes county for NC" do
+      screener = build(:screener, state: LocationData::States::NORTH_CAROLINA)
+      expect(screener.pii_attributes).to include(:county)
+      expect(screener.pii_attributes).not_to include(:zip_code)
+    end
+
+    it "includes zip_code for DE" do
+      screener = build(:screener, state: LocationData::States::DELAWARE)
+      expect(screener.pii_attributes).to include(:zip_code)
+      expect(screener.pii_attributes).not_to include(:county)
     end
   end
 

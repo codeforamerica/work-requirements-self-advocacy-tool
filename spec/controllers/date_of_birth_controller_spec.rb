@@ -23,6 +23,22 @@ RSpec.describe DateOfBirthController, type: :controller do
 
     it_behaves_like "handles missing screener params", status: :unprocessable_content
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) {
+        [
+          {
+            form_params: {
+              birth_date_month: "10",
+              birth_date_day: "13",
+              birth_date_year: "1973"
+            },
+            expected_data: {has_birth_date: true}
+          }
+        ]
+      }
+      let(:invalid_params) { {birth_date_month: "", birth_date_day: "", birth_date_year: ""} }
+    end
+
     context "birth date" do
       it "combines the date picker params into the birth_date attribute" do
         screener = create(:screener)

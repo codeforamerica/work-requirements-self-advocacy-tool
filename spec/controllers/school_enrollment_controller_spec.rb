@@ -9,6 +9,14 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
     it_behaves_like "rejects invalid enum values", fields: [:is_student]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        params = {is_student: "no"}
+        [{form_params: params, expected_data: params}]
+      end
+      let(:invalid_params) { {is_student: ""} }
+    end
+
     context "when the answer is no" do
       it "persists the values to the current screener" do
         screener = create(:screener)

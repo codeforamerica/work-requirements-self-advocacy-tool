@@ -4,6 +4,32 @@ class Screener < ApplicationRecord
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
 
+  BASE_PII_ATTRIBUTES = %i[
+    additional_care_info
+    alcohol_treatment_program_name
+    birth_date
+    case_number
+    email
+    email_confirmation
+    first_name
+    last_name
+    middle_name
+    phone_number
+    pregnancy_due_date
+    preventing_work_write_in
+    receiving_benefits_write_in
+    signature
+    ssn_last_four
+    survey_additional_feedback
+  ].freeze
+
+  def pii_attributes
+    return BASE_PII_ATTRIBUTES if state.blank?
+
+    location_pii = LocationData::States::STATES_INFO[state][:office_by]
+    BASE_PII_ATTRIBUTES + [location_pii]
+  end
+
   AGE_EXEMPT = "age_exempt"
   EXEMPT = "exempt"
   NOT_EXEMPT_WORK_RULES_MET = "not_exempt_work_rules_met"
@@ -74,7 +100,7 @@ class Screener < ApplicationRecord
     validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}
   end
 
-  with_context :american_indian do
+  with_context :tribe_or_nation do
     validates :is_american_indian, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
   end
 

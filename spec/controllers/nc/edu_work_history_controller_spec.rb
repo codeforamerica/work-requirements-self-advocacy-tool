@@ -17,6 +17,23 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
         s
       }
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event", {nc_screener: true} do
+      let(:page_submit_cases) do
+        params = {
+          has_hs_diploma: "no",
+          worked_last_five_years: "yes",
+          earned_more_than_threshold: "no",
+          health_conditions_preventing_work: "no"
+        }
+        [
+          {
+            form_params: params,
+            expected_data: params
+          }
+        ]
+      end
+    end
+
     it "persists the values to the nc_screener" do
       screener = create(:screener, state: "NC")
       screener.create_nc_screener
