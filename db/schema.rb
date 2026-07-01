@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_18_000000) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_25_114104) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -91,6 +91,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_000000) do
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
     t.integer "school_type"
+    t.string "session_token", null: false
     t.string "signature"
     t.datetime "signed_at"
     t.string "source"
@@ -113,6 +114,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_18_000000) do
     t.integer "working_hours"
     t.decimal "working_weekly_earnings"
     t.string "zip_code"
+    t.index ["session_token"], name: "index_screeners_on_session_token", unique: true
   end
 
   add_foreign_key "nc_screeners", "screeners"
