@@ -144,7 +144,7 @@ module ControllerNavigation
       end
 
       next_showable_page_index = seek(remaining_pages)
-      if self.class.return_to_review?(return_to_review_param, current_page_info, remaining_pages[next_showable_page_index..])
+      if self.class.return_to_review?(return_to_review_param, current_page_info, remaining_pages[next_showable_page_index..]) && current_controller.review_controller
         {controller: current_controller.review_controller}
       elsif next_showable_page_index.present?
         next_page_info = remaining_pages[next_showable_page_index]
@@ -172,6 +172,10 @@ module ControllerNavigation
       if index.nil?
         # if we didn't find a match, try looking for a page with item_index 0
         index = pages.index { |page_info| page_info[:controller] == controller_class && page_info[:item_index] == 0 }
+      end
+      if index.nil?
+        # final fallback: ignore item_index entirely (handles unexpected item_index params on non-subflow pages)
+        index = pages.index { |page_info| page_info[:controller] == controller_class }
       end
       index
     end
