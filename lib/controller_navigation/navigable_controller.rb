@@ -18,7 +18,7 @@ module ControllerNavigation
         end
 
         def navigation_actions
-          [:edit]
+          accepts_update? ? [:edit] : [:display]
         end
 
         def accepts_update?
