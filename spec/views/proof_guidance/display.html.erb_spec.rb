@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "proof_guidance/edit", type: :view do
+RSpec.describe "proof_guidance/display", type: :view do
   let(:screener) { create(:screener) }
 
   before do

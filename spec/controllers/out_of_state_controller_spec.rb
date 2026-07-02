@@ -102,12 +102,8 @@ RSpec.describe OutOfStateController, type: :controller do
     end
   end
 
-  describe "#update" do
-    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
-  end
-
-  describe "#edit" do
-    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+  describe "#display" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :display
 
     render_views
 
@@ -115,7 +111,7 @@ RSpec.describe OutOfStateController, type: :controller do
       screener = create(:screener, state: LocationData::States::NOT_LISTED)
       sign_in screener
 
-      get :edit
+      get :display
 
       expect(response.body).to include(I18n.t("views.out_of_state.edit.title_help_text_html"))
     end
@@ -125,7 +121,7 @@ RSpec.describe OutOfStateController, type: :controller do
       screener = create(:screener, state: state_with_counties, county: county[:name])
       sign_in screener
 
-      get :edit
+      get :display
 
       expect(response.body).not_to include(I18n.t("views.out_of_state.edit.title_help_text_html"))
       expect(response.body).to include(I18n.t("views.out_of_state.edit.contact_redirect", seconds: controller.redirect_delay_seconds))

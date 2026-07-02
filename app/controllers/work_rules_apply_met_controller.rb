@@ -1,5 +1,5 @@
 class WorkRulesApplyMetController < QuestionController
-  before_action :save_outcome, only: :edit
+  before_action :save_outcome, only: :display
 
   def show_progress_bar
     false
