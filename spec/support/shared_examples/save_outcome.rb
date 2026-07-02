@@ -1,4 +1,4 @@
-RSpec.shared_examples "saves outcome on display" do |expected_outcome:|
+RSpec.shared_examples "saves outcome on page visit" do |expected_outcome:|
   context "with signed in screener" do
     let(:screener) { create(:screener) }
 

@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe WorkRulesApplyMetController, type: :controller do
   describe "#display" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :display
-    it_behaves_like "saves outcome on display", expected_outcome: Screener::NOT_EXEMPT_WORK_RULES_MET
+    it_behaves_like "saves outcome on page visit", expected_outcome: Screener::NOT_EXEMPT_WORK_RULES_MET
   end
 
   describe ".show?" do
