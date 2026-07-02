@@ -6,7 +6,7 @@ RSpec.describe Screener, type: :model do
   describe "validations" do
     context "required yes/no" do
       [
-        [:american_indian, :is_american_indian],
+        [:tribe_or_nation, :is_american_indian],
         [:living_with_someone, :has_child],
         [:unemployment, :has_unemployment_benefits],
         [:school_enrollment, :is_student]
@@ -1154,6 +1154,25 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#pii_attributes" do
+    it "returns only the base PII attributes when the state is blank" do
+      expect(build(:screener, state: nil).pii_attributes).to eq(Screener::BASE_PII_ATTRIBUTES)
+      expect(build(:screener, state: nil).pii_attributes).not_to include(:county, :zip_code)
+    end
+
+    it "includes county for NC" do
+      screener = build(:screener, state: LocationData::States::NORTH_CAROLINA)
+      expect(screener.pii_attributes).to include(:county)
+      expect(screener.pii_attributes).not_to include(:zip_code)
+    end
+
+    it "includes zip_code for DE" do
+      screener = build(:screener, state: LocationData::States::DELAWARE)
+      expect(screener.pii_attributes).to include(:zip_code)
+      expect(screener.pii_attributes).not_to include(:county)
+    end
+  end
+
   describe "#offices_to_display" do
     context "for an NC county" do
       let(:screener) { build(:screener, state: "NC", county: "Durham County") }
@@ -1210,6 +1229,45 @@ RSpec.describe Screener, type: :model do
 
       office = screener.offices_to_display.first
       expect(office[:upload_portal_or_email]).to eq("fallback@example.com")
+    end
+  end
+
+  describe "session token" do
+    describe "on create" do
+      it "generates a session_token automatically" do
+        screener = create(:screener)
+        expect(screener.session_token).to be_present
+      end
+
+      it "generates a unique token for each screener" do
+        tokens = Array.new(3) { create(:screener).session_token }
+        expect(tokens.uniq.length).to eq(3)
+      end
+    end
+
+    describe "#authenticatable_salt" do
+      it "returns the session_token" do
+        screener = create(:screener)
+        expect(screener.authenticatable_salt).to eq(screener.session_token)
+      end
+    end
+
+    describe "#rotate_session_token!" do
+      it "replaces the session_token with a new value" do
+        screener = create(:screener)
+        old_token = screener.session_token
+
+        screener.rotate_session_token!
+
+        expect(screener.reload.session_token).to be_present
+        expect(screener.reload.session_token).not_to eq(old_token)
+      end
+
+      it "persists the new token to the database" do
+        screener = create(:screener)
+        screener.rotate_session_token!
+        expect(Screener.find(screener.id).session_token).to eq(screener.reload.session_token)
+      end
     end
   end
 end

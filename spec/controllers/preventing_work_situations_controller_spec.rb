@@ -16,6 +16,42 @@ RSpec.describe PreventingWorkSituationsController, type: :controller do
       :preventing_work_none
     ]
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        [{
+          form_params: {
+            preventing_work_place_to_sleep: "yes",
+            preventing_work_drugs_alcohol: "no",
+            preventing_work_domestic_violence: "yes",
+            preventing_work_medical_condition: "no",
+            preventing_work_other: "yes",
+            preventing_work_none: "no",
+            preventing_work_write_in: "boop"
+          },
+          expected_data: {
+            preventing_work_place_to_sleep: "yes",
+            preventing_work_drugs_alcohol: "no",
+            preventing_work_domestic_violence: "yes",
+            preventing_work_medical_condition: "no",
+            preventing_work_other: "yes",
+            preventing_work_none: "no",
+            has_preventing_work_write_in: true
+          }
+        }]
+      end
+      let(:invalid_params) do
+        {
+          preventing_work_place_to_sleep: "yes",
+          preventing_work_drugs_alcohol: "no",
+          preventing_work_domestic_violence: "no",
+          preventing_work_medical_condition: "no",
+          preventing_work_other: "no",
+          preventing_work_none: "yes",
+          preventing_work_write_in: ""
+        }
+      end
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener

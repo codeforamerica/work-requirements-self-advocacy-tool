@@ -20,10 +20,5 @@ class LocationController < QuestionController
 
   def after_update_success
     current_screener.state_policy.ensure_state_data!
-
-    send_mixpanel_event(
-      event_name: "page_submit",
-      data: form_params(current_screener).compact_blank.to_h
-    )
   end
 end

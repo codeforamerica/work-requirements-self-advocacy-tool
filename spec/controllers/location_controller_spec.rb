@@ -43,12 +43,27 @@ RSpec.describe LocationController, type: :controller do
   end
 
   describe "#update" do
-    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
+    it_behaves_like :session_must_be_active_for_this_post_action, action: :update
 
-    it "updates the state and county values and sends a mixpanel event" do
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) {
+        [
+          {
+            form_params: {state: "NC", county: "Anson County"},
+            expected_data: {state: "NC", has_county: true}
+          },
+          {
+            form_params: {state: "DE", zip_code: "19954"},
+            expected_data: {state: "DE", has_zip_code: true}
+          }
+        ]
+      }
+      let(:invalid_params) { {state: ""} }
+    end
+
+    it "updates the state and county values" do
       screener = create(:screener)
       sign_in screener
-      allow(MixpanelService).to receive(:send_event)
 
       params = {
         state: "NC",
@@ -58,20 +73,11 @@ RSpec.describe LocationController, type: :controller do
       post :update, params: {screener: params}
       expect(screener.reload.state).to eq "NC"
       expect(screener.reload.county).to eq "Anson County"
-
-      expect(MixpanelService).to have_received(:send_event).with(
-        hash_including(
-          event_name: "page_submit",
-          data: {state: "NC", county: "Anson County"}
-        )
-      )
     end
 
-    it "updates the state and zip code values and sends a mixpanel event" do
+    it "updates the state and zip code values" do
       screener = create(:screener)
       sign_in screener
-      allow(MixpanelService).to receive(:send_event)
-
       params = {
         state: "DE",
         zip_code: "19954"
@@ -80,13 +86,24 @@ RSpec.describe LocationController, type: :controller do
       post :update, params: {screener: params}
       expect(screener.reload.state).to eq "DE"
       expect(screener.reload.zip_code).to eq "19954"
+    end
 
-      expect(MixpanelService).to have_received(:send_event).with(
-        hash_including(
-          event_name: "page_submit",
-          data: {state: "DE", zip_code: "19954"}
-        )
-      )
+    it "redirects successfully when item_index=0 is passed as a query param" do
+      screener = create(:screener)
+      sign_in screener
+
+      post :update, params: {screener: {state: "NC", county: "Anson County"}, item_index: "0"}
+
+      expect(response).to have_http_status(:redirect)
+    end
+
+    it "redirects successfully when return_to_review=1 is passed as a query param" do
+      screener = create(:screener)
+      sign_in screener
+
+      post :update, params: {screener: {state: "NC", county: "Anson County"}, return_to_review: "1"}
+
+      expect(response).to have_http_status(:redirect)
     end
   end
 end

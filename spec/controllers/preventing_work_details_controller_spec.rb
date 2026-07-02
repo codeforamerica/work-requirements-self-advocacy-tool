@@ -8,6 +8,14 @@ RSpec.describe PreventingWorkDetailsController, type: :controller do
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
+    it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:page_submit_cases) do
+        params = {preventing_work_additional_info: "This is my reason"}
+        [{form_params: params, expected_data: params}]
+      end
+      let(:invalid_params) { {preventing_work_additional_info: "a" * 476} }
+    end
+
     it "persists the values to the current screener" do
       screener = create(:screener)
       sign_in screener
