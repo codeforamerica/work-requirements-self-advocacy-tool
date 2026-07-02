@@ -712,6 +712,20 @@ RSpec.describe Screener, type: :model do
     end
   end
 
+  describe "#state_policy" do
+    it "returns the policy for the screener's state" do
+      expect(build(:screener, state: "NC").state_policy).to be_a(WorkRulesPolicy::NorthCarolina)
+    end
+
+    it "reflects a changed state rather than a stale memoized policy" do
+      screener = build(:screener, state: "NC")
+      expect(screener.state_policy).to be_a(WorkRulesPolicy::NorthCarolina)
+
+      screener.update(state: "DE")
+      expect(screener.state_policy).to be_a(WorkRulesPolicy::Delaware)
+    end
+  end
+
   describe "work rule policy methods delegated to #state_policy object" do
     let(:screener) { build(:screener) }
     let(:policy) { instance_double(WorkRulesPolicy::Base) }

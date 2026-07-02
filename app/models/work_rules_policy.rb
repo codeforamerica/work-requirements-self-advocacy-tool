@@ -57,6 +57,12 @@ module WorkRulesPolicy
       nil
     end
 
+    # State-specific exemption reasons to display; these correspond to i18n key suffixes
+    # under views.signature.edit
+    def state_exemption_reasons
+      []
+    end
+
     def requires_proof_of_american_indian_status?
       false
     end
@@ -68,11 +74,13 @@ module WorkRulesPolicy
 
   class NorthCarolina < Base
     def exempt_from_state_work_rules?
-      nc_screener.present? && nc_screener.exempt_from_work_rules?
+      return false unless nc_screener
+
+      nc_screener.operating_homeschool_30_or_more_hours? || age_work_education_health_exemption?
     end
 
     def extra_preventing_work?
-      nc_screener.present? && nc_screener.age_work_education_health_exemption?
+      age_work_education_health_exemption?
     end
 
     def ensure_state_data!
@@ -81,6 +89,22 @@ module WorkRulesPolicy
 
     def requires_proof_of_volunteering?
       false
+    end
+
+    def age_work_education_health_exemption?
+      return false unless nc_screener && screener.age
+
+      screener.age.between?(55, 64) &&
+        nc_screener.has_hs_diploma_no? &&
+        ((nc_screener.worked_last_five_years_yes? && nc_screener.earned_more_than_threshold_no?) || nc_screener.worked_last_five_years_no?) &&
+        (nc_screener.health_conditions_preventing_work_yes? || screener.preventing_work_medical_condition_yes?)
+    end
+
+    def state_exemption_reasons
+      reasons = []
+      reasons << :exemption_55_no_diploma if age_work_education_health_exemption?
+      reasons << :exemption_homeschool if nc_screener&.operating_homeschool_30_or_more_hours?
+      reasons
     end
 
     private

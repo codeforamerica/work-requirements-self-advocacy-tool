@@ -283,8 +283,15 @@ class Screener < ApplicationRecord
     working_weekly_earnings.to_f >= 217.50
   end
 
+  # Clear the memoized policy when the state changes, since the policy class is
+  # chosen from the state.
+  def state=(value)
+    @state_policy = nil
+    super
+  end
+
   def state_policy
-    WorkRulesPolicy.for(self)
+    @state_policy ||= WorkRulesPolicy.for(self)
   end
   delegate :exempt_from_work_rules?,
     :has_exemption?,
