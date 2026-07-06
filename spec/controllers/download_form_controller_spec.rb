@@ -1,9 +1,9 @@
 require "rails_helper"
 
 RSpec.describe DownloadFormController, type: :controller do
-  describe "#edit" do
-    it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
-    it_behaves_like "saves outcome on edit", expected_outcome: Screener::EXEMPT
+  describe "#display" do
+    it_behaves_like :session_must_be_active_for_this_get_action, action: :display
+    it_behaves_like "saves outcome on page visit", expected_outcome: Screener::EXEMPT
 
     context "with signed in screener" do
       let(:screener) { create(:screener, email: "hi@example.com") }
@@ -12,7 +12,7 @@ RSpec.describe DownloadFormController, type: :controller do
 
       it "enqueues a SendOutgoingEmailJob if the screener has an email" do
         expect {
-          get :edit
+          get :display
         }.to have_enqueued_job(SendOutgoingEmailJob).with(kind_of(Integer))
       end
 
@@ -20,7 +20,7 @@ RSpec.describe DownloadFormController, type: :controller do
         screener.update!(email: nil)
 
         expect {
-          get :edit
+          get :display
         }.not_to have_enqueued_job(SendOutgoingEmailJob)
       end
     end
@@ -32,7 +32,7 @@ RSpec.describe DownloadFormController, type: :controller do
       before { sign_in screener }
 
       it "renders one office card per office with subgeography and contact info" do
-        get :edit
+        get :display
 
         expect(response.body).to include("DeLaWarr State Service Center")
         expect(response.body).to include("Churchman")
@@ -50,16 +50,12 @@ RSpec.describe DownloadFormController, type: :controller do
       before { sign_in screener }
 
       it "renders a single office with no subgeography heading" do
-        get :edit
+        get :display
 
         expect(response.body).to include("Claymont State Service Center")
         expect(response.body).not_to include("If you live")
       end
     end
-  end
-
-  describe "#update" do
-    it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
   end
 
   describe ".show?" do

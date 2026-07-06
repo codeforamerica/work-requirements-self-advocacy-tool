@@ -18,7 +18,7 @@ module ControllerNavigation
         end
 
         def navigation_actions
-          [:edit]
+          accepts_update? ? [:edit] : [:display]
         end
 
         def accepts_update?
@@ -26,7 +26,7 @@ module ControllerNavigation
         end
 
         def to_path_helper(options = {})
-          action = options.delete(:action) || :edit
+          action = options.delete(:action) || navigation_actions.first
           full_url = options.delete(:full_url) || false
           Rails.application.routes.url_helpers.url_for({
             controller: controller_path,
@@ -38,6 +38,10 @@ module ControllerNavigation
           }.merge(default_url_options).merge(options))
         end
       end
+    end
+
+    def display
+      @model = self.class.load_model(current_screener, item_index: item_index)
     end
 
     def set_item_index

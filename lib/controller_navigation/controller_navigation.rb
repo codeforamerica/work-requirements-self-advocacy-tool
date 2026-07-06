@@ -32,7 +32,7 @@ module ControllerNavigation
         controllers.uniq.each do |controller_class|
           next if controller_class.navigation_actions.length > 1
 
-          {get: :edit, put: :update}.each do |method, action|
+          {get: controller_class.navigation_actions.first, put: :update}.each do |method, action|
             next if method == :put && !controller_class.accepts_update?
             resource_name = controller_class.respond_to?(:resource_name) ? controller_class.resource_name : nil
             if resource_name
