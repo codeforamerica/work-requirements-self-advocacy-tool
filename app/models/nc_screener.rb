@@ -14,21 +14,8 @@ class NcScreener < ApplicationRecord
   before_save :remove_work_edu_history_attributes,
     :remove_homeschool_attributes_if_no
 
-  def age_work_education_health_exemption?
-    return false unless screener.age
-
-    screener.age.between?(55, 64) &&
-      has_hs_diploma_no? &&
-      ((worked_last_five_years_yes? && earned_more_than_threshold_no?) || worked_last_five_years_no?) &&
-      (health_conditions_preventing_work_yes? || screener.preventing_work_medical_condition_yes?)
-  end
-
   def operating_homeschool_30_or_more_hours?
     teaches_homeschool_yes? && homeschool_hours.to_i >= 30
-  end
-
-  def exempt_from_work_rules?
-    operating_homeschool_30_or_more_hours? || age_work_education_health_exemption?
   end
 
   private
