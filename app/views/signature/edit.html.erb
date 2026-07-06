@@ -48,11 +48,8 @@
     <% if @current_screener.is_working_yes? && @current_screener.working_30_or_more_hours? %>
       <li><%= t("views.signature.edit.exemption_working_30_hours") %></li>
     <% end %>
-    <% if @current_screener.nc_screener&.age_work_education_health_exemption? %>
-      <li><%= t("views.signature.edit.exemption_55_no_diploma") %></li>
-    <% end %>
-    <% if @current_screener.nc_screener&.operating_homeschool_30_or_more_hours? %>
-      <li><%= t("views.signature.edit.exemption_homeschool") %></li>
+    <% @current_screener.state_policy.state_exemption_reasons.each do |reason| %>
+      <li><%= t("views.signature.edit.#{reason}") %></li>
     <% end %>
     <% if @current_screener.earnings_above_minimum? %>
       <li><%= t("views.signature.edit.exemption_earnings") %></li>

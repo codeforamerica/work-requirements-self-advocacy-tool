@@ -661,30 +661,6 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  describe "#complies_with_work_rules?" do
-    let(:screener) { create(:screener) }
-
-    context "the total working, volunteering, and training is greater than or equal to 20" do
-      before do
-        allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(21)
-      end
-
-      it "returns true" do
-        expect(screener.complies_with_work_rules?).to be true
-      end
-    end
-
-    context "the total working, volunteering, and training is less than 20" do
-      before do
-        allow(screener).to receive(:total_work_volunteer_and_training_hours).and_return(19)
-      end
-
-      it "returns false" do
-        expect(screener.complies_with_work_rules?).to be false
-      end
-    end
-  end
-
   describe "#earnings_above_minimum?" do
     it "returns true when working_weekly_earnings >= 217.50" do
       screener = build(:screener, working_weekly_earnings: 217.50)
@@ -736,104 +712,38 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  describe "#exempt_from_work_rules?" do
-    let(:screener) { build(:screener) }
-
-    it "returns true when has_exemption? is true" do
-      allow(screener).to receive(:has_exemption?).and_return(true)
-      allow(screener).to receive(:has_earnings_exemption?).and_return(false)
-
-      expect(screener.exempt_from_work_rules?).to eq true
+  describe "#state_policy" do
+    it "returns the policy for the screener's state" do
+      expect(build(:screener, state: "NC").state_policy).to be_a(WorkRulesPolicy::NorthCarolina)
     end
 
-    it "returns true when has_earnings_exemption? is true" do
-      allow(screener).to receive(:has_exemption?).and_return(false)
-      allow(screener).to receive(:has_earnings_exemption?).and_return(true)
+    it "reflects a changed state rather than a stale memoized policy" do
+      screener = build(:screener, state: "NC")
+      expect(screener.state_policy).to be_a(WorkRulesPolicy::NorthCarolina)
 
-      expect(screener.exempt_from_work_rules?).to eq true
-    end
-
-    it "returns false when neither has_exemption? nor has_earnings_exemption? is true" do
-      allow(screener).to receive(:has_exemption?).and_return(false)
-      allow(screener).to receive(:has_earnings_exemption?).and_return(false)
-
-      expect(screener.exempt_from_work_rules?).to eq false
+      screener.update(state: "DE")
+      expect(screener.state_policy).to be_a(WorkRulesPolicy::Delaware)
     end
   end
 
-  describe "#american_indian_exemption_requires_proof?" do
+  describe "work rule policy methods delegated to #state_policy object" do
     let(:screener) { build(:screener) }
+    let(:policy) { instance_double(WorkRulesPolicy::Base) }
 
-    it "returns true when state != NC and is_american_indian_yes?" do
-      allow(screener).to receive(:state).and_return("DE")
-      allow(screener).to receive(:is_american_indian_yes?).and_return(true)
+    before { allow(screener).to receive(:state_policy).and_return(policy) }
 
-      expect(screener.american_indian_exemption_requires_proof?).to eq true
-    end
-
-    it "returns false when state == NC and is_american_indian_yes?" do
-      allow(screener).to receive(:state).and_return("NC")
-      allow(screener).to receive(:is_american_indian_yes?).and_return(true)
-
-      expect(screener.american_indian_exemption_requires_proof?).to eq false
-    end
-
-    it "returns false when state == NC and is_american_indian_no?" do
-      allow(screener).to receive(:state).and_return("NC")
-      allow(screener).to receive(:is_american_indian_yes?).and_return(false)
-
-      expect(screener.american_indian_exemption_requires_proof?).to eq false
-    end
-
-    it "returns false when state != NC and is_american_indian_no?" do
-      allow(screener).to receive(:state).and_return("DE")
-      allow(screener).to receive(:is_american_indian_yes?).and_return(false)
-
-      expect(screener.american_indian_exemption_requires_proof?).to eq false
-    end
-  end
-
-  describe "#has_exemption?" do
-    it "returns true if age qualified (under 18)" do
-      screener = build(:screener, birth_date: 16.years.ago.to_date)
-      expect(screener.has_exemption?).to eq true
-    end
-
-    it "returns true if age qualified (65 or older)" do
-      screener = build(:screener, birth_date: 70.years.ago.to_date)
-      expect(screener.has_exemption?).to eq true
-    end
-
-    it "returns true if nc_screener is present and exempt" do
-      nc_screener = build(:nc_screener)
-      allow(nc_screener).to receive(:exempt_from_work_rules?).and_return(true)
-
-      screener = build(:screener, nc_screener: nc_screener)
-
-      expect(screener.has_exemption?).to eq true
-    end
-
-    it "returns false if nc_screener is present but not exempt and no other exemptions apply" do
-      nc_screener = build(:nc_screener)
-      allow(nc_screener).to receive(:exempt_from_work_rules?).and_return(false)
-
-      screener = build(:screener, nc_screener: nc_screener)
-
-      expect(screener.has_exemption?).to eq false
-    end
-
-    it "returns true if a non-working exemption attribute is yes" do
-      screener = build(:screener, is_student: "yes")
-      expect(screener.has_exemption?).to eq true
-    end
-
-    it "returns false if no exemptions apply" do
-      screener = build(:screener,
-        birth_date: 30.years.ago.to_date,
-        is_working: "no",
-        is_student: "no")
-
-      expect(screener.has_exemption?).to eq false
+    %i[
+      exempt_from_work_rules?
+      has_exemption?
+      has_earnings_exemption?
+      complies_with_work_rules?
+      american_indian_exemption_requires_proof?
+      needs_proof_of_volunteering?
+    ].each do |predicate|
+      it "delegates ##{predicate} to the state policy" do
+        allow(policy).to receive(predicate).and_return("delegated #{predicate}")
+        expect(screener.public_send(predicate)).to eq("delegated #{predicate}")
+      end
     end
   end
 
@@ -925,32 +835,6 @@ RSpec.describe Screener, type: :model do
     it "returns false when is_volunteer is no even with volunteering_hours" do
       screener = build(:screener, is_volunteer: "no", volunteering_hours: 5)
       expect(screener.volunteering?).to be false
-    end
-  end
-
-  describe "#needs_proof_of_volunteering?" do
-    it "returns true when volunteering? is true and state is not NC" do
-      screener = build(:screener, state: LocationData::States::DELAWARE)
-      allow(screener).to receive(:volunteering?).and_return(true)
-      expect(screener.needs_proof_of_volunteering?).to be true
-    end
-
-    it "returns false when volunteering? is true and state is NC" do
-      screener = build(:screener, state: LocationData::States::NORTH_CAROLINA)
-      allow(screener).to receive(:volunteering?).and_return(true)
-      expect(screener.needs_proof_of_volunteering?).to be false
-    end
-
-    it "returns false when volunteering? is false and state is not NC" do
-      screener = build(:screener, state: LocationData::States::DELAWARE)
-      allow(screener).to receive(:volunteering?).and_return(false)
-      expect(screener.needs_proof_of_volunteering?).to be false
-    end
-
-    it "returns false when volunteering? is false and state is NC" do
-      screener = build(:screener, state: LocationData::States::NORTH_CAROLINA)
-      allow(screener).to receive(:volunteering?).and_return(false)
-      expect(screener.needs_proof_of_volunteering?).to be false
     end
   end
 
@@ -1102,28 +986,6 @@ RSpec.describe Screener, type: :model do
       it "returns nil" do
         expect(screener.screener_results_email_block_reason).to be_nil
       end
-    end
-  end
-
-  describe "#has_earnings_exemption?" do
-    it "returns true if working 30 or more hours" do
-      screener = build(:screener, is_working: "yes", working_hours: 30)
-      expect(screener.has_earnings_exemption?).to eq true
-    end
-
-    it "returns true if earning at least 217.50 weekly" do
-      screener = build(:screener, is_working: "yes", working_weekly_earnings: 217.50)
-      expect(screener.has_earnings_exemption?).to eq true
-    end
-
-    it "returns false if working but under both thresholds" do
-      screener = build(:screener, is_working: "yes", working_hours: 10, working_weekly_earnings: 100)
-      expect(screener.has_earnings_exemption?).to eq false
-    end
-
-    it "returns false if not working" do
-      screener = build(:screener, is_working: "no")
-      expect(screener.has_earnings_exemption?).to eq false
     end
   end
 
