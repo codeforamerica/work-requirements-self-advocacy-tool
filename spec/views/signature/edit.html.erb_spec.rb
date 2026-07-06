@@ -219,34 +219,20 @@ RSpec.describe "signature/edit", type: :view do
     end
   end
 
-  describe "exemption: NC age/education/health (55+)" do
+  describe "state-specific exemptions" do
     let(:screener) { create(:screener, :with_nc_screener) }
 
-    it "shows when NC screener qualifies" do
-      allow(screener.nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
+    it "renders each reason returned by the state policy" do
+      allow(screener.state_policy).to receive(:state_exemption_reasons).and_return(%i[exemption_55_no_diploma exemption_homeschool])
       render
       expect(rendered).to include(I18n.t("views.signature.edit.exemption_55_no_diploma"))
-    end
-
-    it "does not show when NC screener does not qualify" do
-      allow(screener.nc_screener).to receive(:age_work_education_health_exemption?).and_return(false)
-      render
-      expect(rendered).not_to include(I18n.t("views.signature.edit.exemption_55_no_diploma"))
-    end
-  end
-
-  describe "exemption: NC homeschool 30+ hours" do
-    let(:screener) { create(:screener, :with_nc_screener) }
-
-    it "shows when teaching homeschool 30+ hours" do
-      allow(screener.nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(true)
-      render
       expect(rendered).to include(I18n.t("views.signature.edit.exemption_homeschool"))
     end
 
-    it "does not show when not teaching homeschool" do
-      allow(screener.nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
+    it "renders nothing when there are no state-specific exemptions" do
+      allow(screener.state_policy).to receive(:state_exemption_reasons).and_return([])
       render
+      expect(rendered).not_to include(I18n.t("views.signature.edit.exemption_55_no_diploma"))
       expect(rendered).not_to include(I18n.t("views.signature.edit.exemption_homeschool"))
     end
   end
