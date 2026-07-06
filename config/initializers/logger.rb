@@ -54,6 +54,7 @@ Rails.application.configure do
     if log.exception
       log.exception = log.exception.exception(REDACT_EMAILS.call(log.exception.message))
       log.level = :warn if log.exception.is_a?(Aws::SESV2::Errors::AccessDeniedException)
+      log.level = :debug if log.exception.is_a?(ActionController::RoutingError)
     end
   end
 end
