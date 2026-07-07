@@ -10,6 +10,8 @@ RSpec.describe "400 Bad Request error page", type: :request do
     context "in English (default)" do
       before { get "/400" }
 
+      it_behaves_like "an error page in English"
+
       it "shows the English title" do
         expect(response.body).to include("The page couldn")
       end
@@ -19,21 +21,14 @@ RSpec.describe "400 Bad Request error page", type: :request do
       end
 
       it "shows the English description" do
-        expect(response.body).to include("We")
         expect(response.body).to include("experiencing a temporary issue")
-      end
-
-      it "shows the contact email as a mailto link" do
-        expect(response.body).to include('href="mailto:getbenefitshelp@codeforamerica.org"')
-      end
-
-      it "shows the English CTA" do
-        expect(response.body).to include("Go to home page")
       end
     end
 
     context "in Spanish (locale=es)" do
       before { get "/400", params: {locale: "es"} }
+
+      it_behaves_like "an error page in Spanish"
 
       it "returns HTTP 400" do
         expect(response).to have_http_status(:bad_request)
@@ -45,10 +40,6 @@ RSpec.describe "400 Bad Request error page", type: :request do
 
       it "shows the Spanish description" do
         expect(response.body).to include("Estamos experimentando un problema temporal")
-      end
-
-      it "shows the Spanish CTA" do
-        expect(response.body).to include("Volver al inicio")
       end
     end
   end
