@@ -10,8 +10,6 @@
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.4.4
 # Pin Chrome for Testing version to avoid breakage when apt upgrades chromium.
-# Chromium 150+ crashes with SIGTRAP in ECS containers due to a seccomp mismatch.
-# Update this version intentionally when you've verified the new version works in staging.
 ARG CHROME_FOR_TESTING_VERSION=149.0.7827.196
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
