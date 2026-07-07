@@ -9,14 +9,22 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.4.4
+# Pin Chrome for Testing version to avoid breakage when apt upgrades chromium.
+ARG CHROME_FOR_TESTING_VERSION=149.0.7827.196
 FROM docker.io/library/ruby:$RUBY_VERSION-slim AS base
 
 # Rails app lives here
 WORKDIR /rails
 
-# Install base packages (including Chromium for PDF generation via Grover/Puppeteer)
+ARG CHROME_FOR_TESTING_VERSION
+
+# Install base packages. We install apt chromium to pull in all required system
+# library dependencies, then download a pinned Chrome for Testing binary on top.
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl libjemalloc2 libvips nodejs npm postgresql-client chromium && \
+    apt-get install --no-install-recommends -y curl libjemalloc2 libvips nodejs npm postgresql-client chromium wget unzip && \
+    wget -q "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_FOR_TESTING_VERSION}/linux64/chrome-linux64.zip" && \
+    unzip -q chrome-linux64.zip -d /opt && \
+    rm chrome-linux64.zip && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
@@ -25,7 +33,7 @@ ENV RAILS_ENV="production" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
     PUPPETEER_SKIP_DOWNLOAD="true" \
-    PUPPETEER_EXECUTABLE_PATH="/usr/bin/chromium"
+    PUPPETEER_EXECUTABLE_PATH="/opt/chrome-linux64/chrome"
 
 # Throw-away build stage to reduce size of final image
 FROM base AS build
