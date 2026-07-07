@@ -56,7 +56,7 @@ gem "opentelemetry-sdk", "~> 1.12"
 gem "ostruct"
 gem "pg-aws_rds_iam", "~> 0.8"
 gem "phonelib"
-gem "rails_semantic_logger", "~> 4.20"
+gem "rails_semantic_logger", "~> 5.0"
 gem "request_store", "~> 1.7"
 gem "valid_email2"
 

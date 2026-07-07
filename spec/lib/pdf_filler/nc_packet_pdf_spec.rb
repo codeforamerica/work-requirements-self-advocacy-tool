@@ -41,8 +41,8 @@ RSpec.describe PdfFiller::NcPacketPdf do
       expect(result[:homeschool_hours]).to eq("20")
     end
 
-    it "delegates at_least_55_no_diploma_not_working to nc_screener" do
-      allow(nc_screener).to receive(:age_work_education_health_exemption?).and_return(true)
+    it "delegates at_least_55_no_diploma_not_working to the state policy" do
+      allow(screener.state_policy).to receive(:age_work_education_health_exemption?).and_return(true)
       expect(result[:at_least_55_no_diploma_not_working]).to be true
     end
   end

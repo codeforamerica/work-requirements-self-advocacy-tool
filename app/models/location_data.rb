@@ -9,12 +9,14 @@ module LocationData
       DELAWARE => {
         display_name: "Delaware",
         pdf_filler_class: PdfFiller::PacketPdf,
+        policy_class: WorkRulesPolicy::Delaware,
         office_by: :zip_code,
         survey_url: "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_8rdcUjhPOWA0XzM"
       },
       NORTH_CAROLINA => {
         display_name: "North Carolina",
         pdf_filler_class: PdfFiller::NcPacketPdf,
+        policy_class: WorkRulesPolicy::NorthCarolina,
         office_by: :county,
         survey_url: "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6"
       }
