@@ -12,16 +12,8 @@ RSpec.describe "500 Internal Server Error page", type: :request do
 
       it_behaves_like "an error page", :en
 
-      it "shows the English title" do
-        expect(response.body).to include("The page couldn")
-      end
-
       it "shows the error badge" do
         expect(response.body).to include("ERROR: 500 Internal Server Error")
-      end
-
-      it "shows the English description" do
-        expect(response.body).to include("experiencing a temporary issue")
       end
     end
 

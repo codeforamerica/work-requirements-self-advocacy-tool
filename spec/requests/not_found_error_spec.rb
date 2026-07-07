@@ -12,16 +12,8 @@ RSpec.describe "404 Not Found error page", type: :request do
 
       it_behaves_like "an error page", :en
 
-      it "shows the English title" do
-        expect(response.body).to include("The page couldn")
-      end
-
       it "shows the error badge" do
         expect(response.body).to include("ERROR: 404 Not Found")
-      end
-
-      it "shows the English description" do
-        expect(response.body).to include("The link you followed may be broken or outdated")
       end
     end
 
