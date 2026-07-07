@@ -1,0 +1,30 @@
+<%= extends :application do %>
+  <section class="slab">
+    <div class="grid">
+      <div class="grid__item width-one-sixth"></div>
+      <div class="grid__item width-two-thirds">
+        <div class="card">
+          <div class="spacing-above-35">
+            <%= image_tag "error.svg", class: "illustration left-justified spacing-below-10" %>
+            <%= yield %>
+            <p class="spacing-above-15"><%= t("views.errors.shared.trouble_text") %></p>
+            <div class="media-box spacing-above-25">
+              <div class="media-box__media media--icon">
+                <i class="icon-markunread"></i>
+              </div>
+              <div class="media-box__content">
+                <strong><%= t("views.errors.shared.trouble_title") %></strong><br>
+                <a href="mailto:<%= t("views.errors.shared.trouble_email") %>" class="text-green-innovation-lab">
+                  <%= t("views.errors.shared.trouble_email") %>
+                </a>
+              </div>
+            </div>
+            <div class="spacing-above-35">
+              <%= link_to t("views.errors.shared.cta_primary"), root_path, class: "button button--primary" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
