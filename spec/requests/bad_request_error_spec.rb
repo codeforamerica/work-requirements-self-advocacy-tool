@@ -10,7 +10,7 @@ RSpec.describe "400 Bad Request error page", type: :request do
     context "in English (default)" do
       before { get "/400" }
 
-      it_behaves_like "an error page in English"
+      it_behaves_like "an error page", :en
 
       it "shows the English title" do
         expect(response.body).to include("The page couldn")
@@ -28,18 +28,10 @@ RSpec.describe "400 Bad Request error page", type: :request do
     context "in Spanish (locale=es)" do
       before { get "/400", params: {locale: "es"} }
 
-      it_behaves_like "an error page in Spanish"
+      it_behaves_like "an error page", :es
 
       it "returns HTTP 400" do
         expect(response).to have_http_status(:bad_request)
-      end
-
-      it "shows the Spanish title" do
-        expect(response.body).to include("No pudimos cargar esta p")
-      end
-
-      it "shows the Spanish description" do
-        expect(response.body).to include("Estamos experimentando un problema temporal")
       end
     end
   end

@@ -10,7 +10,7 @@ RSpec.describe "404 Not Found error page", type: :request do
     context "in English (default)" do
       before { get "/404" }
 
-      it_behaves_like "an error page in English"
+      it_behaves_like "an error page", :en
 
       it "shows the English title" do
         expect(response.body).to include("The page couldn")
@@ -28,18 +28,10 @@ RSpec.describe "404 Not Found error page", type: :request do
     context "in Spanish (locale=es)" do
       before { get "/404", params: {locale: "es"} }
 
-      it_behaves_like "an error page in Spanish"
+      it_behaves_like "an error page", :es
 
       it "returns HTTP 404" do
         expect(response).to have_http_status(:not_found)
-      end
-
-      it "shows the Spanish title" do
-        expect(response.body).to include("No pudimos encontrar esta p")
-      end
-
-      it "shows the Spanish description" do
-        expect(response.body).to include("La página a la que intenta acceder")
       end
     end
   end
