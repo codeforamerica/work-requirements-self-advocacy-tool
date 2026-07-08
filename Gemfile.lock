@@ -721,7 +721,7 @@ GEM
       bindex (>= 0.4.0)
       railties (>= 8.0.0)
     websocket (1.2.11)
-    websocket-driver (0.8.0)
+    websocket-driver (0.8.2)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -790,6 +790,7 @@ DEPENDENCIES
   tzinfo-data
   valid_email2
   web-console
+  websocket-driver (>= 0.8.1)
 
 RUBY VERSION
   ruby 3.4.4
