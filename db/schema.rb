@@ -90,8 +90,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_25_114104) do
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
     t.string "receiving_benefits_write_in"
-    t.integer "school_type"
-    t.string "session_token", null: false
+    t.string "session_token"
     t.string "signature"
     t.datetime "signed_at"
     t.string "source"
