@@ -23,10 +23,12 @@ class ErrorsController < ApplicationController
 
   def screener_locale
     current_screener&.locale
-  rescue
+  rescue ActiveRecord::StatementInvalid, ActiveRecord::ConnectionNotEstablished
     nil
   end
 
   def set_screener_current_step_and_locale
+    # intentionally left empty
+    # params[:locale] is nil which would overwrite the screener's locale
   end
 end
