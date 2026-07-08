@@ -15,7 +15,6 @@ RSpec.describe "404 Not Found error page", type: :request do
     end
   end
 
-
   context "GET /404 in Spanish" do
     before { get "/404", params: {locale: "es"} }
 
