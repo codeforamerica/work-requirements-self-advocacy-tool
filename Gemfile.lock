@@ -170,6 +170,7 @@ GEM
     factory_bot_rails (6.5.1)
       factory_bot (~> 6.5)
       railties (>= 6.1.0)
+    ffi (1.17.3)
     ffi (1.17.3-aarch64-linux-gnu)
     ffi (1.17.3-aarch64-linux-musl)
     ffi (1.17.3-arm-linux-gnu)
@@ -264,6 +265,7 @@ GEM
     matrix (0.4.3)
     method_source (1.1.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.9)
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
@@ -283,6 +285,9 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
+    nokogiri (1.19.4)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-musl)
@@ -632,6 +637,9 @@ GEM
     rubyzip (3.4.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
+    sass-embedded (1.97.1)
+      google-protobuf (~> 4.31)
+      rake (>= 13)
     sass-embedded (1.97.1-aarch64-linux-gnu)
       google-protobuf (~> 4.31)
     sass-embedded (1.97.1-aarch64-linux-musl)
@@ -721,7 +729,7 @@ GEM
       bindex (>= 0.4.0)
       railties (>= 8.0.0)
     websocket (1.2.11)
-    websocket-driver (0.8.0)
+    websocket-driver (0.8.2)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -738,6 +746,7 @@ PLATFORMS
   arm-linux-musl
   arm-linux-musleabihf
   arm64-darwin
+  ruby
   x86_64-darwin
   x86_64-linux
   x86_64-linux-gnu
@@ -790,6 +799,7 @@ DEPENDENCIES
   tzinfo-data
   valid_email2
   web-console
+  websocket-driver (>= 0.8.1)
 
 RUBY VERSION
   ruby 3.4.4

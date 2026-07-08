@@ -90,3 +90,5 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
+
+gem 'websocket-driver', '>= 0.8.1'
