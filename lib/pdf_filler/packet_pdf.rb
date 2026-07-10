@@ -69,12 +69,12 @@ module PdfFiller
 
     def filled_pdf_tempfile
       source_pdf_path = filled_pdf_source
-      template_doc = HexaPDF::Document.open(source_pdf_path)
-
-      unless template_doc
-        Rails.logger.error "Unable to generate PDF from #{source_pdf_path}"
-        return
+      if source_pdf_path.nil?
+        Rails.logger.error("filled_pdf_source returned nil for screener #{@screener.id} — has_exemption=#{@screener.has_exemption?} has_earnings_exemption=#{@screener.has_earnings_exemption?}")
+        return nil
       end
+
+      template_doc = HexaPDF::Document.open(source_pdf_path)
 
       hash_for_fillable_pdf.each do |field_name, field_value|
         if field_value.is_a?(String)
@@ -118,7 +118,7 @@ module PdfFiller
       generated_path = generated_pdf_path
       filled_pdf = filled_pdf_tempfile
 
-      [generated_path, filled_pdf].each do |file|
+      [generated_path, filled_pdf].compact.each do |file|
         pdf = HexaPDF::Document.open(file)
         pdf.pages.each { |page| target.pages << target.import(page) }
       end

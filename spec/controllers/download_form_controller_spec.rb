@@ -3,10 +3,10 @@ require "rails_helper"
 RSpec.describe DownloadFormController, type: :controller do
   describe "#display" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :display
-    it_behaves_like "saves outcome on page visit", expected_outcome: Screener::EXEMPT
+    it_behaves_like "saves outcome on page visit", expected_outcome: Screener::EXEMPT, screener_factory: [:screener, :with_exemption]
 
-    context "with signed in screener" do
-      let(:screener) { create(:screener, email: "hi@example.com") }
+    context "with signed in exempt screener" do
+      let(:screener) { create(:screener, :with_exemption, email: "hi@example.com") }
 
       before { sign_in screener }
 
@@ -19,6 +19,23 @@ RSpec.describe DownloadFormController, type: :controller do
       it "does not enqueue a job if the screener has no email" do
         screener.update!(email: nil)
 
+        expect {
+          get :display
+        }.not_to have_enqueued_job(SendOutgoingEmailJob)
+      end
+    end
+
+    context "with a non-exempt screener" do
+      let(:screener) { create(:screener, email: "hi@example.com") }
+
+      before { sign_in screener }
+
+      it "redirects to root" do
+        get :display
+        expect(response).to redirect_to(root_path)
+      end
+
+      it "does not enqueue a SendOutgoingEmailJob" do
         expect {
           get :display
         }.not_to have_enqueued_job(SendOutgoingEmailJob)

@@ -1,4 +1,5 @@
 class DownloadFormController < ExemptionAwareQuestionController
+  before_action :require_exempt_screener
   before_action :email_pdf, :save_outcome, only: :display
 
   def show_progress_bar
@@ -21,5 +22,9 @@ class DownloadFormController < ExemptionAwareQuestionController
 
   def outcome_value
     Screener::EXEMPT
+  end
+
+  def require_exempt_screener
+    redirect_to root_path unless current_screener.exempt_from_work_rules?
   end
 end

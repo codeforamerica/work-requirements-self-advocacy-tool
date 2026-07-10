@@ -322,6 +322,13 @@ RSpec.describe PdfFiller::PacketPdf do
         File.delete(path) if path && File.exist?(path)
       end
     end
+
+    context "screener has no exemption" do
+      it "returns nil without attempting to open a PDF" do
+        expect(HexaPDF::Document).not_to receive(:open)
+        expect(packet_pdf.filled_pdf_tempfile).to be_nil
+      end
+    end
   end
 
   describe "#combined_pdf" do
@@ -333,6 +340,24 @@ RSpec.describe PdfFiller::PacketPdf do
         state: LocationData::States::DELAWARE,
         county: nil,
         preventing_work_medical_condition: "yes")
+    end
+
+    it "returns only the summary page when the screener has no exemption (filled_pdf_tempfile is nil)" do
+      no_exemption_screener = build(:screener,
+        first_name: "Nigella",
+        last_name: "Lawson",
+        birth_date: Date.new(1990, 7, 13),
+        state: LocationData::States::DELAWARE,
+        county: nil)
+      pdf = described_class.new(no_exemption_screener)
+
+      allow_any_instance_of(Grover).to receive(:to_pdf) do |_, path|
+        doc = HexaPDF::Document.new
+        doc.pages.add
+        doc.write(path)
+      end
+
+      expect { pdf.combined_pdf }.not_to raise_error
     end
 
     it "returns a single PDF combining the summary page and the filled packet" do
