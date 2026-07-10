@@ -89,6 +89,11 @@ RSpec.describe PdfFiller::PacketPdf do
         expect(result[:birth_date]).to eq("July 13, 1990")
         expect(result[:pregnancy_due_date]).to eq("September 15, 2026")
       end
+
+      it "returns an empty string for birth_date when it is nil" do
+        screener.birth_date = nil
+        expect(result[:birth_date]).to eq("")
+      end
     end
 
     describe "calculated fields" do

@@ -153,7 +153,7 @@ module PdfFiller
 
     def shared_fields
       fields = {
-        birth_date: @screener.birth_date.strftime("%B %-d, %Y"),
+        birth_date: @screener.birth_date&.strftime("%B %-d, %Y").to_s,
         caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
         caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,
         enrolled_in_education: @screener.is_student_yes?,

@@ -46,6 +46,8 @@ class PdfController < QuestionController
   end
 
   def generate_pdf
+    return redirect_to root_path unless current_screener.exempt_from_work_rules?
+
     send_mixpanel_event(event_name: "pdf_downloaded")
     send_data current_screener.pdf, filename: "combined.pdf", disposition: "inline"
   end
