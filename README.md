@@ -62,7 +62,7 @@ Please download the [AWS Session Manager as well following AWS instructions](htt
 
 1. Make sure you're logged into aws: `aws sso login`. This should open up an AWS console and have you sign in (if you aren't signed in already). After verification, it'll return you to the terminal
 2. For staging, you can use `bin/ecs_exec`
-3. For production, you can pass in `bin/ecs_exec --environment production`
+3. For production, you can pass in `bin/ecs_exec --env production`
 4. You can pass in other parameters like:
    1. `--desired-status`: `RUNNING` by default, but can specify `STOPPED`. See documentation for [list-tasks](https://docs.aws.amazon.com/cli/latest/reference/ecs/list-tasks.html).
    2. `--command`: if you want to run something other than `bin/sh`
