@@ -1,21 +1,144 @@
 <%= image_tag "download.svg", class: "illustration left-justified spacing-above-35" %>
 <% has_email = @current_screener.email.present? %>
-<% if has_email %>
-  <% content_for :question_title, t("views.download_form.edit.title_sent", email: @current_screener.email) %>
-<% else %>
-  <% content_for :question_title, t("views.download_form.edit.title") %>
-<% end %>
+<% content_for :question_title, t("views.download_form.edit.title") %>
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 <p><%= t("views.download_form.edit.title_help_text") %></p>
 
-<% unless has_email %>
+<div class="notice teal">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-info_outline"></i>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.download_form.edit.on_next_page_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.download_form.edit.on_next_page_content") %></p>
+    </div>
+  </div>
+</div>
+
+<% if has_email %>
   <div>
-    <%= link_to(generate_pdf_path, class: "button button--primary spacing-below-0", target: "_blank") do %>
-      <i class="button__icon--left icon-get_app"></i>
+    <h2 class="h3 spacing-below-5"><%= t("views.download_form.edit.title_sent", email: @current_screener.email) %></h2>
+    <p>
+      <%= t("views.download_form.edit.download_guidance_html") %>
+      <%= link_to(t("views.download_form.edit.download_to_device"), generate_pdf_path, target: "_blank", "data-track-click" => "download_form_link_clicked", "data-track-controller_name" => "DownloadForm") %>
+    </p>
+  </div>
+<% else %>
+  <div>
+    <div class="media-box">
+      <div class="media-box__media media--icon">
+        <i class="button__icon--left icon-get_app"></i>
+      </div>
+      <div class="media-box__content">
+        <h2 class="h3"><%= t("views.download_form.edit.download_a_copy") %></h2>
+      </div>
+    </div>
+
+    <%= link_to(generate_pdf_path, class: "button button--primary button--small button--wide spacing-below-0", target: "_blank") do %>
       <%= t("views.download_form.edit.download_form") %>
     <% end %>
   </div>
+<% end %>
+
+<p class="spacing-above-35"><%= t("views.download_form.edit.after_text") %></p>
+
+<hr class="spacing-above-35 spacing-below-35"/>
+
+<%= image_tag "next-steps.svg", class: "illustration left-justified spacing-below-10" %>
+<h2><%= t("views.download_form.edit.before_you_go_title") %></h2>
+<ol class="numbered-steps">
+  <li>
+    <strong><%= t("views.download_form.edit.gather_proof_title") %></strong>
+    <p><%= t("views.download_form.edit.gather_proof_content") %></p>
+    <%= link_to t("views.download_form.edit.see_proof_documents"), next_path, class: "button button--small" %>
+  </li>
+  <li>
+    <strong><%= t("views.download_form.edit.give_form_title") %></strong>
+    <p class="spacing-below-0"><%= t("views.download_form.edit.give_form_content") %></p>
+  </li>
+</ol>
+
+<hr class="spacing-above-35 spacing-below-35"/>
+
+<h2><%= t("views.download_form.edit.how_to") %></h2>
+<% offices = @current_screener.offices_to_display %>
+<% single_office = offices.one? && offices.first[:subgeography].blank? %>
+<p><%= t("views.download_form.edit.how_to_help_text") %></p>
+<p><%= t("views.download_form.edit.submit_what_you_have") %></p>
+
+<div class="notice yellow spacing-below-35">
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-warning"></i>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-0"><%= t("views.download_form.edit.give_form_by_yourself_html") %></p>
+    </div>
+  </div>
+</div>
+
+<% offices.each do |office| %>
+  <% state = @current_screener.state.downcase %>
+  <% unless single_office %>
+    <h3><%= t("views.download_form.edit.single_office_instructions", subgeography: office[:subgeography], office: office[:name]) %></h3>
+  <% end %>
+  <p class="spacing-below-0"><i class="icon-room" style="padding-right: 0.5rem;"></i><%= LocationData::States.display_name(@current_screener.state) %></p>
+  <p><strong><%= office[:name] %></strong></p>
+  <% upload_portal_or_email = office[:upload_portal_or_email] %>
+
+  <div class="accordion accordion--default-open">
+    <button class="accordion__button" aria-expanded="true" data-track-click="online_accordion_clicked" data-track-controller_name="DownloadForm"><%= t("views.download_form.edit.online_label") %></button>
+    <div class="accordion__content">
+      <p><%= t("views.download_form.edit.next_steps_online_html") %></p>
+      <ul class="list--bulleted">
+        <li class='spacing-above-15'>
+          <%= t("views.download_form.edit.state_website_#{state}_html") %>
+          <div class="spacing-above-10"><%= t("views.download_form.edit.open_state_website_#{state}_html") %></div>
+        </li>
+        <% if upload_portal_or_email.present? %>
+          <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
+          <% if is_email %>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email, upload_portal_or_email, "data-track-click" => "office_email_link_#{state}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
+          <% else %>
+            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", link: link_to(upload_portal_or_email, upload_portal_or_email, target: "_blank", "data-track-click" => "office_website_link_#{state}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
+          <% end %>
+        <% end %>
+        <% if office[:website].present? && office[:website] != upload_portal_or_email %>
+          <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", link: link_to(office[:website], office[:website], target: "_blank", "data-track-click" => "office_website_link_#{state}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <% if office[:mailing_address].present? || office[:physical_address].present? %>
+    <div class="accordion accordion--default-open">
+      <button class="accordion__button" aria-expanded="true" data-track-click="mail_accordion_clicked" data-track-controller_name="DownloadForm"><%= t("views.download_form.edit.mail_or_in_person_label") %></button>
+      <div class="accordion__content">
+        <% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
+          <% if (mailing_address = office[:mailing_address]).present? %>
+            <%= t("views.download_form.edit.next_steps_mail_nc_html", mailing_address: simple_format(mailing_address)) %>
+          <% end %>
+          <% if (address = office[:physical_address]).present? %>
+            <%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(address)) %>
+          <% end %>
+        <% else %>
+          <% if (mailing_address = office[:mailing_address]).present? %>
+            <%= t("views.download_form.edit.next_steps_mail_or_in_person_de_html", mailing_address: simple_format(mailing_address)) %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if (phone = office[:phone]).present? %>
+    <p><%= t("views.download_form.edit.have_questions_html") %></p>
+    <p><%= phone %></p>
+  <% end %>
+<% end %>
+
+<% unless has_email %>
   <hr class="spacing-above-35 spacing-below-35"/>
   <div>
     <p><%= t("views.download_form.edit.add_email_guidance_html") %></p>
@@ -38,78 +161,9 @@
       <%= t("views.download_form.edit.email_pdf") %>
     <% end %>
   </div>
-  <hr class="spacing-above-35"/>
 <% end %>
 
-<h2><%= t("views.download_form.edit.how_to") %></h2>
-<% offices = @current_screener.offices_to_display %>
-<% single_office = offices.one? && offices.first[:subgeography].blank? %>
-<% if single_office %>
-  <p class="spacing-below-0"><%= LocationData::States.display_name(@current_screener.state) %></p>
-  <p><strong><%= offices.first[:name] %></strong></p>
-<% end %>
-<p><%= t("views.download_form.edit.how_to_help_text") %></p>
-
-<% offices.each do |office| %>
-  <div class="notice grey-light">
-    <% unless single_office %>
-      <h3><%= t("views.download_form.edit.single_office_instructions", subgeography: office[:subgeography], office: office[:name]) %></h3>
-    <% end %>
-    <ol class="list--numbered" style="<%= single_office ? '' : 'padding-left: 1.5em;' %>">
-      <% upload_portal_or_email = office[:upload_portal_or_email] %>
-      <li><%= t("views.download_form.edit.next_steps_online_html") %>
-        <ul class="list--bulleted">
-          <li class='spacing-above-15'><%= t("views.download_form.edit.state_website_#{current_screener.state.downcase}_html") %></li>
-          <% if upload_portal_or_email.present? %>
-            <% is_email = ValidEmail2::Address.new(upload_portal_or_email).valid? %>
-            <% if is_email %>
-              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_email_html", email: mail_to(upload_portal_or_email, upload_portal_or_email, "data-track-click" => "office_email_link_#{@current_screener.state.downcase}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
-            <% else %>
-              <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", link: link_to(upload_portal_or_email, upload_portal_or_email, target: "_blank", "data-track-click" => "office_website_link_#{@current_screener.state.downcase}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
-            <% end %>
-          <% end %>
-          <% if office[:website].present? && office[:website] != upload_portal_or_email %>
-            <li class='spacing-above-15'><%= t("views.download_form.edit.next_steps_online_web_html", link: link_to(office[:website], office[:website], target: "_blank", "data-track-click" => "office_website_link_#{@current_screener.state.downcase}_clicked", "data-track-controller_name" => "DownloadForm")) %></li>
-          <% end %>
-        </ul>
-      </li>
-      <% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
-        <% if (mailing_address = office[:mailing_address]).present? %>
-          <li><%= t("views.download_form.edit.next_steps_mail_nc_html", mailing_address: simple_format(mailing_address)) %></li>
-        <% end %>
-        <% if (address = office[:physical_address]).present? %>
-          <li><%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(address)) %></li>
-        <% end %>
-      <% else %>
-        <% if (mailing_address = office[:mailing_address]).present? %>
-          <li><%= t("views.download_form.edit.next_steps_mail_or_in_person_de_html", mailing_address: simple_format(mailing_address)) %></li>
-        <% end %>
-      <% end %>
-    </ol>
-    <% if !single_office && (phone = office[:phone]).present? %>
-      <p><%= t("views.download_form.edit.have_questions_html") %></p>
-      <p><%= phone %></p>
-    <% end %>
-  </div>
-
-  <% if single_office && (phone = office[:phone]).present? %>
-    <p><%= t("views.download_form.edit.have_questions_html") %></p>
-    <p><%= phone %></p>
-  <% end %>
-<% end %>
-
-<% if has_email %>
-  <hr class="spacing-above-35 spacing-below-35"/>
-  <p><%= t("views.download_form.edit.download_guidance_html") %></p>
-  <%= link_to(
-        generate_pdf_path,
-        class: "button button--primary spacing-below-0",
-        target: "_blank") do %>
-    <i class="button__icon--left icon-get_app"></i>
-    <%= t("views.download_form.edit.download_form") %>
-  <% end %>
-  <hr class="spacing-above-35"/>
-<% end %>
+<hr class="spacing-above-35 spacing-below-35"/>
 
 <div>
   <h2><%= t("views.download_form.edit.what_to_expect") %></h2>
@@ -121,5 +175,5 @@
 </div>
 
 <div class="spacing-above-60">
-  <%= render "shared/continue_button" %>
+  <%= render "shared/continue_button", label: t("views.download_form.edit.see_proof_button") %>
 </div>

@@ -43,6 +43,21 @@ RSpec.describe DownloadFormController, type: :controller do
       end
     end
 
+    context "without an email, when proof is required" do
+      render_views
+      let(:screener) { create(:screener, :with_exemption, state: "DE", zip_code: "19703", last_name: "Anyone", email: nil) }
+
+      before { sign_in screener }
+
+      it "renders the download button, the proof-gathering step, and the email capture prompt" do
+        get :display
+
+        expect(response.body).to include(I18n.t("views.download_form.edit.download_a_copy"))
+        expect(response.body).to include(I18n.t("views.download_form.edit.see_proof_documents"))
+        expect(response.body).to include(I18n.t("views.download_form.edit.email_pdf"))
+      end
+    end
+
     context "for a DE single-office zip" do
       render_views
       let(:screener) { create(:screener, :with_exemption, state: "DE", zip_code: "19703", last_name: "Anyone", email: "hi@example.com") }

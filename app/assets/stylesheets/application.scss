@@ -80,15 +80,53 @@ main {
 
   .accordion {
     background-color: $color-white;
+  }
+}
 
-    button.accordion__button[aria-expanded="true"]:after {
-      background-image: url("/icon_accordion_close.svg");
+// The gem's accordion :after icons use relative urls that don't resolve under
+// propshaft. Point them at the propshaft-rewritten root paths so the +/-
+// toggle icons render.
+.accordion {
+  button.accordion__button[aria-expanded="true"]:after {
+    background-image: url("/icon_accordion_close.svg");
+  }
+
+  button.accordion__button[aria-expanded="false"]:after {
+    background-image: url("/icon_accordion_open.svg");
+  }
+}
+
+.numbered-steps {
+  list-style: none;
+  counter-reset: step;
+  padding-left: 0;
+
+  > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 4rem;
+    margin-bottom: 2.4rem;
+
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    button.accordion__button[aria-expanded="false"]:after {
-      background-image: url("/icon_accordion_open.svg");
+    &:before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      background-color: $color-teal;
+      color: $color-white;
+      font-weight: bold;
+      font-size: 1.6rem;
     }
-
   }
 }
 
@@ -118,6 +156,13 @@ main {
 .notice.teal {
   border: 2px solid $color-teal-dark;
   background-color: $color-teal-light;
+  border-radius: 10px;
+  font-size: 1.6rem;
+}
+
+.notice.yellow {
+  border: 2px solid $color-yellow;
+  background-color: $color-yellow-light;
   border-radius: 10px;
   font-size: 1.6rem;
 }
@@ -252,6 +297,12 @@ i.continue-arrow {
   border: 2px solid var(--Black, #000);
   background: var(--White, $color-white);
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.50);
+}
+
+.button.button--wide {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
 }
 
 .text-input-group,

@@ -1,17 +1,13 @@
-<% content_for :question_title, t("views.proof_guidance.edit.title") %>
+<% content_for :question_title, @current_screener.requires_proof? ? t("views.proof_guidance.edit.title") : t("views.proof_guidance.edit.no_proof_title") %>
 
 <%= image_tag "next-steps.svg", class: "illustration left-justified spacing-above-25" %>
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
-<ol class="list--numbered">
-  <% t("views.proof_guidance.edit.next_steps_html").each do |li| %>
-    <li><%= li %></li>
-  <% end %>
-</ol>
+<% unless @current_screener.requires_proof? %>
+  <p><%= t("views.proof_guidance.edit.no_proof_content") %></p>
+<% end %>
 
 <% if @current_screener.requires_proof? %>
-
-  <h2 class="h2"><%= t("views.proof_guidance.edit.proof_you_may_need") %></h2>
 
   <div class="reveal">
     <button class="reveal__button" aria-expanded="true" data-track-click="reveal_clicked" data-track-reveal_name="already-has-proof" data-track-controller_name="ProofGuidance">
@@ -57,6 +53,7 @@
         <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe %>
         <% proof_of_condition_title, condition_type = proof_of_condition_title_and_type(@current_screener) %>
         <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title, condition_type: condition_type ) %>
+        <%= t("views.proof_guidance.edit.open_health_form_#{@current_screener.state.downcase}_html") %>
       </div>
     <% end %>
 
