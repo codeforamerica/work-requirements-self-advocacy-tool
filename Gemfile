@@ -59,6 +59,7 @@ gem "phonelib"
 gem "rails_semantic_logger", "~> 5.0"
 gem "request_store", "~> 1.7"
 gem "valid_email2"
+gem "websocket-driver", ">= 0.8.1"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
