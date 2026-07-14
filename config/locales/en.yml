@@ -187,7 +187,7 @@ en:
         expectation_3: The agency may not confirm receipt. We recommend calling your SNAP agency if you don't hear anything in the next 4 weeks.
         gather_proof_content: We'll show you a list based on your answers.
         gather_proof_title: Gather the proof you may need
-        give_form_by_yourself_html: "You'll need to give the form and any documents to your SNAP office by yourself. We'll help you figure out what to bring."
+        give_form_by_yourself_html: You'll need to give the form and any documents to your SNAP office by yourself. We'll help you figure out what to bring.
         give_form_content: Submit your form and, if needed, your proof to your SNAP agency using the option that works best for you to let them know that the work rules do not apply to you.
         give_form_title: Give your downloaded form
         have_questions_html: "<strong>Not sure how to submit your form?</strong> Call your office."
@@ -198,7 +198,7 @@ en:
         next_steps_mail_nc_html: "<p><strong>Mail: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_mail_or_in_person_de_html: "<p>Print your form and mail it, or bring it to:</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Send an email to:</strong><br/><i>%{email}</i></span>"
-        next_steps_online_html: "Submit your form using one of these options:"
+        next_steps_online_html: 'Submit your form using one of these options:'
         next_steps_online_web_html: "<span><strong>Go to:</strong><br/><i>%{link}</i></span>"
         on_next_page_content: We'll let you know if your agency usually needs more proof for any of the circumstances you selected.
         on_next_page_title: On the next page
