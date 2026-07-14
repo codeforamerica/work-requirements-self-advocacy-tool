@@ -83,8 +83,8 @@ main {
   }
 }
 
-// The gem's accordion :after icons use relative urls that don't resolve under
-// propshaft. Point them at the propshaft-rewritten root paths so the +/-
+// honeycrisp's accordion :after icons use relative urls that don't resolve under
+// propshaft. point them at the propshaft-rewritten root paths so the +/-
 // toggle icons render.
 .accordion {
   button.accordion__button[aria-expanded="true"]:after {
@@ -94,12 +94,24 @@ main {
   button.accordion__button[aria-expanded="false"]:after {
     background-image: url("/icon_accordion_open.svg");
   }
+
+  // tighten the gap between the accordion title and its content
+  // (honeycrisp defaults to margin-top: $s35)
+  .accordion__content {
+    margin-top: 1rem;
+    overflow-wrap: break-word;
+  }
 }
 
 .numbered-steps {
   list-style: none;
   counter-reset: step;
   padding-left: 0;
+
+  &__title {
+    display: block;
+    margin-bottom: 1rem;
+  }
 
   > li {
     counter-increment: step;
@@ -177,10 +189,6 @@ main {
   > .list--numbered {
     padding: 0;
     margin: 0 0 0 1em;
-  }
-
-  > .list--bulleted {
-    padding-left: 1.5em;
   }
 }
 
@@ -321,6 +329,14 @@ i.continue-arrow {
   }
 }
 
+.list--bulleted {
+  padding-left: 1.5em;
+
+  li {
+    margin: 0;
+  }
+}
+
 .privacy-policy-scrollbox {
   border: 2px solid #A9AEB1;
   border-radius: 5px;
@@ -351,6 +367,7 @@ i.continue-arrow {
   display: flex;
   flex-direction: row;
   align-items: anchor-center;
+  color: inherit; // black text (overrides honeycrisp's teal-dark)
 
   span {
     display: inline-block;
@@ -370,17 +387,8 @@ i.continue-arrow {
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  color: $color-teal-dark;
   border-color: $color-teal-dark;
   background-color: $color-teal-light;
-
-  .list--bulleted {
-    padding-left: 1.5em;
-
-    li {
-      margin: 0;
-    }
-  }
 }
 
 .flash-alerts {

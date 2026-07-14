@@ -171,12 +171,12 @@ es:
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     download_form:
       edit:
-        add_email_guidance_html: "<strong>¿Quiere recibir información útil en su correo?</strong> Agregue su correo para recibir:"
+        add_email_guidance: "¿Quiere recibir información útil en su correo? Agregue su correo para recibir:"
         after_text: Después de entregar su formulario y cualquier documento adicional que necesite su oficina de SNAP, revisarán la información que envió para decidir si las reglas de trabajo se aplican a usted.
         before_you_go_title: 'Antes de finalizar: Próximos pasos'
         download_a_copy: Descargue una copia de su formulario
         download_form: Descargar aquí
-        download_guidance_html: "<strong>¿No lo recibió?</strong>"
+        download_guidance: "¿No lo recibió?"
         download_to_device: Descargue una copia en su dispositivo.
         email_benefit_1: Una copia del formulario para sus registros
         email_benefit_2: Guía paso a paso del proceso
@@ -190,12 +190,11 @@ es:
         give_form_by_yourself_html: Tendrá que entregar el formulario y cualquier documento directamente a su oficina de SNAP. Le ayudaremos a identificar qué necesita llevar.
         give_form_content: Envíe su formulario y cualquier documento que le solicite su oficina de SNAP usando la opción que mejor le funcione para informarles que cumple con una exención de las reglas de trabajo.
         give_form_title: Entregue su formulario a su oficina de SNAP
-        have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a la oficina de su condado."
+        have_questions: "¿Tiene preguntas sobre cómo enviar su formulario? Llame a la oficina de su condado."
         how_to: Cómo entregar su formulario a su oficina de SNAP
-        how_to_help_text: Entregue este formulario y cualquier documento adicional que necesite a su oficina de SNAP para informarles que las reglas de trabajo no aplican en su caso.
         mail_or_in_person_label: Por correo o en persona
-        next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
-        next_steps_mail_nc_html: "<p><strong>Envíelo por correo a: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprima su formulario y entréguelo en la siguiente dirección:</p><p><i>%{address}</i></p>"
+        next_steps_mail_nc_html: "<p><strong>Por correo: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_mail_or_in_person_de_html: "<p>Imprima su formulario y envíelo por correo o entréguelo en la siguiente dirección:</p><p><i>%{mailing_address}</i></p>"
         next_steps_online_email_html: "<span><strong>Enviar por correo electrónico a:</strong><br/><i>%{email}</i></span>"
         next_steps_online_html: 'Envíe su formulario usando una de estas opciones:'
@@ -489,8 +488,8 @@ es:
       edit:
         already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
         already_has_proof_content_html:
-        - "<strong>Sí, ya compartí esa información.</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
-        - <strong>No, todavía no la he enviado.</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
+        - "<strong>Sí, ya compartí esa información.</strong><br/> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
+        - <strong>No, todavía no la he enviado.</strong><br/> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
         condition_medical_health: condición
         condition_substance_use: trastorno por uso de sustancias
         no_proof_content: Tenga en cuenta que su oficina de SNAP aún podría pedirle documentos adicionales o más información al revisar su caso.

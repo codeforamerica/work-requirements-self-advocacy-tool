@@ -1,6 +1,6 @@
 <% content_for :question_title, @current_screener.requires_proof? ? t("views.proof_guidance.edit.title") : t("views.proof_guidance.edit.no_proof_title") %>
 
-<%= image_tag "next-steps.svg", class: "illustration left-justified spacing-above-25" %>
+<%= image_tag "forms.svg", class: "illustration left-justified spacing-above-25" %>
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
 <% unless @current_screener.requires_proof? %>
@@ -8,7 +8,6 @@
 <% end %>
 
 <% if @current_screener.requires_proof? %>
-
   <div class="reveal">
     <button class="reveal__button" aria-expanded="true" data-track-click="reveal_clicked" data-track-reveal_name="already-has-proof" data-track-controller_name="ProofGuidance">
       <i class="icon-help" style="padding-right: 1rem;"></i><span><strong><%= t("views.proof_guidance.edit.already_has_proof") %></strong></span>
