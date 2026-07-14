@@ -28,7 +28,7 @@
       </div>
     </div>
     <p>
-      <%= link_to(generate_pdf_path, class: "link--subtle", target: "_blank", "data-track-click" => "download_form_link_clicked", "data-track-controller_name" => "DownloadForm") do %>
+      <%= link_to(generate_pdf_path, class: "link--subtle", target: "_blank") do %>
         <%= t("views.download_form.edit.download_guidance") %> <%= t("views.download_form.edit.download_to_device") %>
       <% end %>
     </p>
@@ -75,8 +75,7 @@
 <hr class="spacing-above-35 spacing-below-35"/>
 
 <h2><%= t("views.download_form.edit.how_to") %></h2>
-<% offices = @current_screener.offices_to_display %>
-<% single_office = offices.one? && offices.first[:subgeography].blank? %>
+
 <p><%= t("views.download_form.edit.submit_what_you_have") %></p>
 
 <div class="notice yellow spacing-below-35">
@@ -89,6 +88,9 @@
     </div>
   </div>
 </div>
+
+<% offices = @current_screener.offices_to_display %>
+<% single_office = offices.one? && offices.first[:subgeography].blank? %>
 
 <% offices.each do |office| %>
   <% state = @current_screener.state.downcase %>
@@ -107,9 +109,9 @@
 
   <% upload_portal_or_email = office[:upload_portal_or_email] %>
   <div class="accordion accordion--default-open">
-    <button class="accordion__button" aria-expanded="true" data-track-click="online_accordion_clicked" data-track-controller_name="DownloadForm"><%= t("views.download_form.edit.online_label") %></button>
+    <button class="accordion__button" aria-expanded="true"><%= t("views.download_form.edit.online_label") %></button>
     <div class="accordion__content">
-      <p><%= t("views.download_form.edit.next_steps_online_html") %></p>
+      <p><%= t("views.download_form.edit.next_steps_online") %></p>
       <ul class="list--bulleted">
         <li class='spacing-above-15'>
           <%= t("views.download_form.edit.state_website_#{state}_html") %>
@@ -130,19 +132,21 @@
     </div>
   </div>
 
-  <% if office[:mailing_address].present? || office[:physical_address].present? %>
+  <% mailing_address = office[:mailing_address] %>
+  <% physical_address = office[:physical_address] %>
+  <% if mailing_address.present? || physical_address.present? %>
     <div class="accordion accordion--default-open">
-      <button class="accordion__button" aria-expanded="true" data-track-click="mail_accordion_clicked" data-track-controller_name="DownloadForm"><%= t("views.download_form.edit.mail_or_in_person_label") %></button>
+      <button class="accordion__button" aria-expanded="true"><%= t("views.download_form.edit.mail_or_in_person_label") %></button>
       <div class="accordion__content">
         <% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
-          <% if (address = office[:physical_address]).present? %>
-            <%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(address)) %>
+          <% if physical_address.present? %>
+            <%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(physical_address)) %>
           <% end %>
-          <% if (mailing_address = office[:mailing_address]).present? %>
+          <% if mailing_address.present? %>
             <%= t("views.download_form.edit.next_steps_mail_nc_html", mailing_address: simple_format(mailing_address)) %>
           <% end %>
         <% else %>
-          <% if (mailing_address = office[:mailing_address]).present? %>
+          <% if mailing_address.present? %>
             <%= t("views.download_form.edit.next_steps_mail_or_in_person_de_html", mailing_address: simple_format(mailing_address)) %>
           <% end %>
         <% end %>

@@ -196,8 +196,8 @@ es:
         next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprima su formulario y entréguelo en la siguiente dirección:</p><p><i>%{address}</i></p>"
         next_steps_mail_nc_html: "<p><strong>Por correo: </strong></p><p><i>%{mailing_address}</i></p>"
         next_steps_mail_or_in_person_de_html: "<p>Imprima su formulario y envíelo por correo o entréguelo en la siguiente dirección:</p><p><i>%{mailing_address}</i></p>"
+        next_steps_online: 'Envíe su formulario usando una de estas opciones:'
         next_steps_online_email_html: "<span><strong>Enviar por correo electrónico a:</strong><br/><i>%{email}</i></span>"
-        next_steps_online_html: 'Envíe su formulario usando una de estas opciones:'
         next_steps_online_web_html: "<span><strong>Ir a:</strong><br/><i>%{link}</i></span>"
         on_next_page_content: Le mostraremos los documentos adicionales que su oficina de SNAP podría solicitar según las situaciones que seleccionó.
         on_next_page_title: En la siguiente página
