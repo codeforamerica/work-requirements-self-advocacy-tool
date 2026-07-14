@@ -217,6 +217,27 @@ en:
         working_hours_label: How many hours a week do you usually work?
         working_weekly_earnings_help_text: We know this can be hard to calculate. If you don't know the exact amount, just estimate.
         working_weekly_earnings_label: How much do you earn each week before taxes?
+    error_400:
+      bad_request:
+        description: We're experiencing a temporary issue. Our team has been notified and is already working on this.
+        error_text: 'ERROR: 400 Bad Request'
+        title: The page couldn't load
+    error_404:
+      not_found:
+        description: The link you followed may be broken or outdated.
+        error_text: 'ERROR: 404 Not Found'
+        title: The page couldn't be found
+    error_500:
+      internal_server_error:
+        description: We're experiencing a temporary issue. Our team has been notified and is already working on this.
+        error_text: 'ERROR: 500 Internal Server Error'
+        title: The page couldn't load
+    errors:
+      shared:
+        cta_primary: Go to home page
+        trouble_email: getbenefitshelp@codeforamerica.org
+        trouble_text: Still having trouble? We will do our best to resolve the issue.
+        trouble_title: Contact us by email
     feedback_confident:
       edit:
         little: A little confident

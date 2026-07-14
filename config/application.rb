@@ -37,6 +37,7 @@ module WorkRequirementsSelfAdvocacyTool
     config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
 
     config.action_dispatch.rescue_responses["ActionDispatch::ParameterTypeError"] = :bad_request
+    config.exceptions_app = routes
 
     # Silence the queue polling logs by default, since they're very noisy.
     config.solid_queue.silence_polling = ENV.fetch("SOLID_QUEUE_SILENCE_POLLING", "true") == "true"
