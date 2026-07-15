@@ -3,14 +3,52 @@
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 <p><%= t("views.feedback_result.edit.title_help_text") %></p>
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :unsubmitted_write_in, value: nil %>
   <div class="checkbox-group spacing-below-60">
-    <%= f.cfa_checkbox(:survey_plan_to_submit_results_to_site, t("views.feedback_result.edit.submit_results_to_site", state_site: t("views.feedback_result.edit.submit_site_name.#{@current_screener.state.downcase}", default: :"views.feedback_result.edit.submit_site_name.default")), options: { checked_value: "yes", unchecked_value: "no"}) %>
-    <%= f.cfa_checkbox(:survey_plan_to_email_results, t("views.feedback_result.edit.email_results"), options: { checked_value: "yes", unchecked_value: "no"}) %>
-    <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_interview, t("views.feedback_result.edit.bring_results_to_interview"), options: { checked_value: "yes", unchecked_value: "no"}) %>
-    <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_organization, t("views.feedback_result.edit.bring_results_to_organization"), options: { checked_value: "yes", unchecked_value: "no"}) %>
-    <%= f.cfa_checkbox(:survey_plan_to_keep_it_in_records, t("views.feedback_result.edit.keep_it_in_records"), options: { checked_value: "yes", unchecked_value: "no"}) %>
-  </div>
+    <div class="question-with-follow-up">
+      <div class="question-with-follow-up__question">
+        <%= f.cfa_checkbox(:survey_plan_to_submit_results_to_site, t("views.feedback_result.edit.submit_results_to_site", state_site: t("views.feedback_result.edit.submit_site_name.#{@current_screener.state.downcase}", default: :"views.feedback_result.edit.submit_site_name.default")), options: { checked_value: "yes", unchecked_value: "no"}) %>
+        <%= f.cfa_checkbox(:survey_plan_to_email_results, t("views.feedback_result.edit.email_results"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+        <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_interview, t("views.feedback_result.edit.bring_results_to_interview"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+        <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_organization, t("views.feedback_result.edit.bring_results_to_organization"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+        <%= f.cfa_checkbox(:survey_plan_to_keep_it_in_records, t("views.feedback_result.edit.keep_it_in_records"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#unsubmitted-reasons" }) %>
+      </div>
 
+      <div class="question-with-follow-up__follow-up" id="unsubmitted-reasons">
+        <hr/>
+        <p><%= t("views.feedback_result.edit.unsubmitted_intro") %></p>
+        <h2 class="h3"><%= t("views.feedback_result.edit.reasons_title") %></h2>
+        <p class="text--help"><%= t("general.choose_all_that_apply") %></p>
+
+        <div class="question-with-follow-up">
+          <div class="question-with-follow-up__question">
+            <%= f.cfa_checkbox(:unsubmitted_because_already_reported, t("views.feedback_result.edit.already_reported"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+            <%= f.cfa_checkbox(:unsubmitted_because_wont_be_accepted, t("views.feedback_result.edit.wont_be_accepted"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+            <%= f.cfa_checkbox(:unsubmitted_because_process_too_hard, t("views.feedback_result.edit.process_too_hard"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+            <%= f.cfa_checkbox(:unsubmitted_because_dont_qualify_for_exemptions, t("views.feedback_result.edit.dont_qualify_for_exemptions"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+            <%= f.cfa_checkbox(:unsubmitted_because_just_wanted_to_see_result, t("views.feedback_result.edit.just_wanted_to_see_result"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+            <%= f.cfa_checkbox(:unsubmitted_because_privacy_concerns, t("views.feedback_result.edit.privacy_concerns"), options: { checked_value: "yes", unchecked_value: "no"}) %>
+            <%= f.cfa_checkbox(:unsubmitted_because_other, t("views.feedback_result.edit.other"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#unsubmitted-write-in" }) %>
+          </div>
+
+          <div class="question-with-follow-up__follow-up" id="unsubmitted-write-in">
+            <%= f.cfa_textarea(:unsubmitted_write_in,
+                   t("views.feedback_result.edit.unsubmitted_write_in"),
+                   options: {
+                     maxlength: FeedbackResultController::CHARACTER_LIMIT,
+                     data: {
+                       i18n_one: t("general.char_counter.remaining.one", count: "%{count}"),
+                       i18n_other: t("general.char_counter.remaining.other", count: "%{count}")
+                     }
+                   }
+            ) %>
+            <p class="char-counter spacing-below-0">&nbsp;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
   <%= f.cfa_textarea(:survey_additional_feedback,
          t("views.feedback_result.edit.additional_feedback"),
          help_text: t("views.feedback_result.edit.additional_feedback_help_text"),

@@ -229,16 +229,26 @@ es:
       edit:
         additional_feedback: "¿Tiene algún comentario adicional que quiera compartirnos?"
         additional_feedback_help_text: Esto es opcional.
+        already_reported: Ya compartí esta información con mi oficina de SNAP
         bring_results_to_interview: Llevarlo conmigo a mi entrevista
         bring_results_to_organization: Llevarlo conmigo a una organización legal o comunitaria
+        dont_qualify_for_exemptions: No creo que califique para alguna exención
         email_results: Enviarlo por correo electrónico a mi oficina de SNAP
+        just_wanted_to_see_result: Solo quería ver el resultado
         keep_it_in_records: Guardarlo para mis registros
+        other: Otra razón
+        privacy_concerns: Me preocupa la privacidad de mi información
+        process_too_hard: El proceso de envío parece demasiado complicado
+        reasons_title: "¿Cuáles son las razones principales de su decisión?"
         submit_results_to_site: Enviarlo en línea a través de %{state_site} u otra opción
         submit_site_name:
           de: Delaware ASSIST
           nc: NC ePASS
         title: "¿Qué planea hacer con el resultado del formulario de GetBenefitsHelp?"
         title_help_text: Esto es opcional. Seleccione todas las que correspondan.
+        unsubmitted_intro: Usted indicó que, por ahora, prefiere guardar este formulario en lugar de compartirlo con su oficina de SNAP.
+        unsubmitted_write_in: Si tiene otra razón, escríbala aquí.
+        wont_be_accepted: Me preocupa que no acepten mi formulario
     homepage:
       fill_out_form: Complete el formulario
       index:

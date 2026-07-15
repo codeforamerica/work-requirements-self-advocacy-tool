@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_25_114104) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_14_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -104,6 +104,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_25_114104) do
     t.integer "survey_plan_to_email_results", default: 0, null: false
     t.integer "survey_plan_to_keep_it_in_records", default: 0, null: false
     t.integer "survey_plan_to_submit_results_to_site", default: 0, null: false
+    t.integer "unsubmitted_because_already_reported", default: 0, null: false
+    t.integer "unsubmitted_because_dont_qualify_for_exemptions", default: 0, null: false
+    t.integer "unsubmitted_because_just_wanted_to_see_result", default: 0, null: false
+    t.integer "unsubmitted_because_other", default: 0, null: false
+    t.integer "unsubmitted_because_privacy_concerns", default: 0, null: false
+    t.integer "unsubmitted_because_process_too_hard", default: 0, null: false
+    t.integer "unsubmitted_because_wont_be_accepted", default: 0, null: false
+    t.string "unsubmitted_write_in"
     t.datetime "updated_at", null: false
     t.string "visitor_id"
     t.integer "volunteering_hours"
