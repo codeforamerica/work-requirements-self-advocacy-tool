@@ -138,17 +138,11 @@
     <div class="accordion accordion--default-open">
       <button class="accordion__button" aria-expanded="true"><%= t("views.download_form.edit.mail_or_in_person_label") %></button>
       <div class="accordion__content">
-        <% if @current_screener.state == LocationData::States::NORTH_CAROLINA %>
-          <% if physical_address.present? %>
-            <%= t("views.download_form.edit.next_steps_in_person_nc_html", address: simple_format(physical_address)) %>
-          <% end %>
-          <% if mailing_address.present? %>
-            <%= t("views.download_form.edit.next_steps_mail_nc_html", mailing_address: simple_format(mailing_address)) %>
-          <% end %>
-        <% else %>
-          <% if mailing_address.present? %>
-            <%= t("views.download_form.edit.next_steps_mail_or_in_person_de_html", mailing_address: simple_format(mailing_address)) %>
-          <% end %>
+        <% if physical_address.present? %>
+          <%= t("views.download_form.edit.next_steps_in_person_#{state}_html", address: simple_format(physical_address)) %>
+        <% end %>
+        <% if mailing_address.present? %>
+          <%= t("views.download_form.edit.next_steps_mail_#{state}_html", mailing_address: simple_format(mailing_address)) %>
         <% end %>
       </div>
     </div>
