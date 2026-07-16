@@ -31,7 +31,7 @@ RSpec.describe FeedbackResultController, type: :controller do
           unsubmitted_because_dont_qualify_for_exemptions: "no",
           unsubmitted_because_just_wanted_to_see_result: "no",
           unsubmitted_because_privacy_concerns: "yes",
-          unsubmitted_because_other: "yes",
+          unsubmitted_because_other: "yes"
         }
         [{
           form_params: common_params.merge({
