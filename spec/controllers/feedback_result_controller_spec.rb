@@ -19,39 +19,29 @@ RSpec.describe FeedbackResultController, type: :controller do
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
       let(:page_submit_cases) do
+        common_params = {
+          survey_plan_to_submit_results_to_site: "yes",
+          survey_plan_to_email_results: "no",
+          survey_plan_to_bring_results_to_interview: "yes",
+          survey_plan_to_bring_results_to_organization: "no",
+          survey_plan_to_keep_it_in_records: "yes",
+          unsubmitted_because_already_reported: "no",
+          unsubmitted_because_wont_be_accepted: "yes",
+          unsubmitted_because_process_too_hard: "no",
+          unsubmitted_because_dont_qualify_for_exemptions: "no",
+          unsubmitted_because_just_wanted_to_see_result: "no",
+          unsubmitted_because_privacy_concerns: "yes",
+          unsubmitted_because_other: "yes",
+        }
         [{
-          form_params: {
-            survey_plan_to_submit_results_to_site: "yes",
-            survey_plan_to_email_results: "no",
-            survey_plan_to_bring_results_to_interview: "yes",
-            survey_plan_to_bring_results_to_organization: "no",
-            survey_plan_to_keep_it_in_records: "yes",
-            unsubmitted_because_already_reported: "no",
-            unsubmitted_because_wont_be_accepted: "yes",
-            unsubmitted_because_process_too_hard: "no",
-            unsubmitted_because_dont_qualify_for_exemptions: "no",
-            unsubmitted_because_just_wanted_to_see_result: "no",
-            unsubmitted_because_privacy_concerns: "yes",
-            unsubmitted_because_other: "yes",
+          form_params: common_params.merge({
             unsubmitted_write_in: "My printer is broken",
             survey_additional_feedback: "I love taking surveys!"
-          },
-          expected_data: {
-            survey_plan_to_submit_results_to_site: "yes",
-            survey_plan_to_email_results: "no",
-            survey_plan_to_bring_results_to_interview: "yes",
-            survey_plan_to_bring_results_to_organization: "no",
-            survey_plan_to_keep_it_in_records: "yes",
-            unsubmitted_because_already_reported: "no",
-            unsubmitted_because_wont_be_accepted: "yes",
-            unsubmitted_because_process_too_hard: "no",
-            unsubmitted_because_dont_qualify_for_exemptions: "no",
-            unsubmitted_because_just_wanted_to_see_result: "no",
-            unsubmitted_because_privacy_concerns: "yes",
-            unsubmitted_because_other: "yes",
+          }),
+          expected_data: common_params.merge({
             has_unsubmitted_write_in: true,
             has_survey_additional_feedback: true
-          }
+          })
         }]
       end
     end
