@@ -217,6 +217,27 @@ es:
         working_hours_label: "¿Cuántas horas trabaja normalmente cada semana?"
         working_weekly_earnings_help_text: Sabemos que puede ser difícil calcularlo. Si no sabe la cantidad exacta, puede estimarla.
         working_weekly_earnings_label: "¿Cuánto gana por semana antes de impuestos?"
+    error_400:
+      bad_request:
+        description: Estamos experimentando un problema temporal. Nuestro equipo ya fue notificado y está trabajando para solucionarlo.
+        error_text: 'ERROR: 400 Bad Request'
+        title: No pudimos cargar esta página
+    error_404:
+      not_found:
+        description: La página a la que intenta acceder puede haber cambiado o ya no estar disponible.
+        error_text: 'ERROR: 404 Not Found'
+        title: No pudimos encontrar esta página
+    error_500:
+      internal_server_error:
+        description: Estamos experimentando un problema temporal. Nuestro equipo ya fue notificado y está trabajando para solucionarlo.
+        error_text: 'ERROR: 500 Internal Server Error'
+        title: No pudimos cargar esta página
+    errors:
+      shared:
+        cta_primary: Volver al inicio
+        trouble_email: getbenefitshelp@codeforamerica.org
+        trouble_text: Si el problema continúa, comunícate con nosotros.
+        trouble_title: Escríbenos por correo electrónico
     feedback_confident:
       edit:
         little: Poco seguro
