@@ -138,9 +138,8 @@
     <div class="accordion accordion--default-open">
       <button class="accordion__button" aria-expanded="true"><%= t("views.download_form.edit.mail_or_in_person_label") %></button>
       <div class="accordion__content">
-        <% in_person_key = "views.download_form.edit.next_steps_in_person_#{state}_html" %>
-        <% if physical_address.present? && I18n.exists?(in_person_key) %>
-          <%= t(in_person_key, address: simple_format(physical_address)) %>
+        <% if physical_address.present? && I18n.exists?("views.download_form.edit.next_steps_in_person_#{state}_html") %>
+          <%= t("views.download_form.edit.next_steps_in_person_#{state}_html", address: simple_format(physical_address)) %>
         <% end %>
         <% if mailing_address.present? %>
           <%= t("views.download_form.edit.next_steps_mail_#{state}_html", mailing_address: simple_format(mailing_address)) %>
