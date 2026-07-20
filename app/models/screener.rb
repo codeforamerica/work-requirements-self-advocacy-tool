@@ -350,7 +350,7 @@ class Screener < ApplicationRecord
 
   def pdf
     Rails.logger.info("Generating PDF for screener #{id}")
-    LocationData::States.pdf_filler_class(state).new(self).combined_pdf
+    LocationData::States.pdf_filler_class(state).new(self).combined_pdf_all_html # SPIKE (WRSAT-687): temporary swap to test HTML-rendered filled packet live
   end
 
   def full_name
