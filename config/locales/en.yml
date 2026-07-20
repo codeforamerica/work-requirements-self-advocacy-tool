@@ -250,16 +250,26 @@ en:
       edit:
         additional_feedback: Do you have any additional feedback for us?
         additional_feedback_help_text: This is optional.
+        already_reported: I've already reported this
         bring_results_to_interview: Bring it with me to my interview
         bring_results_to_organization: Bring it with me to a legal aid or community organization
+        dont_qualify_for_exemptions: I don't think I actually qualify for any exemptions
         email_results: Email it to my SNAP agency
+        just_wanted_to_see_result: I just wanted to see the result
         keep_it_in_records: Keep it for my records
+        other: Other
+        privacy_concerns: I have privacy concerns
+        process_too_hard: The submission process feels too hard
+        reasons_title: What are the main reasons for your decision?
         submit_results_to_site: Submit it online through %{state_site} or another option
         submit_site_name:
           de: Delaware ASSIST
           nc: NC ePASS
         title: What do you plan to do with the result of the GetBenefitsHelp screener?
         title_help_text: This is optional. Choose all that apply.
+        unsubmitted_intro: You said you plan to keep this form for your records rather than share it with your SNAP agency right now.
+        unsubmitted_write_in: If you have another reason, please write it here.
+        wont_be_accepted: I'm worried my form won't be accepted
     homepage:
       fill_out_form: Fill out the form
       index:

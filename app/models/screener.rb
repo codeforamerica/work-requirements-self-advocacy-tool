@@ -31,6 +31,7 @@ class Screener < ApplicationRecord
     signature
     ssn_last_four
     survey_additional_feedback
+    unsubmitted_write_in
   ].freeze
 
   def pii_attributes
@@ -95,6 +96,13 @@ class Screener < ApplicationRecord
   enum :survey_plan_to_bring_results_to_interview, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :survey_plan_to_bring_results_to_organization, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :survey_plan_to_keep_it_in_records, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_already_reported, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_wont_be_accepted, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_process_too_hard, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_dont_qualify_for_exemptions, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_just_wanted_to_see_result, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_privacy_concerns, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :unsubmitted_because_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
 
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
   before_validation :strip_email_and_confirmation
@@ -219,6 +227,7 @@ class Screener < ApplicationRecord
 
   with_context :feedback_result do
     validates :survey_additional_feedback, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}
+    validates :unsubmitted_write_in, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}
   end
 
   with_context :preventing_work_details do
