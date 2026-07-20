@@ -53,4 +53,10 @@ class PdfController < QuestionController
   def summary_page
     render :summary_page, locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_generated_pdf
   end
+
+  # SPIKE (WRSAT-687): preview of the filled packet rendered as HTML instead
+  # of filling packet.pdf's AcroForm fields.
+  def filled_packet_preview
+    render "pdf/filled_packet", locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_fillable_pdf
+  end
 end
