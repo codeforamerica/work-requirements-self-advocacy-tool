@@ -74,6 +74,7 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [:id]
 
   config.hosts = [ENV.fetch("DOMAIN", "staging.wrsat.codeforamerica.app")]
+  config.hosts << /.*\.herokuapp\.com$/
   config.host_authorization = {exclude: ->(request) { request.path == "/up" }}
 
   config.active_record.encryption.primary_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY")
