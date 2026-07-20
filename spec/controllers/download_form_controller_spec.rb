@@ -41,6 +41,42 @@ RSpec.describe DownloadFormController, type: :controller do
         expect(response.body).to include("(302) 622-4500")
         expect(response.body).to include("(800) 372-2022")
       end
+
+      it "does not render in-person copy" do
+        get :display
+
+        expect(response.body).not_to include("translation_missing")
+        expect(response.body).not_to include("next_steps_in_person_de")
+      end
+    end
+
+    context "for an NC county office" do
+      render_views
+      let(:screener) { create(:screener, :with_exemption, state: "NC", county: "Durham County", last_name: "Anyone", email: "hi@example.com") }
+
+      before { sign_in screener }
+
+      it "renders the physical address" do
+        get :display
+
+        expect(response.body).not_to include("translation_missing")
+        expect(response.body).to include("In person:")
+      end
+    end
+
+    context "without an email, when proof is required" do
+      render_views
+      let(:screener) { create(:screener, :with_exemption, state: "DE", zip_code: "19703", last_name: "Anyone", email: nil) }
+
+      before { sign_in screener }
+
+      it "renders the download button, the proof-gathering step, and the email capture prompt" do
+        get :display
+
+        expect(response.body).to include(I18n.t("views.download_form.edit.download_a_copy"))
+        expect(response.body).to include(I18n.t("views.download_form.edit.see_proof_documents"))
+        expect(response.body).to include(I18n.t("views.download_form.edit.email_pdf"))
+      end
     end
 
     context "for a DE single-office zip" do

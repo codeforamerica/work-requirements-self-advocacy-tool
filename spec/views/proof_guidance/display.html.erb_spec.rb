@@ -10,26 +10,30 @@ RSpec.describe "proof_guidance/display", type: :view do
     end
   end
 
-  it "always displays the title and next steps" do
+  it "displays the proof title when proof is required" do
+    allow(screener).to receive(:requires_proof?).and_return(true)
     render
     expect(rendered).to have_css("h1", text: I18n.t("views.proof_guidance.edit.title"))
-    I18n.t("views.proof_guidance.edit.next_steps_html").each do |step|
-      expect(rendered).to include(step)
-    end
+  end
+
+  it "displays the no-proof message when no proof is required" do
+    allow(screener).to receive(:requires_proof?).and_return(false)
+    render
+    expect(rendered).to have_css("h1", text: I18n.t("views.proof_guidance.edit.no_proof_title"))
+    expect(rendered).to include(I18n.t("views.proof_guidance.edit.no_proof_content"))
+    expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
   end
 
   describe "proof of working section" do
     it "shows section when requires_proof? is true" do
       allow(screener).to receive(:requires_proof?).and_return(true)
       render
-      expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 
     it "hides section when requires_proof? is false" do
       allow(screener).to receive(:requires_proof?).and_return(false)
       render
-      expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.proof_you_may_need"))
       expect(rendered).not_to include(I18n.t("views.proof_guidance.edit.already_has_proof"))
     end
 

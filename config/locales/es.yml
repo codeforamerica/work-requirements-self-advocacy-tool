@@ -171,32 +171,49 @@ es:
         title: "¿Recibe alguno de estos beneficios por discapacidad?"
     download_form:
       edit:
-        add_email_guidance_html: "<strong>¿Quiere recibir información útil en su correo?</strong Agregue su email para recibir:"
-        download_form: Descargar formulario
-        download_guidance_html: "<strong>¿No recibió el correo electrónico?</strong> Descargue una copia en su dispositivo."
+        add_email_guidance: "¿Quiere recibir información útil en su correo? Agregue su correo para recibir:"
+        after_text: Después de entregar su formulario y cualquier documento adicional que necesite su oficina de SNAP, revisarán la información que envió para decidir si las reglas de trabajo se aplican a usted.
+        before_you_go_title: 'Antes de finalizar: Próximos pasos'
+        download_a_copy: Descargue una copia de su formulario
+        download_form: Descargar aquí
+        download_guidance: "¿No lo recibió?"
+        download_to_device: Descargue una copia en su dispositivo.
         email_benefit_1: Una copia del formulario para sus registros
         email_benefit_2: Guía paso a paso del proceso
-        email_benefit_3: Una lista de comprobantes que podría necesitar enviar
-        email_pdf: Agreagar un correo electrónico
+        email_benefit_3: Una lista de documentos o comprobantes que podría necesitar enviar
+        email_pdf: Agregar un correo electrónico
         expectation_1: Su oficina de SNAP puede llamarlo o enviarle una notificación por correo si necesita más información.
         expectation_2: En algunos casos, es posible que tenga que enviar a su oficina más documentos (o documentos diferentes) que demuestren su situación, como, por ejemplo, comprobantes de pago o prueba de una condición médica.
         expectation_3: Es posible que la oficina de SNAP no confirme que recibió su información. Le recomendamos llamar a su oficina si no recibe noticias en las próximas 4 semanas.
-        have_questions_html: "<strong>¿Tiene preguntas sobre cómo enviar su formulario?</strong> Llame a su oficina local al."
-        how_to: 'Cómo enviar su formulario a su oficina de SNAP:'
-        how_to_help_text: Envíe este formulario a su oficina de SNAP, así como cualquier comprobante que necesite para informarles que las reglas de trabajo no le aplican en su caso.
-        next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprímalo y entréguelo en:</p><p><i>%{address}</i></p>"
-        next_steps_mail_nc_html: "<p><strong>Envíelo por correo a: </strong></p><p><i>%{mailing_address}</i></p>"
-        next_steps_mail_or_in_person_de_html: "<p><strong>Por correo o en persona:</strong> Imprima su formulario y envíelo por correo o entréguelo en la siguiente dirección</p><p><i>%{mailing_address}</i></p>"
+        gather_proof_content: Le mostraremos una lista de documentos según sus respuestas.
+        gather_proof_title: Reúna los documentos que pueda necesitar
+        give_form_by_yourself_html: Tendrá que entregar el formulario y cualquier documento directamente a su oficina de SNAP. Le ayudaremos a identificar qué necesita llevar.
+        give_form_content: Envíe su formulario y cualquier documento que le solicite su oficina de SNAP usando la opción que mejor le funcione para informarles que cumple con una exención de las reglas de trabajo.
+        give_form_title: Entregue su formulario a su oficina de SNAP
+        have_questions: "¿Tiene preguntas sobre cómo enviar su formulario? Llame a la oficina de su condado."
+        how_to: Cómo entregar su formulario a su oficina de SNAP
+        mail_or_in_person_label: Por correo o en persona
+        next_steps_in_person_nc_html: "<p><strong>En persona: </strong>Imprima su formulario y entréguelo en la siguiente dirección:</p><p><i>%{address}</i></p>"
+        next_steps_mail_de_html: "<p>Imprima su formulario y envíelo por correo o entréguelo en la siguiente dirección:</p><p><i>%{mailing_address}</i></p>"
+        next_steps_mail_nc_html: "<p><strong>Por correo: </strong></p><p><i>%{mailing_address}</i></p>"
+        next_steps_online: 'Envíe su formulario usando una de estas opciones:'
         next_steps_online_email_html: "<span><strong>Enviar por correo electrónico a:</strong><br/><i>%{email}</i></span>"
-        next_steps_online_html: "<span><strong>En línea:</strong> Envíe su formulario usando una de estas opciones:</span>"
         next_steps_online_web_html: "<span><strong>Ir a:</strong><br/><i>%{link}</i></span>"
+        on_next_page_content: Le mostraremos los documentos adicionales que su oficina de SNAP podría solicitar según las situaciones que seleccionó.
+        on_next_page_title: En la siguiente página
+        online_label: En línea
+        open_state_website_de_html: "<a href='https://assist.dhss.delaware.gov/' target='_blank' class='button button--small' data-track-click='state_website_link_de_clicked' data-track-controller_name='DownloadForm'>Ir a Delaware ASSIST</a>"
+        open_state_website_nc_html: "<a href='https://epass.nc.gov/signuphomepage' target='_blank' class='button button--small' data-track-click='state_website_link_nc_clicked' data-track-controller_name='DownloadForm'>Ir a North Carolina ePASS</a>"
+        see_proof_button: Ver qué documentos necesito enviar
+        see_proof_documents: Ver lista de documentos
         single_office_instructions: 'Si vive en %{subgeography},  su oficina es: %{office}'
-        state_website_de_html: "<strong>Usar su cuenta Delaware ASSIST:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://assist.dhss.delaware.gov/' target='_blank' data-track-click='state_website_link_de_clicked'>Delaware ASSIST</a> para enviar su formulario y documentos."
-        state_website_nc_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar <a href='https://epass.nc.gov/signuphomepage' target='_blank' data-track-click='state_website_link_nc_clicked'>North Carolina ePASS</a> para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
-        title: Descargue  su formulario
-        title_help_text: Su oficina de SNAP necesita revisar este formulario para determinar si usted debe cumplir con las reglas de trabajo.
-        title_sent: Hemos enviado su formulario a %{email}
-        what_to_expect: Lo que puede pasar
+        state_website_de_html: "<strong>Usar su cuenta Delaware ASSIST:</strong><br/>Si ya recibe beneficios de SNAP, puede usar Delaware ASSIST para enviar su formulario y documentos."
+        state_website_nc_html: "<strong>Usar su cuenta de ePASS:</strong><br/>Si ya recibe beneficios de SNAP, puede usar North Carolina ePASS para enviar su formulario y documentos. Necesitará una cuenta mejorada (enhanced account, en inglés) para hacerlo."
+        submit_what_you_have: Si todavía no tiene todos los documentos que pueda necesitar, envíe lo que tenga disponible. Si es necesario, podrá entregar documentos adicionales más adelante.
+        title: Su formulario está listo
+        title_help_text: Ahora debe entregar su formulario a su oficina de SNAP. Dependiendo de su situación, también podrían pedirle documentos adicionales.
+        title_sent: Enviaremos su formulario a %{email}
+        what_to_expect: Qué esperar después de enviar su formulario
     email:
       edit:
         email: Correo electrónico
@@ -502,13 +519,14 @@ es:
       edit:
         already_has_proof: "¿Su oficina de SNAP ya tiene comprobantes de sus excepciones?"
         already_has_proof_content_html:
-        - "<strong>Sí, ya compartí esa información.</strong> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
-        - <strong>No, todavía no la he enviado.</strong> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
+        - "<strong>Sí, ya compartí esa información.</strong><br/> Aun así, puede volver a compartirla con su trabajador(a) si cree que existe la posibilidad de que todavía no la tenga."
+        - <strong>No, todavía no la he enviado.</strong><br/> A continuación, le indicaremos qué comprobantes podría incluir. La persona asignada a su caso revisará lo que usted envíe y decidirá si usted debe cumplir con las nuevas reglas de trabajo."
         condition_medical_health: condición
         condition_substance_use: trastorno por uso de sustancias
-        next_steps_html:
-        - "<strong>Envíe su formulario a su oficina de SNAP</strong> de la manera que le resulte más conveniente."
-        - "<strong>Si es necesario, envíe documentación adicional a su oficina de SNAP.</strong> Si no tiene toda la documentación que pueda necesitar en este momento, debería enviar todo lo que tenga."
+        no_proof_content: Tenga en cuenta que su oficina de SNAP aún podría pedirle documentos adicionales o más información al revisar su caso.
+        no_proof_title: Según su información, no identificamos ningún documento o comprobante que deba enviar a su oficina de SNAP.
+        open_health_form_de_html: "<a href='https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf' target='_blank'>Ir al formulario de evaluación de salud de Delaware (Form 184)</a>"
+        open_health_form_nc_html: "<a href='https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf' target='_blank'>Ir al formulario de Informe Médico de Carolina del Norte</a>"
         proof_of_disability_benefits_html: |
           <h3>Comprobante de beneficios por discapacidad</h3>
           <p>Una carta u otro documento que demuestre que usted recibe el beneficio por discapacidad que seleccionó:</p>
@@ -527,25 +545,27 @@ es:
         proof_of_health_and_substance_use_condition_title: Comprobante de condiciones de salud, trastorno por uso de sustancias o discapacidad
         proof_of_health_condition_html: |
           <h3>%{proof_of_condition_title}</h3>
-          <p>Estos documentos puede ser útiles, <u>pero puede que no sean obligatorios</u>.</p>
+          <p>Envíe:</p>
           <ul class="list--bulleted">
           <li>Una carta de un proveedor médico o de salud mental (por ejemplo, un médico, enfermero, trabajador social u otro profesional de la salud) que indique que su %{condition_type} le impide trabajar de manera constante 20 horas por semana, todas las semanas, O</li>
           <li>Un %{proof_of_health_form}, llenado y firmado por un profesional médico, un trabajador social u otro profesional de la salud.</li>
           </ul>
         proof_of_health_condition_only_title: Comprobante de una condición de salud o discapacidad
-        proof_of_health_form_de: formulario de evaluación de salud de Delaware (<a href="https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf" target="_blank">Form 184</a>)
-        proof_of_health_form_nc: <a href="https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf" target="_blank">formulario de Informe Médico de Carolina del Norte</a>
+        proof_of_health_form_de: formulario de evaluación de salud de Delaware (Form 184)
+        proof_of_health_form_nc: formulario de Informe Médico de Carolina del Norte
         proof_of_native_american_html: |
           <h3 class="spacing-above-5">Comprobante de que es una persona indígena o nativa estadounidense</h3>
-          <p>Incluya uno de los siguientes comprobantes si lo tiene disponible o puede obtenerlo fácilmente.</p>
+          <p>Envíe:</p>
           <ul class="list--bulleted">
-            <li>Una tarjeta de inscripción tribal, un documento del censo tribal o una carta de la tribu en papel membretado</li>
+            <li>Una tarjeta de inscripción tribal, un documento del censo tribal o una carta de la tribu en papel membretado.</li>
           </ul>
         proof_of_substance_use_condition_only_title: Comprobante de trastorno por uso de sustancias
         proof_of_treatment_program_html: |
           <h3>Comprobante de participación en un programa de rehabilitación de drogas o alcohol</h3>
-          <p>Incluya este comprobante si lo tiene disponible o puede obtenerlo fácilmente.</p>
-          <p>Una carta de su programa de rehabilitación que indique que está participando en el tratamiento</p>
+          <p>Envíe:</p>
+          <ul class="list--bulleted">
+            <li>Una carta de su programa de rehabilitación que indique que está participando en el tratamiento.</li>
+          </ul>
         proof_of_working_html: |
           <h3>Comprobantes de trabajo</h3>
           <p>Envíe <strong>uno</strong> de los siguientes comprobantes:</p>
@@ -555,8 +575,7 @@ es:
             <li>Una carta con fecha y firmada por su empleador que muestre las horas y los ingresos del último mes (por ejemplo, si le pagaron en efectivo y no tiene talones de pago), o</li>
             <li>Si trabaja por cuenta propia (por ejemplo, hace trabajo por encargo, trabajos por contrato o tiene su propio negocio), registros que muestren cuánto ganó el último mes (por ejemplo, estados de cuenta bancarios o registros de una plataforma de trabajo por encargo).</li>
           </ul>
-        proof_you_may_need: Estos son los documentos o comprobantes que podría necesitar enviar a su oficina.
-        title: Qué sigue
+        title: Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.
     school_enrollment:
       edit:
         help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.

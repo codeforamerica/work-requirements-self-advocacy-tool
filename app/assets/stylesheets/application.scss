@@ -80,15 +80,65 @@ main {
 
   .accordion {
     background-color: $color-white;
+  }
+}
 
-    button.accordion__button[aria-expanded="true"]:after {
-      background-image: url("/icon_accordion_close.svg");
+// honeycrisp's accordion :after icons use relative urls that don't resolve under
+// propshaft. point them at the propshaft-rewritten root paths so the +/-
+// toggle icons render.
+.accordion {
+  button.accordion__button[aria-expanded="true"]:after {
+    background-image: url("/icon_accordion_close.svg");
+  }
+
+  button.accordion__button[aria-expanded="false"]:after {
+    background-image: url("/icon_accordion_open.svg");
+  }
+
+  // tighten the gap between the accordion title and its content
+  // (honeycrisp defaults to margin-top: $s35)
+  .accordion__content {
+    margin-top: 1rem;
+    overflow-wrap: break-word;
+  }
+}
+
+.numbered-steps {
+  list-style: none;
+  counter-reset: step;
+  padding-left: 0;
+
+  &__title {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  > li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 4rem;
+    margin-bottom: 2.4rem;
+
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    button.accordion__button[aria-expanded="false"]:after {
-      background-image: url("/icon_accordion_open.svg");
+    &:before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      background-color: $color-teal;
+      color: $color-white;
+      font-weight: bold;
+      font-size: 1.6rem;
     }
-
   }
 }
 
@@ -122,6 +172,13 @@ main {
   font-size: 1.6rem;
 }
 
+.notice.yellow {
+  border: 2px solid $color-yellow;
+  background-color: $color-yellow-light;
+  border-radius: 10px;
+  font-size: 1.6rem;
+}
+
 .notice.grey-light {
   color: $color-grey-darkest;
   border: 2px solid $color-grey-dark;
@@ -132,10 +189,6 @@ main {
   > .list--numbered {
     padding: 0;
     margin: 0 0 0 1em;
-  }
-
-  > .list--bulleted {
-    padding-left: 1.5em;
   }
 }
 
@@ -254,6 +307,12 @@ i.continue-arrow {
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.50);
 }
 
+.button.button--wide {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
 .text-input-group,
 .text-input-group__prefix {
   padding-left: 0;
@@ -267,6 +326,14 @@ i.continue-arrow {
 
   a {
     color: #000000;
+  }
+}
+
+.list--bulleted {
+  padding-left: 1.5em;
+
+  li {
+    margin: 0;
   }
 }
 
@@ -300,6 +367,7 @@ i.continue-arrow {
   display: flex;
   flex-direction: row;
   align-items: anchor-center;
+  color: inherit; // black text (overrides honeycrisp's teal-dark)
 
   span {
     display: inline-block;
@@ -319,17 +387,8 @@ i.continue-arrow {
   border-top: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  color: $color-teal-dark;
   border-color: $color-teal-dark;
   background-color: $color-teal-light;
-
-  .list--bulleted {
-    padding-left: 1.5em;
-
-    li {
-      margin: 0;
-    }
-  }
 }
 
 .flash-alerts {
