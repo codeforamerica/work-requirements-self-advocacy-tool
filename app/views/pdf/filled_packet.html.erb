@@ -1,0 +1,148 @@
+<%
+# SPIKE (WRSAT-687): renders the same data that hash_for_fillable_pdf feeds into
+# the AcroForm-filled packet.pdf, as HTML using Honeycrisp components, instead
+# of filling PDF form fields.
+# Fields only present for the earnings-exemption path need defaults so this
+# renders for either packet variant.
+earnings_per_week ||= nil
+is_in_work_training ||= nil
+is_volunteering ||= nil
+volunteering_hours ||= nil
+volunteering_org_name ||= nil
+work_hours ||= nil
+work_training_name ||= nil
+work_training_hours ||= nil
+working_or_earning ||= nil
+%>
+<div class="pdf-packet filled-packet">
+  <div class="header">
+    <p>DETAILS ABOUT</p>
+    <h1>SNAP Work Requirement Exemption Information</h1>
+  </div>
+
+  <div class="notice white">
+    <div class="section-title">
+      <%= person_icon %>
+      <h3>Client Information</h3>
+    </div>
+    <div class="info-box">
+      <div class="info-row">
+        <%= info_field("Name:", full_name_with_middle) %>
+      </div>
+      <div class="info-row">
+        <%= info_field("Birthdate:", "#{birth_date}, (Age #{age})") %>
+        <%= info_field("Phone Number:", phone_number) %>
+      </div>
+      <div class="info-row">
+        <%= info_field("E-mail Address:", email) %>
+      </div>
+      <div class="info-row">
+        <%= info_field("Case Number:", case_number) %>
+        <%= info_field("Last 4 digits of SSN:", ssn_last_4) %>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <%= document_icon %>
+      <h3>Exemptions Attested</h3>
+    </div>
+    <ul class="checklist">
+      <%= checklist_item("I am a member of an Indian tribe or nation", is_american_indian) %>
+      <%= checklist_item("I live with a child under 14", has_child) %>
+      <%= checklist_item("I am caring for a child under age 6", caring_for_child_under_6) %>
+      <%= checklist_item("I am caring for an incapacitated person", caring_for_disabled_or_ill_person) %>
+      <% if details_of_care.present? %>
+        <li class="checklist-item__detail">Details of care: <%= details_of_care %></li>
+      <% end %>
+      <%= checklist_item("I am pregnant", is_pregnant) %>
+      <% if pregnancy_due_date.present? %>
+        <li class="checklist-item__detail">Expected due date: <%= pregnancy_due_date %></li>
+      <% end %>
+      <%= checklist_item("I am getting unemployment benefits, or I have applied for unemployment benefits", has_unemployment_benefits) %>
+    </ul>
+
+    <div class="section-title">
+      <%= benefits_icon %>
+      <h3>Disability Benefits</h3>
+    </div>
+    <ul class="checklist">
+      <%= checklist_item("I am receiving SSDI", receiving_benefits_ssdi) %>
+      <%= checklist_item("I am receiving SSI", receiving_benefits_ssi) %>
+      <%= checklist_item("I am receiving veterans disability benefits", receiving_benefits_veterans_disability) %>
+      <%= checklist_item("I am receiving workers' compensation", receiving_benefits_workers_compensation) %>
+      <%= checklist_item("I am receiving a disability pension", receiving_benefits_disability_pension) %>
+      <%= checklist_item("I am receiving disability insurance payments", receiving_benefits_insurance_payments) %>
+      <%= checklist_item("I am receiving Medicaid based on disability", receiving_benefits_disability_medicaid) %>
+      <%= checklist_item("I am receiving another disability benefit", receiving_benefits_other) %>
+      <% if receiving_benefits_write_in.present? %>
+        <li class="checklist-item__detail">Other benefit description: <%= receiving_benefits_write_in %></li>
+      <% end %>
+      <%= checklist_item("I am receiving a disability benefit", receiving_disability_benefits) %>
+    </ul>
+
+    <% if working_or_earning %>
+      <div class="section-title">
+        <%= work_icon %>
+        <h3>Work &amp; Earnings</h3>
+      </div>
+      <ul class="checklist">
+        <%= checklist_item("I am working or earning income", working_or_earning) %>
+        <% if work_hours.present? %>
+          <li class="checklist-item__detail">Hours worked per week: <%= work_hours %></li>
+        <% end %>
+        <% if earnings_per_week.present? %>
+          <li class="checklist-item__detail">Earnings per week: <%= earnings_per_week %></li>
+        <% end %>
+        <%= checklist_item("I am in a work training program", is_in_work_training) %>
+        <% if work_training_hours.present? %>
+          <li class="checklist-item__detail">Work training hours per week: <%= work_training_hours %></li>
+        <% end %>
+        <% if work_training_name.present? %>
+          <li class="checklist-item__detail">Work training program name: <%= work_training_name %></li>
+        <% end %>
+        <%= checklist_item("I am volunteering", is_volunteering) %>
+        <% if volunteering_hours.present? %>
+          <li class="checklist-item__detail">Volunteering hours per week: <%= volunteering_hours %></li>
+        <% end %>
+        <% if volunteering_org_name.present? %>
+          <li class="checklist-item__detail">Volunteering organization: <%= volunteering_org_name %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <div class="section-title">
+      <%= list_icon %>
+      <h3>Other Exemptions</h3>
+    </div>
+    <ul class="checklist">
+      <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
+      <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
+      <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
+      <% if drug_alcohol_program_name.present? %>
+        <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
+      <% end %>
+      <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
+      <% if preventing_work_write_in.present? %>
+        <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
+      <% end %>
+      <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
+      <% if preventing_work_other_write_in.present? %>
+        <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
+      <% end %>
+    </ul>
+
+    <div class="section-title">
+      <%= signature_icon %>
+      <h3>Attestation</h3>
+    </div>
+    <div class="info-box">
+      <div class="info-row">
+        <%= info_field("Signature:", signature) %>
+      </div>
+      <div class="info-row">
+        <%= info_field("Date signed:", submission_date) %>
+        <%= info_field("Confirmation code:", confirmation_code) %>
+      </div>
+    </div>
+  </div>
+</div>
