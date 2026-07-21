@@ -1,5 +1,5 @@
 class OutgoingEmail < ApplicationRecord
   belongs_to :screener
 
-  enum :email_type, {screener_results: 0, post_results_survey: 1}
+  enum :email_type, {screener_results: 0, post_results_survey: 1, submission_reminder: 2}
 end

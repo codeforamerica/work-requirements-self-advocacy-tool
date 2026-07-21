@@ -1,0 +1,37 @@
+class DailySubmissionReminderJob < ApplicationJob
+  queue_as :default
+
+  def perform
+    time_zone = "America/Los_Angeles"
+
+    signed_at_range =
+      Time.use_zone(time_zone) do
+        Rails.env.production? ? 7.days.ago.all_day : Date.yesterday.all_day
+      end
+
+    screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
+
+    Rails.logger.info "Found #{screeners.count} screeners with email addresses signed #{signed_at_range.begin.to_date}"
+
+    screeners.find_each do |screener|
+      if screener.outgoing_emails.exists?(email_type: :submission_reminder)
+        Rails.logger.info "Skipping screener #{screener.id}; submission reminder already sent"
+        next
+      end
+
+      Rails.logger.info "Processing screener #{screener.id} for submission reminder"
+      outgoing_email = OutgoingEmail.create!(screener: screener, email: screener.email, email_type: :submission_reminder)
+      begin
+        SubmissionReminderMailer.send_reminder(outgoing_email: outgoing_email).deliver_now
+        outgoing_email.update(sent_at: DateTime.now)
+        Rails.logger.info "Processed screener #{screener.id} for submission reminder. Sent email #{outgoing_email.id}."
+      rescue Aws::SESV2::Errors::AccessDeniedException
+        Rails.logger.warn("SES access denied for screener #{screener.id}")
+        next
+      rescue => e
+        Rails.logger.error "Failed sending submission reminder for screener #{screener.id}: #{e.class} - #{e.message}"
+        next
+      end
+    end
+  end
+end

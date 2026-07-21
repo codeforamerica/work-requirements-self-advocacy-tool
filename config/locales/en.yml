@@ -650,6 +650,25 @@ en:
         signature_help_text: As it appears on your driver's license, ID, or Social Security card.
         signature_label: Type your full legal name here to sign (required)
         title: Sign & create your form
+    submission_reminder_mailer:
+      send_reminder:
+        claim_exemption: To claim your exemption, you must submit the form yourself to your local SNAP office. Otherwise, your exemption will not be applied.
+        closing: Submitting only takes a few minutes and protects your benefits.
+        greeting: Hi,
+        intro: Last week, you checked your SNAP work exemption eligibility on GetBenefitsHelp.
+        next_step_find: Find the form in your downloads or search your email for "[GetBenefitsHelp] Your SNAP Work Rules form."
+        next_step_process: The agency will process your exemption once they receive the form and any required documents listed in your confirmation email.
+        next_step_submit: Submit it via mail, fax, %{online_portal}, in-person, or at your next caseworker appointment.
+        next_steps_title: 'Next steps:'
+        online_portal_de: Delaware ASSIST
+        online_portal_nc: North Carolina ePASS
+        questions_html: Questions? Check your form email for submission details, call your local SNAP office, or email us at <a href="mailto:getbenefitshelp@codeforamerica.org">getbenefitshelp@codeforamerica.org</a>.
+        questions_text: Questions? Check your form email for submission details, call your local SNAP office, or email us at getbenefitshelp@codeforamerica.org.
+        research_body_html: We are looking for people to share their experience using GetBenefitsHelp. If you are interested in speaking with someone from our team, please <a href="%{research_link}" target="_blank">fill out this form</a> and someone will get back to you. Those selected to participate will be compensated for their time.
+        research_body_text: 'We are looking for people to share their experience using GetBenefitsHelp. If you are interested in speaking with someone from our team, please fill out this form and someone will get back to you. Those selected to participate will be compensated for their time: %{research_link}'
+        research_title: Want to help us improve?
+        subject: 'Reminder: Don''t forget to submit your SNAP exemption form'
+        submitted_question: Have you submitted your form yet? GetBenefitsHelp does not send forms to the state.
     survey_mailer:
       send_survey:
         greeting: Hello,
