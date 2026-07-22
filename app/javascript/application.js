@@ -57,11 +57,22 @@ function initClickTracking() {
   });
 }
 
+// accordion.init() collapses every accordion. Re-open any marked with
+// `accordion--default-open` so they are expanded when the page loads.
+function openDefaultAccordions() {
+  $('.accordion--default-open')
+    .removeClass('accordion--is-closed')
+    .find('.accordion__button').attr('aria-expanded', 'true');
+}
+
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
   accordion.init();
   honeycrispInit();
+  // honeycrispInit() will asychronously re-collapse the accordions so
+  // we use a setTimeout to re-open them after that call stack unwinds
+  setTimeout(openDefaultAccordions, 0);
   $('.question-with-follow-up').each(function() {
     var self = this;
     followUpQuestion.update($(self));
@@ -73,4 +84,5 @@ document.addEventListener("turbo:load", function() {
 document.addEventListener("turbo:render", function () {
   revealer.init();
   accordion.init();
+  setTimeout(openDefaultAccordions, 0);
 });

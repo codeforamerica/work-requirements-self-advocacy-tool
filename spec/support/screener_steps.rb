@@ -165,7 +165,8 @@ module ScreenerSteps
     fill_in I18n.t("views.signature.edit.signature_label"), with: signature
     click_on I18n.t("views.signature.edit.button_label")
 
-    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: email))
+    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))
+    expect(page).to have_content(I18n.t("views.download_form.edit.title_sent", email: email))
 
     return unless with_back_nav
 
@@ -179,12 +180,13 @@ module ScreenerSteps
     click_on I18n.t("general.continue")
     expect(page).to have_selector("h1", text: I18n.t("views.signature.edit.title"))
     click_on I18n.t("views.signature.edit.button_label")
-    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title_sent", email: email))
+    expect(page).to have_selector("h1", text: I18n.t("views.download_form.edit.title"))
+    expect(page).to have_content(I18n.t("views.download_form.edit.title_sent", email: email))
   end
 
   # -- Feedback section (regular exemption only) ------------------------------
   def step_feedback_section
-    click_on I18n.t("general.continue")
+    click_on I18n.t("views.download_form.edit.see_proof_button")
 
     expect(page).to have_selector("h1", text: I18n.t("views.proof_guidance.edit.title"))
     click_on I18n.t("general.continue")
@@ -198,7 +200,12 @@ module ScreenerSteps
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.feedback_result.edit.title"))
-    check I18n.t("views.feedback_result.edit.email_results")
+    check I18n.t("views.feedback_result.edit.keep_it_in_records")
+
+    expect(page).to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
+    check I18n.t("views.feedback_result.edit.wont_be_accepted")
+    check I18n.t("views.feedback_result.edit.other")
+    fill_in I18n.t("views.feedback_result.edit.unsubmitted_write_in"), with: "My printer is broken"
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.new_response.edit.title"))
