@@ -10,15 +10,11 @@ class DailySubmissionReminderJob < ApplicationJob
       end
 
     screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
+                        .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).select(:screener_id))
 
     Rails.logger.info "Found #{screeners.count} screeners with email addresses signed #{signed_at_range.begin.to_date}"
 
     screeners.find_each do |screener|
-      if screener.outgoing_emails.exists?(email_type: :submission_reminder)
-        Rails.logger.info "Skipping screener #{screener.id}; submission reminder already sent"
-        next
-      end
-
       Rails.logger.info "Processing screener #{screener.id} for submission reminder"
       outgoing_email = OutgoingEmail.create!(screener: screener, email: screener.email, email_type: :submission_reminder)
       begin
