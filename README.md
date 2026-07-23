@@ -35,6 +35,18 @@ To send a test email, you can deploy the application to the development environm
   * The branch of the infrastructure repository to deploy: main
 * when the deploy is finished, go to the deployed development environment and trigger your email
   * you can use the GBH eng team's google group email, it is verified
+ 
+#### What if you'd like to test an email that is scheduled and not sent immediately? 
+
+* In your branch, you can change _when_ the recurring email will be sent by modifying `recurring.yml` under the `Staging:` section
+  * You can also, if necessary, tweak the query/queries being used to pull the correct data for testing purposes
+* Deploy your branch, as above, to `development`
+* Test as above
+* Confirm your (modified) scheduled email(s) send as expected
+  * Use this process to iterate, making sure you can get emails for all use cases, translations, etc without errors/alerts in Datadog and Slack
+* Revert your changes in your branch and redeploy to `development`
+* Test again, leaving your branch on `development` until the job runs as originally scoped in `recurring.yml`
+
 
 ## Access to Database
 
