@@ -51,13 +51,9 @@ working_or_earning ||= nil
       <%= checklist_item("I live with a child under 14", has_child) %>
       <%= checklist_item("I am caring for a child under age 6", caring_for_child_under_6) %>
       <%= checklist_item("I am caring for an incapacitated person", caring_for_disabled_or_ill_person) %>
-      <% if details_of_care.present? %>
-        <li class="checklist-item__detail">Details of care: <%= details_of_care %></li>
-      <% end %>
+      <li class="checklist-item__detail">Details of care: <%= details_of_care %></li>
       <%= checklist_item("I am pregnant", is_pregnant) %>
-      <% if pregnancy_due_date.present? %>
-        <li class="checklist-item__detail">Expected due date: <%= pregnancy_due_date %></li>
-      <% end %>
+      <li class="checklist-item__detail">Expected due date: <%= pregnancy_due_date %></li>
       <%= checklist_item("I am getting unemployment benefits, or I have applied for unemployment benefits", has_unemployment_benefits) %>
     </ul>
 
@@ -74,41 +70,24 @@ working_or_earning ||= nil
       <%= checklist_item("I am receiving disability insurance payments", receiving_benefits_insurance_payments) %>
       <%= checklist_item("I am receiving Medicaid based on disability", receiving_benefits_disability_medicaid) %>
       <%= checklist_item("I am receiving another disability benefit", receiving_benefits_other) %>
-      <% if receiving_benefits_write_in.present? %>
-        <li class="checklist-item__detail">Other benefit description: <%= receiving_benefits_write_in %></li>
-      <% end %>
+      <li class="checklist-item__detail">Other benefit description: <%= receiving_benefits_write_in %></li>
       <%= checklist_item("I am receiving a disability benefit", receiving_disability_benefits) %>
     </ul>
-
-    <% if working_or_earning %>
-      <div class="section-title">
-        <%= work_icon %>
-        <h3>Work &amp; Earnings</h3>
-      </div>
-      <ul class="checklist">
-        <%= checklist_item("I am working or earning income", working_or_earning) %>
-        <% if work_hours.present? %>
-          <li class="checklist-item__detail">Hours worked per week: <%= work_hours %></li>
-        <% end %>
-        <% if earnings_per_week.present? %>
-          <li class="checklist-item__detail">Earnings per week: <%= earnings_per_week %></li>
-        <% end %>
-        <%= checklist_item("I am in a work training program", is_in_work_training) %>
-        <% if work_training_hours.present? %>
-          <li class="checklist-item__detail">Work training hours per week: <%= work_training_hours %></li>
-        <% end %>
-        <% if work_training_name.present? %>
-          <li class="checklist-item__detail">Work training program name: <%= work_training_name %></li>
-        <% end %>
-        <%= checklist_item("I am volunteering", is_volunteering) %>
-        <% if volunteering_hours.present? %>
-          <li class="checklist-item__detail">Volunteering hours per week: <%= volunteering_hours %></li>
-        <% end %>
-        <% if volunteering_org_name.present? %>
-          <li class="checklist-item__detail">Volunteering organization: <%= volunteering_org_name %></li>
-        <% end %>
-      </ul>
-    <% end %>
+    <div class="section-title">
+      <%= work_icon %>
+      <h3>Work &amp; Earnings</h3>
+    </div>
+    <ul class="checklist">
+      <%= checklist_item("I am working or earning income", working_or_earning) %>
+      <li class="checklist-item__detail">Hours worked per week: <%= work_hours %></li>
+      <li class="checklist-item__detail">Earnings per week: <%= earnings_per_week %></li>
+      <%= checklist_item("I am in a work training program", is_in_work_training) %>
+      <li class="checklist-item__detail">Work training hours per week: <%= work_training_hours %></li>
+      <li class="checklist-item__detail">Work training program name: <%= work_training_name %></li>
+      <%= checklist_item("I am volunteering", is_volunteering) %>
+      <li class="checklist-item__detail">Volunteering hours per week: <%= volunteering_hours %></li>
+      <li class="checklist-item__detail">Volunteering organization: <%= volunteering_org_name %></li>
+    </ul>
 
     <div class="section-title">
       <%= list_icon %>
@@ -118,17 +97,11 @@ working_or_earning ||= nil
       <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
       <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
       <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
-      <% if drug_alcohol_program_name.present? %>
-        <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
-      <% end %>
+      <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
       <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
-      <% if preventing_work_write_in.present? %>
-        <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
-      <% end %>
+      <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
       <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
-      <% if preventing_work_other_write_in.present? %>
-        <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
-      <% end %>
+      <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
     </ul>
 
     <div class="section-title">
