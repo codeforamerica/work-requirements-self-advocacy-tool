@@ -35,7 +35,7 @@ To send a test email, you can deploy the application to the staging environment 
   * Use workflow from: `your branch`
   * The environment to deploy to: `staging`
   * The branch of the infrastructure repository to deploy: `main`
-* when the deploy is finished, go to the staging development environment and trigger your email
+* when the deploy is finished, go to the newly deployed staging environment and trigger your email
   * you can use the GBH eng team's google group email, it is verified
  
 #### What if you'd like to test an email that is scheduled and not sent immediately? 
