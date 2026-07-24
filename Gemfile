@@ -46,6 +46,7 @@ gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycri
 gem "csv"
 gem "dartsass-rails", "~> 0.5.1"
 gem "devise", "~> 5.0"
+gem "erb", ">= 6.0.5"
 gem "grover"
 gem "hexapdf", "~> 1.8"
 gem "mixpanel-ruby"
