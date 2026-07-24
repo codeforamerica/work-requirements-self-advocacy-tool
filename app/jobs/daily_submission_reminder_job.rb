@@ -10,7 +10,7 @@ class DailySubmissionReminderJob < ApplicationJob
       end
 
     screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
-      .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).select(:screener_id))
+      .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).where.not(sent_at: nil).select(:screener_id))
 
     Rails.logger.info "Found #{screeners.count} screeners with email addresses signed #{signed_at_range.begin.to_date}"
 
