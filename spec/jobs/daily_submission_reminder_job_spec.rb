@@ -58,7 +58,7 @@ RSpec.describe DailySubmissionReminderJob, type: :job do
     end
 
     it "does not send a second reminder if one was already sent" do
-      create(:outgoing_email, screener: screener, email: email_address, email_type: :submission_reminder)
+      create(:outgoing_email, screener: screener, email: email_address, email_type: :submission_reminder, sent_at: 3.minutes.ago)
 
       expect { described_class.perform_now }.not_to change(ActionMailer::Base.deliveries, :count)
       expect(screener.outgoing_emails.where(email_type: :submission_reminder).count).to eq(1)
