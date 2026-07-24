@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe DailySubmissionReminderJob, type: :job do
-  xdescribe "#perform" do
+  describe "#perform" do
     let(:email_address) { "hi@example.com" }
     let!(:screener) do
       create(

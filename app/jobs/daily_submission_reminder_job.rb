@@ -4,9 +4,10 @@ class DailySubmissionReminderJob < ApplicationJob
   def perform
     time_zone = "America/Los_Angeles"
 
-    signed_at_range = Time.use_zone(time_zone) do
-      Date.yesterday.all_day
-    end
+    signed_at_range =
+      Time.use_zone(time_zone) do
+        Rails.env.production? ? 7.days.ago.all_day : Date.yesterday.all_day
+      end
 
     screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
       .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).select(:screener_id))
