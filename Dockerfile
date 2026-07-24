@@ -49,7 +49,10 @@ ARG YARN_VERSION=1.22.22
 ENV PATH=/usr/local/node/bin:$PATH
 # v5.4.45
 ENV NODE_BUILD_SHA=e0c79794813521ec8d5feac1baee5aaeddeb37c9
-RUN curl -sL https://github.com/nodenv/node-build/archive/$NODE_BUILD_SHA.tar.gz | tar xz -C /tmp/ && \
+RUN curl -sLo /tmp/node-build.tar.gz https://github.com/nodenv/node-build/archive/$NODE_BUILD_SHA.tar.gz && \
+    echo "2c9c4dba06b30b35d122c4232ba8485ff477e6db93f65df85cda81611e571ccc  /tmp/node-build.tar.gz" | sha256sum -c - && \
+    tar xz -C /tmp/ -f /tmp/node-build.tar.gz && \
+    rm /tmp/node-build.tar.gz && \
     /tmp/node-build-$NODE_BUILD_SHA/bin/node-build "${NODE_VERSION}" /usr/local/node && \
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-$NODE_BUILD_SHA
