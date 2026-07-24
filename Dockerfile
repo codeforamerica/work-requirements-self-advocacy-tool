@@ -47,13 +47,11 @@ RUN apt-get update -qq && \
 ARG NODE_VERSION=22.15.1
 ARG YARN_VERSION=1.22.22
 ENV PATH=/usr/local/node/bin:$PATH
-RUN curl -sLo /tmp/node-build.tar.gz https://github.com/nodenv/node-build/archive/refs/tags/v5.3.19.tar.gz && \
-    echo "3369c9240179c7992fae1be56a7a575965832ceb511007c4fead3502f0781c98  /tmp/node-build.tar.gz" | sha256sum -c - && \
-    tar xz -C /tmp/ -f /tmp/node-build.tar.gz && \
-    rm /tmp/node-build.tar.gz && \
-    /tmp/node-build-5.3.19/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+ENV NODE_BUILD_SHA=e0c79794813521ec8d5feac1baee5aaeddeb37c9 # v5.4.45
+RUN curl -sL https://github.com/nodenv/node-build/archive/$NODE_BUILD_SHA.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-$NODE_BUILD_SHA/bin/node-build "${NODE_VERSION}" /usr/local/node && \
     npm install -g yarn@$YARN_VERSION && \
-    rm -rf /tmp/node-build-5.3.19
+    rm -rf /tmp/node-build-$NODE_BUILD_SHA
 
 # Install application gems
 COPY .ruby-version Gemfile Gemfile.lock ./
