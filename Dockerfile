@@ -47,7 +47,8 @@ RUN apt-get update -qq && \
 ARG NODE_VERSION=22.15.1
 ARG YARN_VERSION=1.22.22
 ENV PATH=/usr/local/node/bin:$PATH
-ENV NODE_BUILD_SHA=e0c79794813521ec8d5feac1baee5aaeddeb37c9 # v5.4.45
+# v5.4.45
+ENV NODE_BUILD_SHA=e0c79794813521ec8d5feac1baee5aaeddeb37c9
 RUN curl -sL https://github.com/nodenv/node-build/archive/$NODE_BUILD_SHA.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-$NODE_BUILD_SHA/bin/node-build "${NODE_VERSION}" /usr/local/node && \
     npm install -g yarn@$YARN_VERSION && \
