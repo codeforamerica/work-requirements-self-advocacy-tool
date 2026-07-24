@@ -677,6 +677,25 @@ es:
         signature_help_text: Como aparece en su licencia de conducir, identificación o tarjeta de Seguro Social.
         signature_label: Escriba su nombre legal completo para firmar. (Requerido)
         title: Firme y complete su formulario
+    submission_reminder_mailer:
+      send_reminder:
+        claim_exemption: Para recibir su exención, usted debe enviar el formulario a su oficina local de SNAP. Si no lo envía, la exención no se aplicará.
+        closing: Enviar el formulario solo toma unos minutos y ayuda a proteger sus beneficios.
+        greeting: Hola,
+        intro: La semana pasada, revisó en GetBenefitsHelp si cumple los requisitos para una exención de trabajo de SNAP.
+        next_step_find: 'Busque el formulario en sus descargas o en su correo electrónico. Puede buscar el asunto: "[GetBenefitsHelp] Your SNAP Work Rules form."'
+        next_step_process: La agencia procesará su exención cuando reciba el formulario y los documentos requeridos que aparecen en su correo electrónico de confirmación.
+        next_step_submit: Envíe el formulario por correo, fax, %{online_portal}, entréguelo en persona o durante su próxima cita con su trabajador social.
+        next_steps_title: 'Próximos pasos:'
+        online_portal_de: Delaware ASSIST
+        online_portal_nc: North Carolina ePASS
+        questions_html: ¿Tiene preguntas? Revise el correo electrónico en el que recibió su formulario para ver cómo enviarlo, llame a su oficina local de SNAP o escríbanos a <a href="mailto:getbenefitshelp@codeforamerica.org">getbenefitshelp@codeforamerica.org</a>.
+        questions_text: "¿Tiene preguntas? Revise el correo electrónico en el que recibió su formulario para ver cómo enviarlo, llame a su oficina local de SNAP o escríbanos a getbenefitshelp@codeforamerica.org."
+        research_body_html: Buscamos personas que quieran compartir su experiencia usando GetBenefitsHelp. Si le interesa hablar con alguien de nuestro equipo, <a href="%{research_link}" target="_blank">complete este formulario</a>. Una persona de nuestro equipo se pondrá en contacto con usted. Si es seleccionado para participar, recibirá un pago por su tiempo.
+        research_body_text: 'Buscamos personas que quieran compartir su experiencia usando GetBenefitsHelp. Si le interesa hablar con alguien de nuestro equipo, complete este formulario. Una persona de nuestro equipo se pondrá en contacto con usted. Si es seleccionado para participar, recibirá un pago por su tiempo: %{research_link}'
+        research_title: "¿Quiere ayudarnos a mejorar?"
+        subject: Recuerde enviar su formulario de exención de SNAP.
+        submitted_question: "¿Ya envió su formulario? GetBenefitsHelp no envía formularios al estado."
     survey_mailer:
       send_survey:
         greeting: Hola,
