@@ -1,3 +1,11 @@
+/* Reset Honeycrisp's site-chrome rules (html/body/main background + spacing
+   meant for the live app's toolbar layout) which otherwise leak into this
+   print context via the bundled application.css. */
+html, body, main {
+  background: white;
+  margin: 0;
+}
+
 .pdf-packet {
   margin: 60px 35px;
   font-family: "Source Sans 3", -apple-system, sans-serif;
@@ -13,6 +21,20 @@
   h1 {
     margin-top: 0;
   }
+}
+
+.filled-packet .header {
+  p {
+    font-size: 1.4rem;
+  }
+  h1 {
+    font-size: 2.6rem;
+    line-height: 3.2rem;
+  }
+}
+
+.filled-packet .notice.white {
+  border: none;
 }
 
 .attestation-header {
@@ -40,5 +62,72 @@
 .list-item--note {
   font-size: 10px;
   font-style: italic;
+  color: #5F5854;
+}
+
+/* SPIKE (WRSAT-687): styling for the HTML rendering of the filled packet,
+   built to look like the existing packet.pdf layout using Honeycrisp tokens
+   (text--caps, text--teal-dark, data-table colors) rather than one-off CSS. */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #034e46;
+
+  h3 {
+    margin: 0;
+    color: #034e46;
+  }
+}
+
+.info-box {
+  background-color: #F7F5F4;
+  border: 1px solid #D8D3CE;
+  border-radius: 4px;
+  padding: 0 1.5rem;
+}
+
+.info-row {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2.5rem;
+  row-gap: 0.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid #D8D3CE;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.info-field {
+  display: flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+
+.info-label {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+}
+
+.checklist-item__detail {
+  margin-left: 2.7rem;
+  padding-bottom: 0.6rem;
   color: #5F5854;
 }

@@ -129,6 +129,44 @@ module PdfFiller
       filled_pdf&.close!
     end
 
+    # SPIKE (WRSAT-687): renders the filled packet as HTML/Honeycrisp instead
+    # of filling packet.pdf's AcroForm fields, then rasterizes it to PDF via
+    # Grover so it can be combined the same way as generated_pdf_path.
+    def filled_packet_html_path
+      html = PdfController.new.render_to_string(
+        {
+          template: "pdf/filled_packet",
+          layout: "pdf",
+          locals: strip_emojis_from_hash(hash_for_fillable_pdf)
+        }
+      )
+      style_tag_options = [
+        {path: Rails.root.join("app", "assets", "builds", "application.css")},
+        {path: Rails.root.join("app", "assets", "stylesheets", "wr_exemption_pdf.css")}
+      ]
+      path = "tmp/page_2#{SecureRandom.uuid}.pdf"
+      Grover.new(html, style_tag_options: style_tag_options, print_background: true, timeout: 120_000).to_pdf(path)
+      path
+    end
+
+    # SPIKE (WRSAT-687): combined_pdf with both pages generated from HTML,
+    # no PDF form-filling at all.
+    def combined_pdf_all_html
+      target = HexaPDF::Document.new
+      generated_path = generated_pdf_path
+      filled_packet_path = filled_packet_html_path
+
+      [generated_path, filled_packet_path].each do |file|
+        pdf = HexaPDF::Document.open(file)
+        pdf.pages.each { |page| target.pages << target.import(page) }
+      end
+
+      target.write_to_string
+    ensure
+      File.delete(generated_path) if generated_path && File.exist?(generated_path)
+      File.delete(filled_packet_path) if filled_packet_path && File.exist?(filled_packet_path)
+    end
+
     # Sanitizes text by removing emoji sequences:
     # - \p{Emoji_Presentation}: removes standalone emoji glyphs
     # - \p{Emoji}\uFE0F: removes emojis followed by variation selector-16
