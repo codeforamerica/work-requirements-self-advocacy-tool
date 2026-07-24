@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v7.0.0
 
       - name: Set up Ruby
-        uses: ruby/setup-ruby@v1.319.0
+        uses: ruby/setup-ruby@003a5c4d8d6321bd302e38f6f0ec593f77f06600 # v1.319.0
         with:
           ruby-version: .ruby-version
           bundler-cache: true
@@ -27,7 +27,7 @@ jobs:
       contents: write
     steps:
       - name: Standard Ruby
-        uses: standardrb/standard-ruby-action@v1
+        uses: standardrb/standard-ruby-action@eecb3f730879f5b8830705348c2961e5aa26de78 # v1
   check_migrations:
     runs-on: ubuntu-latest
 

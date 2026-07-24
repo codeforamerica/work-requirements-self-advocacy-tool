@@ -67,7 +67,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2.1.6
       - name: Check if the image exists
         id: image_exists
-        uses: k4kratik/container-image-check-custom-action@v4
+        uses: k4kratik/container-image-check-custom-action@5f19a0c48d0e0d17257fd3a2de52874d5a8fdc51 # v4
         with:
           type: ecr
           container_repo_name: ${{ env.ECR_REPOSITORY }}
@@ -95,7 +95,7 @@ jobs:
           owner: codeforamerica
           repositories: ${{ env.INFRA_REPO }}
       - name: Trigger deployment from work requirements self advocacy infra
-        uses: codex-/return-dispatch@v3
+        uses: codex-/return-dispatch@16fa9d14771c4d56ae0196bbda1d3c17f7f3650f # v3
         id: dispatch
         with:
           token: ${{ steps.token.outputs.token }}
@@ -109,7 +109,7 @@ jobs:
               "config": "application"
             }
       - name: Wait on Workflow
-        uses: lucasssvaz/wait-on-workflow@v1
+        uses: lucasssvaz/wait-on-workflow@676745e30db420704878817812d34d95e20a183d # v1.0.0
         id: waiter
         with:
           github-token: ${{ steps.token.outputs.token }}
