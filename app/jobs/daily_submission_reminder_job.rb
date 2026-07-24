@@ -2,7 +2,7 @@ class DailySubmissionReminderJob < ApplicationJob
   queue_as :default
 
   def perform
-    signed_at_range = 5.minutes.ago
+    signed_at_range = Time.now.all_day
 
     screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
       .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).select(:screener_id))
