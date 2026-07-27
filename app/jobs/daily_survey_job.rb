@@ -24,7 +24,7 @@ class DailySurveyJob < ApplicationJob
         Rails.logger.warn("SES access denied for screener #{screener.id}")
         next
       rescue => e
-        Rails.logger.error "Failed sending survey for screener #{screener.id}: #{e.class} - #{e.message}"
+        Rails.logger.error "Failed sending survey for screener #{screener.id}: #{e.class}"
         next
       end
     end

@@ -16,6 +16,9 @@ staging:
   daily_survey_job:
     class: DailySurveyJob
     schedule: every day at 7:25am America/Los_Angeles
+  daily_submission_reminder_job:
+    class: DailySubmissionReminderJob
+    schedule: every day at 7:45am America/Los_Angeles
 
 production:
   clear_solid_queue_finished_jobs:
@@ -24,9 +27,16 @@ production:
   daily_survey_job:
     class: DailySurveyJob
     schedule: every day at 7:05am America/Los_Angeles
+  daily_submission_reminder_job:
+    class: DailySubmissionReminderJob
+    schedule: every day at 7:35am America/Los_Angeles
 
 development:
   daily_survey_job:
     class: DailySurveyJob
+# Enable with a specific time (see above), or use an interval
+#    schedule: every 5 minutes
+  daily_submission_reminder_job:
+    class: DailySubmissionReminderJob
 # Enable with a specific time (see above), or use an interval
 #    schedule: every 5 minutes
