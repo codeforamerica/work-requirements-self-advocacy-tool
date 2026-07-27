@@ -1,3 +1,4 @@
+# This config is used for local development, not the deployed environment called `development`.
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do

@@ -1,3 +1,4 @@
+# This config is used for several non-prod environments, not just staging. It is also used for development and for heroku review apps.
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
