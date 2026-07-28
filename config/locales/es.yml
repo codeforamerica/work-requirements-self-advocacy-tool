@@ -326,11 +326,10 @@ es:
               <li>Está en un programa de tratamiento por alcohol o drogas.</li>
               <li>Es una persona indígena o nativa estadounidense.</li>
             </ul>
-        title: Verifique si usted debe cumplir con las reglas de trabajo de SNAP
-        title_help_text_html: |
-          <p>Le ayudaremos a preparar un documento con su información para <strong>enviarlo a su oficina de SNAP</strong> para que puedan determinar si debe cumplir con las reglas de trabajo de SNAP.</p>
-          <p>Esta NO es una solicitud de SNAP.</p>
-          <p><strong>Debería tomar alrededor de 10 minutos completar este formulario.</strong></p>
+        title: Verifique si las reglas de trabajo de SNAP afectan sus beneficios
+        title_help_text_html: Algunas personas que reciben SNAP deben reportar su trabajo y actividades laborales para mantener sus beneficios. Responda algunas preguntas y le ayudaremos a entender qué información debe compartir con su oficina de SNAP.
+        notice_text: Esto no es una solicitud para obtener SNAP. Recibirá un documento para compartir con su oficina de SNAP.
+        time_to_complete: Llenar este formulario suele tomar unos 10 minutos.
         work_rules_description_html: |
           <p>Las personas que deben cumplir con las reglas de trabajo de SNAP deben realizar al menos 80 horas de actividades laborales al mes o, si trabajan menos de 80 horas al mes, ganar al menos $935.25 al mes por el trabajo que realizan.</p>
           <p>Para SNAP, "actividades laborales" incluyen:</p>
@@ -343,6 +342,22 @@ es:
           <p>Si usted no completa 80 horas de trabajo al mes, solo puede recibir beneficios de SNAP durante 3 meses cada 3 años (36 meses).</p>
           <p>Si perdió sus beneficios de SNAP debido a las reglas de trabajo, puede volver a recibirlos si demuestra que ahora cumple con ellas  o califica para una exención.</p>
         work_rules_title: "¿Cuáles son las reglas de trabajo de SNAP?"
+        about_form:
+          title: "Este formulario le puede ayudar a:"
+          exempt_title: "Conocer si tiene una exención y puede seguir recibiendo beneficios"
+          exempt_help_text: "Le ayudaremos a identificar qué documentos podría necesitar compartir con su oficina de SNAP."
+          comply_title: "Ver si su trabajo o actividades ya cumplen con las reglas de trabajo de SNAP"
+          comply_help_text: "Le ayudaremos a determinar si ya está cumpliendo con las reglas de trabajo y a entender qué documentos de prueba podría necesitar su oficina de SNAP."
+          unmet_title: "Saber qué hacer si no cumple con las reglas de trabajo"
+          unmet_help_text: "Le ayudaremos a entender los pasos para cumplir con las reglas de trabajo y obtener o seguir recibiendo beneficios de SNAP."
+        how_it_works:
+          title: "Cómo funciona"
+          answer_questions_title: "Responda algunas preguntas"
+          answer_questions_help_text: "Complete el formulario para saber cómo le afectan las reglas de trabajo de SNAP."
+          get_form_title: "Obtenga un documento con sus resultados"
+          get_form_help_text: "Al finalizar las preguntas, puede descargar su formulario desde el sitio web o recibir una copia por correo electrónico."
+          share_form_title: "Comparta su formulario y cualquier documento requerido con su oficina de SNAP"
+          share_form_help_text: "Le ayudaremos a identificar los documentos que podría necesitar compartir junto con su formulario. Dependiendo de su oficina de SNAP, es posible que pueda subirlos en línea, enviarlos por correo postal o electrónico, o entregarlos en persona."
     living_with_someone:
       edit:
         help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione "Sí", incluso si el niño no está incluido en su caso de SNAP.

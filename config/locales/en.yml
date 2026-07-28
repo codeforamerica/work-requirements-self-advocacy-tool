@@ -326,11 +326,10 @@ en:
               <li>In an alcohol or drug treatment program.</li>
               <li>An American Indian.</li>
             </ul>
-        title: Check if the SNAP work rules apply to you
-        title_help_text_html: |
-          <p> We'll help you put your information into a document <strong>you can submit to your SNAP agency</strong> so they can determine if the SNAP work rules apply to you.</p>
-          <p>This is NOT a SNAP application.</p>
-          <p class="spacing-below-0"><strong>It usually takes about 10 minutes to complete this form.</strong></p>
+        title: Check if the SNAP work rules affect your benefits
+        title_help_text_html: Some SNAP recipients need to report work or activities to keep their benefits. Answer a few questions and we'll help you understand what to give your SNAP agency.
+        notice_text: This isn't a SNAP application. You'll get a document to give to your SNAP agency.
+        time_to_complete: It usually takes about 10 minutes to complete this form.
         work_rules_description_html: |
           <p>People who have to follow the SNAP work rules must do at least 80 hours of work activities a month, or, if they are working fewer than 80 hours a month, get paid at least $935.25 a month for work that they do.</p>
           <p>Work activities include:</p>
@@ -343,6 +342,22 @@ en:
           <p>If you do not do work activities for 80 hours a month, you can only get SNAP benefits for 3 months every 3 years (36 months).</p>
           <p>If you've lost SNAP benefits because of the work rules, you can get them again by showing that you are now meeting the work rules, or that you are exempt.</p>
         work_rules_title: What are the SNAP work rules?
+        about_form:
+          title: "This form helps you:"
+          exempt_title: "See if you are exempt and can keep your benefits"
+          exempt_help_text: "We'll help you figure out what documents you may need to share with your SNAP agency."
+          comply_title: "See if your work or activities already count"
+          comply_help_text: "We'll help you check if you're already meeting the work rules and understand what documents your SNAP agency may need from you."
+          unmet_title: "Learn what to do if you're not meeting the work rules"
+          unmet_help_text: "We'll help you understand the next steps you should take to meet the work rules and get or keep your SNAP benefits."
+        how_it_works:
+          title: "How it works"
+          answer_questions_title: "Answer a few questions"
+          answer_questions_help_text: "Fill out the form to learn how the SNAP work rules may affect your situation."
+          get_form_title: "Get a document with your results"
+          get_form_help_text: "After answering the questions, download your form from the website or get a copy by email."
+          share_form_title: "Share your form and any required documents with your SNAP agency"
+          share_form_help_text: "We'll help you identify the documents you may need to share with your form. You may be able to send them online, by mail, email, or in person."
     living_with_someone:
       edit:
         help_text: You do not have to be the child's parent, be responsible for the child, or be their legal guardian. If you live with the child, select "Yes," even if they aren't included in your SNAP case.
