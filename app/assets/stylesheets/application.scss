@@ -187,6 +187,14 @@ hr.tight {
   margin-top: 0.1em;
 }
 
+// on desktop, vertically center the icon and title in media boxes that use an illustration
+@media screen and (min-width: $tablet-up) {
+  .media-box:has(.media--illustration) {
+    display: flex;
+    align-items: center;
+  }
+}
+
 .notice {
   padding: 0.8rem;
   overflow-wrap: break-word;
