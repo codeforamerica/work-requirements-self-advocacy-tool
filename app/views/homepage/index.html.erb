@@ -118,6 +118,12 @@
       <h2><%= t("views.homepage.index.faq.title") %></h2>
 
       <div class="accordion white">
+        <button class="accordion__button" aria-expanded="true" data-track-click="faq_clicked" data-track-faq-name="snap-work-rules"><%= t("views.homepage.index.faq.work_rules") %></button>
+        <div class="accordion__content">
+          <%= t("views.homepage.index.faq.work_rules_content_html") %>
+        </div>
+      </div>
+      <div class="accordion white">
         <button class="accordion__button" aria-expanded="true" data-track-click="faq_clicked" data-track-faq-name="snap-rules-apply"><%= t("views.homepage.index.faq.who") %></button>
         <div class="accordion__content">
           <%= t("views.homepage.index.faq.who_content_html") %>
