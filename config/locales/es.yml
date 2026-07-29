@@ -305,12 +305,12 @@ es:
             <p>Si normalmente tiene que cumplir con las reglas de trabajo, pero en este momento no puede trabajar por una buena razón (por ejemplo, su carro se descompuso, tuvo una emergencia familiar, etc.), puede que reciba una exención ese mes. Por favor, comuníquese con su oficina de SNAP para explicar que tiene una <strong>"razón válida"</strong> por la cual no puede cumplir con las reglas de trabajo de SNAP en este momento.</p>
           keep_snap: "¿Podré obtener o seguir recibiendo los beneficios de SNAP?"
           keep_snap_content_html: |
-            <p>Si no tiene que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una exención.</strong></p>
+            <p>Si <u>no</u> tiene que cumplir con las reglas de trabajo de SNAP, puede seguir recibiendo sus beneficios de SNAP normalmente, <strong>siempre y cuando su oficina de SNAP sepa que usted califica para una exención.</strong></p>
             <p>Informar a su oficina de SNAP que califica para una exención ayuda a evitar que sus beneficios se suspendan por error.</p>
             <br/>
             <p>Si usted <u>tiene</u> que cumplir con las reglas de trabajo de SNAP, debe trabajar o realizar actividades que cuenten durante al menos 80 horas al mes. Si no cumple esas horas, sus beneficios de SNAP pueden limitarse a 3 meses cada 36 meses.</p>
             <strong>Este formulario le ayudará a saber si necesita cumplir con las reglas de trabajo de SNAP o no.</strong>
-          title: Preguntas frecuentes.
+          title: Preguntas frecuentes
           who: "¿Quién tiene que cumplir con las reglas de trabajo de SNAP?"
           who_content_html: |
             <p>La nueva ley H.R.1, aprobada en julio de 2025, exige que la mayoría de los estados y condados hagan cumplir las reglas de trabajo para Adultos Aptos para Trabajar sin Dependientes (ABAWD, por sus siglas en inglés). También cambiaron las reglas, por lo que más personas deben cumplirlas.</p>
