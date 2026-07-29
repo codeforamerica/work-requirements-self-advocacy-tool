@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source "https://rubygems.org", cooldown: 3
 
 ruby_version = File.read(File.join(File.dirname(__FILE__), ".ruby-version")).strip
 ruby ruby_version
@@ -53,7 +53,7 @@ gem "mixpanel-ruby"
 gem "opentelemetry-exporter-otlp", "~> 0.34"
 gem "opentelemetry-instrumentation-all", "~> 0.94"
 gem "opentelemetry-resource-detector-aws", "~> 0.7"
-gem "opentelemetry-sdk", "~> 1.12"
+gem "opentelemetry-sdk", "~> 1.13"
 gem "ostruct"
 gem "pg-aws_rds_iam", "~> 0.8"
 gem "phonelib"
