@@ -15,7 +15,7 @@ staging:
     schedule: every hour at minute 12
   daily_survey_job:
     class: DailySurveyJob
-    schedule: every day at 7:25am America/Los_Angeles
+    schedule: every hour at minute 35
   daily_submission_reminder_job:
     class: DailySubmissionReminderJob
     schedule: every day at 7:45am America/Los_Angeles
