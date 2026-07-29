@@ -102,6 +102,7 @@ main {
   &.teal {
     background-color: $color-teal-light;
   }
+
   &.grey {
     background-color: #F5F5F5;
 
@@ -179,12 +180,22 @@ hr.tight {
   }
 }
 
-.illustration.left-justified {
-  margin-left: 0;
-}
+.illustration {
+  &.medium {
+    width: 7.5rem;
+  }
 
-.illustration.centered {
-  margin-top: 0.1em;
+  &.large {
+    width: 9.5rem;
+  }
+
+  &.left-justified {
+    margin-left: 0;
+  }
+
+  &.centered {
+    margin-top: 0.1em;
+  }
 }
 
 // on desktop, vertically center the icon and title in media boxes that use an illustration
@@ -198,9 +209,11 @@ hr.tight {
 .notice {
   padding: 0.8rem;
   overflow-wrap: break-word;
+
   .media--icon {
     margin-right: 0.8rem;
   }
+
   .media--illustration {
     margin-right: 1rem;
   }
@@ -310,6 +323,7 @@ i.continue-arrow {
   background: none;
   padding: 0;
   margin: 3.5rem 0;
+
   hr {
     margin-top: 0;
     margin-bottom: 3.5rem;
@@ -394,6 +408,7 @@ i.continue-arrow {
 
   h2, h3 {
     margin-top: 1.5rem;
+
     &:first-child {
       margin-top: 0;
     }
