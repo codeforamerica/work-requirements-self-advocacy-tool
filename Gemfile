@@ -50,6 +50,7 @@ gem "erb", ">= 6.0.5"
 gem "grover"
 gem "hexapdf", "~> 1.8"
 gem "mixpanel-ruby"
+gem "msgpack", ">= 1.8.4"
 gem "opentelemetry-exporter-otlp", "~> 0.34"
 gem "opentelemetry-instrumentation-all", "~> 0.94"
 gem "opentelemetry-resource-detector-aws", "~> 0.7"
@@ -92,5 +93,3 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
-
-gem "msgpack", ">= 1.8.4"
