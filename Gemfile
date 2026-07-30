@@ -42,6 +42,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "activestorage", ">= 8.1.3.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 gem "csv"
 gem "dartsass-rails", "~> 0.5.1"
@@ -50,6 +51,7 @@ gem "erb", ">= 6.0.5"
 gem "grover"
 gem "hexapdf", "~> 1.8"
 gem "mixpanel-ruby"
+gem "msgpack", ">= 1.8.4"
 gem "opentelemetry-exporter-otlp", "~> 0.34"
 gem "opentelemetry-instrumentation-all", "~> 0.94"
 gem "opentelemetry-resource-detector-aws", "~> 0.7"
