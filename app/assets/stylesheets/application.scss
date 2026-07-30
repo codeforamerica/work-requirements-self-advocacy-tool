@@ -219,7 +219,11 @@ hr.tight {
   border-color: $color-grey-light;
   border-radius: 10px;
   background-color: $color-white;
-  padding: 1.5rem;
+  padding: 2.5rem;
+
+  &.tight {
+    padding: 1.5rem;
+  }
 }
 
 .notice.teal {
