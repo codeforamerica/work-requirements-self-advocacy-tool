@@ -74,13 +74,47 @@ main {
   background-color: $color-grey;
 }
 
-.homepage-section--teal {
-  padding: 3.5rem;
-  background-color: $color-teal-light;
+// for sections with a background color inside .card
+// negative side margins cancel the card's padding
+// so the background reaches the card edges
+// and adds matching inner padding
+.card-section--full-bleed {
+  margin-left: -2.5rem;
+  margin-right: -2.5rem;
+  padding: 3.5rem 2.5rem;
 
-  .accordion {
-    background-color: $color-white;
+  @media screen and (min-width: 800px) {
+    margin-left: -6rem;
+    margin-right: -6rem;
+    padding: 3.5rem 6rem;
   }
+
+  &:last-child {
+    margin-bottom: -2.5rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+
+    @media screen and (min-width: 800px) {
+      margin-bottom: -6rem;
+    }
+  }
+
+  &.teal {
+    background-color: $color-teal-light;
+  }
+
+  &.grey {
+    background-color: #F5F5F5;
+
+    .accordion {
+      background-color: $color-white;
+    }
+  }
+}
+
+hr.tight {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 
 // honeycrisp's accordion :after icons use relative urls that don't resolve under
@@ -101,6 +135,10 @@ main {
     margin-top: 1rem;
     overflow-wrap: break-word;
   }
+}
+
+.accordion.white {
+  background-color: $color-white;
 }
 
 .numbered-steps {
@@ -142,27 +180,50 @@ main {
   }
 }
 
-.illustration.left-justified {
-  margin-left: 0;
+.illustration {
+  &.medium {
+    min-width: 7.5rem;
+  }
+
+  &.left-justified {
+    margin-left: 0;
+  }
+
+  &.centered {
+    margin-top: 0.1em;
+  }
 }
 
-.illustration.centered {
-  margin-top: 0.1em;
+// on desktop, vertically center the icon and title in media boxes that use an illustration
+@media screen and (min-width: $tablet-up) {
+  .media-box:has(.media--illustration) {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .notice {
   padding: 0.8rem;
   overflow-wrap: break-word;
+
   .media--icon {
     margin-right: 0.8rem;
+  }
+
+  .media--illustration {
+    margin-right: 1rem;
   }
 }
 
 .notice.white {
   border-color: $color-grey-light;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: $color-white;
   padding: 2.5rem;
+
+  &.tight {
+    padding: 1.5rem;
+  }
 }
 
 .notice.teal {
@@ -262,6 +323,7 @@ i.continue-arrow {
   background: none;
   padding: 0;
   margin: 3.5rem 0;
+
   hr {
     margin-top: 0;
     margin-bottom: 3.5rem;
@@ -346,6 +408,7 @@ i.continue-arrow {
 
   h2, h3 {
     margin-top: 1.5rem;
+
     &:first-child {
       margin-top: 0;
     }
