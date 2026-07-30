@@ -273,7 +273,7 @@ GEM
       base64
       json-logic-rb (~> 0.1.5)
       mutex_m
-    msgpack (1.8.3)
+    msgpack (1.8.4)
     mutex_m (0.3.0)
     net-imap (0.6.4.1)
       date
@@ -773,6 +773,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   mixpanel-ruby
+  msgpack (>= 1.8.4)
   opentelemetry-exporter-otlp (~> 0.34)
   opentelemetry-instrumentation-all (~> 0.94)
   opentelemetry-resource-detector-aws (~> 0.7)
