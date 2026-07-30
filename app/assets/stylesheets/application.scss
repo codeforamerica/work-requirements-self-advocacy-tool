@@ -182,11 +182,7 @@ hr.tight {
 
 .illustration {
   &.medium {
-    width: 7.5rem;
-  }
-
-  &.large {
-    width: 9.5rem;
+    min-width: 7.5rem;
   }
 
   &.left-justified {
@@ -221,9 +217,9 @@ hr.tight {
 
 .notice.white {
   border-color: $color-grey-light;
-  border-radius: 3px;
+  border-radius: 10px;
   background-color: $color-white;
-  padding: 2.5rem;
+  padding: 1.5rem;
 }
 
 .notice.teal {
