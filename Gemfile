@@ -92,3 +92,5 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
+
+gem "msgpack", ">= 1.8.4"
