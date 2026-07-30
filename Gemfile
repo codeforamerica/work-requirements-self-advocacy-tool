@@ -42,6 +42,7 @@ gem "thruster", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "activestorage", ">= 8.1.3.1"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 gem "csv"
 gem "dartsass-rails", "~> 0.5.1"
@@ -92,5 +93,3 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
-
-gem "activestorage", ">= 8.1.3.1"
