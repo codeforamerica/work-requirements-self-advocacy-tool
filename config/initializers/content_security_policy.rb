@@ -24,6 +24,11 @@ Rails.application.configure do
   # browser keeps enforcing whatever CSP nonce was set on the last full navigation.
   # A fresh per-request nonce would mismatch and silently block inline scripts/
   # styles delivered by those swapped-in responses.
-  config.content_security_policy_nonce_generator = ->(request) { request.session.id.to_s }
+  #
+  # request.session.id isn't usable here: this app uses the default cookie_store,
+  # which has no persistent server-side session id, so .id is effectively
+  # regenerated per request. Stash our own value in the session data instead,
+  # which does round-trip via the encrypted cookie.
+  config.content_security_policy_nonce_generator = ->(request) { request.session[:_csp_nonce] ||= SecureRandom.base64(16) }
   config.content_security_policy_nonce_directives = %w[script-src style-src]
 end
