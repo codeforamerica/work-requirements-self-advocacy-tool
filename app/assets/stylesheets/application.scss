@@ -16,6 +16,16 @@ main {
   max-width: 100%;
 }
 
+// no !important: JS toggles visibility by setting element.style.display directly,
+// which must be able to override this without fighting specificity/important rules.
+.js-initially-hidden {
+  display: none;
+}
+
+.icon-help--spaced {
+  padding-right: 1rem;
+}
+
 @media screen and (min-width: 800px) {
   .card {
     padding: 6rem;

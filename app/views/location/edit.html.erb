@@ -32,7 +32,7 @@
   <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 
-<script>
+<script nonce="<%= content_security_policy_nonce %>">
   document.addEventListener("turbo:load", function () {
     const stateSelect = document.getElementById("screener_state");
     const countyWrapper = document.getElementById("county_wrapper");
