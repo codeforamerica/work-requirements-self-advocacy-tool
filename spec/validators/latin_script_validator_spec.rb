@@ -4,6 +4,7 @@ RSpec.describe LatinScriptValidator do
   let(:validatable_class) do
     Class.new do
       include ActiveModel::Validations
+
       attr_accessor :name
       validates :name, latin_script: true
 
