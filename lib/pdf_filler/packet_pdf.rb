@@ -2,6 +2,7 @@ module PdfFiller
   class PacketPdf
     UNSUPPORTED_GLYPH_MESSAGE_PATTERN = /no codepoint for :(\w+)/
     UNSUPPORTED_CHARACTER_REPLACEMENT = "_"
+    PDF_PAGE_MARGIN = {top: "0.75in", bottom: "0.75in", left: "0.75in", right: "0.75in"}.freeze
 
     def initialize(screener)
       @screener = screener
@@ -141,7 +142,13 @@ module PdfFiller
         {path: Rails.root.join("app", "assets", "stylesheets", "wr_exemption_pdf.css")}
       ]
       path = "tmp/page_2#{SecureRandom.uuid}.pdf"
-      Grover.new(html, style_tag_options: style_tag_options, print_background: true, timeout: 120_000).to_pdf(path)
+      Grover.new(
+        html,
+        style_tag_options: style_tag_options,
+        print_background: true,
+        timeout: 120_000,
+        margin: {top: "0.75in", bottom: "0.75in", left: "0.75in", right: "0.75in"}
+      ).to_pdf(path)
       path
     end
 
