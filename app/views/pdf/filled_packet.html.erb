@@ -106,14 +106,15 @@ working_or_earning ||= nil
 
     <div class="section-title">
       <%= signature_icon %>
-      <h3>Attestation</h3>
+      <h3>Signature</h3>
     </div>
+    <p>I certify under penalty of perjury that the information provided on this form is true and correct.</p>
     <div class="info-box">
       <div class="info-row">
-        <%= info_field("Signature:", signature) %>
+        <%= info_field("Full legal name:", signature) %>
       </div>
       <div class="info-row">
-        <%= info_field("Date signed:", submission_date) %>
+        <%= info_field("Date of submission:", submission_date) %>
         <%= info_field("Confirmation code:", confirmation_code) %>
       </div>
     </div>

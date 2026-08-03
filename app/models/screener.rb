@@ -353,7 +353,15 @@ class Screener < ApplicationRecord
 
   def pdf
     Rails.logger.info("Generating PDF for screener #{id}")
-    LocationData::States.pdf_filler_class(state).new(self).combined_pdf_all_html # SPIKE (WRSAT-687): temporary swap to test HTML-rendered filled packet live
+    packet_pdf = LocationData::States.pdf_filler_class(state).new(self)
+
+    # SPIKE (WRSAT-687): toggle for the fully HTML-rendered PDF; defaults to
+    # the existing AcroForm-filled PDF unless explicitly enabled.
+    if ENV["HTML_PDF_ENABLED"] == "true"
+      packet_pdf.combined_pdf_all_html
+    else
+      packet_pdf.combined_pdf
+    end
   end
 
   def full_name

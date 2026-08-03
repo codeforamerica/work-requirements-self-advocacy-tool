@@ -9,6 +9,18 @@ html, body, main {
 .pdf-packet {
   margin: 60px 35px;
   font-family: "Source Sans 3", -apple-system, sans-serif;
+  /* Honeycrisp's application.css sets body { font-size: 1.9rem; line-height:
+     2.5rem }. Page 1 (the summary page) never had that sizing before pages
+     were combined into one document, so reset it back to the browser
+     default here; .filled-packet below restores Honeycrisp's sizing since
+     its layout (data-table, checklist, etc.) was built around it. */
+  font-size: 16px;
+  line-height: normal;
+}
+
+.filled-packet {
+  font-size: 1.9rem;
+  line-height: 2.5rem;
 }
 
 .header {
