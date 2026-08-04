@@ -117,7 +117,7 @@ class Screener < ApplicationRecord
     :remove_zip_code_if_state_does_not_require
 
   with_context :alcohol_treatment_program do
-    validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}
+    validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :tribe_or_nation do
@@ -129,7 +129,7 @@ class Screener < ApplicationRecord
       "valid_email_2/email": {message: ->(*) { I18n.t("validations.email_invalid") }},
       if: -> { email.present? }
 
-    validates :email, length: {maximum: BASIC_INFO_EMAIL_CHARACTER_LIMIT}
+    validates :email, length: {maximum: BASIC_INFO_EMAIL_CHARACTER_LIMIT}, latin_script: true
 
     validates :email,
       presence: {message: ->(*) { I18n.t("validations.email_invalid") }},
@@ -145,15 +145,15 @@ class Screener < ApplicationRecord
   end
 
   with_context :basic_info_case_number do
-    validates :case_number, length: {maximum: BasicInfoCaseNumberController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BasicInfoCaseNumberController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.case_number")) }}
+    validates :case_number, length: {maximum: BasicInfoCaseNumberController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BasicInfoCaseNumberController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.case_number")) }}, latin_script: true
   end
 
   with_context :basic_info_details do
     validates :first_name, presence: {message: ->(*) { I18n.t("validations.required", field_name: I18n.t("validations.fields.first_name").downcase) }}
-    validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.first_name")) }}
+    validates :first_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.first_name")) }}, latin_script: true
     validates :last_name, presence: {message: ->(*) { I18n.t("validations.required", field_name: I18n.t("validations.fields.last_name").downcase) }}
-    validates :last_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.last_name")) }}
-    validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.middle_name")) }}
+    validates :last_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.last_name")) }}, latin_script: true
+    validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.middle_name")) }}, latin_script: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
     validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
@@ -164,7 +164,7 @@ class Screener < ApplicationRecord
 
   with_context :caring_for_someone do
     validates :caring_for_no_one, inclusion: {in: %w[unfilled no]}, if: -> { caring_for_child_under_6_yes? || caring_for_disabled_or_ill_person_yes? }
-    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}
+    validates :additional_care_info, length: {maximum: CaringForSomeoneController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :community_service do
@@ -187,7 +187,7 @@ class Screener < ApplicationRecord
           receiving_benefits_disability_medicaid_yes? ||
           receiving_benefits_other_yes?
       }
-    validates :receiving_benefits_write_in, length: {maximum: DisabilityBenefitsController::CHARACTER_LIMIT}
+    validates :receiving_benefits_write_in, length: {maximum: DisabilityBenefitsController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :employment do
@@ -226,12 +226,12 @@ class Screener < ApplicationRecord
   end
 
   with_context :feedback_result do
-    validates :survey_additional_feedback, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}
-    validates :unsubmitted_write_in, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}
+    validates :survey_additional_feedback, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}, latin_script: true
+    validates :unsubmitted_write_in, length: {maximum: FeedbackResultController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :preventing_work_details do
-    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}
+    validates :preventing_work_additional_info, length: {maximum: PreventingWorkDetailsController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :preventing_work_situations do
@@ -243,7 +243,7 @@ class Screener < ApplicationRecord
           preventing_work_medical_condition_yes? ||
           preventing_work_other_yes?
       }
-    validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}
+    validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :school_enrollment do
@@ -252,7 +252,7 @@ class Screener < ApplicationRecord
 
   with_context :signature do
     validates :signature, presence: {message: ->(*) { I18n.t("validations.signature_required") }}
-    validates :signature, length: {maximum: SignatureController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: SignatureController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.signature")) }}
+    validates :signature, length: {maximum: SignatureController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: SignatureController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.signature")) }}, latin_script: true
   end
 
   with_context :training_program do
