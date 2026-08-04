@@ -152,8 +152,11 @@ module PdfFiller
     # Assigns a field value, and if the PDF's font can't encode a character in it (e.g. "ń", which
     # isn't in the template's Helvetica /Differences table), replaces that character with its
     # closest unaccented Latin equivalent (falling back to UNSUPPORTED_CHARACTER_REPLACEMENT if it
-    # has none) and retries. Any other HexaPDF error (e.g. /MaxLen exceeded) is logged with
-    # diagnostic context and re-raised.
+    # has none) and retries. LatinScriptValidator should already keep non-Latin-script text (e.g.
+    # Arabic, Cyrillic) out of these fields entirely -- if one somehow gets through, this raises
+    # instead of silently mangling it, since there's no meaningful "closest Latin equivalent" for a
+    # different script. Any other HexaPDF error (e.g. /MaxLen exceeded) is logged with diagnostic
+    # context and re-raised.
     #
     # Each retry replaces every occurrence of one distinct unsupported character (via String#gsub),
     # so the recursion can never run more times than there are distinct characters in the value --
@@ -180,6 +183,10 @@ module PdfFiller
 
       character = HexaPDF::Font::Encoding::GlyphList.name_to_unicode(glyph_name)
       raise HexaPDF::Error, "Unsupported glyph #{glyph_name.inspect} could not be mapped to a character" unless character
+
+      unless character.match?(LatinScriptValidator::PATTERN)
+        raise HexaPDF::Error, "Non-Latin-script character in field #{field_name} could not be rendered"
+      end
 
       replacement = ActiveSupport::Inflector.transliterate(character)
       replacement = UNSUPPORTED_CHARACTER_REPLACEMENT if replacement == character

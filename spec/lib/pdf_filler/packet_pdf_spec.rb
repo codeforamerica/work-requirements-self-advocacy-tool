@@ -327,6 +327,22 @@ RSpec.describe PdfFiller::PacketPdf do
             packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", :nacute, 0)
           }.to raise_error(HexaPDF::Error, /too many unsupported characters/i)
         end
+
+        # LatinScriptValidator should keep non-Latin-script text (e.g. Arabic, Cyrillic) out of
+        # these fields before they ever reach PDF generation, but this is a backstop for data
+        # written before that validation existed. There's no meaningful "closest Latin
+        # equivalent" for a character from a different script, so this raises rather than
+        # transliterating it into something unrelated. :afii10017 is a real glyph name (Cyrillic
+        # "А") that HexaPDF's glyph list does resolve to a character, unlike the Arabic/Cyrillic
+        # glyphs this template's font reports as the generic, unmapped ".notdef" glyph -- so this
+        # exercises the check directly rather than the earlier "could not be mapped" guard.
+        it "raises instead of transliterating a non-Latin-script glyph that does resolve to a character" do
+          field = instance_double(HexaPDF::Type::AcroForm::TextField)
+
+          expect {
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "Привет", :afii10017, 5)
+          }.to raise_error(HexaPDF::Error, /non-latin-script character/i)
+        end
       end
 
       # A field can still legitimately fail for reasons unrelated to font encoding (e.g. a
