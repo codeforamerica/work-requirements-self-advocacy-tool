@@ -289,7 +289,7 @@ RSpec.describe PdfFiller::PacketPdf do
       context "field value has a character unsupported by the PDF's font encoding" do
         before { screener.additional_care_info = "cuidado de nińo de 1 ańo" }
 
-        it "does not raise, and replaces every occurrence of the unsupported character with an underscore" do
+        it "does not raise, and replaces every occurrence of the unsupported character with its closest unaccented Latin equivalent" do
           # Flattening bakes field values into the page content and drops the AcroForm fields
           # (see the "fills and flattens" example above), so stub it out here to inspect the
           # field's final /V value directly, the same way HexaPDF itself reads it back.
@@ -302,7 +302,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
           doc = HexaPDF::Document.open(path)
           expect(doc.acro_form.field_by_name("details_of_care").field_value)
-            .to eq("cuidado de ni_o de 1 a_o")
+            .to eq("cuidado de nino de 1 ano")
         ensure
           File.delete(path) if path && File.exist?(path)
         end
