@@ -351,7 +351,7 @@ RSpec.describe PdfFiller::PacketPdf do
       # no glyph in any font, and isn't emoji-related so strip_emojis wouldn't catch it -- it has
       # to be recovered via the glyph object's `str`, not its name (always the generic ".notdef").
       context "field value has a character with no glyph in the font at all" do
-        before { screener.additional_care_info = "Hello﻿ world" }
+        before { screener.additional_care_info = "Hello\u{FEFF} world" }
 
         it "does not raise, and replaces the character instead of crashing" do
           allow_any_instance_of(HexaPDF::Type::AcroForm::Form).to receive(:flatten)
