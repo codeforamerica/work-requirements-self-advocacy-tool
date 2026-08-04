@@ -304,6 +304,13 @@ RSpec.describe Screener, type: :model do
         screener.valid?(:preventing_work_situations)
         expect(screener.errors[:preventing_work_write_in]).to be_present
       end
+
+      it "must not contain non-Latin script" do
+        screener = build(:screener, preventing_work_write_in: "احتاج للمواد الغذائية")
+
+        screener.valid?(:preventing_work_situations)
+        expect(screener.errors[:preventing_work_write_in]).to eq [I18n.t("validations.latin_script_only")]
+      end
     end
 
     context "with_context :basic_info_email" do
