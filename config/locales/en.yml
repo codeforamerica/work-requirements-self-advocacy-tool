@@ -42,6 +42,7 @@ en:
       last_name: Last name
       middle_name: Middle name
       signature: Signature
+    latin_script_only: Please enter text using standard letters (A–Z). Special characters or non-English alphabets (such as Cyrillic, Arabic, or Chinese characters) are not supported
     maximum_length: "%{field_name} is too long (maximum is %{max_length} characters)."
     must_answer_yes_or_no: Must answer yes or no
     number_invalid: Enter a number

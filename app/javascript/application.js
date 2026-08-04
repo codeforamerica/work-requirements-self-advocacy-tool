@@ -70,13 +70,16 @@ document.addEventListener("turbo:load", function() {
   revealer.init();
   accordion.init();
   honeycrispInit();
-  // honeycrispInit() will asychronously re-collapse the accordions so
-  // we use a setTimeout to re-open them after that call stack unwinds
-  setTimeout(openDefaultAccordions, 0);
-  $('.question-with-follow-up').each(function() {
-    var self = this;
-    followUpQuestion.update($(self));
-  });
+  // honeycrispInit() will asychronously re-collapse the accordions and can revert any
+  // show/hide state set on a question-with-follow-up before it settles (e.g. re-hiding a
+  // follow-up whose driving checkbox is checked on a server-rendered validation-error
+  // reload), so we use a setTimeout to redo both after that call stack unwinds.
+  setTimeout(function() {
+    openDefaultAccordions();
+    $('.question-with-follow-up').each(function() {
+      followUpQuestion.update($(this));
+    });
+  }, 0);
   initTextareaCounter();
   initClickTracking();
 });

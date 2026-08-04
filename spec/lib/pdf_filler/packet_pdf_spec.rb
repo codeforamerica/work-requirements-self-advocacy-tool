@@ -281,6 +281,82 @@ RSpec.describe PdfFiller::PacketPdf do
       ensure
         File.delete(path) if path && File.exist?(path)
       end
+
+      # The template's free-text fields render in Helvetica, one of the PDF standard 14 fonts.
+      # HexaPDF errors out instead of rendering any character that font's encoding table has no
+      # slot for -- e.g. "ń" (n with an acute accent), a Polish letter that isn't part of the
+      # template's Western European Helvetica /Differences table, unlike the Spanish "ñ".
+      context "field value has a character unsupported by the PDF's font encoding" do
+        before { screener.additional_care_info = "cuidado de nińo de 1 ańo" }
+
+        it "does not raise, and replaces every occurrence of the unsupported character with its closest unaccented Latin equivalent" do
+          # Flattening bakes field values into the page content and drops the AcroForm fields
+          # (see the "fills and flattens" example above), so stub it out here to inspect the
+          # field's final /V value directly, the same way HexaPDF itself reads it back.
+          allow_any_instance_of(HexaPDF::Type::AcroForm::Form).to receive(:flatten)
+          path = nil
+
+          expect {
+            path = packet_pdf.filled_pdf_tempfile.path
+          }.not_to raise_error
+
+          doc = HexaPDF::Document.open(path)
+          expect(doc.acro_form.field_by_name("details_of_care").field_value)
+            .to eq("cuidado de nino de 1 ano")
+        ensure
+          File.delete(path) if path && File.exist?(path)
+        end
+
+        it "logs only the bare replaced character, never the surrounding field content" do
+          expect(Rails.logger).to receive(:warn).with(a_string_matching(/character="ń"/)) do |message|
+            expect(message).not_to include("cuidado")
+          end
+
+          path = packet_pdf.filled_pdf_tempfile.path
+        ensure
+          File.delete(path) if path && File.exist?(path)
+        end
+
+        # Guards against the failure mode an automated security review flagged: without a bound,
+        # a character that keeps failing to encode even after replacement (e.g. a glyph name that
+        # maps back to a character still unsupported by the font) would recurse indefinitely.
+        it "raises instead of recursing indefinitely once replacements are exhausted" do
+          field = instance_double(HexaPDF::Type::AcroForm::TextField)
+
+          expect {
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", :nacute, 0)
+          }.to raise_error(HexaPDF::Error, /too many unsupported characters/i)
+        end
+
+        # LatinScriptValidator should keep non-Latin-script text (e.g. Arabic, Cyrillic) out of
+        # these fields before they ever reach PDF generation, but this is a backstop for data
+        # written before that validation existed. There's no meaningful "closest Latin
+        # equivalent" for a character from a different script, so this raises rather than
+        # transliterating it into something unrelated. :afii10017 is a real glyph name (Cyrillic
+        # "А") that HexaPDF's glyph list does resolve to a character, unlike the Arabic/Cyrillic
+        # glyphs this template's font reports as the generic, unmapped ".notdef" glyph -- so this
+        # exercises the check directly rather than the earlier "could not be mapped" guard.
+        it "raises instead of transliterating a non-Latin-script glyph that does resolve to a character" do
+          field = instance_double(HexaPDF::Type::AcroForm::TextField)
+
+          expect {
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "Привет", :afii10017, 5)
+          }.to raise_error(HexaPDF::Error, /non-latin-script character/i)
+        end
+      end
+
+      # A field can still legitimately fail for reasons unrelated to font encoding (e.g. a
+      # value longer than the field's /MaxLen); that should still be logged with diagnostic
+      # context and re-raised rather than silently swallowed.
+      context "field value fails for a reason other than an unsupported character" do
+        before { screener.ssn_last_four = "11111" } # ssn_last_4 field has /MaxLen 4
+
+        it "logs diagnostic context and re-raises" do
+          expect(Rails.logger).to receive(:error).with(a_string_matching(/field=ssn_last_4.*max_len=4/))
+
+          expect { packet_pdf.filled_pdf_tempfile }.to raise_error(HexaPDF::Error, /exceeds maximum allowed length/)
+        end
+      end
     end
 
     context "screener has only the earnings exemption" do
