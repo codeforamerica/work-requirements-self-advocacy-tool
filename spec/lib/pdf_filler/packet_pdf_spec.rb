@@ -346,12 +346,12 @@ RSpec.describe PdfFiller::PacketPdf do
 
       # Some characters the font can't render have no glyph at all -- HexaPDF's InvalidGlyph gives
       # them a generic ".notdef" name with no real Adobe Glyph List mapping, unlike "ń" above where
-      # the glyph is real but the font's encoding table is just full. A stray variation selector
-      # (U+FE0F) left behind by a mobile keyboard's emoji autosuggest, with no emoji attached to it,
-      # is a real example: it isn't caught by strip_emojis (which only strips one directly following
-      # an actual emoji character) and has to be recovered via the glyph object's `str`, not its name.
+      # the glyph is real but the font's encoding table is just full. A byte-order mark (U+FEFF)
+      # left behind by a copy-paste from another document is a real example: it's invisible, has
+      # no glyph in any font, and isn't emoji-related so strip_emojis wouldn't catch it -- it has
+      # to be recovered via the glyph object's `str`, not its name (always the generic ".notdef").
       context "field value has a character with no glyph in the font at all" do
-        before { screener.additional_care_info = "I\u{FE0F} have a 2 year old" }
+        before { screener.additional_care_info = "Hello﻿ world" }
 
         it "does not raise, and replaces the character instead of crashing" do
           allow_any_instance_of(HexaPDF::Type::AcroForm::Form).to receive(:flatten)
@@ -362,10 +362,10 @@ RSpec.describe PdfFiller::PacketPdf do
           }.not_to raise_error
 
           doc = HexaPDF::Document.open(path)
-          # ActiveSupport::Inflector.transliterate can't map a variation selector to any Latin
+          # ActiveSupport::Inflector.transliterate can't map a byte-order mark to any Latin
           # equivalent, so it falls back to "?" rather than leaving the value untouched.
           expect(doc.acro_form.field_by_name("details_of_care").field_value)
-            .to eq("I? have a 2 year old")
+            .to eq("Hello? world")
         ensure
           File.delete(path) if path && File.exist?(path)
         end
@@ -481,6 +481,16 @@ RSpec.describe PdfFiller::PacketPdf do
     it "returns a clean string when no emojis are present" do
       text = "Just plain text"
       expect(packet_pdf.strip_emojis(text)).to eq("Just plain text")
+    end
+
+    it "removes a variation selector left orphaned with no emoji attached to it" do
+      text = "Hello\u{FE0F} world"
+      expect(packet_pdf.strip_emojis(text)).to eq("Hello world")
+    end
+
+    it "removes a keycap combiner left orphaned with no digit/emoji attached to it" do
+      text = "Hello\u{20E3} world"
+      expect(packet_pdf.strip_emojis(text)).to eq("Hello world")
     end
   end
 end
