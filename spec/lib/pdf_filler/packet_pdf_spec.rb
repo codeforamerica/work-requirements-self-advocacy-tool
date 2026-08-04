@@ -324,7 +324,7 @@ RSpec.describe PdfFiller::PacketPdf do
           field = instance_double(HexaPDF::Type::AcroForm::TextField)
 
           expect {
-            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", :nacute, 0)
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", "ń", 0)
           }.to raise_error(HexaPDF::Error, /too many unsupported characters/i)
         end
 
@@ -332,16 +332,42 @@ RSpec.describe PdfFiller::PacketPdf do
         # these fields before they ever reach PDF generation, but this is a backstop for data
         # written before that validation existed. There's no meaningful "closest Latin
         # equivalent" for a character from a different script, so this raises rather than
-        # transliterating it into something unrelated. :afii10017 is a real glyph name (Cyrillic
-        # "А") that HexaPDF's glyph list does resolve to a character, unlike the Arabic/Cyrillic
-        # glyphs this template's font reports as the generic, unmapped ".notdef" glyph -- so this
-        # exercises the check directly rather than the earlier "could not be mapped" guard.
-        it "raises instead of transliterating a non-Latin-script glyph that does resolve to a character" do
+        # transliterating it into something unrelated. "А" (Cyrillic, U+0410) is what
+        # assign_field_value would have already resolved a real, mappable glyph name down to
+        # before calling this method.
+        it "raises instead of transliterating a non-Latin-script character" do
           field = instance_double(HexaPDF::Type::AcroForm::TextField)
 
           expect {
-            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "Привет", :afii10017, 5)
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "Привет", "А", 5)
           }.to raise_error(HexaPDF::Error, /non-latin-script character/i)
+        end
+      end
+
+      # Some characters the font can't render have no glyph at all -- HexaPDF's InvalidGlyph gives
+      # them a generic ".notdef" name with no real Adobe Glyph List mapping, unlike "ń" above where
+      # the glyph is real but the font's encoding table is just full. A stray variation selector
+      # (U+FE0F) left behind by a mobile keyboard's emoji autosuggest, with no emoji attached to it,
+      # is a real example: it isn't caught by strip_emojis (which only strips one directly following
+      # an actual emoji character) and has to be recovered via the glyph object's `str`, not its name.
+      context "field value has a character with no glyph in the font at all" do
+        before { screener.additional_care_info = "I\u{FE0F} have a 2 year old" }
+
+        it "does not raise, and replaces the character instead of crashing" do
+          allow_any_instance_of(HexaPDF::Type::AcroForm::Form).to receive(:flatten)
+          path = nil
+
+          expect {
+            path = packet_pdf.filled_pdf_tempfile.path
+          }.not_to raise_error
+
+          doc = HexaPDF::Document.open(path)
+          # ActiveSupport::Inflector.transliterate can't map a variation selector to any Latin
+          # equivalent, so it falls back to "?" rather than leaving the value untouched.
+          expect(doc.acro_form.field_by_name("details_of_care").field_value)
+            .to eq("I? have a 2 year old")
+        ensure
+          File.delete(path) if path && File.exist?(path)
         end
       end
 

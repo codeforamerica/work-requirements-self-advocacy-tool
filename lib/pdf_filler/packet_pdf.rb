@@ -165,24 +165,33 @@ module PdfFiller
     def assign_field_value(field, field_name, value, replacements_remaining: value.to_s.length)
       field.field_value = value
     rescue HexaPDF::MissingGlyphError => e
-      replace_unsupported_character_and_retry(field, field_name, value, e.glyph.name, replacements_remaining)
+      # e.glyph.str is the actual character that has no glyph in the font at all (e.g. a stray
+      # variation selector left behind by a mobile keyboard's emoji autosuggest). e.glyph.name is
+      # unusable here -- for these it's always the font's generic ".notdef" placeholder, not a
+      # real Adobe Glyph List name, so it can't be mapped back to a character.
+      replace_unsupported_character_and_retry(field, field_name, value, e.glyph.str, replacements_remaining)
     rescue HexaPDF::Error => e
+      # A different failure mode: the glyph itself is known (has a real AGL name, e.g. :nacute for
+      # "ń"), but the font's fixed encoding table has no free slot left to map it to. Recover the
+      # character from its glyph name here instead, since there's no glyph object on this error.
       match = e.message.match(UNSUPPORTED_GLYPH_MESSAGE_PATTERN)
       unless match
         Rails.logger.error("PDF field assignment failed: field=#{field_name} max_len=#{field[:MaxLen].inspect} length=#{value.to_s.length} screener=#{@screener.id}")
         raise
       end
 
-      replace_unsupported_character_and_retry(field, field_name, value, match[1].to_sym, replacements_remaining)
+      character = HexaPDF::Font::Encoding::GlyphList.name_to_unicode(match[1].to_sym)
+      unless character
+        raise HexaPDF::Error, "Unsupported glyph #{match[1].inspect} could not be mapped to a character"
+      end
+
+      replace_unsupported_character_and_retry(field, field_name, value, character, replacements_remaining)
     end
 
-    def replace_unsupported_character_and_retry(field, field_name, value, glyph_name, replacements_remaining)
+    def replace_unsupported_character_and_retry(field, field_name, value, character, replacements_remaining)
       if replacements_remaining <= 0
         raise HexaPDF::Error, "Too many unsupported characters in field #{field_name}"
       end
-
-      character = HexaPDF::Font::Encoding::GlyphList.name_to_unicode(glyph_name)
-      raise HexaPDF::Error, "Unsupported glyph #{glyph_name.inspect} could not be mapped to a character" unless character
 
       unless character.match?(LatinScriptValidator::PATTERN)
         raise HexaPDF::Error, "Non-Latin-script character in field #{field_name} could not be rendered"
