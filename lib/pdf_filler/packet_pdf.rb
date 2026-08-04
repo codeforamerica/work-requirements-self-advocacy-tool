@@ -150,11 +150,12 @@ module PdfFiller
     private
 
     # Assigns a field value, and if the PDF's font can't encode a character in it (e.g. "ń", which
-    # isn't in the template's Helvetica /Differences table), replaces that character with
-    # UNSUPPORTED_CHARACTER_REPLACEMENT and retries. Any other HexaPDF error (e.g. /MaxLen exceeded)
-    # is logged with diagnostic context and re-raised.
+    # isn't in the template's Helvetica /Differences table), replaces that character with its
+    # closest unaccented Latin equivalent (falling back to UNSUPPORTED_CHARACTER_REPLACEMENT if it
+    # has none) and retries. Any other HexaPDF error (e.g. /MaxLen exceeded) is logged with
+    # diagnostic context and re-raised.
     #
-    # Each retry replaces every occurrence of one distinct unsupported character (via String#tr),
+    # Each retry replaces every occurrence of one distinct unsupported character (via String#gsub),
     # so the recursion can never run more times than there are distinct characters in the value --
     # always <= its length. replacements_remaining defaults to that length as a hard, self-scaling
     # ceiling against runaway recursion, rather than an arbitrary constant.
@@ -180,9 +181,12 @@ module PdfFiller
       character = HexaPDF::Font::Encoding::GlyphList.name_to_unicode(glyph_name)
       raise HexaPDF::Error, "Unsupported glyph #{glyph_name.inspect} could not be mapped to a character" unless character
 
-      Rails.logger.warn("PDF field assignment: replaced unsupported character field=#{field_name} character=#{character.inspect} screener=#{@screener.id}")
+      replacement = ActiveSupport::Inflector.transliterate(character)
+      replacement = UNSUPPORTED_CHARACTER_REPLACEMENT if replacement == character
 
-      assign_field_value(field, field_name, value.tr(character, UNSUPPORTED_CHARACTER_REPLACEMENT),
+      Rails.logger.warn("PDF field assignment: replaced unsupported character field=#{field_name} character=#{character.inspect} replacement=#{replacement.inspect} screener=#{@screener.id}")
+
+      assign_field_value(field, field_name, value.gsub(character, replacement),
         replacements_remaining: replacements_remaining - 1)
     end
 
