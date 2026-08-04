@@ -153,10 +153,15 @@ module PdfFiller
     # isn't in the template's Helvetica /Differences table), replaces that character with
     # UNSUPPORTED_CHARACTER_REPLACEMENT and retries. Any other HexaPDF error (e.g. /MaxLen exceeded)
     # is logged with diagnostic context and re-raised.
-    def assign_field_value(field, field_name, value)
+    #
+    # Each retry replaces every occurrence of one distinct unsupported character (via String#tr),
+    # so the recursion can never run more times than there are distinct characters in the value --
+    # always <= its length. replacements_remaining defaults to that length as a hard, self-scaling
+    # ceiling against runaway recursion, rather than an arbitrary constant.
+    def assign_field_value(field, field_name, value, replacements_remaining: value.to_s.length)
       field.field_value = value
     rescue HexaPDF::MissingGlyphError => e
-      replace_unsupported_character_and_retry(field, field_name, value, e.glyph.name)
+      replace_unsupported_character_and_retry(field, field_name, value, e.glyph.name, replacements_remaining)
     rescue HexaPDF::Error => e
       match = e.message.match(UNSUPPORTED_GLYPH_MESSAGE_PATTERN)
       unless match
@@ -164,16 +169,21 @@ module PdfFiller
         raise
       end
 
-      replace_unsupported_character_and_retry(field, field_name, value, match[1].to_sym)
+      replace_unsupported_character_and_retry(field, field_name, value, match[1].to_sym, replacements_remaining)
     end
 
-    def replace_unsupported_character_and_retry(field, field_name, value, glyph_name)
+    def replace_unsupported_character_and_retry(field, field_name, value, glyph_name, replacements_remaining)
+      if replacements_remaining <= 0
+        raise HexaPDF::Error, "Too many unsupported characters in field #{field_name}"
+      end
+
       character = HexaPDF::Font::Encoding::GlyphList.name_to_unicode(glyph_name)
       raise HexaPDF::Error, "Unsupported glyph #{glyph_name.inspect} could not be mapped to a character" unless character
 
       Rails.logger.warn("PDF field assignment: replaced unsupported character field=#{field_name} character=#{character.inspect} screener=#{@screener.id}")
 
-      assign_field_value(field, field_name, value.tr(character, UNSUPPORTED_CHARACTER_REPLACEMENT))
+      assign_field_value(field, field_name, value.tr(character, UNSUPPORTED_CHARACTER_REPLACEMENT),
+        replacements_remaining: replacements_remaining - 1)
     end
 
     def shared_fields

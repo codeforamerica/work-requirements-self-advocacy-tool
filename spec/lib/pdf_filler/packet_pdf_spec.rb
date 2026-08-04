@@ -316,6 +316,17 @@ RSpec.describe PdfFiller::PacketPdf do
         ensure
           File.delete(path) if path && File.exist?(path)
         end
+
+        # Guards against the failure mode an automated security review flagged: without a bound,
+        # a character that keeps failing to encode even after replacement (e.g. a glyph name that
+        # maps back to a character still unsupported by the font) would recurse indefinitely.
+        it "raises instead of recursing indefinitely once replacements are exhausted" do
+          field = instance_double(HexaPDF::Type::AcroForm::TextField)
+
+          expect {
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", :nacute, 0)
+          }.to raise_error(HexaPDF::Error, /too many unsupported characters/i)
+        end
       end
 
       # A field can still legitimately fail for reasons unrelated to font encoding (e.g. a
