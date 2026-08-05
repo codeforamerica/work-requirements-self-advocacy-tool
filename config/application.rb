@@ -39,6 +39,11 @@ module WorkRequirementsSelfAdvocacyTool
     config.action_dispatch.rescue_responses["ActionDispatch::ParameterTypeError"] = :bad_request
     config.exceptions_app = routes
 
+    # Dynamic pages may contain personal data (e.g. form responses), so don't let
+    # browsers or intermediaries cache them client-side (WRSAT-697).
+    config.action_dispatch.default_headers["Cache-Control"] = "no-store"
+    config.action_dispatch.default_headers["Pragma"] = "no-cache"
+
     # Silence the queue polling logs by default, since they're very noisy.
     config.solid_queue.silence_polling = ENV.fetch("SOLID_QUEUE_SILENCE_POLLING", "true") == "true"
   end
