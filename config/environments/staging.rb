@@ -20,7 +20,8 @@ Rails.application.configure do
   # Static files bypass the app's default response headers (WRSAT-695), so set them here too.
   config.public_file_server.headers = {
     "cache-control" => "public, max-age=#{1.year.to_i}",
-    "x-frame-options" => "SAMEORIGIN"
+    "x-frame-options" => "SAMEORIGIN",
+    "x-content-type-options" => "nosniff"
   }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
