@@ -97,7 +97,7 @@ jobs:
           owner: codeforamerica
           repositories: ${{ env.INFRA_REPO }}
       - name: Trigger deployment from work requirements self advocacy infra
-        uses: codex-/return-dispatch@16fa9d14771c4d56ae0196bbda1d3c17f7f3650f # v3
+        uses: codex-/return-dispatch@2e404d40b641ba1deb44be941660bb34828e4f6d # v3
         id: dispatch
         with:
           token: ${{ steps.token.outputs.token }}
