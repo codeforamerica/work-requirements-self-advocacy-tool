@@ -137,7 +137,12 @@ RSpec.describe "proof_guidance/display", type: :view do
     it "does not show an open health form link or a missing-translation message when no translation exists for the state" do
       screener.update(preventing_work_medical_condition: "yes", state: "DE")
       render
+
+      # Neither of these is an ideal expectation test, since we're testing that something doesn't exist
+      # The first will confirm that trying to render this view won't barf because there's no views.proof_guidance.edit.open_health_form_de_html
+      # The second will confirm that there's no link rendered to the external site for DE
       expect(rendered).not_to include("translation missing")
+      expect(rendered).not_to include("target='_blank'")
     end
 
     it "does not show when no health-related preventing work conditions" do
