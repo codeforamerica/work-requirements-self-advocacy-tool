@@ -10,7 +10,7 @@
 <% if @current_screener.requires_proof? %>
   <div class="reveal">
     <button class="reveal__button" aria-expanded="true" data-track-click="reveal_clicked" data-track-reveal_name="already-has-proof" data-track-controller_name="ProofGuidance">
-      <i class="icon-help" style="padding-right: 1rem;"></i><span><strong><%= t("views.proof_guidance.edit.already_has_proof") %></strong></span>
+      <i class="icon-help icon-help--spaced"></i><span><strong><%= t("views.proof_guidance.edit.already_has_proof") %></strong></span>
     </button>
     <div class="reveal__content">
       <ul class="list--bulleted spacing-above-0">

@@ -27,7 +27,7 @@
       )
   %>
 
-<div id="consent-to-texts" style="display: none;">
+<div id="consent-to-texts" class="js-initially-hidden">
   <%= f.cfa_radio_set(
           :consented_to_texts,
           label_text: t("views.basic_info_details.edit.consented_to_texts.label"),
@@ -46,7 +46,7 @@
 <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
 
-<script>
+<script nonce="<%= content_security_policy_nonce %>">
   document.addEventListener("turbo:load", function () {
     const phoneInput = document.querySelector("input[name*='phone_number']");
     const consentSection = document.getElementById("consent-to-texts");
