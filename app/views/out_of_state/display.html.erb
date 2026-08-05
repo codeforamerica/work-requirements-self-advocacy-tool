@@ -29,7 +29,7 @@
       </div>
     </div>
   </div>
-  <script>
+  <script nonce="<%= content_security_policy_nonce %>">
     const redirectTimeout = setTimeout(() => {
       window.location.href = "<%= redirect_url %>";
     }, <%= redirect_delay_seconds * 1000 %>);
