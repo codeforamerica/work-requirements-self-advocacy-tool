@@ -324,7 +324,7 @@ RSpec.describe PdfFiller::PacketPdf do
           field = instance_double(HexaPDF::Type::AcroForm::TextField)
 
           expect {
-            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", :nacute, 0)
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "nińo", "ń", 0)
           }.to raise_error(HexaPDF::Error, /too many unsupported characters/i)
         end
 
@@ -332,16 +332,42 @@ RSpec.describe PdfFiller::PacketPdf do
         # these fields before they ever reach PDF generation, but this is a backstop for data
         # written before that validation existed. There's no meaningful "closest Latin
         # equivalent" for a character from a different script, so this raises rather than
-        # transliterating it into something unrelated. :afii10017 is a real glyph name (Cyrillic
-        # "А") that HexaPDF's glyph list does resolve to a character, unlike the Arabic/Cyrillic
-        # glyphs this template's font reports as the generic, unmapped ".notdef" glyph -- so this
-        # exercises the check directly rather than the earlier "could not be mapped" guard.
-        it "raises instead of transliterating a non-Latin-script glyph that does resolve to a character" do
+        # transliterating it into something unrelated. "А" (Cyrillic, U+0410) is what
+        # assign_field_value would have already resolved a real, mappable glyph name down to
+        # before calling this method.
+        it "raises instead of transliterating a non-Latin-script character" do
           field = instance_double(HexaPDF::Type::AcroForm::TextField)
 
           expect {
-            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "Привет", :afii10017, 5)
+            packet_pdf.send(:replace_unsupported_character_and_retry, field, :details_of_care, "Привет", "А", 5)
           }.to raise_error(HexaPDF::Error, /non-latin-script character/i)
+        end
+      end
+
+      # Some characters the font can't render have no glyph at all -- HexaPDF's InvalidGlyph gives
+      # them a generic ".notdef" name with no real Adobe Glyph List mapping, unlike "ń" above where
+      # the glyph is real but the font's encoding table is just full. A byte-order mark (U+FEFF)
+      # left behind by a copy-paste from another document is a real example: it's invisible, has
+      # no glyph in any font, and isn't emoji-related so strip_emojis wouldn't catch it -- it has
+      # to be recovered via the glyph object's `str`, not its name (always the generic ".notdef").
+      context "field value has a character with no glyph in the font at all" do
+        before { screener.additional_care_info = "Hello\u{FEFF} world" }
+
+        it "does not raise, and replaces the character instead of crashing" do
+          allow_any_instance_of(HexaPDF::Type::AcroForm::Form).to receive(:flatten)
+          path = nil
+
+          expect {
+            path = packet_pdf.filled_pdf_tempfile.path
+          }.not_to raise_error
+
+          doc = HexaPDF::Document.open(path)
+          # ActiveSupport::Inflector.transliterate can't map a byte-order mark to any Latin
+          # equivalent, so it falls back to "?" rather than leaving the value untouched.
+          expect(doc.acro_form.field_by_name("details_of_care").field_value)
+            .to eq("Hello? world")
+        ensure
+          File.delete(path) if path && File.exist?(path)
         end
       end
 
@@ -455,6 +481,16 @@ RSpec.describe PdfFiller::PacketPdf do
     it "returns a clean string when no emojis are present" do
       text = "Just plain text"
       expect(packet_pdf.strip_emojis(text)).to eq("Just plain text")
+    end
+
+    it "removes a variation selector left orphaned with no emoji attached to it" do
+      text = "Hello\u{FE0F} world"
+      expect(packet_pdf.strip_emojis(text)).to eq("Hello world")
+    end
+
+    it "removes a keycap combiner left orphaned with no digit/emoji attached to it" do
+      text = "Hello\u{20E3} world"
+      expect(packet_pdf.strip_emojis(text)).to eq("Hello world")
     end
   end
 end
