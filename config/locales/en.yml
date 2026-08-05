@@ -542,7 +542,6 @@ en:
         condition_substance_use: substance use disorder
         no_proof_content: Keep in mind that your SNAP agency or caseworker may still ask for additional proof or information when reviewing your case.
         no_proof_title: Based on your exemptions, we didn't identify any proof documents you may need to submit to your SNAP agency.
-        open_health_form_de_html: "<a href='https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf' target='_blank'>Open Delaware Health Assessment Form (Form 184)</a>"
         open_health_form_nc_html: "<a href='https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf' target='_blank'>Open North Carolina Medical Report form</a>"
         proof_of_disability_benefits_html: |
           <h3 class="spacing-above-5">Proof of disability benefits</h3>
