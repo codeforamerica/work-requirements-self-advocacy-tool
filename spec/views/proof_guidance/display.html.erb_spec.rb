@@ -128,6 +128,18 @@ RSpec.describe "proof_guidance/display", type: :view do
       expect(rendered).to include(I18n.t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: I18n.t("views.proof_guidance.edit.proof_of_health_form_de"), proof_of_condition_title: I18n.t("views.proof_guidance.edit.proof_of_health_and_substance_use_condition_title"), condition_type: I18n.t("views.proof_guidance.edit.condition_medical_health")))
     end
 
+    it "shows the open health form link when the translation exists for the state" do
+      screener.update(preventing_work_medical_condition: "yes", state: "NC")
+      render
+      expect(rendered).to include(I18n.t("views.proof_guidance.edit.open_health_form_nc_html"))
+    end
+
+    it "does not show an open health form link or a missing-translation message when no translation exists for the state" do
+      screener.update(preventing_work_medical_condition: "yes", state: "DE")
+      render
+      expect(rendered).not_to include("translation missing")
+    end
+
     it "does not show when no health-related preventing work conditions" do
       screener.update(preventing_work_drugs_alcohol: "no", preventing_work_medical_condition: "no")
       render

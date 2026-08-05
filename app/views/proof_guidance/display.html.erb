@@ -52,7 +52,9 @@
         <% proof_of_health_form = t("views.proof_guidance.edit.proof_of_health_form_#{@current_screener.state.downcase}").html_safe %>
         <% proof_of_condition_title, condition_type = proof_of_condition_title_and_type(@current_screener) %>
         <%= t("views.proof_guidance.edit.proof_of_health_condition_html", proof_of_health_form: proof_of_health_form, proof_of_condition_title: proof_of_condition_title, condition_type: condition_type ) %>
-        <%= t("views.proof_guidance.edit.open_health_form_#{@current_screener.state.downcase}_html") %>
+        <% if I18n.exists?("views.proof_guidance.edit.open_health_form_#{@current_screener.state.downcase}_html") %>
+          <%= t("views.proof_guidance.edit.open_health_form_#{@current_screener.state.downcase}_html") %>
+        <% end %>
       </div>
     <% end %>
 

@@ -542,7 +542,6 @@ es:
         condition_substance_use: trastorno por uso de sustancias
         no_proof_content: Tenga en cuenta que su oficina de SNAP aún podría pedirle documentos adicionales o más información al revisar su caso.
         no_proof_title: Según su información, no identificamos ningún documento o comprobante que deba enviar a su oficina de SNAP.
-        open_health_form_de_html: "<a href='https://dhss.delaware.gov/wp-content/uploads/sites/11/dss/pdf/form184.pdf' target='_blank'>Ir al formulario de evaluación de salud de Delaware (Form 184)</a>"
         open_health_form_nc_html: "<a href='https://policies.ncdhhs.gov/wp-content/uploads/DSS-8209_Medical-Report-Form.pdf' target='_blank'>Ir al formulario de Informe Médico de Carolina del Norte</a>"
         proof_of_disability_benefits_html: |
           <h3>Comprobante de beneficios por discapacidad</h3>
