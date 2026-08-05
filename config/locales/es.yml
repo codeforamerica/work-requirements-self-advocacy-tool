@@ -45,7 +45,7 @@ es:
     latin_script_only: Por favor, introduzca el texto utilizando letras estándar (A–Z). No se admiten caracteres especiales ni alfabetos distintos del inglés (como caracteres cirílicos, árabes o chinos).
     maximum_length: "%{field_name} es demasiado largo. El límite es de %{max_length} caracteres."
     must_answer_yes_or_no: Debe responder sí o no
-    number_invalid: Ingrese un número
+    number_out_of_range: Ingrese un número entre %{min} y %{max}
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
     required: Ingrese %{field_name}
     signature_required: Se requiere su firma para continuar

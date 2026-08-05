@@ -13,6 +13,8 @@ class Screener < ApplicationRecord
 
   BASIC_INFO_DETAILS_CHARACTER_LIMIT = 19
   BASIC_INFO_EMAIL_CHARACTER_LIMIT = 60
+  MIN_WEEKLY_HOURS = 1
+  MAX_WEEKLY_HOURS = 168
 
   BASE_PII_ATTRIBUTES = %i[
     additional_care_info
@@ -168,7 +170,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :community_service do
-    validates :volunteering_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :volunteering_hours, numericality: {only_integer: true, greater_than_or_equal_to: MIN_WEEKLY_HOURS, less_than_or_equal_to: MAX_WEEKLY_HOURS, message: ->(*) { I18n.t("validations.number_out_of_range", min: MIN_WEEKLY_HOURS, max: MAX_WEEKLY_HOURS) }}, allow_blank: true
   end
 
   with_context :date_of_birth do
@@ -191,7 +193,7 @@ class Screener < ApplicationRecord
   end
 
   with_context :employment do
-    validates :working_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :working_hours, numericality: {only_integer: true, greater_than_or_equal_to: MIN_WEEKLY_HOURS, less_than_or_equal_to: MAX_WEEKLY_HOURS, message: ->(*) { I18n.t("validations.number_out_of_range", min: MIN_WEEKLY_HOURS, max: MAX_WEEKLY_HOURS) }}, allow_blank: true
     validates :working_weekly_earnings, numericality: {only_decimal: true, message: ->(*) { I18n.t("validations.amount_invalid") }}, allow_blank: true
   end
 
@@ -256,7 +258,8 @@ class Screener < ApplicationRecord
   end
 
   with_context :training_program do
-    validates :work_training_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
+    validates :work_training_hours, numericality: {only_integer: true, greater_than_or_equal_to: MIN_WEEKLY_HOURS, less_than_or_equal_to: MAX_WEEKLY_HOURS, message: ->(*) { I18n.t("validations.number_out_of_range", min: MIN_WEEKLY_HOURS, max: MAX_WEEKLY_HOURS) }}, allow_blank: true
+    validates :work_training_name, length: {maximum: TrainingProgramController::CHARACTER_LIMIT}, latin_script: true
   end
 
   with_context :unemployment do

@@ -37,6 +37,30 @@ RSpec.describe NcScreener, type: :model do
         nc_screener.valid?(:homeschool)
         expect(nc_screener.errors[:homeschool_name]).to be_present
       end
+
+      it "must not contain non-Latin script" do
+        nc_screener = build(:nc_screener, homeschool_name: "احتاج للمواد الغذائية")
+
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_name]).to eq [I18n.t("validations.latin_script_only")]
+      end
+
+      it "must be between Screener::MIN_WEEKLY_HOURS and Screener::MAX_WEEKLY_HOURS" do
+        screener = create(:screener, state: "NC")
+        nc_screener = build(:nc_screener, screener: screener, homeschool_hours: Screener::MIN_WEEKLY_HOURS)
+        expect(nc_screener.valid?(:homeschool)).to eq true
+
+        nc_screener.assign_attributes(homeschool_hours: Screener::MAX_WEEKLY_HOURS)
+        expect(nc_screener.valid?(:homeschool)).to eq true
+
+        nc_screener.assign_attributes(homeschool_hours: Screener::MIN_WEEKLY_HOURS - 1)
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_hours]).to be_present
+
+        nc_screener.assign_attributes(homeschool_hours: Screener::MAX_WEEKLY_HOURS + 1)
+        nc_screener.valid?(:homeschool)
+        expect(nc_screener.errors[:homeschool_hours]).to be_present
+      end
     end
   end
 

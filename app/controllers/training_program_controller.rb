@@ -1,6 +1,8 @@
 class TrainingProgramController < WagesQuestionController
   include PersonalSituationsConcern
 
+  CHARACTER_LIMIT = 40
+
   def self.attributes_edited
     [
       :is_in_work_training,

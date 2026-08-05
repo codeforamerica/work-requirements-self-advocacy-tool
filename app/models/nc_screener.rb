@@ -7,8 +7,8 @@ class NcScreener < ApplicationRecord
   enum :teaches_homeschool, {unfilled: 0, yes: 1, no: 2}, prefix: true
 
   with_context :homeschool do
-    validates :homeschool_hours, numericality: {only_integer: true, message: ->(*) { I18n.t("validations.number_invalid") }}, allow_blank: true
-    validates :homeschool_name, length: {maximum: Nc::HomeschoolController::CHARACTER_LIMIT}
+    validates :homeschool_hours, numericality: {only_integer: true, greater_than_or_equal_to: Screener::MIN_WEEKLY_HOURS, less_than_or_equal_to: Screener::MAX_WEEKLY_HOURS, message: ->(*) { I18n.t("validations.number_out_of_range", min: Screener::MIN_WEEKLY_HOURS, max: Screener::MAX_WEEKLY_HOURS) }}, allow_blank: true
+    validates :homeschool_name, length: {maximum: Nc::HomeschoolController::CHARACTER_LIMIT}, latin_script: true
   end
 
   before_save :remove_work_edu_history_attributes,
