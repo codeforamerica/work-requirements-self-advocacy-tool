@@ -16,8 +16,6 @@ main {
   max-width: 100%;
 }
 
-// no !important: JS toggles visibility by setting element.style.display directly,
-// which must be able to override this without fighting specificity/important rules.
 .js-initially-hidden {
   display: none;
 }
