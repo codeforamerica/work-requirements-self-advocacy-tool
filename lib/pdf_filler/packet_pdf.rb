@@ -97,12 +97,10 @@ module PdfFiller
     end
 
     def generated_pdf_path
-      html = PdfController.new.render_to_string(
-        {
-          template: generated_pdf_template,
-          layout: "pdf",
-          locals: strip_emojis_from_hash(hash_for_generated_pdf)
-        }
+      html = PdfController.renderer.render(
+        template: generated_pdf_template,
+        layout: "pdf",
+        locals: strip_emojis_from_hash(hash_for_generated_pdf)
       )
       css_path = Rails.root.join("app", "assets", "stylesheets", "wr_exemption_pdf.css")
       style_tag_options = [{path: css_path}]
