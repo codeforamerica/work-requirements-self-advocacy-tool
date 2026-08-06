@@ -1,6 +1,9 @@
 class PdfController < QuestionController
   layout "pdf"
   skip_before_action :set_screener_current_step_and_locale
+  # These preview actions render against the fixed @temp_screener below, not a real signed-in
+  # screener, so they don't need an active session -- unlike generate_pdf, the real download path.
+  skip_before_action :require_current_screener, only: [:summary_page, :filled_packet_preview, :combined_pdf_preview]
   before_action :build_temp_screener
 
   def build_temp_screener
@@ -58,5 +61,12 @@ class PdfController < QuestionController
   # of filling packet.pdf's AcroForm fields.
   def filled_packet_preview
     render "pdf/filled_packet", locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_fillable_pdf
+  end
+
+  # SPIKE (WRSAT-687): preview of the actual generated PDF (combined_pdf_all_html) against the
+  # fixed test screener above, so it can be viewed by just visiting this URL instead of having to
+  # walk through the whole screener flow after every change.
+  def combined_pdf_preview
+    send_data PdfFiller::PacketPdf.new(@temp_screener).combined_pdf_all_html, filename: "combined_preview.pdf", disposition: "inline"
   end
 end

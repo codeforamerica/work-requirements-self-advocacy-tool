@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "generate_pdf" => "pdf#generate_pdf"
     get "page_one_preview" => "pdf#summary_page"
     get "filled_packet_preview" => "pdf#filled_packet_preview"
+    get "combined_pdf_preview" => "pdf#combined_pdf_preview"
     resource :privacy_policy, only: [:show], controller: "privacy_policy"
     get "clear_flashes" => "application#clear_flashes"
     get "sign_out_and_redirect" => "application#sign_out_and_redirect"
