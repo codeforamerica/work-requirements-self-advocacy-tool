@@ -32,6 +32,12 @@ html, body, main {
   }
   h1 {
     margin-top: 0;
+    /* Honeycrisp's bare h1 rule is 5rem/6rem (50px/60px) -- sized for the live app's
+       big page-title headers, not this print layout. Page 1 never had to compete with
+       that rule before both pages shared application.css, so pin an explicit size here
+       matching its original look (the plain browser default of roughly 2em on 16px). */
+    font-size: 32px;
+    line-height: 1.2;
   }
 }
 
@@ -66,6 +72,14 @@ html, body, main {
 .grey-box {
   padding: 25px;
   background-color: #F7F5F4;
+
+  /* Honeycrisp's bare `ul` rule sets list-style: none; padding-left: 0 -- meant for its own
+     custom-styled lists elsewhere. Page 1's plain <ul>s never had to override that before both
+     pages shared application.css, so restore normal bullets here. */
+  ul {
+    list-style: disc;
+    padding-left: 20px;
+  }
 }
 
 .section-header {
