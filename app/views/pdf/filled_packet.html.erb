@@ -44,9 +44,10 @@ working_or_earning ||= nil
 
     <div class="section-title">
       <%= document_icon %>
-      <h3>Exemptions Attested</h3>
+      <h3>Exemptions</h3>
     </div>
     <ul class="checklist">
+
       <%= checklist_item("I am a member of an Indian tribe or nation", is_american_indian) %>
       <%= checklist_item("I live with a child under 14", has_child) %>
       <%= checklist_item("I am caring for a child under age 6", caring_for_child_under_6) %>
@@ -59,13 +60,6 @@ working_or_earning ||= nil
         <li class="checklist-item__detail">Expected due date: <%= pregnancy_due_date %></li>
       <% end %>
       <%= checklist_item("I am getting unemployment benefits, or I have applied for unemployment benefits", has_unemployment_benefits) %>
-    </ul>
-
-    <div class="section-title">
-      <%= benefits_icon %>
-      <h3>Disability Benefits</h3>
-    </div>
-    <ul class="checklist">
       <%= checklist_item("I am receiving SSDI", receiving_benefits_ssdi) %>
       <%= checklist_item("I am receiving SSI", receiving_benefits_ssi) %>
       <%= checklist_item("I am receiving veterans disability benefits", receiving_benefits_veterans_disability) %>
@@ -78,12 +72,26 @@ working_or_earning ||= nil
         <li class="checklist-item__detail">Other benefit description: <%= receiving_benefits_write_in %></li>
       <% end %>
       <%= checklist_item("I am receiving a disability benefit", receiving_disability_benefits) %>
+        <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
+        <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
+        <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
+        <% if drug_alcohol_program_name.present? %>
+          <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
+        <% end %>
+        <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
+        <% if preventing_work_write_in.present? %>
+          <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
+        <% end %>
+        <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
+        <% if preventing_work_other_write_in.present? %>
+          <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
+        <% end %>
     </ul>
 
     <% if working_or_earning %>
       <div class="section-title">
         <%= work_icon %>
-        <h3>Work &amp; Earnings</h3>
+        <h3>Work, Volunteering, and Training Activities</h3>
       </div>
       <ul class="checklist">
         <%= checklist_item("I am working or earning income", working_or_earning) %>
@@ -109,27 +117,6 @@ working_or_earning ||= nil
         <% end %>
       </ul>
     <% end %>
-
-    <div class="section-title">
-      <%= list_icon %>
-      <h3>Other Exemptions</h3>
-    </div>
-    <ul class="checklist">
-      <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
-      <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
-      <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
-      <% if drug_alcohol_program_name.present? %>
-        <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
-      <% end %>
-      <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
-      <% if preventing_work_write_in.present? %>
-        <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
-      <% end %>
-      <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
-      <% if preventing_work_other_write_in.present? %>
-        <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
-      <% end %>
-    </ul>
 
     <div class="section-title">
       <%= signature_icon %>
