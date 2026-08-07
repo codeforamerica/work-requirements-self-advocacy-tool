@@ -17,6 +17,7 @@
     "puppeteer": "^24.43.1"
   },
   "resolutions": {
-    "chromium-bidi/zod": "https://npm.aikido.io/15c1c18888387f32c4a27/zod@3.25.76-aikido.1"
+    "chromium-bidi/zod": "https://npm.aikido.io/15c1c18888387f32c4a27/zod@3.25.76-aikido.1",
+    "basic-ftp": "^6.0.0"
   }
 }

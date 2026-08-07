@@ -278,10 +278,10 @@ bare-url@^2.2.2:
   dependencies:
     bare-path "^3.0.0"
 
-basic-ftp@^5.0.2:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-5.3.1.tgz#3148ee9af43c0522514a4f973fecb1d3cbb6d71e"
-  integrity sha512-bopVNp6ugyA150DDuZfPFdt1KZ5a94ZDiwX4hMgZDzF+GttD80lEy8kj98kbyhLXnPvhtIo93mdnLIjpCAeeOw==
+basic-ftp@^5.0.2, basic-ftp@^6.0.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.0.tgz#5c4d355c27fdb5de98bb441c96e62c5ae9f4f813"
+  integrity sha512-H8eLjhoYPbOI717FLP8fGE7XInkMI7Ucj/ft0fp1avABtSiV5Bb2kYzScnOqlvJZs/KJZypr9Mp5zJmhaPFAEg==
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
