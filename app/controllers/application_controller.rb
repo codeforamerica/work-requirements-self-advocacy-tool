@@ -125,7 +125,7 @@ class ApplicationController < ActionController::Base
     current_screener&.rotate_session_token!
     sign_out current_screener
     redirect_path = params[:redirect_path] || root_path(only_path: true)
-    redirect_to redirect_path, only_path: true
+    redirect_to redirect_path, allow_other_host: false
   end
 
   def set_source
