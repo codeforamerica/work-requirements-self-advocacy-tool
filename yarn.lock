@@ -860,3 +860,7 @@ zod@^3.24.1:
   version "3.25.76"
   resolved "https://registry.npmjs.org/zod/-/zod-3.25.76.tgz"
   integrity sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==
+
+"zod@https://npm.aikido.io/15c1c18888387f32c4a27/zod@3.25.76-aikido.1":
+  version "3.25.76-aikido.1"
+  resolved "https://npm.aikido.io/15c1c18888387f32c4a27/zod@3.25.76-aikido.1#9ee61ea3b9e83604aaceb899f2eefbd60f657db5"
