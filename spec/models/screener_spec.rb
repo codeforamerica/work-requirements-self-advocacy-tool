@@ -467,6 +467,81 @@ RSpec.describe Screener, type: :model do
         expect(screener.errors[:signature]).to be_present
       end
     end
+
+    context "with_context :training_program" do
+      it "must not have value longer than TrainingProgramController::CHARACTER_LIMIT, if a value is set" do
+        screener = build(:screener, work_training_name: "This is just a test value.")
+        # Valid value that is not too long
+        expect(screener.valid?(:training_program)).to eq true
+
+        # Invalid value that is 1 character longer than the limit
+        limit = TrainingProgramController::CHARACTER_LIMIT
+        text = SecureRandom.alphanumeric(limit + 1)
+        screener.assign_attributes(work_training_name: text)
+
+        screener.valid?(:training_program)
+        expect(screener.errors[:work_training_name]).to be_present
+      end
+
+      it "must not contain non-Latin script" do
+        screener = build(:screener, work_training_name: "احتاج للمواد الغذائية")
+
+        screener.valid?(:training_program)
+        expect(screener.errors[:work_training_name]).to eq [I18n.t("validations.latin_script_only")]
+      end
+
+      it "must be between Screener::MIN_WEEKLY_HOURS and Screener::MAX_WEEKLY_HOURS" do
+        screener = build(:screener, work_training_hours: Screener::MIN_WEEKLY_HOURS)
+        expect(screener.valid?(:training_program)).to eq true
+
+        screener.assign_attributes(work_training_hours: Screener::MAX_WEEKLY_HOURS)
+        expect(screener.valid?(:training_program)).to eq true
+
+        screener.assign_attributes(work_training_hours: Screener::MIN_WEEKLY_HOURS - 1)
+        screener.valid?(:training_program)
+        expect(screener.errors[:work_training_hours]).to be_present
+
+        screener.assign_attributes(work_training_hours: Screener::MAX_WEEKLY_HOURS + 1)
+        screener.valid?(:training_program)
+        expect(screener.errors[:work_training_hours]).to be_present
+      end
+    end
+
+    context "with_context :community_service" do
+      it "must be between Screener::MIN_WEEKLY_HOURS and Screener::MAX_WEEKLY_HOURS" do
+        screener = build(:screener, volunteering_hours: Screener::MIN_WEEKLY_HOURS)
+        expect(screener.valid?(:community_service)).to eq true
+
+        screener.assign_attributes(volunteering_hours: Screener::MAX_WEEKLY_HOURS)
+        expect(screener.valid?(:community_service)).to eq true
+
+        screener.assign_attributes(volunteering_hours: Screener::MIN_WEEKLY_HOURS - 1)
+        screener.valid?(:community_service)
+        expect(screener.errors[:volunteering_hours]).to be_present
+
+        screener.assign_attributes(volunteering_hours: Screener::MAX_WEEKLY_HOURS + 1)
+        screener.valid?(:community_service)
+        expect(screener.errors[:volunteering_hours]).to be_present
+      end
+    end
+
+    context "with_context :employment" do
+      it "must be between Screener::MIN_WEEKLY_HOURS and Screener::MAX_WEEKLY_HOURS" do
+        screener = build(:screener, working_hours: Screener::MIN_WEEKLY_HOURS)
+        expect(screener.valid?(:employment)).to eq true
+
+        screener.assign_attributes(working_hours: Screener::MAX_WEEKLY_HOURS)
+        expect(screener.valid?(:employment)).to eq true
+
+        screener.assign_attributes(working_hours: Screener::MIN_WEEKLY_HOURS - 1)
+        screener.valid?(:employment)
+        expect(screener.errors[:working_hours]).to be_present
+
+        screener.assign_attributes(working_hours: Screener::MAX_WEEKLY_HOURS + 1)
+        screener.valid?(:employment)
+        expect(screener.errors[:working_hours]).to be_present
+      end
+    end
   end
 
   describe "before_save" do

@@ -68,7 +68,7 @@ RSpec.describe CommunityServiceController, type: :controller do
 
         post :update, params: {screener: params}
         expect(response).to render_template :edit
-        expect(response.body).to have_text(I18n.t("validations.number_invalid"))
+        expect(response.body).to have_text(I18n.t("validations.number_out_of_range", min: Screener::MIN_WEEKLY_HOURS, max: Screener::MAX_WEEKLY_HOURS))
       end
     end
   end
