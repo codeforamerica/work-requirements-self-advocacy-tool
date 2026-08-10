@@ -64,12 +64,39 @@ RSpec.describe "pdf/filled_packet", type: :view do
     render template: "pdf/filled_packet", locals: locals
   end
 
-  it "always displays the shared checklist regardless of state" do
+  it "always displays Client Information and Signature regardless of exemptions" do
     render_page
-    expect(rendered).to include("I am a member of an Indian tribe or nation")
-    expect(rendered).to include("I am a seasonal or migrant farmworker")
-    expect(rendered).to include("I have a physical or mental medical condition")
+    expect(rendered).to include("Client Information")
     expect(rendered).to include("Signature")
+  end
+
+  describe "Reported Exemptions section" do
+    it "is not shown when no exemptions apply" do
+      render_page
+      expect(rendered).not_to include("Reported Exemptions")
+    end
+
+    it "is shown, with only the applicable item, when one exemption applies" do
+      render_page(is_american_indian: true)
+      expect(rendered).to include("Reported Exemptions")
+      expect(rendered).to include("I am a member of an Indian tribe or nation")
+      expect(rendered).not_to include("I live with a child under 14")
+      expect(rendered).not_to include("I am a seasonal or migrant farmworker")
+    end
+  end
+
+  describe "Fitness for Work section" do
+    it "is not shown when no preventing-work reasons apply" do
+      render_page
+      expect(rendered).not_to include("Fitness for Work")
+    end
+
+    it "is shown, with only the applicable item, when one reason applies" do
+      render_page(preventing_work_medical_condition: true)
+      expect(rendered).to include("Fitness for Work")
+      expect(rendered).to include("I have a physical or mental medical condition")
+      expect(rendered).not_to include(">Other<")
+    end
   end
 
   describe "NC-only fields" do
@@ -108,9 +135,9 @@ RSpec.describe "pdf/filled_packet", type: :view do
       expect(rendered).to include("I am experiencing domestic violence")
     end
 
-    it "does not render the homeschool detail lines when NC fields are false" do
+    it "hides the homeschool item and its details when not checked, even for a North Carolina screener" do
       render_page(state: LocationData::States::NORTH_CAROLINA)
-      expect(rendered).to include("I am operating a home school for at least 30 hours a week")
+      expect(rendered).not_to include("I am operating a home school for at least 30 hours a week")
       expect(rendered).not_to include("Hours a week operating home school:")
       expect(rendered).not_to include("Name of the home school:")
     end

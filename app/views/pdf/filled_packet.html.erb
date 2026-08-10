@@ -51,6 +51,10 @@ state ||= nil
       </div>
     </div>
 
+    <% if is_american_indian || has_child || caring_for_child_under_6 || caring_for_disabled_or_ill_person ||
+        is_pregnant || has_unemployment_benefits || receiving_disability_benefits || working_or_earning ||
+        seasonal_worker || operating_a_homeschool || is_in_work_training || is_volunteering ||
+        enrolled_in_education || in_drug_or_alcohol_program %>
     <div class="section-title">
       <%= document_icon %>
       <h3>Reported Exemptions</h3>
@@ -122,7 +126,10 @@ state ||= nil
         <li class="checklist-item__detail">Name of the program: <%= drug_alcohol_program_name %></li>
       <% end %>
     </ul>
+    <% end %>
 
+    <% if at_least_55_no_diploma_not_working || preventing_work_place_to_sleep || preventing_work_drugs_alcohol ||
+        preventing_work_domestic_violence || preventing_work_medical_condition || preventing_work_other %>
     <div class="section-title">
       <%= work_icon %>
       <h3>Fitness for Work</h3>
@@ -143,6 +150,7 @@ state ||= nil
     </ul>
     <% if preventing_work_write_in.present? %>
       <p><strong>More information about how my condition prevents me from working 20 hours a week: </strong><%= preventing_work_write_in %></p>
+    <% end %>
     <% end %>
 
     <div class="section-title">

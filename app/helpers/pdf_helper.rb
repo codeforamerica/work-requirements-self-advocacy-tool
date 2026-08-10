@@ -33,20 +33,21 @@ module PdfHelper
     svg_icon("M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z")
   end
 
-  def checkbox_icon(checked)
+  def checkbox_icon
     content_tag(:svg, width: 18, height: 18, viewBox: "0 0 24 24", fill: "none") do
-      if checked
-        tag(:rect, x: 2, y: 2, width: 20, height: 20, rx: 3, fill: "#034e46") +
-          tag(:path, d: "M7 12.5l3 3 7-7", stroke: "white", "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round", fill: "none")
-      else
-        tag(:rect, x: 2, y: 2, width: 20, height: 20, rx: 3, fill: "white", stroke: "#121111", "stroke-width": 2)
-      end
+      tag(:rect, x: 2, y: 2, width: 20, height: 20, rx: 3, fill: "#034e46") +
+        tag(:path, d: "M7 12.5l3 3 7-7", stroke: "white", "stroke-width": 2, "stroke-linecap": "round", "stroke-linejoin": "round", fill: "none")
     end
   end
 
+  # SPIKE (WRSAT-687): only renders when checked -- unlike a real PDF checkbox
+  # field, an absent HTML item can't show an empty box, so unchecked items in
+  # the Reported Exemptions / Fitness for Work sections are omitted entirely.
   def checklist_item(label, checked)
+    return unless checked
+
     content_tag(:li, class: "checklist-item") do
-      checkbox_icon(checked) + content_tag(:span, label)
+      checkbox_icon + content_tag(:span, label)
     end
   end
 
