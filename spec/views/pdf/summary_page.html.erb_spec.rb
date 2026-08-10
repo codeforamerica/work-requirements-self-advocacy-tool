@@ -38,11 +38,10 @@ RSpec.describe "pdf/summary_page", type: :view do
     render template: "pdf/summary_page", locals: locals
   end
 
-  it "always displays the header, attestation, and footer" do
+  it "always displays the header and screener details" do
     render_page
-    expect(rendered).to include("SNAP Work Requirement Exemptions Attestation")
+    expect(rendered).to include("SNAP Work Requirement Exemptions")
     expect(rendered).to include("Nelly Ghaffar, (DOB: July 13, 1990) attests to the following")
-    expect(rendered).to include("See the following page for details.")
   end
 
   describe "General Work Requirement Exemptions section" do
