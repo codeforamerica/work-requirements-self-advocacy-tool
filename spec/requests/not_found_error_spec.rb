@@ -32,7 +32,7 @@ RSpec.describe "404 Not Found error page", type: :request do
       expect(response).to have_http_status(:not_found)
     end
 
-    it "still sets a Content-Security-Policy header (WRSAT-694)" do
+    it "still sets a Content-Security-Policy header" do
       expect(response.headers["Content-Security-Policy"]).to be_present
     end
   end
@@ -40,7 +40,7 @@ RSpec.describe "404 Not Found error page", type: :request do
   context "GET a locale path with unexpected casing" do
     # The locale scope's regex match is case-sensitive, so e.g. /ES/start_flow doesn't
     # match any route and previously fell into the same missing-CSP gap as any other
-    # unmatched path (WRSAT-694).
+    # unmatched path.
     before { get "/ES/start_flow" }
 
     it "returns HTTP 404" do
