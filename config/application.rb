@@ -44,6 +44,10 @@ module WorkRequirementsSelfAdvocacyTool
     config.action_dispatch.default_headers["Cache-Control"] = "no-store"
     config.action_dispatch.default_headers["Pragma"] = "no-cache"
 
+    # This app doesn't use any of these browser features.
+    config.action_dispatch.default_headers["Permissions-Policy"] =
+      "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+
     # Silence the queue polling logs by default, since they're very noisy.
     config.solid_queue.silence_polling = ENV.fetch("SOLID_QUEUE_SILENCE_POLLING", "true") == "true"
   end

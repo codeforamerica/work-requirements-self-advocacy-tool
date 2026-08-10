@@ -32,4 +32,10 @@ Rails.application.routes.draw do
     to: "homepage#redirect_without_source",
     as: :route_with_source
   )
+
+  # A genuine routing match (rather than a RoutingError handled by config.exceptions_app)
+  # so unmatched paths still pass through the full middleware stack, including
+  # ActionDispatch::ContentSecurityPolicy::Middleware, which sits below
+  # ActionDispatch::ShowExceptions and is otherwise skipped on the exceptions_app path.
+  get "*unmatched_route", to: "errors#not_found"
 end
