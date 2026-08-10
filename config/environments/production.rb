@@ -83,6 +83,10 @@ Rails.application.configure do
   config.hosts = ["www.getbenefitshelp.org"]
   config.host_authorization = {exclude: ->(request) { request.path == "/up" }}
 
+  # Rack::Runtime's X-Runtime header discloses server-side response timing to the
+  # public internet for no benefit in production.
+  config.middleware.delete Rack::Runtime
+
   config.active_record.encryption.primary_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY")
   config.active_record.encryption.deterministic_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY")
   config.active_record.encryption.key_derivation_salt = ENV.fetch("ACTIVE_RECORD_DERIVATION_SALT_KEY")

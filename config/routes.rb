@@ -27,9 +27,17 @@ Rails.application.routes.draw do
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
 
+  post "csp_reports", to: "csp_reports#create"
+
   get(
     "(:base_path)/s/:intended_source",
     to: "homepage#redirect_without_source",
     as: :route_with_source
   )
+
+  # A genuine routing match (rather than a RoutingError handled by config.exceptions_app)
+  # so unmatched paths still pass through the full middleware stack, including
+  # ActionDispatch::ContentSecurityPolicy::Middleware, which sits below
+  # ActionDispatch::ShowExceptions and is otherwise skipped on the exceptions_app path.
+  get "*unmatched_route", to: "errors#not_found"
 end
