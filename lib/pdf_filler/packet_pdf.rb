@@ -137,7 +137,10 @@ module PdfFiller
           layout: "pdf",
           locals: {
             generated_locals: strip_emojis_from_hash(hash_for_generated_pdf),
-            fillable_locals: strip_emojis_from_hash(hash_for_fillable_pdf)
+            # state isn't an AcroForm field, so it's merged in here rather than into
+            # hash_for_fillable_pdf, which filled_pdf_tempfile also uses to fill the
+            # real PDF form fields by name -- an unknown field name there raises.
+            fillable_locals: strip_emojis_from_hash(hash_for_fillable_pdf).merge(state: @screener.state)
           }
         }
       )

@@ -462,6 +462,31 @@ RSpec.describe PdfFiller::PacketPdf do
     end
   end
 
+  describe "#combined_pdf_all_html" do
+    # Captures the HTML Grover would rasterize, without launching headless Chrome.
+    def rendered_html
+      html = nil
+      allow_any_instance_of(Grover).to receive(:to_pdf) do |instance|
+        html = instance.instance_variable_get(:@uri)
+        "%PDF-fake"
+      end
+      yield
+      html
+    end
+
+    it "omits North Carolina-only fields for a Delaware screener" do
+      screener.preventing_work_medical_condition = "yes"
+
+      html = rendered_html { packet_pdf.combined_pdf_all_html }
+
+      expect(html).not_to include("I am operating a home school")
+      expect(html).not_to include("I do not have a regular place to sleep and shower")
+      expect(html).not_to include("I am struggling with drugs or alcohol")
+      expect(html).not_to include("I am experiencing domestic violence")
+      expect(html).not_to include("I am at least 55 years old without a high school diploma")
+    end
+  end
+
   describe "#strip_emojis" do
     it "removes simple emoji characters" do
       text = "Hello 😊 world 👍"

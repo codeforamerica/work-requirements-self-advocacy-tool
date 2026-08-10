@@ -66,19 +66,27 @@ class PdfController < QuestionController
   end
 
   def summary_page
-    render :summary_page, locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_generated_pdf
+    render :summary_page, locals: temp_screener_packet_pdf.hash_for_generated_pdf
   end
 
   # SPIKE (WRSAT-687): preview of the filled packet rendered as HTML instead
   # of filling packet.pdf's AcroForm fields.
   def filled_packet_preview
-    render "pdf/filled_packet", locals: PdfFiller::PacketPdf.new(@temp_screener).hash_for_fillable_pdf
+    render "pdf/filled_packet", locals: temp_screener_packet_pdf.hash_for_fillable_pdf.merge(state: @temp_screener.state)
   end
 
   # SPIKE (WRSAT-687): preview of the actual generated PDF (combined_pdf_all_html) against the
   # fixed test screener above, so it can be viewed by just visiting this URL instead of having to
   # walk through the whole screener flow after every change.
   def combined_pdf_preview
-    send_data PdfFiller::PacketPdf.new(@temp_screener).combined_pdf_all_html, filename: "combined_preview.pdf", disposition: "inline"
+    send_data temp_screener_packet_pdf.combined_pdf_all_html, filename: "combined_preview.pdf", disposition: "inline"
+  end
+
+  private
+
+  # Mirrors Screener#pdf's state-based class selection, so previews reflect the
+  # same NC/DE-specific behavior (e.g. NcPacketPdf's extra fields) as production.
+  def temp_screener_packet_pdf
+    LocationData::States.pdf_filler_class(@temp_screener.state).new(@temp_screener)
   end
 end
