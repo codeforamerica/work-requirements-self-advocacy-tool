@@ -63,7 +63,7 @@ case "$ENVIRONMENT" in
         CONTAINER_NAME="work-requirements-self-advocacy-tool-development-web"
         ;;
     staging)
-        PROFILE="wrsat-non-prod"
+        PROFILE="wrsat-nonprod"
         CLUSTER_NAME="work-requirements-self-advocacy-tool-staging-web"
         CONTAINER_NAME="work-requirements-self-advocacy-tool-staging-web"
         ;;
