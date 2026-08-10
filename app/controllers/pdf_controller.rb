@@ -15,6 +15,10 @@ class PdfController < QuestionController
       birth_date: Date.new(1960, 3, 6),
       email: "testy@example.com",
       phone_number: "9195550123",
+      case_number: "123456789",
+      ssn_last_four: "1234",
+      confirmation_code: "ABC123",
+      signature: "Testy Mary Testerson",
       is_american_indian: "yes",
       has_child: "yes",
       caring_for_child_under_6: "yes",
@@ -24,7 +28,14 @@ class PdfController < QuestionController
       pregnancy_due_date: Date.new(2026, 9, 15),
       has_unemployment_benefits: "yes",
       receiving_benefits_ssdi: "yes",
+      receiving_benefits_ssi: "yes",
       receiving_benefits_veterans_disability: "yes",
+      receiving_benefits_workers_compensation: "yes",
+      receiving_benefits_disability_pension: "yes",
+      receiving_benefits_insurance_payments: "yes",
+      receiving_benefits_disability_medicaid: "yes",
+      receiving_benefits_other: "yes",
+      receiving_benefits_write_in: "Short-term disability from employer",
       is_working: "yes",
       working_hours: 35,
       working_weekly_earnings: 250.00,
@@ -43,7 +54,8 @@ class PdfController < QuestionController
       preventing_work_drugs_alcohol: "yes",
       preventing_work_medical_condition: "yes",
       preventing_work_other: "yes",
-      preventing_work_write_in: "Chronic back pain"
+      preventing_work_write_in: "Chronic back pain",
+      preventing_work_additional_info: "I experience severe pain that limits how long I can stand or sit."
     )
     @temp_screener.build_nc_screener(has_hs_diploma: "no", worked_last_five_years: "no")
   end
