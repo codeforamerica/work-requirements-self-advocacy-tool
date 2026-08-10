@@ -76,50 +76,49 @@ working_or_earning ||= nil
           <% end %>
         </ul>
       <% end %>
-      <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
-      <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
-      <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
+      <%= checklist_item("I am working 30 hours per week on average, including self-employment, or I am earning at least $217.50 a week", working_or_earning) %>
+      <% if work_hours.present? %>
+        <li class="checklist-item__detail">Hours worked per week: <%= work_hours %></li>
+      <% end %>
+      <% if earnings_per_week.present? %>
+        <li class="checklist-item__detail">Weekly amount earned before taxes: <%= earnings_per_week %></li>
+      <% end %>
+      <%= checklist_item("I am a seasonal or migrant farmworker under contract or an equivalent agreement to start work within the next 30 days", seasonal_worker) %>
+      <%= checklist_item("I am in a job-training program or SNAP E&T program", is_in_work_training) %>
+      <% if work_training_hours.present? %>
+        <li class="checklist-item__detail">Hours a week attending this program: <%= work_training_hours %></li>
+      <% end %>
+      <% if work_training_name.present? %>
+        <li class="checklist-item__detail">Name of organization or program: <%= work_training_name %></li>
+      <% end %>
+      <%= checklist_item("I am doing community service or volunteer work", is_volunteering) %>
+      <% if volunteering_hours.present? %>
+        <li class="checklist-item__detail">Hours a week volunteering: <%= volunteering_hours %></li>
+      <% end %>
+      <% if volunteering_org_name.present? %>
+        <li class="checklist-item__detail">Name of organization or program: <%= volunteering_org_name %></li>
+      <% end %>
+      <%= checklist_item("I am attending school at least half-time", enrolled_in_education) %>
+      <%= checklist_item("I am participating in a drug or alcohol treatment program", in_drug_or_alcohol_program) %>
       <% if drug_alcohol_program_name.present? %>
-        <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
-      <% end %>
-      <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
-      <% if preventing_work_write_in.present? %>
-        <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
-      <% end %>
-      <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
-      <% if preventing_work_other_write_in.present? %>
-        <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
+        <li class="checklist-item__detail">Name of the program: <%= drug_alcohol_program_name %></li>
       <% end %>
     </ul>
 
-    <% if working_or_earning %>
-      <div class="section-title">
-        <%= work_icon %>
-        <h3>Work, Volunteering, and Training Activities</h3>
-      </div>
-      <ul class="checklist">
-        <%= checklist_item("I am working or earning income", working_or_earning) %>
-        <% if work_hours.present? %>
-          <li class="checklist-item__detail">Hours worked per week: <%= work_hours %></li>
-        <% end %>
-        <% if earnings_per_week.present? %>
-          <li class="checklist-item__detail">Earnings per week: <%= earnings_per_week %></li>
-        <% end %>
-        <%= checklist_item("I am in a work training program", is_in_work_training) %>
-        <% if work_training_hours.present? %>
-          <li class="checklist-item__detail">Work training hours per week: <%= work_training_hours %></li>
-        <% end %>
-        <% if work_training_name.present? %>
-          <li class="checklist-item__detail">Work training program name: <%= work_training_name %></li>
-        <% end %>
-        <%= checklist_item("I am volunteering", is_volunteering) %>
-        <% if volunteering_hours.present? %>
-          <li class="checklist-item__detail">Volunteering hours per week: <%= volunteering_hours %></li>
-        <% end %>
-        <% if volunteering_org_name.present? %>
-          <li class="checklist-item__detail">Volunteering organization: <%= volunteering_org_name %></li>
-        <% end %>
-      </ul>
+    <div class="section-title">
+      <%= work_icon %>
+      <h3>Fitness for Work</h3>
+    </div>
+    <p>The following condition(s) prevent(s) me from working at least 20 hours a week:</p>
+    <ul class="checklist">
+      <%= checklist_item("I have a physical or mental medical condition that prevents me from working at least 20 hours per week", preventing_work_medical_condition) %>
+      <%= checklist_item("Other", preventing_work_other) %>
+      <% if preventing_work_other_write_in.present? %>
+        <li class="checklist-item__detail"><%= preventing_work_other_write_in %></li>
+      <% end %>
+    </ul>
+    <% if preventing_work_write_in.present? %>
+      <p>More information about how my condition prevents me from working 20 hours a week: <%= preventing_work_write_in %></p>
     <% end %>
 
     <div class="section-title">

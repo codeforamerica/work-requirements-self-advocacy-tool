@@ -151,10 +151,21 @@ html, body, main {
   align-items: center;
   gap: 0.75rem;
   padding: 0.6rem 0;
+
+  /* Flex items shrink by default to fit the row; a label long enough to wrap to two lines
+     forces the checkbox svg (no flex-basis override) to shrink along with it, unlike shorter
+     one-line labels that never trigger this. Pin it to its actual size always. */
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 .checklist-item__detail {
   margin-left: 2.7rem;
   padding-bottom: 0.6rem;
   color: #5F5854;
+}
+
+.checklist--nested {
+  margin-left: 2.7rem;
 }
