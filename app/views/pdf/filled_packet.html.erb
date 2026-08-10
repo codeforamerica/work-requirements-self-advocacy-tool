@@ -44,7 +44,7 @@ working_or_earning ||= nil
 
     <div class="section-title">
       <%= document_icon %>
-      <h3>Exemptions</h3>
+      <h3>Reported Exemptions</h3>
     </div>
     <ul class="checklist">
 
@@ -60,32 +60,36 @@ working_or_earning ||= nil
         <li class="checklist-item__detail">Expected due date: <%= pregnancy_due_date %></li>
       <% end %>
       <%= checklist_item("I am getting unemployment benefits, or I have applied for unemployment benefits", has_unemployment_benefits) %>
-      <%= checklist_item("I am receiving SSDI", receiving_benefits_ssdi) %>
-      <%= checklist_item("I am receiving SSI", receiving_benefits_ssi) %>
-      <%= checklist_item("I am receiving veterans disability benefits", receiving_benefits_veterans_disability) %>
-      <%= checklist_item("I am receiving workers' compensation", receiving_benefits_workers_compensation) %>
-      <%= checklist_item("I am receiving a disability pension", receiving_benefits_disability_pension) %>
-      <%= checklist_item("I am receiving disability insurance payments", receiving_benefits_insurance_payments) %>
-      <%= checklist_item("I am receiving Medicaid based on disability", receiving_benefits_disability_medicaid) %>
-      <%= checklist_item("I am receiving another disability benefit", receiving_benefits_other) %>
-      <% if receiving_benefits_write_in.present? %>
-        <li class="checklist-item__detail">Other benefit description: <%= receiving_benefits_write_in %></li>
+      <% if receiving_disability_benefits %>
+        <%= checklist_item("I am receiving the following Disability Benefits", receiving_disability_benefits) %>
+        <ul class="checklist checklist--nested">
+          <%= checklist_item("Social Security Disability Benefits (SSDI)", receiving_benefits_ssdi) %>
+          <%= checklist_item("Supplemental Security Income (SSI)", receiving_benefits_ssi) %>
+          <%= checklist_item("Veteran's disability", receiving_benefits_veterans_disability) %>
+          <%= checklist_item("Worker's compensation", receiving_benefits_workers_compensation) %>
+          <%= checklist_item("Disability pension", receiving_benefits_disability_pension) %>
+          <%= checklist_item("Disability insurance payments", receiving_benefits_insurance_payments) %>
+          <%= checklist_item("Disability-related Medicaid", receiving_benefits_disability_medicaid) %>
+          <%= checklist_item("Other:", receiving_benefits_other) %>
+          <% if receiving_benefits_write_in.present? %>
+            <li class="checklist-item__detail"><%= receiving_benefits_write_in %></li>
+          <% end %>
+        </ul>
       <% end %>
-      <%= checklist_item("I am receiving a disability benefit", receiving_disability_benefits) %>
-        <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
-        <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
-        <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
-        <% if drug_alcohol_program_name.present? %>
-          <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
-        <% end %>
-        <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
-        <% if preventing_work_write_in.present? %>
-          <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
-        <% end %>
-        <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
-        <% if preventing_work_other_write_in.present? %>
-          <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
-        <% end %>
+      <%= checklist_item("I am a seasonal or migrant farmworker", seasonal_worker) %>
+      <%= checklist_item("I am enrolled in school or a training program at least half-time", enrolled_in_education) %>
+      <%= checklist_item("I am in an alcohol or drug treatment program", in_drug_or_alcohol_program) %>
+      <% if drug_alcohol_program_name.present? %>
+        <li class="checklist-item__detail">Program name: <%= drug_alcohol_program_name %></li>
+      <% end %>
+      <%= checklist_item("I have a medical condition preventing me from working", preventing_work_medical_condition) %>
+      <% if preventing_work_write_in.present? %>
+        <li class="checklist-item__detail">Details: <%= preventing_work_write_in %></li>
+      <% end %>
+      <%= checklist_item("I have another condition preventing me from working", preventing_work_other) %>
+      <% if preventing_work_other_write_in.present? %>
+        <li class="checklist-item__detail">Details: <%= preventing_work_other_write_in %></li>
+      <% end %>
     </ul>
 
     <% if working_or_earning %>
