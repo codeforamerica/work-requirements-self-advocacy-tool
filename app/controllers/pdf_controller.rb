@@ -12,7 +12,7 @@ class PdfController < QuestionController
       first_name: "José",
       middle_name: "María",
       last_name: "Muñoz",
-      birth_date: Date.new(1960, 3, 6),
+      birth_date: Date.new(1968, 3, 6),
       email: "testy@example.com",
       phone_number: "9195550123",
       case_number: "123456789",
@@ -57,7 +57,13 @@ class PdfController < QuestionController
       preventing_work_write_in: "Chronic back pain",
       preventing_work_additional_info: "I experience severe pain that limits how long I can stand or sit."
     )
-    @temp_screener.build_nc_screener(has_hs_diploma: "no", worked_last_five_years: "no")
+    @temp_screener.build_nc_screener(
+      has_hs_diploma: "no",
+      worked_last_five_years: "no",
+      teaches_homeschool: "yes",
+      homeschool_hours: 32,
+      homeschool_name: "Small Fry Homeschool Co-op"
+    )
   end
 
   def generate_pdf
