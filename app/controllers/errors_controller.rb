@@ -17,7 +17,8 @@ class ErrorsController < ApplicationController
   private
 
   def switch_locale(&action)
-    locale = params[:locale] || screener_locale || I18n.default_locale
+    locale = params[:locale]
+    locale = screener_locale || I18n.default_locale unless I18n.available_locales.map(&:to_s).include?(locale)
     I18n.with_locale(locale, &action)
   end
 

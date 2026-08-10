@@ -17,7 +17,7 @@ module Nc
     end
 
     def self.load_model(intake, item_index: nil)
-      intake.nc_screener
+      intake.nc_screener || intake.create_nc_screener
     end
   end
 end

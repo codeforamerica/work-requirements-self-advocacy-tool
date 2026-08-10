@@ -425,6 +425,8 @@ class Screener < ApplicationRecord
   # TEMPORARY: replace when we add a question for subgeography/"special geo"
   # Always returns an array of office hashes so views can iterate without special logic.
   def offices_to_display
+    return [] unless LocationData::States::STATES_INFO.key?(state)
+
     raw = case LocationData::States::STATES_INFO[state][:office_by]
     when :county
       [LocationData::Counties.get(state, county)]
