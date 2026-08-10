@@ -44,10 +44,6 @@ module WorkRequirementsSelfAdvocacyTool
     config.action_dispatch.default_headers["Cache-Control"] = "no-store"
     config.action_dispatch.default_headers["Pragma"] = "no-cache"
 
-    # Names the "csp-endpoint" group referenced by the report-to directive in
-    # config/initializers/content_security_policy.rb.
-    config.action_dispatch.default_headers["Reporting-Endpoints"] = 'csp-endpoint="/csp_reports"'
-
     # This app doesn't use any of these browser features.
     config.action_dispatch.default_headers["Permissions-Policy"] =
       "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"

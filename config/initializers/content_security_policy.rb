@@ -16,13 +16,6 @@ Rails.application.configure do
     policy.base_uri :self
     policy.form_action :self
     policy.frame_ancestors :self
-
-    # report-uri is the legacy fallback for browsers without Reporting API support.
-    # report-to (paired with the Reporting-Endpoints header, see application.rb) is the
-    # current standard. Rails' DSL has no report_to method, so set the directive directly
-    # on the underlying hash that `directives` exposes.
-    policy.report_uri "/csp_reports"
-    policy.directives["report-to"] = ["csp-endpoint"]
   end
 
   # The nonce must stay constant for the life of a session, not vary per request.
