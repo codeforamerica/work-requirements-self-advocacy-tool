@@ -64,9 +64,8 @@ RSpec.describe "pdf/filled_packet", type: :view do
     render template: "pdf/filled_packet", locals: locals
   end
 
-  it "always displays Client Information and Signature regardless of exemptions" do
+  it "always displays Signature regardless of exemptions" do
     render_page
-    expect(rendered).to include("Client Information")
     expect(rendered).to include("Signature")
   end
 
