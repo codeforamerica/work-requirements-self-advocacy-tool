@@ -1,5 +1,5 @@
 <%# SPIKE (WRSAT-687): renders the summary page and filled packet as one HTML
     document so Grover can paginate them into a single PDF, instead of
     generating two separate PDFs and merging them with HexaPDF. %>
-<%= render template: "pdf/summary_page", locals: generated_locals %>
+<%= render template: "pdf/combined_summary_page", locals: generated_locals %>
 <%= render template: "pdf/filled_packet", locals: fillable_locals %>

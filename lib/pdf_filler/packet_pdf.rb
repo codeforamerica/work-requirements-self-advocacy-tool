@@ -63,10 +63,16 @@ module PdfFiller
 
     def hash_for_generated_pdf
       shared_fields.merge(
+        age: @screener.age.to_s,
         any_preventing_work: @screener.any_preventing_work?,
+        case_number: @screener.case_number,
         earnings_above_minimum: @screener.earnings_above_minimum?,
+        email: @screener.email,
         full_name: @screener.full_name,
+        full_name_with_middle: @screener.full_name_with_middle,
+        phone_number: @screener.phone_number,
         receiving_disability_benefits: @screener.receiving_disability_benefits?,
+        ssn_last_4: @screener.ssn_last_four,
         working_30_or_more_hours: @screener.working_30_or_more_hours?
       )
     end
