@@ -106,7 +106,7 @@ RSpec.describe "pdf/filled_packet", type: :view do
       expect(rendered).not_to include("I do not have a regular place to sleep and shower")
       expect(rendered).not_to include("I am struggling with drugs or alcohol")
       expect(rendered).not_to include("I am experiencing domestic violence")
-      expect(rendered).not_to include("I am at least 55 years old without a high school diploma")
+      expect(rendered).not_to include("I am 55 to 64 years old")
     end
 
     it "shows the homeschool exemption for a North Carolina screener" do
@@ -129,7 +129,7 @@ RSpec.describe "pdf/filled_packet", type: :view do
         preventing_work_drugs_alcohol: true,
         preventing_work_domestic_violence: true
       )
-      expect(rendered).to include("I am at least 55 years old without a high school diploma")
+      expect(rendered).to include("I am 55 to 64 years old, I do not have a high school diploma or GED")
       expect(rendered).to include("I do not have a regular place to sleep and shower")
       expect(rendered).to include("I am struggling with drugs or alcohol")
       expect(rendered).to include("I am experiencing domestic violence")

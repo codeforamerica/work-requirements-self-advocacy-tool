@@ -137,7 +137,7 @@ state ||= nil
     <p>The following condition(s) prevent(s) me from working at least 20 hours a week:</p>
     <ul class="checklist">
       <% if state == LocationData::States::NORTH_CAROLINA %>
-        <%= checklist_item("I am at least 55 years old without a high school diploma and have not had substantial work for pay in the last five years", at_least_55_no_diploma_not_working) %>
+        <%= checklist_item("I am 55 to 64 years old, I do not have a high school diploma or GED, I have not had substantial work in the past five years and I have a health condition that limits my ability to work", at_least_55_no_diploma_not_working) %>
         <%= checklist_item("I do not have a regular place to sleep and shower", preventing_work_place_to_sleep) %>
         <%= checklist_item("I am struggling with drugs or alcohol", preventing_work_drugs_alcohol) %>
         <%= checklist_item("I am experiencing domestic violence", preventing_work_domestic_violence) %>
