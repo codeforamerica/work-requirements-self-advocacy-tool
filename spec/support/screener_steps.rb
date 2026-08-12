@@ -206,10 +206,12 @@ module ScreenerSteps
 
     check I18n.t("views.feedback_result.edit.bring_results_to_interview")
     check I18n.t("views.feedback_result.edit.keep_it_in_records")
+
+    # follow-up disappears if another box is checked
     expect(page).not_to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
     uncheck I18n.t("views.feedback_result.edit.bring_results_to_interview")
-    expect(page).to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
 
+    expect(page).to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
     check I18n.t("views.feedback_result.edit.wont_be_accepted")
     check I18n.t("views.feedback_result.edit.other")
     fill_in I18n.t("views.feedback_result.edit.unsubmitted_write_in"), with: "My printer is broken"
