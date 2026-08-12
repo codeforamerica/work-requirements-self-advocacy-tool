@@ -36,6 +36,36 @@ var noneOfTheAbove = (function () {
   }
 })();
 
+// this builds on the honeycrisp question-with-follow-up pattern, allowing us to have
+// a checkbox that only shows the follow-up question if it is the only one in its group
+// that is checked
+function applyExclusiveFollowUps() {
+  $('input[data-follow-up-exclusive]').each(function () {
+    var $exclusiveCheckbox = $(this);
+    var selector = $exclusiveCheckbox.attr('data-follow-up');
+    // regex copied from honeycrisp (honeycrisp.js:128): whitelist id/class/word characters to protect against XSS
+    if (!selector || !/^[a-zA-Z0-9_\-#\.]+$/.test(selector)) return;
+
+    var $group = $exclusiveCheckbox.closest('.question-with-follow-up__question');
+    var $followUp = $(selector);
+    if (!$group.length || !$followUp.length) return;
+
+    var othersChecked = $group.find('input[type=checkbox]:checked').not($exclusiveCheckbox).length > 0;
+    var show = $exclusiveCheckbox.is(':checked') && !othersChecked;
+
+    $followUp.toggle(show);
+    // also copied from honeycrisp (honeycrisp.js:120 and :126): disable/enable of the follow-up inputs so
+    // hidden answers aren't submitted.
+    $followUp.find('input').attr('disabled', !show);
+  });
+}
+
+function initExclusiveFollowUps() {
+  $(document)
+    .off('click.exclusiveFollowUp')
+    .on('click.exclusiveFollowUp', '.question-with-follow-up__question input', applyExclusiveFollowUps);
+}
+
 function initClickTracking() {
   document.querySelectorAll('[data-track-click]').forEach(function(el) {
     el.addEventListener('click', function() {
@@ -70,6 +100,7 @@ document.addEventListener("turbo:load", function() {
   revealer.init();
   accordion.init();
   honeycrispInit();
+  initExclusiveFollowUps();
   // honeycrispInit() will asychronously re-collapse the accordions and can revert any
   // show/hide state set on a question-with-follow-up before it settles (e.g. re-hiding a
   // follow-up whose driving checkbox is checked on a server-rendered validation-error
@@ -79,6 +110,7 @@ document.addEventListener("turbo:load", function() {
     $('.question-with-follow-up').each(function() {
       followUpQuestion.update($(this));
     });
+    applyExclusiveFollowUps();
   }, 0);
   initTextareaCounter();
   initClickTracking();
