@@ -9,18 +9,17 @@ html, body, main {
 .pdf-packet {
   margin: 60px 35px;
   font-family: "Source Sans 3", -apple-system, sans-serif;
-  /* Honeycrisp's application.css sets body { font-size: 1.9rem; line-height:
-     2.5rem }. Page 1 (the summary page) never had that sizing before pages
-     were combined into one document, so reset it back to the browser
-     default here; .filled-packet below restores Honeycrisp's sizing since
-     its layout (data-table, checklist, etc.) was built around it. */
-  font-size: 16px;
+  /* Body copy is unified to 14px across both pages (headers are sized
+     separately below) -- overrides Honeycrisp's application.css body rule
+     of font-size: 1.9rem; line-height: 2.5rem, which otherwise leaks in via
+     the bundled application.css now that both pages share one stylesheet. */
+  font-size: 14px;
   line-height: normal;
 }
 
 .filled-packet {
-  font-size: 1.9rem;
-  line-height: 2.5rem;
+  font-size: 14px;
+  line-height: normal;
 }
 
 .header {
@@ -29,6 +28,10 @@ html, body, main {
 
   p {
     margin-bottom: 0;
+    /* The eyebrow label ("SUMMARY OF" / "DETAILS ABOUT") is part of the
+       header, not body copy, so it's exempt from the 14px body unification
+       above and keeps its original size. */
+    font-size: 16px;
   }
   h1 {
     margin-top: 0;
@@ -163,7 +166,7 @@ html, body, main {
 .checklist-item__detail {
   margin-left: 2.7rem;
   padding-bottom: 0.6rem;
-  color: #5F5854;
+  font-weight: 700;
 }
 
 .checklist--nested {
