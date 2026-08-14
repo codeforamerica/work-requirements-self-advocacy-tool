@@ -44,7 +44,7 @@ state ||= nil
     <%= checklist_item("I am caring for a child under age 6", caring_for_child_under_6) %>
     <%= checklist_item("I am caring for an incapacitated person", caring_for_disabled_or_ill_person) %>
     <% if details_of_care.present? %>
-      <li class="checklist-item__detail">Details of care: <%= details_of_care %></li>
+      <li class="checklist-item__detail"><strong>Details of care:</strong> <%= details_of_care %></li>
     <% end %>
     <%= checklist_item("I am pregnant", is_pregnant) %>
     <% if pregnancy_due_date.present? %>
