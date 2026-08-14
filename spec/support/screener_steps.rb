@@ -200,7 +200,14 @@ module ScreenerSteps
     click_on I18n.t("general.continue")
 
     expect(page).to have_selector("h1", text: I18n.t("views.feedback_result.edit.title"))
+
     check I18n.t("views.feedback_result.edit.keep_it_in_records")
+    expect(page).to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
+
+    # follow-up disappears if another box is checked
+    check I18n.t("views.feedback_result.edit.bring_results_to_interview")
+    expect(page).not_to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
+    uncheck I18n.t("views.feedback_result.edit.bring_results_to_interview")
 
     expect(page).to have_selector("h2", text: I18n.t("views.feedback_result.edit.reasons_title"))
     check I18n.t("views.feedback_result.edit.wont_be_accepted")
