@@ -135,15 +135,15 @@ module PdfFiller
     def combined_pdf_all_html
       html = PdfController.new.render_to_string(
         {
-          template: "pdf/combined_packet",
+          template: "pdf/packet",
           layout: "pdf",
-          locals: {
-            generated_locals: strip_emojis_from_hash(hash_for_generated_pdf),
+          locals: strip_emojis_from_hash(hash_for_generated_pdf).merge(
+            strip_emojis_from_hash(hash_for_fillable_pdf),
             # state isn't an AcroForm field, so it's merged in here rather than into
             # hash_for_fillable_pdf, which filled_pdf_tempfile also uses to fill the
             # real PDF form fields by name -- an unknown field name there raises.
-            fillable_locals: strip_emojis_from_hash(hash_for_fillable_pdf).merge(state: @screener.state)
-          }
+            state: @screener.state
+          )
         }
       )
       style_tag_options = [

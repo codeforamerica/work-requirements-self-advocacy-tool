@@ -3,7 +3,7 @@ class PdfController < QuestionController
   skip_before_action :set_screener_current_step_and_locale
   # These preview actions render against the fixed @temp_screener below, not a real signed-in
   # screener, so they don't need an active session -- unlike generate_pdf, the real download path.
-  skip_before_action :require_current_screener, only: [:summary_page, :combined_pdf_preview]
+  skip_before_action :require_current_screener, only: [:summary_page, :packet_pdf_preview]
   before_action :build_temp_screener
 
   def build_temp_screener
@@ -75,8 +75,8 @@ class PdfController < QuestionController
     render :summary_page, locals: temp_screener_packet_pdf.hash_for_generated_pdf
   end
 
-  def combined_pdf_preview
-    send_data temp_screener_packet_pdf.combined_pdf_all_html, filename: "combined_preview.pdf", disposition: "inline"
+  def packet_pdf_preview
+    send_data temp_screener_packet_pdf.combined_pdf_all_html, filename: "packet_preview.pdf", disposition: "inline"
   end
 
   private
