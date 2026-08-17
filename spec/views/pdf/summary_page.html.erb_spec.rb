@@ -40,7 +40,7 @@ RSpec.describe "pdf/summary_page", type: :view do
 
   it "always displays the header and screener details" do
     render_page
-    expect(rendered).to include("SNAP Work Requirement Exemptions")
+    expect(rendered).to include("SNAP Work Requirement Exemptions Attestation")
     expect(rendered).to include("Nelly Ghaffar, (DOB: July 13, 1990) attests to the following")
   end
 
