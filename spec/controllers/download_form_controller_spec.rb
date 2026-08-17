@@ -80,15 +80,14 @@ RSpec.describe DownloadFormController, type: :controller do
     end
 
     context "when the screener has no state set" do
-      render_views
       let(:screener) { create(:screener, :with_exemption, state: nil, email: "hi@example.com") }
 
       before { sign_in screener }
 
-      it "renders instead of raising" do
+      it "redirects to root instead of raising" do
         get :display
 
-        expect(response).to have_http_status(:ok)
+        expect(response).to redirect_to(root_path)
       end
     end
 
