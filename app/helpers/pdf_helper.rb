@@ -1,25 +1,4 @@
 module PdfHelper
-  # Inlines section-icon/checkbox SVGs from app/assets/images
-  # (see ApplicationHelper#inline_svg) rather than an <img>/font glyph, since
-  # Grover's headless-browser rendering can't resolve the relative font URLs
-  # Honeycrisp's Material Icons font uses (same reason generated_pdf_path's
-  # logo image uses an absolute URL instead of the asset pipeline path).
-  def person_icon
-    inline_svg("pdf-person.svg")
-  end
-
-  def document_icon
-    inline_svg("pdf-document.svg")
-  end
-
-  def work_icon
-    inline_svg("pdf-work.svg")
-  end
-
-  def signature_icon
-    inline_svg("pdf-signature.svg")
-  end
-
   def checkbox_icon
     inline_svg("pdf-checkbox-checked.svg")
   end

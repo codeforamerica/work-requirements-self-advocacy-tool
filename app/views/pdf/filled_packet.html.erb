@@ -29,7 +29,7 @@ state ||= nil
       seasonal_worker || operating_a_homeschool || is_in_work_training || is_volunteering ||
       enrolled_in_education || in_drug_or_alcohol_program %>
   <div class="section-title">
-    <%= document_icon %>
+    <%= inline_svg("pdf-document.svg") %>
     <h3>Reported Exemptions</h3>
   </div>
   <ul class="checklist">
@@ -104,7 +104,7 @@ state ||= nil
   <% if at_least_55_no_diploma_not_working || preventing_work_place_to_sleep || preventing_work_drugs_alcohol ||
       preventing_work_domestic_violence || preventing_work_medical_condition || preventing_work_other %>
   <div class="section-title">
-    <%= work_icon %>
+    <%= inline_svg("pdf-work.svg") %>
     <h3>Fitness for Work</h3>
   </div>
   <p>The following condition(s) prevent(s) me from working at least 20 hours a week:</p>
@@ -127,7 +127,7 @@ state ||= nil
   <% end %>
 
   <div class="section-title">
-    <%= signature_icon %>
+    <%= inline_svg("pdf-signature.svg") %>
     <h3>Electronic Signature</h3>
   </div>
   <p>I certify under penalty of perjury that the information provided on this form is true and correct.</p>
