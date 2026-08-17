@@ -1,10 +1,4 @@
 <%
-# A fork of pdf/summary_page.html.erb used only by
-# combined_pdf_all_html. Content has diverged enough (adds a Client
-# Information section styled like filled_packet.html.erb's) that sharing one
-# template with the production summary page -- whose own page 1 must stay
-# exactly as-is, since Client Information already lives on page 2 of the real
-# AcroForm-filled packet.pdf -- isn't workable behind HTML_PDF_ENABLED alone.
 operating_homeschool_30_or_more_hours ||= nil
 at_least_55_no_diploma_not_working ||= nil
 preventing_work_place_to_sleep ||= nil
