@@ -4,15 +4,14 @@ RSpec.describe Nc::HomeschoolController, type: :controller do
   describe "#edit" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
 
-    it "creates the nc_screener on demand if it doesn't already exist" do
+    it "redirects to root instead of raising if the nc_screener doesn't exist yet" do
       screener = create(:screener, state: "NC")
       sign_in screener
       expect(screener.nc_screener).to be_nil
 
       get :edit
 
-      expect(response).to have_http_status(:ok)
-      expect(screener.reload.nc_screener).to be_present
+      expect(response).to redirect_to(root_path)
     end
   end
 
