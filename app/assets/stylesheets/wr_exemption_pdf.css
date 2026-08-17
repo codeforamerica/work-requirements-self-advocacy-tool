@@ -15,6 +15,13 @@ html, body, main {
      the bundled application.css now that both pages share one stylesheet. */
   font-size: 14px;
   line-height: normal;
+
+  /* Honeycrisp's bare p rule also sets margin-bottom: 2.5rem (40px), sized for the
+     live app's spaced-out layout. That's excessive here, e.g. between a lead-in
+     sentence and the checklist/answer that immediately follows it. */
+  p {
+    margin-bottom: 1rem;
+  }
 }
 
 .filled-packet {
