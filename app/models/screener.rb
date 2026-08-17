@@ -118,6 +118,9 @@ class Screener < ApplicationRecord
     :remove_volunteer_attributes_if_no,
     :remove_zip_code_if_state_does_not_require
 
+  # keep this at the end of the before_ hooks so it saves *after* the other attributes are cleaned up
+  before_save :snapshot_exemptions, if: :recording_outcome?
+
   with_context :alcohol_treatment_program do
     validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}, latin_script: true
   end
@@ -344,6 +347,7 @@ class Screener < ApplicationRecord
     @state_policy ||= WorkRulesPolicy.for(self)
   end
   delegate :exempt_from_work_rules?,
+    :exemption_reasons,
     :has_exemption?,
     :has_earnings_exemption?,
     :complies_with_work_rules?,
@@ -552,5 +556,13 @@ class Screener < ApplicationRecord
 
   def remove_zip_code_if_state_does_not_require
     self.zip_code = nil unless state.present? && LocationData::ZipCodes.for_state(state).present?
+  end
+
+  def recording_outcome?
+    will_save_change_to_outcome? || will_save_change_to_outcome_arrived_at?
+  end
+
+  def snapshot_exemptions
+    self.exemptions_found = outcome.present? ? exemption_reasons : nil
   end
 end
