@@ -1,6 +1,5 @@
 /* Reset Honeycrisp's site-chrome rules (html/body/main background + spacing
-   meant for the live app's toolbar layout) which otherwise leak into this
-   print context via the bundled application.css. */
+   meant for the live app's toolbar layout) */
 html, body, main {
   background: white;
   margin: 0;
@@ -9,28 +8,21 @@ html, body, main {
 .pdf-packet {
   margin: 60px 35px;
   font-family: "Source Sans 3", -apple-system, sans-serif;
-  /* Body copy is unified to 14px across both pages (headers are sized
-     separately below) -- overrides Honeycrisp's application.css body rule
-     of font-size: 1.9rem; line-height: 2.5rem, which otherwise leaks in via
-     the bundled application.css now that both pages share one stylesheet. */
+  /* Overrides Honeycrisp's application.css body rule of font-size: 1.9rem; line-height: 2.5rem */
   font-size: 14px;
   line-height: normal;
 
-  /* Honeycrisp's bare p rule also sets margin-bottom: 2.5rem (40px), sized for the
-     live app's spaced-out layout. That's excessive here, e.g. between a lead-in
-     sentence and the checklist/answer that immediately follows it. */
+  /* Overrides Honeycrisp's bare p rule also sets margin-bottom: 2.5rem (40px) */
   p {
     margin-bottom: 1rem;
   }
 }
 
-/* Tighter spacing at the boundary between the two
-   combined_pdf_all_html-only pages, without touching .pdf-packet's 60px
-   margin used by the production summary_page.html.erb (combined_pdf,
-   today's default PDF). Both sides need overriding, not just one -- adjacent
-   block margins collapse to whichever is larger, so leaving either one at
-   the inherited 60px would still produce a 60px gap. */
+/* Overrides additional margin from the original HTML doc.
+This will be changed when we switch to the new PDF entirely
+*/
 .combined-summary-page {
+  margin-top: 30px;
   margin-bottom: 30px;
 }
 
@@ -49,17 +41,12 @@ html, body, main {
 
   p {
     margin-bottom: 0;
-    /* The eyebrow label ("SUMMARY OF" / "DETAILS ABOUT") is part of the
-       header, not body copy, so it's exempt from the 14px body unification
-       above and keeps its original size. */
+    /* ("SUMMARY OF" / "DETAILS ABOUT") is exempt from the 14px body unification
+       above and this keeps its original size. */
     font-size: 16px;
   }
   h1 {
     margin-top: 0;
-    /* Honeycrisp's bare h1 rule is 5rem/6rem (50px/60px) -- sized for the live app's
-       big page-title headers, not this print layout. Page 1 never had to compete with
-       that rule before both pages shared application.css, so pin an explicit size here
-       matching its original look (the plain browser default of roughly 2em on 16px). */
     font-size: 32px;
     line-height: 1.2;
   }
@@ -97,9 +84,7 @@ html, body, main {
   padding: 25px;
   background-color: #F7F5F4;
 
-  /* Honeycrisp's bare `ul` rule sets list-style: none; padding-left: 0 -- meant for its own
-     custom-styled lists elsewhere. Page 1's plain <ul>s never had to override that before both
-     pages shared application.css, so restore normal bullets here. */
+  /* overrides for the summary pages  */
   ul {
     list-style: disc;
     padding-left: 20px;
@@ -169,16 +154,12 @@ html, body, main {
 
 .checklist-item {
   display: flex;
-  /* center (the default) vertically centers the checkbox against the item's full
-     height, which for a label that wraps to two lines lands it in the gap between
-     them. flex-start pins it to the top instead, level with the first line. */
+  /* for multiline line checklist items the checkbox appears closer to the first line */
   align-items: flex-start;
   gap: 0.75rem;
   padding: 0.6rem 0;
 
-  /* Flex items shrink by default to fit the row; a label long enough to wrap to two lines
-     forces the checkbox svg (no flex-basis override) to shrink along with it, unlike shorter
-     one-line labels that never trigger this. Pin it to its actual size always. */
+  /* forces the checkboxes to shrink for multiline items. */
   svg {
     flex-shrink: 0;
   }
