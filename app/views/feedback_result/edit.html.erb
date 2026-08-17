@@ -11,7 +11,7 @@
         <%= f.cfa_checkbox(:survey_plan_to_email_results, t("views.feedback_result.edit.email_results"), options: { checked_value: "yes", unchecked_value: "no"}) %>
         <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_interview, t("views.feedback_result.edit.bring_results_to_interview"), options: { checked_value: "yes", unchecked_value: "no"}) %>
         <%= f.cfa_checkbox(:survey_plan_to_bring_results_to_organization, t("views.feedback_result.edit.bring_results_to_organization"), options: { checked_value: "yes", unchecked_value: "no"}) %>
-        <%= f.cfa_checkbox(:survey_plan_to_keep_it_in_records, t("views.feedback_result.edit.keep_it_in_records"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#unsubmitted-reasons" }) %>
+        <%= f.cfa_checkbox(:survey_plan_to_keep_it_in_records, t("views.feedback_result.edit.keep_it_in_records"), options: { checked_value: "yes", unchecked_value: "no", "data-follow-up": "#unsubmitted-reasons", "data-follow-up-exclusive": true }) %>
       </div>
 
       <div class="question-with-follow-up__follow-up" id="unsubmitted-reasons">
