@@ -24,6 +24,20 @@ html, body, main {
   }
 }
 
+/* SPIKE (WRSAT-687): tighter spacing at the boundary between the two
+   combined_pdf_all_html-only pages, without touching .pdf-packet's 60px
+   margin used by the production summary_page.html.erb (combined_pdf,
+   today's default PDF). Both sides need overriding, not just one -- adjacent
+   block margins collapse to whichever is larger, so leaving either one at
+   the inherited 60px would still produce a 60px gap. */
+.combined-summary-page {
+  margin-bottom: 30px;
+}
+
+.filled-packet {
+  margin-top: 30px;
+}
+
 .filled-packet {
   font-size: 14px;
   line-height: normal;
