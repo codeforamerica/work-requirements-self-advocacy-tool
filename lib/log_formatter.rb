@@ -15,6 +15,10 @@ class LogFormatter < SemanticLogger::Formatters::Raw
   def call(log, logger)
     super
 
+    # Logs with no request/job context (console, rails runner, rake tasks) never
+    # go through the on_log callback that lazily initializes this to a Hash.
+    log.context ||= {}
+
     current_trace
     resource
     screener_id
