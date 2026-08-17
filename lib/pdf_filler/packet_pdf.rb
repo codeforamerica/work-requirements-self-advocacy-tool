@@ -132,10 +132,6 @@ module PdfFiller
       filled_pdf&.close!
     end
 
-    # SPIKE (WRSAT-687): renders the summary page and filled packet as one
-    # HTML document (see pdf/combined_packet.html.erb) and rasterizes it to a
-    # single PDF via Grover, instead of filling packet.pdf's AcroForm fields
-    # and merging two separately-rendered PDFs with HexaPDF.
     def combined_pdf_all_html
       html = PdfController.new.render_to_string(
         {

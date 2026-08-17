@@ -75,15 +75,12 @@ class PdfController < QuestionController
     render :summary_page, locals: temp_screener_packet_pdf.hash_for_generated_pdf
   end
 
-  # SPIKE (WRSAT-687): preview of the filled packet rendered as HTML instead
-  # of filling packet.pdf's AcroForm fields.
+  # Preview of the filled packet rendered as HTML instead of filling
+  # packet.pdf's AcroForm fields.
   def filled_packet_preview
     render "pdf/filled_packet", locals: temp_screener_packet_pdf.hash_for_fillable_pdf.merge(state: @temp_screener.state)
   end
 
-  # SPIKE (WRSAT-687): preview of the actual generated PDF (combined_pdf_all_html) against the
-  # fixed test screener above, so it can be viewed by just visiting this URL instead of having to
-  # walk through the whole screener flow after every change.
   def combined_pdf_preview
     send_data temp_screener_packet_pdf.combined_pdf_all_html, filename: "combined_preview.pdf", disposition: "inline"
   end

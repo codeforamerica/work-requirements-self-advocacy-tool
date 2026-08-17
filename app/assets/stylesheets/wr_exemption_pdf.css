@@ -24,7 +24,7 @@ html, body, main {
   }
 }
 
-/* SPIKE (WRSAT-687): tighter spacing at the boundary between the two
+/* Tighter spacing at the boundary between the two
    combined_pdf_all_html-only pages, without touching .pdf-packet's 60px
    margin used by the production summary_page.html.erb (combined_pdf,
    today's default PDF). Both sides need overriding, not just one -- adjacent
@@ -116,9 +116,6 @@ html, body, main {
   color: #5F5854;
 }
 
-/* SPIKE (WRSAT-687): styling for the HTML rendering of the filled packet,
-   built to look like the existing packet.pdf layout using Honeycrisp tokens
-   (text--caps, text--teal-dark, data-table colors) rather than one-off CSS. */
 .section-title {
   display: flex;
   align-items: center;

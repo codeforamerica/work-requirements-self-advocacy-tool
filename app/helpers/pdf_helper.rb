@@ -1,5 +1,5 @@
 module PdfHelper
-  # SPIKE (WRSAT-687): inlines section-icon/checkbox SVGs from app/assets/images
+  # Inlines section-icon/checkbox SVGs from app/assets/images
   # (see ApplicationHelper#inline_svg) rather than an <img>/font glyph, since
   # Grover's headless-browser rendering can't resolve the relative font URLs
   # Honeycrisp's Material Icons font uses (same reason generated_pdf_path's
@@ -24,9 +24,6 @@ module PdfHelper
     inline_svg("pdf-checkbox-checked.svg")
   end
 
-  # SPIKE (WRSAT-687): only renders when checked -- unlike a real PDF checkbox
-  # field, an absent HTML item can't show an empty box, so unchecked items in
-  # the Reported Exemptions / Fitness for Work sections are omitted entirely.
   def checklist_item(label, checked)
     return unless checked
 
