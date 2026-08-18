@@ -13,17 +13,22 @@ module WorkRulesPolicy
       @screener = screener
     end
 
-    def exempt_from_work_rules?
-      has_exemption? || has_earnings_exemption?
+    # gets saved as snapshot in before_save on screener model; preserving the order
+    # might help keep things consistent for data team
+    def exemption_reasons
+      reasons = non_earnings_exemption_reasons
+      reasons << "earnings_exemption" if has_earnings_exemption?
+      reasons
     end
 
-    def has_exemption?
-      return true if screener.age_qualified?
-      return true if exempt_from_state_work_rules?
+    # has any exemption
+    def exempt_from_work_rules?
+      exemption_reasons.any?
+    end
 
-      Screener::ELIGIBILITY_EXEMPTION_ATTRIBUTES.any? do |attribute|
-        screener.public_send("#{attribute}_yes?")
-      end
+    # has a non-earnings exemption
+    def has_exemption?
+      non_earnings_exemption_reasons.any?
     end
 
     def has_earnings_exemption?
@@ -41,10 +46,6 @@ module WorkRulesPolicy
 
     def needs_proof_of_volunteering?
       requires_proof_of_volunteering? && screener.volunteering?
-    end
-
-    def exempt_from_state_work_rules?
-      false
     end
 
     def extra_preventing_work?
@@ -70,15 +71,23 @@ module WorkRulesPolicy
     def requires_proof_of_volunteering?
       true
     end
+
+    private
+
+    def non_earnings_exemption_reasons
+      reasons = []
+
+      reasons << ((screener.age <= 17) ? "age_under_18" : "age_65_or_older") if screener.age_qualified?
+
+      Screener::ELIGIBILITY_EXEMPTION_ATTRIBUTES.each do |attribute|
+        reasons << attribute.to_s if screener.public_send("#{attribute}_yes?")
+      end
+
+      reasons.concat(state_exemption_reasons)
+    end
   end
 
   class NorthCarolina < Base
-    def exempt_from_state_work_rules?
-      return false unless nc_screener
-
-      nc_screener.operating_homeschool_30_or_more_hours? || age_work_education_health_exemption?
-    end
-
     def extra_preventing_work?
       age_work_education_health_exemption?
     end
@@ -102,8 +111,8 @@ module WorkRulesPolicy
 
     def state_exemption_reasons
       reasons = []
-      reasons << :exemption_55_no_diploma if age_work_education_health_exemption?
-      reasons << :exemption_homeschool if nc_screener&.operating_homeschool_30_or_more_hours?
+      reasons << "exemption_55_no_diploma" if age_work_education_health_exemption?
+      reasons << "exemption_homeschool" if nc_screener&.operating_homeschool_30_or_more_hours?
       reasons
     end
 

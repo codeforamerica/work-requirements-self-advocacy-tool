@@ -611,7 +611,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :preventing_work_details" do
+    context "preventing work attributes" do
       it "clears preventing_work_additional_info if no conditions are yes or the none option is yes" do
         screener = create(:screener,
           preventing_work_additional_info: "This is just a test value.",
@@ -626,7 +626,7 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :location" do
+    context "location attributes" do
       it "clears county if state selected has no county information" do
         screener = create(:screener,
           state: "NC",
@@ -643,6 +643,26 @@ RSpec.describe Screener, type: :model do
         screener.update(state: "NC")
 
         expect(screener.reload.zip_code).to be_nil
+      end
+    end
+
+    context "snapshot_exemptions" do
+      it "records the exemptions when a new outcome is recorded" do
+        screener = create(:screener, is_pregnant: "yes", is_working: "yes", working_hours: 35)
+        expect(screener.exemptions_found).to be_nil
+
+        screener.update!(outcome: "exempt", outcome_arrived_at: Time.current)
+        expect(screener.reload.exemptions_found).to eq %w[is_pregnant earnings_exemption]
+      end
+
+      it "only rewrites the snapshot when a new outcome is recorded" do
+        screener = create(:screener, is_pregnant: "yes")
+        screener.update!(outcome: "exempt", outcome_arrived_at: Time.current)
+        screener.update!(is_pregnant: "no")
+        expect(screener.reload.exemptions_found).to eq %w[is_pregnant]
+
+        screener.update!(outcome: "not_exempt", outcome_arrived_at: Time.current)
+        expect(screener.reload.exemptions_found).to eq []
       end
     end
   end

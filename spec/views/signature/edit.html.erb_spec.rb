@@ -223,7 +223,7 @@ RSpec.describe "signature/edit", type: :view do
     let(:screener) { create(:screener, :with_nc_screener) }
 
     it "renders each reason returned by the state policy" do
-      allow(screener.state_policy).to receive(:state_exemption_reasons).and_return(%i[exemption_55_no_diploma exemption_homeschool])
+      allow(screener.state_policy).to receive(:state_exemption_reasons).and_return(%w[exemption_55_no_diploma exemption_homeschool])
       render
       expect(rendered).to include(I18n.t("views.signature.edit.exemption_55_no_diploma"))
       expect(rendered).to include(I18n.t("views.signature.edit.exemption_homeschool"))
