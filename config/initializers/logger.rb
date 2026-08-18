@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require Rails.root.join("lib", "log_formatter")
-
 # Omit request params and error messages from AWS SDK logs — both can contain
 # email addresses and full message bodies.
 Aws.config[:log_formatter] = Aws::Log::Formatter.new(
@@ -30,9 +28,6 @@ Rails.application.configure do
   # Setup structured logging.
   config.semantic_logger.application = "getbenefitshelp"
   config.semantic_logger.environment = Rails.env
-
-  config.rails_semantic_logger.add_file_appender = false
-  config.semantic_logger.add_appender(io: $stdout, formatter: LogFormatter.new)
 
   # Use the `on_log` callback to set attributes that we want to include in all
   # logs, but need to be set in the same fiber as the caller.

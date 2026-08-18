@@ -80,4 +80,12 @@ Rails.application.configure do
   config.active_record.encryption.primary_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY", "edSK9biPXNhUVP17nNj6xPhtOeB84FAX")
   config.active_record.encryption.deterministic_key = ENV.fetch("ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY", "eVrXlDsnIP0iSDNuxeub906KGv7SOU6j")
   config.active_record.encryption.key_derivation_salt = ENV.fetch("ACTIVE_RECORD_DERIVATION_SALT_KEY", "ZpsjowhMSuZXLkAgzJRXXEIIDVytGv4z")
+
+  # Appender declarations accumulate on top of the one in config/application.rb,
+  # so this adds a human-readable file log alongside the JSON stdout appender.
+  config.rails_semantic_logger.appenders do |appenders|
+    appenders.add(file_name: Rails.root.join("log", "development.log").to_s, formatter: :color)
+    # `rails console` output would otherwise be JSON on stdout, tangled with REPL results.
+    appenders.add_console(io: $stderr, formatter: :color) if defined?(Rails::Console)
+  end
 end

@@ -6,6 +6,8 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require_relative "../lib/log_formatter"
+
 module WorkRequirementsSelfAdvocacyTool
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -51,5 +53,11 @@ module WorkRequirementsSelfAdvocacyTool
 
     # Silence the queue polling logs by default, since they're very noisy.
     config.solid_queue.silence_polling = ENV.fetch("SOLID_QUEUE_SILENCE_POLLING", "true") == "true"
+
+    # Must be declared here (or in config/environments/*), not config/initializers/*,
+    # which Rails loads after the logger and its appenders are already built.
+    config.rails_semantic_logger.appenders do |appenders|
+      appenders.add(io: $stdout, formatter: LogFormatter.new)
+    end
   end
 end

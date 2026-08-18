@@ -54,4 +54,10 @@ Rails.application.configure do
   config.active_record.encryption.primary_key = "a" * 32
   config.active_record.encryption.deterministic_key = "b" * 32
   config.active_record.encryption.key_derivation_salt = "c" * 32
+
+  # Appender declarations accumulate on top of the one in config/application.rb,
+  # so this adds a human-readable file log alongside the JSON stdout appender.
+  config.rails_semantic_logger.appenders do |appenders|
+    appenders.add(file_name: Rails.root.join("log", "test.log").to_s, formatter: :color)
+  end
 end
