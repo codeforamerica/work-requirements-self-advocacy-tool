@@ -1,6 +1,19 @@
 require "rails_helper"
 
 RSpec.describe FeedbackResultController, type: :controller do
+  describe "#edit" do
+    render_views
+
+    it "renders even when the screener has no state set" do
+      screener = create(:screener, state: nil)
+      sign_in screener
+
+      get :edit
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
   describe "#update" do
     it_behaves_like "rejects invalid enum values", fields: [
       :survey_plan_to_email_results,

@@ -64,6 +64,14 @@ RSpec.describe ApplicationController, type: :controller do
         expect(I18n).to have_received(:with_locale).with("en", any_args)
       end
     end
+
+    context "locale in params is not a supported locale" do
+      it "falls back to the default locale instead of raising" do
+        get :index, params: {locale: "sleep 4"}
+
+        expect(I18n).to have_received(:with_locale).with("en", any_args)
+      end
+    end
   end
 
   describe "#set_visitor_id" do

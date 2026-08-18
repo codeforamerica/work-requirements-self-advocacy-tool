@@ -1,6 +1,15 @@
 require "rails_helper"
 
 RSpec.describe ErrorsController, type: :controller do
+  describe "#switch_locale" do
+    context "when the locale param is not a supported locale" do
+      it "does not raise, and falls back instead of using it" do
+        expect { get :not_found, params: {locale: "sleep 4"} }.not_to raise_error
+        expect(response).to have_http_status(:not_found)
+      end
+    end
+  end
+
   describe "#screener_locale" do
     context "when the screener has a locale set" do
       it "does not overwrite it during error handling" do

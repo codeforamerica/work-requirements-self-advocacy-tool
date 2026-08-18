@@ -1,5 +1,5 @@
 module Nc
-  class EduWorkHistoryController < QuestionController
+  class EduWorkHistoryController < NcQuestionController
     include WrExemptionsConcern
 
     def self.attributes_edited
