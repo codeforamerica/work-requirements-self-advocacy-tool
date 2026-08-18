@@ -15,10 +15,6 @@ class LogFormatter < SemanticLogger::Formatters::Raw
   def call(log, logger)
     super
 
-    # Logs with no request/job context (console, rails runner, rake tasks) never
-    # go through the on_log callback that lazily initializes this to a Hash.
-    log.context ||= {}
-
     current_trace
     resource
     screener_id
@@ -30,10 +26,16 @@ class LogFormatter < SemanticLogger::Formatters::Raw
 
   private
 
+  # Logs with no request/job context (console, rails runner, rake tasks) never
+  # go through the on_log callback that lazily initializes log.context to a Hash.
+  def context
+    log.context || {}
+  end
+
   # Add the current trace and span IDs, if any, to the attributes.
   def current_trace
-    hash[:span_id] = log.context[:span_id] if log.context[:span_id].present?
-    hash[:trace_id] = log.context[:trace_id] if log.context[:trace_id].present?
+    hash[:span_id] = context[:span_id] if context[:span_id].present?
+    hash[:trace_id] = context[:trace_id] if context[:trace_id].present?
   end
 
   # Add the AWS resource details to the attributes.
@@ -53,7 +55,7 @@ class LogFormatter < SemanticLogger::Formatters::Raw
 
   # Add the screener ID to the attributes.
   def screener_id
-    hash[:screener_id] = log.context[:screener_id] if log.context[:screener_id].present?
+    hash[:screener_id] = context[:screener_id] if context[:screener_id].present?
   end
 
   # Add the service name to the attributes.
@@ -63,6 +65,6 @@ class LogFormatter < SemanticLogger::Formatters::Raw
 
   # Add the session ID to the attributes.
   def session_id
-    hash[:session_id] = log.context[:session_id] if log.context[:session_id].present?
+    hash[:session_id] = context[:session_id] if context[:session_id].present?
   end
 end
