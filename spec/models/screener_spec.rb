@@ -1274,6 +1274,14 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "#offices_to_display" do
+    context "when state hasn't been set yet" do
+      let(:screener) { build(:screener, state: nil) }
+
+      it "returns an empty array instead of raising" do
+        expect(screener.offices_to_display).to eq([])
+      end
+    end
+
     context "for an NC county" do
       let(:screener) { build(:screener, state: "NC", county: "Durham County") }
 

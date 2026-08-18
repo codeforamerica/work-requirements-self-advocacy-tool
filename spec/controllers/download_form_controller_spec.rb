@@ -79,6 +79,18 @@ RSpec.describe DownloadFormController, type: :controller do
       end
     end
 
+    context "when the screener has no state set" do
+      let(:screener) { create(:screener, :with_exemption, state: nil, email: "hi@example.com") }
+
+      before { sign_in screener }
+
+      it "redirects to root instead of raising" do
+        get :display
+
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
     context "for a DE single-office zip" do
       render_views
       let(:screener) { create(:screener, :with_exemption, state: "DE", zip_code: "19703", last_name: "Anyone", email: "hi@example.com") }

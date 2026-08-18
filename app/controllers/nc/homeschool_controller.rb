@@ -1,5 +1,5 @@
 module Nc
-  class HomeschoolController < QuestionController
+  class HomeschoolController < NcQuestionController
     include WrExemptionsConcern
 
     CHARACTER_LIMIT = 40

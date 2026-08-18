@@ -39,6 +39,7 @@ module WorkRequirementsSelfAdvocacyTool
     config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info").to_sym
 
     config.action_dispatch.rescue_responses["ActionDispatch::ParameterTypeError"] = :bad_request
+    config.action_dispatch.rescue_responses["Mime::Type::InvalidMimeType"] = :not_acceptable
     config.exceptions_app = routes
 
     # Dynamic pages may contain personal data (e.g. form responses), so don't let
