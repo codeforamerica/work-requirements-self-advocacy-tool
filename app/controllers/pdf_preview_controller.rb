@@ -73,6 +73,7 @@ class PdfPreviewController < QuestionController
   end
 
   private
+
   def temp_screener_packet_pdf
     LocationData::States.pdf_filler_class(@temp_screener.state).new(@temp_screener)
   end
