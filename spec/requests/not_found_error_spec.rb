@@ -51,4 +51,20 @@ RSpec.describe "404 Not Found error page", type: :request do
       expect(response.headers["Content-Security-Policy"]).to be_present
     end
   end
+
+  context "GET an unmatched path with a non-html extension" do
+    # The catch-all route matches any unmatched path, so a request for a nonexistent
+    # "*.css" (or similar) asset resolves its format from the extension. We only have
+    # html templates, so this previously raised ActionView::MissingTemplate instead of
+    # rendering a normal 404.
+    before { get "/this_path_does_not_exist.css" }
+
+    it "returns HTTP 404" do
+      expect(response).to have_http_status(:not_found)
+    end
+
+    it "renders the html error page" do
+      expect(response.body).to include("ERROR: 404 Not Found")
+    end
+  end
 end

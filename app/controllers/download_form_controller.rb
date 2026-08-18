@@ -1,4 +1,5 @@
 class DownloadFormController < ExemptionAwareQuestionController
+  before_action :redirect_unless_state_present, only: :display
   before_action :email_pdf, :save_outcome, only: :display
 
   def show_progress_bar
@@ -21,5 +22,11 @@ class DownloadFormController < ExemptionAwareQuestionController
 
   def outcome_value
     Screener::EXEMPT
+  end
+
+  # A blank/unrecognized state here means the screener bypassed the normal flow
+  # (LocationController runs first and always sets it), not a legitimate value.
+  def redirect_unless_state_present
+    redirect_to root_path unless LocationData::States::STATES_INFO.key?(current_screener.state)
   end
 end

@@ -3,6 +3,16 @@ require "rails_helper"
 RSpec.describe Nc::HomeschoolController, type: :controller do
   describe "#edit" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+
+    it "redirects to root instead of raising if the nc_screener doesn't exist yet" do
+      screener = create(:screener, state: "NC")
+      sign_in screener
+      expect(screener.nc_screener).to be_nil
+
+      get :edit
+
+      expect(response).to redirect_to(root_path)
+    end
   end
 
   describe "#update" do
