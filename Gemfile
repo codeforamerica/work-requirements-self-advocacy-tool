@@ -43,6 +43,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 gem "activestorage", ">= 8.1.3.1"
+gem "browser"
 gem "cfa-styleguide", "0.18.0", git: "https://github.com/codeforamerica/honeycrisp-gem"
 gem "csv"
 gem "dartsass-rails", "~> 0.5.1"

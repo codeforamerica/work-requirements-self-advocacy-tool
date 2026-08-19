@@ -148,12 +148,17 @@ describe MixpanelService do
         end
 
         context "tracking information" do
+          let(:chrome_on_mac_user_agent) do
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"
+          end
+
           it "tracks the event with record, controller, and other information" do
             screener = create(:screener, state: LocationData::States::NORTH_CAROLINA, county: "Durham County", source: "duckduckmonkey")
             controller_double = instance_double(HomepageController)
             allow(controller_double).to receive(:class).and_return HomepageController
             allow(controller_double).to receive(:action_name).and_return "index"
             allow(controller_double).to receive(:utms_and_referrer).and_return({referrer: "duckduckshrimp.com", utm_source: "duckduckshrimp", utm_medium: nil})
+            allow(controller_double).to receive(:request).and_return(instance_double(ActionDispatch::Request, user_agent: chrome_on_mac_user_agent))
 
             MixpanelService.send_event(
               distinct_id: "123",
@@ -170,6 +175,9 @@ describe MixpanelService do
                 screener_state: LocationData::States::NORTH_CAROLINA,
                 controller_name: "Homepage",
                 controller_action: "HomepageController#index",
+                browser: "Chrome",
+                os: "macOS",
+                device: "desktop",
                 locale: :en,
                 referrer: "duckduckshrimp.com",
                 utm_source: "duckduckshrimp",
@@ -183,6 +191,7 @@ describe MixpanelService do
             allow(controller_double).to receive(:class).and_return HomepageController
             allow(controller_double).to receive(:action_name).and_return "update"
             allow(controller_double).to receive(:utms_and_referrer).and_return({})
+            allow(controller_double).to receive(:request).and_return(instance_double(ActionDispatch::Request, user_agent: chrome_on_mac_user_agent))
 
             MixpanelService.send_event(
               distinct_id: "123",
@@ -199,6 +208,22 @@ describe MixpanelService do
                 locale: :en
               )
             )
+          end
+
+          describe "#browser_data" do
+            it "categorizes a mobile Safari user agent as mobile" do
+              iphone_user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
+
+              expect(MixpanelService.send(:browser_data, iphone_user_agent)).to eq(
+                browser: "Safari", os: "iOS (iPhone)", device: "mobile"
+              )
+            end
+
+            it "falls back to sensible defaults for a blank user agent" do
+              expect(MixpanelService.send(:browser_data, nil)).to eq(
+                browser: "Unknown Browser", os: "Unknown", device: "desktop"
+              )
+            end
           end
         end
       end
