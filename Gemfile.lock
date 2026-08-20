@@ -128,6 +128,7 @@ GEM
       thor (~> 1.0)
     brakeman (8.0.6)
       racc
+    browser (6.2.0)
     builder (3.3.0)
     capybara (3.40.0)
       addressable
@@ -265,7 +266,6 @@ GEM
     matrix (0.4.3)
     method_source (1.1.0)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.9)
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
@@ -285,9 +285,6 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.5)
-    nokogiri (1.19.4)
-      mini_portile2 (~> 2.8.2)
-      racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-gnu)
       racc (~> 1.4)
     nokogiri (1.19.4-aarch64-linux-musl)
@@ -746,7 +743,6 @@ PLATFORMS
   arm-linux-musl
   arm-linux-musleabihf
   arm64-darwin
-  ruby
   x86_64-darwin
   x86_64-linux
   x86_64-linux-gnu
@@ -758,6 +754,7 @@ DEPENDENCIES
   aws-sdk-rails (~> 5)
   bootsnap
   brakeman
+  browser
   capybara
   cfa-styleguide (= 0.18.0)!
   csv

@@ -83,6 +83,7 @@ class MixpanelService
         controller_data = {
           controller_name: controller.class.name&.sub("Controller", ""),
           controller_action: "#{controller.class.name}##{controller.action_name}",
+          **browser_data(controller.request.user_agent),
           **controller.utms_and_referrer.compact
         }
         event_data.merge!(controller_data)
@@ -107,6 +108,23 @@ class MixpanelService
       else
         {}
       end
+    end
+
+    def browser_data(user_agent)
+      browser = Browser.new(user_agent)
+      device = if browser.device.mobile?
+        "mobile"
+      elsif browser.device.tablet?
+        "tablet"
+      else
+        "desktop"
+      end
+
+      {
+        browser: browser.name,
+        os: browser.platform.name,
+        device: device
+      }
     end
   end
 end
