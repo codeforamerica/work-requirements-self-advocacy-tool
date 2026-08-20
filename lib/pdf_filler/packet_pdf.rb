@@ -48,6 +48,12 @@ module PdfFiller
         submission_date: submission_date,
         working_30_or_more_hours: @screener.working_30_or_more_hours?,
         state: @screener.state,
+        # Defaults for the fields that don't apply to every screener: the income fields
+        # below are only filled in for a screener with an earnings exemption, and the
+        # North Carolina ones only by NcPacketPdf. They are declared here, rather than
+        # left out of the hash, because pdf/packet.html.erb reads all of them -- a
+        # reference to a local that was never passed to a template raises NameError, so
+        # leaving one out means the template has to declare a default for it instead.
         earnings_per_week: nil,
         is_in_work_training: false,
         is_volunteering: false,

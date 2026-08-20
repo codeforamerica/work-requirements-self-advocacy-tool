@@ -16,6 +16,192 @@ RSpec.describe PdfFiller::PacketPdf do
 
   subject(:packet_pdf) { described_class.new(screener) }
 
+  describe "#pdf_fields" do
+    subject(:result) { packet_pdf.pdf_fields }
+
+    describe "direct field mappings" do
+      {
+        caring_for_child_under_6: :caring_for_child_under_6,
+        caring_for_disabled_or_ill_person: :caring_for_disabled_or_ill_person,
+        enrolled_in_education: :is_student,
+        has_child: :has_child,
+        has_unemployment_benefits: :has_unemployment_benefits,
+        in_drug_or_alcohol_program: :is_in_alcohol_treatment_program,
+        is_american_indian: :is_american_indian,
+        is_pregnant: :is_pregnant,
+        preventing_work_medical_condition: :preventing_work_medical_condition,
+        preventing_work_other: :preventing_work_other,
+        receiving_benefits_disability_medicaid: :receiving_benefits_disability_medicaid,
+        seasonal_worker: :is_migrant_farmworker
+      }.each do |pdf_field, screener_attr|
+        it "maps #{pdf_field} from #{screener_attr}" do
+          screener.public_send("#{screener_attr}=", "yes")
+          expect(result[pdf_field]).to be true
+        end
+      end
+
+      it "maps string fields from screener" do
+        screener.additional_care_info = "Babysitting Paul Hollywood"
+        screener.alcohol_treatment_program_name = "Alcolisti Anonimi"
+        screener.case_number = "543212345"
+        screener.confirmation_code = "ABQ39L"
+        screener.preventing_work_other = "yes"
+        screener.preventing_work_write_in = "Back pain"
+        screener.receiving_benefits_other = "yes"
+        screener.preventing_work_additional_info = "I am carrying the weight of the world on my back."
+        screener.receiving_benefits_write_in = "Other disability"
+        screener.signature = "Nigellla Lawson"
+        screener.ssn_last_four = "1111"
+
+        expect(result[:details_of_care]).to eq("Babysitting Paul Hollywood")
+        expect(result[:drug_alcohol_program_name]).to eq("Alcolisti Anonimi")
+        expect(result[:case_number]).to eq("543212345")
+        expect(result[:confirmation_code]).to eq("ABQ39L")
+        expect(result[:email]).to eq("nigella@example.com")
+        expect(result[:phone_number]).to eq("(919) 555-1234")
+        expect(result[:preventing_work_other_write_in]).to eq("Back pain")
+        expect(result[:preventing_work_write_in]).to eq("I am carrying the weight of the world on my back.")
+        expect(result[:receiving_benefits_write_in]).to eq("Other disability")
+        expect(result[:signature]).to eq("Nigellla Lawson")
+        expect(result[:ssn_last_4]).to eq("1111")
+      end
+
+      it "maps date and numeric fields as strings" do
+        screener.pregnancy_due_date = Date.new(2026, 9, 15)
+
+        expect(result[:birth_date]).to eq("July 13, 1990")
+        expect(result[:pregnancy_due_date]).to eq("September 15, 2026")
+      end
+
+      it "passes the screener's state through for the template's North Carolina-only sections" do
+        expect(result[:state]).to eq(LocationData::States::DELAWARE)
+      end
+    end
+
+    describe "calculated fields" do
+      it "delegates age to screener and converts to string" do
+        allow(screener).to receive(:age).and_return(35)
+        expect(result[:age]).to eq("35")
+      end
+
+      it "returns empty string for age when screener.age is nil" do
+        allow(screener).to receive(:age).and_return(nil)
+        expect(result[:age]).to eq("")
+      end
+
+      it "delegates full_name_with_middle to screener" do
+        allow(screener).to receive(:full_name_with_middle).and_return("Nigella Lucy Lawson")
+        expect(result[:full_name_with_middle]).to eq("Nigella Lucy Lawson")
+      end
+
+      it "delegates the summary-page fields to screener" do
+        allow(screener).to receive(:receiving_disability_benefits?).and_return(true)
+        allow(screener).to receive(:working_30_or_more_hours?).and_return(true)
+        allow(screener).to receive(:earnings_above_minimum?).and_return(false)
+        allow(screener).to receive(:any_preventing_work?).and_return(true)
+
+        expect(result[:receiving_disability_benefits]).to be true
+        expect(result[:working_30_or_more_hours]).to be true
+        expect(result[:earnings_above_minimum]).to be false
+        expect(result[:any_preventing_work]).to be true
+      end
+    end
+
+    it "sets submission_date to the current date" do
+      travel_to Date.new(2026, 1, 9) do
+        expect(result[:submission_date]).to eq("January 9, 2026")
+      end
+    end
+
+    it "leaves the NC-only fields blank" do
+      blank_nc_fields = {
+        at_least_55_no_diploma_not_working: false,
+        homeschool_hours: nil,
+        homeschool_name: nil,
+        operating_a_homeschool: false,
+        operating_homeschool_30_or_more_hours: false,
+        preventing_work_domestic_violence: false,
+        preventing_work_drugs_alcohol: false,
+        preventing_work_place_to_sleep: false
+      }
+      expect(result).to include(blank_nc_fields)
+    end
+
+    context "screener has a regular exemption" do
+      before { screener.assign_attributes(preventing_work_medical_condition: "yes") }
+
+      context "income-related fields" do
+        let(:blank_income_fields) do
+          {
+            earnings_per_week: nil,
+            is_in_work_training: false,
+            is_volunteering: false,
+            volunteering_hours: nil,
+            volunteering_org_name: nil,
+            work_hours: nil,
+            work_training_hours: nil,
+            work_training_name: nil,
+            working_or_earning: false
+          }
+        end
+
+        it "leaves every work, volunteer, and training field blank" do
+          expect(result).to include(blank_income_fields)
+        end
+
+        it "leaves them blank even if they hold values" do
+          screener.assign_attributes(
+            working_hours: 35,
+            working_weekly_earnings: 250.00,
+            volunteering_hours: 10,
+            volunteering_org_name: "Muffins for Mums",
+            work_training_hours: 15,
+            work_training_name: "Bake Off Boot Camp"
+          )
+
+          expect(result).to include(blank_income_fields)
+        end
+      end
+    end
+
+    context "screener has only the earnings exemption" do
+      before do
+        screener.assign_attributes(
+          is_working: "yes",
+          working_hours: 35,
+          working_weekly_earnings: 250.00,
+          is_volunteer: "yes",
+          volunteering_hours: 10,
+          volunteering_org_name: "Muffins for Mums",
+          is_in_work_training: "yes",
+          work_training_hours: 15,
+          work_training_name: "Bake Off Boot Camp"
+        )
+      end
+
+      it "maps earnings, work, volunteer, and training fields" do
+        expect(result[:earnings_per_week]).to eq("250.0")
+        expect(result[:work_hours]).to eq("35")
+        expect(result[:volunteering_hours]).to eq("10")
+        expect(result[:volunteering_org_name]).to eq("Muffins for Mums")
+        expect(result[:work_training_hours]).to eq("15")
+        expect(result[:work_training_name]).to eq("Bake Off Boot Camp")
+      end
+
+      it "delegates working_or_earning to has_earnings_exemption?" do
+        expect(result[:working_or_earning]).to be true
+      end
+
+      it "delegates is_volunteering to screener" do
+        expect(result[:is_volunteering]).to be true
+      end
+
+      it "delegates is_in_work_training to screener" do
+        expect(result[:is_in_work_training]).to be true
+      end
+    end
+  end
+
   describe "#to_pdf" do
     # Captures the HTML Grover would rasterize, without launching headless Chrome.
     def rendered_html
