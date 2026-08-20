@@ -51,6 +51,7 @@ gem "erb", ">= 6.0.5"
 gem "grover"
 gem "hexapdf", "~> 1.8"
 gem "json", ">= 2.21.2"
+gem "mail", ">= 2.9.1"
 gem "mixpanel-ruby"
 gem "msgpack", ">= 1.8.4"
 gem "opentelemetry-exporter-otlp", "~> 0.34"
@@ -95,5 +96,3 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
-
-gem "mail", ">= 2.9.1"
