@@ -69,7 +69,7 @@ class PdfPreviewController < QuestionController
   end
 
   def packet
-    send_data temp_screener_packet_pdf.combined_pdf_all_html, filename: "packet_preview.pdf", disposition: "inline"
+    send_data temp_screener_packet_pdf.to_pdf, filename: "packet_preview.pdf", disposition: "inline"
   end
 
   private

@@ -462,7 +462,7 @@ RSpec.describe PdfFiller::PacketPdf do
     end
   end
 
-  describe "#combined_pdf_all_html" do
+  describe "#to_pdf" do
     # Captures the HTML Grover would rasterize, without launching headless Chrome.
     def rendered_html
       html = nil
@@ -477,7 +477,7 @@ RSpec.describe PdfFiller::PacketPdf do
     it "omits North Carolina-only fields for a Delaware screener" do
       screener.preventing_work_medical_condition = "yes"
 
-      html = rendered_html { packet_pdf.combined_pdf_all_html }
+      html = rendered_html { packet_pdf.to_pdf }
 
       expect(html).not_to include("I am operating a home school")
       expect(html).not_to include("I do not have a regular place to sleep and shower")

@@ -356,7 +356,7 @@ class Screener < ApplicationRecord
     packet_pdf = LocationData::States.pdf_filler_class(state).new(self)
 
     if ENV["HTML_PDF_ENABLED"] == "true"
-      packet_pdf.combined_pdf_all_html
+      packet_pdf.to_pdf
     else
       packet_pdf.combined_pdf
     end

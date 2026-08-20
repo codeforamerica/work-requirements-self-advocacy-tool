@@ -148,7 +148,7 @@ RSpec.describe PdfFiller::NcPacketPdf do
     end
   end
 
-  describe "#combined_pdf_all_html" do
+  describe "#to_pdf" do
     # Captures the HTML Grover would rasterize, without launching headless Chrome.
     def rendered_html
       html = nil
@@ -172,7 +172,7 @@ RSpec.describe PdfFiller::NcPacketPdf do
       )
       allow(screener.state_policy).to receive(:age_work_education_health_exemption?).and_return(true)
 
-      html = rendered_html { packet_pdf.combined_pdf_all_html }
+      html = rendered_html { packet_pdf.to_pdf }
 
       expect(html).to include("I am operating a home school for at least 30 hours a week")
       expect(html).to include("Hours a week operating home school: 20")
