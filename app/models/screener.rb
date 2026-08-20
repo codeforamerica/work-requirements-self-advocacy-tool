@@ -353,13 +353,7 @@ class Screener < ApplicationRecord
 
   def pdf
     Rails.logger.info("Generating PDF for screener #{id}")
-    packet_pdf = LocationData::States.pdf_filler_class(state).new(self)
-
-    if ENV["HTML_PDF_ENABLED"] == "true"
-      packet_pdf.to_pdf
-    else
-      packet_pdf.combined_pdf
-    end
+    LocationData::States.pdf_filler_class(state).new(self).to_pdf
   end
 
   def full_name

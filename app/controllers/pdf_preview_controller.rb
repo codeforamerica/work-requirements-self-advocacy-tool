@@ -64,10 +64,6 @@ class PdfPreviewController < QuestionController
     )
   end
 
-  def summary_page
-    render template: "pdf/summary_page", locals: temp_screener_packet_pdf.hash_for_generated_pdf
-  end
-
   def packet
     send_data temp_screener_packet_pdf.to_pdf, filename: "packet_preview.pdf", disposition: "inline"
   end
