@@ -255,7 +255,7 @@ GEM
     loofah (2.25.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.9.0)
+    mail (2.9.1)
       logger
       mini_mime (>= 0.1.1)
       net-imap
@@ -773,6 +773,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   json (>= 2.21.2)
+  mail (>= 2.9.1)
   mixpanel-ruby
   msgpack (>= 1.8.4)
   opentelemetry-exporter-otlp (~> 0.34)
