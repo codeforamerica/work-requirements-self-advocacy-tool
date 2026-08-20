@@ -6,7 +6,7 @@ html, body, main {
 }
 
 .pdf-packet {
-  margin: 60px 35px;
+  margin: 30px 35px;
   font-family: "Source Sans 3", -apple-system, sans-serif;
   /* Overrides Honeycrisp's application.css body rule of font-size: 1.9rem; line-height: 2.5rem */
   font-size: 14px;
@@ -16,23 +16,6 @@ html, body, main {
   p {
     margin-bottom: 1rem;
   }
-}
-
-/* Overrides additional margin from the original HTML doc.
-This will be changed when we switch to the new PDF entirely
-*/
-.combined-summary-page {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
-.filled-packet {
-  margin-top: 30px;
-}
-
-.filled-packet {
-  font-size: 14px;
-  line-height: normal;
 }
 
 .header {
