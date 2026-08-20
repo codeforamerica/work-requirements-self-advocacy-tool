@@ -133,25 +133,20 @@ module PdfFiller
     end
 
     def pdf_fields
-      {
-        earnings_per_week: nil,
-        is_in_work_training: false,
-        is_volunteering: false,
-        volunteering_hours: nil,
-        volunteering_org_name: nil,
-        work_hours: nil,
-        work_training_name: nil,
-        work_training_hours: nil,
-        working_or_earning: false,
-        homeschool_hours: nil,
-        homeschool_name: nil,
-        operating_a_homeschool: false,
-        operating_homeschool_30_or_more_hours: false,
-        at_least_55_no_diploma_not_working: false,
-        preventing_work_place_to_sleep: false,
-        preventing_work_domestic_violence: false,
-        preventing_work_drugs_alcohol: false
-      }.merge(shared_fields).merge(
+      fields = {
+        birth_date: @screener.birth_date.strftime("%B %-d, %Y"),
+        caring_for_child_under_6: @screener.caring_for_child_under_6_yes?,
+        caring_for_disabled_or_ill_person: @screener.caring_for_disabled_or_ill_person_yes?,
+        enrolled_in_education: @screener.is_student_yes?,
+        has_child: @screener.has_child_yes?,
+        has_unemployment_benefits: @screener.has_unemployment_benefits_yes?,
+        in_drug_or_alcohol_program: @screener.is_in_alcohol_treatment_program_yes?,
+        is_american_indian: @screener.is_american_indian_yes?,
+        is_pregnant: @screener.is_pregnant_yes?,
+        pregnancy_due_date: @screener.pregnancy_due_date&.strftime("%B %-d, %Y").to_s,
+        preventing_work_medical_condition: @screener.preventing_work_medical_condition_yes?,
+        preventing_work_other: @screener.preventing_work_other_yes?,
+        seasonal_worker: @screener.is_migrant_farmworker_yes?,
         age: @screener.age.to_s,
         any_preventing_work: @screener.any_preventing_work?,
         case_number: @screener.case_number,
@@ -178,21 +173,41 @@ module PdfFiller
         ssn_last_4: @screener.ssn_last_four,
         submission_date: submission_date,
         working_30_or_more_hours: @screener.working_30_or_more_hours?,
-        state: @screener.state
-      ).tap do |fields|
-        if @screener.has_earnings_exemption?
-          fields.merge!(
-            earnings_per_week: @screener.working_weekly_earnings.to_s,
-            is_in_work_training: @screener.is_in_work_training_yes?,
-            is_volunteering: @screener.volunteering?,
-            volunteering_hours: @screener.volunteering_hours.to_s,
-            volunteering_org_name: @screener.volunteering_org_name,
-            work_hours: @screener.working_hours.to_s,
-            work_training_name: @screener.work_training_name,
-            working_or_earning: true
-          )
-        end
+        state: @screener.state,
+        earnings_per_week: nil,
+        is_in_work_training: false,
+        is_volunteering: false,
+        volunteering_hours: nil,
+        volunteering_org_name: nil,
+        work_hours: nil,
+        work_training_name: nil,
+        work_training_hours: nil,
+        working_or_earning: false,
+        homeschool_hours: nil,
+        homeschool_name: nil,
+        operating_a_homeschool: false,
+        operating_homeschool_30_or_more_hours: false,
+        at_least_55_no_diploma_not_working: false,
+        preventing_work_place_to_sleep: false,
+        preventing_work_domestic_violence: false,
+        preventing_work_drugs_alcohol: false
+      }
+
+      if @screener.has_earnings_exemption?
+        fields.merge!(
+          earnings_per_week: @screener.working_weekly_earnings.to_s,
+          is_in_work_training: @screener.is_in_work_training_yes?,
+          is_volunteering: @screener.volunteering?,
+          volunteering_hours: @screener.volunteering_hours.to_s,
+          volunteering_org_name: @screener.volunteering_org_name,
+          work_hours: @screener.working_hours.to_s,
+          work_training_hours: @screener.work_training_hours,
+          work_training_name: @screener.work_training_name,
+          working_or_earning: true
+        )
       end
+
+      fields
     end
 
     def to_pdf
