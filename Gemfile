@@ -95,3 +95,5 @@ group :test do
   gem "selenium-webdriver"
   gem "rspec-rails"
 end
+
+gem "mail", ">= 2.9.1"
