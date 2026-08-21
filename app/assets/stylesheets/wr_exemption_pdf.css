@@ -1,5 +1,5 @@
-/* Reset Honeycrisp's site-chrome rules (html/body/main background + spacing
-   meant for the live app's toolbar layout) */
+/* Reset Honeycrisp's html/body/main background + spacing
+   meant for the live app's toolbar layout */
 html, body, main {
   background: white;
   margin: 0;
