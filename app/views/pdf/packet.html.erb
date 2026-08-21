@@ -1,0 +1,228 @@
+<div class="pdf-packet">
+  <div class="header">
+    <p>SUMMARY OF</p>
+    <h1>SNAP Work Requirement Exemptions</h1>
+  </div>
+
+  <div class="section-title">
+    <%= inline_svg("pdf-person.svg") %>
+    <h3>Client Information</h3>
+  </div>
+  <div class="info-box">
+    <div class="info-row">
+      <%= info_field("Name:", full_name_with_middle) %>
+    </div>
+    <div class="info-row">
+      <%= info_field("Birthdate:", "#{birth_date}, (Age #{age})") %>
+      <%= info_field("Phone Number:", phone_number) %>
+    </div>
+    <div class="info-row">
+      <%= info_field("E-mail Address:", email) %>
+    </div>
+    <div class="info-row">
+      <%= info_field("Case Number:", case_number) %>
+      <%= info_field("Last 4 digits of SSN:", ssn_last_4) %>
+    </div>
+  </div>
+
+  <div class="grey-box">
+    <% if caring_for_child_under_6 || caring_for_disabled_or_ill_person || has_unemployment_benefits || in_drug_or_alcohol_program || enrolled_in_education || working_30_or_more_hours || seasonal_worker || earnings_above_minimum || operating_homeschool_30_or_more_hours %>
+      <p class="section-header">General Work Requirement Exemptions</p>
+      <ul>
+        <% if caring_for_child_under_6 %>
+          <li>Caring for a child under 6 years old <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
+        <% end %>
+        <% if caring_for_disabled_or_ill_person %>
+          <li>Caring for an incapacitated person <span class="list-item--note">- 7 CFR 273.7(b)(1)(iv)</span></li>
+        <% end %>
+        <% if has_unemployment_benefits %>
+          <li>Currently getting unemployment benefits or has applied for unemployment benefits <span class="list-item--note">- 7 CFR 273.7(b)(1)(v)</span></li>
+        <% end %>
+        <% if in_drug_or_alcohol_program %>
+          <li>Participating regularly in an alcohol or drug treatment program <span class="list-item--note">- 7 CFR 273.7(b)(1)(vi)</span></li>
+        <% end %>
+        <% if enrolled_in_education %>
+          <li>Enrolled in a school, training program, or institution of higher education at least half-time <span class="list-item--note">- 7 CFR 273.7(b)(1)(viii)</span></li>
+        <% end %>
+        <% if working_30_or_more_hours %>
+          <li>Working at least 30 hours a week <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+        <% if seasonal_worker %>
+          <li>Seasonal or migrant farmworker under an agreement or contract to start work within the next 30 days. <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+        <% if earnings_above_minimum %>
+          <li>Earning at least $217.50 a week, averaged monthly, from work <span class="list-item--note">- 7 CFR 273.7(b)(1)(vii)</span></li>
+        <% end %>
+        <% if operating_homeschool_30_or_more_hours %>
+          <li>Operating a home school for at least 30 hours a week</li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <% if has_child || is_pregnant || receiving_disability_benefits || is_american_indian || any_preventing_work %>
+      <p class="section-header">Able-Bodied Adult Without Dependents (ABAWD) Work Requirement Exemptions</p>
+      <ul>
+        <% if has_child %>
+          <li>Living with a child under 14 years old <span class="list-item--note">- 7 USC 2015(o)(3)(C)</span></li>
+        <% end %>
+        <% if is_pregnant %>
+          <li>Pregnant <% if pregnancy_due_date.present? %>(Due: <%= l(Date.parse(pregnancy_due_date), format: :long) %>) <% end %><span class="list-item--note">- 7 CFR 273.24(c)(6)</span></li>
+        <% end %>
+        <% if receiving_disability_benefits %>
+          <li>Receiving a disability benefit <span class="list-item--note">- 7 CFR 273.24(c)(2)(i)</span></li>
+        <% end %>
+        <% if is_american_indian %>
+          <li>A member of an Indian tribe or nation <span class="list-item--note">- 7 USC 2015(o)(3)(F),(G)</span></li>
+        <% end %>
+        <% if any_preventing_work %>
+          <li>"Unfit for work" - unable to consistently work 20 hours a week <span class="list-item--note">(7 CFR 273.24(c)(2))</span> because:
+            <ul>
+              <% if at_least_55_no_diploma_not_working %>
+                <li>At least 55 years old without a high school diploma and with limited recent work history</li>
+              <% end %>
+              <% if preventing_work_place_to_sleep %>
+                <li>Does not have a regular place to sleep or shower</li>
+              <% end %>
+              <% if preventing_work_domestic_violence %>
+                <li>Experiencing domestic violence</li>
+              <% end %>
+              <% if preventing_work_drugs_alcohol %>
+                <li>Substance use disorder</li>
+              <% end %>
+              <% if preventing_work_medical_condition %>
+                <li>Has a physical or mental medical condition preventing them from working at least 20 hours every week (see details on following pages)</li>
+              <% end %>
+              <% if preventing_work_other %>
+                <li>Other</li>
+              <% end %>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>
+
+<div class="pdf-packet filled-packet">
+  <div class="header">
+    <p>DETAILS ABOUT</p>
+    <h1>SNAP Work Requirement Exemption Information</h1>
+  </div>
+
+  <% if is_american_indian || has_child || caring_for_child_under_6 || caring_for_disabled_or_ill_person ||
+      is_pregnant || has_unemployment_benefits || receiving_disability_benefits || working_or_earning ||
+      seasonal_worker || operating_a_homeschool || is_in_work_training || is_volunteering ||
+      enrolled_in_education || in_drug_or_alcohol_program %>
+  <div class="section-title">
+    <%= inline_svg("pdf-document.svg") %>
+    <h3>Reported Exemptions</h3>
+  </div>
+  <ul class="checklist">
+
+    <%= checklist_item("I am a member of an Indian tribe or nation", is_american_indian) %>
+    <%= checklist_item("I live with a child under 14", has_child) %>
+    <%= checklist_item("I am caring for a child under age 6", caring_for_child_under_6) %>
+    <%= checklist_item("I am caring for an incapacitated person", caring_for_disabled_or_ill_person) %>
+    <% if details_of_care.present? %>
+      <li class="checklist-item__detail"><strong>Details of care:</strong> <%= details_of_care %></li>
+    <% end %>
+    <%= checklist_item("I am pregnant", is_pregnant) %>
+    <% if pregnancy_due_date.present? %>
+      <li class="checklist-item__detail">Expected due date: <%= pregnancy_due_date %></li>
+    <% end %>
+    <%= checklist_item("I am getting unemployment benefits, or I have applied for unemployment benefits", has_unemployment_benefits) %>
+    <% if receiving_disability_benefits %>
+      <%= checklist_item("I am receiving the following Disability Benefits", receiving_disability_benefits) %>
+      <ul class="checklist checklist--nested">
+        <%= checklist_item("Social Security Disability Benefits (SSDI)", receiving_benefits_ssdi) %>
+        <%= checklist_item("Supplemental Security Income (SSI)", receiving_benefits_ssi) %>
+        <%= checklist_item("Veteran's disability", receiving_benefits_veterans_disability) %>
+        <%= checklist_item("Worker's compensation", receiving_benefits_workers_compensation) %>
+        <%= checklist_item("Disability pension", receiving_benefits_disability_pension) %>
+        <%= checklist_item("Disability insurance payments", receiving_benefits_insurance_payments) %>
+        <%= checklist_item("Disability-related Medicaid", receiving_benefits_disability_medicaid) %>
+        <%= checklist_item("Other:", receiving_benefits_other) %>
+        <% if receiving_benefits_write_in.present? %>
+          <li class="checklist-item__detail"><%= receiving_benefits_write_in %></li>
+        <% end %>
+      </ul>
+    <% end %>
+    <%= checklist_item("I am working 30 hours per week on average, including self-employment, or I am earning at least $217.50 a week", working_or_earning) %>
+    <% if work_hours.present? %>
+      <li class="checklist-item__detail">Hours worked per week: <%= work_hours %></li>
+    <% end %>
+    <% if earnings_per_week.present? %>
+      <li class="checklist-item__detail">Weekly amount earned before taxes: <%= earnings_per_week %></li>
+    <% end %>
+    <%= checklist_item("I am a seasonal or migrant farmworker under contract or an equivalent agreement to start work within the next 30 days", seasonal_worker) %>
+    <% if state == LocationData::States::NORTH_CAROLINA %>
+      <%= checklist_item("I am operating a home school for at least 30 hours a week", operating_a_homeschool) %>
+      <% if homeschool_hours.present? %>
+        <li class="checklist-item__detail">Hours a week operating home school: <%= homeschool_hours %></li>
+      <% end %>
+      <% if homeschool_name.present? %>
+        <li class="checklist-item__detail">Name of the home school: <%= homeschool_name %></li>
+      <% end %>
+    <% end %>
+    <%= checklist_item("I am in a job-training program or SNAP E&T program", is_in_work_training) %>
+    <% if work_training_hours.present? %>
+      <li class="checklist-item__detail">Hours a week attending this program: <%= work_training_hours %></li>
+    <% end %>
+    <% if work_training_name.present? %>
+      <li class="checklist-item__detail">Name of organization or program: <%= work_training_name %></li>
+    <% end %>
+    <%= checklist_item("I am doing community service or volunteer work", is_volunteering) %>
+    <% if volunteering_hours.present? %>
+      <li class="checklist-item__detail">Hours a week volunteering: <%= volunteering_hours %></li>
+    <% end %>
+    <% if volunteering_org_name.present? %>
+      <li class="checklist-item__detail">Name of organization or program: <%= volunteering_org_name %></li>
+    <% end %>
+    <%= checklist_item("I am attending school at least half-time", enrolled_in_education) %>
+    <%= checklist_item("I am participating in a drug or alcohol treatment program", in_drug_or_alcohol_program) %>
+    <% if drug_alcohol_program_name.present? %>
+      <li class="checklist-item__detail">Name of the program: <%= drug_alcohol_program_name %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <% if at_least_55_no_diploma_not_working || preventing_work_place_to_sleep || preventing_work_drugs_alcohol ||
+      preventing_work_domestic_violence || preventing_work_medical_condition || preventing_work_other %>
+  <div class="section-title">
+    <%= inline_svg("pdf-work.svg") %>
+    <h3>Fitness for Work</h3>
+  </div>
+  <p>The following condition(s) prevent(s) me from working at least 20 hours a week:</p>
+  <ul class="checklist">
+    <% if state == LocationData::States::NORTH_CAROLINA %>
+      <%= checklist_item("I am 55 to 64 years old, I do not have a high school diploma or GED, I have not had substantial work in the past five years and I have a health condition that limits my ability to work", at_least_55_no_diploma_not_working) %>
+      <%= checklist_item("I do not have a regular place to sleep and shower", preventing_work_place_to_sleep) %>
+      <%= checklist_item("I am struggling with drugs or alcohol", preventing_work_drugs_alcohol) %>
+      <%= checklist_item("I am experiencing domestic violence", preventing_work_domestic_violence) %>
+    <% end %>
+    <%= checklist_item("I have a physical or mental medical condition that prevents me from working at least 20 hours per week", preventing_work_medical_condition) %>
+    <%= checklist_item("Other", preventing_work_other) %>
+    <% if preventing_work_other_write_in.present? %>
+      <li class="checklist-item__detail"><%= preventing_work_other_write_in %></li>
+    <% end %>
+  </ul>
+  <% if preventing_work_write_in.present? %>
+    <p><strong>More information about how my condition prevents me from working 20 hours a week: </strong><%= preventing_work_write_in %></p>
+  <% end %>
+  <% end %>
+
+  <div class="section-title">
+    <%= inline_svg("pdf-signature.svg") %>
+    <h3>Electronic Signature</h3>
+  </div>
+  <p>I certify under penalty of perjury that the information provided on this form is true and correct.</p>
+  <div class="info-box">
+    <div class="info-row">
+      <%= info_field("Full legal name:", signature) %>
+    </div>
+    <div class="info-row">
+      <%= info_field("Date of submission:", submission_date) %>
+      <%= info_field("Confirmation code:", confirmation_code) %>
+    </div>
+  </div>
+</div>
