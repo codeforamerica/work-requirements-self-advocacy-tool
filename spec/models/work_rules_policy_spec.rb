@@ -16,51 +16,76 @@ RSpec.describe WorkRulesPolicy do
     let(:screener) { build(:screener, state: "DE") }
     let(:policy) { screener.state_policy }
 
+    describe "#exemption_reasons" do
+      before { screener.birth_date = 30.years.ago.to_date }
+
+      it "is empty when nothing applies" do
+        expect(policy.exemption_reasons).to eq []
+      end
+
+      context "age exemption" do
+        it "does not throw an error when birth_date is nil" do
+          screener.birth_date = nil
+          expect(policy.exemption_reasons).to eq []
+        end
+
+        it "distinguishes the two age exemptions" do
+          screener.birth_date = 65.years.ago.to_date
+          expect(policy.exemption_reasons).to eq %w[age_65_or_older]
+
+          screener.birth_date = 17.years.ago.to_date
+          expect(policy.exemption_reasons).to eq %w[age_under_18]
+        end
+      end
+
+      it "uses the column names for exemption reasons that are yes" do
+        Screener::ELIGIBILITY_EXEMPTION_ATTRIBUTES.each do |attribute|
+          exempt_screener = build(:screener, state: "DE", birth_date: 30.years.ago.to_date)
+          exempt_screener.assign_attributes(attribute => "yes")
+
+          expect(exempt_screener.state_policy.exemption_reasons).to eq [attribute.to_s]
+        end
+      end
+
+      context "earnings exemption" do
+        it "adds earnings_exemption if has_earnings_exemption? is true" do
+          allow(policy).to receive(:has_earnings_exemption?).and_return true
+          expect(policy.exemption_reasons).to eq %w[earnings_exemption]
+        end
+
+        it "does not add earnings_exemption if has_earnings_exemption? is false" do
+          allow(policy).to receive(:has_earnings_exemption?).and_return false
+          expect(policy.exemption_reasons).to eq []
+        end
+      end
+
+      it "lists the exemptions in order (age first, others in the middle, earnings last)" do
+        screener.assign_attributes(birth_date: 70.years.ago.to_date, has_child: "yes", is_pregnant: "yes", is_working: "yes", working_hours: 30)
+
+        expect(policy.exemption_reasons).to eq %w[age_65_or_older has_child is_pregnant earnings_exemption]
+      end
+    end
+
     describe "#exempt_from_work_rules?" do
-      it "is true when there is a general exemption" do
-        allow(policy).to receive(:has_exemption?).and_return(true)
-        allow(policy).to receive(:has_earnings_exemption?).and_return(false)
+      it "is true when exemption_reasons are present" do
+        allow(policy).to receive(:exemption_reasons).and_return %w[earnings_exemption]
         expect(policy.exempt_from_work_rules?).to eq true
       end
 
-      it "is true when there is an earnings exemption" do
-        allow(policy).to receive(:has_exemption?).and_return(false)
-        allow(policy).to receive(:has_earnings_exemption?).and_return(true)
-        expect(policy.exempt_from_work_rules?).to eq true
-      end
-
-      it "is false when there is neither" do
-        allow(policy).to receive(:has_exemption?).and_return(false)
-        allow(policy).to receive(:has_earnings_exemption?).and_return(false)
+      it "is false when exemption_reasons is empty" do
+        allow(policy).to receive(:exemption_reasons).and_return []
         expect(policy.exempt_from_work_rules?).to eq false
       end
     end
 
     describe "#has_exemption?" do
-      before { screener.birth_date = 30.years.ago.to_date }
-
-      it "is true when age qualified (under 18)" do
-        screener.birth_date = 16.years.ago.to_date
+      it "is true when non_earnings_exemption_reasons are present" do
+        allow(policy).to receive(:non_earnings_exemption_reasons).and_return %w[has_unemployment_benefits is_pregnant]
         expect(policy.has_exemption?).to eq true
       end
 
-      it "is true when age qualified (65 or older)" do
-        screener.birth_date = 70.years.ago.to_date
-        expect(policy.has_exemption?).to eq true
-      end
-
-      it "is true when a non-working exemption attribute is yes" do
-        screener.is_student = "yes"
-        expect(policy.has_exemption?).to eq true
-      end
-
-      it "is false when there is a state-specific exemption" do
-        allow(policy).to receive(:exempt_from_state_work_rules?).and_return(true)
-        expect(policy.has_exemption?).to eq true
-      end
-
-      it "is false when no exemptions apply" do
-        screener.assign_attributes(is_working: "no", is_student: "no")
+      it "is false when non_earnings_exemption_reasons is empty" do
+        allow(policy).to receive(:non_earnings_exemption_reasons).and_return []
         expect(policy.has_exemption?).to eq false
       end
     end
@@ -131,8 +156,7 @@ RSpec.describe WorkRulesPolicy do
       end
     end
 
-    it "exempt_from_state_work_rules? and extra_preventing_work? are false by default; creates no state-specific record by default" do
-      expect(policy.exempt_from_state_work_rules?).to eq false
+    it "extra_preventing_work? is false by default; has no state exemption reasons; creates no state-specific record by default" do
       expect(policy.extra_preventing_work?).to eq false
       expect(policy.ensure_state_data!).to be_nil
       expect(policy.state_exemption_reasons).to eq []
@@ -216,36 +240,6 @@ RSpec.describe WorkRulesPolicy do
       end
     end
 
-    describe "#exempt_from_state_work_rules?" do
-      it "returns true when operating a homeschool for 30 or more hours and age/work/education/health exemption is true" do
-        allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(true)
-        allow(policy).to receive(:age_work_education_health_exemption?).and_return(true)
-        expect(policy.exempt_from_state_work_rules?).to be true
-      end
-
-      it "returns true when not operating a homeschool for 30 or more hours and age/work/education/health exemption is true" do
-        allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
-        allow(policy).to receive(:age_work_education_health_exemption?).and_return(true)
-        expect(policy.exempt_from_state_work_rules?).to be true
-      end
-
-      it "returns true when operating a homeschool for 30 or more hours and age/work/education/health exemption is false" do
-        allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(true)
-        allow(policy).to receive(:age_work_education_health_exemption?).and_return(false)
-        expect(policy.exempt_from_state_work_rules?).to be true
-      end
-
-      it "returns false when not operating a homeschool for 30 or more hours and age/work/education/health exemption is false" do
-        allow(nc_screener).to receive(:operating_homeschool_30_or_more_hours?).and_return(false)
-        allow(policy).to receive(:age_work_education_health_exemption?).and_return(false)
-        expect(policy.exempt_from_state_work_rules?).to be false
-      end
-
-      it "is false when there is no nc_screener" do
-        expect(policy.exempt_from_state_work_rules?).to eq false
-      end
-    end
-
     describe "#extra_preventing_work?" do
       it "is true when has the age/education/health exemption" do
         allow(policy).to receive(:age_work_education_health_exemption?).and_return(true)
@@ -262,11 +256,27 @@ RSpec.describe WorkRulesPolicy do
       it "lists the exemptions that apply" do
         nc_screener.assign_attributes(has_hs_diploma: "no", worked_last_five_years: "no", teaches_homeschool: "yes", homeschool_hours: 40)
         screener.assign_attributes(birth_date: 56.years.ago.to_date, preventing_work_medical_condition: "yes")
-        expect(policy.state_exemption_reasons).to contain_exactly(:exemption_55_no_diploma, :exemption_homeschool)
+        expect(policy.state_exemption_reasons).to contain_exactly("exemption_55_no_diploma", "exemption_homeschool")
       end
 
       it "is empty when no state exemptions apply" do
         expect(policy.state_exemption_reasons).to eq []
+      end
+    end
+
+    describe "#exemption_reasons" do
+      it "includes the state-specific reasons" do
+        nc_screener.assign_attributes(teaches_homeschool: "yes", homeschool_hours: 40)
+
+        expect(policy.exemption_reasons).to eq %w[exemption_homeschool]
+        expect(policy.has_exemption?).to eq true
+      end
+
+      it "lists the state reasons after the federal ones and before the earnings reason" do
+        nc_screener.assign_attributes(teaches_homeschool: "yes", homeschool_hours: 40)
+        screener.assign_attributes(is_pregnant: "yes", is_working: "yes", working_hours: 30)
+
+        expect(policy.exemption_reasons).to eq %w[is_pregnant exemption_homeschool earnings_exemption]
       end
     end
 
