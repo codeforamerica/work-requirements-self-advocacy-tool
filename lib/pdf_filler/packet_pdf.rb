@@ -117,9 +117,7 @@ module PdfFiller
     # - \u200D, \uFE0F, \u20E3: removes zero-width joiners, variation selectors, and keycap
     #   combiners left on their own once the emoji they modified is already gone (e.g. a mobile
     #   keyboard's emoji autosuggest leaving one behind, as in "1\uFE0F\u20E3" losing its "1").
-    #   These have no glyph of their own in any font, so left alone they'd hit the
-    #   MissingGlyphError fallback.
-    # Then normalizes whitespace via squeeze(" ") and strip.
+    #   Then normalizes whitespace via squeeze(" ") and strip.
     def strip_emojis(text)
       text
         .gsub(/\p{Emoji_Presentation}/, "")
