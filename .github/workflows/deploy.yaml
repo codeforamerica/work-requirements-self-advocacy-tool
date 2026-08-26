@@ -66,7 +66,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
       - name: Log in to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2.1.6
+        uses: aws-actions/amazon-ecr-login@v2.1.7
       - name: Check if the image exists
         id: image_exists
         uses: k4kratik/container-image-check-custom-action@5f19a0c48d0e0d17257fd3a2de52874d5a8fdc51 # v4
