@@ -3,6 +3,11 @@ class QuestionController < ApplicationController
   include Forms::FormController
   include AuthenticatedConcern
 
+  # Enforce show? as an access gate, not just a navigation hint: registering this here
+  # (in the superclass) guarantees it runs before subclass before_actions with side
+  # effects, like save_outcome and email_pdf.
+  before_action :ensure_page_navigable
+
   helper_method :show_progress_bar, :show_progress_percentage, :percent_complete
 
   def show_progress_bar
@@ -18,11 +23,18 @@ class QuestionController < ApplicationController
   end
 
   def self.show?(screener)
+    # Screeners routed to the out-of-state page (state not listed or county not
+    # supported) are done with the flow and can't see any other question page.
+    return false if OutOfStateController.show?(screener)
     return false unless screener.age
     screener.age < 65 && screener.age >= 18
   end
 
   private
+
+  def ensure_page_navigable
+    redirect_to root_path unless self.class.show?(current_screener)
+  end
 
   def save_outcome
     return if current_screener.outcome_arrived_at.present? && current_screener.outcome == outcome_value

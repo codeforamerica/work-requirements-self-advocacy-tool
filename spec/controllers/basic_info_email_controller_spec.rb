@@ -9,6 +9,7 @@ RSpec.describe BasicInfoEmailController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:screener) { create(:screener, :with_exemption) }
       let(:page_submit_cases) do
         [{
           form_params: {email: "hi@example.com", email_confirmation: "hi@example.com"},
@@ -19,7 +20,7 @@ RSpec.describe BasicInfoEmailController, type: :controller do
     end
 
     context "with signed in screener" do
-      let(:screener) { create(:screener) }
+      let(:screener) { create(:screener, :with_exemption) }
       before { sign_in screener }
 
       context "when email has extra spaces or capitalization" do

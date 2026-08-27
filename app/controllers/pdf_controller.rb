@@ -1,6 +1,9 @@
-class PdfController < QuestionController
+class PdfController < ExemptionAwareQuestionController
   layout "pdf"
   skip_before_action :set_screener_current_step_and_locale
+  # summary_page renders a hardcoded sample screener to preview the PDF template,
+  # so it doesn't depend on the current screener's eligibility.
+  skip_before_action :ensure_page_navigable, only: :summary_page
   before_action :build_temp_screener
 
   def build_temp_screener

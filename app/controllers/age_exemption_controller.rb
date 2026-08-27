@@ -10,7 +10,9 @@ class AgeExemptionController < QuestionController
   end
 
   def self.show?(screener)
-    !super
+    # Not simply !super: this page is only for screeners whose age is known and
+    # age-exempt, never for those missing a birth date or routed out-of-state.
+    !OutOfStateController.show?(screener) && screener.age_qualified?
   end
 
   private

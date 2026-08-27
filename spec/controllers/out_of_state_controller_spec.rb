@@ -117,7 +117,7 @@ RSpec.describe OutOfStateController, type: :controller do
     end
 
     it "county specific view" do
-      county = supported_counties.first
+      county = unsupported_counties.first
       screener = create(:screener, state: state_with_counties, county: county[:name])
       sign_in screener
 

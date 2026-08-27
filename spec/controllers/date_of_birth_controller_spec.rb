@@ -6,6 +6,15 @@ RSpec.describe DateOfBirthController, type: :controller do
 
     render_views
 
+    it "redirects to root if the screener was routed out of state" do
+      screener = create(:screener, state: LocationData::States::NOT_LISTED)
+      sign_in screener
+
+      get :edit
+
+      expect(response).to redirect_to(root_path)
+    end
+
     it "reads and displays the individual date attributes if birth_date is saved on screener" do
       screener = create(:screener, birth_date: Date.new(1973, 10, 13))
       sign_in screener
@@ -15,6 +24,18 @@ RSpec.describe DateOfBirthController, type: :controller do
       expect(response.body).to have_select("Year", selected: "1973")
       expect(response.body).to have_select("Month", selected: "October")
       expect(response.body).to have_select("Day", selected: "13")
+    end
+  end
+
+  describe ".show?" do
+    it "returns true for a screener in a supported location, even without a birth date" do
+      screener = create(:screener, birth_date: nil)
+      expect(described_class.show?(screener)).to eq(true)
+    end
+
+    it "returns false for a screener routed out of state" do
+      screener = create(:screener, state: LocationData::States::NOT_LISTED)
+      expect(described_class.show?(screener)).to eq(false)
     end
   end
 

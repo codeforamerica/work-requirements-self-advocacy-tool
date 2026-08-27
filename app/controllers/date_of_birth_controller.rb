@@ -6,7 +6,7 @@ class DateOfBirthController < QuestionController
   end
 
   def self.show?(screener)
-    true
+    !OutOfStateController.show?(screener)
   end
 
   private
