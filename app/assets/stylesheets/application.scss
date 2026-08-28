@@ -120,6 +120,16 @@ main {
   }
 }
 
+// "GetBenefitsHelp" is a long word, and at display heading sizes it
+// overflows narrow viewports (e.g. the About page title)
+h1, h2, h3 {
+  overflow-wrap: break-word;
+}
+
+.text--break-word {
+  overflow-wrap: break-word;
+}
+
 hr.tight {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -191,6 +201,10 @@ hr.tight {
 .illustration {
   &.medium {
     min-width: 7.5rem;
+  }
+
+  &.large {
+    width: 20rem;
   }
 
   &.left-justified {
