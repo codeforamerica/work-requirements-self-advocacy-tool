@@ -10,7 +10,7 @@ namespace :submission_reminders do
       end
 
     screeners = Screener.where(signed_at: signed_at_range).where.not(email: [nil, ""])
-                        .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).where.not(sent_at: nil).select(:screener_id))
+      .where.not(id: OutgoingEmail.where(email_type: :submission_reminder).where.not(sent_at: nil).select(:screener_id))
 
     Rails.logger.info "Found #{screeners.count} screeners with email addresses signed between #{signed_at_range.begin.to_date} and #{signed_at_range.end.to_date}"
 
@@ -34,6 +34,5 @@ namespace :submission_reminders do
         next
       end
     end
-
   end
 end
