@@ -56,7 +56,7 @@ en:
       show:
         cfa_html: GetBenefitsHelp is built by Code for America, a 501(c)(3) nonprofit and civic technology organization. We build digital tools that help make government services easier for everyone to use. Learn more at <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">codeforamerica.org</a>.
         contact_email: getbenefitshelp@codeforamerica.org
-        contact_intro: 'Send us a message to:'
+        contact_intro: 'Send us a message:'
         how_it_works:
           items:
           - Answer a few questions to find out if you need to follow SNAP work rules
