@@ -699,6 +699,7 @@ es:
         closing: Enviar el formulario solo toma unos minutos y ayuda a proteger sus beneficios.
         greeting: Hola,
         intro: La semana pasada, revisó en GetBenefitsHelp si cumple los requisitos para una exención de trabajo de SNAP.
+        intro_recent: Hace poco utilizó GetBenefitsHelp si cumple los requisitos para una exención de trabajo de SNAP.
         next_step_find: 'Busque el formulario en sus descargas o en su correo electrónico. Puede buscar el asunto: "[GetBenefitsHelp] Your SNAP Work Rules form."'
         next_step_process: La agencia procesará su exención cuando reciba el formulario y los documentos requeridos que aparecen en su correo electrónico de confirmación.
         next_step_submit: Envíe el formulario por correo, fax, %{online_portal}, entréguelo en persona o durante su próxima cita con su trabajador social.

@@ -1,6 +1,6 @@
 <p><%= t('views.submission_reminder_mailer.send_reminder.greeting') %></p>
 
-<p><%= t('views.submission_reminder_mailer.send_reminder.intro') %></p>
+<p><%= t("views.submission_reminder_mailer.send_reminder.#{@use_recent_wording ? 'intro_recent' : 'intro'}") %></p>
 
 <p><%= t('views.submission_reminder_mailer.send_reminder.submitted_question') %></p>
 
