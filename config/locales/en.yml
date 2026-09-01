@@ -699,6 +699,7 @@ en:
         closing: Submitting only takes a few minutes and protects your benefits.
         greeting: Hi,
         intro: Last week, you checked your SNAP work exemption eligibility on GetBenefitsHelp.
+        intro_recent: Recently, you checked your SNAP work exemption eligibility on GetBenefitsHelp.
         next_step_find: Find the form in your downloads or search your email for "[GetBenefitsHelp] Your SNAP Work Rules form."
         next_step_process: The agency will process your exemption once they receive the form and any required documents listed in your confirmation email.
         next_step_submit: Submit it via mail, fax, %{online_portal}, in-person, or at your next caseworker appointment.

@@ -1,10 +1,11 @@
 class SubmissionReminderMailer < ApplicationMailer
   RESEARCH_FORM_URL = "https://docs.google.com/forms/d/1nBCIU6Uh5sMZgBUw6R0Eyx8mKBH6u5MhSpyZYYmETC0/viewform".freeze
 
-  def send_reminder(outgoing_email:)
+  def send_reminder(outgoing_email:, use_recent_wording: false)
     Rails.logger.info "Sending submission reminder to #{outgoing_email.screener.id}"
     @screener = outgoing_email.screener
     @research_link = RESEARCH_FORM_URL
+    @use_recent_wording = use_recent_wording
 
     locale = @screener.locale.presence || I18n.default_locale
     I18n.with_locale(locale) do
