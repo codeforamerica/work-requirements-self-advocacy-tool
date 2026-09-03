@@ -8,11 +8,9 @@ html, body, main {
 .pdf-packet {
   margin: 30px 35px;
   font-family: "Source Sans 3", -apple-system, sans-serif;
-  /* Overrides Honeycrisp's application.css body rule of font-size: 1.9rem; line-height: 2.5rem */
   font-size: 14px;
   line-height: normal;
 
-  /* Overrides Honeycrisp's bare p rule also sets margin-bottom: 2.5rem (40px) */
   p {
     margin-bottom: 1rem;
   }
@@ -35,7 +33,7 @@ html, body, main {
   }
 }
 
-.filled-packet .header {
+.packet-details .header {
   p {
     font-size: 1.4rem;
   }
@@ -45,29 +43,10 @@ html, body, main {
   }
 }
 
-.filled-packet .notice.white {
-  border: none;
-}
-
-.attestation-header {
-  display: flex;
-  align-items: center;
-
-  svg {
-    width: 50px;
-    height: 50px;
-  }
-
-  .content {
-    margin-left: 15px;
-  }
-}
-
 .grey-box {
   padding: 25px;
   background-color: #F7F5F4;
 
-  /* overrides for the summary pages  */
   ul {
     list-style: disc;
     padding-left: 20px;
