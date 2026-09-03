@@ -225,6 +225,15 @@ RSpec.describe PdfFiller::PacketPdf do
       expect(html).not_to include("I am experiencing domestic violence")
       expect(html).not_to include("I am 55 to 64 years old, I do not have a high school diploma or GED")
     end
+
+    it "strils emojis from field values before rendering" do
+      screener.case_number = "12345 😊"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("12345")
+      expect(html).not_to include("😊")
+    end
   end
 
   describe "#strip_emojis" do
