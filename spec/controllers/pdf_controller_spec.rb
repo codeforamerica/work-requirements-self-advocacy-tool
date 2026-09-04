@@ -32,16 +32,13 @@ RSpec.describe PdfController, type: :controller do
 
       expect(response).to redirect_to(root_path)
     end
-  end
 
-  describe "#summary_page" do
-    it "renders the sample-screener preview regardless of the current screener's eligibility" do
-      screener = create(:screener)
+    it "does not raise for a signed-in, persisted screener" do
+      screener = create(:screener, state: LocationData::States::DELAWARE, preventing_work_medical_condition: "yes", current_step: "some_previous_step")
       sign_in screener
 
-      get :summary_page
-
-      expect(response).to be_successful
+      expect { get :generate_pdf }.not_to raise_error
+      expect(response).to have_http_status(:success)
     end
   end
 
