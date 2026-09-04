@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     root "homepage#index"
     get "start_flow" => "homepage#create_screener"
     get "generate_pdf" => "pdf#generate_pdf"
-    get "page_one_preview" => "pdf#summary_page"
+    get "packet_pdf_preview" => "pdf_preview#packet"
     resource :privacy_policy, only: [:show], controller: "privacy_policy"
     resource :about, only: [:show], controller: "about"
     get "clear_flashes" => "application#clear_flashes"
