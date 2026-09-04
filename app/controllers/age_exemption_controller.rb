@@ -10,7 +10,7 @@ class AgeExemptionController < QuestionController
   end
 
   def self.show?(screener)
-    !super
+    !OutOfStateController.show?(screener) && screener.age_exempt?
   end
 
   private

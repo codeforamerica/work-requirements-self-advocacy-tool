@@ -9,12 +9,13 @@ RSpec.describe BasicInfoSsnController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:screener) { create(:screener, :with_exemption) }
       let(:page_submit_cases) { [{form_params: {ssn_last_four: "4567"}, expected_data: {has_ssn_last_four: true}}] }
       let(:invalid_params) { {ssn_last_four: "abc"} }
     end
 
     it "saves the last 4 digits of the ssn and redirects to the next step" do
-      screener = create(:screener)
+      screener = create(:screener, :with_exemption)
       sign_in screener
 
       post :update, params: {screener: {ssn_last_four: "4567"}}

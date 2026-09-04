@@ -1,7 +1,9 @@
 RSpec.shared_examples "saves outcome on page visit" do |expected_outcome:|
-  context "with signed in screener" do
-    let(:screener) { create(:screener) }
+  # Default screener; override with a `let(:screener)` block when the page under
+  # test only shows for a specific kind of screener.
+  let(:screener) { create(:screener) }
 
+  context "with signed in screener" do
     before { sign_in screener }
 
     context "on first visit" do

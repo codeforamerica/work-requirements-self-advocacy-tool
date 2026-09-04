@@ -310,7 +310,7 @@ class Screener < ApplicationRecord
     a
   end
 
-  def age_qualified?
+  def age_exempt?
     return false unless age
     age <= 17 || age >= 65
   end

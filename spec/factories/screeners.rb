@@ -16,6 +16,18 @@ FactoryBot.define do
     preventing_work_medical_condition { "yes" }
   end
 
+  trait :age_exempt do
+    birth_date { 70.years.ago.to_date }
+  end
+
+  # Meets the 20-hour work rule without qualifying for the earnings exemption
+  # (under 30 hours and under the weekly earnings minimum).
+  trait :meets_work_rules do
+    is_working { "yes" }
+    working_hours { 20 }
+    working_weekly_earnings { 100.00 }
+  end
+
   trait :with_earnings_exemption do
     is_working { "yes" }
     working_hours { 35 }

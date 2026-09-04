@@ -22,4 +22,37 @@ RSpec.describe QuestionController, type: :controller do
       expect(controller.percent_complete).to eq(42)
     end
   end
+
+  describe ".show?" do
+    it "returns true for a working-age screener in a supported location" do
+      screener = create(:screener, birth_date: 30.years.ago.to_date)
+      expect(described_class.show?(screener)).to eq(true)
+    end
+
+    it "returns false when the birth date is unknown" do
+      screener = create(:screener, birth_date: nil)
+      expect(described_class.show?(screener)).to eq(false)
+    end
+
+    it "returns false for a screener under 18" do
+      screener = create(:screener, birth_date: 16.years.ago.to_date)
+      expect(described_class.show?(screener)).to eq(false)
+    end
+
+    it "returns false for a screener 65 or older" do
+      screener = create(:screener, birth_date: 65.years.ago.to_date)
+      expect(described_class.show?(screener)).to eq(false)
+    end
+
+    it "returns false for a working-age screener whose state is not listed" do
+      screener = create(:screener, birth_date: 30.years.ago.to_date, state: LocationData::States::NOT_LISTED)
+      expect(described_class.show?(screener)).to eq(false)
+    end
+
+    it "returns false for a working-age screener in an unsupported county" do
+      screener = create(:screener, birth_date: 30.years.ago.to_date)
+      allow(OutOfStateController).to receive(:county_not_supported?).with(screener).and_return(true)
+      expect(described_class.show?(screener)).to eq(false)
+    end
+  end
 end

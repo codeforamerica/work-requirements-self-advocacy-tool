@@ -5,7 +5,7 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
 
     it "redirects to root instead of raising if the nc_screener doesn't exist yet" do
-      screener = create(:screener, state: "NC")
+      screener = create(:screener, state: "NC", birth_date: 56.years.ago.to_date)
       sign_in screener
       expect(screener.nc_screener).to be_nil
 
@@ -22,12 +22,13 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
       fields: [:has_hs_diploma, :worked_last_five_years, :earned_more_than_threshold, :health_conditions_preventing_work],
       params_key: :nc_screener,
       screener_factory: -> {
-        s = create(:screener, state: "NC")
+        s = create(:screener, state: "NC", birth_date: 56.years.ago.to_date)
         s.create_nc_screener
         s
       }
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event", {nc_screener: true} do
+      let(:screener) { create(:screener, :with_nc_screener, birth_date: 56.years.ago.to_date) }
       let(:page_submit_cases) do
         params = {
           has_hs_diploma: "no",
@@ -45,7 +46,7 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
     end
 
     it "persists the values to the nc_screener" do
-      screener = create(:screener, state: "NC")
+      screener = create(:screener, state: "NC", birth_date: 56.years.ago.to_date)
       screener.create_nc_screener
       sign_in screener
 
