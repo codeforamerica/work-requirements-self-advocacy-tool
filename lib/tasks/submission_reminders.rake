@@ -23,7 +23,7 @@ namespace :submission_reminders do
       Rails.logger.info "Processing screener #{screener.id} for backfilled submission reminder"
       outgoing_email = OutgoingEmail.create!(screener: screener, email: screener.email, email_type: :submission_reminder)
       begin
-        SubmissionReminderMailer.send_reminder(outgoing_email: outgoing_email, use_recent_wording: true).deliver_now
+        SubmissionReminderMailer.send_reminder(outgoing_email: outgoing_email).deliver_now
         outgoing_email.update(sent_at: DateTime.now)
         Rails.logger.info "Processed screener #{screener.id} for backfilled submission reminder. Sent email #{outgoing_email.id}."
       rescue Aws::SESV2::Errors::AccessDeniedException
