@@ -1,6 +1,7 @@
 ---
 en:
   general:
+    about_this_website: About this website
     affirmative: 'Yes'
     back: Go back
     basic_information: Basic information
@@ -51,6 +52,44 @@ en:
     signature_required: Your signature is required to continue
     zip_code_invalid: Provide a valid ZIP Code with at least five numbers
   views:
+    about:
+      show:
+        cfa_html: GetBenefitsHelp is built by Code for America, a 501(c)(3) nonprofit and civic technology organization. We build digital tools that help make government services easier for everyone to use. Learn more at <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">codeforamerica.org</a>.
+        contact_email: getbenefitshelp@codeforamerica.org
+        contact_intro: 'Send us a message:'
+        how_it_works:
+          items:
+          - Answer a few questions to find out if you need to follow SNAP work rules
+          - Learn what to do next if you qualify for an exemption, or if your work already meets the rules
+          - Learn what to do if you're not meeting the requirements
+          - Get a document you can share with your SNAP agency
+          title: How does it work?
+        intro_html: "<strong>GetBenefitsHelp</strong> is a tool to help people understand SNAP work rules and what they may need to do to get or keep their food benefits."
+        notice_text: We don't send anything to your SNAP agency. You'll get a form you can choose to share.
+        notice_title: This isn't a SNAP application
+        protect:
+          privacy_policy_html: To learn more about how we keep your information safe, visit our %{link}.
+          private: Your answers stay private while you use the tool.
+          share: You decide whether to share the document you create with the tool. We'll explain the options available in your area.
+          title: How we protect your information
+        questions_html: "<strong>Have a question about GetBenefitsHelp?</strong> We're happy to help."
+        ready:
+          help_text: Check if the SNAP work rules affect your food benefits
+          title: Ready to get started?
+        title: About GetBenefitsHelp
+        why_use:
+          get_items:
+          - Examples of the proof documents you'll need to gather
+          - A summary of your answers
+          - Instructions on how to share that information with your SNAP agency
+          get_title: What you'll get
+          title: Why use GetBenefitsHelp?
+          wont_do_items:
+          - Submit a SNAP application
+          - Renew your benefits
+          - Make decisions about your eligibility
+          - Replace your SNAP office or caseworker
+          wont_do_title: What we won't do
     age_exemption:
       edit:
         next_steps_html: "<p>You're all done!</p><p>Do you want to check if the SNAP work rules apply to someone else in your household?</p>"

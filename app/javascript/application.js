@@ -95,6 +95,21 @@ function openDefaultAccordions() {
     .find('.accordion__button').attr('aria-expanded', 'true');
 }
 
+// the About page is reachable from the footer of every page, so its "Go back" link
+// returns visitors wherever they came from. we can't use the more common method of creating a back link
+// (`link_to t("general.back"), :back`) because the app's CSP is script_src :self with no 'unsafe-inline'
+// so it would do nothing
+function initHistoryBackLinks() {
+  document.querySelectorAll("[data-history-back]").forEach(function(el) {
+    el.addEventListener("click", function(e) {
+      if (window.history.length > 1) {
+        e.preventDefault();
+        window.history.back();
+      }
+    });
+  });
+}
+
 document.addEventListener("turbo:load", function() {
   noneOfTheAbove.init();
   revealer.init();
@@ -114,6 +129,7 @@ document.addEventListener("turbo:load", function() {
   }, 0);
   initTextareaCounter();
   initClickTracking();
+  initHistoryBackLinks();
 });
 
 document.addEventListener("turbo:render", function () {

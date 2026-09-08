@@ -1,6 +1,7 @@
 ---
 es:
   general:
+    about_this_website: Acerca de este sitio web
     affirmative: Sí
     back: Volver
     basic_information: Información básica
@@ -51,6 +52,44 @@ es:
     signature_required: Se requiere su firma para continuar
     zip_code_invalid: Ingrese un código de área válido con por lo menos cinco números
   views:
+    about:
+      show:
+        cfa_html: GetBenefitsHelp fue creado por Code for America, una organización sin fines de lucro 501(c)(3) dedicada a la tecnología cívica. Creamos herramientas digitales que ayudan a que los servicios gubernamentales sean más fáciles de usar para todas las personas. Obtenga más información en <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">codeforamerica.org</a>.
+        contact_email: getbenefitshelp@codeforamerica.org
+        contact_intro: 'Envíenos un mensaje a:'
+        how_it_works:
+          items:
+          - Responda algunas preguntas para saber si debe cumplir con las reglas de trabajo de SNAP.
+          - Conozca los próximos pasos si tiene una exención o si el trabajo que realiza ya cumple con las reglas de trabajo.
+          - Conozca qué puede hacer si todavía no cumple con las reglas de trabajo.
+          - Obtenga un documento que puede compartir con su oficina de SNAP.
+          title: "¿Cómo funciona?"
+        intro_html: "<strong>GetBenefitsHelp</strong> es una herramienta que le explica cómo le afectan las reglas de trabajo de SNAP y lo que debe hacer para obtener o seguir recibiendo sus beneficios de alimentos."
+        notice_text: Nosotros no enviaremos nada a su oficina de SNAP. Usted recibirá un formulario listo para compartir si así lo decide.
+        notice_title: Esto no es una solicitud de SNAP
+        protect:
+          privacy_policy_html: Para obtener más información sobre cómo protegemos su información, consulte nuestra %{link}.
+          private: Al usar la herramienta, sus respuestas son privadas.
+          share: Usted decide si desea compartir el documento que recibe al usar la herramienta. Le mostraremos cómo puede compartirlo con su oficina de SNAP en su área.
+          title: Cómo protegemos su información
+        questions_html: "<strong>¿Tiene preguntas sobre GetBenefitsHelp?</strong> Estamos aquí para ayudarle."
+        ready:
+          help_text: Verifique si las reglas de trabajo de SNAP afectan sus beneficios.
+          title: "¿Quiere comenzar?"
+        title: Acerca de GetBenefitsHelp
+        why_use:
+          get_items:
+          - Ejemplos de los documentos de respaldo que deberá reunir.
+          - Un resumen de sus respuestas.
+          - Instrucciones sobre cómo compartir esa información con su oficina de SNAP.
+          get_title: Lo que recibe
+          title: "¿Para qué sirve GetBenefitsHelp?"
+          wont_do_items:
+          - No presenta una solicitud de SNAP por usted.
+          - No renueva sus beneficios.
+          - No toma la decisión final sobre si cumple los requisitos.
+          - No reemplaza a su oficina de SNAP ni encargado de su caso.
+          wont_do_title: Lo que no hace
     age_exemption:
       edit:
         next_steps_html: "<p>Ha finalizado.</p><p>¿Desea verificar si las reglas de trabajo de SNAP aplican a otra persona de su hogar?</p>"
