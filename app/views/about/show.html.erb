@@ -1,0 +1,130 @@
+<section class="slab">
+  <div class="grid">
+    <div class="grid__item width-one-sixth">
+      <p class="spacing-below-0">&nbsp;</p>
+    </div>
+    <div class="grid__item width-two-thirds">
+      <div class="card">
+        <div class="back grid">
+          <!-- see `initHistoryBackLinks` for back link functionality; defaults to home page -->
+          <%= link_to t("general.back"), root_path, data: {history_back: true} %>
+        </div>
+
+        <h1><%= t("views.about.show.title") %></h1>
+
+        <p><%= t("views.about.show.intro_html") %></p>
+
+        <h2 class="h3"><%= t("views.about.show.how_it_works.title") %></h2>
+        <ul class="list--bulleted">
+          <% t("views.about.show.how_it_works.items").each do |item| %>
+            <li><%= item %></li>
+          <% end %>
+        </ul>
+
+        <div class="notice yellow">
+          <div class="media-box">
+            <div class="media-box__media media--icon">
+              <i class="icon-info_outline"></i>
+            </div>
+            <div class="media-box__content">
+              <p class="spacing-below-5"><strong><%= t("views.about.show.notice_title") %></strong></p>
+              <p class="spacing-below-0"><%= t("views.about.show.notice_text") %></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-section--full-bleed teal spacing-above-35">
+          <h2><%= t("views.about.show.why_use.title") %></h2>
+
+          <div class="notice white tight">
+            <div class="media-box">
+              <div class="media-box__media media--icon narrow">
+                <i class="icon-check_circle text--green"></i>
+              </div>
+              <div class="media-box__content">
+                <h3 class="spacing-below-0"><%= t("views.about.show.why_use.get_title") %></h3>
+              </div>
+            </div>
+            <ul class="list--bulleted">
+              <% t("views.about.show.why_use.get_items").each do |item| %>
+                <li><%= item %></li>
+              <% end %>
+            </ul>
+          </div>
+
+          <div class="notice white tight">
+            <div class="media-box">
+              <div class="media-box__media media--icon narrow">
+                <i class="icon-cancel text--red"></i>
+              </div>
+              <div class="media-box__content">
+                <h3 class="spacing-below-0"><%= t("views.about.show.why_use.wont_do_title") %></h3>
+              </div>
+            </div>
+            <ul class="list--bulleted">
+              <% t("views.about.show.why_use.wont_do_items").each do |item| %>
+                <li><%= item %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-section--full-bleed grey">
+          <h2><%= t("views.about.show.protect.title") %></h2>
+
+          <div class="media-box">
+            <div class="media-box__media media--icon">
+              <i class="icon-lock_outline"></i>
+            </div>
+            <div class="media-box__content">
+              <p class="spacing-below-0"><strong><%= t("views.about.show.protect.private") %></strong></p>
+            </div>
+          </div>
+
+          <hr class="spacing-above-15 spacing-below-15"/>
+
+          <div class="media-box">
+            <div class="media-box__media media--icon">
+              <%= inline_svg("share-icon.svg") %>
+            </div>
+            <div class="media-box__content">
+              <p class="spacing-below-0"><%= t("views.about.show.protect.share") %></p>
+            </div>
+          </div>
+
+          <hr class="spacing-above-15 spacing-below-15"/>
+
+          <div class="media-box">
+            <div class="media-box__media media--icon">
+              <i class="icon-person"></i>
+            </div>
+            <div class="media-box__content">
+              <p class="spacing-below-0">
+                <%= t("views.about.show.protect.privacy_policy_html", link: link_to(t("general.privacy_policy"), privacy_policy_path)) %>
+              </p>
+            </div>
+          </div>
+
+          <hr class="spacing-above-35 spacing-below-35"/>
+
+          <p><%= t("views.about.show.questions_html") %></p>
+          <p class="spacing-below-5"><strong><%= t("views.about.show.contact_intro") %></strong></p>
+          <p class="spacing-below-0 text--break-word">
+            <%= mail_to t("views.about.show.contact_email"), "data-track-click" => "about_page_email_clicked" %>
+          </p>
+        </div>
+
+        <div class="text--centered spacing-above-60 spacing-below-60">
+          <%= image_tag "cfa-logo.svg", class: "illustration large centered" %>
+          <p class="spacing-above-35 spacing-below-0"><%= t("views.about.show.cfa_html") %></p>
+        </div>
+
+        <div class="card-section--full-bleed teal">
+          <h2><%= t("views.about.show.ready.title") %></h2>
+          <p><%= t("views.about.show.ready.help_text") %></p>
+          <%= link_to t("views.homepage.fill_out_form"), start_flow_path, class: "button button--primary spacing-below-0", "data-track-click" => "about_page_start_flow_clicked" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
