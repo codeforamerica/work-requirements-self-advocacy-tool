@@ -16,6 +16,7 @@ Rails.application.configure do
     policy.base_uri :self
     policy.form_action :self
     policy.frame_ancestors :self
+    policy.directives["report-to"] = ["csp-endpoint"]
   end
 
   # The nonce must stay constant for the life of a session, not vary per request.
