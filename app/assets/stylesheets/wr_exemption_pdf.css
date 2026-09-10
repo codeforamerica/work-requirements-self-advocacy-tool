@@ -108,6 +108,12 @@ html, body, main {
   white-space: nowrap;
 }
 
+.electronic-signature {
+  font-family: "Allura", cursive;
+  font-size: 20pt;
+  line-height: 1;
+}
+
 .checklist {
   list-style: none;
   margin: 0;

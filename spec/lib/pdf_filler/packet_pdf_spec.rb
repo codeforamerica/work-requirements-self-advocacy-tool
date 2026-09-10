@@ -226,13 +226,37 @@ RSpec.describe PdfFiller::PacketPdf do
       expect(html).not_to include("I am 55 to 64 years old, I do not have a high school diploma or GED")
     end
 
-    it "strils emojis from field values before rendering" do
+    it "strips emojis from field values before rendering" do
       screener.case_number = "12345 😊"
 
       html = rendered_html { packet_pdf.to_pdf }
 
       expect(html).to include("12345")
       expect(html).not_to include("😊")
+    end
+
+    it "renders the signature at the default 20pt for short names" do
+      screener.signature = "Nigella Lawson"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include('style="font-size: 20pt"')
+    end
+
+    it "shrinks the signature font size for names over 20 characters" do
+      screener.signature = "Alexandria Beauregard" # 21 characters -> 400/21 rounds to 19pt
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include('style="font-size: 19pt"')
+    end
+
+    it "floors the signature font size at 10pt for very long names" do
+      screener.signature = "Bartholomew Christopher Alexander Winterbottom" # 46 characters -> 400/46 rounds to 9, floored to 10
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include('style="font-size: 10pt"')
     end
   end
 

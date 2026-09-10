@@ -218,6 +218,16 @@
   <p>I certify under penalty of perjury that the information provided on this form is true and correct.</p>
   <div class="info-box">
     <div class="info-row">
+      <%
+        signature_length = signature.to_s.length
+        signature_font_size = signature_length <= 20 ? 20 : [(20 * (20.0 / signature_length)).round, 10].max
+      %>
+      <div class="info-field">
+        <span class="info-label">Electronic signature:</span>
+        <span class="electronic-signature" style="font-size: <%= signature_font_size %>pt"><%= signature %></span>
+      </div>
+    </div>
+    <div class="info-row">
       <%= info_field("Full legal name:", signature) %>
     </div>
     <div class="info-row">
