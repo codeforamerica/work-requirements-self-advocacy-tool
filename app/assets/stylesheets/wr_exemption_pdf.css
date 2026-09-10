@@ -139,6 +139,10 @@ html, body, main {
   font-weight: 700;
 }
 
+.checklist-item__detail--regular {
+  font-weight: 400;
+}
+
 .checklist--nested {
   margin-left: 2.7rem;
 }

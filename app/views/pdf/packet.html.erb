@@ -203,7 +203,7 @@
     <%= checklist_item("I have a physical or mental medical condition that prevents me from working at least 20 hours per week", preventing_work_medical_condition) %>
     <%= checklist_item("Other", preventing_work_other) %>
     <% if preventing_work_other_write_in.present? %>
-      <li class="checklist-item__detail"><%= preventing_work_other_write_in %></li>
+      <li class="checklist-item__detail checklist-item__detail--regular"><%= preventing_work_other_write_in %></li>
     <% end %>
   </ul>
   <% if preventing_work_write_in.present? %>
