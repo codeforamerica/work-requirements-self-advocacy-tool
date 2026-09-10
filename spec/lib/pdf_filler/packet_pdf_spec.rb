@@ -258,6 +258,23 @@ RSpec.describe PdfFiller::PacketPdf do
 
       expect(html).to include('style="font-size: 10pt"')
     end
+
+    it "uses singular wording when only one fitness for work condition is checked" do
+      screener.preventing_work_medical_condition = "yes"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("The following condition prevents me from working at least 20 hours a week:")
+    end
+
+    it "uses plural wording when more than one fitness for work condition is checked" do
+      screener.preventing_work_medical_condition = "yes"
+      screener.preventing_work_other = "yes"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("The following conditions prevent me from working at least 20 hours a week:")
+    end
   end
 
   describe "#strip_emojis" do

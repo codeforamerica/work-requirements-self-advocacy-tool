@@ -192,7 +192,13 @@
     <%= inline_svg("pdf-work.svg") %>
     <h3>Fitness for Work</h3>
   </div>
-  <p>The following condition(s) prevent(s) me from working at least 20 hours a week:</p>
+  <%
+    fitness_for_work_exemption_count = [at_least_55_no_diploma_not_working, preventing_work_place_to_sleep, preventing_work_drugs_alcohol,
+      preventing_work_domestic_violence, preventing_work_medical_condition, preventing_work_other].count(true)
+    condition_noun = fitness_for_work_exemption_count == 1 ? "condition" : "conditions"
+    condition_verb = fitness_for_work_exemption_count == 1 ? "prevents" : "prevent"
+  %>
+  <p>The following <%= condition_noun %> <%= condition_verb %> me from working at least 20 hours a week:</p>
   <ul class="checklist">
     <% if state == LocationData::States::NORTH_CAROLINA %>
       <%= checklist_item("I am 55 to 64 years old, I do not have a high school diploma or GED, I have not had substantial work in the past five years and I have a health condition that limits my ability to work", at_least_55_no_diploma_not_working) %>
