@@ -24,7 +24,7 @@ class QuestionController < ApplicationController
     # supported) are done with the flow and can't see any other question page.
     return false if OutOfStateController.show?(screener)
     return false unless screener.age
-    !screener.age_exempt?
+    !screener.age_qualified?
   end
 
   private
