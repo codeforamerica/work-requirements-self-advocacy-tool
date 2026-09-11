@@ -6,6 +6,7 @@
 ENVIRONMENT="staging"
 DESIRED_STATUS="RUNNING"
 COMMAND="/bin/bash" # Default shell
+SERVICE="web"
 
 # --- Function to display usage ---
 usage() {
@@ -18,12 +19,14 @@ usage() {
     echo "                            Can set to STOPPED for debugging tasks failing to start or for connecting to finished/dead tasks"
     echo "  --command <command>      Command to execute on the container (e.g., \"/bin/bash\", \"ls -la\")."
     echo "                           Defaults to \"$COMMAND\"."
+    echo "  --service <service>      Specify the service (e.g., web, worker). Determines cluster and container names. Defaults to '$SERVICE'"
     echo "  -h, --help               Display this help message."
     echo ""
     echo "Examples:"
     echo "  $(basename "$0"): to connect to staging"
     echo "  $(basename "$0") --env production: to connect to production"
     echo "  $(basename "$0") --desired-status STOPPED: to connect to staging but view the last stopped task"
+    echo "  $(basename "$0") --service worker: to connect to the staging worker instead of web"
     exit 1
 }
 
@@ -45,6 +48,11 @@ while [[ "$#" -gt 0 ]]; do
             shift
             shift
             ;;
+        --service)
+            SERVICE="$2"
+            shift
+            shift
+            ;;
         -h|--help)
             usage
             ;;
@@ -59,18 +67,12 @@ done
 case "$ENVIRONMENT" in
     development)
         PROFILE="wrsat-nonprod"
-        CLUSTER_NAME="work-requirements-self-advocacy-tool-development-web"
-        CONTAINER_NAME="work-requirements-self-advocacy-tool-development-web"
         ;;
     staging)
         PROFILE="wrsat-nonprod"
-        CLUSTER_NAME="work-requirements-self-advocacy-tool-staging-web"
-        CONTAINER_NAME="work-requirements-self-advocacy-tool-staging-web"
         ;;
     production)
         PROFILE="wrsat-prod"
-        CLUSTER_NAME="work-requirements-self-advocacy-tool-production-web"
-        CONTAINER_NAME="work-requirements-self-advocacy-tool-production-web"
         ;;
     # Add more environments here as needed
     *)
@@ -78,6 +80,9 @@ case "$ENVIRONMENT" in
         usage
         ;;
 esac
+
+CLUSTER_NAME="work-requirements-self-advocacy-tool-${ENVIRONMENT}-${SERVICE}"
+CONTAINER_NAME="work-requirements-self-advocacy-tool-${ENVIRONMENT}-${SERVICE}"
 
 echo "Attempting to connect to an ECS task in cluster: $CLUSTER_NAME (Env: $ENVIRONMENT) using profile: $(echo $PROFILE | cut -d' ' -f2)"
 
