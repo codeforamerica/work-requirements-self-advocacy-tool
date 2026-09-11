@@ -240,7 +240,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
       html = rendered_html { packet_pdf.to_pdf }
 
-      expect(html).to include('style="font-size: 20pt"')
+      expect(html).to include('<span class="electronic-signature" style="font-size: 20pt">Nigella Lawson</span>')
     end
 
     it "shrinks the signature font size for names over 20 characters" do
@@ -248,7 +248,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
       html = rendered_html { packet_pdf.to_pdf }
 
-      expect(html).to include('style="font-size: 19pt"')
+      expect(html).to include('<span class="electronic-signature" style="font-size: 19pt">Alexandria Beauregard</span>')
     end
 
     it "floors the signature font size at 10pt for very long names" do
@@ -256,7 +256,7 @@ RSpec.describe PdfFiller::PacketPdf do
 
       html = rendered_html { packet_pdf.to_pdf }
 
-      expect(html).to include('style="font-size: 10pt"')
+      expect(html).to include('<span class="electronic-signature" style="font-size: 10pt">Bartholomew Christopher Alexander Winterbottom</span>')
     end
 
     it "uses singular wording when only one fitness for work condition is checked" do
