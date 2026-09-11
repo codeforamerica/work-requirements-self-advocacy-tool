@@ -6,7 +6,7 @@ class DateOfBirthController < QuestionController
   end
 
   def self.show?(screener)
-    !OutOfStateController.show?(screener)
+    !screener.unsupported_location?
   end
 
   private

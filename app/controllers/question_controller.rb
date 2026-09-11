@@ -20,9 +20,7 @@ class QuestionController < ApplicationController
   end
 
   def self.show?(screener)
-    # Screeners routed to the out-of-state page (state not listed or county not
-    # supported) are done with the flow and can't see any other question page.
-    return false if OutOfStateController.show?(screener)
+    return false if screener.unsupported_location?
     return false unless screener.age
     !screener.age_qualified?
   end

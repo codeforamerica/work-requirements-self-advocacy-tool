@@ -315,6 +315,10 @@ class Screener < ApplicationRecord
     age <= 17 || age >= 65
   end
 
+  def unsupported_location?
+    state == LocationData::States::NOT_LISTED || county_not_supported?
+  end
+
   def any_preventing_work?
     PREVENTING_WORK_ATTRIBUTES.any? { |attr| public_send("#{attr}_yes?") } ||
       state_policy.extra_preventing_work?
@@ -504,6 +508,17 @@ class Screener < ApplicationRecord
   end
 
   private
+
+  def county_not_supported?
+    office_by = LocationData::States::STATES_INFO.dig(state, :office_by)
+    unless office_by
+      Rails.logger.warn("county_not_supported? called with unrecognized state | screener_id=#{id} | state=#{state.inspect}")
+    end
+    return false unless office_by == :county
+
+    county_info = LocationData::Counties.get(state, county)
+    county_info.present? && !county_info[:is_supported]
+  end
 
   def generate_session_token
     self.session_token ||= SecureRandom.hex(20)

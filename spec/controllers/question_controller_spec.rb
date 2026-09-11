@@ -51,7 +51,7 @@ RSpec.describe QuestionController, type: :controller do
 
     it "returns false for a working-age screener in an unsupported county" do
       screener = create(:screener, birth_date: 30.years.ago.to_date)
-      allow(OutOfStateController).to receive(:county_not_supported?).with(screener).and_return(true)
+      allow(screener).to receive(:unsupported_location?).and_return(true)
       expect(described_class.show?(screener)).to eq(false)
     end
   end
