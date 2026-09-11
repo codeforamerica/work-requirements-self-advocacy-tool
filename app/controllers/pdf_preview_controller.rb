@@ -2,6 +2,7 @@ class PdfPreviewController < QuestionController
   layout "pdf"
   skip_before_action :require_current_screener
   skip_before_action :set_screener_current_step_and_locale
+  skip_before_action :ensure_page_navigable
   before_action :build_temp_screener
 
   def build_temp_screener

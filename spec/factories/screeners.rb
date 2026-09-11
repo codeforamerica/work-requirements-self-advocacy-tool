@@ -16,6 +16,16 @@ FactoryBot.define do
     preventing_work_medical_condition { "yes" }
   end
 
+  trait :age_exempt do
+    birth_date { 70.years.ago.to_date }
+  end
+
+  trait :meets_work_rules do
+    is_working { "yes" }
+    working_hours { 20 }
+    working_weekly_earnings { 100.00 }
+  end
+
   trait :with_earnings_exemption do
     is_working { "yes" }
     working_hours { 35 }

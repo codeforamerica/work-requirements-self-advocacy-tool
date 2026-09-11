@@ -731,35 +731,99 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  describe "#age_qualified?" do
+  describe "#age_exempt?" do
     it "returns true if age is 17 or younger" do
       screener = build(:screener, birth_date: 17.years.ago.to_date + 1.day)
-      expect(screener.age_qualified?).to eq true
+      expect(screener.age_exempt?).to eq true
     end
 
     it "returns false if age is 18" do
       screener = build(:screener, birth_date: 18.years.ago.to_date)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
 
     it "returns false if age is 37" do
       screener = build(:screener, birth_date: 37.years.ago.to_date)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
 
     it "returns false if age is 64" do
       screener = build(:screener, birth_date: 64.years.ago.to_date + 1.day)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
 
     it "returns true if age is 65" do
       screener = build(:screener, birth_date: 65.years.ago.to_date)
-      expect(screener.age_qualified?).to eq true
+      expect(screener.age_exempt?).to eq true
     end
 
     it "returns false if birth_date is nil" do
       screener = build(:screener, birth_date: nil)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
+    end
+  end
+
+  describe "#unsupported_location?" do
+    # Only NC has counties
+    let(:state_with_counties) { LocationData::States::NORTH_CAROLINA }
+
+    # This adds a single fake county for the tests, and it is a county that is not supported
+    # because all 100 counties for NC are currently supported
+    before do
+      fake_county = {
+        name: "FAKE COUNTY",
+        mailing_address: "123 Main Street",
+        physical_address: "123 Main Street",
+        phone: "555-555-5555",
+        fax: "123-123-1234",
+        email: "fake@fake",
+        website: "www.fake",
+        upload_portal_or_email: "fake@fake",
+        is_supported: false
+      }
+
+      modified_counties = LocationData::Counties::ALL_COUNTIES.deep_dup
+      modified_counties[state_with_counties]["FAKE COUNTY"] = fake_county
+
+      stub_const(
+        "LocationData::Counties::ALL_COUNTIES",
+        modified_counties
+      )
+    end
+
+    let(:all_nc_counties) { LocationData::Counties.for_state(state_with_counties).values }
+    let(:supported_counties) { all_nc_counties.select { |c| c[:is_supported] } }
+    let(:unsupported_counties) { all_nc_counties.reject { |c| c[:is_supported] } }
+
+    it "returns true when state is NOT_LISTED" do
+      screener = create(:screener, state: LocationData::States::NOT_LISTED)
+      expect(screener.unsupported_location?).to eq(true)
+    end
+
+    context "a state whose offices are keyed by county" do
+      it "returns true if county is not supported" do
+        county = unsupported_counties.first
+        screener = create(:screener, state: state_with_counties, county: county[:name])
+        expect(screener.unsupported_location?).to eq(true)
+      end
+
+      it "returns false when county is supported" do
+        county = supported_counties.first
+        screener = create(:screener, state: state_with_counties, county: county[:name])
+        expect(screener.unsupported_location?).to eq(false)
+      end
+
+      it "raises when county is nil" do
+        screener = create(:screener, state: state_with_counties, county: nil)
+        expect { screener.unsupported_location? }.to raise_error(ArgumentError, /county_key is required/)
+      end
+    end
+
+    context "a state whose offices are not keyed by county" do
+      it "returns false" do
+        screener = create(:screener, state: LocationData::States::DELAWARE, county: nil)
+        expect(screener.unsupported_location?).to eq(false)
+      end
     end
   end
 
