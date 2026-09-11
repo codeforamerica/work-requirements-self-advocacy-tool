@@ -13,22 +13,16 @@ RSpec.describe ProofGuidanceController, type: :controller do
       expect(response).to be_successful
     end
 
-    it "redirects to root when the screener's state is not listed" do
-      screener = create(:screener, :with_exemption, state: LocationData::States::NOT_LISTED)
-      sign_in screener
-
-      get :display
-
-      expect(response).to redirect_to(root_path)
+    context "when the screener's state is not listed" do
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display do
+        let(:screener) { create(:screener, :with_exemption, state: LocationData::States::NOT_LISTED) }
+      end
     end
 
-    it "redirects to root when the screener is not exempt" do
-      screener = create(:screener)
-      sign_in screener
-
-      get :display
-
-      expect(response).to redirect_to(root_path)
+    context "when the screener is not exempt" do
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display do
+        let(:screener) { create(:screener) }
+      end
     end
   end
 

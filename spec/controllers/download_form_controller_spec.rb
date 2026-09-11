@@ -13,12 +13,13 @@ RSpec.describe DownloadFormController, type: :controller do
 
       before { sign_in screener }
 
-      it "redirects to root without saving an outcome or enqueueing an email" do
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display
+
+      it "does not save an outcome or enqueue an email" do
         expect {
           get :display
         }.not_to have_enqueued_job(SendOutgoingEmailJob)
 
-        expect(response).to redirect_to(root_path)
         expect(screener.reload.outcome).to be_nil
       end
     end
@@ -98,14 +99,8 @@ RSpec.describe DownloadFormController, type: :controller do
     end
 
     context "when the screener has no state set" do
-      let(:screener) { create(:screener, :with_exemption, state: nil, email: "hi@example.com") }
-
-      before { sign_in screener }
-
-      it "redirects to root instead of raising" do
-        get :display
-
-        expect(response).to redirect_to(root_path)
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display do
+        let(:screener) { create(:screener, :with_exemption, state: nil, email: "hi@example.com") }
       end
     end
 
@@ -114,12 +109,13 @@ RSpec.describe DownloadFormController, type: :controller do
 
       before { sign_in screener }
 
-      it "redirects to root without saving an outcome or enqueueing an email" do
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display
+
+      it "does not save an outcome or enqueue an email" do
         expect {
           get :display
         }.not_to have_enqueued_job(SendOutgoingEmailJob)
 
-        expect(response).to redirect_to(root_path)
         expect(screener.reload.outcome).to be_nil
       end
     end

@@ -9,13 +9,13 @@ RSpec.describe AgeExemptionController, type: :controller do
     end
 
     context "with a signed in working-age screener" do
-      it "redirects to root without saving an outcome" do
-        screener = create(:screener, birth_date: 34.years.ago.to_date)
+      let(:screener) { create(:screener, birth_date: 34.years.ago.to_date) }
+
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display
+
+      it "does not save an outcome" do
         sign_in screener
-
         get :display
-
-        expect(response).to redirect_to(root_path)
         expect(screener.reload.outcome).to be_nil
       end
     end

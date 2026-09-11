@@ -9,13 +9,13 @@ RSpec.describe WorkRulesApplyMetController, type: :controller do
     end
 
     context "with a signed in screener who does not meet the work rules" do
-      it "redirects to root without saving an outcome" do
-        screener = create(:screener)
+      let(:screener) { create(:screener) }
+
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display
+
+      it "does not save an outcome" do
         sign_in screener
-
         get :display
-
-        expect(response).to redirect_to(root_path)
         expect(screener.reload.outcome).to be_nil
       end
     end

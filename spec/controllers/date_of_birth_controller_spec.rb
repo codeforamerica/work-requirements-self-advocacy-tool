@@ -6,13 +6,8 @@ RSpec.describe DateOfBirthController, type: :controller do
 
     render_views
 
-    it "redirects to root if the screener was routed out of state" do
-      screener = create(:screener, state: LocationData::States::NOT_LISTED)
-      sign_in screener
-
-      get :edit
-
-      expect(response).to redirect_to(root_path)
+    it_behaves_like "ensure_page_navigable redirects to root", action: :edit do
+      let(:screener) { create(:screener, state: LocationData::States::NOT_LISTED) }
     end
 
     it "reads and displays the individual date attributes if birth_date is saved on screener" do
