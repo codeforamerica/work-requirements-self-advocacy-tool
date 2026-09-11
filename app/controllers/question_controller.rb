@@ -3,10 +3,6 @@ class QuestionController < ApplicationController
   include Forms::FormController
   include AuthenticatedConcern
 
-  # show? determines which page comes next during navigation, but on its own it
-  # doesn't stop a direct visit to a page the screener isn't eligible for.
-  # Registering this gate here (in the superclass) guarantees it runs before
-  # subclass before_actions with side effects, like save_outcome and email_pdf.
   before_action :ensure_page_navigable
 
   helper_method :show_progress_bar, :show_progress_percentage, :percent_complete

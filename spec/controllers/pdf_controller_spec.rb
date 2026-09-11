@@ -4,7 +4,7 @@ RSpec.describe PdfController, type: :controller do
   describe "#generate_pdf" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :generate_pdf
 
-    it "sends the combined PDF for an exempt screener" do
+    it "creates the PDF for an exempt screener" do
       allow_any_instance_of(Screener).to receive(:pdf).and_return("%PDF-1.4 fake pdf")
       screener = create(:screener, :with_exemption)
       sign_in screener

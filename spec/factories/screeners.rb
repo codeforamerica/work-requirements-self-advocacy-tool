@@ -20,8 +20,6 @@ FactoryBot.define do
     birth_date { 70.years.ago.to_date }
   end
 
-  # Meets the 20-hour work rule without qualifying for the earnings exemption
-  # (under 30 hours and under the weekly earnings minimum).
   trait :meets_work_rules do
     is_working { "yes" }
     working_hours { 20 }
