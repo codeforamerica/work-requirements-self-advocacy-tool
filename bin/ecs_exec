@@ -26,7 +26,7 @@ usage() {
     echo "  $(basename "$0"): to connect to staging"
     echo "  $(basename "$0") --env production: to connect to production"
     echo "  $(basename "$0") --desired-status STOPPED: to connect to staging but view the last stopped task"
-    echo "  $(basename "$0") --service worker: to connect to the staging worker instead of web"
+    echo "  $(basename "$0") --service worker: to connect to the worker instead of web"
     exit 1
 }
 
