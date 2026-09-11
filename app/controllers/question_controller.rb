@@ -22,7 +22,7 @@ class QuestionController < ApplicationController
   def self.show?(screener)
     return false if screener.unsupported_location?
     return false unless screener.age
-    !screener.age_qualified?
+    !screener.age_exempt?
   end
 
   private

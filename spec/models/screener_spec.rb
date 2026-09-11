@@ -731,35 +731,35 @@ RSpec.describe Screener, type: :model do
     end
   end
 
-  describe "#age_qualified?" do
+  describe "#age_exempt?" do
     it "returns true if age is 17 or younger" do
       screener = build(:screener, birth_date: 17.years.ago.to_date + 1.day)
-      expect(screener.age_qualified?).to eq true
+      expect(screener.age_exempt?).to eq true
     end
 
     it "returns false if age is 18" do
       screener = build(:screener, birth_date: 18.years.ago.to_date)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
 
     it "returns false if age is 37" do
       screener = build(:screener, birth_date: 37.years.ago.to_date)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
 
     it "returns false if age is 64" do
       screener = build(:screener, birth_date: 64.years.ago.to_date + 1.day)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
 
     it "returns true if age is 65" do
       screener = build(:screener, birth_date: 65.years.ago.to_date)
-      expect(screener.age_qualified?).to eq true
+      expect(screener.age_exempt?).to eq true
     end
 
     it "returns false if birth_date is nil" do
       screener = build(:screener, birth_date: nil)
-      expect(screener.age_qualified?).to eq false
+      expect(screener.age_exempt?).to eq false
     end
   end
 
