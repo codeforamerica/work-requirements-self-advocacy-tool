@@ -108,6 +108,12 @@ html, body, main {
   white-space: nowrap;
 }
 
+.electronic-signature {
+  font-family: "Allura", cursive;
+  font-size: 20pt;
+  line-height: 1;
+}
+
 .checklist {
   list-style: none;
   margin: 0;
@@ -131,6 +137,10 @@ html, body, main {
   margin-left: 2.7rem;
   padding-bottom: 0.6rem;
   font-weight: 700;
+}
+
+.checklist-item__detail--regular {
+  font-weight: 400;
 }
 
 .checklist--nested {

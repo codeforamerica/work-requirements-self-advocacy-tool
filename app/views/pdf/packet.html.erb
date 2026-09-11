@@ -92,7 +92,9 @@
               <% if preventing_work_medical_condition %>
                 <li>Has a physical or mental medical condition preventing them from working at least 20 hours every week (see details below)</li>
               <% end %>
-              <% if preventing_work_other %>
+              <% if preventing_work_other_write_in.present? %>
+                <li>Other: Details provided below</li>
+              <% elsif preventing_work_other %>
                 <li>Other</li>
               <% end %>
             </ul>
@@ -124,7 +126,7 @@
     <%= checklist_item("I am caring for a child under age 6", caring_for_child_under_6) %>
     <%= checklist_item("I am caring for an incapacitated person", caring_for_disabled_or_ill_person) %>
     <% if details_of_care.present? %>
-      <li class="checklist-item__detail"><strong>Details of care:</strong> <%= details_of_care %></li>
+      <li class="checklist-item__detail--regular"><strong>Details of care:</strong> <%= details_of_care %></li>
     <% end %>
     <%= checklist_item("I am pregnant", is_pregnant) %>
     <% if pregnancy_due_date.present? %>
@@ -192,7 +194,13 @@
     <%= inline_svg("pdf-work.svg") %>
     <h3>Fitness for Work</h3>
   </div>
-  <p>The following condition(s) prevent(s) me from working at least 20 hours a week:</p>
+  <%
+    fitness_for_work_exemption_count = [at_least_55_no_diploma_not_working, preventing_work_place_to_sleep, preventing_work_drugs_alcohol,
+      preventing_work_domestic_violence, preventing_work_medical_condition, preventing_work_other].count(true)
+    condition_noun = fitness_for_work_exemption_count == 1 ? "condition" : "conditions"
+    condition_verb = fitness_for_work_exemption_count == 1 ? "prevents" : "prevent"
+  %>
+  <p>The following <%= condition_noun %> <%= condition_verb %> me from working at least 20 hours a week:</p>
   <ul class="checklist">
     <% if state == LocationData::States::NORTH_CAROLINA %>
       <%= checklist_item("I am 55 to 64 years old, I do not have a high school diploma or GED, I have not had substantial work in the past five years and I have a health condition that limits my ability to work", at_least_55_no_diploma_not_working) %>
@@ -203,7 +211,7 @@
     <%= checklist_item("I have a physical or mental medical condition that prevents me from working at least 20 hours per week", preventing_work_medical_condition) %>
     <%= checklist_item("Other", preventing_work_other) %>
     <% if preventing_work_other_write_in.present? %>
-      <li class="checklist-item__detail"><%= preventing_work_other_write_in %></li>
+      <li class="checklist-item__detail checklist-item__detail--regular"><%= preventing_work_other_write_in %></li>
     <% end %>
   </ul>
   <% if preventing_work_write_in.present? %>
@@ -217,6 +225,16 @@
   </div>
   <p>I certify under penalty of perjury that the information provided on this form is true and correct.</p>
   <div class="info-box">
+    <div class="info-row">
+      <%
+        signature_length = signature.to_s.length
+        signature_font_size = signature_length <= 20 ? 20 : [(20 * (20.0 / signature_length)).round, 10].max
+      %>
+      <div class="info-field">
+        <span class="info-label">Electronic signature:</span>
+        <span class="electronic-signature" style="font-size: <%= signature_font_size %>pt"><%= signature %></span>
+      </div>
+    </div>
     <div class="info-row">
       <%= info_field("Full legal name:", signature) %>
     </div>

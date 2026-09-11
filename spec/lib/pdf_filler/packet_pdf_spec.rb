@@ -226,13 +226,54 @@ RSpec.describe PdfFiller::PacketPdf do
       expect(html).not_to include("I am 55 to 64 years old, I do not have a high school diploma or GED")
     end
 
-    it "strils emojis from field values before rendering" do
+    it "strips emojis from field values before rendering" do
       screener.case_number = "12345 😊"
 
       html = rendered_html { packet_pdf.to_pdf }
 
       expect(html).to include("12345")
       expect(html).not_to include("😊")
+    end
+
+    it "renders the signature at the default 20pt for short names" do
+      screener.signature = "Nigella Lawson"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include('<span class="electronic-signature" style="font-size: 20pt">Nigella Lawson</span>')
+    end
+
+    it "shrinks the signature font size for names over 20 characters" do
+      screener.signature = "Alexandria Beauregard" # 21 characters -> 400/21 rounds to 19pt
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include('<span class="electronic-signature" style="font-size: 19pt">Alexandria Beauregard</span>')
+    end
+
+    it "floors the signature font size at 10pt for very long names" do
+      screener.signature = "Bartholomew Christopher Alexander Winterbottom" # 46 characters -> 400/46 rounds to 9, floored to 10
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include('<span class="electronic-signature" style="font-size: 10pt">Bartholomew Christopher Alexander Winterbottom</span>')
+    end
+
+    it "uses singular wording when only one fitness for work condition is checked" do
+      screener.preventing_work_medical_condition = "yes"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("The following condition prevents me from working at least 20 hours a week:")
+    end
+
+    it "uses plural wording when more than one fitness for work condition is checked" do
+      screener.preventing_work_medical_condition = "yes"
+      screener.preventing_work_other = "yes"
+
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("The following conditions prevent me from working at least 20 hours a week:")
     end
   end
 
