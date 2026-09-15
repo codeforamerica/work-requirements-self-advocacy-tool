@@ -30,6 +30,14 @@ on:
       AWS_SECRET_ACCESS_KEY:
       DEPLOYMENT_APP_ID:
       DEPLOYMENT_APP_KEY:
+      # Required: the Dockerfile's base image is a Docker Hardened Image, so the
+      # build cannot pull it without these. Marked required so a caller that forgets
+      # to pass them fails with that message, rather than at an anonymous docker
+      # login and then a confusing failure on the first FROM.
+      DOCKER_HUB_USERNAME:
+        required: true
+      DOCKER_HUB_READONLY_TOKEN:
+        required: true
 
 permissions:
   contents: read
