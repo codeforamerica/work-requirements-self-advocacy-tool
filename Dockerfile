@@ -18,13 +18,18 @@ WORKDIR /rails
 
 ARG CHROME_FOR_TESTING_VERSION
 
-# Install base packages. We install apt chromium to pull in all required system
-# library dependencies, then download a pinned Chrome for Testing binary on top.
+# Install base packages. We install apt chromium only to pull in all required system
+# library dependencies, then download a pinned Chrome for Testing binary on top and
+# purge the apt chromium package itself -- it's never executed (PUPPETEER_EXECUTABLE_PATH
+# below points at the pinned binary instead), so keeping it around is a second full
+# browser's worth of CVEs in the image for no functional benefit. Purging leaves its
+# dependency packages (fonts, NSS, X11 libs, etc.) installed, which the pinned binary needs.
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libjemalloc2 libvips nodejs npm postgresql-client chromium wget unzip && \
     wget -q "https://storage.googleapis.com/chrome-for-testing-public/${CHROME_FOR_TESTING_VERSION}/linux64/chrome-linux64.zip" && \
     unzip -q chrome-linux64.zip -d /opt && \
     rm chrome-linux64.zip && \
+    apt-get purge -y chromium && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Set production environment
