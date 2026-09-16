@@ -699,7 +699,7 @@ en:
       edit:
         button_label: Sign & create my form
         email_confirmation_html: |
-          <p class="spacing-below-5">We'll send your form to <strong>%{email}</strong></p>
+          <p class="spacing-below-5 text--break-word">We'll send your form to <strong>%{email}</strong></p>
           <p class="text-25-small">Wrong email? <a href="/basic-info-email?return_to_review=y">Edit it here</a></p>
         exemption_55_no_diploma: At least 55 years old with no high school diploma, limited recent work history, and a medical condition that makes it hard to work
         exemption_alcohol_treatment: Participating in a drug or alcohol treatment program
