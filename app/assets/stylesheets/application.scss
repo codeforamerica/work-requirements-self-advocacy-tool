@@ -67,7 +67,6 @@ main {
   }
 }
 
-// honeycrisp steps .slab's side padding at $tablet-up; use one fluid inset instead
 .slab {
   padding-top: 1.5rem;
   padding-left: 0;
@@ -76,9 +75,6 @@ main {
   margin-right: clamp(1.5rem, 5vw, 6rem);
 }
 
-// honeycrisp's grid width classes switch on at $tablet-up, collapsing the content
-// column to 66% with an empty one-sixth spacer beside it. use a fluid centered
-// column so the width scales smoothly instead of stepping at a breakpoint.
 .grid > .grid__item.width-two-thirds {
   float: none;
   width: 100%;
