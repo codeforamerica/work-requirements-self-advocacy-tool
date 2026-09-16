@@ -3,10 +3,29 @@ require "rails_helper"
 RSpec.describe DownloadFormController, type: :controller do
   describe "#display" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :display
-    it_behaves_like "saves outcome on page visit", expected_outcome: Screener::EXEMPT
+
+    it_behaves_like "saves outcome on page visit", expected_outcome: Screener::EXEMPT do
+      let(:screener) { create(:screener, :with_exemption) }
+    end
+
+    context "with a signed in screener who is not exempt" do
+      let(:screener) { create(:screener, email: "hi@example.com") }
+
+      before { sign_in screener }
+
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display
+
+      it "does not save an outcome or enqueue an email" do
+        expect {
+          get :display
+        }.not_to have_enqueued_job(SendOutgoingEmailJob)
+
+        expect(screener.reload.outcome).to be_nil
+      end
+    end
 
     context "with signed in screener" do
-      let(:screener) { create(:screener, email: "hi@example.com") }
+      let(:screener) { create(:screener, :with_exemption, email: "hi@example.com") }
 
       before { sign_in screener }
 
@@ -80,14 +99,24 @@ RSpec.describe DownloadFormController, type: :controller do
     end
 
     context "when the screener has no state set" do
-      let(:screener) { create(:screener, :with_exemption, state: nil, email: "hi@example.com") }
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display do
+        let(:screener) { create(:screener, :with_exemption, state: nil, email: "hi@example.com") }
+      end
+    end
+
+    context "when the screener's state is not listed" do
+      let(:screener) { create(:screener, :with_exemption, state: LocationData::States::NOT_LISTED, email: "hi@example.com") }
 
       before { sign_in screener }
 
-      it "redirects to root instead of raising" do
-        get :display
+      it_behaves_like "ensure_page_navigable redirects to root", action: :display
 
-        expect(response).to redirect_to(root_path)
+      it "does not save an outcome or enqueue an email" do
+        expect {
+          get :display
+        }.not_to have_enqueued_job(SendOutgoingEmailJob)
+
+        expect(screener.reload.outcome).to be_nil
       end
     end
 

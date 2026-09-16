@@ -3,6 +3,8 @@ class QuestionController < ApplicationController
   include Forms::FormController
   include AuthenticatedConcern
 
+  before_action :ensure_page_navigable
+
   helper_method :show_progress_bar, :show_progress_percentage, :percent_complete
 
   def show_progress_bar
@@ -18,11 +20,16 @@ class QuestionController < ApplicationController
   end
 
   def self.show?(screener)
+    return false if screener.unsupported_location?
     return false unless screener.age
-    screener.age < 65 && screener.age >= 18
+    !screener.age_exempt?
   end
 
   private
+
+  def ensure_page_navigable
+    redirect_to root_path unless self.class.show?(current_screener)
+  end
 
   def save_outcome
     return if current_screener.outcome_arrived_at.present? && current_screener.outcome == outcome_value

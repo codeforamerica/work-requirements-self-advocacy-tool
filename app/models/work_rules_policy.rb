@@ -77,7 +77,7 @@ module WorkRulesPolicy
     def non_earnings_exemption_reasons
       reasons = []
 
-      reasons << ((screener.age <= 17) ? "age_under_18" : "age_65_or_older") if screener.age_qualified?
+      reasons << ((screener.age <= 17) ? "age_under_18" : "age_65_or_older") if screener.age_exempt?
 
       Screener::ELIGIBILITY_EXEMPTION_ATTRIBUTES.each do |attribute|
         reasons << attribute.to_s if screener.public_send("#{attribute}_yes?")

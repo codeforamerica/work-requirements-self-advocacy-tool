@@ -1,4 +1,4 @@
-class PdfController < QuestionController
+class PdfController < ExemptionAwareQuestionController
   layout "pdf"
   skip_before_action :set_screener_current_step_and_locale
 

@@ -7,11 +7,14 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
-    it_behaves_like "rejects invalid enum values", fields: [:consented_to_texts]
+    it_behaves_like "rejects invalid enum values", fields: [:consented_to_texts], screener_factory: -> { create(:screener, :with_exemption) }
 
-    it_behaves_like "handles missing screener params", status: :bad_request
+    it_behaves_like "handles missing screener params", status: :bad_request do
+      let(:screener) { create(:screener, :with_exemption) }
+    end
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:screener) { create(:screener, :with_exemption) }
       let(:page_submit_cases) do
         [{
           form_params: {
@@ -49,7 +52,7 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
     end
 
     it "persists attributes to the screener" do
-      screener = create(:screener, birth_date: Date.new(1990, 1, 1))
+      screener = create(:screener, :with_exemption, birth_date: Date.new(1990, 1, 1))
       sign_in screener
 
       params = {
@@ -75,7 +78,7 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
     end
 
     it "does not persist and shows error when birth date is incomplete" do
-      screener = create(:screener, birth_date: Date.new(1990, 1, 1))
+      screener = create(:screener, :with_exemption, birth_date: Date.new(1990, 1, 1))
       sign_in screener
 
       params = {

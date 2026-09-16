@@ -9,11 +9,12 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
+      let(:screener) { create(:screener, :with_exemption) }
       let(:page_submit_cases) { [{form_params: {case_number: "ABC-123"}, expected_data: {has_case_number: true}}] }
     end
 
     it "saves the case number and redirects to the next step" do
-      screener = create(:screener)
+      screener = create(:screener, :with_exemption)
       sign_in screener
 
       post :update, params: {screener: {case_number: "ABC-123"}}
@@ -32,7 +33,7 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
 
     context "when the screener is in NC" do
       it "renders the county as the office name and the NC case number labels" do
-        sign_in create(:screener, state: "NC", county: "Durham County")
+        sign_in create(:screener, :with_exemption, state: "NC", county: "Durham County")
 
         get :edit
 
@@ -43,7 +44,7 @@ RSpec.describe BasicInfoCaseNumberController, type: :controller do
 
     context "when the screener is not in NC" do
       it "renders the default office name and case number labels" do
-        sign_in create(:screener, state: "DE")
+        sign_in create(:screener, :with_exemption, state: "DE")
 
         get :edit
 

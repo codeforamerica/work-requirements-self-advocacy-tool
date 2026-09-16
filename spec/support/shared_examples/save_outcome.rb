@@ -1,7 +1,7 @@
 RSpec.shared_examples "saves outcome on page visit" do |expected_outcome:|
-  context "with signed in screener" do
-    let(:screener) { create(:screener) }
+  let(:screener) { create(:screener) }
 
+  context "with signed in screener" do
     before { sign_in screener }
 
     context "on first visit" do

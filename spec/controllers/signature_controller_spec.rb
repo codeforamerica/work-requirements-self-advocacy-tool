@@ -9,13 +9,17 @@ RSpec.describe SignatureController, type: :controller do
 
   describe "#edit" do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
+
+    it_behaves_like "ensure_page_navigable redirects to root", action: :edit do
+      let(:screener) { create(:screener) }
+    end
   end
 
   describe "#update" do
     it_behaves_like :session_must_be_active_for_this_post_action, action: :edit
 
     it "persists signature to the current screener and sets signed_at to the current time" do
-      screener = create(:screener)
+      screener = create(:screener, :with_exemption)
       sign_in screener
 
       params = {
