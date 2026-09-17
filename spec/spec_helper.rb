@@ -116,15 +116,35 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
   # Register a headless Chrome driver
-  Capybara.register_driver :selenium_chrome_headless do |app|
+  headless_chrome_options = lambda do |window_size:|
     options = Selenium::WebDriver::Chrome::Options.new
     options.add_argument("--headless=new")   # modern Chrome headless
     options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")     # required in CI
-    options.add_argument("--window-size=1400,2400")
+    options.add_argument("--window-size=#{window_size}")
     options.add_argument("--disable-dev-shm-usage")     # prevents Chrome crashes in Docker CI (small /dev/shm)
     options.add_argument("--disable-features=BackForwardCache")  # prevents stale node refs with Turbo Drive
+    options
+  end
 
+  Capybara.register_driver :selenium_chrome_headless do |app|
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: headless_chrome_options.call(window_size: "1400,2400"))
+  end
+
+  # Same browser, but with the default font size raised so pages render at 200%
+  # text in a phone-width window -- see spec/support/text_scaling.rb. Raising the
+  # browser's default font size (rather than zooming) is what a participant does
+  # when they increase the font size on their phone, and it is the only thing
+  # honeycrisp's html { font-size: 62.5% } responds to.
+  Capybara.register_driver :selenium_chrome_headless_large_text do |app|
+    options = headless_chrome_options.call(window_size: "390,1400")
+    options.add_preference("webkit.webprefs.default_font_size", TextScaling::LARGE_DEFAULT_FONT_SIZE)
+    # macOS overlays scrollbars and takes no width; Linux reserves 15px for
+    # them, which silently narrows the content area and makes the same page
+    # measure differently in CI than on a developer's machine. Hiding them
+    # gives the audit one width on every platform, and matches the overlay
+    # scrollbars phone browsers use anyway.
+    options.add_argument("--hide-scrollbars")
     Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
   end
 
