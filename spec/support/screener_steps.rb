@@ -220,4 +220,43 @@ module ScreenerSteps
 
     expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
   end
+
+  # -- State selection --------------------------------------------------------
+  # NC asks for a county as well as a state, which is the one way its location
+  # page differs from Delaware's.
+  def step_de_location
+    select "Delaware", from: "screener_state"
+    fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
+    click_on I18n.t("general.continue")
+  end
+
+  def step_nc_location
+    select "North Carolina", from: "screener_state"
+    select "Durham County", from: "screener_county"
+    click_on I18n.t("general.continue")
+  end
+
+  # -- NC-only pages ----------------------------------------------------------
+  def step_nc_homeschool(enrolled:, name: "Tough Nuts Academy", hours: "25")
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
+    if enrolled
+      choose I18n.t("general.affirmative")
+      fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: name
+      fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: hours
+    else
+      choose I18n.t("general.negative")
+    end
+    click_on I18n.t("general.continue")
+  end
+
+  def step_nc_edu_work_history
+    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
+    within(".question-with-follow-up__question") do
+      choose I18n.t("general.negative")
+    end
+    within("#worked-last-five-years") do
+      choose I18n.t("general.affirmative")
+    end
+    click_on I18n.t("general.continue")
+  end
 end

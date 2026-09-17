@@ -1,5 +1,15 @@
 @import "cfa_styleguide_main";
 
+// rem lengths grow 1:1 with the root font size. when device font size increases,
+// padding and line boxes also increase and squeeze the content out of the viewport.
+// This formula scales a length sub-linearly instead: $rems is unchanged at the default 10px root,
+// and above that it grows at $scale of the root's rate. The px term is exactly the share
+// the rem term gives up, so the default-size value is preserved arithmetically
+// and not just approximately
+@function scale-with-text($rems, $scale) {
+  @return calc(#{$rems * $scale}rem + #{$rems * (1 - $scale) * 10}px);
+}
+
 .form-group, .text--help {
   font-size: 1.9rem;
 }
@@ -24,9 +34,15 @@ main {
   padding-right: 1rem;
 }
 
+.card {
+  --card-padding: #{scale-with-text(2.5, 0.5)};
+  padding: var(--card-padding);
+  overflow-wrap: break-word;
+}
+
 @media screen and (min-width: 800px) {
   .card {
-    padding: 6rem;
+    --card-padding: #{scale-with-text(6, 0.5)};
   }
 
   .ssn-last4 {
@@ -44,7 +60,7 @@ main {
   padding-top: 2.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  max-width: 820px;
+  max-width: 82rem;
 
   .button {
     margin: 0;
@@ -58,10 +74,13 @@ main {
     img {
       margin: 0;
       display: flex;
-      width: 210px;
+      width: 21rem;
+      // the logo is a fixed-ratio image, so it has to be stopped from growing
+      // past the header it sits in
+      max-width: 100%;
 
       @media screen and (max-width: $tablet-up - 1) {
-        width: 230px;
+        width: 23rem;
       }
     }
   }
@@ -71,14 +90,19 @@ main {
   padding-top: 1.5rem;
   padding-left: 0;
   padding-right: 0;
-  margin-left: clamp(1.5rem, 5vw, 6rem);
-  margin-right: clamp(1.5rem, 5vw, 6rem);
+  // clamp bounds are sub-linear rather than flat rem.
+  // On a 390px phone, 5vw is 19.5px. A plain 1.5rem floor would take over at 200% text
+  // and widen the spacing to 30px per side.
+  margin-left: clamp(#{scale-with-text(1.5, 0.25)}, 5vw, #{scale-with-text(6, 0.5)});
+  margin-right: clamp(#{scale-with-text(1.5, 0.25)}, 5vw, #{scale-with-text(6, 0.5)});
 }
 
 .grid > .grid__item.width-two-thirds {
   float: none;
   width: 100%;
-  max-width: 640px;
+  // 64rem is the same 640px at the default root, but a user at 200% text gets a column
+  // scaled to their text rather than a fixed one that fits half as much
+  max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -100,24 +124,14 @@ main {
 // so the background reaches the card edges
 // and adds matching inner padding
 .card-section--full-bleed {
-  margin-left: -2.5rem;
-  margin-right: -2.5rem;
-  padding: 3.5rem 2.5rem;
-
-  @media screen and (min-width: 800px) {
-    margin-left: -6rem;
-    margin-right: -6rem;
-    padding: 3.5rem 6rem;
-  }
+  margin-left: calc(-1 * var(--card-padding));
+  margin-right: calc(-1 * var(--card-padding));
+  padding: 3.5rem var(--card-padding);
 
   &:last-child {
-    margin-bottom: -2.5rem;
+    margin-bottom: calc(-1 * var(--card-padding));
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-
-    @media screen and (min-width: 800px) {
-      margin-bottom: -6rem;
-    }
   }
 
   &.teal {
@@ -295,7 +309,7 @@ hr.tight {
   margin: 0 auto;
   margin-top: 0;
   margin-bottom: 6rem;
-  max-width: 400px;
+  max-width: 40rem; // rem so it tracks the text -- see .toolbar (WRSAT-754)
 
   @media screen and (max-width: $tablet-up - 1) {
     width: 100%;
@@ -377,6 +391,25 @@ i.continue-arrow {
   content: none;
 }
 
+// browsers give fieldset a UA `min-inline-size: min-content`, so a fieldset will not shrink below
+// its longest word. Checkbox and radio groups are fieldsets, which is why break-word alone does
+// not contain them
+fieldset {
+  min-width: 0;
+}
+
+.checkbox,
+.radio-button {
+  overflow-wrap: break-word;
+  padding-left: scale-with-text(6, 0.25);
+  padding-right: scale-with-text(2.5, 0.5);
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    left: scale-with-text(2.5, 0.25);
+  }
+}
+
 .checkbox-group {
   .input-group {
     margin-bottom: 0;
@@ -389,6 +422,9 @@ i.continue-arrow {
 
 .button {
   margin-left: 0;
+  max-width: 100%;
+  white-space: normal;
+  line-height: scale-with-text(2.5, 0.7); // $s25
 }
 
 .text-green-innovation-lab {
@@ -406,7 +442,7 @@ i.continue-arrow {
 
 .button.button--wide {
   width: 100%;
-  max-width: 500px;
+  max-width: 50rem;
   text-align: center;
 }
 
@@ -414,6 +450,28 @@ i.continue-arrow {
 .text-input-group__prefix {
   padding-left: 0;
   padding-right: 0;
+}
+
+.text-input-group .text-input-group__prefix {
+  padding-left: scale-with-text(2.5, 0.5);
+  padding-right: scale-with-text(1, 0.5);
+}
+
+.text-input-group.ssn-last4 {
+  display: flex;
+  flex-wrap: wrap;
+
+  > .text-input-group__prefix {
+    display: flex;
+    align-items: center;
+    width: auto;
+    flex: 0 0 auto;
+  }
+
+  > input.text-input {
+    flex: 1 1 6ch;
+    min-width: 6ch;
+  }
 }
 
 .list--plain {
@@ -437,7 +495,10 @@ i.continue-arrow {
 .privacy-policy-scrollbox {
   border: 2px solid #A9AEB1;
   border-radius: 5px;
-  max-height: 300px;
+  // rem, not px, so the box holds roughly the same number of lines at any text
+  // size instead of showing half the policy to a user who scaled their
+  // text up. 30rem is the same 300px of the default root
+  max-height: 30rem;
   overflow-y: auto;
   padding: 2rem;
 
