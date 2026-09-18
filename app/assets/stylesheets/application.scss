@@ -60,7 +60,7 @@ main {
       display: flex;
       width: 210px;
 
-      @media screen and (max-width: $tablet-up) {
+      @media screen and (max-width: $tablet-up - 1) {
         width: 230px;
       }
     }
@@ -69,13 +69,26 @@ main {
 
 .slab {
   padding-top: 1.5rem;
-  margin-left: 6rem;
-  margin-right: 6rem;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: clamp(1.5rem, 5vw, 6rem);
+  margin-right: clamp(1.5rem, 5vw, 6rem);
+}
 
-  @media screen and (max-width: $tablet-up) {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
-  }
+.grid > .grid__item.width-two-thirds {
+  float: none;
+  width: 100%;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grid > .grid__item.width-one-sixth {
+  display: none;
+}
+
+.grid > .grid__item.shift-one-sixth {
+  margin-left: auto;
 }
 
 .footer {
@@ -284,7 +297,7 @@ hr.tight {
   margin-bottom: 6rem;
   max-width: 400px;
 
-  @media screen and (max-width: $tablet-up) {
+  @media screen and (max-width: $tablet-up - 1) {
     width: 100%;
   }
 }
