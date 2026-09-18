@@ -699,7 +699,7 @@ es:
       edit:
         button_label: Firmar y crear mi formulario
         email_confirmation_html: |
-          <p class="spacing-below-5">Le enviaremos su formulario a <strong>%{email}</strong></p>
+          <p class="spacing-below-5 text--break-word">Le enviaremos su formulario a <strong>%{email}</strong></p>
           <p class="text-25-small">¿El correo no es correcto? <a href="">Edítelo aquí.</a></p>
         exemption_55_no_diploma: Tener al menos 55 años, no haber obtenido un diploma de secundaria, tener poca experiencia laboral reciente y una condición médica
         exemption_alcohol_treatment: Participa en un programa de tratamiento por consumo de drogas o alcohol
