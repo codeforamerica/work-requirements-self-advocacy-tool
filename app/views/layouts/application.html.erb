@@ -43,16 +43,20 @@
             <%= image_tag "gbh-logo.svg" %>
           <% end %>
 
-          <% switched_locale = I18n.locale == :en ? :es : :en %>
-          <%= link_to(
-            {locale: switched_locale, params: request.query_parameters},
-            lang: switched_locale,
-            class: "button button--small",
-            "data-turbo": "false",
-            id: "locale_switcher_#{switched_locale}") do %>
-              <i class="button__icon--right icon-translate"></i>
-              <%= t("general.switched_locale") %>
-            <% end %>
+          <div class="toolbar-actions">
+            <%= render "shared/intercom_chat_button" %>
+
+            <% switched_locale = I18n.locale == :en ? :es : :en %>
+            <%= link_to(
+              {locale: switched_locale, params: request.query_parameters},
+              lang: switched_locale,
+              class: "button button--small",
+              "data-turbo": "false",
+              id: "locale_switcher_#{switched_locale}") do %>
+                <i class="button__icon--right icon-translate"></i>
+                <%= t("general.switched_locale") %>
+              <% end %>
+          </div>
         </div>
       <%= yield %>
     </main>

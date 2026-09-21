@@ -1,0 +1,5 @@
+<% if ENV["INTERCOM_APP_ID"].present? && current_screener.present? %>
+  <button type="button" class="intercom button button--small">
+    <%= t("general.intercom_start_chat") %>
+  </button>
+<% end %>
