@@ -120,7 +120,7 @@ GEM
       aws-eventstream (~> 1, >= 1.0.2)
     base64 (0.3.0)
     bcrypt (3.1.22)
-    bigdecimal (4.1.2)
+    bigdecimal (4.1.3)
     bindex (0.8.1)
     bootsnap (1.26.0)
       msgpack (~> 1.5)
@@ -265,7 +265,7 @@ GEM
       base64
       json-logic-rb (~> 0.2)
       mutex_m
-    msgpack (1.8.4)
+    msgpack (1.8.5)
     mutex_m (0.3.0)
     net-imap (0.6.6)
       date
@@ -297,13 +297,18 @@ GEM
       logger
     opentelemetry-common (0.25.1)
       opentelemetry-api (~> 1.0)
-    opentelemetry-exporter-otlp (0.35.1)
+    opentelemetry-exporter-otlp (0.36.0)
       google-protobuf (>= 3.18)
       googleapis-common-protos-types (~> 1.3)
       opentelemetry-api (~> 1.1)
       opentelemetry-common (~> 0.20)
+      opentelemetry-exporter-otlp-common
       opentelemetry-sdk (~> 1.10)
       opentelemetry-semantic_conventions
+    opentelemetry-exporter-otlp-common (0.2.0)
+      google-protobuf (>= 3.18)
+      googleapis-common-protos-types (~> 1.3)
+      opentelemetry-api (~> 1.1)
     opentelemetry-helpers-mysql (0.6.0)
       opentelemetry-api (~> 1.7)
       opentelemetry-common (~> 0.21)
@@ -759,7 +764,7 @@ DEPENDENCIES
   mail (>= 2.9.1)
   mixpanel-ruby
   msgpack (>= 1.8.4)
-  opentelemetry-exporter-otlp (~> 0.35)
+  opentelemetry-exporter-otlp (~> 0.36)
   opentelemetry-instrumentation-all (~> 0.96)
   opentelemetry-resource-detector-aws (~> 0.7)
   opentelemetry-sdk (~> 1.13)
