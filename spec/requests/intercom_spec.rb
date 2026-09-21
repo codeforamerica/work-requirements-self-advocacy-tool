@@ -4,6 +4,7 @@ RSpec.describe "Intercom chat button", type: :request do
   before do
     allow(ENV).to receive(:[]).and_call_original
     allow(ENV).to receive(:[]).with("INTERCOM_APP_ID").and_return("test_app_id")
+    allow(IntercomRails.config).to receive(:enabled_environments).and_return(["test"])
   end
 
   it "does not show the button on the homepage, since there is no current_screener yet" do
@@ -30,11 +31,16 @@ RSpec.describe "Intercom chat button", type: :request do
     expect(response.body).not_to include("Start chat")
   end
 
-  describe "the auto-included Intercom script" do
-    before do
-      allow(IntercomRails.config).to receive(:enabled_environments).and_return(%w[development staging production test])
-    end
+  it "does not show the button when the current environment is not enabled for Intercom" do
+    allow(IntercomRails.config).to receive(:enabled_environments).and_return([])
 
+    get "/en/start_flow"
+    follow_redirect! while response.redirect?
+
+    expect(response.body).not_to include("Start chat")
+  end
+
+  describe "the auto-included Intercom script" do
     it "carries a nonce matching the page's CSP header" do
       get "/en/start_flow"
       follow_redirect! while response.redirect?

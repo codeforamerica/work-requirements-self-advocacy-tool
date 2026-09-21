@@ -120,13 +120,3 @@ IntercomRails.config do |config|
   #
   config.api_base = "https://api-iam.intercom.io"
 end
-
-module CoreExtensions
-  module IntercomRails
-    module AutoInclude
-      def self.csp_nonce_hook(controller)
-        controller.request.content_security_policy_nonce
-      end
-    end
-  end
-end

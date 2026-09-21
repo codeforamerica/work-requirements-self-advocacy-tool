@@ -28,7 +28,8 @@
         mixpanel.identify('<%= visitor_id %>');
       </script>
     <% end %>
-    <% if IntercomRails.config.enabled_environments.include?(Rails.env) && ENV["INTERCOM_APP_ID"].present? && current_screener.present? %>
+    <% intercom_available = IntercomRails.config.enabled_environments.include?(Rails.env) && ENV["INTERCOM_APP_ID"].present? && current_screener.present? %>
+    <% if intercom_available %>
       <%= intercom_script_tag(nil, nonce: content_security_policy_nonce) %>
     <% end %>
     <%= favicon_link_tag image_path('favicon.png'), :type=>'image/png' %>
@@ -47,7 +48,11 @@
           <% end %>
 
           <div class="toolbar-actions">
-            <%= render "shared/intercom_chat_button" %>
+            <% if intercom_available %>
+              <button type="button" class="intercom button button--small">
+                <%= t("general.intercom_start_chat") %>
+              </button>
+            <% end %>
 
             <% switched_locale = I18n.locale == :en ? :es : :en %>
             <%= link_to(
