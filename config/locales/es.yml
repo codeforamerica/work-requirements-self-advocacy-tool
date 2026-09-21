@@ -401,7 +401,7 @@ es:
         title_help_text_html: Algunas personas que reciben SNAP deben reportar su trabajo y actividades laborales para mantener sus beneficios. Responda algunas preguntas y le ayudaremos a entender qué información debe compartir con su oficina de SNAP.
     living_with_someone:
       edit:
-        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable del niño ni su tutor legal. Si vive con el niño, seleccione "Sí", incluso si el niño no está incluido en su caso de SNAP.
+        help_text: No tiene que ser la madre o el padre del niño, ni ser responsable de su cuidado o su tutor legal. Seleccione “Sí” si vive con el niño y suelen comer juntos.
         title: "¿En su hogar vive un niño menor de 14 años?"
     location:
       edit:
