@@ -22,7 +22,7 @@ IntercomRails.config do |config|
   # The method/variable that contains the logged in user in your controllers.
   # If it is `current_user` or `@user`, then you can ignore this
   #
-  config.user.current = Proc.new { current_screener }
+  config.user.current = proc { current_screener }
 
   # == Include for logged out Users
   # If set to true, include the Intercom messenger on all pages, regardless of whether
@@ -57,7 +57,7 @@ IntercomRails.config do |config|
   #   :favorite_color => :favorite_color
   # }
   config.user.custom_data = {
-    language_override: Proc.new { |screener| screener.locale.presence || I18n.default_locale.to_s }
+    language_override: proc { |screener| screener.locale.presence || I18n.default_locale.to_s }
   }
 
   # == Current company method/variable
