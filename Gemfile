@@ -53,7 +53,7 @@ gem "grover"
 gem "json", ">= 2.21.2"
 gem "mail", ">= 2.9.1"
 gem "mixpanel-ruby"
-gem "msgpack", '>= 1.8.5'
+gem "msgpack", ">= 1.8.5"
 gem "opentelemetry-exporter-otlp", "~> 0.36"
 gem "opentelemetry-instrumentation-all", "~> 0.96"
 gem "opentelemetry-resource-detector-aws", "~> 0.7"
