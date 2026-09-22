@@ -401,7 +401,7 @@ en:
         title_help_text_html: Some SNAP recipients need to report work or activities to keep their benefits. Answer a few questions and we'll help you understand what to give your SNAP agency.
     living_with_someone:
       edit:
-        help_text: You do not have to be the child's parent, be responsible for the child, or be their legal guardian. If you live with the child, select "Yes," even if they aren't included in your SNAP case.
+        help_text: You do not have to be the child's parent, be responsible for the child, or be their legal guardian. If you live with the child and you usually share meals with them, select "Yes."
         title: Is there a child under the age of 14 that lives in your household?
     location:
       edit:
