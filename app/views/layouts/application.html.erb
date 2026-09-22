@@ -28,9 +28,9 @@
         mixpanel.identify('<%= visitor_id %>');
       </script>
     <% end %>
-    <% intercom_available = IntercomRails.config.enabled_environments.include?(Rails.env) && ENV["INTERCOM_APP_ID"].present? && current_screener.present? %>
+    <% intercom_available = IntercomRails.config.enabled_environments.include?(Rails.env) && ENV["INTERCOM_APP_ID"].present? %>
     <% if intercom_available %>
-      <%= intercom_script_tag(nil, nonce: content_security_policy_nonce) %>
+      <%= intercom_script_tag({language_override: I18n.locale.to_s}, nonce: content_security_policy_nonce) %>
     <% end %>
     <%= favicon_link_tag image_path('favicon.png'), :type=>'image/png' %>
   </head>

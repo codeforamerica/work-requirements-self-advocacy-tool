@@ -57,7 +57,7 @@ IntercomRails.config do |config|
   #   :favorite_color => :favorite_color
   # }
   config.user.custom_data = {
-    language_override: proc { |screener| screener.locale.presence || I18n.default_locale.to_s }
+    language_override: proc { |screener| screener&.locale.presence || I18n.default_locale.to_s }
   }
 
   # == Current company method/variable
