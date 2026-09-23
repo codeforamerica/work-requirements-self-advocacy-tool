@@ -96,7 +96,7 @@ jobs:
 
     steps:
       - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev node-gyp pkg-config python-is-python3 google-chrome-stable
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev node-gyp pkg-config python-is-python3
 
       - name: Checkout code
         uses: actions/checkout@v7.0.1
@@ -114,6 +114,16 @@ jobs:
         with:
           node-version: 22
           cache: yarn
+
+      - name: Check chromedriver matches Chrome
+        run: |
+          chrome_major=$(google-chrome --version | grep -oE '[0-9]+' | head -1)
+          driver_major=$(chromedriver --version | grep -oE '[0-9]+' | head -1)
+          echo "Chrome $chrome_major / chromedriver $driver_major"
+          if [ "$chrome_major" != "$driver_major" ]; then
+            echo "::warning::chromedriver $driver_major does not match Chrome $chrome_major; removing it so Selenium Manager downloads a match"
+            sudo rm -f "$(command -v chromedriver)"
+          fi
 
       - name: Run tests
         env:
