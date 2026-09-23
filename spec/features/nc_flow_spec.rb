@@ -63,35 +63,4 @@ RSpec.feature "NC Screener flow", js: true do
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
   end
-
-  private
-
-  def step_nc_location
-    select "North Carolina", from: "screener_state"
-    select "Durham County", from: "screener_county"
-    click_on I18n.t("general.continue")
-  end
-
-  def step_nc_homeschool(enrolled:, name: "Tough Nuts Academy", hours: "25")
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.homeschool.edit.title"))
-    if enrolled
-      choose I18n.t("general.affirmative")
-      fill_in I18n.t("views.nc.homeschool.edit.homeschool_name_label"), with: name
-      fill_in I18n.t("views.nc.homeschool.edit.homeschool_hours_label"), with: hours
-    else
-      choose I18n.t("general.negative")
-    end
-    click_on I18n.t("general.continue")
-  end
-
-  def step_nc_edu_work_history
-    expect(page).to have_selector("h1", text: I18n.t("views.nc.edu_work_history.edit.title"))
-    within(".question-with-follow-up__question") do
-      choose I18n.t("general.negative")
-    end
-    within("#worked-last-five-years") do
-      choose I18n.t("general.affirmative")
-    end
-    click_on I18n.t("general.continue")
-  end
 end

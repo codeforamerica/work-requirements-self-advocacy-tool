@@ -42,12 +42,4 @@ RSpec.feature "DE Screener flow", js: true do
     expect(screener.has_earnings_exemption?).to eq true
     expect(screener.has_exemption?).to eq false
   end
-
-  private
-
-  def step_de_location
-    select "Delaware", from: "screener_state"
-    fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
-    click_on I18n.t("general.continue")
-  end
 end
