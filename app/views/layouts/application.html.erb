@@ -29,6 +29,10 @@
         mixpanel.identify('<%= visitor_id %>');
       </script>
     <% end %>
+    <% intercom_available = IntercomRails.config.enabled_environments.include?(Rails.env) && ENV["INTERCOM_APP_ID"].present? %>
+    <% if intercom_available %>
+      <%= intercom_script_tag({language_override: I18n.locale.to_s}, nonce: content_security_policy_nonce) %>
+    <% end %>
     <%= favicon_link_tag image_path('favicon.png'), :type=>'image/png' %>
   </head>
 
@@ -44,16 +48,24 @@
             <%= image_tag "gbh-logo.svg" %>
           <% end %>
 
-          <% switched_locale = I18n.locale == :en ? :es : :en %>
-          <%= link_to(
-            {locale: switched_locale, params: request.query_parameters},
-            lang: switched_locale,
-            class: "button button--small",
-            "data-turbo": "false",
-            id: "locale_switcher_#{switched_locale}") do %>
-              <i class="button__icon--right icon-translate"></i>
-              <%= t("general.switched_locale") %>
+          <div class="toolbar-actions">
+            <% if intercom_available %>
+              <button type="button" class="intercom button button--small">
+                <%= t("general.intercom_start_chat") %>
+              </button>
             <% end %>
+
+            <% switched_locale = I18n.locale == :en ? :es : :en %>
+            <%= link_to(
+              {locale: switched_locale, params: request.query_parameters},
+              lang: switched_locale,
+              class: "button button--small",
+              "data-turbo": "false",
+              id: "locale_switcher_#{switched_locale}") do %>
+                <i class="button__icon--right icon-translate"></i>
+                <%= t("general.switched_locale") %>
+              <% end %>
+          </div>
         </div>
       <%= yield %>
     </main>
