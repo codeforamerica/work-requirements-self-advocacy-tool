@@ -13,20 +13,41 @@
           value: @model.state
         ) %>
 
-  <div id="county_wrapper">
-    <%= f.cfa_select(
-            :county,
-            t("views.location.edit.county_help_text"),
-            [],
-            required: false,
-            include_blank: t("general.select"),
-            id: "county_select",
-            value: @model.county
-          ) %>
-  </div>
+  <div class="question-with-follow-up">
+    <div class="question-with-follow-up__question">
+      <div id="county_wrapper">
+        <%= f.cfa_select(
+                :county,
+                t("views.location.edit.county_help_text"),
+                [],
+                required: false,
+                include_blank: t("general.select"),
+                id: "county_select",
+                value: @model.county
+              ) %>
+      </div>
 
-  <div id="zip_code_wrapper">
-    <%= f.cfa_input_field(:zip_code, t("views.location.edit.zip_code_label")) %>
+      <div id="zip_code_wrapper">
+        <%= f.cfa_input_field(:zip_code, t("views.location.edit.zip_code_label")) %>
+      </div>
+    </div>
+
+    <div class="question-with-follow-up__follow-up js-initially-hidden" id="snap-follow-up">
+      <hr/>
+      <fieldset class="form-group">
+        <legend class="form-question">Are you currently getting SNAP benefits?</legend>
+        <div class="input-group--block honeycrisp-radiogroup">
+          <label class="radio-button">
+            <input type="radio" name="receives_snap" value="yes" disabled>
+            <%= t("general.affirmative") %>
+          </label>
+          <label class="radio-button">
+            <input type="radio" name="receives_snap" value="no" disabled>
+            <%= t("general.negative") %>
+          </label>
+        </div>
+      </fieldset>
+    </div>
   </div>
 
   <%= f.submit t("general.continue"), class: "button button--primary" %>
@@ -38,6 +59,8 @@
     const countyWrapper = document.getElementById("county_wrapper");
     const countySelect = document.getElementById("screener_county");
     const zipCodeWrapper = document.getElementById("zip_code_wrapper");
+    const zipCodeInput = document.getElementById("screener_zip_code");
+    const snapFollowUp = document.getElementById("snap-follow-up");
 
     if (!stateSelect || !countyWrapper || !countySelect || !zipCodeWrapper) {
       return;
@@ -99,14 +122,39 @@
       });
     });
 
+    function locationAnswered() {
+      if (statesOfficeBy[stateSelect.value] === "zip_code") {
+        return /^\d{5}$/.test((zipCodeInput.value || "").trim());
+      }
+      return countySelect.value !== "";
+    }
+
+    function updateSnapFollowUp() {
+      if (!snapFollowUp) {
+        return;
+      }
+      const answered = locationAnswered();
+      snapFollowUp.style.display = answered ? "block" : "none";
+      snapFollowUp.querySelectorAll("input").forEach(function (input) {
+        input.disabled = !answered;
+      });
+    }
+
     // Initial population
     populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
     showOrHideZipCodeInput(stateSelect.value);
+    updateSnapFollowUp();
 
     // Update counties whenever the state changes
     stateSelect.addEventListener("change", function () {
       populateCounties(stateSelect.value);
       showOrHideZipCodeInput(stateSelect.value);
+      updateSnapFollowUp();
     });
+
+    countySelect.addEventListener("change", updateSnapFollowUp);
+    if (zipCodeInput) {
+      zipCodeInput.addEventListener("input", updateSnapFollowUp);
+    }
   });
 </script>
