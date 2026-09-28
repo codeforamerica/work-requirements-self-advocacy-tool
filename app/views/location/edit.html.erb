@@ -9,7 +9,6 @@
           LocationData::States.dropdown_options,
           required: true,
           include_blank: t("general.select"),
-          id: "state_select",
           value: @model.state
         ) %>
 
@@ -22,7 +21,6 @@
                 [],
                 required: false,
                 include_blank: t("general.select"),
-                id: "county_select",
                 value: @model.county
               ) %>
       </div>
@@ -32,7 +30,7 @@
       </div>
     </div>
 
-    <div class="question-with-follow-up__follow-up js-initially-hidden" id="snap-follow-up">
+    <div class="question-with-follow-up__follow-up js-initially-hidden" id="snap_follow_up">
       <hr/>
       <fieldset class="form-group">
         <legend class="form-question">Are you currently getting SNAP benefits?</legend>
@@ -60,9 +58,11 @@
     const countySelect = document.getElementById("screener_county");
     const zipCodeWrapper = document.getElementById("zip_code_wrapper");
     const zipCodeInput = document.getElementById("screener_zip_code");
-    const snapFollowUp = document.getElementById("snap-follow-up");
+    const snapFollowUp = document.getElementById("snap_follow_up");
 
-    if (!stateSelect || !countyWrapper || !countySelect || !zipCodeWrapper) {
+    // check for these elements because turbo:load listener stays bound to document and fires on every subsequent page;
+    // we only want the script to run when on the location page
+    if (!stateSelect || !countyWrapper || !countySelect || !zipCodeWrapper || !zipCodeInput || !snapFollowUp) {
       return;
     }
 
@@ -130,9 +130,6 @@
     }
 
     function updateSnapFollowUp() {
-      if (!snapFollowUp) {
-        return;
-      }
       const answered = locationAnswered();
       snapFollowUp.style.display = answered ? "block" : "none";
       snapFollowUp.querySelectorAll("input").forEach(function (input) {
@@ -153,8 +150,6 @@
     });
 
     countySelect.addEventListener("change", updateSnapFollowUp);
-    if (zipCodeInput) {
-      zipCodeInput.addEventListener("input", updateSnapFollowUp);
-    }
+    zipCodeInput.addEventListener("input", updateSnapFollowUp);
   });
 </script>
