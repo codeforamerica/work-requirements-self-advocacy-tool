@@ -20,6 +20,7 @@
     "chromium-bidi/zod": "4.6.0",
     "zod": "4.6.0",
     "basic-ftp": "^6.0.0",
-    "yargs": "^18.0.0"
+    "yargs": "^18.0.0",
+    "extract-zip": "https://npm.aikido.io/15c1c18888387f32c4a27/extract-zip@2.0.1-aikido.2"
   }
 }
