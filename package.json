@@ -17,8 +17,8 @@
     "puppeteer": "^24.43.1"
   },
   "resolutions": {
-    "chromium-bidi/zod": "4.4.0",
-    "zod": "4.4.0",
+    "chromium-bidi/zod": "4.6.0",
+    "zod": "4.6.0",
     "basic-ftp": "^6.0.0",
     "yargs": "^18.0.0"
   }

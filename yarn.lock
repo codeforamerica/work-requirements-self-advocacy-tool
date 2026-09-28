@@ -271,9 +271,9 @@ bare-url@^2.2.2:
     bare-path "^3.0.0"
 
 basic-ftp@^5.0.2, basic-ftp@^6.0.0:
-  version "6.2.1"
-  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.1.tgz#4e48a39c87baee0314e1a0fa9bcca73b1e251e53"
-  integrity sha512-bK67isD+lKq46AU8vNtjvMaT2ZqAOAmNCbxUHlFBRD4k15NWxyEjmaKtZPlgce58So4BNTjITGQOVTjL9y0ECA==
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.0.tgz#5c4d355c27fdb5de98bb441c96e62c5ae9f4f813"
+  integrity sha512-H8eLjhoYPbOI717FLP8fGE7XInkMI7Ucj/ft0fp1avABtSiV5Bb2kYzScnOqlvJZs/KJZypr9Mp5zJmhaPFAEg==
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
@@ -844,7 +844,7 @@ yauzl@^2.10.0:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.1.0"
 
-zod@4.4.0, zod@^3.24.1:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-4.4.0.tgz#fdbd3c0c68794919a381f552eecfb1e4a493ce40"
-  integrity sha512-932TE3dEKhhYkEZFv6meaxLaCyg1m6LSI0ETKCIyUqIim+KgIsB/kha/4CKwDEbYgMzS5QxAe2mtDPpaHLHdsQ==
+zod@4.6.0, zod@^3.24.1:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.0.tgz#97011e7672443e94d63493424138e280d83a8e71"
+  integrity sha512-iIvwyDnebKYpww2ta0DjaNOL8RnVLmPMhgWyOzlW9y0EIIxv5gl+H6Y0ONpt83HqjGqkk78uWp6xWtpxzZdPbw==
