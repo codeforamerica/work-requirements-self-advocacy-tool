@@ -57,7 +57,12 @@ main {
 }
 
 .toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: $color-grey-light;
   padding-top: 2.5rem;
+  padding-bottom: 1rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   max-width: 82rem;
@@ -81,6 +86,21 @@ main {
 
       @media screen and (max-width: $tablet-up - 1) {
         width: 23rem;
+      }
+    }
+  }
+
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    @media screen and (max-width: $tablet-up) {
+      gap: 0.4rem;
+
+      .button {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
       }
     }
   }
@@ -602,4 +622,3 @@ fieldset {
 .media--icon.narrow {
   margin-right: 0.5em;
 }
-
