@@ -16,6 +16,7 @@ es:
     footer:
       content_html: Esta solicitud de beneficios es desarrollada por <a target="_blank" rel="noopener nofollow" href="https://www.codeforamerica.org">Code for America</a> para servir a las personas en los Estados Unidos.
     gbh_team: El equipo de GetBenefitsHelp
+    intercom_start_chat: Iniciar chat
     negative: 'No'
     none_of_the_above: Ninguna de las anteriores
     other: Otra
