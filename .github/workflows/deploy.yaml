@@ -30,6 +30,14 @@ on:
       AWS_SECRET_ACCESS_KEY:
       DEPLOYMENT_APP_ID:
       DEPLOYMENT_APP_KEY:
+      # Required: the Dockerfile's base image is a Docker Hardened Image, so the
+      # build cannot pull it without these. Marked required so a caller that forgets
+      # to pass them fails with that message, rather than at an anonymous docker
+      # login and then a confusing failure on the first FROM.
+      DOCKER_HUB_USERNAME:
+        required: true
+      DOCKER_HUB_READONLY_TOKEN:
+        required: true
 
 permissions:
   contents: read
@@ -67,6 +75,14 @@ jobs:
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2.1.7
+      # The Dockerfile builds on a Docker Hardened Image, which is not public.
+      # DOCKER_HUB_USERNAME/DOCKER_HUB_READONLY_TOKEN are codeforamerica org secrets.
+      - name: Log in to the Docker Hardened Images registry
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: dhi.io
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_READONLY_TOKEN }}
       - name: Check if the image exists
         id: image_exists
         uses: k4kratik/container-image-check-custom-action@5f19a0c48d0e0d17257fd3a2de52874d5a8fdc51 # v4
