@@ -1,0 +1,18 @@
+<% content_for :question_title, t("views.age_range.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p><%= t("views.age_range.edit.help_text") %></p>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :age_range, value: :unfilled %>
+  <%= f.cfa_radio_set(:age_range, collection: [
+    { value: :under_18, label: t("views.age_range.edit.under_18") },
+    { value: :"18_to_49", label: t("views.age_range.edit.age_18_to_49") },
+    { value: :"50_to_54", label: t("views.age_range.edit.age_50_to_54") },
+    { value: :"55_to_64", label: t("views.age_range.edit.age_55_to_64") },
+    { value: :"65_or_older", label: t("views.age_range.edit.age_65_or_older") },
+  ]) %>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

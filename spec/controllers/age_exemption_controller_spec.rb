@@ -9,7 +9,7 @@ RSpec.describe AgeExemptionController, type: :controller do
     end
 
     context "with a signed in working-age screener" do
-      let(:screener) { create(:screener, birth_date: 34.years.ago.to_date) }
+      let(:screener) { create(:screener, age_range: "18_to_49") }
 
       it_behaves_like "ensure_page_navigable redirects to root", action: :display
 
@@ -34,18 +34,22 @@ RSpec.describe AgeExemptionController, type: :controller do
   end
 
   describe ".show?" do
-    it "returns true for someone outside the 18-64 work requirement age range" do
-      screener = create(:screener, birth_date: 70.years.ago.to_date)
-      expect(described_class.show?(screener)).to eq(true)
+    %w[under_18 65_or_older].each do |age_range|
+      it "returns true for someone in the #{age_range} range, which is outside the 18-64 work requirement age range" do
+        screener = create(:screener, age_range: age_range)
+        expect(described_class.show?(screener)).to eq(true)
+      end
     end
 
-    it "returns false for someone within the 18-64 work requirement age range" do
-      screener = create(:screener, birth_date: 30.years.ago.to_date)
-      expect(described_class.show?(screener)).to eq(false)
+    %w[18_to_49 50_to_54 55_to_64].each do |age_range|
+      it "returns false for someone in the #{age_range} range, which is within the 18-64 work requirement age range" do
+        screener = create(:screener, age_range: age_range)
+        expect(described_class.show?(screener)).to eq(false)
+      end
     end
 
-    it "returns false when the birth date is unknown" do
-      screener = create(:screener, birth_date: nil)
+    it "returns false when the age range has not been answered" do
+      screener = create(:screener, age_range: "unfilled")
       expect(described_class.show?(screener)).to eq(false)
     end
 
