@@ -31,6 +31,13 @@ RSpec.describe "basic_info_details/edit", type: :view do
     end
   end
 
+  it "shows month names in Spanish" do
+    I18n.with_locale(:es) { render }
+    options = Nokogiri::HTML(rendered).css("select[name='screener[birth_date_month]'] option").map(&:text)
+
+    expect(options).to include("enero", "septiembre", "diciembre")
+  end
+
   it "shows the error and links it to the fieldset when the date is invalid" do
     screener.birth_date = nil
     screener.valid?(:basic_info_details)

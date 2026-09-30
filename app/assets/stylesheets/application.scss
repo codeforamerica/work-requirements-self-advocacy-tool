@@ -19,7 +19,7 @@ main {
 .memorable-date__fields {
   display: flex;
   align-items: flex-end;
-  gap: 1.5rem;
+  gap: 1rem;
 
   .select, .text-input {
     margin-bottom: 0;
@@ -40,12 +40,51 @@ main {
   }
 }
 
+// Honeycrisp inputs are border-box, so these widths are digits + padding + 2px borders.
 .memorable-date__day .text-input {
-  width: 6ch;
+  width: calc(2ch + #{2 * $s25} + 4px);
 }
 
 .memorable-date__year .text-input {
-  width: 8ch;
+  width: calc(4ch + #{2 * $s25} + 4px);
+}
+
+// Honeycrisp's default padding leaves no room for text below desktop widths,
+// so shrink the select's arrow area and padding to fit month names.
+@media screen and (max-width: 799px) {
+  .memorable-date__month {
+    .select:after {
+      width: 3.5rem;
+    }
+
+    .select__element {
+      padding: 0 3.5rem 0 1rem;
+    }
+  }
+
+  .memorable-date__day .text-input,
+  .memorable-date__year .text-input {
+    padding: 0 0.8rem;
+  }
+
+  .memorable-date__day .text-input {
+    width: calc(2ch + 1.6rem + 4px);
+  }
+
+  .memorable-date__year .text-input {
+    width: calc(4ch + 1.6rem + 4px);
+  }
+}
+
+// Below this width the month name can't fit beside Day and Year, so give Month its own row.
+@media screen and (max-width: 374px) {
+  .memorable-date__fields {
+    flex-wrap: wrap;
+  }
+
+  .memorable-date__month {
+    flex-basis: 100%;
+  }
 }
 
 .js-initially-hidden {

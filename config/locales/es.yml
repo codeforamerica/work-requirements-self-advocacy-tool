@@ -1,5 +1,20 @@
 ---
 es:
+  date:
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
   general:
     about_this_website: Acerca de este sitio web
     affirmative: Sí
