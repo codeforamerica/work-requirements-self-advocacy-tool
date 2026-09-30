@@ -16,6 +16,38 @@ main {
   max-width: 100%;
 }
 
+.memorable-date__fields {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+
+  .select, .text-input {
+    margin-bottom: 0;
+  }
+}
+
+.memorable-date__label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.memorable-date__month {
+  flex: 1 1 auto;
+  max-width: 20rem;
+
+  .select {
+    width: 100%;
+  }
+}
+
+.memorable-date__day .text-input {
+  width: 6ch;
+}
+
+.memorable-date__year .text-input {
+  width: 8ch;
+}
+
 .js-initially-hidden {
   display: none;
 }

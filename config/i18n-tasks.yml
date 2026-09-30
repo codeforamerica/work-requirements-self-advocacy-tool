@@ -192,3 +192,8 @@ search:
 
 ignore:
   - general.char_counter.*
+
+# Strings from rails-i18n and cfa-styleguide gems
+ignore_missing:
+  - date.*
+  - honeycrisp.*
