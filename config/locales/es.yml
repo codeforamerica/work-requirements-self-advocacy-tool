@@ -51,6 +51,7 @@ es:
     phone_invalid: Asegúrese de que el número de teléfono es válido e incluye 10 dígitos
     required: Ingrese %{field_name}
     signature_required: Se requiere su firma para continuar
+    snap_answer_required: Seleccione si actualmente recibe beneficios de SNAP
     zip_code_invalid: Ingrese un código de área válido con por lo menos cinco números
   views:
     about:
@@ -408,7 +409,12 @@ es:
       edit:
         county_help_text: Seleccione su condado (requerido)
         not_listed: No está en la lista
-        state_help_text: Cuéntenos en qué estado recibe beneficios de SNAP (requerido)
+        snap_applied_waiting: Presenté la solicitud y estoy esperando una respuesta
+        snap_helper_text: En %{state}, es posible que también conozca los beneficios de SNAP como cupones para alimentos o EBT.
+        snap_label: "¿Recibe actualmente beneficios de SNAP? (requerido)"
+        snap_no: No, no estoy recibiendo beneficios
+        snap_yes: Sí, recibo beneficios actualmente
+        state_help_text: "¿En qué estado vive?"
         title: Comencemos con su información básica
         zip_code_label: "¿Cuál es su código postal? (requerido)"
     migrant_farmworker:

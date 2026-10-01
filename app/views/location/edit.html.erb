@@ -12,6 +12,8 @@
           value: @model.state
         ) %>
 
+  <%= f.hidden_field :receives_snap, value: :unfilled %>
+
   <div class="question-with-follow-up">
     <div class="question-with-follow-up__question">
       <div id="county_wrapper">
@@ -32,19 +34,17 @@
 
     <div class="question-with-follow-up__follow-up js-initially-hidden" id="snap_follow_up">
       <hr/>
-      <fieldset class="form-group">
-        <legend class="form-question">Are you currently getting SNAP benefits?</legend>
-        <div class="input-group--block honeycrisp-radiogroup">
-          <label class="radio-button">
-            <input type="radio" name="receives_snap" value="yes" disabled>
-            <%= t("general.affirmative") %>
-          </label>
-          <label class="radio-button">
-            <input type="radio" name="receives_snap" value="no" disabled>
-            <%= t("general.negative") %>
-          </label>
-        </div>
-      </fieldset>
+      <%= f.cfa_radio_set(
+            :receives_snap,
+            label_text: t("views.location.edit.snap_label"),
+            help_text: t("views.location.edit.snap_helper_text", state: ""),
+            collection: [
+              {value: :yes, label: t("views.location.edit.snap_yes")},
+              {value: :applied_waiting, label: t("views.location.edit.snap_applied_waiting")},
+              {value: :no, label: t("views.location.edit.snap_no")}
+            ]
+          )
+      %>
     </div>
   </div>
 
@@ -59,6 +59,7 @@
     const zipCodeWrapper = document.getElementById("zip_code_wrapper");
     const zipCodeInput = document.getElementById("screener_zip_code");
     const snapFollowUp = document.getElementById("snap_follow_up");
+    const snapHelpText = document.getElementById("screener_receives_snap__help-text");
 
     // check for these elements because turbo:load listener stays bound to document and fires on every subsequent page;
     // we only want the script to run when on the location page
@@ -70,6 +71,7 @@
     const allCounties = <%= raw LocationData::Counties::ALL_COUNTIES.transform_values { |c| c.transform_values { |v| v[:name] } }.to_json %>;
     // Map of state => office_by ("county" or "zip_code")
     const statesOfficeBy = <%= raw LocationData::States::STATES_INFO.transform_values { |v| v[:office_by].to_s }.to_json %>;
+    const snapHelperTexts = <%= raw LocationData::States.active_states.transform_values { |info| I18n.t("views.location.edit.snap_helper_text", state: info[:display_name]) }.to_json %>;
 
     function clearCountyDropdown() {
       countySelect.innerHTML = "";
@@ -135,6 +137,9 @@
       snapFollowUp.querySelectorAll("input").forEach(function (input) {
         input.disabled = !answered;
       });
+      if (snapHelpText) {
+        snapHelpText.textContent = snapHelperTexts[stateSelect.value] || "";
+      }
     }
 
     // Initial population
