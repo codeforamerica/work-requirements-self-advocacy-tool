@@ -115,7 +115,7 @@ RSpec.describe LocationController, type: :controller do
       screener = create(:screener)
       sign_in screener
 
-      post :update, params: { screener: {state: "NC", county: "Anson County", receives_snap: "maybe"} }
+      post :update, params: {screener: {state: "NC", county: "Anson County", receives_snap: "maybe"}}
       expect(response).to have_http_status(:unprocessable_content)
     end
   end
