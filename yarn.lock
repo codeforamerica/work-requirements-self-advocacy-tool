@@ -271,9 +271,9 @@ bare-url@^2.2.2:
     bare-path "^3.0.0"
 
 basic-ftp@^5.0.2, basic-ftp@^6.0.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.0.tgz#5c4d355c27fdb5de98bb441c96e62c5ae9f4f813"
-  integrity sha512-H8eLjhoYPbOI717FLP8fGE7XInkMI7Ucj/ft0fp1avABtSiV5Bb2kYzScnOqlvJZs/KJZypr9Mp5zJmhaPFAEg==
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.1.tgz#4e48a39c87baee0314e1a0fa9bcca73b1e251e53"
+  integrity sha512-bK67isD+lKq46AU8vNtjvMaT2ZqAOAmNCbxUHlFBRD4k15NWxyEjmaKtZPlgce58So4BNTjITGQOVTjL9y0ECA==
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
@@ -432,10 +432,9 @@ events-universal@^1.0.0:
   dependencies:
     bare-events "^2.7.0"
 
-extract-zip@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/extract-zip/-/extract-zip-2.0.1.tgz#663dca56fe46df890d5f131ef4a06d22bb8ba13a"
-  integrity sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==
+extract-zip@^2.0.1, "extract-zip@https://npm.aikido.io/15c1c18888387f32c4a27/extract-zip@2.0.1-aikido.2":
+  version "2.0.1-aikido.2"
+  resolved "https://npm.aikido.io/15c1c18888387f32c4a27/extract-zip@2.0.1-aikido.2#4ae08332e758275e013f14b10dbbcb2b843f2967"
   dependencies:
     debug "^4.1.1"
     get-stream "^5.1.0"
@@ -506,9 +505,9 @@ import-fresh@^3.3.0:
     resolve-from "^4.0.0"
 
 ip-address@^10.1.1:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-10.5.0.tgz#fcd6d7dfe9e68416b7cb71afe9bc960b3e38c13b"
-  integrity sha512-R5SnVLJmgYYvf2F2ZgwSBnelz5G4q5AxIC277GDfUaNbrZKNANcBC7RHqYYePlszf4kBolVkJauG0ZjHHFh55g==
+  version "10.7.2"
+  resolved "https://registry.yarnpkg.com/ip-address/-/ip-address-10.7.2.tgz#5b3b2b7d46c6293861b82dfcd49cc203aa8f2c5c"
+  integrity sha512-7H/2gFSIitxc0hG3nOI1glS8QLo/EHBFFLk8vEUjXY/xu0AdL8jZ9U1IzO2PUm0d2D/ofQcAifb0g6OBkt8U7w==
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -844,7 +843,7 @@ yauzl@^2.10.0:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.1.0"
 
-zod@4.4.0, zod@^3.24.1:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-4.4.0.tgz#fdbd3c0c68794919a381f552eecfb1e4a493ce40"
-  integrity sha512-932TE3dEKhhYkEZFv6meaxLaCyg1m6LSI0ETKCIyUqIim+KgIsB/kha/4CKwDEbYgMzS5QxAe2mtDPpaHLHdsQ==
+zod@4.6.0, zod@^3.24.1:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-4.6.0.tgz#97011e7672443e94d63493424138e280d83a8e71"
+  integrity sha512-iIvwyDnebKYpww2ta0DjaNOL8RnVLmPMhgWyOzlW9y0EIIxv5gl+H6Y0ONpt83HqjGqkk78uWp6xWtpxzZdPbw==
