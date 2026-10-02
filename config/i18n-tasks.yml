@@ -192,3 +192,7 @@ search:
 
 ignore:
   - general.char_counter.*
+
+# Strings from the cfa-styleguide gem
+ignore_missing:
+  - honeycrisp.*
