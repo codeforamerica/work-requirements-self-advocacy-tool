@@ -82,6 +82,7 @@ class Screener < ApplicationRecord
   enum :preventing_work_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_place_to_sleep, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receives_snap, {unfilled: 0, yes: 1, applied_waiting: 2, no: 3}, prefix: true
   enum :receiving_benefits_disability_pension, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_disability_medicaid, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -114,6 +115,7 @@ class Screener < ApplicationRecord
     :remove_employment_attributes_if_no,
     :remove_pregnancy_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
+    :remove_receives_snap_if_state_not_supported,
     :remove_training_program_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_zip_code_if_state_does_not_require
@@ -215,6 +217,10 @@ class Screener < ApplicationRecord
         message: ->(*) { I18n.t("validations.zip_code_invalid") }
       },
       if: ->(record) { LocationData::ZipCodes.for_state(record.state).present? }
+
+    validates :receives_snap,
+      inclusion: {in: %w[yes applied_waiting no], message: ->(*) { I18n.t("validations.snap_answer_required") }},
+      if: :location_answered?
   end
 
   with_context :living_with_someone do
@@ -524,6 +530,16 @@ class Screener < ApplicationRecord
     self.session_token ||= SecureRandom.hex(20)
   end
 
+  def location_answered?
+    return false if state.blank? || state == LocationData::States::NOT_LISTED
+
+    case LocationData::States::STATES_INFO.dig(state, :office_by)
+    when :county then county.present?
+    when :zip_code then zip_code.present?
+    else false
+    end
+  end
+
   def remove_county_if_state_does_not_require
     self.county = nil unless state.present? && LocationData::Counties.for_state(state).present?
   end
@@ -569,6 +585,10 @@ class Screener < ApplicationRecord
 
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
+  end
+
+  def remove_receives_snap_if_state_not_supported
+    self.receives_snap = :unfilled unless LocationData::States::STATES_INFO.key?(state)
   end
 
   def remove_zip_code_if_state_does_not_require

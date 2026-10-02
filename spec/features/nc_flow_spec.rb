@@ -69,6 +69,8 @@ RSpec.feature "NC Screener flow", js: true do
   def step_nc_location
     select "North Carolina", from: "screener_state"
     select "Durham County", from: "screener_county"
+    expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
+    choose I18n.t("views.location.edit.snap_yes")
     click_on I18n.t("general.continue")
   end
 
