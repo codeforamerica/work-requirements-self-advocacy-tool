@@ -61,9 +61,9 @@
     const snapFollowUp = document.getElementById("snap_follow_up");
     const snapHelpText = document.getElementById("screener_receives_snap__help-text");
 
-    // check for these elements because turbo:load listener stays bound to document and fires on every subsequent page;
+    // check for the !stateSelect because turbo:load listener stays bound to document and fires on every subsequent page;
     // we only want the script to run when on the location page
-    if (!stateSelect || !countyWrapper || !countySelect || !zipCodeWrapper || !zipCodeInput || !snapFollowUp) {
+    if (!stateSelect) {
       return;
     }
 
