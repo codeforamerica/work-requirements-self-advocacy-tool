@@ -8,6 +8,10 @@ html {
   background-color: $color-grey;
 }
 
+body {
+  overflow-wrap: break-word;
+}
+
 main {
   background-color: $color-grey-light;
 }
@@ -153,16 +157,6 @@ main {
   }
 }
 
-// "GetBenefitsHelp" is a long word, and at display heading sizes it
-// overflows narrow viewports (e.g. the About page title)
-h1, h2, h3 {
-  overflow-wrap: break-word;
-}
-
-.text--break-word {
-  overflow-wrap: break-word;
-}
-
 hr.tight {
   margin-top: 3rem;
   margin-bottom: 3rem;
@@ -184,7 +178,6 @@ hr.tight {
   // (honeycrisp defaults to margin-top: $s35)
   .accordion__content {
     margin-top: 1rem;
-    overflow-wrap: break-word;
   }
 }
 
@@ -259,7 +252,6 @@ hr.tight {
 
 .notice {
   padding: 0.8rem;
-  overflow-wrap: break-word;
 
   .media--icon {
     margin-right: 0.8rem;
@@ -403,6 +395,31 @@ i.continue-arrow {
   }
 }
 
+// Some overrides for narrow screens with enlarged text
+@media screen and (max-width: 18em) {
+  // reduce the padding around checkboxes and radio buttons to allow more space for text
+  // (em-based media queries scale with the user's default font size)
+  .checkbox, .radio-button {
+    padding-left: 3.5rem;
+    padding-right: 1rem;
+
+    input[type='checkbox'], input[type='radio'] {
+      left: 1rem;
+    }
+  }
+
+  // hide the SSN input prefix, there just isn't space
+  .text-input-group.ssn-last4 {
+    .text-input-group__prefix {
+      display: none;
+    }
+
+    .text-input {
+      padding-left: 2.5rem;
+    }
+  }
+}
+
 .input-group--block .radio-button {
   max-width: unset;
 }
@@ -411,6 +428,7 @@ i.continue-arrow {
   margin-left: 0;
   white-space: normal;
   max-width: 100%;
+  overflow-wrap: normal;
 }
 
 .text-green-innovation-lab {
