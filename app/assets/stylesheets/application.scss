@@ -395,10 +395,9 @@ i.continue-arrow {
   }
 }
 
-// Some overrides for narrow screens with enlarged text
+// Some overrides for narrow screens with enlarged text (em-based media queries scale with the user's default font size)
 @media screen and (max-width: 18em) {
   // reduce the padding around checkboxes and radio buttons to allow more space for text
-  // (em-based media queries scale with the user's default font size)
   .checkbox, .radio-button {
     padding-left: 3.5rem;
     padding-right: 1rem;
