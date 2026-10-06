@@ -139,6 +139,18 @@ RSpec.describe Screener, type: :model do
           expect(screener.errors[name]).to be_present
         end
       end
+
+      it "requires the birthdate to be within the last 150 years" do
+        [Date.current + 1.day, 151.years.ago.to_date, Date.new(199, 1, 1)].each do |birth_date|
+          screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: birth_date)
+          screener.valid?(:basic_info_details)
+
+          expect(screener.errors[:birth_date]).to eq [I18n.t("validations.date_missing_or_invalid")]
+        end
+
+        screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.current)
+        expect(screener.valid?(:basic_info_details)).to eq true
+      end
     end
 
     context "with_context :pregnancy" do
