@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :screener do
     state { "NC" }
     county { "Durham County" }
-    birth_date { 30.years.ago.to_date }
+    age_range { "18_to_49" }
   end
 
   trait :with_nc_screener do
@@ -17,7 +17,7 @@ FactoryBot.define do
   end
 
   trait :age_exempt do
-    birth_date { 70.years.ago.to_date }
+    age_range { "65_or_older" }
   end
 
   trait :meets_work_rules do

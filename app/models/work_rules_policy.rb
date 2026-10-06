@@ -77,7 +77,7 @@ module WorkRulesPolicy
     def non_earnings_exemption_reasons
       reasons = []
 
-      reasons << ((screener.age <= 17) ? "age_under_18" : "age_65_or_older") if screener.age_exempt?
+      reasons << (screener.age_range_under_18? ? "age_under_18" : "age_65_or_older") if screener.age_exempt?
 
       Screener::ELIGIBILITY_EXEMPTION_ATTRIBUTES.each do |attribute|
         reasons << attribute.to_s if screener.public_send("#{attribute}_yes?")
@@ -101,9 +101,9 @@ module WorkRulesPolicy
     end
 
     def age_work_education_health_exemption?
-      return false unless nc_screener && screener.age
+      return false unless nc_screener
 
-      screener.age.between?(55, 64) &&
+      screener.age_range_55_to_64? &&
         nc_screener.has_hs_diploma_no? &&
         ((nc_screener.worked_last_five_years_yes? && nc_screener.earned_more_than_threshold_no?) || nc_screener.worked_last_five_years_no?) &&
         (nc_screener.health_conditions_preventing_work_yes? || screener.preventing_work_medical_condition_yes?)

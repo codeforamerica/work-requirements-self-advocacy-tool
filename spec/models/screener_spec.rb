@@ -95,12 +95,15 @@ RSpec.describe Screener, type: :model do
       end
     end
 
-    context "with_context :date_of_birth" do
-      it "requires birth date" do
-        screener = build(:screener, birth_date: nil)
-        screener.valid?(:date_of_birth)
+    context "with_context :age_range" do
+      it "requires an age range to be selected" do
+        screener = build(:screener, age_range: "unfilled")
+        screener.valid?(:age_range)
 
-        expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
+        expect(screener.errors).to match_array ["Age range #{I18n.t("validations.age_range_required")}"]
+
+        screener.assign_attributes(age_range: "50_to_54")
+        expect(screener.valid?(:age_range)).to eq true
       end
     end
 
@@ -732,34 +735,42 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "#age_exempt?" do
-    it "returns true if age is 17 or younger" do
-      screener = build(:screener, birth_date: 17.years.ago.to_date + 1.day)
-      expect(screener.age_exempt?).to eq true
+    %w[under_18 65_or_older].each do |age_range|
+      it "returns true for the #{age_range} range" do
+        screener = build(:screener, age_range: age_range)
+        expect(screener.age_exempt?).to eq true
+      end
     end
 
-    it "returns false if age is 18" do
-      screener = build(:screener, birth_date: 18.years.ago.to_date)
+    %w[18_to_49 50_to_54 55_to_64].each do |age_range|
+      it "returns false for the working-age #{age_range} range" do
+        screener = build(:screener, age_range: age_range)
+        expect(screener.age_exempt?).to eq false
+      end
+    end
+
+    it "returns false when the age range has not been answered" do
+      screener = build(:screener, age_range: "unfilled")
       expect(screener.age_exempt?).to eq false
     end
 
-    it "returns false if age is 37" do
-      screener = build(:screener, birth_date: 37.years.ago.to_date)
+    it "ignores birth_date, which is only collected later in the flow" do
+      screener = build(:screener, age_range: "18_to_49", birth_date: 70.years.ago.to_date)
       expect(screener.age_exempt?).to eq false
     end
+  end
 
-    it "returns false if age is 64" do
-      screener = build(:screener, birth_date: 64.years.ago.to_date + 1.day)
-      expect(screener.age_exempt?).to eq false
+  describe "#age_55_or_older?" do
+    %w[55_to_64 65_or_older].each do |age_range|
+      it "returns true for the #{age_range} range" do
+        expect(build(:screener, age_range: age_range).age_55_or_older?).to eq true
+      end
     end
 
-    it "returns true if age is 65" do
-      screener = build(:screener, birth_date: 65.years.ago.to_date)
-      expect(screener.age_exempt?).to eq true
-    end
-
-    it "returns false if birth_date is nil" do
-      screener = build(:screener, birth_date: nil)
-      expect(screener.age_exempt?).to eq false
+    %w[unfilled under_18 18_to_49 50_to_54].each do |age_range|
+      it "returns false for the #{age_range} range" do
+        expect(build(:screener, age_range: age_range).age_55_or_older?).to eq false
+      end
     end
   end
 
