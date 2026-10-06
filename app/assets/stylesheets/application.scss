@@ -425,9 +425,8 @@ i.continue-arrow {
 
 .button {
   margin-left: 0;
-  white-space: normal;
-  max-width: 100%;
-  overflow-wrap: normal;
+  white-space: normal; // allow text to wrap (by overwriting the browser default rule)
+  overflow-wrap: normal; // overwrite the rule on body, we don't want button text to break words
 }
 
 .text-green-innovation-lab {
