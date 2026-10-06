@@ -129,8 +129,8 @@ module ScreenerSteps
     fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: first_name
     fill_in I18n.t("views.basic_info_details.edit.last_name_label"), with: last_name
     select "September", from: "Month"
-    select "21", from: "Day"
-    select "1990", from: "Year"
+    fill_in "Day", with: "21"
+    fill_in "Year", with: "1990"
 
     if check_phone_toggle
       expect(page).to_not have_selector("legend", text: I18n.t("views.basic_info_details.edit.consented_to_texts.label"))
