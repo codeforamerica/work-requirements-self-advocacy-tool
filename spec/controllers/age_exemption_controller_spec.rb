@@ -9,7 +9,7 @@ RSpec.describe AgeExemptionController, type: :controller do
     end
 
     context "with a signed in working-age screener" do
-      let(:screener) { create(:screener, birth_date: 34.years.ago.to_date) }
+      let(:screener) { create(:screener, age_range: "18_to_49") }
 
       it_behaves_like "ensure_page_navigable redirects to root", action: :display
 
@@ -34,23 +34,24 @@ RSpec.describe AgeExemptionController, type: :controller do
   end
 
   describe ".show?" do
-    it "returns true for someone outside the 18-64 work requirement age range" do
-      screener = create(:screener, birth_date: 70.years.ago.to_date)
+    it "returns true for an age-exempt screener in a supported location" do
+      screener = create(:screener)
+      allow(screener).to receive(:age_exempt?).and_return(true)
+
       expect(described_class.show?(screener)).to eq(true)
     end
 
-    it "returns false for someone within the 18-64 work requirement age range" do
-      screener = create(:screener, birth_date: 30.years.ago.to_date)
+    it "returns false for a screener who is not age exempt" do
+      screener = create(:screener)
+      allow(screener).to receive(:age_exempt?).and_return(false)
+
       expect(described_class.show?(screener)).to eq(false)
     end
 
-    it "returns false when the birth date is unknown" do
-      screener = create(:screener, birth_date: nil)
-      expect(described_class.show?(screener)).to eq(false)
-    end
+    it "returns false for an age-exempt screener routed out of state" do
+      screener = create(:screener, state: LocationData::States::NOT_LISTED)
+      allow(screener).to receive(:age_exempt?).and_return(true)
 
-    it "returns false for someone routed out of state, regardless of age" do
-      screener = create(:screener, :age_exempt, state: LocationData::States::NOT_LISTED)
       expect(described_class.show?(screener)).to eq(false)
     end
   end

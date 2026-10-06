@@ -10,7 +10,15 @@ RSpec.describe ControllerNavigation::NavigableController do
 
     context "when the controller overrides form_params privately" do
       it "returns true" do
-        expect(DateOfBirthController.accepts_update?).to be true
+        controller_class = Class.new(QuestionController) do
+          private
+
+          def form_params(model)
+            {}
+          end
+        end
+
+        expect(controller_class.accepts_update?).to be true
       end
     end
 
