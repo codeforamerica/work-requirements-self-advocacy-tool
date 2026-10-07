@@ -5,7 +5,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "1965")
+    step_age_range(option: :age_55_to_64)
     step_exemption_questions(caring: :disabled_or_ill)
     step_nc_homeschool(enrolled: true)
     step_school_enrollment(answer: :yes)
@@ -25,7 +25,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "1990")
+    step_age_range(option: :age_18_to_49)
     step_exemption_questions(caring: :none)
     step_nc_homeschool(enrolled: false)
     step_school_enrollment(answer: :no)
@@ -50,7 +50,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "1945")
+    step_age_range(option: :age_65_or_older)
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
   end
@@ -59,7 +59,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "2025")
+    step_age_range(option: :under_18)
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
   end

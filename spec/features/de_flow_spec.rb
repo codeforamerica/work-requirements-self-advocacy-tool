@@ -5,7 +5,7 @@ RSpec.feature "DE Screener flow", js: true do
     step_homepage
     step_de_location
 
-    step_date_of_birth(year: "1965")
+    step_age_range(option: :age_55_to_64)
     step_exemption_questions(caring: :disabled_or_ill)
     step_school_enrollment(answer: :yes)
     step_alcohol_treatment_program(answer: :yes, program_name: "Pro Gram")
@@ -23,7 +23,7 @@ RSpec.feature "DE Screener flow", js: true do
     step_homepage
     step_de_location
 
-    step_date_of_birth(year: "1990")
+    step_age_range(option: :age_18_to_49)
     step_exemption_questions(caring: :none)
     step_school_enrollment(answer: :no)
     step_alcohol_treatment_program(answer: :no)

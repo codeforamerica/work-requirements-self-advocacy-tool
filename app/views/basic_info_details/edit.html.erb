@@ -2,19 +2,15 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
-<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: GetBenefitsHelpFormBuilder do |f| %>
 <%= f.cfa_input_field(:first_name, t("views.basic_info_details.edit.first_name_label"), help_text: t("views.basic_info_details.edit.first_name_label_help_text")) %>
 <%= f.cfa_input_field(:middle_name, t("views.basic_info_details.edit.middle_name_label"), help_text: t("views.basic_info_details.edit.middle_name_label_help_text")) %>
 <%= f.cfa_input_field(:last_name, t("views.basic_info_details.edit.last_name_label"), help_text: t("views.basic_info_details.edit.last_name_label_help_text")) %>
 
-<%= f.cfa_date_select(
+<%= f.cfa_memorable_date(
         :birth_date,
         t("views.basic_info_details.edit.birth_date_label"),
-        help_text: "mm/dd/yyyy",
-        options: {
-          start_year: Time.now.year,
-          end_year: Time.now.year - 150,
-        }
+        help_text: t("views.basic_info_details.edit.birth_date_help_text")
       ) %>
 
 <%= f.cfa_input_field(

@@ -1,5 +1,20 @@
 ---
 en:
+  date:
+    month_names:
+    -
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
   general:
     about_this_website: About this website
     affirmative: 'Yes'
@@ -32,6 +47,7 @@ en:
     unsubscribe: Unsubscribe
     work_rules: Work rules
   validations:
+    age_range_required: Select your age range to continue.
     amount_invalid: Enter a valid dollar amount
     date_missing_or_invalid: Date is missing or invalid
     date_must_be_in_future: Date must be in the future
@@ -97,6 +113,15 @@ en:
         next_steps_html: "<p>You're all done!</p><p>Do you want to check if the SNAP work rules apply to someone else in your household?</p>"
         title_help: The work rules only apply to people who are between 18 and 64 years old.
         title_html: Based on your answers, you do <u>not</u> have to follow the SNAP work rules.
+    age_range:
+      edit:
+        age_18_to_49: 18 to 49
+        age_50_to_54: 50 to 54
+        age_55_to_64: 55 to 64
+        age_65_or_older: 65 or older
+        help_text: If your birthday is this month, choose your new age.
+        title: How old are you? (required)
+        under_18: Under 18
     alcohol_treatment_program:
       edit:
         alcohol_treatment_program_name_help_text_label: This is optional.
@@ -132,7 +157,8 @@ en:
         title: Do you have a case number?
     basic_info_details:
       edit:
-        birth_date_label: Birthdate
+        birth_date_help_text: 'For example: January 19 2000'
+        birth_date_label: Birthdate (required)
         consent_to_texts:
           additional_info: Message frequency will vary. Message and data rates may apply. Reply HELP for help. Reply STOP to cancel. See our Terms and Conditions and Privacy Policy for details.
         consented_to_texts:
@@ -195,10 +221,6 @@ en:
         volunteering_hours_label_help_text: If this changes, give your weekly average from this past month.
         volunteering_org_label: What is the name of the organization?
         volunteering_org_label_help_text: If you volunteer at multiple organizations, you can list them here.
-    date_of_birth:
-      edit:
-        help_text: You do not have to follow the work rules if you are younger than 18 or 65 or older.
-        title: What is your date of birth? (required)
     disability_benefits:
       edit:
         receiving_benefits_disability_medicaid: Disability-related Medicaid
