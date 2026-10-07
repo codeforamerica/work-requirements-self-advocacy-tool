@@ -12,7 +12,7 @@ module Nc
     end
 
     def self.show?(screener)
-      screener.state == LocationData::States::NORTH_CAROLINA && screener.age.to_i >= 55 && super
+      screener.state == LocationData::States::NORTH_CAROLINA && screener.age_55_or_older? && super
     end
 
     def self.load_model(intake, item_index: nil)

@@ -9,11 +9,10 @@ module ScreenerSteps
   end
 
   # -- Age screening ----------------------------------------------------------
-  def step_date_of_birth(year:)
-    expect(page).to have_selector("h1", text: I18n.t("views.date_of_birth.edit.title"))
-    select "September", from: "Month"
-    select "21", from: "Day"
-    select year.to_s, from: "Year"
+  # option: an i18n key suffix under views.age_range.edit, e.g. :under_18, :age_18_to_49
+  def step_age_range(option:)
+    expect(page).to have_selector("h1", text: I18n.t("views.age_range.edit.title"))
+    choose I18n.t("views.age_range.edit.#{option}")
     click_on I18n.t("general.continue")
   end
 
@@ -129,6 +128,9 @@ module ScreenerSteps
     expect(page).to have_selector("h1", text: I18n.t("views.basic_info_details.edit.title"))
     fill_in I18n.t("views.basic_info_details.edit.first_name_label"), with: first_name
     fill_in I18n.t("views.basic_info_details.edit.last_name_label"), with: last_name
+    select "September", from: "Month"
+    fill_in "Day", with: "21"
+    fill_in "Year", with: "1990"
 
     if check_phone_toggle
       expect(page).to_not have_selector("legend", text: I18n.t("views.basic_info_details.edit.consented_to_texts.label"))
