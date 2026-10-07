@@ -1,5 +1,20 @@
 ---
 es:
+  date:
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
   general:
     about_this_website: Acerca de este sitio web
     affirmative: Sí
@@ -141,7 +156,8 @@ es:
         title: "¿Tiene un número de caso?"
     basic_info_details:
       edit:
-        birth_date_label: Fecha de nacimiento
+        birth_date_help_text: 'Por ejemplo: 19 de enero de 2000'
+        birth_date_label: Fecha de nacimiento (requerido)
         consent_to_texts:
           additional_info: La frecuencia de los mensajes puede variar. Pueden aplicar costos de mensajes y datos. Responda HELP para obtener ayuda. Responda STOP para cancelar. Consulte nuestros Términos y Condiciones y nuestra Política de Privacidad para más detalles.
         consented_to_texts:

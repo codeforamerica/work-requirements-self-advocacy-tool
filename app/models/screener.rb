@@ -166,6 +166,7 @@ class Screener < ApplicationRecord
     validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.middle_name")) }}, latin_script: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
     validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
+    validates :birth_date, comparison: {greater_than_or_equal_to: -> { 150.years.ago.to_date }, less_than_or_equal_to: -> { Date.current }, message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}, allow_nil: true
   end
 
   with_context :basic_info_ssn do
@@ -328,16 +329,17 @@ class Screener < ApplicationRecord
       state_policy.extra_preventing_work?
   end
 
+  # Prefer what the user typed so an invalid date can be redisplayed for correction.
   def birth_date_day
-    birth_date&.day
+    @birth_date_day || birth_date&.day
   end
 
   def birth_date_month
-    birth_date&.month
+    @birth_date_month || birth_date&.month
   end
 
   def birth_date_year
-    birth_date&.year
+    @birth_date_year || birth_date&.year
   end
 
   def earnings_above_minimum?
