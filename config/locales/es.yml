@@ -184,15 +184,16 @@ es:
     basic_info_milestone:
       edit:
         button_label: Crear mi formulario
-        help_text_html: "<strong>A continuación, crearemos un documento que podrá enviar a su oficina de SNAP. Solo necesitamos dos cosas más:</strong>"
+        help_text: 'A continuación, crearemos un documento que podrá enviar a su oficina de SNAP. Solo necesitamos dos cosas más:'
         next_steps_html: |
           <h3>Lo que te preguntaremos a continuación</h3>
           <ul class="list--bulleted">
           <li><strong>Los detalles de su caso de SNAP (nombre, número de caso):</strong> Para que la persona encargada de revisar su caso pueda encontrarlo más fácilmente.</li>
           <li><strong>Firma digital:</strong> Para autorizar y completar su formulario de exención.</li>
           </ul>
-        notice: Es probable que esté exento
-        title_html: Según sus respuestas, es posible que no tenga que cumplir con las reglas de trabajo de SNAP.
+        notice: La persona asignada para llevar su caso revisará su formulario y decidirá si usted debe cumplir con las reglas de trabajo.
+        notice_title: Es probable que esté exento
+        title_html: Según sus respuestas, es posible que <u>no</u> tenga que cumplir con las reglas de trabajo de SNAP.
     basic_info_ssn:
       edit:
         help_text: Ingrese los últimos 4 dígitos para confirmar su identidad y encontrar su caso.
