@@ -537,8 +537,6 @@ class Screener < ApplicationRecord
   end
 
   def location_answered?
-    return false if state.blank? || state == LocationData::States::NOT_LISTED
-
     case LocationData::States::STATES_INFO.dig(state, :office_by)
     when :county then county.present?
     when :zip_code then zip_code.present?

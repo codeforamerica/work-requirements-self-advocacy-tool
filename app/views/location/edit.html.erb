@@ -14,38 +14,34 @@
 
   <%= f.hidden_field :receives_snap, value: :unfilled %>
 
-  <div class="question-with-follow-up">
-    <div class="question-with-follow-up__question">
-      <div id="county_wrapper">
-        <%= f.cfa_select(
-                :county,
-                t("views.location.edit.county_help_text"),
-                [],
-                required: false,
-                include_blank: t("general.select"),
-                value: @model.county
-              ) %>
-      </div>
+  <div id="county_wrapper">
+    <%= f.cfa_select(
+            :county,
+            t("views.location.edit.county_help_text"),
+            [],
+            required: false,
+            include_blank: t("general.select"),
+            value: @model.county
+          ) %>
+  </div>
 
-      <div id="zip_code_wrapper">
-        <%= f.cfa_input_field(:zip_code, t("views.location.edit.zip_code_label")) %>
-      </div>
-    </div>
+  <div id="zip_code_wrapper">
+    <%= f.cfa_input_field(:zip_code, t("views.location.edit.zip_code_label")) %>
+  </div>
 
-    <div class="snap-follow-up js-initially-hidden" id="snap_follow_up">
-      <hr/>
-      <%= f.cfa_radio_set(
-            :receives_snap,
-            label_text: t("views.location.edit.snap_label"),
-            help_text: t("views.location.edit.snap_helper_text", state: ""),
-            collection: [
-              {value: :yes, label: t("views.location.edit.snap_yes")},
-              {value: :applied_waiting, label: t("views.location.edit.snap_applied_waiting")},
-              {value: :no, label: t("views.location.edit.snap_no")}
-            ]
-          )
-      %>
-    </div>
+  <div class="snap-follow-up js-initially-hidden" id="snap_follow_up">
+    <hr/>
+    <%= f.cfa_radio_set(
+          :receives_snap,
+          label_text: t("views.location.edit.snap_label"),
+          help_text: t("views.location.edit.snap_helper_text", state: ""),
+          collection: [
+            {value: :yes, label: t("views.location.edit.snap_yes")},
+            {value: :applied_waiting, label: t("views.location.edit.snap_applied_waiting")},
+            {value: :no, label: t("views.location.edit.snap_no")}
+          ]
+        )
+    %>
   </div>
 
   <%= f.submit t("general.continue"), class: "button button--primary" %>

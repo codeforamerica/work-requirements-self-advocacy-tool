@@ -116,8 +116,14 @@ RSpec.describe Screener, type: :model do
           end
         end
 
-        it "is not required before a county or zip code is given" do
+        it "is not required before a zip code is given" do
           screener = build(:screener, state: "DE", zip_code: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
+        end
+
+        it "is not required before a county is given" do
+          screener = build(:screener, state: "NC", county: nil, receives_snap: :unfilled)
           screener.valid?(:location)
           expect(screener.errors[:receives_snap]).to be_empty
         end

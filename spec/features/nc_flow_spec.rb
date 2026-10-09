@@ -64,6 +64,17 @@ RSpec.feature "NC Screener flow", js: true do
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
   end
 
+  scenario "keeps the SNAP question visible when submitted without an answer" do
+    step_homepage
+
+    select "North Carolina", from: "screener_state"
+    select "Durham County", from: "screener_county"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
+    expect(page).to have_content(I18n.t("validations.snap_answer_required"))
+  end
+
   private
 
   def step_nc_location
