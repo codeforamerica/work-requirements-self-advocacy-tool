@@ -56,7 +56,7 @@ RSpec.describe Screener, type: :model do
         let(:screener) { build(:screener, state: "NC") }
 
         it "is valid with a county from the CSV" do
-          screener.assign_attributes(county: "Alleghany County")
+          screener.assign_attributes(county: "Alleghany County", receives_snap: :yes)
           expect(screener.valid?(:location)).to eq true
         end
 
@@ -74,7 +74,7 @@ RSpec.describe Screener, type: :model do
       end
 
       context "a state with zip-code-identified offices" do
-        let(:screener) { build(:screener, state: "DE") }
+        let(:screener) { build(:screener, state: "DE", receives_snap: :yes) }
 
         it "is valid with a zip code from the CSV" do
           screener.assign_attributes(zip_code: "19954")
@@ -91,6 +91,47 @@ RSpec.describe Screener, type: :model do
           screener.assign_attributes(zip_code: "12345")
           expect(screener.valid?(:location)).to eq false
           expect(screener.errors[:zip_code]).to eq [I18n.t("validations.zip_code_invalid")]
+        end
+      end
+
+      context "receives_snap" do
+        it "requires an answer once a county has been selected" do
+          screener = build(:screener, state: "NC", county: "Alleghany County", receives_snap: :unfilled)
+
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:receives_snap]).to eq [I18n.t("validations.snap_answer_required")]
+        end
+
+        it "requires an answer once a zip code has been selected" do
+          screener = build(:screener, state: "DE", zip_code: "19954", receives_snap: :unfilled)
+
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:receives_snap]).to eq [I18n.t("validations.snap_answer_required")]
+        end
+
+        %w[yes applied_waiting no].each do |answer|
+          it "accepts #{answer}" do
+            screener = build(:screener, state: "NC", county: "Alleghany County", receives_snap: answer)
+            expect(screener.valid?(:location)).to eq true
+          end
+        end
+
+        it "is not required before a zip code is given" do
+          screener = build(:screener, state: "DE", zip_code: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
+        end
+
+        it "is not required before a county is given" do
+          screener = build(:screener, state: "NC", county: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
+        end
+
+        it "is not required when the state is not listed" do
+          screener = build(:screener, state: "NOT_LISTED", county: nil, zip_code: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
         end
       end
     end
@@ -658,6 +699,24 @@ RSpec.describe Screener, type: :model do
         screener.update(state: "NC")
 
         expect(screener.reload.zip_code).to be_nil
+      end
+
+      it "keeps receives_snap when switching between supported states" do
+        screener = create(:screener,
+          state: "DE",
+          zip_code: "19954",
+          receives_snap: :applied_waiting)
+        screener.update(state: "NC", county: "Alleghany County")
+        expect(screener.reload.receives_snap).to eq "applied_waiting"
+      end
+
+      it "removes receives_snap when switching from a supported state to an unlisted one" do
+        screener = create(:screener,
+          state: "DE",
+          zip_code: "19954",
+          receives_snap: :applied_waiting)
+        screener.update(state: "NOT_LISTED")
+        expect(screener.reload.receives_snap).to eq "unfilled"
       end
     end
 
