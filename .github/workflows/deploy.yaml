@@ -31,9 +31,10 @@ on:
       DEPLOYMENT_APP_ID:
       DEPLOYMENT_APP_KEY:
       # Required: the Dockerfile's base image is a Docker Hardened Image, so the
-      # build cannot pull it without these. Marked required so a caller that forgets
-      # to pass them fails with that message, rather than at an anonymous docker
-      # login and then a confusing failure on the first FROM.
+      # build cannot pull it without these. Forwarded to the shared build workflow
+      # as REGISTRY_USERNAME/REGISTRY_PASSWORD. Marked required so a caller that
+      # forgets to pass them fails with that message, rather than at an anonymous
+      # docker login and then a confusing failure on the first FROM.
       DOCKER_HUB_USERNAME:
         required: true
       DOCKER_HUB_READONLY_TOKEN:
@@ -50,53 +51,41 @@ jobs:
       contents: write
     uses: ./.github/workflows/ci.yml
 
+  build:
+    name: Build and push image
+    needs: ci
+    permissions:
+      contents: read
+      id-token: write
+    uses: codeforamerica/github-actions/.github/workflows/ecr-build-push.yaml@main
+    with:
+      ecr-repository: work-requirements-self-advocacy-tool-${{ inputs.environment }}-web
+      image-tag: ${{ github.sha }}
+      environment: ${{ inputs.environment }}
+      fail-on-existing-tag: false
+    secrets:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      REGISTRY_USERNAME: ${{ secrets.DOCKER_HUB_USERNAME }}
+      REGISTRY_PASSWORD: ${{ secrets.DOCKER_HUB_READONLY_TOKEN }}
+
   deploy:
     name: Deploy to ${{ inputs.environment }}
-    needs: ci
+    needs: build
     environment: ${{ inputs.environment }}
     runs-on: ubuntu-latest
     env:
       ENVIRONMENT: ${{ inputs.environment }}
-      ECR_REPOSITORY: work-requirements-self-advocacy-tool-${{ inputs.environment }}-web
       IMAGE_TAG: ${{ github.sha }}
       INFRA_REPO: work-requirements-self-advocacy-tool-infra
 
     steps:
-      - name: Check out code
-        uses: actions/checkout@v7.0.1
-        with:
-          persist-credentials: false
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v6.3.0
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION || 'us-east-1' }}
-      - name: Log in to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2.1.7
-      # The Dockerfile builds on a Docker Hardened Image, which is not public.
-      # DOCKER_HUB_USERNAME/DOCKER_HUB_READONLY_TOKEN are codeforamerica org secrets.
-      - name: Log in to the Docker Hardened Images registry
-        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
-        with:
-          registry: dhi.io
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_READONLY_TOKEN }}
-      - name: Check if the image exists
-        id: image_exists
-        uses: k4kratik/container-image-check-custom-action@5f19a0c48d0e0d17257fd3a2de52874d5a8fdc51 # v4
-        with:
-          type: ecr
-          container_repo_name: ${{ env.ECR_REPOSITORY }}
-          image_tag: ${{env.IMAGE_TAG}}
-      - name: Build and push Docker image
-        if: ${{ steps.image_exists.outputs.image_exists == 'false' }}
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        run: |
-          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:${{env.IMAGE_TAG}} --platform linux/amd64 .
-          docker push $ECR_REGISTRY/$ECR_REPOSITORY:${{env.IMAGE_TAG}}
       - name: Update SSM Version Parameter
         run: |
           echo "tag:$IMAGE_TAG"
