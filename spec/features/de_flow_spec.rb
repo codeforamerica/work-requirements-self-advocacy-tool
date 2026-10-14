@@ -48,6 +48,10 @@ RSpec.feature "DE Screener flow", js: true do
   def step_de_location
     select "Delaware", from: "screener_state"
     fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
+
+    expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
+    choose I18n.t("views.location.edit.snap_yes")
+
     click_on I18n.t("general.continue")
   end
 end
