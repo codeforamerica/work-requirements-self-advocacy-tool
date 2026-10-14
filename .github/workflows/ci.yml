@@ -59,7 +59,7 @@ jobs:
           bundler-cache: true
 
       - name: Set up Node
-        uses: actions/setup-node@v7.0.0
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: 22
           cache: yarn
@@ -110,7 +110,7 @@ jobs:
           bundler-cache: true
 
       - name: Set up Node
-        uses: actions/setup-node@v7.0.0
+        uses: actions/setup-node@v7.1.0
         with:
           node-version: 22
           cache: yarn
