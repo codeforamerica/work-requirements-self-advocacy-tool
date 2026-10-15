@@ -113,8 +113,7 @@ uses; `--install-deps` pulls in exactly the shared libraries that build declares
 `CHROME_VERSION` in the `Dockerfile` is pinned to a specific Chrome for Testing build rather than
 tracking whatever Puppeteer pins for itself. Puppeteer is held at 24.x until Grover supports 25
 (see [`.github/dependabot.yml`](.github/dependabot.yml)), and 24.x pins a Chrome several releases
-behind stable — old enough that Amazon Inspector flags hundreds of Chrome CVEs against the image,
-reported under the package name `google/puppeteer`.
+behind stable.
 
 Nothing bumps `CHROME_VERSION` automatically. **Check it against the Stable channel in
 [last-known-good-versions.json](https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json)
