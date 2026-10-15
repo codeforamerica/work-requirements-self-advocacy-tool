@@ -22,7 +22,7 @@ ARG YARN_VERSION=1.22.22
 # rather than to the build Puppeteer pins for itself: Grover does not support
 # Puppeteer 25 yet (see .github/dependabot.yml), and Puppeteer 24 pins a Chrome that
 # is several releases behind. See the "Chrome" section of the README before bumping.
-ARG CHROME_VERSION=153.0.8010.36
+ARG CHROME_VERSION=155.0.8059.79
 ARG PUPPETEER_BROWSERS_VERSION=2.13.2
 
 # Docker Hardened Image, per https://docs.docker.com/guides/ruby/. Not a public
