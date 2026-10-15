@@ -214,7 +214,6 @@ RSpec.describe PdfFiller::PacketPdf do
       html
     end
 
-    # Without a <title>, Chrome titles the PDF after Grover's default display URL, "example.com".
     it "sets the document title" do
       html = rendered_html { packet_pdf.to_pdf }
 
