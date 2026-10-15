@@ -214,6 +214,13 @@ RSpec.describe PdfFiller::PacketPdf do
       html
     end
 
+    # Without a <title>, Chrome titles the PDF after Grover's default display URL, "example.com".
+    it "sets the document title" do
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("<title>GetBenefitsHelp</title>")
+    end
+
     it "omits North Carolina-only fields for a Delaware screener" do
       screener.preventing_work_medical_condition = "yes"
 
