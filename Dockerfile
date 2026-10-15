@@ -88,12 +88,14 @@ RUN apt-get update -qq && \
     apt-get remove -y --purge fonts-liberation && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives /root/.npm
 
-# Set production environment
+# Set production environment. No PUPPETEER_SKIP_DOWNLOAD: the app depends on
+# puppeteer-core, which never fetches a browser of its own, so there is nothing to
+# skip. Grover reads PUPPETEER_EXECUTABLE_PATH itself (config/initializers/grover.rb)
+# and points Chrome at the build we installed above.
 ENV RAILS_ENV="production" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
     BUNDLE_WITHOUT="development" \
-    PUPPETEER_SKIP_DOWNLOAD="true" \
     PUPPETEER_EXECUTABLE_PATH="$PUPPETEER_CACHE_DIR/chrome/linux-$CHROME_VERSION/chrome-linux64/chrome"
 
 # Fail the build here rather than at PDF-render time if that cache layout changes.
