@@ -6,9 +6,11 @@ Grover.configure do |config|
     "/usr/bin/chromium",
     "/app/.chrome-for-testing/chrome-linux64/chrome",
     # Local development: puppeteer-core doesn't download a browser, so fall back to an
-    # installed Google Chrome. Set PUPPETEER_EXECUTABLE_PATH to use a different one.
+    # installed Google Chrome, at the same paths Puppeteer's `channel: "chrome"` lookup
+    # uses (Grover doesn't pass `channel` through). Set PUPPETEER_EXECUTABLE_PATH to use
+    # a different one.
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "/usr/bin/google-chrome"
+    "/opt/google/chrome/chrome"
   ]
 
   chrome_path = chrome_paths.find { |path| path.present? && File.exist?(path) }
