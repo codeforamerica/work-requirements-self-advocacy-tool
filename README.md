@@ -7,6 +7,8 @@ If it's your first time setting up for local development, you will need to have 
 * brew (https://brew.sh/)
 * git (https://git-scm.com/downloads)
 * Docker (https://docs.docker.com/get-docker/)
+* Google Chrome (https://www.google.com/chrome/), used to generate PDFs. To use a different
+  Chrome or Chromium, set `PUPPETEER_EXECUTABLE_PATH` to its executable.
 
 1. In the root directory of this project, run the setup script:
     >$ ./bin/setup
