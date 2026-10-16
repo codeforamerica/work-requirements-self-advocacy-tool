@@ -113,9 +113,8 @@ Grover renders PDFs by driving Chrome through Puppeteer. The image installs a
 uses; `--install-deps` pulls in exactly the shared libraries that build declares it needs.
 
 `CHROME_VERSION` in the `Dockerfile` is pinned to a specific Chrome for Testing build rather than
-tracking whatever Puppeteer pins for itself. Puppeteer is held at 24.x until Grover supports 25
-(see [`.github/dependabot.yml`](.github/dependabot.yml)), and 24.x pins a Chrome several releases
-behind stable.
+tracking whatever Puppeteer pins for itself, so Chrome security releases don't wait on a Puppeteer
+release. Keep it on or ahead of the Chrome major that `puppeteer-core` targets.
 
 Nothing bumps `CHROME_VERSION` automatically. **Check it against the Stable channel in
 [last-known-good-versions.json](https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json)

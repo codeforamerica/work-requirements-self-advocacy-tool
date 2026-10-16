@@ -19,9 +19,9 @@ ARG YARN_VERSION=1.22.22
 
 # Chrome for Testing build that Grover drives through Puppeteer, plus the
 # @puppeteer/browsers release used to fetch it. Pinned to the current Chrome stable
-# rather than to the build Puppeteer pins for itself: Grover does not support
-# Puppeteer 25 yet (see .github/dependabot.yml), and Puppeteer 24 pins a Chrome that
-# is several releases behind. See the "Chrome" section of the README before bumping.
+# rather than to the build Puppeteer pins for itself, so Chrome security releases
+# don't wait on a Puppeteer release. See the "Chrome" section of the README before
+# bumping.
 ARG CHROME_VERSION=155.0.8059.79
 ARG PUPPETEER_BROWSERS_VERSION=2.13.2
 
