@@ -7,6 +7,8 @@ If it's your first time setting up for local development, you will need to have 
 * brew (https://brew.sh/)
 * git (https://git-scm.com/downloads)
 * Docker (https://docs.docker.com/get-docker/)
+* Google Chrome (https://www.google.com/chrome/), used to generate PDFs. To use a different
+  Chrome or Chromium, set `PUPPETEER_EXECUTABLE_PATH` to its executable.
 
 1. In the root directory of this project, run the setup script:
     >$ ./bin/setup
@@ -113,8 +115,7 @@ uses; `--install-deps` pulls in exactly the shared libraries that build declares
 `CHROME_VERSION` in the `Dockerfile` is pinned to a specific Chrome for Testing build rather than
 tracking whatever Puppeteer pins for itself. Puppeteer is held at 24.x until Grover supports 25
 (see [`.github/dependabot.yml`](.github/dependabot.yml)), and 24.x pins a Chrome several releases
-behind stable — old enough that Amazon Inspector flags hundreds of Chrome CVEs against the image,
-reported under the package name `google/puppeteer`.
+behind stable.
 
 Nothing bumps `CHROME_VERSION` automatically. **Check it against the Stable channel in
 [last-known-good-versions.json](https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json)
