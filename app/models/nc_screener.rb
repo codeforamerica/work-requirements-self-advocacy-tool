@@ -25,10 +25,10 @@ class NcScreener < ApplicationRecord
       self.worked_last_five_years = :unfilled
       self.earned_more_than_threshold = :unfilled
       self.health_conditions_preventing_work = :unfilled
-    elsif has_hs_diploma_no? && worked_last_five_years_no?
+    elsif has_hs_diploma_no? && worked_last_five_years_yes?
       self.earned_more_than_threshold = :unfilled
       self.health_conditions_preventing_work = :unfilled
-    elsif has_hs_diploma_no? && worked_last_five_years_yes? && earned_more_than_threshold_yes?
+    elsif has_hs_diploma_no? && worked_last_five_years_no? && earned_more_than_threshold_yes?
       self.health_conditions_preventing_work = :unfilled
     end
   end

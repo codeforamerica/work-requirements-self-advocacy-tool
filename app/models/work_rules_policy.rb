@@ -105,7 +105,7 @@ module WorkRulesPolicy
 
       screener.age_range_55_to_64? &&
         nc_screener.has_hs_diploma_no? &&
-        ((nc_screener.worked_last_five_years_yes? && nc_screener.earned_more_than_threshold_no?) || nc_screener.worked_last_five_years_no?) &&
+        nc_screener.worked_last_five_years_no? && nc_screener.earned_more_than_threshold_no? &&
         (nc_screener.health_conditions_preventing_work_yes? || screener.preventing_work_medical_condition_yes?)
     end
 
