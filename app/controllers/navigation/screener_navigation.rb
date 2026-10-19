@@ -3,7 +3,7 @@ module Navigation
     FLOW = [
       ControllerNavigation::NavigationStep.new(LocationController),
       ControllerNavigation::NavigationStep.new(OutOfStateController),
-      ControllerNavigation::NavigationStep.new(DateOfBirthController),
+      ControllerNavigation::NavigationStep.new(AgeRangeController),
       ControllerNavigation::NavigationStep.new(TribeOrNationController),
       ControllerNavigation::NavigationStep.new(LivingWithSomeoneController),
       ControllerNavigation::NavigationStep.new(CaringForSomeoneController),

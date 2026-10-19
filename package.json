@@ -14,11 +14,11 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
-    "puppeteer": "^24.43.1"
+    "puppeteer-core": "^24.43.1"
   },
   "resolutions": {
-    "chromium-bidi/zod": "4.6.0",
-    "zod": "4.6.0",
+    "chromium-bidi/zod": "4.6.6",
+    "zod": "4.6.6",
     "basic-ftp": "^6.0.0",
     "yargs": "^18.0.0",
     "extract-zip": "https://npm.aikido.io/15c1c18888387f32c4a27/extract-zip@2.0.1-aikido.2"

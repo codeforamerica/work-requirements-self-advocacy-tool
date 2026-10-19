@@ -22,6 +22,7 @@ updates:
   cooldown:
     default-days: 7
   ignore:
-  - dependency-name: "puppeteer"
+  # Grover does not support Puppeteer 25.x yet. See WRSAT-613.
+  - dependency-name: "puppeteer-core"
     versions:
     - ">=25"

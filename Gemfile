@@ -8,7 +8,7 @@ gem "rails", "~> 8.1.4"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.7"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
@@ -37,7 +37,7 @@ gem "solid_cable"
 gem "bootsnap", require: false
 
 # Add HTTP asset caching/compression and X-Sendfile acceleration to Puma [https://github.com/basecamp/thruster/]
-gem "thruster", require: false
+gem "thruster", ">= 0.1.27", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
@@ -54,8 +54,8 @@ gem "json", ">= 2.21.2"
 gem "mail", ">= 2.9.1"
 gem "mixpanel-ruby"
 gem "msgpack", ">= 1.8.5"
-gem "opentelemetry-exporter-otlp", "~> 0.36"
-gem "opentelemetry-instrumentation-all", "~> 0.96"
+gem "opentelemetry-exporter-otlp", "~> 0.37"
+gem "opentelemetry-instrumentation-all", "~> 0.98"
 gem "opentelemetry-resource-detector-aws", "~> 0.7"
 gem "opentelemetry-sdk", "~> 1.13"
 gem "ostruct"

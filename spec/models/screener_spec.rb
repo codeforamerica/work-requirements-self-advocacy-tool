@@ -56,7 +56,7 @@ RSpec.describe Screener, type: :model do
         let(:screener) { build(:screener, state: "NC") }
 
         it "is valid with a county from the CSV" do
-          screener.assign_attributes(county: "Alleghany County")
+          screener.assign_attributes(county: "Alleghany County", receives_snap: :yes)
           expect(screener.valid?(:location)).to eq true
         end
 
@@ -74,7 +74,7 @@ RSpec.describe Screener, type: :model do
       end
 
       context "a state with zip-code-identified offices" do
-        let(:screener) { build(:screener, state: "DE") }
+        let(:screener) { build(:screener, state: "DE", receives_snap: :yes) }
 
         it "is valid with a zip code from the CSV" do
           screener.assign_attributes(zip_code: "19954")
@@ -93,14 +93,58 @@ RSpec.describe Screener, type: :model do
           expect(screener.errors[:zip_code]).to eq [I18n.t("validations.zip_code_invalid")]
         end
       end
+
+      context "receives_snap" do
+        it "requires an answer once a county has been selected" do
+          screener = build(:screener, state: "NC", county: "Alleghany County", receives_snap: :unfilled)
+
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:receives_snap]).to eq [I18n.t("validations.snap_answer_required")]
+        end
+
+        it "requires an answer once a zip code has been selected" do
+          screener = build(:screener, state: "DE", zip_code: "19954", receives_snap: :unfilled)
+
+          expect(screener.valid?(:location)).to eq false
+          expect(screener.errors[:receives_snap]).to eq [I18n.t("validations.snap_answer_required")]
+        end
+
+        %w[yes applied_waiting no].each do |answer|
+          it "accepts #{answer}" do
+            screener = build(:screener, state: "NC", county: "Alleghany County", receives_snap: answer)
+            expect(screener.valid?(:location)).to eq true
+          end
+        end
+
+        it "is not required before a zip code is given" do
+          screener = build(:screener, state: "DE", zip_code: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
+        end
+
+        it "is not required before a county is given" do
+          screener = build(:screener, state: "NC", county: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
+        end
+
+        it "is not required when the state is not listed" do
+          screener = build(:screener, state: "NOT_LISTED", county: nil, zip_code: nil, receives_snap: :unfilled)
+          screener.valid?(:location)
+          expect(screener.errors[:receives_snap]).to be_empty
+        end
+      end
     end
 
-    context "with_context :date_of_birth" do
-      it "requires birth date" do
-        screener = build(:screener, birth_date: nil)
-        screener.valid?(:date_of_birth)
+    context "with_context :age_range" do
+      it "requires an age range to be selected" do
+        screener = build(:screener, age_range: "unfilled")
+        screener.valid?(:age_range)
 
-        expect(screener.errors).to match_array ["Birth date #{I18n.t("validations.date_missing_or_invalid")}"]
+        expect(screener.errors).to match_array ["Age range #{I18n.t("validations.age_range_required")}"]
+
+        screener.assign_attributes(age_range: "50_to_54")
+        expect(screener.valid?(:age_range)).to eq true
       end
     end
 
@@ -135,6 +179,18 @@ RSpec.describe Screener, type: :model do
           screener.valid?(:basic_info_details)
           expect(screener.errors[name]).to be_present
         end
+      end
+
+      it "requires the birthdate to be within the last 150 years" do
+        [Date.current + 1.day, 151.years.ago.to_date, Date.new(199, 1, 1)].each do |birth_date|
+          screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: birth_date)
+          screener.valid?(:basic_info_details)
+
+          expect(screener.errors[:birth_date]).to eq [I18n.t("validations.date_missing_or_invalid")]
+        end
+
+        screener = build(:screener, first_name: "Paul", last_name: "Hollywood", birth_date: Date.current)
+        expect(screener.valid?(:basic_info_details)).to eq true
       end
     end
 
@@ -644,6 +700,24 @@ RSpec.describe Screener, type: :model do
 
         expect(screener.reload.zip_code).to be_nil
       end
+
+      it "keeps receives_snap when switching between supported states" do
+        screener = create(:screener,
+          state: "DE",
+          zip_code: "19954",
+          receives_snap: :applied_waiting)
+        screener.update(state: "NC", county: "Alleghany County")
+        expect(screener.reload.receives_snap).to eq "applied_waiting"
+      end
+
+      it "removes receives_snap when switching from a supported state to an unlisted one" do
+        screener = create(:screener,
+          state: "DE",
+          zip_code: "19954",
+          receives_snap: :applied_waiting)
+        screener.update(state: "NOT_LISTED")
+        expect(screener.reload.receives_snap).to eq "unfilled"
+      end
     end
 
     context "snapshot_exemptions" do
@@ -732,34 +806,42 @@ RSpec.describe Screener, type: :model do
   end
 
   describe "#age_exempt?" do
-    it "returns true if age is 17 or younger" do
-      screener = build(:screener, birth_date: 17.years.ago.to_date + 1.day)
-      expect(screener.age_exempt?).to eq true
+    %w[under_18 65_or_older].each do |age_range|
+      it "returns true for the #{age_range} range" do
+        screener = build(:screener, age_range: age_range)
+        expect(screener.age_exempt?).to eq true
+      end
     end
 
-    it "returns false if age is 18" do
-      screener = build(:screener, birth_date: 18.years.ago.to_date)
+    %w[18_to_49 50_to_54 55_to_64].each do |age_range|
+      it "returns false for the working-age #{age_range} range" do
+        screener = build(:screener, age_range: age_range)
+        expect(screener.age_exempt?).to eq false
+      end
+    end
+
+    it "returns false when the age range has not been answered" do
+      screener = build(:screener, age_range: "unfilled")
       expect(screener.age_exempt?).to eq false
     end
 
-    it "returns false if age is 37" do
-      screener = build(:screener, birth_date: 37.years.ago.to_date)
+    it "ignores birth_date, which is only collected later in the flow" do
+      screener = build(:screener, age_range: "18_to_49", birth_date: 70.years.ago.to_date)
       expect(screener.age_exempt?).to eq false
     end
+  end
 
-    it "returns false if age is 64" do
-      screener = build(:screener, birth_date: 64.years.ago.to_date + 1.day)
-      expect(screener.age_exempt?).to eq false
+  describe "#age_55_or_older?" do
+    %w[55_to_64 65_or_older].each do |age_range|
+      it "returns true for the #{age_range} range" do
+        expect(build(:screener, age_range: age_range).age_55_or_older?).to eq true
+      end
     end
 
-    it "returns true if age is 65" do
-      screener = build(:screener, birth_date: 65.years.ago.to_date)
-      expect(screener.age_exempt?).to eq true
-    end
-
-    it "returns false if birth_date is nil" do
-      screener = build(:screener, birth_date: nil)
-      expect(screener.age_exempt?).to eq false
+    %w[unfilled under_18 18_to_49 50_to_54].each do |age_range|
+      it "returns false for the #{age_range} range" do
+        expect(build(:screener, age_range: age_range).age_55_or_older?).to eq false
+      end
     end
   end
 

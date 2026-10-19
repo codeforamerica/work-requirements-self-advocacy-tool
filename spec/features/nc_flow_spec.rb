@@ -5,7 +5,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "1965")
+    step_age_range(option: :age_55_to_64)
     step_exemption_questions(caring: :disabled_or_ill)
     step_nc_homeschool(enrolled: true)
     step_school_enrollment(answer: :yes)
@@ -25,7 +25,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "1990")
+    step_age_range(option: :age_18_to_49)
     step_exemption_questions(caring: :none)
     step_nc_homeschool(enrolled: false)
     step_school_enrollment(answer: :no)
@@ -50,7 +50,7 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "1945")
+    step_age_range(option: :age_65_or_older)
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
   end
@@ -59,9 +59,20 @@ RSpec.feature "NC Screener flow", js: true do
     step_homepage
     step_nc_location
 
-    step_date_of_birth(year: "2025")
+    step_age_range(option: :under_18)
 
     expect(page).to have_selector("h1", text: ActionView::Base.full_sanitizer.sanitize(I18n.t("views.age_exemption.edit.title_html")))
+  end
+
+  scenario "keeps the SNAP question visible when submitted without an answer" do
+    step_homepage
+
+    select "North Carolina", from: "screener_state"
+    select "Durham County", from: "screener_county"
+    click_on I18n.t("general.continue")
+
+    expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
+    expect(page).to have_content(I18n.t("validations.snap_answer_required"))
   end
 
   private
@@ -69,6 +80,8 @@ RSpec.feature "NC Screener flow", js: true do
   def step_nc_location
     select "North Carolina", from: "screener_state"
     select "Durham County", from: "screener_county"
+    expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
+    choose I18n.t("views.location.edit.snap_yes")
     click_on I18n.t("general.continue")
   end
 

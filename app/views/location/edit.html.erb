@@ -9,9 +9,10 @@
           LocationData::States.dropdown_options,
           required: true,
           include_blank: t("general.select"),
-          id: "state_select",
           value: @model.state
         ) %>
+
+  <%= f.hidden_field :receives_snap, value: :unfilled %>
 
   <div id="county_wrapper">
     <%= f.cfa_select(
@@ -20,13 +21,27 @@
             [],
             required: false,
             include_blank: t("general.select"),
-            id: "county_select",
             value: @model.county
           ) %>
   </div>
 
   <div id="zip_code_wrapper">
     <%= f.cfa_input_field(:zip_code, t("views.location.edit.zip_code_label")) %>
+  </div>
+
+  <div class="snap-follow-up js-initially-hidden" id="snap_follow_up">
+    <hr/>
+    <%= f.cfa_radio_set(
+          :receives_snap,
+          label_text: t("views.location.edit.snap_label"),
+          help_text: t("views.location.edit.snap_helper_text", state: ""),
+          collection: [
+            {value: :yes, label: t("views.location.edit.snap_yes")},
+            {value: :applied_waiting, label: t("views.location.edit.snap_applied_waiting")},
+            {value: :no, label: t("views.location.edit.snap_no")}
+          ]
+        )
+    %>
   </div>
 
   <%= f.submit t("general.continue"), class: "button button--primary" %>
@@ -38,8 +53,13 @@
     const countyWrapper = document.getElementById("county_wrapper");
     const countySelect = document.getElementById("screener_county");
     const zipCodeWrapper = document.getElementById("zip_code_wrapper");
+    const zipCodeInput = document.getElementById("screener_zip_code");
+    const snapFollowUp = document.getElementById("snap_follow_up");
+    const snapHelpText = document.getElementById("screener_receives_snap__help-text");
 
-    if (!stateSelect || !countyWrapper || !countySelect || !zipCodeWrapper) {
+    // check for the !stateSelect because turbo:load listener stays bound to document and fires on every subsequent page;
+    // we only want the script to run when on the location page
+    if (!stateSelect) {
       return;
     }
 
@@ -47,6 +67,7 @@
     const allCounties = <%= raw LocationData::Counties::ALL_COUNTIES.transform_values { |c| c.transform_values { |v| v[:name] } }.to_json %>;
     // Map of state => office_by ("county" or "zip_code")
     const statesOfficeBy = <%= raw LocationData::States::STATES_INFO.transform_values { |v| v[:office_by].to_s }.to_json %>;
+    const snapHelperTexts = <%= raw LocationData::States.active_states.transform_values { |info| I18n.t("views.location.edit.snap_helper_text", state: info[:display_name]) }.to_json %>;
 
     function clearCountyDropdown() {
       countySelect.innerHTML = "";
@@ -99,14 +120,37 @@
       });
     });
 
+    function locationAnswered() {
+      if (statesOfficeBy[stateSelect.value] === "zip_code") {
+        return /^\d{5}$/.test((zipCodeInput.value || "").trim());
+      }
+      return countySelect.value !== "";
+    }
+
+    function updateSnapFollowUp() {
+      const answered = locationAnswered();
+      snapFollowUp.style.display = answered ? "block" : "none";
+      snapFollowUp.querySelectorAll("input").forEach(function (input) {
+        input.disabled = !answered;
+      });
+      if (snapHelpText) {
+        snapHelpText.textContent = snapHelperTexts[stateSelect.value] || "";
+      }
+    }
+
     // Initial population
     populateCounties(stateSelect.value, "<%= j @model.county.to_s %>");
     showOrHideZipCodeInput(stateSelect.value);
+    updateSnapFollowUp();
 
     // Update counties whenever the state changes
     stateSelect.addEventListener("change", function () {
       populateCounties(stateSelect.value);
       showOrHideZipCodeInput(stateSelect.value);
+      updateSnapFollowUp();
     });
+
+    countySelect.addEventListener("change", updateSnapFollowUp);
+    zipCodeInput.addEventListener("input", updateSnapFollowUp);
   });
 </script>

@@ -62,6 +62,7 @@ class Screener < ApplicationRecord
 
   encrypts :ssn_last_four
 
+  enum :age_range, {unfilled: 0, under_18: 1, "18_to_49": 2, "50_to_54": 3, "55_to_64": 4, "65_or_older": 5}, prefix: true
   enum :caring_for_child_under_6, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_disabled_or_ill_person, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :caring_for_no_one, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -82,6 +83,7 @@ class Screener < ApplicationRecord
   enum :preventing_work_none, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :preventing_work_place_to_sleep, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :receives_snap, {unfilled: 0, yes: 1, applied_waiting: 2, no: 3}, prefix: true
   enum :receiving_benefits_disability_pension, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_disability_medicaid, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_insurance_payments, {unfilled: 0, yes: 1, no: 2}, prefix: true
@@ -114,12 +116,17 @@ class Screener < ApplicationRecord
     :remove_employment_attributes_if_no,
     :remove_pregnancy_attributes_if_no,
     :remove_preventing_working_info_if_no_reasons,
+    :remove_receives_snap_if_state_not_supported,
     :remove_training_program_attributes_if_no,
     :remove_volunteer_attributes_if_no,
     :remove_zip_code_if_state_does_not_require
 
   # keep this at the end of the before_ hooks so it saves *after* the other attributes are cleaned up
   before_save :snapshot_exemptions, if: :recording_outcome?
+
+  with_context :age_range do
+    validates :age_range, inclusion: {in: %w[under_18 18_to_49 50_to_54 55_to_64 65_or_older], message: ->(*) { I18n.t("validations.age_range_required") }}
+  end
 
   with_context :alcohol_treatment_program do
     validates :alcohol_treatment_program_name, length: {maximum: AlcoholTreatmentProgramController::CHARACTER_LIMIT}, latin_script: true
@@ -161,6 +168,7 @@ class Screener < ApplicationRecord
     validates :middle_name, length: {maximum: BASIC_INFO_DETAILS_CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: BASIC_INFO_DETAILS_CHARACTER_LIMIT, field_name: I18n.t("validations.fields.middle_name")) }}, latin_script: true
     validates :phone_number, phone: {possible: true, country_specifier: ->(_) { "US" }, allow_blank: true, message: ->(*) { I18n.t("validations.phone_invalid") }}
     validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
+    validates :birth_date, comparison: {greater_than_or_equal_to: -> { 150.years.ago.to_date }, less_than_or_equal_to: -> { Date.current }, message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}, allow_nil: true
   end
 
   with_context :basic_info_ssn do
@@ -174,10 +182,6 @@ class Screener < ApplicationRecord
 
   with_context :community_service do
     validates :volunteering_hours, numericality: {only_integer: true, greater_than_or_equal_to: MIN_WEEKLY_HOURS, less_than_or_equal_to: MAX_WEEKLY_HOURS, message: ->(*) { I18n.t("validations.number_out_of_range", min: MIN_WEEKLY_HOURS, max: MAX_WEEKLY_HOURS) }}, allow_blank: true
-  end
-
-  with_context :date_of_birth do
-    validates :birth_date, presence: {message: ->(*) { I18n.t("validations.date_missing_or_invalid") }}
   end
 
   with_context :disability_benefits do
@@ -215,6 +219,10 @@ class Screener < ApplicationRecord
         message: ->(*) { I18n.t("validations.zip_code_invalid") }
       },
       if: ->(record) { LocationData::ZipCodes.for_state(record.state).present? }
+
+    validates :receives_snap,
+      inclusion: {in: %w[yes applied_waiting no], message: ->(*) { I18n.t("validations.snap_answer_required") }},
+      if: :location_answered?
   end
 
   with_context :living_with_someone do
@@ -311,8 +319,11 @@ class Screener < ApplicationRecord
   end
 
   def age_exempt?
-    return false unless age
-    age <= 17 || age >= 65
+    age_range_under_18? || age_range_65_or_older?
+  end
+
+  def age_55_or_older?
+    age_range_55_to_64? || age_range_65_or_older?
   end
 
   def unsupported_location?
@@ -324,16 +335,17 @@ class Screener < ApplicationRecord
       state_policy.extra_preventing_work?
   end
 
+  # Prefer what the user typed so an invalid date can be redisplayed for correction.
   def birth_date_day
-    birth_date&.day
+    @birth_date_day || birth_date&.day
   end
 
   def birth_date_month
-    birth_date&.month
+    @birth_date_month || birth_date&.month
   end
 
   def birth_date_year
-    birth_date&.year
+    @birth_date_year || birth_date&.year
   end
 
   def earnings_above_minimum?
@@ -524,6 +536,14 @@ class Screener < ApplicationRecord
     self.session_token ||= SecureRandom.hex(20)
   end
 
+  def location_answered?
+    case LocationData::States::STATES_INFO.dig(state, :office_by)
+    when :county then county.present?
+    when :zip_code then zip_code.present?
+    else false
+    end
+  end
+
   def remove_county_if_state_does_not_require
     self.county = nil unless state.present? && LocationData::Counties.for_state(state).present?
   end
@@ -569,6 +589,10 @@ class Screener < ApplicationRecord
 
   def remove_preventing_working_info_if_no_reasons
     self.preventing_work_additional_info = nil if preventing_work_none_yes? || (preventing_work_place_to_sleep_no? && preventing_work_drugs_alcohol_no? && preventing_work_domestic_violence_no? && preventing_work_medical_condition_no? && preventing_work_other_no?)
+  end
+
+  def remove_receives_snap_if_state_not_supported
+    self.receives_snap = :unfilled unless LocationData::States::STATES_INFO.key?(state)
   end
 
   def remove_zip_code_if_state_does_not_require

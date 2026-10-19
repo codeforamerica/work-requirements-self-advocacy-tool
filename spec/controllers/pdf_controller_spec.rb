@@ -34,7 +34,7 @@ RSpec.describe PdfController, type: :controller do
     end
 
     it "does not raise for a signed-in, persisted screener" do
-      screener = create(:screener, state: LocationData::States::DELAWARE, preventing_work_medical_condition: "yes", current_step: "some_previous_step")
+      screener = create(:screener, state: LocationData::States::DELAWARE, birth_date: Date.new(1990, 7, 13), preventing_work_medical_condition: "yes", current_step: "some_previous_step")
       sign_in screener
 
       expect { get :generate_pdf }.not_to raise_error

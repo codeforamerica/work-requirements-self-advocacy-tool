@@ -5,7 +5,7 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
     it_behaves_like :session_must_be_active_for_this_get_action, action: :edit
 
     it "redirects to root instead of raising if the nc_screener doesn't exist yet" do
-      screener = create(:screener, state: "NC", birth_date: 56.years.ago.to_date)
+      screener = create(:screener, state: "NC", age_range: "55_to_64")
       sign_in screener
       expect(screener.nc_screener).to be_nil
 
@@ -22,13 +22,13 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
       fields: [:has_hs_diploma, :worked_last_five_years, :earned_more_than_threshold, :health_conditions_preventing_work],
       params_key: :nc_screener,
       screener_factory: -> {
-        s = create(:screener, state: "NC", birth_date: 56.years.ago.to_date)
+        s = create(:screener, state: "NC", age_range: "55_to_64")
         s.create_nc_screener
         s
       }
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event", {nc_screener: true} do
-      let(:screener) { create(:screener, :with_nc_screener, birth_date: 56.years.ago.to_date) }
+      let(:screener) { create(:screener, :with_nc_screener, age_range: "55_to_64") }
       let(:page_submit_cases) do
         params = {
           has_hs_diploma: "no",
@@ -46,7 +46,7 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
     end
 
     it "persists the values to the nc_screener" do
-      screener = create(:screener, state: "NC", birth_date: 56.years.ago.to_date)
+      screener = create(:screener, state: "NC", age_range: "55_to_64")
       screener.create_nc_screener
       sign_in screener
 
@@ -68,25 +68,20 @@ RSpec.describe Nc::EduWorkHistoryController, type: :controller do
 
   describe ".show?" do
     context "screener with NC" do
-      it "returns false" do
-        screener = create(:screener, state: "NC", birth_date: 30.years.ago.to_date)
+      it "returns false when age under 55" do
+        screener = create(:screener, state: "NC", age_range: "18_to_49")
         expect(subject.class.show?(screener)).to eq false
       end
 
-      it "returns true" do
-        screener = create(:screener, state: "NC", birth_date: 55.years.ago.to_date)
+      it "returns true when age 55 or older" do
+        screener = create(:screener, state: "NC", age_range: "55_to_64")
         expect(subject.class.show?(screener)).to eq true
       end
     end
 
     context "screener with !NC" do
       it "returns false" do
-        screener = create(:screener, state: "TX", birth_date: 30.years.ago.to_date)
-        expect(subject.class.show?(screener)).to eq false
-      end
-
-      it "returns false" do
-        screener = create(:screener, state: "TX", birth_date: 55.years.ago.to_date)
+        screener = create(:screener, state: "TX")
         expect(subject.class.show?(screener)).to eq false
       end
     end

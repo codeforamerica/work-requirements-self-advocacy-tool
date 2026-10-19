@@ -99,6 +99,34 @@ RSpec.describe BasicInfoDetailsController, type: :controller do
       expect(screener.birth_date).to eq Date.new(1990, 1, 1)
       expect(assigns(:model).errors[:birth_date]).to include(I18n.t("validations.date_missing_or_invalid"))
     end
+
+    [
+      {description: "a day that doesn't exist in the month", month: "2", day: "30", year: "1990"},
+      {description: "a non-numeric day", month: "2", day: "1a", year: "1990"},
+      {description: "a year that isn't 4 digits", month: "2", day: "1", year: "199"},
+      {description: "a future year", month: "2", day: "1", year: (Date.current.year + 1).to_s}
+    ].each do |date_params|
+      it "does not persist and keeps the entered values when birth date has #{date_params[:description]}" do
+        screener = create(:screener, :with_exemption, birth_date: Date.new(1990, 1, 1))
+        sign_in screener
+
+        params = {
+          first_name: "Noel",
+          last_name: "Fielding",
+          birth_date_month: date_params[:month],
+          birth_date_day: date_params[:day],
+          birth_date_year: date_params[:year]
+        }
+
+        post :update, params: {screener: params}
+        expect(response).to render_template(:edit)
+        expect(screener.reload.birth_date).to eq Date.new(1990, 1, 1)
+
+        model = assigns(:model)
+        expect(model.errors[:birth_date]).to include(I18n.t("validations.date_missing_or_invalid"))
+        expect([model.birth_date_month, model.birth_date_day, model.birth_date_year]).to eq date_params.values_at(:month, :day, :year)
+      end
+    end
   end
 
   describe ".show?" do

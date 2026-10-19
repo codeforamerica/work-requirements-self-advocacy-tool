@@ -214,6 +214,12 @@ RSpec.describe PdfFiller::PacketPdf do
       html
     end
 
+    it "sets the document title" do
+      html = rendered_html { packet_pdf.to_pdf }
+
+      expect(html).to include("<title>GetBenefitsHelp</title>")
+    end
+
     it "omits North Carolina-only fields for a Delaware screener" do
       screener.preventing_work_medical_condition = "yes"
 
