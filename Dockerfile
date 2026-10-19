@@ -62,6 +62,7 @@ RUN apt-get update -qq && \
 RUN install -d /etc/apt/keyrings && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
       -o /etc/apt/keyrings/nodesource.asc && \
+    echo "b42e0321dabdc24e892115da705cf061167eac12a317f23d329862d0aa0a271d  /etc/apt/keyrings/nodesource.asc" | sha256sum --check --strict && \
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" \
       > /etc/apt/sources.list.d/nodesource.list && \
     apt-get update -qq && \
