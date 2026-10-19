@@ -521,6 +521,12 @@ i.continue-arrow {
       padding-left: 2.5rem;
     }
   }
+
+  // stack media-box images/icons above their text instead of beside it
+  .media-box__media {
+    float: none;
+    margin-bottom: 1rem;
+  }
 }
 
 .input-group--block .radio-button {
