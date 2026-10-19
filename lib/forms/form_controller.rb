@@ -66,7 +66,7 @@ module Forms
       pii_attrs = model.respond_to?(:pii_attributes) ? model.pii_attributes : []
       sanitized = submitted_params.to_h.each_with_object({}) do |(key, value), hash|
         if pii_attrs.include?(key.to_sym)
-          hash[:"has_#{key}"] = value.present?
+          hash[:"has_#{key}"] = value.present? && value != "unfilled"
         else
           hash[key.to_sym] = value
         end
