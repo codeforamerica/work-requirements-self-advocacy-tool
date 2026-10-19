@@ -51,11 +51,15 @@ RSpec.describe LocationController, type: :controller do
         [
           {
             form_params: {state: "NC", county: "Anson County", receives_snap: "yes"},
-            expected_data: {state: "NC", has_county: true, receives_snap: "yes"}
+            expected_data: {state: "NC", has_county: true, has_receives_snap: true}
           },
           {
             form_params: {state: "DE", zip_code: "19954", receives_snap: "applied_waiting"},
-            expected_data: {state: "DE", has_zip_code: true, receives_snap: "applied_waiting"}
+            expected_data: {state: "DE", has_zip_code: true, has_receives_snap: true}
+          },
+          {
+            form_params: {state: "NOT_LISTED", county: nil, zip_code: nil, receives_snap: "unfilled"},
+            expected_data: {state: "NOT_LISTED", county: nil, zip_code: nil, has_receives_snap: false}
           }
         ]
       }
