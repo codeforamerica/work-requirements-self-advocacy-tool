@@ -181,6 +181,7 @@ describe MixpanelService do
                 locale: :en,
                 referrer: "duckduckshrimp.com",
                 utm_source: "duckduckshrimp",
+                traffic_type: "bot",
                 source: "duckduckmonkey"
               }
             )

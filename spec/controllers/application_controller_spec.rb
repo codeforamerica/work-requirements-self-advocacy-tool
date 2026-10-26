@@ -329,7 +329,8 @@ RSpec.describe ApplicationController, type: :controller do
           event_name: "event",
           data: {},
           record: current_screener,
-          controller: subject
+          controller: subject,
+          request: subject.request
         }
       )
     end
@@ -343,7 +344,8 @@ RSpec.describe ApplicationController, type: :controller do
           event_name: "event",
           data: {bing: "bong"},
           record: current_screener,
-          controller: subject
+          controller: subject,
+          request: subject.request
         }
       )
     end
