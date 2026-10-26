@@ -94,7 +94,7 @@ jobs:
             --value "$IMAGE_TAG" \
             --overwrite
       - name: Get a deployment token
-        uses: actions/create-github-app-token@v3.2.0
+        uses: actions/create-github-app-token@v3.3.0
         id: token
         with:
           app-id: ${{ secrets.DEPLOYMENT_APP_ID }}
