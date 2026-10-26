@@ -13,7 +13,7 @@ class LocationController < QuestionController
   end
 
   def self.attributes_edited
-    [:state, :county, :zip_code]
+    [:county, :receives_snap, :state, :zip_code]
   end
 
   private
