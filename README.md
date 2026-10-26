@@ -112,9 +112,12 @@ Grover renders PDFs by driving Chrome through Puppeteer. The image installs a
 `@puppeteer/browsers`, the same tool the [official Puppeteer image](https://github.com/puppeteer/puppeteer/blob/main/docker/Dockerfile)
 uses; `--install-deps` pulls in exactly the shared libraries that build declares it needs.
 
-`CHROME_VERSION` in the `Dockerfile` is pinned to a specific Chrome for Testing build rather than
-tracking whatever Puppeteer pins for itself, so Chrome security releases don't wait on a Puppeteer
-release. Keep it on or ahead of the Chrome major that `puppeteer-core` targets.
+`CHROME_VERSION` in the `Dockerfile` is a manual pin to a specific Chrome for Testing build. The app
+depends on `puppeteer-core`, which never downloads a browser, so the image runs exactly this build —
+not whatever Chrome Puppeteer was released against. Pinning it ourselves means we can pick up a Chrome
+security release as soon as Google ships it, instead of waiting for a Puppeteer release that rolls to
+it; but it only moves when someone bumps it. Keep it on or ahead of the Chrome major that
+`puppeteer-core` targets.
 
 Nothing bumps `CHROME_VERSION` automatically. **Check it against the Stable channel in
 [last-known-good-versions.json](https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions.json)
