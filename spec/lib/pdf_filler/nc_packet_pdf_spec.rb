@@ -90,7 +90,7 @@ RSpec.describe PdfFiller::NcPacketPdf do
       expect(html).to include("I do not have a regular place to sleep and shower")
       expect(html).to include("I am struggling with drugs or alcohol")
       expect(html).to include("I am experiencing domestic violence")
-      expect(html).to include("I am 55 to 64 years old, I do not have a high school diploma or GED")
+      expect(html).to include("I am at least 55 years old, I do not have a high school diploma or GED, I have not had substantial work in the past 5 years, and I have a health condition that limits my ability to work")
     end
   end
 end

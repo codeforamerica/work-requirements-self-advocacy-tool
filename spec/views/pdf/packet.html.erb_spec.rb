@@ -195,7 +195,7 @@ RSpec.describe "pdf/packet", type: :view do
 
         it "shows at least 55 no diploma not working sub-bullet" do
           render_page(any_preventing_work: true, at_least_55_no_diploma_not_working: true)
-          expect(rendered).to include("At least 55 years old without a high school diploma")
+          expect(rendered).to include("At least 55 years old without a high school diploma and with limited recent work history, and a health condition that limits the ability to work")
         end
 
         it "shows place to sleep sub-bullet" do
@@ -303,7 +303,7 @@ RSpec.describe "pdf/packet", type: :view do
           preventing_work_drugs_alcohol: true,
           preventing_work_domestic_violence: true
         )
-        expect(rendered).to include("I am 55 to 64 years old, I do not have a high school diploma or GED")
+        expect(rendered).to include("t 55 years old, I do not have a high school diploma or GED, I have not had substantial work in the past 5 years, and I have a health condition that limits my ability to work")
         expect(rendered).to include("I do not have a regular place to sleep and shower")
         expect(rendered).to include("I am struggling with drugs or alcohol")
         expect(rendered).to include("I am experiencing domestic violence")
