@@ -91,7 +91,7 @@ class MixpanelService
       end
 
       event_data.merge!(data)
-      event_data[:traffic_type] = traffic_type(request)
+      event_data[:traffic_type] = traffic_type(request) if request
 
       MixpanelService.instance.run(
         distinct_id: distinct_id,

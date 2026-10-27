@@ -181,7 +181,6 @@ describe MixpanelService do
                 locale: :en,
                 referrer: "duckduckshrimp.com",
                 utm_source: "duckduckshrimp",
-                traffic_type: "bot",
                 source: "duckduckmonkey"
               }
             )
@@ -211,6 +210,24 @@ describe MixpanelService do
             )
           end
 
+          it "includes the traffic type when a request is given" do
+            MixpanelService.send_event(
+              distinct_id: "123",
+              event_name: "page_view",
+              request: instance_double(ActionDispatch::Request, user_agent: "Nessus")
+            )
+            expect(fake_tracker).to have_received(:track).with(
+              "123", "page_view", hash_including(traffic_type: "scanner_ua")
+            )
+          end
+
+          it "omits the traffic type when no request is given" do
+            MixpanelService.send_event(distinct_id: "123", event_name: "page_view")
+            expect(fake_tracker).to have_received(:track).with(
+              "123", "page_view", hash_excluding(:traffic_type)
+            )
+          end
+
           describe "#browser_data" do
             it "categorizes a mobile Safari user agent as mobile" do
               iphone_user_agent = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
@@ -224,6 +241,34 @@ describe MixpanelService do
               expect(MixpanelService.send(:browser_data, nil)).to eq(
                 browser: "Unknown Browser", os: "Unknown", device: "desktop"
               )
+            end
+          end
+
+          describe "#traffic_type" do
+            def request_with(user_agent)
+              instance_double(ActionDispatch::Request, user_agent: user_agent)
+            end
+
+            it "tags a regular browser as client" do
+              expect(MixpanelService.traffic_type(request_with(chrome_on_mac_user_agent))).to eq "client"
+            end
+
+            it "tags a known scanner user agent as scanner_ua" do
+              expect(MixpanelService.traffic_type(request_with("Mozilla/5.0 (compatible; Nessus)"))).to eq "scanner_ua"
+            end
+
+            it "matches scanner user agents case-insensitively" do
+              expect(MixpanelService.traffic_type(request_with("ELB-HealthChecker/2.0"))).to eq "scanner_ua"
+              expect(MixpanelService.traffic_type(request_with("elb-healthchecker/2.0"))).to eq "scanner_ua"
+            end
+
+            it "tags a non-scanner crawler as bot" do
+              googlebot = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+              expect(MixpanelService.traffic_type(request_with(googlebot))).to eq "bot"
+            end
+
+            it "tags a blank user agent as bot" do
+              expect(MixpanelService.traffic_type(request_with(nil))).to eq "bot"
             end
           end
         end
