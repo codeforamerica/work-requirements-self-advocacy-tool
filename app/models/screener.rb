@@ -37,7 +37,6 @@ class Screener < ApplicationRecord
     preventing_work_none
     preventing_work_other
     preventing_work_place_to_sleep
-    receives_snap
     receiving_benefits_disability_medicaid
     receiving_benefits_disability_pension
     receiving_benefits_insurance_payments
