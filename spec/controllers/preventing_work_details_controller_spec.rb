@@ -12,9 +12,9 @@ RSpec.describe PreventingWorkDetailsController, type: :controller do
       let(:screener) { create(:screener, preventing_work_place_to_sleep: "yes") }
       let(:page_submit_cases) do
         [{
-           form_params: {preventing_work_additional_info: "This is my reason"},
-           expected_data: {has_preventing_work_additional_info: true}
-         }]
+          form_params: {preventing_work_additional_info: "This is my reason"},
+          expected_data: {has_preventing_work_additional_info: true}
+        }]
       end
       let(:invalid_params) { {preventing_work_additional_info: "a" * 476} }
     end
