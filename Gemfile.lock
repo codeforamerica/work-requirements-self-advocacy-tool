@@ -512,7 +512,7 @@ GEM
     pg-aws_rds_iam (0.8.0)
       aws-sdk-rds (~> 1.0)
       pg (~> 1.3)
-    phonelib (0.10.27)
+    phonelib (0.10.28)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
@@ -521,7 +521,7 @@ GEM
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-    pry (0.16.0)
+    pry (0.16.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
       reline (>= 0.6.0)
@@ -798,7 +798,7 @@ DEPENDENCIES
   pg-aws_rds_iam (~> 0.8)
   phonelib
   propshaft
-  pry (~> 0.16.0)
+  pry (~> 0.16.1)
   puma (>= 5.0)
   rails (~> 8.1.4)
   rails-controller-testing
