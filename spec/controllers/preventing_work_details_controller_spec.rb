@@ -11,8 +11,10 @@ RSpec.describe PreventingWorkDetailsController, type: :controller do
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
       let(:screener) { create(:screener, preventing_work_place_to_sleep: "yes") }
       let(:page_submit_cases) do
-        params = {preventing_work_additional_info: "This is my reason"}
-        [{form_params: params, expected_data: params}]
+        [{
+           form_params: {preventing_work_additional_info: "This is my reason"},
+           expected_data: {has_preventing_work_additional_info: true}
+         }]
       end
       let(:invalid_params) { {preventing_work_additional_info: "a" * 476} }
     end

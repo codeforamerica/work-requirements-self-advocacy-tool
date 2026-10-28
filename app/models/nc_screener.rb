@@ -1,4 +1,14 @@
 class NcScreener < ApplicationRecord
+  MIXPANEL_ATTRIBUTES_WHITELIST = %i[
+    earned_more_than_threshold
+    has_hs_diploma
+    health_conditions_preventing_work
+    homeschool_hours
+    homeschool_name
+    teaches_homeschool
+    worked_last_five_years
+  ]
+
   belongs_to :screener
   enum :has_hs_diploma, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :worked_last_five_years, {unfilled: 0, yes: 1, no: 2}, prefix: true
