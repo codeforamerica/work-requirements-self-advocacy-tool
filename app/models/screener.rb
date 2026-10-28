@@ -29,6 +29,7 @@ class Screener < ApplicationRecord
     phone_number
     pregnancy_due_date
     preventing_work_write_in
+    receives_snap
     receiving_benefits_write_in
     signature
     ssn_last_four
