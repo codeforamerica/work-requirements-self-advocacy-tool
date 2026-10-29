@@ -59,6 +59,15 @@ RUN apt-get update -qq && \
 # package.json requires, so NodeSource is the apt route to the version this app runs
 # on. The key is stored armored and referenced with signed-by, so it authenticates
 # only this repository and no gnupg is needed to dearmor it.
+#
+# TEMPORARY: the libtinfo6 pin works around a mismatch between the current
+# ruby:3.4.11-dev image and the DHI apt repository. The image ships libtinfo6
+# 6.5+20250216-2+dhi4, but the repository has since dropped that build of libncursesw6
+# (which nodejs reaches through python3) and only offers 6.5+20250216-2+deb13u0+dhi4,
+# which requires the matching libtinfo6. apt sorts that as a downgrade and refuses it,
+# so the pin and --allow-downgrades let it through. Remove both once a rebuilt base
+# image ships the +deb13u0+dhi4 packages, or as soon as this version disappears from
+# the repository and the pin starts failing the build.
 RUN install -d /etc/apt/keyrings && \
     curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
       -o /etc/apt/keyrings/nodesource.asc && \
@@ -66,7 +75,8 @@ RUN install -d /etc/apt/keyrings && \
     echo "deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" \
       > /etc/apt/sources.list.d/nodesource.list && \
     apt-get update -qq && \
-    apt-get install --no-install-recommends -y nodejs && \
+    apt-get install --no-install-recommends -y --allow-downgrades \
+      nodejs libtinfo6=6.5+20250216-2+deb13u0+dhi4 && \
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives /root/.npm
 
