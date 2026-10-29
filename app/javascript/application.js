@@ -43,7 +43,7 @@ function applyExclusiveFollowUps() {
   $('input[data-follow-up-exclusive]').each(function () {
     var $exclusiveCheckbox = $(this);
     var selector = $exclusiveCheckbox.attr('data-follow-up');
-    // regex copied from honeycrisp (honeycrisp.js:128): whitelist id/class/word characters to protect against XSS
+    // regex copied from honeycrisp (honeycrisp.js:128): allow id/class/word characters to protect against XSS
     if (!selector || !/^[a-zA-Z0-9_\-#\.]+$/.test(selector)) return;
 
     var $group = $exclusiveCheckbox.closest('.question-with-follow-up__question');

@@ -63,11 +63,11 @@ module Forms
     end
 
     def track_page_submit(submitted_params, model)
-      whitelist = model.class::MIXPANEL_ATTRIBUTES_WHITELIST
-      return unless whitelist
+      allowlist = model.class::MIXPANEL_ATTRIBUTES_ALLOWLIST
+      return unless allowlist
 
       sanitized = submitted_params.to_h.each_with_object({}) do |(key, value), hash|
-        if whitelist.include?(key.to_sym)
+        if allowlist.include?(key.to_sym)
           hash[key.to_sym] = value
         else
           hash[:"has_#{key}"] = value.present? && value != "unfilled"

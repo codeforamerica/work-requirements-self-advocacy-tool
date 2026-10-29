@@ -14,7 +14,7 @@ class Screener < ApplicationRecord
   MIN_WEEKLY_HOURS = 1
   MAX_WEEKLY_HOURS = 168
 
-  MIXPANEL_ATTRIBUTES_WHITELIST = %i[
+  MIXPANEL_ATTRIBUTES_ALLOWLIST = %i[
     age_range
     caring_for_child_under_6
     caring_for_disabled_or_ill_person

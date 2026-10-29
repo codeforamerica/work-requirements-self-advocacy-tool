@@ -1,5 +1,5 @@
 class NcScreener < ApplicationRecord
-  MIXPANEL_ATTRIBUTES_WHITELIST = %i[
+  MIXPANEL_ATTRIBUTES_ALLOWLIST = %i[
     earned_more_than_threshold
     has_hs_diploma
     health_conditions_preventing_work
