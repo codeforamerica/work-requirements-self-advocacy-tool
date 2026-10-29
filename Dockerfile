@@ -9,13 +9,12 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.4.11
-# Node major line, matching package.json engines, .tool-versions and CI. Debian only
-# packages Node 20, so this comes from NodeSource (see the base stage below). The
-# patch floats within the line so rebuilds pick up Node's security releases; pin it at
-# the apt install (nodejs=22.23.2-1nodesource1) if a build ever needs to be exactly
+# Node major line, matching package.json engines, .tool-versions and CI. Doubles as
+# the tag of the DHI Node image that Node is copied from (see the node stage below),
+# so the patch floats within the line and rebuilds pick up Node's security releases.
+# Pin a full version tag (e.g. 22.23.4-dev) if a build ever needs to be exactly
 # reproducible.
 ARG NODE_MAJOR=22
-ARG YARN_VERSION=1.22.22
 
 # Chrome for Testing build that Grover drives through Puppeteer, plus the
 # @puppeteer/browsers release used to fetch it. Pinned to the current Chrome stable
@@ -24,6 +23,10 @@ ARG YARN_VERSION=1.22.22
 # is several releases behind. See the "Chrome" section of the README before bumping.
 ARG CHROME_VERSION=155.0.8059.79
 ARG PUPPETEER_BROWSERS_VERSION=2.13.2
+
+# Source of the Node runtime copied into the base stage. -dev is the variant that
+# ships npm and yarn alongside node.
+FROM dhi.io/node:$NODE_MAJOR-dev AS node
 
 # Docker Hardened Image, per https://docs.docker.com/guides/ruby/. Not a public
 # image -- building requires `docker login dhi.io` first. See the README.
@@ -34,17 +37,16 @@ FROM dhi.io/ruby:$RUBY_VERSION-dev AS base
 WORKDIR /rails
 
 ARG CHROME_VERSION
-ARG NODE_MAJOR
 ARG PUPPETEER_BROWSERS_VERSION
-ARG YARN_VERSION
 
 ENV PUPPETEER_CACHE_DIR="/opt/puppeteer"
 
 # Install base packages. Runtime only: libpq5 rather than libpq-dev (the headers are
 # needed to build the pg gem, not to run it), no libvips since Active Storage variant
 # processing is disabled, and no postgresql-client since db:prepare goes through the
-# pg gem rather than psql. curl fetches the NodeSource signing key below, and passwd
-# supplies the groupadd/useradd the final stage needs; the hardened base ships neither.
+# pg gem rather than psql. passwd supplies the groupadd/useradd the final stage needs,
+# and curl stays for anything that probes the running container; the hardened base
+# ships neither.
 # ca-certificates is not optional either: the base carries a CA bundle that dpkg does
 # not own, so the first apt install triggers update-ca-certificates and rewrites that
 # bundle from an empty source, breaking TLS for curl and git until the real package is
@@ -53,22 +55,26 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y ca-certificates curl libjemalloc2 libpq5 passwd && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-# Install Node from NodeSource. Grover shells out to Puppeteer to render PDFs, so Node
-# is a runtime dependency and belongs in the base stage rather than only in the build
-# stage. Debian packages Node 20, which is both EOL upstream and below the 22.x that
-# package.json requires, so NodeSource is the apt route to the version this app runs
-# on. The key is stored armored and referenced with signed-by, so it authenticates
-# only this repository and no gnupg is needed to dearmor it.
-RUN install -d /etc/apt/keyrings && \
-    curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key \
-      -o /etc/apt/keyrings/nodesource.asc && \
-    echo "b42e0321dabdc24e892115da705cf061167eac12a317f23d329862d0aa0a271d  /etc/apt/keyrings/nodesource.asc" | sha256sum --check --strict && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.asc] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" \
-      > /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update -qq && \
-    apt-get install --no-install-recommends -y nodejs && \
-    npm install -g yarn@$YARN_VERSION && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives /root/.npm
+# Copy Node in from the DHI Node image. Grover shells out to Puppeteer to render PDFs,
+# so Node is a runtime dependency and belongs in the base stage rather than only in
+# the build stage. Debian packages Node 20, which is both EOL upstream and below the
+# 22.x that package.json requires.
+#
+# This used to apt-install NodeSource's nodejs package, which declares a hard
+# dependency on python3 (for node-gyp, which nothing here needs). That made every Node
+# install negotiate python3 and ncurses versions against the hardened base, and broke
+# the build whenever the DHI apt repository moved ahead of the base image. Copying the
+# files keeps apt out of it entirely. The DHI build is a single node binary that links
+# only against libc, libm, libstdc++ and libgcc_s, all already in the Ruby base, plus
+# npm, corepack and yarn 1.x under /usr/lib/nodejs. Both images are DHI Debian 13, so
+# the libraries match, and Node is patched on the same cadence as the base.
+COPY --from=node /usr/bin/node /usr/bin/node
+COPY --from=node /usr/lib/nodejs /usr/lib/nodejs
+RUN ln -s ../lib/nodejs/npm/bin/npm-cli.js /usr/bin/npm && \
+    ln -s ../lib/nodejs/npm/bin/npx-cli.js /usr/bin/npx && \
+    ln -s ../lib/nodejs/corepack/dist/corepack.js /usr/bin/corepack && \
+    ln -s ../lib/nodejs/yarn/bin/yarn /usr/bin/yarn && \
+    node --version && npm --version && yarn --version
 
 # Install Chrome the way the official Puppeteer image does
 # (https://github.com/puppeteer/puppeteer/blob/main/docker/Dockerfile): download a
