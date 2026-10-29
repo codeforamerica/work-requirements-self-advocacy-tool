@@ -9,12 +9,13 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
 ARG RUBY_VERSION=3.4.11
-# Node major line, matching package.json engines, .tool-versions and CI. Doubles as
-# the tag of the DHI Node image that Node is copied from (see the node stage below),
-# so the patch floats within the line and rebuilds pick up Node's security releases.
-# Pin a full version tag (e.g. 22.23.4-dev) if a build ever needs to be exactly
-# reproducible.
-ARG NODE_MAJOR=22
+# Node version, within the 22.x line that package.json engines, .tool-versions and CI
+# require. Doubles as the tag of the DHI Node image that Node is copied from (see the
+# node stage below), so like RUBY_VERSION it has to name a tag DHI actually publishes.
+# Pinned so Node only changes in a reviewed bump: nothing updates it automatically,
+# so bump it by hand for Node security releases. DHI still rebuilds the tag in place
+# for OS-level patches, so the image digest is not fixed.
+ARG NODE_VERSION=22.23.4
 
 # Chrome for Testing build that Grover drives through Puppeteer, plus the
 # @puppeteer/browsers release used to fetch it. Pinned to the current Chrome stable
@@ -26,7 +27,7 @@ ARG PUPPETEER_BROWSERS_VERSION=2.13.2
 
 # Source of the Node runtime copied into the base stage. -dev is the variant that
 # ships npm and yarn alongside node.
-FROM dhi.io/node:$NODE_MAJOR-dev AS node
+FROM dhi.io/node:$NODE_VERSION-dev AS node
 
 # Docker Hardened Image, per https://docs.docker.com/guides/ruby/. Not a public
 # image -- building requires `docker login dhi.io` first. See the README.
@@ -67,7 +68,7 @@ RUN apt-get update -qq && \
 # files keeps apt out of it entirely. The DHI build is a single node binary that links
 # only against libc, libm, libstdc++ and libgcc_s, all already in the Ruby base, plus
 # npm, corepack and yarn 1.x under /usr/lib/nodejs. Both images are DHI Debian 13, so
-# the libraries match, and Node is patched on the same cadence as the base.
+# the libraries match.
 COPY --from=node /usr/bin/node /usr/bin/node
 COPY --from=node /usr/lib/nodejs /usr/lib/nodejs
 RUN ln -s ../lib/nodejs/npm/bin/npm-cli.js /usr/bin/npm && \
