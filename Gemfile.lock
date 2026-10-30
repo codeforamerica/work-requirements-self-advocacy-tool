@@ -143,7 +143,7 @@ GEM
     coderay (1.1.3)
     concurrent-ruby (1.3.8)
     connection_pool (3.0.2)
-    crass (1.0.7)
+    crass (1.0.8)
     csv (3.3.6)
     dartsass-rails (0.5.1)
       railties (>= 6.0.0)
@@ -226,7 +226,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.8, >= 1.8.1)
       terminal-table (>= 1.5.1)
-    intercom-rails (1.1.1)
+    intercom-rails (2.0.0)
       activesupport (> 4.0)
       jwt (>= 2.0)
     io-console (0.9.4)
@@ -512,7 +512,7 @@ GEM
     pg-aws_rds_iam (0.8.0)
       aws-sdk-rds (~> 1.0)
       pg (~> 1.3)
-    phonelib (0.10.27)
+    phonelib (0.10.28)
     pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
@@ -521,7 +521,7 @@ GEM
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
-    pry (0.16.0)
+    pry (0.16.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
       reline (>= 0.6.0)
@@ -729,7 +729,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
-    uri (1.1.1)
+    uri (1.1.2)
     useragent (0.16.11)
     valid_email2 (7.1.0)
       activemodel (>= 6.0)
@@ -798,7 +798,7 @@ DEPENDENCIES
   pg-aws_rds_iam (~> 0.8)
   phonelib
   propshaft
-  pry (~> 0.16.0)
+  pry (~> 0.16.1)
   puma (>= 5.0)
   rails (~> 8.1.4)
   rails-controller-testing

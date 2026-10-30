@@ -88,7 +88,7 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "standard", ">= 1.35.1"
-  gem "pry", "~> 0.16.0"
+  gem "pry", "~> 0.16.1"
 end
 
 group :test do
