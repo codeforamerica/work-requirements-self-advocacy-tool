@@ -26,7 +26,7 @@ ARG CHROME_VERSION=155.0.8059.79
 ARG PUPPETEER_BROWSERS_VERSION=2.13.2
 
 # Source of the Node runtime copied into the base stage. -dev is the variant that
-# ships npm and yarn alongside node.
+# ships npx and yarn alongside node.
 FROM dhi.io/node:$NODE_VERSION-dev AS node
 
 # Docker Hardened Image, per https://docs.docker.com/guides/ruby/. Not a public
@@ -66,16 +66,19 @@ RUN apt-get update -qq && \
 # install negotiate python3 and ncurses versions against the hardened base, and broke
 # the build whenever the DHI apt repository moved ahead of the base image. Copying the
 # files keeps apt out of it entirely. The DHI build is a single node binary that links
-# only against libc, libm, libstdc++ and libgcc_s, all already in the Ruby base, plus
-# npm, corepack and yarn 1.x under /usr/lib/nodejs. Both images are DHI Debian 13, so
-# the libraries match.
+# only against libc, libm, libstdc++ and libgcc_s, all already in the Ruby base. Both
+# images are DHI Debian 13, so the libraries match.
+#
+# Only the commands this image runs get linked onto the PATH: npx for the Chrome
+# install below, and yarn for the build stage. npx lives inside npm's package, so all
+# of npm comes along, but nothing here calls npm itself. The DHI image also ships
+# corepack, which is left out since package.json has no packageManager field.
 COPY --from=node /usr/bin/node /usr/bin/node
-COPY --from=node /usr/lib/nodejs /usr/lib/nodejs
-RUN ln -s ../lib/nodejs/npm/bin/npm-cli.js /usr/bin/npm && \
-    ln -s ../lib/nodejs/npm/bin/npx-cli.js /usr/bin/npx && \
-    ln -s ../lib/nodejs/corepack/dist/corepack.js /usr/bin/corepack && \
+COPY --from=node /usr/lib/nodejs/npm /usr/lib/nodejs/npm
+COPY --from=node /usr/lib/nodejs/yarn /usr/lib/nodejs/yarn
+RUN ln -s ../lib/nodejs/npm/bin/npx-cli.js /usr/bin/npx && \
     ln -s ../lib/nodejs/yarn/bin/yarn /usr/bin/yarn && \
-    node --version && npm --version && yarn --version
+    node --version && npx --version && yarn --version
 
 # Install Chrome the way the official Puppeteer image does
 # (https://github.com/puppeteer/puppeteer/blob/main/docker/Dockerfile): download a
