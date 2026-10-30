@@ -63,12 +63,14 @@ module Forms
     end
 
     def track_page_submit(submitted_params, model)
-      pii_attrs = model.respond_to?(:pii_attributes) ? model.pii_attributes : []
+      allowlist = model.class::MIXPANEL_ATTRIBUTES_ALLOWLIST
+      return unless allowlist
+
       sanitized = submitted_params.to_h.each_with_object({}) do |(key, value), hash|
-        if pii_attrs.include?(key.to_sym)
-          hash[:"has_#{key}"] = value.present? && value != "unfilled"
-        else
+        if allowlist.include?(key.to_sym)
           hash[key.to_sym] = value
+        else
+          hash[:"has_#{key}"] = value.present? && value != "unfilled"
         end
       end
       send_mixpanel_event(event_name: "page_submit", data: sanitized)

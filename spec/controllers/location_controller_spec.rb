@@ -59,7 +59,7 @@ RSpec.describe LocationController, type: :controller do
           },
           {
             form_params: {state: "NOT_LISTED", county: nil, zip_code: nil, receives_snap: "unfilled"},
-            expected_data: {state: "NOT_LISTED", county: nil, zip_code: nil, has_receives_snap: false}
+            expected_data: {state: "NOT_LISTED", has_county: false, has_zip_code: false, has_receives_snap: false}
           }
         ]
       }
