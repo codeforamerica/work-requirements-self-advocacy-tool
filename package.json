@@ -14,7 +14,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
-    "puppeteer-core": "^24.43.1"
+    "puppeteer-core": "^25.16.0"
   },
   "resolutions": {
     "chromium-bidi/zod": "4.6.6",
