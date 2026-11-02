@@ -76,17 +76,17 @@ RSpec.describe NcScreener, type: :model do
         expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
       end
 
-      it "clears earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is no" do
-        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "yes", health_conditions_preventing_work: "yes")
+      it "clears earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is yes" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
 
-        nc_screener.update(worked_last_five_years: "no")
+        nc_screener.update(worked_last_five_years: "yes")
 
         expect(nc_screener.reload.earned_more_than_threshold).to eq "unfilled"
         expect(nc_screener.reload.health_conditions_preventing_work).to eq "unfilled"
       end
 
-      it "clears health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is yes and earned_more_than_threshold is yes" do
-        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "yes", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+      it "clears health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is no and earned_more_than_threshold is yes" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
 
         nc_screener.update(earned_more_than_threshold: "yes")
 
@@ -99,6 +99,15 @@ RSpec.describe NcScreener, type: :model do
         nc_screener.update(has_hs_diploma: "no")
 
         expect(nc_screener.reload.worked_last_five_years).to eq "yes"
+      end
+
+      it "preserves earned_more_than_threshold, health_conditions_preventing_work if has_hs_diploma is no and worked_last_five_years is no and earned_more_than_threshold is no" do
+        nc_screener = create(:nc_screener, has_hs_diploma: "no", worked_last_five_years: "no", earned_more_than_threshold: "no")
+
+        nc_screener.update(health_conditions_preventing_work: "yes")
+
+        expect(nc_screener.reload.earned_more_than_threshold).to eq "no"
+        expect(nc_screener.reload.health_conditions_preventing_work).to eq "yes"
       end
     end
 

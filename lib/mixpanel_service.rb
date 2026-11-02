@@ -3,6 +3,7 @@ require "singleton"
 class MixpanelService
   MAX_BUFFER_SIZE = 50
   FLUSH_DELAY = 5
+  SCANNER_USER_AGENTS = /securityagent|nessus|tenable|datadog|ELB-HealthChecker/i
 
   include Singleton
 
@@ -90,6 +91,7 @@ class MixpanelService
       end
 
       event_data.merge!(data)
+      event_data[:traffic_type] = traffic_type(request) if request
 
       MixpanelService.instance.run(
         distinct_id: distinct_id,
@@ -125,6 +127,14 @@ class MixpanelService
         os: browser.platform.name,
         device: device
       }
+    end
+
+    def traffic_type(request)
+      user_agent = request&.user_agent.to_s
+      return "scanner_ua" if SCANNER_USER_AGENTS.match?(user_agent)
+      return "bot" if Browser.new(user_agent).bot?
+
+      "client"
     end
   end
 end

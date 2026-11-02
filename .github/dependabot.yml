@@ -21,8 +21,3 @@ updates:
   open-pull-requests-limit: 10
   cooldown:
     default-days: 7
-  ignore:
-  # Grover does not support Puppeteer 25.x yet. See WRSAT-613.
-  - dependency-name: "puppeteer-core"
-    versions:
-    - ">=25"
