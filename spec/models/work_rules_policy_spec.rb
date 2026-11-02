@@ -179,64 +179,57 @@ RSpec.describe WorkRulesPolicy do
     end
 
     describe "#age_work_education_health_exemption?" do
-      it "returns true when age >= 55 && age <= 64 && worked_last_five_years_no? && has_hs_diploma_no? && preventing_work_medical_condition_yes?" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be true
-      end
+      context "with an otherwise qualifying screener" do
+        before do
+          # assign qualifying attributes
+          nc_screener.assign_attributes(has_hs_diploma: "no", worked_last_five_years: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
+          screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "no")
+        end
 
-      it "returns false when age is not set" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no")
-        screener.assign_attributes(age_range: "unfilled", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be false
-      end
+        it "returns true" do
+          expect(policy.age_work_education_health_exemption?).to be true
+        end
 
-      it "returns false when age is too young" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no")
-        screener.assign_attributes(age_range: "18_to_49", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be false
-      end
+        it "returns true when preventing_work_medical_condition is yes in place of health_conditions_preventing_work" do
+          nc_screener.assign_attributes(health_conditions_preventing_work: "no")
+          screener.assign_attributes(preventing_work_medical_condition: "yes")
+          expect(policy.age_work_education_health_exemption?).to be true
+        end
 
-      it "returns false when age is too old" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no")
-        screener.assign_attributes(age_range: "65_or_older", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be false
-      end
+        it "returns false when age is not set" do
+          screener.assign_attributes(age_range: "unfilled")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
 
-      it "returns false worked_last_five_years is yes" do
-        nc_screener.assign_attributes(worked_last_five_years: "yes", has_hs_diploma: "no")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be false
-      end
+        it "returns false when age is too young" do
+          screener.assign_attributes(age_range: "18_to_49")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
 
-      it "returns false when has_hs_diploma is yes" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "yes")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be false
-      end
+        it "returns false when age is too old" do
+          screener.assign_attributes(age_range: "65_or_older")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
 
-      it "returns false when preventing_work_medical_condition is no" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "no")
-        expect(policy.age_work_education_health_exemption?).to be false
-      end
+        it "returns false when has_hs_diploma is yes" do
+          nc_screener.assign_attributes(has_hs_diploma: "yes")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
 
-      it "returns true when age >= 55 && age <= 64 && worked_last_five_years_no? && has_hs_diploma_no? && earned_more_than_threshold_no? && health_conditions_preventing_work_yes? && preventing_work_medical_condition_no?" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be true
-      end
+        it "returns false when worked_last_five_years is yes" do
+          nc_screener.assign_attributes(worked_last_five_years: "yes")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
 
-      it "returns true when age >= 55 && age <= 64 && worked_last_five_years_yes? && has_hs_diploma_no? && earned_more_than_threshold_no? && health_conditions_preventing_work_yes? && preventing_work_medical_condition_no?" do
-        nc_screener.assign_attributes(worked_last_five_years: "yes", has_hs_diploma: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "yes")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "yes")
-        expect(policy.age_work_education_health_exemption?).to be true
-      end
+        it "returns false when earned_more_than_threshold is yes" do
+          nc_screener.assign_attributes(earned_more_than_threshold: "yes")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
 
-      it "returns false when health_conditions_preventing_work is no" do
-        nc_screener.assign_attributes(worked_last_five_years: "no", has_hs_diploma: "no", earned_more_than_threshold: "no", health_conditions_preventing_work: "no")
-        screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "no")
-        expect(policy.age_work_education_health_exemption?).to be false
+        it "returns false when health_conditions_preventing_work and preventing_work_medical_condition are no" do
+          nc_screener.assign_attributes(health_conditions_preventing_work: "no")
+          expect(policy.age_work_education_health_exemption?).to be false
+        end
       end
     end
 
@@ -254,7 +247,7 @@ RSpec.describe WorkRulesPolicy do
 
     describe "#state_exemption_reasons" do
       it "lists the exemptions that apply" do
-        nc_screener.assign_attributes(has_hs_diploma: "no", worked_last_five_years: "no", teaches_homeschool: "yes", homeschool_hours: 40)
+        nc_screener.assign_attributes(has_hs_diploma: "no", worked_last_five_years: "no", earned_more_than_threshold: "no", teaches_homeschool: "yes", homeschool_hours: 40)
         screener.assign_attributes(age_range: "55_to_64", preventing_work_medical_condition: "yes")
         expect(policy.state_exemption_reasons).to contain_exactly("exemption_55_no_diploma", "exemption_homeschool")
       end
