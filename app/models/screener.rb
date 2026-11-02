@@ -1,8 +1,6 @@
 class Screener < ApplicationRecord
   devise :timeoutable
 
-  before_create :generate_session_token
-
   def authenticatable_salt
     session_token
   end
@@ -16,35 +14,61 @@ class Screener < ApplicationRecord
   MIN_WEEKLY_HOURS = 1
   MAX_WEEKLY_HOURS = 168
 
-  BASE_PII_ATTRIBUTES = %i[
-    additional_care_info
-    alcohol_treatment_program_name
-    birth_date
-    case_number
-    email
-    email_confirmation
-    first_name
-    last_name
-    middle_name
-    phone_number
-    pregnancy_due_date
-    preventing_work_write_in
-    receives_snap
-    receiving_benefits_write_in
-    signature
-    ssn_last_four
-    survey_additional_feedback
-    unsubmitted_write_in
-  ].freeze
-
-  def pii_attributes
-    return BASE_PII_ATTRIBUTES if state.blank?
-
-    state_info = LocationData::States::STATES_INFO[state]
-    return BASE_PII_ATTRIBUTES if state_info.nil?
-
-    BASE_PII_ATTRIBUTES + [state_info[:office_by]]
-  end
+  MIXPANEL_ATTRIBUTES_ALLOWLIST = %i[
+    age_range
+    caring_for_child_under_6
+    caring_for_disabled_or_ill_person
+    caring_for_no_one
+    consented_to_texts
+    exemptions_found
+    has_child
+    has_unemployment_benefits
+    is_american_indian
+    is_in_alcohol_treatment_program
+    is_in_work_training
+    is_migrant_farmworker
+    is_pregnant
+    is_student
+    is_volunteer
+    is_working
+    preventing_work_domestic_violence
+    preventing_work_drugs_alcohol
+    preventing_work_medical_condition
+    preventing_work_none
+    preventing_work_other
+    preventing_work_place_to_sleep
+    receiving_benefits_disability_medicaid
+    receiving_benefits_disability_pension
+    receiving_benefits_insurance_payments
+    receiving_benefits_none
+    receiving_benefits_other
+    receiving_benefits_ssdi
+    receiving_benefits_ssi
+    receiving_benefits_veterans_disability
+    receiving_benefits_workers_compensation
+    signed_at
+    state
+    survey_confidence_in_exemption_rules
+    survey_ease_of_experience
+    survey_plan_to_bring_results_to_interview
+    survey_plan_to_bring_results_to_organization
+    survey_plan_to_email_results
+    survey_plan_to_keep_it_in_records
+    survey_plan_to_submit_results_to_site
+    unsubmitted_because_already_reported
+    unsubmitted_because_dont_qualify_for_exemptions
+    unsubmitted_because_just_wanted_to_see_result
+    unsubmitted_because_other
+    unsubmitted_because_privacy_concerns
+    unsubmitted_because_process_too_hard
+    unsubmitted_because_wont_be_accepted
+    volunteering_hours
+    volunteering_org_name
+    work_training_hours
+    work_training_name
+    working_hours
+    working_weekly_earnings
+  ]
 
   AGE_EXEMPT = "age_exempt"
   EXEMPT = "exempt"
@@ -110,6 +134,7 @@ class Screener < ApplicationRecord
   enum :unsubmitted_because_other, {unfilled: 0, yes: 1, no: 2}, prefix: true
 
   normalizes :phone_number, with: ->(value) { Phonelib.parse(value, "US").national }
+  before_create :generate_session_token
   before_validation :strip_email_and_confirmation
   before_save :remove_additional_care_info_if_caring_for_someone_is_no,
     :remove_alcohol_treatment_program_attributes_if_no,
