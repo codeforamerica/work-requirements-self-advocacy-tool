@@ -104,7 +104,8 @@ class ApplicationController < ActionController::Base
       event_name: event_name,
       data: data,
       record: current_screener,
-      controller: self
+      controller: self,
+      request: request
     )
   end
 
