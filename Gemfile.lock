@@ -273,7 +273,7 @@ GEM
       base64
       json-logic-rb (~> 0.2)
       mutex_m
-    msgpack (1.8.5)
+    msgpack (1.8.6)
     mutex_m (0.3.0)
     net-imap (0.6.7)
       date
