@@ -49,7 +49,7 @@ gem "csv"
 gem "dartsass-rails", "~> 0.5.1"
 gem "devise", "~> 5.0"
 gem "erb", ">= 6.0.5"
-gem "grover"
+gem "grover", '>= 2.0.0'
 gem "json", ">= 2.21.2"
 gem "mail", ">= 2.9.1"
 gem "mixpanel-ruby"
