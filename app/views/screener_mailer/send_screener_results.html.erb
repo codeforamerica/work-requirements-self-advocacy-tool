@@ -32,7 +32,7 @@
     <li>
       <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_html").html_safe %>
       <br/><br/>
-      <%= t('views.screener_mailer.send_screener_results.online_county', website_name: t("views.screener_mailer.send_screener_results.website_name_#{state}"), website: office[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email]) if office[:email].present? %>.
+      <%= t('views.screener_mailer.send_screener_results.online_county', website_name: LocationData::States::STATES_INFO.dig(@screener.state, :portal_name), website: office[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email]) if office[:email].present? %>.
     </li>
     <% if office[:mailing_address].present? %>
       <li>

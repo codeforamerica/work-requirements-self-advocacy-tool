@@ -5,11 +5,10 @@ class SubmissionReminderMailer < ApplicationMailer
     Rails.logger.info "Sending submission reminder to #{outgoing_email.screener.id}"
     @screener = outgoing_email.screener
     @research_link = RESEARCH_FORM_URL
+    @online_portal = LocationData::States::STATES_INFO.dig(@screener.state, :portal_name)
 
     locale = @screener.locale.presence || I18n.default_locale
     I18n.with_locale(locale) do
-      @online_portal = I18n.t("views.submission_reminder_mailer.send_reminder.online_portal_#{@screener.state.to_s.downcase}")
-
       attach_header_image
       apply_ses_headers
 
