@@ -1,0 +1,100 @@
+<% content_for :question_title, t("views.living_with_child_exemption.edit.title") %>
+<%= image_tag "megaphone.svg", class: "illustration left-justified spacing-below-0" %>
+<h1 class="h2 spacing-above-0"><%= content_for(:question_title) %></h1>
+
+<div class="notice grey-light">
+  <p class="spacing-below-10"><strong><i class="icon-person"></i> <%= t("views.living_with_child_exemption.edit.your_answers") %></strong></p>
+  <ul class="list--bulleted spacing-above-0 spacing-below-10">
+    <li><%= t("views.living_with_child_exemption.edit.lives_with_child") %></li>
+  </ul>
+  <%= link_to t("views.living_with_child_exemption.edit.edit"), living_with_someone_path %>
+</div>
+
+<p><%= t("views.living_with_child_exemption.edit.exempt_if_included") %></p>
+
+<% if @current_screener.receives_snap_yes? %>
+  <div class="callout callout--yellow">
+    <p><strong><%= t("views.living_with_child_exemption.edit.receiving.callout_title") %></strong></p>
+    <p><%= t("views.living_with_child_exemption.edit.receiving.callout_body") %></p>
+  </div>
+
+  <h2><%= t("views.living_with_child_exemption.edit.receiving.list_title") %></h2>
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <i class="icon-markunread"></i>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.living_with_child_exemption.edit.receiving.notice_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.living_with_child_exemption.edit.receiving.notice_body") %></p>
+    </div>
+  </div>
+
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <%= image_tag "replay-clock.svg", alt: "" %>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.living_with_child_exemption.edit.receiving.renewal_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.living_with_child_exemption.edit.receiving.renewal_body") %></p>
+    </div>
+  </div>
+
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <%= image_tag "filled-in-star.svg", alt: "" %>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.living_with_child_exemption.edit.receiving.turns_14_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.living_with_child_exemption.edit.receiving.turns_14_body") %></p>
+    </div>
+  </div>
+<% else %>
+  <div class="callout callout--yellow">
+    <p><strong><%= t("views.living_with_child_exemption.edit.pending.callout_title") %></strong></p>
+    <p><%= t("views.living_with_child_exemption.edit.pending.callout_body") %></p>
+  </div>
+
+  <h2><%= t("views.living_with_child_exemption.edit.pending.list_title") %></h2>
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <%= image_tag "house.svg", alt: "" %>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.living_with_child_exemption.edit.pending.application_details_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.living_with_child_exemption.edit.pending.application_details_body") %></p>
+    </div>
+  </div>
+
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <%= image_tag "chat.svg", alt: "" %>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.living_with_child_exemption.edit.pending.interview_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.living_with_child_exemption.edit.pending.interview_body") %></p>
+    </div>
+  </div>
+
+  <div class="media-box">
+    <div class="media-box__media media--icon">
+      <%= image_tag "bolt.svg", alt: "" %>
+    </div>
+    <div class="media-box__content">
+      <p class="spacing-below-5"><strong><%= t("views.living_with_child_exemption.edit.pending.respond_title") %></strong></p>
+      <p class="spacing-below-0"><%= t("views.living_with_child_exemption.edit.pending.respond_body") %></p>
+    </div>
+  </div>
+<% end %>
+
+<hr class="tight spacing-above-35"/>
+<h2 class="spacing-below-10"><%= t("views.living_with_child_exemption.edit.what_next") %></h2>
+<p><%= t("views.living_with_child_exemption.edit.what_next_help") %></p>
+
+<div class="spacing-above-60">
+  <div>
+    <%= link_to t("views.living_with_child_exemption.edit.check_work_rules"), sign_out_and_redirect_path(redirect_path: start_flow_path), class: "button button--primary", data: {track_click: "exemption_found_clicked", track_button: "check_work_rules"} %>
+  </div>
+  <div>
+    <%= link_to t("views.living_with_child_exemption.edit.continue"), next_path, class: "button", data: {track_click: "exemption_found_clicked", track_button: "continue"} %>
+  </div>
+</div>

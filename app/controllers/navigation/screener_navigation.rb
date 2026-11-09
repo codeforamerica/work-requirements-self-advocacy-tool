@@ -6,6 +6,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(AgeRangeController),
       ControllerNavigation::NavigationStep.new(TribeOrNationController),
       ControllerNavigation::NavigationStep.new(LivingWithSomeoneController),
+      ControllerNavigation::NavigationStep.new(LivingWithChildExemptionController),
       ControllerNavigation::NavigationStep.new(CaringForSomeoneController),
       ControllerNavigation::NavigationStep.new(PregnancyController),
       ControllerNavigation::NavigationStep.new(UnemploymentController),
