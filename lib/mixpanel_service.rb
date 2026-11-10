@@ -92,6 +92,7 @@ class MixpanelService
 
       event_data.merge!(data)
       event_data[:traffic_type] = traffic_type(request) if request
+      return if event_data[:traffic_type] && event_data[:traffic_type] != "client"
 
       MixpanelService.instance.run(
         distinct_id: distinct_id,
