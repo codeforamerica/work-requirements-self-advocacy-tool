@@ -32,33 +32,6 @@ RSpec.describe LivingWithChildExemptionController, type: :controller do
   end
 
   describe ".show?" do
-    it "does not show for an age-exempt screener" do
-      screener = create(:screener, age_range: "65_or_older", has_child: "yes", receives_snap: "yes")
-      expect(described_class.show?(screener)).to eq false
-    end
-
-    [LocationData::States::DELAWARE, LocationData::States::NORTH_CAROLINA].each do |state|
-      context "in #{state}" do
-        it "shows when the screener lives with a child and is getting SNAP" do
-          screener = create(:screener, state: state, has_child: "yes", receives_snap: "yes")
-          expect(described_class.show?(screener)).to eq true
-        end
-
-        it "shows when the screener lives with a child and their application is pending" do
-          screener = create(:screener, state: state, has_child: "yes", receives_snap: "applied_waiting")
-          expect(described_class.show?(screener)).to eq true
-        end
-
-        it "does not show when the screener is not getting SNAP" do
-          screener = create(:screener, state: state, has_child: "yes", receives_snap: "no")
-          expect(described_class.show?(screener)).to eq false
-        end
-
-        it "does not show when the screener does not live with a child" do
-          screener = create(:screener, state: state, has_child: "no", receives_snap: "yes")
-          expect(described_class.show?(screener)).to eq false
-        end
-      end
-    end
+    it_behaves_like "a show method that considers age exemption", {has_child: "yes", receives_snap: "yes"}
   end
 end
