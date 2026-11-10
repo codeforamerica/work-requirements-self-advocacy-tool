@@ -1,5 +1,5 @@
 <% content_for :question_title, t("views.living_with_child_exemption.edit.title") %>
-<%= image_tag "megaphone.svg", class: "illustration left-justified spacing-below-0" %>
+<%= image_tag "checkmark.svg", class: "illustration left-justified spacing-below-0" %>
 <h1 class="h2 spacing-above-0"><%= content_for(:question_title) %></h1>
 
 <div class="notice grey-light">
@@ -13,7 +13,7 @@
 <p><%= t("views.living_with_child_exemption.edit.exempt_if_included") %></p>
 
 <% if @current_screener.receives_snap_yes? %>
-  <div class="callout callout--yellow">
+  <div class="callout callout--purple">
     <p><strong><%= t("views.living_with_child_exemption.edit.receiving.callout_title") %></strong></p>
     <p><%= t("views.living_with_child_exemption.edit.receiving.callout_body") %></p>
   </div>
