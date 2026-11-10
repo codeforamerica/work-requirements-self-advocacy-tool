@@ -140,9 +140,12 @@ RSpec.describe ScreenerMailer, type: :mailer do
 
       context "instructions section" do
         context "when state is DE" do
-          it "includes DE ASSIST instructions" do
+          let(:online_county_prefix) { I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: LocationData::States::STATES_INFO.dig("DE", :portal_name), website: "") }
+
+          it "includes DE ASSIST instructions but not instructions for submitting through the office website" do
             expect(html_body(mail)).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
-            expect(html_doc(mail).text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: LocationData::States::STATES_INFO.dig("DE", :portal_name), website: ""))
+            expect(html_doc(mail).text).not_to include(online_county_prefix)
+            expect(text_body(mail)).not_to include(online_county_prefix)
           end
         end
       end

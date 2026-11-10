@@ -31,8 +31,10 @@
   <ol style="line-height: 2;">
     <li>
       <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_html").html_safe %>
-      <br/><br/>
-      <%= t('views.screener_mailer.send_screener_results.online_county', website_name: LocationData::States::STATES_INFO.dig(@screener.state, :portal_name), website: office[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email]) if office[:email].present? %>.
+      <% if office[:website].present? %>
+        <br/><br/>
+        <%= t('views.screener_mailer.send_screener_results.online_county', website_name: LocationData::States::STATES_INFO.dig(@screener.state, :portal_name), website: office[:website]) %><%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email]) if office[:email].present? %>.
+      <% end %>
     </li>
     <% if office[:mailing_address].present? %>
       <li>
