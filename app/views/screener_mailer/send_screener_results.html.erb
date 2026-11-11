@@ -24,6 +24,8 @@
   <%= t('views.screener_mailer.send_screener_results.how_to_submit_heading') %>
 </h3>
 <% state = @screener.state.downcase %>
+<% portal_name = LocationData::States::STATES_INFO.dig(@screener.state, :portal_name) %>
+<% office_contact = LocationData::States::STATES_INFO.dig(@screener.state, :office_contact) %>
 <% @screener.offices_to_display.each do |office| %>
   <% if office[:subgeography].present? %>
     <p><%= t("views.screener_mailer.send_screener_results.if_you_live", subgeography: office[:subgeography]) %></p>
@@ -31,9 +33,13 @@
   <ol style="line-height: 2;">
     <li>
       <strong><%= t('views.screener_mailer.send_screener_results.online_label') %></strong> <%= t("views.screener_mailer.send_screener_results.online_submit_#{state}_html").html_safe %>
-      <% if office[:website].present? %>
+      <% if office[office_contact].present? %>
         <br/><br/>
-        <%= t('views.screener_mailer.send_screener_results.online_county', website_name: LocationData::States::STATES_INFO.dig(@screener.state, :portal_name), website: office[:website]) %> <%= t('views.screener_mailer.send_screener_results.online_county_with_email', email: office[:email]) if office[:email].present? %>.
+        <% if office_contact == :website %>
+          <%= t('views.screener_mailer.send_screener_results.online_office_website_html', portal_name: portal_name, website_link: link_to(t('views.screener_mailer.send_screener_results.online_office_website_link'), office[:website], target: "_blank")) %>
+        <% else %>
+          <%= t('views.screener_mailer.send_screener_results.online_office_email', portal_name: portal_name, email: office[office_contact]) %>
+        <% end %>
       <% end %>
     </li>
     <% if office[:mailing_address].present? %>

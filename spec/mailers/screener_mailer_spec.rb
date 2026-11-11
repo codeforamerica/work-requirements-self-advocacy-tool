@@ -29,12 +29,31 @@ RSpec.describe ScreenerMailer, type: :mailer do
 
     context "instructions section" do
       context "when state is NC" do
-        it "includes NC ePASS instructions" do
-          screener.update(state: "NC")
+        let(:website) { "https://dconc.gov/Social-Services/Food-and-Nutrition-Services" }
+        let(:website_link_text) { I18n.t("views.screener_mailer.send_screener_results.online_office_website_link") }
+        let(:online_office_email_prefix) { I18n.t("views.screener_mailer.send_screener_results.online_office_email", portal_name: "ePASS", email: "").delete_suffix(".") }
+
+        it "includes NC ePASS instructions and a link to the office website" do
           expect(body).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_nc_html"))
-          expect(html_doc(mail).text).to include(I18n.t("views.screener_mailer.send_screener_results.online_county",
-            website_name: LocationData::States::STATES_INFO.dig("NC", :portal_name),
-            website: "https://dconc.gov/Social-Services/Food-and-Nutrition-Services"))
+          expect(html_doc(mail).text).to include(I18n.t("views.screener_mailer.send_screener_results.online_office_website_html", portal_name: "ePASS", website_link: website_link_text))
+          expect(html_doc(mail).at_css("a[href='#{website}']").text).to eq(website_link_text)
+          expect(text_body(mail)).to include(I18n.t("views.screener_mailer.send_screener_results.online_office_website_text", portal_name: "ePASS", website: website))
+        end
+
+        it "does not include instructions for submitting by email" do
+          [html_doc(mail).text, text_body(mail)].each do |content|
+            expect(content).not_to include(online_office_email_prefix)
+          end
+        end
+
+        context "when the office does not have a website" do
+          it "does not include instructions for submitting through the office website" do
+            # there are currently no NC counties that lack a website
+            allow(screener).to receive(:offices_to_display).and_return([LocationData::Counties.get("NC", "Durham County").merge(website: nil)])
+            [html_doc(mail).text, text_body(mail)].each do |content|
+              expect(content).not_to include(website_link_text)
+            end
+          end
         end
       end
 
@@ -42,19 +61,16 @@ RSpec.describe ScreenerMailer, type: :mailer do
         it "includes the office email" do
           screener.update(county: "Ashe County")
           [body, text_body(mail)].each do |content|
-            expect(content).to include(I18n.t("views.screener_mailer.send_screener_results.online_county_with_email", email: "dssinfo@ashecountygov.com"))
             expect(content).to include(I18n.t("views.screener_mailer.send_screener_results.email_office", email: "dssinfo@ashecountygov.com"))
           end
         end
       end
 
       context "when the office does not have an email" do
-        let(:online_county_with_email_prefix) { I18n.t("views.screener_mailer.send_screener_results.online_county_with_email", email: "") }
         let(:email_office_prefix) { I18n.t("views.screener_mailer.send_screener_results.email_office", email: "").delete_suffix(",") }
 
         it "does not include instructions for emailing" do
           [body, text_body(mail)].each do |content|
-            expect(content).not_to include(online_county_with_email_prefix)
             expect(content).not_to include(email_office_prefix)
           end
         end
@@ -255,12 +271,32 @@ RSpec.describe ScreenerMailer, type: :mailer do
 
       context "instructions section" do
         context "when state is DE" do
-          let(:online_county_prefix) { I18n.t("views.screener_mailer.send_screener_results.online_county", website_name: LocationData::States::STATES_INFO.dig("DE", :portal_name), website: "") }
+          let(:website_link_text) { I18n.t("views.screener_mailer.send_screener_results.online_office_website_link") }
+          let(:online_office_email_prefix) { I18n.t("views.screener_mailer.send_screener_results.online_office_email", portal_name: "ASSIST", email: "").delete_suffix(".") }
 
-          it "includes DE ASSIST instructions but not instructions for submitting through the office website" do
+          it "includes DE ASSIST instructions and each office's email" do
             expect(html_body(mail)).to include(I18n.t("views.screener_mailer.send_screener_results.online_submit_de_html"))
-            expect(html_doc(mail).text).not_to include(online_county_prefix)
-            expect(text_body(mail)).not_to include(online_county_prefix)
+            [html_doc(mail).text, text_body(mail)].each do |content|
+              expect(content).to include(I18n.t("views.screener_mailer.send_screener_results.online_office_email", portal_name: "ASSIST", email: "DHSS_DSS_DELAWARR_Maintenance@delaware.gov"))
+              expect(content).to include(I18n.t("views.screener_mailer.send_screener_results.online_office_email", portal_name: "ASSIST", email: "DHSS_DSS_Churchmans_Maintenance@delaware.gov"))
+            end
+          end
+
+          it "does not include instructions for submitting through the office website" do
+            [html_doc(mail).text, text_body(mail)].each do |content|
+              expect(content).not_to include(website_link_text)
+            end
+          end
+
+          context "when the office does not have an upload email" do
+            it "does not include instructions for submitting by email" do
+              # there are currently no DE offices that lack an upload email
+              office = LocationData::ZipCodes.get_all("DE", "19703").first.merge(upload_portal_or_email: nil)
+              allow(screener).to receive(:offices_to_display).and_return([office])
+              [html_doc(mail).text, text_body(mail)].each do |content|
+                expect(content).not_to include(online_office_email_prefix)
+              end
+            end
           end
         end
       end

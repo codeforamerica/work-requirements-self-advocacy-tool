@@ -12,6 +12,7 @@ module LocationData
         policy_class: WorkRulesPolicy::Delaware,
         portal_name: "ASSIST",
         office_by: :zip_code,
+        office_contact: :upload_portal_or_email,
         survey_url: "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_8rdcUjhPOWA0XzM"
       },
       NORTH_CAROLINA => {
@@ -20,6 +21,7 @@ module LocationData
         policy_class: WorkRulesPolicy::NorthCarolina,
         portal_name: "ePASS",
         office_by: :county,
+        office_contact: :website,
         survey_url: "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6"
       }
     }
