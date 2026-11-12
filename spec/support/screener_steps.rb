@@ -50,6 +50,28 @@ module ScreenerSteps
     click_on I18n.t("general.negative")
   end
 
+  # -- Living with a child under 14 exemption --------------------------------
+  # snap: :receiving or :pending; choice: :continue or :check_work_rules
+  def step_living_with_child_exemption(snap:, choice:)
+    expect(page).to have_selector("h1", text: I18n.t("views.tribe_or_nation.edit.title"))
+    click_on I18n.t("general.negative")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.living_with_someone.edit.title"))
+    click_on I18n.t("general.affirmative")
+
+    expect(page).to have_selector("h1", text: I18n.t("views.living_with_child_exemption.edit.title"))
+    expect(page).to have_content(I18n.t("views.living_with_child_exemption.edit.#{snap}.callout_title"))
+
+    case choice
+    when :continue
+      click_on I18n.t("views.living_with_child_exemption.edit.continue")
+      expect(page).to have_selector("h1", text: I18n.t("views.caring_for_someone.edit.title"))
+    when :check_work_rules
+      click_on I18n.t("views.living_with_child_exemption.edit.check_work_rules")
+      expect(page).to have_selector("h1", text: I18n.t("views.location.edit.title"))
+    end
+  end
+
   # -- School enrollment ------------------------------------------------------
   def step_school_enrollment(answer:)
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
