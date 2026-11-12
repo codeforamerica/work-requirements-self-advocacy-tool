@@ -208,7 +208,7 @@ GEM
       rake (~> 13.3)
     googleapis-common-protos-types (1.23.0)
       google-protobuf (~> 4.26)
-    grover (2.0.0)
+    grover (2.0.1)
       nokogiri (~> 1)
     highline (3.1.2)
       reline
