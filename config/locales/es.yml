@@ -424,6 +424,37 @@ es:
         time_to_complete: Llenar este formulario suele tomar unos 10 minutos.
         title: Verifique si las reglas de trabajo de SNAP afectan sus beneficios
         title_help_text_html: Algunas personas que reciben SNAP deben reportar su trabajo y actividades laborales para mantener sus beneficios. Responda algunas preguntas y le ayudaremos a entender qué información debe compartir con su oficina de SNAP.
+    living_with_child_exemption:
+      edit:
+        check_work_rules: Verificar las reglas de trabajo
+        continue: Continuar con el formulario
+        edit: Editar
+        exempt_if_included: Si incluyó información sobre este menor en su solicitud de SNAP, debería estar exento de las reglas de trabajo del programa.
+        lives_with_child: Vive con un menor de 14 años
+        pending:
+          application_details_body: Asegúrese de que su agencia SNAP tenga información sobre el menor y su edad. Comuníquese con la agencia si falta información o hay datos incorrectos.
+          application_details_title: Revise la información de su solicitud
+          callout_body: Asegúrese de que su solicitud incluya la edad del menor para que su agencia SNAP pueda determinar cómo se aplican las reglas de trabajo a su caso.
+          callout_title: Mientras espera una decisión
+          interview_body: Hable con la persona encargada de su caso sobre el menor y pregunte qué reglas de trabajo se aplican.
+          interview_title: Si tiene una entrevista
+          list_title: Qué hacer mientras espera
+          respond_body: Siga las instrucciones y cumpla con los plazos indicados en las cartas que reciba. Si necesita ayuda para conseguir los comprobantes solicitados, pídale ayuda a la persona encargada de su caso.
+          respond_title: Responda a las solicitudes de su agencia SNAP
+        receiving:
+          callout_body: No necesita volver a reportar esta información si su agencia SNAP ya sabe que el menor vive con usted.
+          callout_title: Si recibe beneficios de SNAP
+          list_title: Cuándo consultar con su agencia de SNAP
+          notice_body: Pregunte a su agencia de SNAP si esta exención aparece en su caso.
+          notice_title: Si recibe un aviso sobre las reglas de trabajo
+          renewal_body: Verifique que la edad del menor y la información de su hogar sean correctas.
+          renewal_title: Cuando renueve sus beneficios
+          turns_14_body: Use esta herramienta para revisar si califica para otras exenciones y saber qué puede hacer para conservar sus beneficios de SNAP.
+          turns_14_title: Cuando el menor cumpla 14 años
+        title: Encontramos una posible exención
+        what_next: "¿Qué desea hacer ahora?"
+        what_next_help: Verifique si las reglas de trabajo de SNAP se aplican a otra persona de su hogar o si usted podría calificar para otras exenciones.
+        your_answers: Sus respuestas
     living_with_someone:
       edit:
         help_text: No tiene que ser la madre o el padre del niño, ni ser responsable de su cuidado o su tutor legal. Seleccione “Sí” si vive con el niño y suelen comer juntos.

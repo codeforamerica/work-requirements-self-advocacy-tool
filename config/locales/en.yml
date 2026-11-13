@@ -424,6 +424,37 @@ en:
         time_to_complete: It usually takes about 10 minutes to complete this form.
         title: Check if the SNAP work rules affect your benefits
         title_help_text_html: Some SNAP recipients need to report work or activities to keep their benefits. Answer a few questions and we'll help you understand what to give your SNAP agency.
+    living_with_child_exemption:
+      edit:
+        check_work_rules: Check work rules
+        continue: Continue with the form
+        edit: Edit
+        exempt_if_included: If you included information about this child on your SNAP application, you should be exempt from the program's work requirements.
+        lives_with_child: You live with a child under 14
+        pending:
+          application_details_body: Make sure your SNAP agency knows about the child and their age. Contact them if information is missing or incorrect.
+          application_details_title: Check your application details
+          callout_body: Make sure your application includes the child's age so your SNAP agency can determine how the work rules apply to your case.
+          callout_title: While you wait for a decision
+          interview_body: Tell your caseworker about the child and ask which work rules apply.
+          interview_title: If you have an interview
+          list_title: What to do while you wait
+          respond_body: Follow the instructions and deadlines in any letters. If you need help getting requested proof, ask your caseworker for help.
+          respond_title: Respond to requests from your SNAP agency
+        receiving:
+          callout_body: You don't need to report this information again if your SNAP agency already knows the child lives with you.
+          callout_title: Since you are getting SNAP benefits
+          list_title: When to check with your SNAP agency
+          notice_body: Ask your SNAP agency whether this exemption is listed in your case.
+          notice_title: If you get a notice about work rules
+          renewal_body: Check that the child's age and your household information are correct.
+          renewal_title: At your next renewal
+          turns_14_body: Use this tool to check for other exemptions and learn what you can do to help keep your SNAP benefits.
+          turns_14_title: When the child turns 14
+        title: We found a possible exemption for you
+        what_next: What would you like to do next?
+        what_next_help: Check whether SNAP work rules apply to someone else in your household, or learn about other exemptions that may apply to you.
+        your_answers: Your answers
     living_with_someone:
       edit:
         help_text: You do not have to be the child's parent, be responsible for the child, or be their legal guardian. If you live with the child and you usually share meals with them, select "Yes."

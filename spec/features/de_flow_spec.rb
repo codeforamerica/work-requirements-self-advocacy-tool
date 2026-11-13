@@ -43,14 +43,21 @@ RSpec.feature "DE Screener flow", js: true do
     expect(screener.has_exemption?).to eq false
   end
 
+  scenario "client living with a child under 14 who is getting SNAP continues with the form" do
+    step_homepage
+    step_de_location
+    step_age_range(option: :age_18_to_49)
+    step_living_with_child_exemption(snap: :receiving, choice: :continue)
+  end
+
   private
 
-  def step_de_location
+  def step_de_location(snap: :snap_yes)
     select "Delaware", from: "screener_state"
     fill_in I18n.t("views.location.edit.zip_code_label"), with: "19980"
 
     expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
-    choose I18n.t("views.location.edit.snap_yes")
+    choose I18n.t("views.location.edit.#{snap}")
 
     click_on I18n.t("general.continue")
   end

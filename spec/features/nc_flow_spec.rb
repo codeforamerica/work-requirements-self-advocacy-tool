@@ -75,13 +75,20 @@ RSpec.feature "NC Screener flow", js: true do
     expect(page).to have_content(I18n.t("validations.snap_answer_required"))
   end
 
+  scenario "client living with a child under 14 whose application is pending checks work rules" do
+    step_homepage
+    step_nc_location(snap: :snap_applied_waiting)
+    step_age_range(option: :age_18_to_49)
+    step_living_with_child_exemption(snap: :pending, choice: :check_work_rules)
+  end
+
   private
 
-  def step_nc_location
+  def step_nc_location(snap: :snap_yes)
     select "North Carolina", from: "screener_state"
     select "Durham County", from: "screener_county"
     expect(page).to have_content(I18n.t("views.location.edit.snap_label"))
-    choose I18n.t("views.location.edit.snap_yes")
+    choose I18n.t("views.location.edit.#{snap}")
     click_on I18n.t("general.continue")
   end
 

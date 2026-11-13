@@ -358,6 +358,31 @@ hr.tight {
   font-size: 1.6rem;
 }
 
+.callout {
+  border-left: 4px solid;
+  padding: 1.2rem 1.6rem;
+  margin-bottom: 2.5rem;
+
+  p {
+    margin: 0;
+  }
+
+  &--yellow {
+    border-color: #8C6000;
+    background-color: #FFFBF1;
+  }
+
+  &--green {
+    border-color: #057928;
+    background-color: #F6FFF9;
+  }
+
+  &--purple {
+    border-color: #1B059A;
+    background-color: #F4F3FC;
+  }
+}
+
 .notice.grey-light {
   color: $color-grey-darkest;
   border: 2px solid $color-grey-dark;
