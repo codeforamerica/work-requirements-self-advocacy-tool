@@ -188,9 +188,9 @@ ansi-styles@^6.2.1:
   integrity sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==
 
 basic-ftp@^6.0.0:
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.3.tgz#452e25a101380a8c69cdf94d7da17e7fe7bccbaa"
-  integrity sha512-T7GYtQ2eKJUN5YORG7A8u2WfB9JMN0a4/wl3MI64qq2qTRfa3FXzoNq0DDojZDkDyStcL+TkfKsz4JHEZx5kGQ==
+  version "6.2.6"
+  resolved "https://registry.yarnpkg.com/basic-ftp/-/basic-ftp-6.2.6.tgz#84905c94db0e10415c9ba4ce61b30bc38875905a"
+  integrity sha512-0EjZCaodOz6yiokv2JA1VyKGNdGxULZ+GGlPgG9tm4d+T/bHtX1hUch8CumDneBfpIbiSdn7TaCGwpM+gwsOlw==
 
 buffer-crc32@~0.2.3:
   version "0.2.13"
