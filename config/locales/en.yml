@@ -148,11 +148,9 @@ en:
           de:
             help_bullets_html:
             - If you don't have a letter from DHSS available, log in to the official <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST website</a> to view your notices, where you can find your case number.
-            website_name: ASSIST
           nc:
             help_bullets_html:
             - Log in to the official <a href="https://epass.nc.gov/" target="_blank">NC ePass website</a> to view case details, including your case number.
-            website_name: ePASS NC
           title: Log in to your %{website_name} portal to find your case number
         title: Do you have a case number?
     basic_info_details:
@@ -344,9 +342,6 @@ en:
         process_too_hard: The submission process feels too hard
         reasons_title: What are the main reasons for your decision?
         submit_results_to_site: Submit it online through %{state_site} or another option
-        submit_site_name:
-          de: Delaware ASSIST
-          nc: NC ePASS
         title: What do you plan to do with the result of the GetBenefitsHelp screener?
         title_help_text: This is optional. Choose all that apply.
         unsubmitted_intro: You said you plan to keep this form for your records rather than share it with your SNAP agency right now.
@@ -711,11 +706,13 @@ en:
         mail_label: 'Mail:'
         next_step_heading: 'Next step: Send this form to your SNAP agency.'
         next_step_instructions: Submit this form and any proof you need to your SNAP agency to tell them that you believe the work rules shouldn't apply to you.
-        online_county: Instead of using %{website_name}, you can submit this form and any proof to your county's SNAP office %{website}
-        online_county_with_email: or by emailing %{email}
         online_label: 'Online:'
-        online_submit_de_html: If you already receive SNAP benefits, you can use <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST</a> to send your form and documents. You'll need an enhanced account to do this.
-        online_submit_de_text: If you already receive SNAP benefits, you can use Delaware ASSIST (https://assist.dhss.delaware.gov/) to send your form and documents. You'll need an enhanced account to do this.
+        online_office_email: Instead of using %{portal_name}, you can submit this form and any proof to your local SNAP office by emailing %{email}.
+        online_office_website_html: Instead of using %{portal_name}, you can submit this form and any proof to your county's SNAP office. Check your county's %{website_link} for instructions.
+        online_office_website_link: SNAP office website
+        online_office_website_text: Instead of using %{portal_name}, you can submit this form and any proof to your county's SNAP office. Check your county's SNAP office website (%{website}) for instructions.
+        online_submit_de_html: If you already receive SNAP benefits, you can use <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST</a> to send your form and documents.
+        online_submit_de_text: If you already receive SNAP benefits, you can use Delaware ASSIST (https://assist.dhss.delaware.gov/) to send your form and documents.
         online_submit_nc_html: If you already receive SNAP benefits, you can use <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> to submit this form and any proof you may need. You will need to have an <a href="https://epass.nc.gov/nfridp/qa" target="_blank">enhanced account</a> to submit these documents using ePASS.
         online_submit_nc_text: If you already receive SNAP benefits, you can use North Carolina ePASS (https://epass.nc.gov/signuphomepage) to submit this form and any proof you may need. You will need to have an enhanced account (https://epass.nc.gov/nfridp/qa) to submit these documents using ePASS.
         proofs_you_may_need:
@@ -754,8 +751,6 @@ en:
         questions_intro: If you have questions, or to find out if there are other ways to submit your form, you can contact your county's social services office.
         reference_code: 'Your document reference code: %{code}'
         subject: "[GetBenefitsHelp] Your SNAP Work Rules form"
-        website_name_de: ASSIST
-        website_name_nc: ePASS
     signature:
       edit:
         button_label: Sign & create my form
@@ -803,8 +798,6 @@ en:
         next_step_process: The agency will process your exemption once they receive the form and any required documents listed in your confirmation email.
         next_step_submit: Submit it via mail, fax, %{online_portal}, in-person, or at your next caseworker appointment.
         next_steps_title: 'Next steps:'
-        online_portal_de: Delaware ASSIST
-        online_portal_nc: North Carolina ePASS
         questions_html: Questions? Check your form email for submission details, call your local SNAP office, or email us at <a href="mailto:getbenefitshelp@codeforamerica.org">getbenefitshelp@codeforamerica.org</a>.
         questions_text: Questions? Check your form email for submission details, call your local SNAP office, or email us at getbenefitshelp@codeforamerica.org.
         research_body_html: We are looking for people to share their experience using GetBenefitsHelp. If you are interested in speaking with someone from our team, please <a href="%{research_link}" target="_blank">fill out this form</a> and someone will get back to you. Those selected to participate will be compensated for their time.

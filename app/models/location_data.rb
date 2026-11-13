@@ -10,14 +10,18 @@ module LocationData
         display_name: "Delaware",
         pdf_filler_class: PdfFiller::PacketPdf,
         policy_class: WorkRulesPolicy::Delaware,
+        portal_name: "ASSIST",
         office_by: :zip_code,
+        office_contact: :upload_portal_or_email,
         survey_url: "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_8rdcUjhPOWA0XzM"
       },
       NORTH_CAROLINA => {
         display_name: "North Carolina",
         pdf_filler_class: PdfFiller::NcPacketPdf,
         policy_class: WorkRulesPolicy::NorthCarolina,
+        portal_name: "ePASS",
         office_by: :county,
+        office_contact: :website,
         survey_url: "https://codeforamerica.co1.qualtrics.com/jfe/form/SV_3kgHxveKeorfFC6"
       }
     }

@@ -148,11 +148,9 @@ es:
           de:
             help_bullets_html:
             - Si no tiene disponible una carta del DHSS, ingrese a su cuenta en el sitio web oficial de <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST</a> para ver sus notificaciones y encontrar su número de caso.
-            website_name: ASSIST
           nc:
             help_bullets_html:
             - Inicie sesión en el sitio <a href="https://epass.nc.gov/" target="_blank">web oficial de ePASS NC</a> para ver los detalles de su caso.
-            website_name: ePASS NC
           title: Use su cuenta de %{website_name} para encontrar su número de caso.
         title: "¿Tiene un número de caso?"
     basic_info_details:
@@ -344,9 +342,6 @@ es:
         process_too_hard: El proceso de envío parece demasiado complicado
         reasons_title: "¿Cuáles son las razones principales de su decisión?"
         submit_results_to_site: Enviarlo en línea a través de %{state_site} u otra opción
-        submit_site_name:
-          de: Delaware ASSIST
-          nc: NC ePASS
         title: "¿Qué planea hacer con el resultado del formulario de GetBenefitsHelp?"
         title_help_text: Esto es opcional. Seleccione todas las que correspondan.
         unsubmitted_intro: Usted indicó que, por ahora, prefiere guardar este formulario en lugar de compartirlo con su oficina de SNAP.
@@ -711,9 +706,11 @@ es:
         mail_label: 'Por correo físico:'
         next_step_heading: 'Siguiente paso: Envíe este formulario a su oficina de SNAP.'
         next_step_instructions: Envíe este formulario y cualquier comprobante o documentacion necesario a su oficina de SNAP para notificar que las reglas de trabajo SNAP no deberían aplicar en su caso.
-        online_county: 'En lugar de usar %{website_name}, también puede enviar este formulario y los comprobantes a la oficina de SNAP de su condado: %{website}'
-        online_county_with_email: o por correo electrónico a %{email}
         online_label: 'En línea:'
+        online_office_email: En lugar de usar %{portal_name}, puede enviar este formulario y los comprobantes a su oficina local de SNAP por correo electrónico a %{email}.
+        online_office_website_html: En lugar de usar %{portal_name}, puede enviar este formulario y los comprobantes a la oficina de SNAP de su condado. Consulte el %{website_link} de su condado para ver las instrucciones.
+        online_office_website_link: sitio web de la oficina de SNAP
+        online_office_website_text: En lugar de usar %{portal_name}, puede enviar este formulario y los comprobantes a la oficina de SNAP de su condado. Consulte el sitio web de la oficina de SNAP de su condado (%{website}) para ver las instrucciones.
         online_submit_de_html: Si ya recibe beneficios de SNAP, puede usar <a href="https://assist.dhss.delaware.gov/" target="_blank">Delaware ASSIST</a> para enviar su formulario y documentos.
         online_submit_de_text: Si ya recibe beneficios de SNAP, puede usar Delaware ASSIST (https://assist.dhss.delaware.gov/) para enviar su formulario y documentos.
         online_submit_nc_html: Si usted ya recibe beneficios de SNAP, puede usar <a href="https://epass.nc.gov/signuphomepage" target="_blank">North Carolina ePASS</a> para enviar este formulario y cualquier comprobante que necesite. Necesitará una <a href="https://epass.nc.gov/nfridp/qa" target="_blank">cuenta mejorada</a> (enhanced account) para enviar estos documentos a través de ePASS.
@@ -754,8 +751,6 @@ es:
         questions_intro: 'Si tiene preguntas o desea saber si hay otras formas de enviar su formulario, puede comunicarse con la oficina de servicios sociales de su condado:'
         reference_code: 'Código de referencia de su documento: %{code}'
         subject: "[GetBenefitsHelp] Acción requerida: Envíe su formulario de exención de reglas de trabajo de SNAP"
-        website_name_de: ASSIST
-        website_name_nc: ePASS
     signature:
       edit:
         button_label: Firmar y crear mi formulario
@@ -803,8 +798,6 @@ es:
         next_step_process: La agencia procesará su exención cuando reciba el formulario y los documentos requeridos que aparecen en su correo electrónico de confirmación.
         next_step_submit: Envíe el formulario por correo, fax, %{online_portal}, entréguelo en persona o durante su próxima cita con su trabajador social.
         next_steps_title: 'Próximos pasos:'
-        online_portal_de: Delaware ASSIST
-        online_portal_nc: North Carolina ePASS
         questions_html: ¿Tiene preguntas? Revise el correo electrónico en el que recibió su formulario para ver cómo enviarlo, llame a su oficina local de SNAP o escríbanos a <a href="mailto:getbenefitshelp@codeforamerica.org">getbenefitshelp@codeforamerica.org</a>.
         questions_text: "¿Tiene preguntas? Revise el correo electrónico en el que recibió su formulario para ver cómo enviarlo, llame a su oficina local de SNAP o escríbanos a getbenefitshelp@codeforamerica.org."
         research_body_html: Buscamos personas que quieran compartir su experiencia usando GetBenefitsHelp. Si le interesa hablar con alguien de nuestro equipo, <a href="%{research_link}" target="_blank">complete este formulario</a>. Una persona de nuestro equipo se pondrá en contacto con usted. Si es seleccionado para participar, recibirá un pago por su tiempo.
