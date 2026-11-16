@@ -53,6 +53,10 @@ data:
 
 # Find translate calls
 search:
+  ## Infer keys built dynamically, e.g. t("views.download_form.edit.state_website_#{state}_html").
+  ## i18n-tasks >= 1.2.0 honors this for `unused`; strict mode would flag those keys as unused.
+  strict: false
+
   ## Paths or `Find.find` patterns to search in:
   # paths:
   #  - app/
