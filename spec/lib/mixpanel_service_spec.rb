@@ -210,15 +210,33 @@ describe MixpanelService do
             )
           end
 
-          it "includes the traffic type when a request is given" do
+          it "sends the event with the traffic type when the request is from a client" do
+            MixpanelService.send_event(
+              distinct_id: "123",
+              event_name: "page_view",
+              request: instance_double(ActionDispatch::Request, user_agent: chrome_on_mac_user_agent)
+            )
+            expect(fake_tracker).to have_received(:track).with(
+              "123", "page_view", hash_including(traffic_type: "client")
+            )
+          end
+
+          it "does not send the event when the request is from a scanner" do
             MixpanelService.send_event(
               distinct_id: "123",
               event_name: "page_view",
               request: instance_double(ActionDispatch::Request, user_agent: "Nessus")
             )
-            expect(fake_tracker).to have_received(:track).with(
-              "123", "page_view", hash_including(traffic_type: "scanner_ua")
+            expect(fake_tracker).not_to have_received(:track)
+          end
+
+          it "does not send the event when the request is from a bot" do
+            MixpanelService.send_event(
+              distinct_id: "123",
+              event_name: "page_view",
+              request: instance_double(ActionDispatch::Request, user_agent: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
             )
+            expect(fake_tracker).not_to have_received(:track)
           end
 
           it "omits the traffic type when no request is given" do
