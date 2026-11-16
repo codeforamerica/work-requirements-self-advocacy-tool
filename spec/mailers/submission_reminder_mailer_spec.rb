@@ -20,11 +20,12 @@ RSpec.describe SubmissionReminderMailer, type: :mailer do
 
     context "rendering state-specific portal" do
       [
-        [LocationData::States::NORTH_CAROLINA, I18n.t("views.submission_reminder_mailer.send_reminder.online_portal_nc")],
-        [LocationData::States::DELAWARE, I18n.t("views.submission_reminder_mailer.send_reminder.online_portal_de")]
-      ].each do |state, portal|
+        LocationData::States::NORTH_CAROLINA,
+        LocationData::States::DELAWARE
+      ].each do |state|
         context state.to_s do
           let(:state) { state }
+          let(:portal) { LocationData::States::STATES_INFO.dig(state, :portal_name) }
 
           it "renders the correct submission portal" do
             expect(html_doc(mail).text).to include(portal)
