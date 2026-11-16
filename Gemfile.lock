@@ -214,14 +214,14 @@ GEM
       reline
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.1.2)
+    i18n-tasks (1.2.0)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
       highline (>= 3.0.0)
       i18n
       parser (>= 3.2.2.1)
-      prism
+      prism (>= 0.28)
       rails-i18n
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.8, >= 1.8.1)
@@ -499,7 +499,7 @@ GEM
     orm_adapter (0.5.0)
     ostruct (0.6.3)
     parallel (2.1.0)
-    parser (3.3.12.0)
+    parser (3.3.13.0)
       ast (~> 2.4.1)
       racc
     pg (1.7.0)
@@ -734,9 +734,9 @@ GEM
       railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unicode-display_width (3.2.0)
-      unicode-emoji (~> 4.1)
-    unicode-emoji (4.2.0)
+    unicode-display_width (3.3.0)
+      unicode-emoji (~> 4.3)
+    unicode-emoji (4.3.0)
     uri (1.1.2)
     useragent (0.16.11)
     valid_email2 (7.1.0)
@@ -789,7 +789,7 @@ DEPENDENCIES
   erb (>= 6.0.5)
   factory_bot_rails
   grover (>= 2.0.0)
-  i18n-tasks (~> 1.1.2)
+  i18n-tasks (~> 1.2.0)
   intercom-rails
   jbuilder
   jsbundling-rails
