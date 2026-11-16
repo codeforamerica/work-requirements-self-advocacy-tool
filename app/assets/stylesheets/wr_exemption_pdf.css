@@ -12,7 +12,7 @@ html, body, main {
   line-height: normal;
 
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
   }
 }
 
@@ -35,11 +35,11 @@ html, body, main {
 
 .packet-details .header {
   p {
-    font-size: 1.4rem;
+    font-size: 14px;
   }
   h1 {
-    font-size: 2.6rem;
-    line-height: 3.2rem;
+    font-size: 26px;
+    line-height: 32px;
   }
 }
 
@@ -66,9 +66,9 @@ html, body, main {
 .section-title {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-top: 2.5rem;
-  padding-bottom: 0.75rem;
+  gap: 7.5px;
+  margin-top: 25px;
+  padding-bottom: 7.5px;
   border-bottom: 3px solid #034e46;
 
   h3 {
@@ -81,15 +81,15 @@ html, body, main {
   background-color: #F7F5F4;
   border: 1px solid #D8D3CE;
   border-radius: 4px;
-  padding: 0 1.5rem;
+  padding: 0 15px;
 }
 
 .info-row {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 2.5rem;
-  row-gap: 0.5rem;
-  padding: 1rem 0;
+  column-gap: 25px;
+  row-gap: 5px;
+  padding: 10px 0;
   border-bottom: 1px solid #D8D3CE;
 
   &:last-child {
@@ -99,7 +99,7 @@ html, body, main {
 
 .info-field {
   display: flex;
-  gap: 0.4rem;
+  gap: 4px;
   align-items: baseline;
 }
 
@@ -110,7 +110,7 @@ html, body, main {
 
 .electronic-signature {
   font-family: "Allura", cursive;
-  font-size: 20pt;
+  font-size: 27px;
   line-height: 1;
 }
 
@@ -124,8 +124,8 @@ html, body, main {
   display: flex;
   /* for multiline line checklist items the checkbox appears closer to the first line */
   align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.6rem 0;
+  gap: 7.5px;
+  padding: 6px 0;
 
   /* forces the checkboxes to shrink for multiline items. */
   svg {
@@ -134,8 +134,8 @@ html, body, main {
 }
 
 .checklist-item__detail {
-  margin-left: 2.7rem;
-  padding-bottom: 0.6rem;
+  margin-left: 27px;
+  padding-bottom: 6px;
   font-weight: 700;
 }
 
@@ -144,5 +144,5 @@ html, body, main {
 }
 
 .checklist--nested {
-  margin-left: 2.7rem;
+  margin-left: 27px;
 }
