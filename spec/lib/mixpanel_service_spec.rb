@@ -214,7 +214,7 @@ describe MixpanelService do
             MixpanelService.send_event(
               distinct_id: "123",
               event_name: "page_view",
-              request: instance_double(ActionDispatch::Request, user_agent: chrome_on_mac_user_agent)
+              request: instance_double(ActionDispatch::Request, user_agent: chrome_on_mac_user_agent, headers: {})
             )
             expect(fake_tracker).to have_received(:track).with(
               "123", "page_view", hash_including(traffic_type: "client")
@@ -225,7 +225,19 @@ describe MixpanelService do
             MixpanelService.send_event(
               distinct_id: "123",
               event_name: "page_view",
-              request: instance_double(ActionDispatch::Request, user_agent: "Nessus")
+              request: instance_double(ActionDispatch::Request, user_agent: "Nessus", headers: {})
+            )
+            expect(fake_tracker).not_to have_received(:track)
+          end
+
+          it "does not send the event when the request has a scanner header" do
+            MixpanelService.send_event(
+              distinct_id: "123",
+              event_name: "page_view",
+              request: ActionDispatch::TestRequest.create(
+                "HTTP_USER_AGENT" => chrome_on_mac_user_agent,
+                "HTTP_X_TENABLE_WAS_SCAN_ID" => "abc-123"
+              )
             )
             expect(fake_tracker).not_to have_received(:track)
           end
@@ -234,7 +246,7 @@ describe MixpanelService do
             MixpanelService.send_event(
               distinct_id: "123",
               event_name: "page_view",
-              request: instance_double(ActionDispatch::Request, user_agent: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)")
+              request: instance_double(ActionDispatch::Request, user_agent: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)", headers: {})
             )
             expect(fake_tracker).not_to have_received(:track)
           end
@@ -263,8 +275,10 @@ describe MixpanelService do
           end
 
           describe "#traffic_type" do
-            def request_with(user_agent)
-              instance_double(ActionDispatch::Request, user_agent: user_agent)
+            def request_with(user_agent, headers = {})
+              ActionDispatch::TestRequest.create("HTTP_USER_AGENT" => user_agent).tap do |request|
+                headers.each { |name, value| request.headers[name] = value }
+              end
             end
 
             it "tags a regular browser as client" do
@@ -278,6 +292,21 @@ describe MixpanelService do
             it "matches scanner user agents case-insensitively" do
               expect(MixpanelService.traffic_type(request_with("ELB-HealthChecker/2.0"))).to eq "scanner_ua"
               expect(MixpanelService.traffic_type(request_with("elb-healthchecker/2.0"))).to eq "scanner_ua"
+            end
+
+            it "tags a request with the Tenable scan ID header as scanner_header" do
+              # Tenable probes can replace the User-Agent with an attack payload
+              payload = %("><img src=x onerror=tnbwas_2r0q5c>)
+              expect(MixpanelService.traffic_type(request_with(payload, "X-Tenable-Was-Scan-Id" => "abc-123"))).to eq "scanner_header"
+            end
+
+            it "matches the Tenable scan ID header case-insensitively" do
+              expect(MixpanelService.traffic_type(request_with(chrome_on_mac_user_agent, "x-tenable-was-scan-id" => "abc-123"))).to eq "scanner_header"
+            end
+
+            it "tags the custom Tenable user agent as scanner_ua" do
+              tenable_ua = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.7797.0 Safari/537.36 TenableWAS-CfA"
+              expect(MixpanelService.traffic_type(request_with(tenable_ua))).to eq "scanner_ua"
             end
 
             it "tags a non-scanner crawler as bot" do
