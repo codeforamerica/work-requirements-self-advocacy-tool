@@ -4,6 +4,9 @@ class MixpanelService
   MAX_BUFFER_SIZE = 50
   FLUSH_DELAY = 5
   SCANNER_USER_AGENTS = /securityagent|nessus|tenable|datadog|ELB-HealthChecker/i
+  # Tenable Web App Scanning sends this on its probes, including ones that
+  # replace the User-Agent with an attack payload.
+  SCANNER_HEADER = "X-Tenable-Was-Scan-Id"
 
   include Singleton
 
@@ -133,6 +136,7 @@ class MixpanelService
     def traffic_type(request)
       user_agent = request&.user_agent.to_s
       return "scanner_ua" if SCANNER_USER_AGENTS.match?(user_agent)
+      return "scanner_header" if request&.headers&.key?(SCANNER_HEADER)
       return "bot" if Browser.new(user_agent).bot?
 
       "client"
