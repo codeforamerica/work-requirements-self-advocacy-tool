@@ -276,8 +276,9 @@ describe MixpanelService do
 
           describe "#traffic_type" do
             def request_with(user_agent, headers = {})
-              env = headers.transform_keys { |name| "HTTP_#{name.upcase.tr("-", "_")}" }
-              ActionDispatch::TestRequest.create({"HTTP_USER_AGENT" => user_agent}.merge(env))
+              ActionDispatch::TestRequest.create("HTTP_USER_AGENT" => user_agent).tap do |request|
+                headers.each { |name, value| request.headers[name] = value }
+              end
             end
 
             it "tags a regular browser as client" do
