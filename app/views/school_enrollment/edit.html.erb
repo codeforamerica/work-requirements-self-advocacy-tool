@@ -2,17 +2,17 @@
 
 <h1 class="h2"><%= content_for(:question_title) %></h1>
 
-<div class="notice teal">
-  <div class="media-box">
-    <div class="media-box__media media--icon">
-      <i class="icon-help"></i>
-    </div>
-    <div class="media-box__content">
-      <%= t("views.school_enrollment.edit.help_text") %>
-    </div>
-  </div>
-</div>
+<p>
+  <%= t("views.school_enrollment.edit.help_text") %>
+</p>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
-  <%= render "shared/yes_no_buttons", form: f, model_name: @model.class.name.downcase, column: "is_student" %>
+  <%= f.cfa_radio_set(
+        :is_student,
+        collection: [
+          { value: :yes, label: t("general.affirmative") },
+          { value: :no, label: t("general.negative") },
+        ]
+      ) %>
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
 <% end %>
