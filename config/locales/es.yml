@@ -689,7 +689,7 @@ es:
         title: Su agencia de SNAP puede pedirle comprobantes o confirmar esta información.
     school_enrollment:
       edit:
-        help_text: Cada escuela define qué significa ser estudiante de "medio tiempo" basado en cuántas clases está tomando. Pregunte en su universidad, colegio o escuela cuál es su estatus.
+        help_text: Cada escuela decide esto según la cantidad de clases que usted tome. Si tiene dudas, pregunte en su institución educativa sobre su tipo de matrícula.
         title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
     school_enrollment_milestone:
       display:

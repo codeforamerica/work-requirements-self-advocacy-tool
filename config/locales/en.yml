@@ -689,7 +689,7 @@ en:
         title: Here is the proof you may need to submit to your agency.
     school_enrollment:
       edit:
-        help_text: Your school defines what it means to be at least "half-time" based on how many classes you are taking. Ask your college, university, or school for your status.
+        help_text: Your school decides this based on how many classes you take. If you're not sure, ask your school about your enrollment.
         title: Do you go to school full-time, or at least half-time?
     school_enrollment_milestone:
       display:

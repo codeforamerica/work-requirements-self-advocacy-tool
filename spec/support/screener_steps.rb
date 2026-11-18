@@ -75,7 +75,8 @@ module ScreenerSteps
   # -- School enrollment ------------------------------------------------------
   def step_school_enrollment(answer:)
     expect(page).to have_selector("h1", text: I18n.t("views.school_enrollment.edit.title"))
-    click_on (answer == :yes) ? I18n.t("general.affirmative") : I18n.t("general.negative")
+    choose (answer == :yes) ? I18n.t("general.affirmative") : I18n.t("general.negative")
+    click_on I18n.t("general.continue")
   end
 
   # -- Alcohol treatment ------------------------------------------------------
