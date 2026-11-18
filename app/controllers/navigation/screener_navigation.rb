@@ -23,6 +23,7 @@ module Navigation
       ControllerNavigation::NavigationStep.new(EmploymentController),
       ControllerNavigation::NavigationStep.new(CommunityServiceController),
       ControllerNavigation::NavigationStep.new(TrainingProgramController),
+      ControllerNavigation::NavigationStep.new(SchoolEnrollmentMilestoneController),
       ControllerNavigation::NavigationStep.new(WorkRulesApplyMetController),
       ControllerNavigation::NavigationStep.new(WorkRulesApplyUnmetController),
       ControllerNavigation::NavigationStep.new(BasicInfoMilestoneController),

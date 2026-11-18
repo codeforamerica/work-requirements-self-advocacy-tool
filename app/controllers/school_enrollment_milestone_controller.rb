@@ -1,0 +1,3 @@
+class SchoolEnrollmentMilestoneController < StudentQuestionController
+  include PersonalSituationsConcern
+end
