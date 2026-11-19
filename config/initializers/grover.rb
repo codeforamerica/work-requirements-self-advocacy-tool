@@ -20,4 +20,6 @@ Grover.configure do |config|
   # when we've found one of the container Chrome paths above.
   config.options = {launch_args: ["--no-sandbox", "--disable-setuid-sandbox"]}
   config.options[:executable_path] = chrome_path if chrome_path.present?
+
+  config.options[:display_url] = "https://example.com"
 end
