@@ -691,6 +691,10 @@ en:
       edit:
         help_text: Your school decides this based on how many classes you take. If you're not sure, ask your school about your enrollment.
         title: Do you go to school full-time, or at least half-time?
+    school_enrollment_milestone:
+      display:
+        help_text: You said you go to school at least half-time. We’ll check which SNAP student rules may apply to you.
+        title: Next, we’ll ask about your school
     screener_mailer:
       send_screener_results:
         attachment_notice: Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.

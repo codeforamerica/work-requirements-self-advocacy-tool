@@ -691,6 +691,10 @@ es:
       edit:
         help_text: Cada escuela decide esto según la cantidad de clases que usted tome. Si tiene dudas, pregunte en su institución educativa sobre su tipo de matrícula.
         title: "¿Asiste a la escuela a tiempo completo o al menos medio tiempo?"
+    school_enrollment_milestone:
+      display:
+        help_text: Usted indicó que estudia al menos medio tiempo. Ahora veremos qué reglas de SNAP para estudiantes podrían aplicarse a su caso.
+        title: A continuación, unas preguntas sobre su escuela
     screener_mailer:
       send_screener_results:
         attachment_notice: Su formulario de exención de las reglas de trabajo de SNAP de GetBenefitsHelp está adjunto al final de este correo.
