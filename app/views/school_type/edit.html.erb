@@ -1,0 +1,18 @@
+<% content_for :question_title, t("views.school_type.edit.title") %>
+
+<h1 class="h2"><%= content_for(:question_title) %></h1>
+
+<p><%= t("views.school_type.edit.help_text") %></p>
+
+<%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :student_school_type, value: :unfilled %>
+  <%= f.cfa_radio_set(:student_school_type, collection: [
+    { value: :high_school_ged, label: t("views.school_type.edit.high_school_ged") },
+    { value: :college, label: t("views.school_type.edit.college") },
+    { value: :trade_tech_school, label: safe_join([t("views.school_type.edit.trade_tech_school"), tag.br, tag.span(t("views.school_type.edit.trade_tech_school_help_text"), class: "text--help")]) },
+    { value: :training_program, label: t("views.school_type.edit.training_program") },
+    { value: :other, label: t("views.school_type.edit.other") },
+  ]) %>
+
+  <%= f.submit t("general.continue"), class: "button button--primary" %>
+<% end %>

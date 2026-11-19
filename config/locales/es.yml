@@ -695,6 +695,16 @@ es:
       display:
         help_text: Usted indicó que estudia al menos medio tiempo. Ahora veremos qué reglas de SNAP para estudiantes podrían aplicarse a su caso.
         title: A continuación, unas preguntas sobre su escuela
+    school_type:
+      edit:
+        college: Universidad o institución de educación superior
+        help_text: Seleccione una opción.
+        high_school_ged: Escuela secundaria o programa de GED
+        other: Otro
+        title: "¿En qué tipo de institución educativa o programa estudia?"
+        trade_tech_school: Escuela técnica, vocacional o de oficios
+        trade_tech_school_help_text: Programa que requiere un diploma de secundaria o un GED
+        training_program: Programa de capacitación en el trabajo
     screener_mailer:
       send_screener_results:
         attachment_notice: Su formulario de exención de las reglas de trabajo de SNAP de GetBenefitsHelp está adjunto al final de este correo.
