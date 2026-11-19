@@ -15,115 +15,115 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_29_205931) do
   enable_extension "pg_catalog.plpgsql"
 
   create_table "nc_screeners", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "earned_more_than_threshold", default: 0, null: false
-    t.integer "has_hs_diploma", default: 0, null: false
-    t.integer "health_conditions_preventing_work", default: 0, null: false
-    t.integer "homeschool_hours"
-    t.string "homeschool_name"
     t.bigint "screener_id", null: false
-    t.integer "teaches_homeschool", default: 0, null: false
-    t.datetime "updated_at", null: false
+    t.integer "has_hs_diploma", default: 0, null: false
     t.integer "worked_last_five_years", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "teaches_homeschool", default: 0, null: false
+    t.string "homeschool_name"
+    t.integer "homeschool_hours"
+    t.integer "earned_more_than_threshold", default: 0, null: false
+    t.integer "health_conditions_preventing_work", default: 0, null: false
     t.index ["screener_id"], name: "index_nc_screeners_on_screener_id"
   end
 
   create_table "outgoing_emails", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "email"
-    t.integer "email_type", default: 0, null: false
     t.bigint "screener_id", null: false
     t.datetime "sent_at"
+    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.integer "email_type", default: 0, null: false
     t.index ["email"], name: "index_outgoing_emails_on_email"
     t.index ["email_type"], name: "index_outgoing_emails_on_email_type"
     t.index ["screener_id"], name: "index_outgoing_emails_on_screener_id"
   end
 
   create_table "screeners", force: :cascade do |t|
-    t.text "additional_care_info"
-    t.integer "age_range", default: 0, null: false
-    t.string "alcohol_treatment_program_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "middle_name"
+    t.string "last_name"
     t.date "birth_date"
+    t.string "phone_number"
+    t.integer "is_american_indian", default: 0, null: false
+    t.integer "has_child", default: 0, null: false
     t.integer "caring_for_child_under_6", default: 0, null: false
     t.integer "caring_for_disabled_or_ill_person", default: 0, null: false
     t.integer "caring_for_no_one", default: 0, null: false
-    t.string "case_number"
-    t.string "confirmation_code"
-    t.integer "consented_to_texts", default: 0, null: false
-    t.string "county"
-    t.datetime "created_at", null: false
-    t.string "current_step"
     t.string "email"
-    t.text "exemptions_found", array: true
-    t.string "first_name"
-    t.integer "has_child", default: 0, null: false
-    t.integer "has_unemployment_benefits", default: 0, null: false
-    t.integer "is_american_indian", default: 0, null: false
-    t.integer "is_in_alcohol_treatment_program", default: 0, null: false
-    t.integer "is_in_work_training", default: 0, null: false
-    t.integer "is_migrant_farmworker", default: 0, null: false
     t.integer "is_pregnant", default: 0, null: false
-    t.integer "is_student", default: 0, null: false
-    t.integer "is_volunteer", default: 0, null: false
-    t.integer "is_working", default: 0, null: false
-    t.string "last_name"
-    t.string "locale"
-    t.string "middle_name"
-    t.string "outcome"
-    t.datetime "outcome_arrived_at"
-    t.string "phone_number"
     t.date "pregnancy_due_date"
-    t.text "preventing_work_additional_info"
-    t.integer "preventing_work_domestic_violence", default: 0, null: false
-    t.integer "preventing_work_drugs_alcohol", default: 0, null: false
-    t.integer "preventing_work_medical_condition", default: 0, null: false
-    t.integer "preventing_work_none", default: 0, null: false
-    t.integer "preventing_work_other", default: 0, null: false
-    t.integer "preventing_work_place_to_sleep", default: 0, null: false
-    t.string "preventing_work_write_in"
-    t.integer "receives_snap", default: 0, null: false
-    t.integer "receiving_benefits_disability_medicaid", default: 0, null: false
-    t.integer "receiving_benefits_disability_pension", default: 0, null: false
-    t.integer "receiving_benefits_insurance_payments", default: 0, null: false
-    t.integer "receiving_benefits_none", default: 0, null: false
-    t.integer "receiving_benefits_other", default: 0, null: false
+    t.integer "has_unemployment_benefits", default: 0, null: false
     t.integer "receiving_benefits_ssdi", default: 0, null: false
     t.integer "receiving_benefits_ssi", default: 0, null: false
     t.integer "receiving_benefits_veterans_disability", default: 0, null: false
+    t.integer "receiving_benefits_disability_pension", default: 0, null: false
     t.integer "receiving_benefits_workers_compensation", default: 0, null: false
+    t.integer "receiving_benefits_insurance_payments", default: 0, null: false
+    t.integer "receiving_benefits_other", default: 0, null: false
+    t.integer "receiving_benefits_none", default: 0, null: false
     t.string "receiving_benefits_write_in"
-    t.string "session_token"
+    t.integer "is_volunteer", default: 0, null: false
+    t.integer "volunteering_hours"
+    t.string "volunteering_org_name"
+    t.integer "is_in_work_training", default: 0, null: false
+    t.string "work_training_hours"
+    t.string "work_training_name"
+    t.integer "is_student", default: 0, null: false
+    t.integer "preventing_work_place_to_sleep", default: 0, null: false
+    t.integer "preventing_work_drugs_alcohol", default: 0, null: false
+    t.integer "preventing_work_domestic_violence", default: 0, null: false
+    t.integer "preventing_work_medical_condition", default: 0, null: false
+    t.integer "preventing_work_other", default: 0, null: false
+    t.integer "preventing_work_none", default: 0, null: false
+    t.string "preventing_work_write_in"
+    t.integer "is_working", default: 0, null: false
+    t.integer "working_hours"
+    t.decimal "working_weekly_earnings"
+    t.integer "is_migrant_farmworker", default: 0, null: false
+    t.text "preventing_work_additional_info"
+    t.integer "is_in_alcohol_treatment_program", default: 0, null: false
+    t.string "alcohol_treatment_program_name"
+    t.integer "receiving_benefits_disability_medicaid", default: 0, null: false
+    t.integer "consented_to_texts", default: 0, null: false
+    t.text "additional_care_info"
+    t.string "visitor_id"
+    t.string "state"
+    t.string "county"
+    t.string "confirmation_code"
+    t.string "case_number"
+    t.string "ssn_last_four"
     t.string "signature"
     t.datetime "signed_at"
     t.string "source"
-    t.string "ssn_last_four"
-    t.string "state"
-    t.text "survey_additional_feedback"
-    t.integer "survey_confidence_in_exemption_rules", default: 0, null: false
+    t.string "zip_code"
     t.integer "survey_ease_of_experience", default: 0, null: false
+    t.integer "survey_confidence_in_exemption_rules", default: 0, null: false
+    t.integer "survey_plan_to_email_results", default: 0, null: false
+    t.integer "survey_plan_to_submit_results_to_site", default: 0, null: false
     t.integer "survey_plan_to_bring_results_to_interview", default: 0, null: false
     t.integer "survey_plan_to_bring_results_to_organization", default: 0, null: false
-    t.integer "survey_plan_to_email_results", default: 0, null: false
     t.integer "survey_plan_to_keep_it_in_records", default: 0, null: false
-    t.integer "survey_plan_to_submit_results_to_site", default: 0, null: false
+    t.text "survey_additional_feedback"
+    t.string "outcome"
+    t.datetime "outcome_arrived_at"
+    t.string "current_step"
+    t.string "locale"
+    t.string "session_token"
     t.integer "unsubmitted_because_already_reported", default: 0, null: false
+    t.integer "unsubmitted_because_wont_be_accepted", default: 0, null: false
+    t.integer "unsubmitted_because_process_too_hard", default: 0, null: false
     t.integer "unsubmitted_because_dont_qualify_for_exemptions", default: 0, null: false
     t.integer "unsubmitted_because_just_wanted_to_see_result", default: 0, null: false
-    t.integer "unsubmitted_because_other", default: 0, null: false
     t.integer "unsubmitted_because_privacy_concerns", default: 0, null: false
-    t.integer "unsubmitted_because_process_too_hard", default: 0, null: false
-    t.integer "unsubmitted_because_wont_be_accepted", default: 0, null: false
+    t.integer "unsubmitted_because_other", default: 0, null: false
     t.string "unsubmitted_write_in"
-    t.datetime "updated_at", null: false
-    t.string "visitor_id"
-    t.integer "volunteering_hours"
-    t.string "volunteering_org_name"
-    t.string "work_training_hours"
-    t.string "work_training_name"
-    t.integer "working_hours"
-    t.decimal "working_weekly_earnings"
-    t.string "zip_code"
+    t.text "exemptions_found", array: true
+    t.integer "age_range", default: 0, null: false
+    t.integer "receives_snap", default: 0, null: false
     t.index ["session_token"], name: "index_screeners_on_session_token", unique: true
   end
 
