@@ -8,7 +8,7 @@
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version
-ARG RUBY_VERSION=3.4.11
+ARG RUBY_VERSION=3.4.13
 # Node version, within the 22.x line that package.json engines, .tool-versions and CI
 # require. Doubles as the tag of the DHI Node image that Node is copied from (see the
 # node stage below), so like RUBY_VERSION it has to name a tag DHI actually publishes.
