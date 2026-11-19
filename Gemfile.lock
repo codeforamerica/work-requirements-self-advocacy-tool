@@ -142,7 +142,7 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.3.8)
-    connection_pool (3.0.2)
+    connection_pool (3.0.3)
     crass (1.0.8)
     csv (3.3.7)
     dartsass-rails (0.5.1)
@@ -214,7 +214,7 @@ GEM
       reline
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (1.2.0)
+    i18n-tasks (1.2.1)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -789,7 +789,7 @@ DEPENDENCIES
   erb (>= 6.0.5)
   factory_bot_rails
   grover (>= 2.0.0)
-  i18n-tasks (~> 1.2.0)
+  i18n-tasks (~> 1.2.1)
   intercom-rails
   jbuilder
   jsbundling-rails
