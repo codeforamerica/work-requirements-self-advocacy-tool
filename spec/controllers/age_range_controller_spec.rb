@@ -10,7 +10,7 @@ RSpec.describe AgeRangeController, type: :controller do
       let(:screener) { create(:screener, state: LocationData::States::NOT_LISTED) }
     end
 
-    it "checks the option matching the age range already saved on the screener" do
+    it "pre-selects the saved age range" do
       screener = create(:screener, age_range: "50_to_54")
       sign_in screener
 

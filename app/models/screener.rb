@@ -48,6 +48,7 @@ class Screener < ApplicationRecord
     receiving_benefits_workers_compensation
     signed_at
     state
+    student_school_type
     survey_confidence_in_exemption_rules
     survey_ease_of_experience
     survey_plan_to_bring_results_to_interview
@@ -118,6 +119,7 @@ class Screener < ApplicationRecord
   enum :receiving_benefits_ssi, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_veterans_disability, {unfilled: 0, yes: 1, no: 2}, prefix: true
   enum :receiving_benefits_workers_compensation, {unfilled: 0, yes: 1, no: 2}, prefix: true
+  enum :student_school_type, {unfilled: 0, high_school_ged: 1, college: 2, trade_tech_school: 3, training_program: 4, other: 5}, prefix: true
   enum :survey_ease_of_experience, {unfilled: 0, very_easy: 1, easy: 2, neutral: 3, somewhat_difficult: 4, very_difficult: 5}, prefix: true
   enum :survey_confidence_in_exemption_rules, {unfilled: 0, very: 1, somewhat: 2, little: 3, not_at_all: 4}, prefix: true
   enum :survey_plan_to_email_results, {unfilled: 0, yes: 1, no: 2}, prefix: true

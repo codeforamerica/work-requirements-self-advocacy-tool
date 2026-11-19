@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_29_205931) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -124,6 +124,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_29_205931) do
     t.text "exemptions_found", array: true
     t.integer "age_range", default: 0, null: false
     t.integer "receives_snap", default: 0, null: false
+    t.integer "student_school_type", default: 0, null: false
     t.index ["session_token"], name: "index_screeners_on_session_token", unique: true
   end
 

@@ -695,6 +695,16 @@ en:
       display:
         help_text: You said you go to school at least half-time. We’ll check which SNAP student rules may apply to you.
         title: Next, we’ll ask about your school
+    school_type:
+      edit:
+        college: University or college
+        help_text: Select one.
+        high_school_ged: High school or GED program
+        other: Other
+        title: What kind of school or program are you in?
+        trade_tech_school: Trade, technical, or vocational school
+        trade_tech_school_help_text: Requires a high school diploma or GED
+        training_program: On-the-job training program
     screener_mailer:
       send_screener_results:
         attachment_notice: Your SNAP work rules exemption from GetBenefitsHelp is attached to this email.
