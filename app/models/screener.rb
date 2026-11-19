@@ -285,10 +285,6 @@ class Screener < ApplicationRecord
     validates :preventing_work_write_in, length: {maximum: PreventingWorkSituationsController::CHARACTER_LIMIT}, latin_script: true
   end
 
-  with_context :school_enrollment do
-    validates :is_student, inclusion: {in: %w[yes no], message: ->(*) { I18n.t("validations.must_answer_yes_or_no") }}
-  end
-
   with_context :signature do
     validates :signature, presence: {message: ->(*) { I18n.t("validations.signature_required") }}
     validates :signature, length: {maximum: SignatureController::CHARACTER_LIMIT, message: ->(*) { I18n.t("validations.maximum_length", max_length: SignatureController::CHARACTER_LIMIT, field_name: I18n.t("validations.fields.signature")) }}, latin_script: true
