@@ -21,9 +21,5 @@ Grover.configure do |config|
   config.options = {launch_args: ["--no-sandbox", "--disable-setuid-sandbox"]}
   config.options[:executable_path] = chrome_path if chrome_path.present?
 
-  # Grover loads our HTML by pointing Chrome at this URL and answering the first request with
-  # it. Its default, http://example.com, gets upgraded to https by Chrome, and puppeteer-core
-  # >= 25.17 reports that upgrade as its own request -- so Grover answers the upgrade, and the
-  # real https://example.com loads and ends up in the PDF. Starting on https avoids the upgrade.
   config.options[:display_url] = "https://example.com"
 end
