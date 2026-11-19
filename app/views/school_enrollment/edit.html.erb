@@ -7,6 +7,7 @@
 </p>
 
 <%= form_with model: @model, url: { action: :update }, data: { turbo: false }, local: true, method: "put", builder: Cfa::Styleguide::CfaFormBuilder do |f| %>
+  <%= f.hidden_field :is_student, value: :unfilled %>
   <%= f.cfa_radio_set(
         :is_student,
         collection: [

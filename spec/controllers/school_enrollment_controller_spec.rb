@@ -11,10 +11,11 @@ RSpec.describe SchoolEnrollmentController, type: :controller do
 
     it_behaves_like "a controller where update fires a page_submit Mixpanel event" do
       let(:page_submit_cases) do
-        params = {is_student: "no"}
-        [{form_params: params, expected_data: params}]
+        [
+          {form_params: {is_student: "no"}, expected_data: {is_student: "no"}},
+          {form_params: {is_student: "unfilled"}, expected_data: {is_student: "unfilled"}}
+        ]
       end
-      let(:invalid_params) { {is_student: ""} }
     end
 
     context "when the answer is no" do
