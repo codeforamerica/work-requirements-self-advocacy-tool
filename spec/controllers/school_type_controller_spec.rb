@@ -8,7 +8,7 @@ RSpec.describe SchoolTypeController, type: :controller do
 
     render_views
 
-    it "checks the option matching the school type already saved on the screener" do
+    it "pre-selects the saved school type" do
       screener.update!(student_school_type: "trade_tech_school")
       sign_in screener
 
