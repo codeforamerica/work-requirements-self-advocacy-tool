@@ -127,7 +127,7 @@ GEM
       msgpack (~> 1.5)
     bourbon (7.3.0)
       thor (~> 1.0)
-    brakeman (8.1.0)
+    brakeman (8.1.1)
       racc
     browser (6.2.0)
     builder (3.3.0)
